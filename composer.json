@@ -21,5 +21,8 @@
             "Doctrine_": "lib/",
             "sfYaml": "lib/Doctrine/Parser/sfYaml/"
         }
+    },
+    "require-dev": {
+        "phpunit/php-code-coverage": "^5.2"
     }
 }

@@ -12,6 +12,8 @@ ini_set('date.timezone', 'GMT+0');
 
 define('DOCTRINE_DIR', $_SERVER['DOCTRINE_DIR']);
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 // This forces the tests to use the local
 // copy of Doctrine in the event that there is another
 // version installed on the system that is also on the path

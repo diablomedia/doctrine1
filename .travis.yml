@@ -14,11 +14,14 @@ install: composer install
 notifications:
   email: false
 
-script: 
+script:
   - cd tests
-  - php run.php
+  - php run.php --coverage=clover
 
 matrix:
   allow_failures:
     - php: hhvm
     - php: 5.3
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -f tests/coverage/clover.xml

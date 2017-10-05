@@ -1,4 +1,5 @@
 tests/DoctrineTest/doctrine_tests/*
 tests/test.yml
+tests/coverage
 composer.lock
 vendor

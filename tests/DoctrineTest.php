@@ -50,9 +50,9 @@ class DoctrineTest
     }
 
     /**
-     * Add a test to be run. 
+     * Add a test to be run.
      *
-     * This is a thin wrapper around GroupTest that also store the testcase in 
+     * This is a thin wrapper around GroupTest that also store the testcase in
      * this class so that it is easier to create custom groups
      *
      * @param UnitTestCase A test case
@@ -66,9 +66,9 @@ class DoctrineTest
     /**
      * Run the tests
      *
-     * This method will run the tests with the correct Reporter. It will run 
-     * grouped tests if asked to and filter results. It also has support for 
-     * running coverage report. 
+     * This method will run the tests with the correct Reporter. It will run
+     * grouped tests if asked to and filter results. It also has support for
+     * running coverage report.
      *
      */
     public function run()
@@ -108,7 +108,7 @@ class DoctrineTest
                     die($group . " is not a valid group or doctrine test class\n ");
                 }
             }
-        } 
+        }
 
         if (isset($options['ticket'])) {
             $testGroup = new GroupTest('Doctrine Custom Test', 'custom');
@@ -125,15 +125,15 @@ class DoctrineTest
 
         //show help text
         if (isset($options['help'])) {
-            $availableGroups = sort(array_keys($this->groups));	
-	
+            $availableGroups = sort(array_keys($this->groups));
+
             echo "Doctrine test runner help\n";
             echo "===========================\n";
             echo " To run all tests simply run this script without arguments. \n";
             echo "\n Flags:\n";
-            echo " -coverage will generate coverage report data that can be viewed with the cc.php script in this folder. NB! This takes time. You need xdebug to run this\n";
-            echo " -group <groupName1> <groupName2> <className1> Use this option to run just a group of tests or tests with a given classname. Groups are currently defined as the variable name they are called in this script.\n";
-            echo " -filter <string1> <string2> case insensitive strings that will be applied to the className of the tests. A test_classname must contain all of these strings to be run\n"; 
+            echo " --coverage will generate coverage report data. You can optionally pass the type of coverage: text, text-summary, html, clover (default), i.e '--coverage=text-summary', an extension that can collect coverage information (like Xdebug) must be installed to use this.\n";
+            echo " --group <groupName1> <groupName2> <className1> Use this option to run just a group of tests or tests with a given classname. Groups are currently defined as the variable name they are called in this script.\n";
+            echo " --filter <string1> <string2> case insensitive strings that will be applied to the className of the tests. A test_classname must contain all of these strings to be run\n";
             echo "\nAvailable groups:\n " . implode(', ', $availableGroups) . "\n";
 
             die();
@@ -141,46 +141,21 @@ class DoctrineTest
 
         //generate coverage report
         if (isset($options['coverage'])) {
+            $coverageFilter = new \SebastianBergmann\CodeCoverage\Filter();
+            $coverageFilter->addDirectoryToWhitelist(DOCTRINE_DIR . DIRECTORY_SEPARATOR . 'lib');
 
-            /*
-             * The below code will not work for me (meus). It would be nice if 
-             * somebody could give it a try. Just replace this block of code 
-             * with the one below
-             *
-             define('PHPCOVERAGE_HOME', dirname(dirname(__FILE__)) . '/vendor/spikephpcoverage');
-            require_once PHPCOVERAGE_HOME . '/CoverageRecorder.php';
-            require_once PHPCOVERAGE_HOME . '/reporter/HtmlCoverageReporter.php';
-
-            $covReporter = new HtmlCoverageReporter('Doctrine Code Coverage Report', '', 'coverage2');
-
-            $includePaths = array('../lib');
-            $excludePaths = array();
-            $cov = new CoverageRecorder($includePaths, $excludePaths, $covReporter);
-
-            $cov->startInstrumentation();
-            $ret = $testGroup->run($reporter, $filter);
-            $cov->stopInstrumentation();
-
-            $cov->generateReport();
-            $covReporter->printTextSummary();
-            return $ret;
-             */
-            xdebug_start_code_coverage(XDEBUG_CC_UNUSED | XDEBUG_CC_DEAD_CODE);
-            $ret = $testGroup->run($reporter, $filter);
-            $result['coverage'] = xdebug_get_code_coverage();
-            xdebug_stop_code_coverage();
-            file_put_contents(dirname(__FILE__) . '/coverage/coverage.txt', serialize($result));
-            require_once dirname(__FILE__) . '/DoctrineTest/Coverage.php';
-            $coverageGeneration = new DoctrineTest_Coverage();
-            $coverageGeneration->generateReport();
-            return $ret;
-            // */
+            $coverage = new \SebastianBergmann\CodeCoverage\CodeCoverage(null, $coverageFilter);
+            $coverage->start($testGroup->getName());
         }
 
         if (array_key_exists('only-failed', $options)) {
             $testGroup->onlyRunFailed(true);
         }
         $result = $testGroup->run($reporter, $filter);
+
+        if (isset($options['coverage'])) {
+            $coverage->stop();
+        }
 
         global $startTime;
 
@@ -191,6 +166,30 @@ class DoctrineTest
           echo "\nTests ran in " . $time . " seconds and used " . (memory_get_peak_usage() / 1024) . " KB of memory\n\n";
         } else {
           echo "<p>Tests ran in " . $time . " seconds and used " . (memory_get_peak_usage() / 1024) . " KB of memory</p>";
+        }
+
+        if (isset($options['coverage'])) {
+            switch ($options['coverage']) {
+                default:
+                case 'clover':
+                    $writer = new \SebastianBergmann\CodeCoverage\Report\Clover();
+                    $writer->process($coverage, __DIR__ . '/coverage/clover.xml');
+                    break;
+                case 'text':
+                    $writer = new \SebastianBergmann\CodeCoverage\Report\Text();
+                    $output = $writer->process($coverage, true);
+                    echo $output;
+                    break;
+                case 'text-summary':
+                    $writer = new \SebastianBergmann\CodeCoverage\Report\Text(50, 90, false, true);
+                    $output = $writer->process($coverage, true);
+                    echo $output;
+                    break;
+                case 'html':
+                    $writer = new \SebastianBergmann\CodeCoverage\Report\Html\Facade();
+                    $writer->process($coverage, __DIR__ . '/coverage/code-coverage-report');
+                    break;
+            }
         }
 
         return $result;
@@ -228,15 +227,27 @@ class DoctrineTest
         foreach($array as $name) {
             if (strpos($name, '--') === 0) {
                 $name = ltrim($name, '--');
+                $value = null;
+
+                if (strpos($name, '=') !== false) {
+                    list($name, $value) = explode('=', $name);
+                }
                 $currentName = $name;
 
-                if ( ! isset($options[$currentName])) {
-                    $options[$currentName] = array();         
+                if (!isset($options[$currentName])) {
+                    if ($value !== null) {
+                        $options[$currentName] = $value;
+                    } else {
+                        $options[$currentName] = array();
+                    }
+
                 }
             } else {
-                $values = $options[$currentName];
-                array_push($values, $name);    
-                $options[$currentName] = $values;
+                if (is_array($options[$currentName])) {
+                    $values = $options[$currentName];
+                    array_push($values, $name);
+                    $options[$currentName] = $values;
+                }
             }
         }
 
@@ -248,8 +259,8 @@ class DoctrineTest
      *
      * Will create test case if it does not exist
      *
-     * @param string $class The name of the class to autoload 
-     * @return boolean True 
+     * @param string $class The name of the class to autoload
+     * @return boolean True
      */
     public static function autoload($class)
     {
@@ -258,6 +269,7 @@ class DoctrineTest
         }
 
         $e = explode('_', $class);
+
         $count = count($e);
         $prefix = array_shift($e);
 
@@ -265,16 +277,16 @@ class DoctrineTest
             return false;
         }
 
-        $dir = array_shift($e);
+        $dir = DOCTRINE_DIR . '/tests/' . array_shift($e);
         $file = $dir . '_' . substr(implode('_', $e), 0, -(strlen('_TestCase'))) . 'TestCase.php';
         $file = str_replace('_', (($count > 3) ? DIRECTORY_SEPARATOR : ''), $file);
 
         // create a test case file if it doesn't exist
-        if ( ! file_exists($file)) {
+        if (!file_exists($file)) {
             $contents = file_get_contents(DOCTRINE_DIR.'/tests/template.tpl');
             $contents = sprintf($contents, $class, $class);
 
-            if ( ! file_exists($dir)) {
+            if (!file_exists($dir)) {
                 mkdir($dir, 0777);
             }
 

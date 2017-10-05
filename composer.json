@@ -17,12 +17,12 @@
         "ext-pdo": "*"
     },
     "autoload": {
-        "psr-0": { 
+        "psr-0": {
             "Doctrine_": "lib/",
             "sfYaml": "lib/Doctrine/Parser/sfYaml/"
         }
     },
     "require-dev": {
-        "phpunit/php-code-coverage": "^5.2"
+        "phpunit/php-code-coverage": "^4.0 || ^5.0"
     }
 }

@@ -131,7 +131,7 @@ class DoctrineTest
             echo "===========================\n";
             echo " To run all tests simply run this script without arguments. \n";
             echo "\n Flags:\n";
-            echo " --coverage will generate coverage report data. You can optionally pass the type of coverage: text, text-summary, html, clover (default), i.e '--coverage=text-summary', an extension that can collect coverage information (like Xdebug) must be installed to use this.\n";
+            echo " --coverage will generate coverage report data. You can optionally pass the type of coverage: text, text-summary, html or clover (default), i.e '--coverage=text-summary', an extension that can collect coverage information (like Xdebug) must be installed to use this.\n";
             echo " --group <groupName1> <groupName2> <className1> Use this option to run just a group of tests or tests with a given classname. Groups are currently defined as the variable name they are called in this script.\n";
             echo " --filter <string1> <string2> case insensitive strings that will be applied to the className of the tests. A test_classname must contain all of these strings to be run\n";
             echo "\nAvailable groups:\n " . implode(', ', $availableGroups) . "\n";
@@ -141,11 +141,16 @@ class DoctrineTest
 
         //generate coverage report
         if (isset($options['coverage'])) {
-            $coverageFilter = new \SebastianBergmann\CodeCoverage\Filter();
-            $coverageFilter->addDirectoryToWhitelist(DOCTRINE_DIR . DIRECTORY_SEPARATOR . 'lib');
+            try {
+                $coverageFilter = new \SebastianBergmann\CodeCoverage\Filter();
+                $coverageFilter->addDirectoryToWhitelist(DOCTRINE_DIR . DIRECTORY_SEPARATOR . 'lib');
 
-            $coverage = new \SebastianBergmann\CodeCoverage\CodeCoverage(null, $coverageFilter);
-            $coverage->start($testGroup->getName());
+                $coverage = new \SebastianBergmann\CodeCoverage\CodeCoverage(null, $coverageFilter);
+                $coverage->start($testGroup->getName());
+            } catch (\SebastianBergmann\CodeCoverage\RuntimeException $e) {
+                echo "There was an error trying to start CodeCoverage ($e->getMessage()) Coverage won't be available for this run.\n";
+                unset($options['coverage']);
+            }
         }
 
         if (array_key_exists('only-failed', $options)) {

@@ -148,7 +148,7 @@ class DoctrineTest
                 $coverage = new \SebastianBergmann\CodeCoverage\CodeCoverage(null, $coverageFilter);
                 $coverage->start($testGroup->getName());
             } catch (\SebastianBergmann\CodeCoverage\RuntimeException $e) {
-                echo "There was an error trying to start CodeCoverage ($e->getMessage()) Coverage won't be available for this run.\n";
+                echo "There was an error trying to start CodeCoverage (" . $e->getMessage() . ") Coverage won't be available for this run.\n";
                 unset($options['coverage']);
             }
         }

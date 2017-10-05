@@ -24,4 +24,4 @@ matrix:
     - php: 5.3
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -f tests/coverage/clover.xml
+  - bash <(curl -s https://codecov.io/bash) -f coverage/clover.xml

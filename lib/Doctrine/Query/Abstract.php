@@ -877,7 +877,8 @@ abstract class Doctrine_Query_Abstract
         $dql = $this->getDql();
         $params = $this->getFlattenedParams($params);
         foreach ($params as $array) {
-            $paramString .= '|' . count($array);
+            $count = is_array($array) ? count($array) : 1;
+            $paramString .= '|' . $count;
         }
 
         $hash = md5($dql . var_export($this->_pendingJoinConditions, true) . $paramString . 'DOCTRINE_QUERY_CACHE_SALT');
@@ -1373,7 +1374,7 @@ abstract class Doctrine_Query_Abstract
     public function andWhereIn($expr, $params = array(), $not = false)
     {
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if (isset($params) and (count($params) == 0)) {
+        if (isset($params) and is_array($params) and (count($params) == 0)) {
             return $this;
         }
 
@@ -1400,7 +1401,7 @@ abstract class Doctrine_Query_Abstract
     public function orWhereIn($expr, $params = array(), $not = false)
     {
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if (isset($params) and (count($params) == 0)) {
+        if (isset($params) and is_array($params) and (count($params) == 0)) {
             return $this;
         }
 
@@ -1419,7 +1420,7 @@ abstract class Doctrine_Query_Abstract
         $params = (array) $params;
 
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if (count($params) == 0) {
+        if (is_array($params) && count($params) == 0) {
             throw new Doctrine_Query_Exception('You must pass at least one parameter when using an IN() condition.');
         }
 

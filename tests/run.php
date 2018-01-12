@@ -265,7 +265,7 @@ $test->addTestCase($inheritance);
 
 // Search Tests
 $search = new GroupTest('Search Tests', 'search');
-if (empty($_ENV['TRAVIS'])) {
+if (empty(getenv('TRAVIS'))) {
     // Fails in Travis, haven't been able to reproduce locally
     $search->addTestCase(new Doctrine_Search_TestCase());
 }

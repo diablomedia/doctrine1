@@ -18,7 +18,6 @@ script:
 
 matrix:
   allow_failures:
-    - php: 7.2
     - php: hhvm
 
 after_success:

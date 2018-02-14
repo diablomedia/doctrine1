@@ -1,7 +1,7 @@
 {
-    "name": "doctrine/doctrine1",
+    "name": "diablomedia/doctrine1",
     "type": "library",
-    "description": "PHP5 Database ORM",
+    "description": "PHP5+ Database ORM",
     "keywords": ["orm", "database"],
     "homepage": "http://www.doctrine-project.org",
     "license": "LGPL",
@@ -9,18 +9,21 @@
         {"name": "Konsta Vesterinen", "email": "kvesteri@cc.hut.fi"},
         {"name": "Jonathan Wage", "email": "jonwage@gmail.com"}
     ],
-    "include-path": [
-        "lib/"
-    ],
-    "require": {
-        "php": ">=5.2.3",
-        "ext-pdo": "*"
-    },
     "autoload": {
         "psr-0": {
             "Doctrine_": "lib/",
             "sfYaml": "lib/Doctrine/Parser/sfYaml/"
         }
+    },
+    "include-path": [
+        "lib/"
+    ],
+    "replace": {
+        "doctrine/doctrine1": "*"
+    },
+    "require": {
+        "php": ">=5.6",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "phpunit/php-code-coverage": "^4.0 || ^5.0"

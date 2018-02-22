@@ -6,4 +6,6 @@ Doctrine 1 ORM
 [![Total Downloads](https://poser.pugx.org/diablomedia/doctrine1/downloads)](https://packagist.org/packages/diablomedia/doctrine1)
 [![License](https://poser.pugx.org/diablomedia/doctrine1/license)](https://packagist.org/packages/diablomedia/doctrine1)
 
-Old school Doctrine 1.0 repo that is maintained to the point that major blockers are fixed, and kept up to date to work with current PHP versions for as long as we're using the library.
+A fork of the old school Doctrine1 repo that is maintained to the point that major blockers are fixed, and kept up to date to work with current PHP versions.
+
+This fork is based on the final release of the original project (version 1.2.5), and releases will follow [semantic versioning](https://semver.org/). The first release of this fork is version 2.0.0.

@@ -118,8 +118,8 @@ class Doctrine_Import_Mssql extends Doctrine_Import
             $val['identity'] = $identity;
             $decl = $this->conn->dataDict->getPortableDeclaration($val);
 
-            $isIdentity = (bool) (strtoupper(trim($identity)) == 'IDENTITY');
-            $isNullable = (bool) (strtoupper(trim($val['is_nullable'])) == 'NO');
+            $isIdentity = (strtoupper(trim($identity)) == 'IDENTITY');
+            $isNullable = (strtoupper(trim($val['is_nullable'])) == 'NO');
             $isPrimary = in_array($val['column_name'], $primary);
 
             $description  = array(

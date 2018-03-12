@@ -87,7 +87,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
      *
      * @param  string  $value         Value to validate
      * @param  string  $type          Type of field being validated
-     * @param  string  $maximumLength Maximum length allowed for the column
+     * @param  string|null  $maximumLength Maximum length allowed for the column
      * @return boolean $success       True/false for whether the value passed validation
      */
     public static function validateLength($value, $type, $maximumLength)

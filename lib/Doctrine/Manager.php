@@ -691,7 +691,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Creates databases for all existing connections
      *
-     * @param string $specifiedConnections Array of connections you wish to create the database for
+     * @param string|array $specifiedConnections Array of connections you wish to create the database for
      * @return void
      * @todo package:dbal
      */
@@ -713,7 +713,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Drops databases for all existing connections
      *
-     * @param string $specifiedConnections Array of connections you wish to drop the database for
+     * @param string|array $specifiedConnections Array of connections you wish to drop the database for
      * @return void
      * @todo package:dbal
      */

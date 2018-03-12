@@ -1126,7 +1126,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * field names converted to column names if the 3rd argument is true.
      *
      * @param string $alias        The alias to prefix columns with
-     * @param string $orderBy      The order by to process
+     * @param string|array $orderBy      The order by to process
      * @param string $columnNames  Whether or not to convert field names to column names
      * @return string $orderBy
      */
@@ -1166,7 +1166,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * If the actual name for the alias cannot be found
      * this method returns the given alias.
      *
-     * @param string $fieldName         column alias
+     * @param string|array $fieldName         column alias
      * @return string               column name
      */
     public function getColumnName($fieldName)
@@ -1226,7 +1226,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *         ));
      *     }
      *
-     * @param string $columnName
+     * @param string|array $columnName
      * @param array $options
      * @return void
      */
@@ -1450,7 +1450,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
     /**
      * Returns the definition of the identifier key.
-     * @return string    can be array if a multi-column primary key is used.
+     * @return string|array    can be array if a multi-column primary key is used.
      */
     public function getIdentifier()
     {
@@ -2005,7 +2005,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * on the connection, index and value are the same thing.
      *
      * @param string $fieldName
-     * @param integer $index        numeric index of the enum
+     * @param integer|Doctrine_Null $index        numeric index of the enum
      * @return mixed
      */
     public function enumValue($fieldName, $index)
@@ -2029,7 +2029,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $fieldName
      * @param mixed $value          value of the enum considered
-     * @return integer              can be string if native enums are used.
+     * @return integer|mixed              can be string if native enums are used.
      */
     public function enumIndex($fieldName, $value)
     {
@@ -2046,7 +2046,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @see Doctrine_Core::ATTR_VALIDATE
      *
      * @param string $fieldName
-     * @param string $value
+     * @param string|Doctrine_Record $value
      * @param Doctrine_Record $record   record to consider; if it does not exists, it is created
      * @return Doctrine_Validator_ErrorStack $errorStack
      */
@@ -2328,7 +2328,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @throws Doctrine_Table_Exception     if unserialization of array/object typed column fails or
      * @throws Doctrine_Table_Exception     if uncompression of gzip typed column fails         *
      * @param string $fieldName the name of the field
-     * @param string $value     field value
+     * @param string|null $value     field value
      * @param string $typeHint  Type hint used to pass in the type of the value to prepare
      *                          if it is already known. This enables the method to skip
      *                          the type determination. Used i.e. during hydration.

@@ -150,7 +150,7 @@ class Doctrine_Import_Sqlite extends Doctrine_Import
                     'scale'         => null,
                     'precision'     => null,
                     'unsigned'      => null,
-                    'autoincrement' => (bool) ($val['pk'] == 1 && $decl['type'][0] == 'integer'),
+                    'autoincrement' => ($val['pk'] == 1 && $decl['type'][0] == 'integer'),
                     );
             $columns[$val['name']] = $description;
         }

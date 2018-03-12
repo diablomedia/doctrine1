@@ -1531,8 +1531,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * and change it in the database when it is not necessary
      *
      * @param string $type  Doctrine type of the column
-     * @param string $old   Old value
-     * @param string $new   New value
+     * @param string|bool|int|float $old   Old value
+     * @param string|bool|int|float|Doctrine_Expression $new   New value
      * @return boolean $modified  Whether or not Doctrine considers the value modified
      */
     protected function _isValueModified($type, $old, $new)
@@ -1567,7 +1567,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * relations, populating the foreign keys accordingly.
      *
      * @param string $name                                  related component alias in the relation
-     * @param Doctrine_Record|Doctrine_Collection $value    object to be linked as a related component
+     * @param Doctrine_Record|Doctrine_Collection|null $value    object to be linked as a related component
      * @todo Refactor. What about composite keys?
      */
     public function coreSetRelated($name, $value)

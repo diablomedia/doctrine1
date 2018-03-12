@@ -102,7 +102,7 @@ class Doctrine_Search_Query
             $orderBy = null;
         }
         $this->_sql = $select . ' ' . $from . ' ' . $where . ' ' . $groupby;
-        if (isset($orderBy) && $orderBy !== null) {
+        if ($orderBy !== null) {
             $this->_sql .= ' ' . $orderBy;
         }
     }

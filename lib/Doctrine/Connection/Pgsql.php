@@ -123,7 +123,7 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
      * Changes a query string for various DBMS specific reasons
      *
      * @param string $query         query to modify
-     * @param integer $limit        limit the number of rows
+     * @param integer $limit|false        limit the number of rows
      * @param integer $offset       start reading from given offset
      * @param boolean $isManip      if the query is a DML query
      * @return string               modified query

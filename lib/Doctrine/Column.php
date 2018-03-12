@@ -114,7 +114,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
     /**
      * Retrieves an enum value.
      *
-     * @param integer $index
+     * @param integer|Doctrine_Null $index
      * @return string|false       integer ($index) if not present
      */
     public function enumValue($index)

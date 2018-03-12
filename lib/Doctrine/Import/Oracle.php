@@ -69,7 +69,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listTriggers($database = null)
     {
-        $query = "SELECT trigger_name FROM sys.user_triggers"; 
+        $query = "SELECT trigger_name FROM sys.user_triggers";
         return $this->conn->fetchColumn($query);
     }
 
@@ -136,7 +136,7 @@ QEND;
 
             $descr[$val['column_name']] = array(
                'name'       => $val['column_name'],
-               'notnull'    => (bool) ($val['nullable'] === 'N'),
+               'notnull'    => ($val['nullable'] === 'N'),
                'ntype'      => $val['data_type'],
                'type'       => $decl['type'][0],
                'alltypes'   => $decl['type'],
@@ -169,7 +169,7 @@ QEND;
 
         return array_map(array($this->conn->formatter, 'fixIndexName'), $indexes);
     }
-    
+
     /**
      * list table relations
      */

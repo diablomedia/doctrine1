@@ -307,7 +307,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * If null is given as the first parameter this method retrieves the current
      * value of Doctrine_Query::$isSubquery.
      *
-     * @param boolean $bool     whether or not this query acts as a subquery
+     * @param boolean|null $bool     whether or not this query acts as a subquery
      * @return Doctrine_Query|bool
      */
     public function isSubquery($bool = null)

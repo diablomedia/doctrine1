@@ -112,7 +112,7 @@ class Doctrine_Event
     protected $_startedMicrotime;
 
     /**
-     * @var integer $_endedMicrotime    the time point in which this event was ended
+     * @var integer|null $_endedMicrotime    the time point in which this event was ended
      */
     protected $_endedMicrotime;
 

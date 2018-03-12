@@ -305,7 +305,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      */
     public function concat(...$args)
     {
-        return 'CONCAT(' . join(', ', (array) $args) . ')';
+        return 'CONCAT(' . join(', ', $args) . ')';
     }
 
     /**

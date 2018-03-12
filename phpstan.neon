@@ -169,3 +169,25 @@ parameters:
         - '#Method Doctrine_Query::fetchArray\(\) should return array but returns array\|Doctrine_Collection\.#'
         # This one does not allow specifying the hydration mode, so should default to Doctrine_Collection (record hydration)
         - '#Method Doctrine_IntegrityMapper::buildIntegrityRelationQuery\(\) should return Doctrine_Collection but returns array\|Doctrine_Collection\.#'
+
+        #########
+        # Level 4
+        #########
+        # Most of these casts would be unnecessary if scalar type hints were used on these function parameters, probably worth looking
+        # into later (can't do non-array type hints until PHP 7.0 anyhow)
+        - '#Casting to array something that.s already array\.#'
+        - '#Casting to int something that.s already int\.#'
+        - '#Casting to string something that.s already string\.#'
+        - '#Casting to bool something that.s already bool\.#'
+        # This one only happens in Doctrine_Hydrator:122 as of this writing, in this case it seems unnecessary because as far as I can
+        # tell, the value will always be a string. However, it's possible that maybe in some extending classes this ends up being an
+        # object, so leaving as-is.
+        - '#Call to function is_object\(\) will always evaluate to false\.#'
+        # Most of these checks are validating the argument coming into the function to be sure it isn't "null"/unset. I don't want to add
+        # "null" to the allowed types for these, as usually these will just coerce the value or set some default when "null" is passed (sometimes
+        # an exception is thrown)
+        - '#Call to function is_null\(\) will always evaluate to false\.#'
+        - '#Strict comparison using (!|=)== between (string|array|Doctrine_Record_Generator|int|bool\|Doctrine_Cache_Interface) and null will always evaluate to (true|false)\.#'
+        # These are done for similar reasons, but comparing to false. These are probably rarely needed, since a ture "false" isn't returned by the
+        # methods setting these values
+        - '#Strict comparison using !== between (Doctrine_Cache_Interface\|true|string) and false will always evaluate to true\.#'

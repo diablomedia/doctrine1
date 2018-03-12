@@ -407,7 +407,7 @@ abstract class Doctrine_Query_Abstract
      * sets an SQL query part in the SQL query part array
      *
      * @param string $name          the name of the query part to be set
-     * @param string $part          query part string
+     * @param string|array $part          query part string
      * @throws Doctrine_Query_Exception   if trying to set unknown query part
      * @return $this     this object
      */
@@ -435,7 +435,7 @@ abstract class Doctrine_Query_Abstract
      * adds an SQL query part to the SQL query part array
      *
      * @param string $name          the name of the query part to be added
-     * @param string $part          query part string
+     * @param string|array $part          query part string
      * @throws Doctrine_Query_Exception   if trying to add unknown query part
      * @return $this     this object
      */

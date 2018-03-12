@@ -138,7 +138,7 @@ class Doctrine_Locking_Manager_Pessimistic
                 if ($lockingUserIdent !== null && $lockingUserIdent == $userIdent) {
                     $gotLock = true; // The requesting user already has a lock
                     // Update timestamp
-                    $stmt = $dbh->prepare('UPDATE ' . $this->_lockTable 
+                    $stmt = $dbh->prepare('UPDATE ' . $this->_lockTable
                                           . ' SET timestamp_obtained = :ts'
                                           . ' WHERE object_type = :object_type AND'
                                           . ' object_key  = :object_key  AND'

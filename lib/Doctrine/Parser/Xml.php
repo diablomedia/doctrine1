@@ -115,7 +115,7 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
      *
      * Prepare simple xml to array for return
      *
-     * @param  string $simpleXml
+     * @param  string|SimpleXMLElement $simpleXml
      * @return array  $return
      */
     public function prepareData($simpleXml)

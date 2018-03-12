@@ -74,7 +74,7 @@ class Doctrine_Hook
                               );
 
     /**
-     * @param Doctrine_Query $query         the base query
+     * @param Doctrine_Query|string $query         the base query
      */
     public function __construct($query)
     {

@@ -394,9 +394,9 @@ class Doctrine_Import_Schema
                     }
 
                     $colDesc['fixed'] = isset($field['fixed']) ? (int) $field['fixed']:null;
-                    $colDesc['primary'] = isset($field['primary']) ? (bool) (isset($field['primary']) && $field['primary']):null;
+                    $colDesc['primary'] = isset($field['primary']) ? (isset($field['primary']) && $field['primary']) : null;
                     $colDesc['default'] = isset($field['default']) ? $field['default']:null;
-                    $colDesc['autoincrement'] = isset($field['autoincrement']) ? (bool) (isset($field['autoincrement']) && $field['autoincrement']):null;
+                    $colDesc['autoincrement'] = isset($field['autoincrement']) ? (isset($field['autoincrement']) && $field['autoincrement']) : null;
 
                     if (isset($field['sequence'])) {
                         if (true === $field['sequence']) {

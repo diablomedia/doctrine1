@@ -271,7 +271,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     /**
      * setOptions
      *
-     * @param string $options
+     * @param array $options
      * @return void
      */
     public function setOptions($options)

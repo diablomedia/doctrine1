@@ -146,8 +146,8 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                     $type[] = 'boolean';
                 }
             break;
-            case 'date': 
-                $type[0] = 'date'; 
+            case 'date':
+                $type[0] = 'date';
             break;
             case 'datetime':
             case 'timestamp':
@@ -215,7 +215,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
      * field to be used in statements like CREATE TABLE.
      *
      * @param string  $name   name the field to be declared.
-     * @param string  $field  associative array with the name of the properties
+     * @param array  $field  associative array with the name of the properties
      *                        of the field being declared as array indexes.
      *                        Currently, the types of supported field
      *                        properties are as follows:
@@ -262,7 +262,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
         //$unsigned = (isset($field['unsigned']) && $field['unsigned']) ? ' UNSIGNED' : '';
         // MSSQL does not support the UNSIGNED keyword
         $unsigned = '';
-        $comment  = (isset($field['comment']) && $field['comment']) 
+        $comment  = (isset($field['comment']) && $field['comment'])
             ? " COMMENT " . $this->conn->quote($field['comment'], 'text') : '';
 
         $name = $this->conn->quoteIdentifier($name, true);

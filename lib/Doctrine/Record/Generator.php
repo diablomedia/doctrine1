@@ -111,7 +111,7 @@ abstract class Doctrine_Record_Generator extends Doctrine_Record_Abstract
     /**
      * Add child record generator
      *
-     * @param  Doctrine_Record_Generator $generator
+     * @param  Doctrine_Record_Generator|Doctrine_Template $generator
      * @return void
      */
     public function addChild($generator)

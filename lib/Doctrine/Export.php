@@ -318,7 +318,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *
      * @throws Doctrine_Connection_Exception     if something fails at database level
      * @param string    $seqName        name of the sequence to be created
-     * @param string    $start          start value of the sequence; default is 1
+     * @param int    $start          start value of the sequence; default is 1
      * @param array     $options  An associative array of table options:
      *                          array(
      *                              'comment' => 'Foo',
@@ -338,7 +338,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *
      * @throws Doctrine_Connection_Exception     if something fails at database level
      * @param string    $seqName        name of the sequence to be created
-     * @param string    $start          start value of the sequence; default is 1
+     * @param int    $start          start value of the sequence; default is 1
      * @param array     $options  An associative array of table options:
      *                          array(
      *                              'comment' => 'Foo',

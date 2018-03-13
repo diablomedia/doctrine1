@@ -51,7 +51,7 @@ class Doctrine_I18n extends Doctrine_Record_Generator
     /**
      * __construct
      *
-     * @param string $options
+     * @param array $options
      * @return void
      */
     public function __construct($options)

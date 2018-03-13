@@ -91,7 +91,7 @@ class Doctrine_Event
     protected $_invoker;
 
     /**
-     * @var string $_query              the sql query associated with this event (if any)
+     * @var string|Doctrine_Query_Abstract $_query              the sql query associated with this event (if any)
      */
     protected $_query;
 
@@ -126,7 +126,7 @@ class Doctrine_Event
      *
      * @param Doctrine_Connection|Doctrine_Connection_Statement|Doctrine_Connection_UnitOfWork|Doctrine_Transaction $invoker   the handler which invoked this event
      * @param integer $code                                                  the event code
-     * @param string $query                                                  the sql query associated with this event (if any)
+     * @param string|Doctrine_Query_Abstract $query                                                  the sql query associated with this event (if any)
      */
     public function __construct($invoker, $code, $query = null, $params = array())
     {
@@ -140,7 +140,7 @@ class Doctrine_Event
     /**
      * getQuery
      *
-     * @return string|Doctrine_Query       returns the query associated with this event (if any)
+     * @return string|Doctrine_Query_Abstract       returns the query associated with this event (if any)
      */
     public function getQuery()
     {
@@ -333,7 +333,7 @@ class Doctrine_Event
      * getInvoker
      * returns the handler that invoked this event
      *
-     * @return Doctrine_Connection|Doctrine_Connection_Statement|Doctrine_Connection_UnitOfWork|Doctrine_Transaction   the handler that invoked this event
+     * @return mixed   the handler that invoked this event
      */
     public function getInvoker()
     {

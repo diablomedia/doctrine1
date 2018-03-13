@@ -2060,7 +2060,7 @@ abstract class Doctrine_Query_Abstract
      * @see $_dqlParts;
      * @see Doctrine_Query::getDqlPart()
      * @param string $queryPartName  The name of the query part.
-     * @param string $queryPart      The actual query part to add.
+     * @param string|int $queryPart      The actual query part to add.
      * @param boolean $append        Whether to append $queryPart to already existing
      *                               parts under the same $queryPartName. Defaults to FALSE
      *                               (previously added parts with the same name get overridden).

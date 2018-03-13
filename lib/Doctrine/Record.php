@@ -2081,7 +2081,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * exports instance to a chosen format
      *
      * @param string $type  format type: array, xml, yml, json
-     * @param string $deep  whether or not to export all relationships
+     * @param bool $deep  whether or not to export all relationships
      * @return false|int|string|array       representation as $type format. Array is $type is array
      */
     public function exportTo($type, $deep = true)
@@ -2096,8 +2096,9 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * imports data from a chosen format in the current instance
      *
-     * @param string $type  Format type: xml, yml, json
-     * @param string $data  Data to be parsed and imported
+     * @param string $type  Format type: xml, yml, json, array
+     * @param mixed $data  Data to be parsed and imported
+     * @param bool $deep
      * @return void
      */
     public function importFrom($type, $data, $deep = true)

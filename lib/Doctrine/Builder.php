@@ -37,7 +37,7 @@ class Doctrine_Builder
      * The normal code which is returned is malformed and does not follow Doctrine standards
      * So we do some string replacing to clean it up
      *
-     * @param string $var
+     * @param mixed $var
      * @return string
      */
     public function varExport($var)

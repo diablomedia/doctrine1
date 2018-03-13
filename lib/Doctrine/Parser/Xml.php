@@ -37,7 +37,7 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
      *
      * Convert array to xml and dump to specified path or return the xml
      *
-     * @param  string $array Array of data to convert to xml
+     * @param  array $array Array of data to convert to xml
      * @param  string $path  Path to write xml data to
      * @param string $charset The charset of the data being dumped
      * @return int|false|string

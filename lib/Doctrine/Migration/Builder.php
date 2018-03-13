@@ -284,7 +284,7 @@ END;
      * Generate a set of migrations from a set of models
      *
      * @param  string $modelsPath    Path to models
-     * @param  string $modelLoading  What type of model loading to use when loading the models
+     * @param  int $modelLoading  What type of model loading to use when loading the models
      * @return boolean
      */
     public function generateMigrationsFromModels($modelsPath = null, $modelLoading = null)
@@ -366,7 +366,7 @@ END;
     /**
      * Build the code for creating tables
      *
-     * @param  string $tableData
+     * @param  array $tableData
      * @return string $code
      */
     public function buildCreateTable($tableData)
@@ -394,7 +394,7 @@ END;
     /**
      * Build the code for dropping tables
      *
-     * @param  string $tableData
+     * @param  array $tableData
      * @return string $code
      */
     public function buildDropTable($tableData)

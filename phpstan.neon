@@ -187,7 +187,55 @@ parameters:
         # "null" to the allowed types for these, as usually these will just coerce the value or set some default when "null" is passed (sometimes
         # an exception is thrown)
         - '#Call to function is_null\(\) will always evaluate to false\.#'
-        - '#Strict comparison using (!|=)== between (string|array|Doctrine_Record_Generator|int|bool\|Doctrine_Cache_Interface) and null will always evaluate to (true|false)\.#'
+        - '#Strict comparison using (!|=)== between (string|array|Doctrine_Record_Generator|int|bool\|Doctrine_Cache_Interface|int\|string) and null will always evaluate to (true|false)\.#'
         # These are done for similar reasons, but comparing to false. These are probably rarely needed, since a ture "false" isn't returned by the
         # methods setting these values
         - '#Strict comparison using !== between (Doctrine_Cache_Interface\|true|string) and false will always evaluate to true\.#'
+
+        #########
+        # Level 5
+        #########
+        # This should always be an array in this case because the HYDRATE_ARRAY hydration method is used.
+        - '#Parameter \#1 \$data of method Doctrine_Record::hydrate\(\) expects array, array\|Doctrine_Collection\|Doctrine_Record given\.#'
+        # In Doctrine_Query:2146, the $params var should be an array here as the convertBooleans path will only return an int if
+        # the passed in value is a bool, which it shouldn't be here, since $params starts as an array in the function arguments
+        - '#Parameter \#1 \$params of method Doctrine_Query_Abstract::getResultCacheHash\(\) expects array, array\|int given\.#'
+        # Same, in Doctrine_Query_Abstract:944
+        - '#Parameter \#1 \$params of method Doctrine_Query_Abstract::getFlattenedParams\(\) expects array, array\|int given\.#'
+        # And 968|981
+        - '#Parameter \#1 \$params of method Doctrine_Query_Abstract::getSqlQuery\(\) expects array, array\|int given\.#'
+        # And Doctrine_Query:2151|2157
+        - '#Parameter \#2 \$params of method Doctrine_Connection::fetchAll\(\) expects array, array\|int given\.#'
+        # In Doctrine_Validator_Driver:89, this one is broken, the __construct method of Doctrine_Validator_Exception has an array typehint
+        # but this call to it is clearly with a string. Not covered by tests, probably throws fatal errors in any code actually using this.
+        - '#Parameter \#1 \$invalid of class Doctrine_Validator_Exception constructor expects array, string given\.#'
+        # These methods are defined on Doctrine_Record but not on Doctrine_Record_Abstract (they should be defined as abstract methods,
+        # but that would break public API). These came up now because I changed the doc block for the _invoker property (and related methods)
+        # in Doctrine_Template to match the PHP typehint of the setInvoker method.
+        - '#Call to an undefined method Doctrine_Record_Abstract::delete\(\)\.#'
+        - '#Call to an undefined method Doctrine_Record_Abstract::merge\(\)\.#'
+        # In Doctrine_Record:1973, false should be checked for, as it's a valid return from toArray
+        - '#Parameter \#1 \$array of method Doctrine_Record::fromArray\(\) expects array, array\|false given\.#'
+        # Similar to above, just different method
+        - '#Parameter \#1 \$array of static method Doctrine_Parser::dump\(\) expects array, array\|false given\.#'
+        # Also appears in Doctrine_Collection:847
+        - '#Parameter \#1 \$path of static method Doctrine_Parser::load\(\) expects string, array\|string given\.#'
+        # getIdentifier can return an array for multi-column primary keys, the whereIn stuff in Doctrine_Query will not deal with that well
+        - '#Parameter \#1 \$expr of method Doctrine_Query_Abstract::whereIn\(\) expects string, array\|string given\.#'
+        # This third parameter gets passed to __construct of Doctrine_Template_* classes, which all appear to have that as an optional parameter
+        # null (or empty array ideally should be accepted here)
+        - '#Parameter \#3 \$option of method Doctrine_Import_Builder::emitAssign\(\) expects string, null given\.#'
+        # Most likely this oobject is a Doctrine_Record, but the typehints don't guarantee that
+        - '#Parameter \#1 \$record of method Doctrine_AuditLog::getVersion\(\) expects Doctrine_Record, Doctrine_Record_Abstract given\.#'
+        # This is in a conditional that should prevent it from passing non-array data, I think
+        - '#Parameter \#1 \$array of method Doctrine_Collection::fromArray\(\) expects array, array\|string given\.#'
+        # var can be false, param not setup to accept that (would be checking for an array key with a value of false)
+        - '#Parameter \#1 \$fieldName of method Doctrine_Table::hasField\(\) expects string, false\|string given\.#'
+        # In Doctrine_Data_Export:120, I couldn't find any cases where $directory might be an array, so didn't change the docblock to allow it
+        - '#Call to function is_array\(\) will always evaluate to false\.#'
+        # In Doctrine_Migration_Base:271|316, these should probably be changed to an empty string instead of null, but I'm not sure
+        # where these end up getting used. In Doctrine_Migration_Base the data in these parameters ultimately gets added to the $_changes
+        # property (from a get_defined_vars call) which is then used in Doctrine_Migration:513. I think the constraintName ultimately gets
+        # used in Doctrine_Export:404 (will be quoted and further processed as a string)
+        - '#Parameter \#2 \$constraintName of method Doctrine_Migration_Base::createConstraint\(\) expects string, null given\.#'
+        - '#Parameter \#2 \$constraintName of method Doctrine_Migration_Base::dropConstraint\(\) expects string, null given\.#'

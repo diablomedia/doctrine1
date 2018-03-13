@@ -359,7 +359,7 @@ class Doctrine_Migration
      * Run the migration process but rollback at the very end. Returns true or
      * false for whether or not the migration can be ran
      *
-     * @param  string  $to
+     * @param  int  $to
      * @return boolean|int $success
      */
     public function migrateDryRun($to = null)

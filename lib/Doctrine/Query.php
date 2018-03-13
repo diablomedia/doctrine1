@@ -259,7 +259,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * fetchArray
      * Convenience method to execute using array fetching as hydration mode.
      *
-     * @param string $params
+     * @param array $params
      * @return array
      */
     public function fetchArray($params = array())
@@ -272,7 +272,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * Convenience method to execute the query and return the first item
      * of the collection.
      *
-     * @param string $params        Query parameters
+     * @param array $params        Query parameters
      * @param int $hydrationMode    Hydration mode: see Doctrine_Core::HYDRATE_* constants
      * @return mixed                Array or Doctrine_Collection, depending on hydration mode. False if no result.
      */

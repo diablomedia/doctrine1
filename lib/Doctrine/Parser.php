@@ -48,7 +48,7 @@ abstract class Doctrine_Parser
      *
      * Override in the parser driver
      *
-     * @param string $array
+     * @param array $array
      * @param string $path
      * @param string $charset The charset of the data being dumped
      * @return int|false|string
@@ -94,7 +94,7 @@ abstract class Doctrine_Parser
      *
      * Interface for pulling and dumping data to a file
      *
-     * @param string $array
+     * @param array $array
      * @param string $path
      * @param string $type
      * @param string $charset The charset of the data being dumped

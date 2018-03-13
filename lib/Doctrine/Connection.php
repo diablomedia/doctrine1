@@ -1518,7 +1518,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * which is always guaranteed to exist. Mysql: 'mysql', PostgreSQL: 'postgres', etc.
      * This value is set in the Doctrine_Export_{DRIVER} classes if required
      *
-     * @param string $info
+     * @param array $info
      * @return Doctrine_Connection
      */
     public function getTmpConnection($info)

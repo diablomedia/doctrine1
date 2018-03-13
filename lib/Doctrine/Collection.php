@@ -820,7 +820,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Export a Doctrine_Collection to one of the supported Doctrine_Parser formats
      *
      * @param string $type
-     * @param string $deep
+     * @param bool $deep
      * @return mixed
      */
     public function exportTo($type, $deep = true)
@@ -836,7 +836,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Import data to a Doctrine_Collection from one of the supported Doctrine_Parser formats
      *
      * @param string $type
-     * @param string $data
+     * @param string|array $data
      * @return void
      */
     public function importFrom($type, $data)

@@ -208,7 +208,7 @@ abstract class Doctrine_Migration_Base
      *
      * @param string $direction
      * @param string $tableName     Name of the table
-     * @param string $columnNames   Array of column names and column definitions
+     * @param array $columnNames   Array of column names and column definitions
      * @return void
      */
     public function primaryKey($direction, $tableName, $columnNames)
@@ -298,7 +298,7 @@ abstract class Doctrine_Migration_Base
      *  * Removing columns (removeColumn())
      *
      * @param string $tableName     Name of the table
-     * @param string $columnNames   Array of column names and column definitions
+     * @param array $columnNames   Array of column names and column definitions
      * @return void
      */
     public function dropPrimaryKey($tableName, $columnNames)

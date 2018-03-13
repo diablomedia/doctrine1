@@ -202,7 +202,7 @@ class Doctrine_Import_Schema
     /**
      * setOptions
      *
-     * @param string $options
+     * @param array $options
      * @return void
      */
     public function setOptions($options)
@@ -217,7 +217,7 @@ class Doctrine_Import_Schema
      *
      * Loop throug directories of schema files and parse them all in to one complete array of schema information
      *
-     * @param  string   $schema Array of schema files or single schema file. Array of directories with schema files or single directory
+     * @param  string|array   $schema Array of schema files or single schema file. Array of directories with schema files or single directory
      * @param  string   $format Format of the files we are parsing and building from
      * @return array    $array
      */
@@ -225,7 +225,7 @@ class Doctrine_Import_Schema
     {
         $array = array();
 
-        foreach ((array) $schema AS $s) {
+        foreach ((array) $schema as $s) {
             if (is_file($s)) {
                 $e = explode('.', $s);
                 if (end($e) === $format) {
@@ -731,7 +731,7 @@ class Doctrine_Import_Schema
      * Build a unique key to identify a relationship by
      * Md5 hash of all the relationship parameters
      *
-     * @param string $relation
+     * @param array $relation
      * @return string
      */
     protected function _buildUniqueRelationKey($relation)

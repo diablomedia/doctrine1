@@ -34,7 +34,7 @@
 abstract class Doctrine_Template extends Doctrine_Record_Abstract
 {
     /**
-     * @var Doctrine_Record $_invoker     the record that invoked the last delegated call
+     * @var Doctrine_Record_Abstract $_invoker     the record that invoked the last delegated call
      */
     protected $_invoker;
 
@@ -82,7 +82,7 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * sets the last used invoker
      *
-     * @param Doctrine_Record $invoker      the record that invoked the last delegated call
+     * @param Doctrine_Record_Abstract $invoker      the record that invoked the last delegated call
      * @return Doctrine_Template            this object
      */
     public function setInvoker(Doctrine_Record_Abstract $invoker)
@@ -93,7 +93,7 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * returns the last used invoker
      *
-     * @return Doctrine_Record              the record that invoked the last delegated call
+     * @return Doctrine_Record_Abstract              the record that invoked the last delegated call
      */
     public function getInvoker()
     {
@@ -104,7 +104,7 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      * Adds a plugin as a child to this plugin
      *
      * @param Doctrine_Template $template
-     * @return Doctrine_Template. Chainable.
+     * @return $this Chainable.
      */
     public function addChild(Doctrine_Template $template)
     {

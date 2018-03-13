@@ -59,7 +59,7 @@ class Doctrine_Migration_Diff
      * $diff->generateMigrationClasses();
      * </code>
      *
-     * @param string $from      The from schema information source
+     * @param array|string $from      The from schema information source
      * @param string $to        The to schema information source
      * @param mixed  $migration Instance of Doctrine_Migration or path to migration classes
      * @return void
@@ -135,7 +135,7 @@ class Doctrine_Migration_Diff
     /**
      * Initialize some Doctrine models at a given path.
      *
-     * @param string $path 
+     * @param string $path
      * @return array $models
      */
     protected function _initializeModels($path)

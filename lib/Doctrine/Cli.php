@@ -369,7 +369,7 @@ class Doctrine_Cli
      *
      * @param string $className
      * @param Doctrine_Cli $cli Doctrine_Cli
-     * @return object Doctrine_Task
+     * @return Doctrine_Task
      */
     protected function createTaskInstance($className, Doctrine_Cli $cli)
     {

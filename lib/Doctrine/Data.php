@@ -56,9 +56,9 @@ class Doctrine_Data
     /**
      * directory
      *
-     * array of directory/yml paths or single directory/yml file
+     * single directory/yml file
      *
-     * @var string|null|array
+     * @var string|null
      */
     protected $_directory = null;
 
@@ -122,7 +122,7 @@ class Doctrine_Data
      *
      * Set the array/string of directories or yml file paths
      *
-     * @param array|string $directory
+     * @param string $directory
      *
      * @return void
      */
@@ -136,7 +136,7 @@ class Doctrine_Data
      *
      * Get directory for dumping/loading data from and to
      *
-     * @return array|string|null
+     * @return string|null
      */
     public function getDirectory()
     {
@@ -191,7 +191,7 @@ class Doctrine_Data
      *
      * @param string $directory
      * @param string $format
-     * @param string $models
+     * @param array $models
      * @param string $_exportIndividualFiles
      * @return int|false|string
      */
@@ -212,7 +212,7 @@ class Doctrine_Data
      *
      * @param string $directory
      * @param string $format
-     * @param string $models
+     * @param array $models
      * @return void
      */
     public function importData($directory, $format = 'yml', $models = array(), $append = false)
@@ -254,7 +254,7 @@ class Doctrine_Data
      *
      * Purge all data for loaded models or for the passed array of Doctrine_Records
      *
-     * @param string $models
+     * @param array $models
      * @return void
      */
     public function purge($models = null)

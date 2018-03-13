@@ -76,7 +76,7 @@ abstract class Doctrine_Task
      * PHP 5.3-specific test code
      *
      * @param string $className
-     * @return string|bool
+     * @return string
      */
     public static function deriveTaskName($className)
     {
@@ -172,7 +172,7 @@ abstract class Doctrine_Task
      * getArgument
      *
      * @param string $name
-     * @param string $default
+     * @param mixed $default
      * @return mixed
      */
     public function getArgument($name, $default = null)

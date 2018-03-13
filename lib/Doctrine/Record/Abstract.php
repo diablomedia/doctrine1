@@ -221,8 +221,8 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     /**
      * Binds One-to-One aggregate relation
      *
-     * @param string ...$args  First: the name of the related component
-     *                         Second: relation options
+     * @param string|array ...$args  First: the name of the related component
+     *                               Second: relation options
      * @see Doctrine_Relation::_$definition
      * @return $this          this object
      */

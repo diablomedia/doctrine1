@@ -59,7 +59,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     protected $_data             = array();
 
     /**
-     * @var mixed $identifier   The field names of all fields that are part of the identifier/primary key
+     * @var string|array $identifier   The field names of all fields that are part of the identifier/primary key
      */
     protected $_identifier = array();
 
@@ -1127,7 +1127,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $alias        The alias to prefix columns with
      * @param string|array $orderBy      The order by to process
-     * @param string $columnNames  Whether or not to convert field names to column names
+     * @param bool $columnNames  Whether or not to convert field names to column names
      * @return string $orderBy
      */
     public function processOrderBy($alias, $orderBy, $columnNames = false)

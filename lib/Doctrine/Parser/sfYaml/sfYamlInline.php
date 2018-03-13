@@ -162,7 +162,7 @@ class sfYamlInline
    * Parses a scalar to a YAML string.
    *
    * @param scalar  $scalar
-   * @param string  $delimiters
+   * @param array  $delimiters
    * @param array   $stringDelimiters
    * @param integer $i
    * @param boolean $evaluate
@@ -209,7 +209,7 @@ class sfYamlInline
   /**
    * Parses a quoted scalar to YAML.
    *
-   * @param string  $scalar
+   * @param scalar  $scalar
    * @param integer $i
    *
    * @return string A YAML string

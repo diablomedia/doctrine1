@@ -251,17 +251,17 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      * Open a new connection. If the adapter parameter is set this method acts as
      * a short cut for Doctrine_Manager::getInstance()->openConnection($adapter, $name);
      *
-     * if the adapter paramater is not set this method acts as
+     * if the adapter parameter is not set this method acts as
      * a short cut for Doctrine_Manager::getInstance()->getCurrentConnection()
      *
-     * @param PDO|Doctrine_Adapter_Interface $adapter   database driver
-     * @param string $name                              name of the connection, if empty numeric key is used
-     * @throws Doctrine_Manager_Exception               if trying to bind a connection with an existing name
+     * @param PDO|Doctrine_Adapter_Interface|array|string|null $adapter database driver, DSN or array of connection options
+     * @param string $name                                         name of the connection, if empty numeric key is used
+     * @throws Doctrine_Manager_Exception                          if trying to bind a connection with an existing name
      * @return Doctrine_Connection
      */
     public static function connection($adapter = null, $name = null)
     {
-        if ($adapter == null) {
+        if ($adapter === null) {
             return Doctrine_Manager::getInstance()->getCurrentConnection();
         } else {
             return Doctrine_Manager::getInstance()->openConnection($adapter, $name);
@@ -271,10 +271,10 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Opens a new connection and saves it to Doctrine_Manager->connections
      *
-     * @param PDO|Doctrine_Adapter_Interface|array|string $adapter   database driver, DSN or array of connection options
-     * @param string $name                              name of the connection, if empty numeric key is used
-     * @throws Doctrine_Manager_Exception               if trying to bind a connection with an existing name
-     * @throws Doctrine_Manager_Exception               if trying to open connection for unknown driver
+     * @param PDO|Doctrine_Adapter_Interface|array|string $adapter database driver, DSN or array of connection options
+     * @param string $name                                         name of the connection, if empty numeric key is used
+     * @throws Doctrine_Manager_Exception                          if trying to bind a connection with an existing name
+     * @throws Doctrine_Manager_Exception                          if trying to open connection for unknown driver
      * @return Doctrine_Connection
      */
     public function openConnection($adapter, $name = null, $setCurrent = true)

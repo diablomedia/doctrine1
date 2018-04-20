@@ -425,8 +425,6 @@ parameters:
         - '#Parameter \#1 \$alias of method Doctrine_Query::_processPendingJoinConditions\(\) expects string, string\|null given\.#'
         # Same with this one, default for $alias should probably be an empty string, Doctrine_Table:1120
         - '#Parameter \#1 \$alias of method Doctrine_Table::processOrderBy\(\) expects string, string\|null given\.#'
-        # This one has a check for null that will prevent null being passed further, Doctrine_Manager:267
-        - '#Parameter \#1 \$adapter of method Doctrine_Manager::openConnection\(\) expects array\|Doctrine_Adapter_Interface\|PDO\|string, Doctrine_Adapter_Interface\|PDO\|null given\.#'
         # Should change to empty string as default, Doctrine_Import_Schema:271
         - '#Parameter \#1 \$path of method Doctrine_Import_Builder::setTargetPath\(\) expects string, string\|null given\.#'
         # In Doctrine_Query_Abstract:1616, $from really shouldn't be allowed to be "null" since once it's passed to the _addDqlQueryPart method an

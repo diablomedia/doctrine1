@@ -14,13 +14,10 @@
             "Doctrine_": "lib/",
             "sfYaml": "lib/Doctrine/Parser/sfYaml/"
         },
-        "files": [
+        "classmap": [
             "lib/Doctrine.php"
         ]
     },
-    "include-path": [
-        "lib/"
-    ],
     "replace": {
         "doctrine/doctrine1": "*"
     },

@@ -212,6 +212,7 @@ class Doctrine_Migration
      * to be loaded.
      *
      * @param string $name
+     * @param string $path
      * @return false
      */
     public function loadMigrationClass($name, $path = null)

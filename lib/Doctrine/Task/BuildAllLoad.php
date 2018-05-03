@@ -58,6 +58,9 @@ class Doctrine_Task_BuildAllLoad extends Doctrine_Task
      */
     public $loadData;
 
+    /**
+     * @param Doctrine_Cli $dispatcher
+     */
     public function __construct($dispatcher = null)
     {
         parent::__construct($dispatcher);

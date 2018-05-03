@@ -39,6 +39,8 @@ class Doctrine_Compiler
      * cases dozens of files) can improve performance by an order of magnitude
      *
      * @throws Doctrine_Compiler_Exception      if something went wrong during the compile operation
+     * @param string $target
+     * @param array $includedDrivers
      * @return string $target Path the compiled file was written to
      */
     public static function compile($target = null, $includedDrivers = array())
@@ -109,7 +111,7 @@ class Doctrine_Compiler
             $ret = array_merge($ret, array_slice($lines, $start, ($end - $start)));
         }
 
-        if ($target == null) {
+        if ($target === null) {
             $target = $path . DIRECTORY_SEPARATOR . 'Doctrine.compiled.php';
         }
 

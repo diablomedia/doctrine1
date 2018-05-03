@@ -285,6 +285,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      *
      * @param PDO|Doctrine_Adapter_Interface|array|string $adapter database driver, DSN or array of connection options
      * @param string $name                                         name of the connection, if empty numeric key is used
+     * @param bool $setCurrent
      * @throws Doctrine_Manager_Exception                          if trying to bind a connection with an existing name
      * @throws Doctrine_Manager_Exception                          if trying to open connection for unknown driver
      * @return Doctrine_Connection
@@ -808,6 +809,8 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Register a new driver for hydration
      *
+     * @param string $name
+     * @param string $class
      * @return void
      */
     public function registerHydrator($name, $class)
@@ -827,7 +830,8 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
 
     /**
      * Register a custom connection driver
-     *
+     * @param string $name
+     * @param string $class
      * @return void
      */
     public function registerConnectionDriver($name, $class)

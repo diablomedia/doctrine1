@@ -482,6 +482,8 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      * Set the default fetch mode for this statement
      *
      * @param integer $mode                 The fetch mode must be one of the Doctrine_Core::FETCH_* constants.
+     * @param string $arg1
+     * @param array $arg2
      * @return boolean                      Returns 1 on success or FALSE on failure.
      */
     public function setFetchMode($mode, $arg1 = null, $arg2 = null)

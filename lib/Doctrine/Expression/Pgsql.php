@@ -48,6 +48,7 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
      * </code>
      * You should make sure you run this as the postgres user.
      *
+     * @param string $column
      * @return string
      */
     public function md5($column)
@@ -221,6 +222,9 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
     /**
      * return syntax for pgsql TRANSLATE() dbms function
      *
+     * @param string $string
+     * @param string $from
+     * @param string $to
      * @return string $sql
      */
     public function translate($string, $from, $to)

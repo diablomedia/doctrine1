@@ -513,7 +513,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      *
      * This method must only be used by Doctrine itself to initiate transactions.
      * Userland-code must use {@link beginTransaction()}.
-     *
+     * @param string $savepoint
      * @return int
      */
     public function beginInternalTransaction($savepoint = null)

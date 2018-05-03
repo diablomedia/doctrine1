@@ -33,6 +33,7 @@
 class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
 {
     /**
+     * @param string $condition
      * @return string
      */
     public function load($condition)
@@ -136,6 +137,8 @@ class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
 
 
     /**
+     * @param string $expr
+     * @param array $matches
      * @return int|false
      */
     protected function _processPossibleAggExpression(& $expr, & $matches = array())

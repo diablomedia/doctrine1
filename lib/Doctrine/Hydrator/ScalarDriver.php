@@ -48,6 +48,9 @@ class Doctrine_Hydrator_ScalarDriver extends Doctrine_Hydrator_Abstract
     }
 
     /**
+     * @param array $data
+     * @param array $cache
+     * @param bool $aliasPrefix
      * @return array
      */
     protected function _gatherRowData($data, &$cache, $aliasPrefix = true)

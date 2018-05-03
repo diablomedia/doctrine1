@@ -56,7 +56,7 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
 
     /**
      * Constructor
-     *
+     * @param string $className
      */
     public function __construct($className)
     {

@@ -33,9 +33,10 @@
 class Doctrine_Query_Forupdate extends Doctrine_Query_Part
 {
     /**
+     * @param mixed $forUpdate
      * @return bool
      */
-    public function parse($forUpdate) 
+    public function parse($forUpdate)
     {
         return (bool) $forUpdate;
     }

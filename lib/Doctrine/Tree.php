@@ -113,6 +113,7 @@ class Doctrine_Tree
 
     /**
      * gets tree attribute value
+     * @param string $name
      * @return null|mixed
      */
     public function getAttribute($name)
@@ -124,6 +125,7 @@ class Doctrine_Tree
      * sets tree attribute value
      *
      * @param mixed $value
+     * @param string $name
      *
      * @return void
      */

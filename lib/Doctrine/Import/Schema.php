@@ -540,6 +540,7 @@ class Doctrine_Import_Schema
      * top most parent.
      *
      * @param  array  $array  Array of schema information
+     * @param string $class
      * @return string $class  Class to get find the parent for
      */
     protected function _findBaseSuperClass($array, $class)

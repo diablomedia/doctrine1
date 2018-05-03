@@ -33,6 +33,7 @@
 class Doctrine_Search_Parser
 {
     /**
+     * @param string $file
      * @return array
      */
     public function parse($file)

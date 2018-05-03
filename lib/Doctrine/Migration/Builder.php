@@ -67,7 +67,7 @@ class Doctrine_Migration_Builder extends Doctrine_Builder
      * <code>
      * $builder = new Doctrine_Migration_Builder('/path/to/migrations');
      * </code>
-     *
+     * @param Doctrine_Migration|string $migrationsPath
      * @return void
      */
     public function __construct($migrationsPath = null)
@@ -75,7 +75,7 @@ class Doctrine_Migration_Builder extends Doctrine_Builder
         if ($migrationsPath instanceof Doctrine_Migration) {
             $this->setMigrationsPath($migrationsPath->getMigrationClassesDirectory());
             $this->migration = $migrationsPath;
-        } else if (is_dir($migrationsPath)) {
+        } else if ($migrationsPath !== null && is_dir($migrationsPath)) {
             $this->setMigrationsPath($migrationsPath);
             $this->migration = new Doctrine_Migration($migrationsPath);
         }

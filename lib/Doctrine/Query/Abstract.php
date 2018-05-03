@@ -523,7 +523,7 @@ abstract class Doctrine_Query_Abstract
      * Get flattened array of parameters for query.
      * Used internally and used to pass flat array of params to the database.
      *
-     * @param array $params
+     * @param mixed $params
      * @return array
      */
     public function getFlattenedParams($params = array())
@@ -537,7 +537,7 @@ abstract class Doctrine_Query_Abstract
 
     /**
      * getInternalParams
-     *
+     * @param array $params
      * @return array
      */
     public function getInternalParams($params = array())
@@ -560,7 +560,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * getCountQueryParams
      * Retrieves the parameters for count query
-     *
+     * @param array $params
      * @return array Parameters array
      */
     public function getCountQueryParams($params = array())
@@ -580,7 +580,7 @@ abstract class Doctrine_Query_Abstract
 
     /**
      * @nodoc
-     *
+     * @param array $params
      * @return void
      */
     public function fixArrayParameterValues($params = array())
@@ -643,7 +643,7 @@ abstract class Doctrine_Query_Abstract
      * This function is used to append a SQL condition to models which have inheritance mapping
      * The condition is applied to the FROM component in the WHERE, but the condition is applied to
      * JOINS in the ON condition and not the WHERE
-     *
+     * @param string $componentAlias
      * @return string|null $str  SQL condition string
      */
     public function getInheritanceCondition($componentAlias)
@@ -893,6 +893,7 @@ abstract class Doctrine_Query_Abstract
      * calculateQueryCacheHash
      * calculate hash key for query cache
      *
+     * @param mixed $params
      * @return string    the hash
      */
     public function calculateQueryCacheHash($params = array())
@@ -1023,6 +1024,7 @@ abstract class Doctrine_Query_Abstract
      * executes the query and populates the data set
      *
      * @param array $params
+     * @param int $hydrationMode
      * @return Doctrine_Collection|array            the root collection
      */
     public function execute($params = array(), $hydrationMode = null)
@@ -1129,6 +1131,7 @@ abstract class Doctrine_Query_Abstract
      * Pre query method which invokes the pre*Query() methods on the model instance or any attached
      * record listeners
      *
+     * @param array $params
      * @return void
      */
     protected function _preQuery($params = array())
@@ -1316,6 +1319,8 @@ abstract class Doctrine_Query_Abstract
 
     /**
      * Alias for @see andWhere().
+     * @param string $where
+     * @param mixed $params
      * @return $this   this object
      */
     public function addWhere($where, $params = array())
@@ -1439,8 +1444,9 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
-     * @nodoc
-     *
+     * @param string $expr
+     * @param array|string $params
+     * @param bool $not
      * @return string
      */
     protected function _processWhereIn($expr, $params = array(), $not = false)
@@ -1607,7 +1613,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * delete
      * sets the query type to DELETE
-     *
+     * @param string $from
      * @return $this
      */
     public function delete($from = null)
@@ -1638,7 +1644,9 @@ abstract class Doctrine_Query_Abstract
     /**
      * set
      * sets the SET part of the query
-     *
+     * @param array|string $key
+     * @param mixed $value
+     * @param array|string|int $params
      * @return $this
      */
     public function set($key, $value = null, $params = null)
@@ -1681,6 +1689,7 @@ abstract class Doctrine_Query_Abstract
      * appends an INNER JOIN to the FROM part of the query
      *
      * @param string $join         Query INNER JOIN
+     * @param array $params
      * @return $this
      */
     public function innerJoin($join, $params = array())
@@ -1699,6 +1708,7 @@ abstract class Doctrine_Query_Abstract
      * appends a LEFT JOIN to the FROM part of the query
      *
      * @param string $join         Query LEFT JOIN
+     * @param array $params
      * @return $this
      */
     public function leftJoin($join, $params = array())
@@ -1828,6 +1838,7 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
+     * @param int $hydrationMode
      * @return $this
      */
     public function setHydrationMode($hydrationMode)
@@ -2138,6 +2149,7 @@ abstract class Doctrine_Query_Abstract
      * parser lazy-loader
      *
      * @throws Doctrine_Query_Exception     if unknown parser name given
+     * @param string $name
      * @return Doctrine_Query_Part
      * @todo Doc/Description: What is the parameter for? Which parsers are available?
      */
@@ -2212,9 +2224,11 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
+     * @param array $array1
+     * @param array $array2
      * @return array
      */
-    protected function array_diff_assoc_recursive($array1,$array2)
+    protected function array_diff_assoc_recursive($array1, $array2)
     {
         $difference = array();
         foreach($array1 as $key => $value)

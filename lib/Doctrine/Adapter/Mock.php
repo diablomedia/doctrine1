@@ -274,6 +274,7 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     }
 
     /**
+     * @param string|int $attribute
      * @return string|null
      */
     public function getAttribute($attribute)
@@ -296,6 +297,8 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     { }
 
     /**
+     * @param string|int $attribute
+     * @param mixed $value
      * @return void
      */
     public function setAttribute($attribute, $value)

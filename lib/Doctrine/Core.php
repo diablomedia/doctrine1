@@ -589,6 +589,8 @@ class Doctrine_Core
     /**
      * Load an individual model name and path in to the model loading registry
      *
+     * @param string $className
+     * @param string $path
      * @return null
      */
     public static function loadModel($className, $path = null)
@@ -983,7 +985,7 @@ class Doctrine_Core
      * Dump data to a yaml fixtures file
      *
      * @param string $yamlPath Path to write the yaml data fixtures to
-     * @param string $individualFiles Whether or not to dump data to individual fixtures files
+     * @param bool $individualFiles Whether or not to dump data to individual fixtures files
      * @return int|false|string
      */
     public static function dumpData($yamlPath, $individualFiles = false)
@@ -998,7 +1000,7 @@ class Doctrine_Core
      * The output of dumpData can be fed to loadData
      *
      * @param string $yamlPath Path to your yaml data fixtures
-     * @param string $append Whether or not to append the data
+     * @param bool $append Whether or not to append the data
      * @return void
      */
     public static function loadData($yamlPath, $append = false)
@@ -1139,6 +1141,7 @@ class Doctrine_Core
     }
 
     /**
+     * @param string $className
      * @return bool
      */
     public static function modelsAutoload($className)

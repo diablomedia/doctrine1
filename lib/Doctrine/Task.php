@@ -69,7 +69,7 @@ abstract class Doctrine_Task
      *
      * Since this is an abstract classes that extend this must follow a patter of Doctrine_Task_{TASK_NAME}
      * This is what determines the task name for executing it.
-     *
+     * @param Doctrine_Cli $dispatcher
      * @return void
      */
     public function __construct($dispatcher = null)

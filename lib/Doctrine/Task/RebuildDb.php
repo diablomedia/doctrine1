@@ -63,6 +63,9 @@ class Doctrine_Task_RebuildDb extends Doctrine_Task
      */
     public $dropDb;
 
+    /**
+     * @param Doctrine_Cli $dispatcher
+     */
     public function __construct($dispatcher = null)
     {
         parent::__construct($dispatcher);

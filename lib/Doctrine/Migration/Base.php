@@ -207,6 +207,7 @@ abstract class Doctrine_Migration_Base
      *
      * @param string $tableName         Name of the table.
      * @param string $constraintName    Name of the constraint.
+     * @param bool $primary
      * @return void
      */
     public function dropConstraint($tableName, $constraintName, $primary = false)

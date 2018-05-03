@@ -68,6 +68,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * addListener
      *
      * @param Doctrine_EventListener_Interface|Doctrine_Overloadable|Doctrine_Record_Listener_Interface $listener
+     * @param string $name
      * @return $this
      */
     public function addListener($listener, $name = null)
@@ -137,6 +138,8 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     }
 
     /**
+     * @param string $attr
+     * @param mixed $value
      * @return void
      */
     public function setAttribute($attr, $value)
@@ -145,6 +148,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     }
 
     /**
+     * @param string $tableName
      * @return void
      */
     public function setTableName($tableName)
@@ -153,6 +157,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     }
 
     /**
+     * @param array $map
      * @return void
      */
     public function setInheritanceMap($map)
@@ -161,6 +166,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     }
 
     /**
+     * @param array $map
      * @return void
      */
     public function setSubclasses($map)

@@ -137,6 +137,8 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      * @param string $query
      * @param mixed $limit
      * @param mixed $offset
+     * @param bool $isManip
+     * @param bool $isSubQuery
      * @link http://lists.bestpractical.com/pipermail/rt-devel/2005-June/007339.html
      * @return string
      */
@@ -275,7 +277,10 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
             $tokens[$i] = trim(
                 preg_replace_callback(
                     '/##(\d+)##/',
-                    /** @return string */
+                    /**
+                     * @param array $m
+                     * @return string
+                     */
                     function ($m) use ($chunks) { return $chunks[$m[1]]; },
                     $tokens[$i]
                 )
@@ -310,6 +315,10 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      * Creates dbms specific LIMIT/OFFSET SQL for the subqueries that are used in the
      * context of the limit-subquery algorithm.
      *
+     * @param string $query
+     * @param int $limit
+     * @param int $offset
+     * @param bool $isManip
      * @return string
      */
     public function modifyLimitSubquery(Doctrine_Table $rootTable, $query, $limit = false, $offset = false, $isManip = false)
@@ -432,6 +441,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
         $query = preg_replace_callback(
             '/##(\d+)##/',
             /**
+             * @param array $m
              * @return string
              */
             function ($m) use ($value, $params) { return is_null($value) ? 'NULL' : $this->quote($params[$m[1]]); },

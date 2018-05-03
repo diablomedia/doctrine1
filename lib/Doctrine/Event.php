@@ -127,6 +127,7 @@ class Doctrine_Event
      * @param Doctrine_Connection|Doctrine_Connection_Statement|Doctrine_Connection_UnitOfWork|Doctrine_Transaction|Doctrine_Record $invoker   the handler which invoked this event
      * @param integer $code                                                  the event code
      * @param string|Doctrine_Query_Abstract $query                                                  the sql query associated with this event (if any)
+     * @param array $params
      */
     public function __construct($invoker, $code, $query = null, $params = array())
     {

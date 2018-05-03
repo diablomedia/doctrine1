@@ -134,6 +134,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
      * updates the index
      *
      * @param array $data
+     * @param string $encoding
      * @return integer
      */
     public function updateIndex(array $data, $encoding = null)
@@ -220,6 +221,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
      *
      * @param mixed $limit
      * @param mixed $offset
+     * @param string $encoding
      * @return void
      */
     public function batchUpdateIndex($limit = null, $offset = null, $encoding = null)

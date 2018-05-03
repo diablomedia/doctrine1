@@ -1108,6 +1108,8 @@ class Doctrine_Export extends Doctrine_Connection_Module
     }
 
     /**
+     * @param array $classes
+     * @param bool $groupByConnection
      * @return array
      */
     public function exportSortedClassesSql($classes, $groupByConnection = true)

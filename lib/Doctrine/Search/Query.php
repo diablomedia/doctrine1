@@ -84,6 +84,8 @@ class Doctrine_Search_Query
     }
 
     /**
+     * @param string $text
+     * @param bool $includeRelevance
      * @return void
      */
     public function query($text, $includeRelevance = true)
@@ -200,6 +202,7 @@ class Doctrine_Search_Query
     }
 
     /**
+     * @param string $term
      * @return bool
      */
     public function isExpression($term)
@@ -240,6 +243,7 @@ class Doctrine_Search_Query
     }
 
     /**
+     * @param string $word
      * @return string
      */
     public function parseWord($word)

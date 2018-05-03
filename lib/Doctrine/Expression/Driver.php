@@ -131,6 +131,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      *
      * Note: Not SQL92, but common functionality
      *
+     * @param string $column
      * @return string
      */
     public function md5($column)
@@ -320,7 +321,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
 
     /**
      * Returns the SQL for a logical not.
-     *
+     * @param string $expression
      * @return string a logical expression
      */
     public function not($expression)
@@ -586,7 +587,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
 
     /**
      * returns arcus cosine SQL string
-     *
+     * @param string $value
      * @return string
      */
     public function acos($value)
@@ -642,6 +643,8 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      * __call
      *
      * for all native RDBMS functions the function name itself is returned
+     * @param string $m
+     * @param array $a
      */
     public function __call($m, $a)
     {

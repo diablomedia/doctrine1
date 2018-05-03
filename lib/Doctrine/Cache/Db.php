@@ -116,7 +116,8 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver
      *
      * @param string $id        cache id
      * @param string $data      data to cache
-     * @param int $lifeTime     if != false, set a specific lifetime for this cache record (null => infinite lifeTime)
+     * @param int|false $lifeTime     if != false, set a specific lifetime for this cache record (null => infinite lifeTime)
+     * @param bool $saveKey
      * @return int
      */
     protected function _doSave($id, $data, $lifeTime = false, $saveKey = true)

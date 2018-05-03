@@ -70,7 +70,7 @@ class Doctrine_Relation_Parser
 
     /**
      * getPendingRelation
-     *
+     * @param string $name
      * @return array            an array defining a pending relation
      */
     public function getPendingRelation($name)
@@ -152,6 +152,7 @@ class Doctrine_Relation_Parser
      * getRelation
      *
      * @param string $alias      relation alias
+     * @param bool $recursive
      * @return Doctrine_Relation
      */
     public function getRelation($alias, $recursive = true)

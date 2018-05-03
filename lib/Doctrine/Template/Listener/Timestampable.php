@@ -117,6 +117,7 @@ class Doctrine_Template_Listener_Timestampable extends Doctrine_Record_Listener
      * Gets the timestamp in the correct format based on the way the behavior is configured
      *
      * @param string $type
+     * @param Doctrine_Connection $conn
      * @return int|string|Doctrine_Expression
      */
     public function getTimestamp($type, $conn = null)

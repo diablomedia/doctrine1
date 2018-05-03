@@ -38,6 +38,7 @@ class Doctrine_Record_Filter_Standard extends Doctrine_Record_Filter
      * defines an implementation for filtering the set() method of Doctrine_Record
      *
      * @param mixed $name                       name of the property or related component
+     * @param mixed $value
      *
      * @return void
      */

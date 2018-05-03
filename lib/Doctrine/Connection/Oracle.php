@@ -37,6 +37,9 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
      */
     protected $driverName = 'Oracle';
 
+    /**
+     * @param PDO|Doctrine_Adapter_Interface|array $adapter
+     */
     public function __construct(Doctrine_Manager $manager, $adapter)
     {
         $this->supported = array(
@@ -88,6 +91,7 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
      * @param string $query         query to modify
      * @param integer $limit        limit the number of rows
      * @param integer $offset       start reading from given offset
+     * @param bool $isManip
      * @return string               the modified query
      */
     public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)
@@ -97,8 +101,8 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
 
     /**
      * @param  string $query
-     * @param  int $limit
-     * @param  int $offset
+     * @param  int|bool $limit
+     * @param  int|bool $offset
      * @param  string $column
      * @return string
      */
@@ -131,10 +135,19 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
     /**
      * Creates the SQL for Oracle that can be used in the subquery for the limit-subquery
      * algorithm.
+     * @param  string $query
+     * @param  bool $limit
+     * @param  bool $offset
+     * @param  bool $isManip
+     * @return string
      */
-    public function modifyLimitSubquery(Doctrine_Table $rootTable, $query, $limit = false,
-            $offset = false, $isManip = false)
-    {
+    public function modifyLimitSubquery(
+        Doctrine_Table $rootTable,
+        $query,
+        $limit = false,
+        $offset = false,
+        $isManip = false
+    ) {
         // NOTE: no composite key support
         $columnNames = $rootTable->getIdentifierColumnNames();
         if (count($columnNames) > 1) {
@@ -145,6 +158,10 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
         return $this->_createLimitSubquery($query, $limit, $offset, $column);
     }
 
+    /**
+     * @param  mixed $info
+     * @return self
+     */
     public function getTmpConnection($info)
     {
         return clone $this;

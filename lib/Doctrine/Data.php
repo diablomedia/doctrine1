@@ -173,6 +173,7 @@ class Doctrine_Data
      *
      * Set/Get whether or not to export individual files
      *
+     * @param bool $bool
      * @return bool $_exportIndividualFiles
      */
     public function exportIndividualFiles($bool = null)
@@ -192,7 +193,7 @@ class Doctrine_Data
      * @param string $directory
      * @param string $format
      * @param array $models
-     * @param string $_exportIndividualFiles
+     * @param bool $_exportIndividualFiles
      * @return int|false|string
      */
     public function exportData($directory, $format = 'yml', $models = array(), $_exportIndividualFiles = false)
@@ -213,6 +214,7 @@ class Doctrine_Data
      * @param string $directory
      * @param string $format
      * @param array $models
+     * @param bool $append
      * @return void
      */
     public function importData($directory, $format = 'yml', $models = array(), $append = false)

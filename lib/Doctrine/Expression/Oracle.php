@@ -71,6 +71,7 @@ class Doctrine_Expression_Oracle extends Doctrine_Expression_Driver
      * - CURRENT_DATE (date, DATE type)
      * - CURRENT_TIME (time, TIME type)
      *
+     * @param string $type
      * @return string to call a variable with the current timestamp
      */
     public function now($type = 'timestamp')

@@ -365,7 +365,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 
     /**
      * Adjust the processed param index for "foo.bar IN ?" support
-     *
+     * @param int $index
      * @return void
      */
     public function adjustProcessedParam($index)
@@ -702,7 +702,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * 3. Converts all field names to actual column names
      * 4. Quotes all identifiers
      * 5. Parses nested clauses and subqueries recursively
-     *
+     * @param string $clause
      * @return string|int   SQL string
      * @todo Description: What is a 'dql clause' (and what not)?
      *       Refactor: Too long & nesting level
@@ -830,6 +830,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
     /**
+     * @param string $expr
      * @return void
      */
     public function parseIdentifierReference($expr)
@@ -869,8 +870,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         return $expr;
     }
 
-
     /**
+     * @param string $subquery
      * @return string
      */
     public function parseSubquery($subquery)
@@ -1042,7 +1043,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     /**
      * _buildSqlFromPart
      * builds the from part of the query and returns it
-     *
+     * @param bool $ignorePending
      * @return string   the query sql from part
      */
     protected function _buildSqlFromPart($ignorePending = false)
@@ -1443,6 +1444,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
                     if ($f == 0 || $f % 2 == 0) {
                         $partOriginal = str_replace(',', '', trim($f));
                         $callback = /**
+                         * @param string $e
                          * @return string
                          */
                         function($e) {
@@ -1891,6 +1893,10 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
     /**
+     * @param string $foreignAlias
+     * @param string $localAlias
+     * @param bool $overrideJoin
+     * @param string $join
      * @return string
      */
     protected function buildSimpleRelationSql(Doctrine_Relation $relation, $foreignAlias, $localAlias, $overrideJoin, $join)
@@ -1947,6 +1953,9 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 
     /**
      * @param Doctrine_Relation_Association $relation
+     * @param string $assocAlias
+     * @param string $foreignAlias
+     * @param string $localAlias
      *
      * @return string
      */

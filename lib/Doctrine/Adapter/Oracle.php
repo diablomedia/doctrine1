@@ -87,6 +87,8 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
      * </code>
      *
      * @param string $username
+     * @param array|string $config
+     * @param string $password
      * @return void
      */
     public function __construct($config = array(), $username = null, $password = null)

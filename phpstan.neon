@@ -194,7 +194,7 @@ parameters:
         # "null" to the allowed types for these, as usually these will just coerce the value or set some default when "null" is passed (sometimes
         # an exception is thrown)
         - '#Call to function is_null\(\) will always evaluate to false\.#'
-        - '#Strict comparison using (!|=)== between (string|array|Doctrine_Record_Generator|int|bool\|Doctrine_Cache_Interface|int\|string) and null will always evaluate to (true|false)\.#'
+        - '#Strict comparison using (!|=)== between (string|array|Doctrine_Record_Generator|array\|Doctrine_Collection|int|bool\|Doctrine_Cache_Interface|int\|string) and null will always evaluate to (true|false)\.#'
         # These are done for similar reasons, but comparing to false. These are probably rarely needed, since a ture "false" isn't returned by the
         # methods setting these values
         - '#Strict comparison using !== between (Doctrine_Cache_Interface\|true|string) and false will always evaluate to true\.#'
@@ -207,8 +207,6 @@ parameters:
         # In Doctrine_Query:2146, the $params var should be an array here as the convertBooleans path will only return an int if
         # the passed in value is a bool, which it shouldn't be here, since $params starts as an array in the function arguments
         - '#Parameter \#1 \$params of method Doctrine_Query_Abstract::getResultCacheHash\(\) expects array, array\|int given\.#'
-        # Same, in Doctrine_Query_Abstract:944
-        - '#Parameter \#1 \$params of method Doctrine_Query_Abstract::getFlattenedParams\(\) expects array, array\|int given\.#'
         # And 968|981
         - '#Parameter \#1 \$params of method Doctrine_Query_Abstract::getSqlQuery\(\) expects array, array\|int given\.#'
         # And Doctrine_Query:2151|2157
@@ -246,6 +244,11 @@ parameters:
         # used in Doctrine_Export:404 (will be quoted and further processed as a string)
         - '#Parameter \#2 \$constraintName of method Doctrine_Migration_Base::createConstraint\(\) expects string, null given\.#'
         - '#Parameter \#2 \$constraintName of method Doctrine_Migration_Base::dropConstraint\(\) expects string, null given\.#'
+        # null could be passed in this case, would need to check for that in Doctrine_Event
+        - '#Parameter \#4 \$params of class Doctrine_Event constructor expects array, array\|null given\.#'
+        # Both of these could come in as null, would need to check for that
+        - '#Parameter \#1 \$queryComponents of method Doctrine_Hydrator_Abstract::setQueryComponents\(\) expects array, array\|null given\.#'
+        - '#Parameter \#1 \$tableAliases of method Doctrine_Hydrator_Abstract::setTableAliases\(\) expects array, array\|null given\.#'
 
         #########
         # Level 6
@@ -463,3 +466,6 @@ parameters:
         - '#Parameter \#1 \$connection of function oci_commit expects resource, false\|resource given\.#'
         - '#Parameter \#1 \$connection of function oci_rollback expects resource, false\|resource given\.#'
         - '#Method Doctrine_Adapter_Oracle::getConnection\(\) should return resource but returns false\|resource\.#'
+        # Doctrine_Table::getIdentifier may return a string or an array (an array if the primary key is multi-column), would need
+        # to check that this value isn't an array. Doctrine_Connection_UnitOfWork:947
+        - '#Invalid array key type array\|string\.#'

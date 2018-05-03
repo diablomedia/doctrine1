@@ -1013,6 +1013,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Retrieves a relation object for this component.
      *
      * @param string $alias      relation alias; @see hasRelation()
+     * @param bool $recursive
      * @return Doctrine_Relation
      */
     public function getRelation($alias, $recursive = true)
@@ -2749,6 +2750,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     }
 
     /**
+     * @param string $fieldName
      * @return string
      */
     public function buildFindByWhere($fieldName)
@@ -2832,7 +2834,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * This method add support for calling methods not defined in code, such as:
      * findByColumnName, findByRelationAlias
      * findById, findByContactId, etc.
-     *
+     * @param string $method
+     * @param array $arguments
      * @return mixed the result of the finder
      */
     public function __call($method, $arguments)

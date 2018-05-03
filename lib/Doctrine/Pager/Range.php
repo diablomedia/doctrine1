@@ -107,7 +107,7 @@ abstract class Doctrine_Pager_Range
      * getOption
      *
      * Returns the custom Doctrine_Pager_Range implementation offset option
-     *
+     * @param string $option
      * @return array        Custom Doctrine_Pager_Range implementation options
      */
     public function getOption($option)

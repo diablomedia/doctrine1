@@ -38,6 +38,7 @@ class Doctrine_Connection_Db2 extends Doctrine_Connection_Common
      * @param string $query         query to modify
      * @param integer $limit|false        limit the number of rows
      * @param integer $offset       start reading from given offset
+     * @param bool $isManip
      * @return string               the modified query
      */
     public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)

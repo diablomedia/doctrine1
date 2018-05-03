@@ -127,7 +127,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * gets siblings for node
-     *
+     * @param bool $includeNode
      * @return array     array of sibling Doctrine_Record objects
      */
     public function getSiblings($includeNode = false)
@@ -209,7 +209,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * gets descendants for node (direct descendants only)
-     *
+     * @param int $depth
+     * @param bool $includeNode
      * @return mixed  The descendants of the node or FALSE if the node has no descendants.
      */
     public function getDescendants($depth = null, $includeNode = false)
@@ -790,6 +791,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * Makes this node a root node. Only used in multiple-root trees.
      *
      * @todo Exception handling/wrapping
+     * @param int $newRootId
      *
      * @return bool
      */
@@ -930,7 +932,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * determines if node is valid
-     *
+     * @param Doctrine_Record|null|false $record
      * @return bool
      */
     public function isValidNode($record = null)
@@ -1002,6 +1004,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      *
      * @param int     $destLeft     node left value
      * @param int        $destRight    node right value
+     * @param int $destRoot
      *
      * @return void
      */
@@ -1017,6 +1020,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * move node's and its children to location $destLeft and updates rest of tree
      *
      * @param int     $destLeft    destination left value
+     * @param int $levelDiff
      *
      * @todo Wrap in transaction
      *
@@ -1078,6 +1082,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      *
      * @param int $first         First node to be shifted
      * @param int $delta         Value to be shifted by, can be negative
+     * @param int $rootId
      *
      * @return void
      */
@@ -1119,6 +1124,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * @param int $first     First node to be shifted (L value)
      * @param int $last     Last node to be shifted (L value)
      * @param int $delta         Value to be shifted by, can be negative
+     * @param int $rootId
      *
      * @return void
      */

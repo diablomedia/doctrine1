@@ -44,6 +44,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      * (The save() operation is always cascaded in 0.10/1.0).
      *
      * @param Doctrine_Record $record
+     * @param bool $replace
      * @return bool
      */
     public function saveGraph(Doctrine_Record $record, $replace = false)
@@ -810,6 +811,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      *
      * Note: This is flawed. We also need to delete from subclass tables.
      *
+     * @param Doctrine_Record $record
      * @return void
      */
     private function _deleteCTIParents(Doctrine_Table $table, $record)
@@ -930,6 +932,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
     }
 
     /**
+     * @param array $fields
      * @return int|null
      */
     protected function _assignSequence(Doctrine_Record $record, &$fields = null)

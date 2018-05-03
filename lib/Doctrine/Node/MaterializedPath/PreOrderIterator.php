@@ -42,6 +42,10 @@ class Doctrine_Node_MaterializedPath_PreOrderIterator implements Iterator
      */
     private $curNode = null;
 
+    /**
+     * @param Doctrine_Node $node
+     * @param array $opts
+     */
     public function __construct($node, $opts)
     {
         throw new Doctrine_Exception('Not yet implemented');

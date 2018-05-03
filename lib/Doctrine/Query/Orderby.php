@@ -37,6 +37,7 @@ class Doctrine_Query_Orderby extends Doctrine_Query_Part
      * parses the order by part of the query string
      *
      * @param string $clause
+     * @param bool $append
      * @return string
      */
     public function parse($clause, $append = false)

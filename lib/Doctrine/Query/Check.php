@@ -86,7 +86,7 @@ class Doctrine_Query_Check
 
     /**
      * parseClause
-     *
+     * @param string $dql
      * @return string
      */
     public function parseClause($dql)
@@ -118,6 +118,7 @@ class Doctrine_Query_Check
     }
 
     /**
+     * @param string $part
      * @return string
      */
     public function parseSingle($part)

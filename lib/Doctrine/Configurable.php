@@ -142,6 +142,9 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
     }
 
     /**
+     * @param string $name
+     * @param mixed $value
+     * @param string $namespace
      * @return $this
      */
     public function setParam($name, $value, $namespace = null)
@@ -197,6 +200,7 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      * getImpl
      * returns the implementation for given class
      *
+     * @param string $template
      * @return string|null   name of the concrete implementation
      */
     public function getImpl($template)
@@ -238,6 +242,7 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      * addRecordListener
      *
      * @param Doctrine_EventListener_Interface|Doctrine_Overloadable $listener
+     * @param string $name
      * @return $this        this object
      */
     public function addRecordListener($listener, $name = null)
@@ -290,6 +295,7 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      * addListener
      *
      * @param Doctrine_EventListener_Interface|Doctrine_Overloadable $listener
+     * @param string $name
      * @return $this    this object
      */
     public function addListener($listener, $name = null)

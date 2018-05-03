@@ -291,7 +291,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
 	/**
      * getCountQuery
      * builds the count query.
-     *
+     * @param array $params
      * @return string       the built sql query
      */
 	public function getCountSqlQuery($params = array())

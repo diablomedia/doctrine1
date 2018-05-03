@@ -33,6 +33,7 @@
 class Doctrine_Hydrator_ArrayHierarchyDriver extends Doctrine_Hydrator_ArrayDriver
 {
     /**
+     * @param Doctrine_Adapter_Statement_Interface|PDOStatement $stmt
      * @return array
      */
     public function hydrateResultSet($stmt)

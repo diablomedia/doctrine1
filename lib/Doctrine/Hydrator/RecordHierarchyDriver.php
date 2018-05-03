@@ -33,6 +33,7 @@
 class Doctrine_Hydrator_RecordHierarchyDriver extends Doctrine_Hydrator_RecordDriver
 {
     /**
+     * @param Doctrine_Adapter_Statement_Interface|PDOStatement $stmt
      * @return Doctrine_Collection
      */
     public function hydrateResultSet($stmt)

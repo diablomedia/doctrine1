@@ -81,6 +81,7 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
     }
 
     /**
+     * @param string $str
      * @return string
      */
     public static function sha1Impl($str)
@@ -89,6 +90,7 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
     }
 
     /**
+     * @param string $str
      * @return string
      */
     public static function ltrimImpl($str)
@@ -97,6 +99,7 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
     }
 
     /**
+     * @param string $str
      * @return string
      */
     public static function rtrimImpl($str)
@@ -105,6 +108,7 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
     }
 
     /**
+     * @param string $str
      * @return string
      */
     public static function trimImpl($str)
@@ -148,6 +152,7 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
      * Return string to call a variable with the current timestamp inside an SQL statement
      * There are three special variables for current date and time.
      *
+     * @param string $type
      * @return string       sqlite function as string
      */
     public function now($type = 'timestamp')

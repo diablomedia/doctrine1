@@ -36,6 +36,8 @@
 class Doctrine_Search_Analyzer_Utf8 extends Doctrine_Search_Analyzer_Standard
 {
     /**
+     * @param string $text
+     * @param string $encoding
      * @return array
      */
     public function analyze($text, $encoding = null)

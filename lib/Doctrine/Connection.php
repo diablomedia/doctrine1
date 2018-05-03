@@ -223,6 +223,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @param Doctrine_Manager $manager                 the manager object
      * @param PDO|Doctrine_Adapter_Interface|array $adapter   database driver
+     * @param string $user
+     * @param string $pass
      */
     public function __construct(Doctrine_Manager $manager, $adapter, $user = null, $pass = null)
     {
@@ -299,6 +301,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * Set option value
      *
      * @param string $option
+     * @param mixed $value
      * @return mixed
      */
     public function setOption($option, $value)
@@ -1112,6 +1115,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @throws Doctrine_Connection_Exception
      *
+     * @param mixed $invoker
+     * @param string $query
      * @return void
      */
     public function rethrowException(Exception $e, $invoker, $query = null)
@@ -1579,6 +1584,10 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * Some dbms require specific functionality for this. Check the other connection adapters for examples
      *
+     * @param string $query
+     * @param int $limit
+     * @param int $offset
+     * @param bool $isManip
      * @return string
      */
     public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)
@@ -1590,6 +1599,10 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * Creates dbms specific LIMIT/OFFSET SQL for the subqueries that are used in the
      * context of the limit-subquery algorithm.
      *
+     * @param string $query
+     * @param int $limit
+     * @param int $offset
+     * @param bool $isManip
      * @return string
      */
     public function modifyLimitSubquery(Doctrine_Table $rootTable, $query, $limit = false,

@@ -672,7 +672,9 @@ class Doctrine_Cli
     /**
      * Old method retained for backwards compatibility
      *
-     * @deprecated 
+     * @deprecated
+     *
+     * @param string $directory
      *
      * @return array
      */
@@ -685,7 +687,7 @@ class Doctrine_Cli
     /**
      * Old method retained for backwards compatibility
      *
-     * @deprecated 
+     * @deprecated
      *
      * @return string
      */
@@ -697,7 +699,7 @@ class Doctrine_Cli
     /**
      * Old method retained for backwards compatibility
      *
-     * @deprecated 
+     * @deprecated
      *
      * @return array
      */

@@ -38,6 +38,8 @@ class Doctrine_Query_Registry
     protected $_queries = array();
 
     /**
+     * @param string $key
+     * @param Doctrine_Query|string $query
      * @return void
      */
     public function add($key, $query)
@@ -58,8 +60,8 @@ class Doctrine_Query_Registry
     }
 
     /**
-     * @param  string $key [description]
-     * @param  string $namespace [description]
+     * @param  string $key
+     * @param  string $namespace
      * @return Doctrine_Query
      */
     public function get($key, $namespace = null)
@@ -86,6 +88,8 @@ class Doctrine_Query_Registry
 
 
     /**
+     * @param string $key
+     * @param string $namespace
      * @return bool
      */
     public function has($key, $namespace = null)

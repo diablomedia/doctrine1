@@ -33,6 +33,7 @@
 class Doctrine_Search_Indexer
 {
     /**
+     * @param string $dir
      * @return void
      */
     public function indexDirectory($dir)

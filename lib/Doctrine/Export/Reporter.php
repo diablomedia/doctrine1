@@ -38,6 +38,8 @@ class Doctrine_Export_Reporter implements IteratorAggregate
     protected $messages = array();
 
     /**
+     * @param int $code
+     * @param string $message
      * @return void
      */
     public function add($code, $message)

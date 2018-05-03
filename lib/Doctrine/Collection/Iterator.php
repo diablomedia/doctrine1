@@ -60,7 +60,7 @@ abstract class Doctrine_Collection_Iterator implements Iterator
 
     /**
      * constructor
-     * @var Doctrine_Collection $collection
+     * @param Doctrine_Collection $collection
      */
     public function __construct($collection)
     {

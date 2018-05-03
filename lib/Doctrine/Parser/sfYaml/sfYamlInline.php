@@ -137,7 +137,11 @@ class sfYamlInline
       ||
       (count($keys) > 1 && array_reduce(
           $keys,
-          /** @return int */
+          /**
+           * @param int $v
+           * @param int $w
+           * @return int
+           */
           function($v, $w) {
               return (integer) $v + $w;
           },

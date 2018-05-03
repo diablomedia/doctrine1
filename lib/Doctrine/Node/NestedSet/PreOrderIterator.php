@@ -88,6 +88,10 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
      */
     public $prevLeft;
 
+    /**
+     * @param Doctrine_Record $record
+     * @param array $opts
+     */
     public function __construct($record, $opts)
     {
         $componentName = $record->getTable()->getComponentName();

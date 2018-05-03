@@ -477,7 +477,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the serializing procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preSerialize($event)
@@ -486,7 +486,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the serializing procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function postSerialize($event)
@@ -495,7 +495,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the serializing procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preUnserialize($event)
@@ -504,7 +504,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the serializing procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function postUnserialize($event)
@@ -513,7 +513,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the saving procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preSave($event)
@@ -522,7 +522,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the saving procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function postSave($event)
@@ -531,7 +531,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the deletion procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preDelete($event)
@@ -540,7 +540,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the deletion procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function postDelete($event)
@@ -550,7 +550,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the saving procedure only when the record is going to be
      * updated.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preUpdate($event)
@@ -560,7 +560,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the saving procedure only when the record is going to be
      * updated.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function postUpdate($event)
@@ -570,7 +570,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the saving procedure only when the record is going to be
      * inserted into the data store the first time.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preInsert($event)
@@ -580,7 +580,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the saving procedure only when the record is going to be
      * inserted into the data store the first time.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function postInsert($event)
@@ -590,7 +590,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the validation procedure. Useful for cleaning up data before
      * validating it.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preValidate($event)
@@ -598,7 +598,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the validation procedure.
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function postValidate($event)
@@ -607,7 +607,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide Record classes with the ability to alter DQL select
      * queries at runtime
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preDqlSelect($event)
@@ -616,7 +616,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide Record classes with the ability to alter DQL update
      * queries at runtime
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preDqlUpdate($event)
@@ -625,7 +625,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide Record classes with the ability to alter DQL delete
      * queries at runtime
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preDqlDelete($event)
@@ -634,7 +634,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide Record classes with the ability to alter hydration
      * before it runs
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function preHydrate($event)
@@ -643,7 +643,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Empty template method to provide Record classes with the ability to alter hydration
      * after it runs
-     *
+     * @param Doctrine_Event $event
      * @return void
      */
     public function postHydrate($event)

@@ -551,6 +551,8 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      * Set the default fetch mode for this statement
      *
      * @param integer $mode                 The fetch mode must be one of the Doctrine_Core::FETCH_* constants.
+     * @param int $arg1
+     * @param array $arg2
      * @return boolean                      Returns 1 on success or FALSE on failure.
      */
     public function setFetchMode($mode, $arg1 = null, $arg2 = null)
@@ -559,6 +561,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     }
 
     /**
+     * @param array $params
      * @return void
      */
     private function handleError($params=array())
@@ -595,6 +598,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         $query = preg_replace_callback(
             "/(\?)/",
             /**
+             * @param array $m
              * @return string
              */
             function($m) use (&$bind_index) { return ":oci_b_var_" . $bind_index++; },

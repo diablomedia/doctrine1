@@ -174,6 +174,7 @@ class Doctrine_Pager
     }
 
     /**
+     * @param bool $executed
      * @return void
      */
     protected function _setCountExecuted($executed)
@@ -520,7 +521,7 @@ class Doctrine_Pager
      * getCountQueryParams
      *
      * Returns the params to be used by counter Doctrine_Query
-     *
+     * @param array $defaultParams
      * @return array     Doctrine_Query counter params
      */
     public function getCountQueryParams($defaultParams = array())
@@ -577,6 +578,7 @@ class Doctrine_Pager
     }
 
     /**
+     * @param array $params
      * @return void
      */
     public function executeCount($params = array())

@@ -58,6 +58,11 @@ class Doctrine_Collection_OnDemand implements Iterator
      */
     protected $index;
 
+    /**
+     * @param Doctrine_Adapter_Statement_Interface|PDOStatement $stmt
+     * @param Doctrine_Hydrator_Abstract $hydrator
+     * @param array $tableAliasMap
+     */
     public function __construct($stmt, $hydrator, $tableAliasMap)
     {
         $this->_stmt = $stmt;

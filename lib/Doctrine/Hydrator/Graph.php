@@ -43,6 +43,7 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
     /**
      * Gets the custom field used for indexing for the specified component alias.
      *
+     * @param string $alias
      * @return string  The field name of the field used for indexing or NULL
      *                 if the component does not use any custom field indices.
      */
@@ -284,6 +285,10 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
      * they belong to. The column names in the result set are mapped to their
      * field names during this procedure.
      *
+     * @param array $data
+     * @param array $cache
+     * @param array $id
+     * @param array $nonemptyComponents
      * @return array  An array with all the fields (name => value) of the data row,
      *                grouped by their component (alias).
      */
@@ -360,18 +365,42 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
         return $rowData;
     }
 
+    /**
+     * @param string $component
+     */
     abstract public function getElementCollection($component);
 
+    /**
+     * @param Doctrine_Collection $coll
+     */
     abstract public function registerCollection($coll);
 
+    /**
+     * @param Doctrine_Record $record
+     * @param string $name
+     * @param string $keyColumn
+     */
     abstract public function initRelated(&$record, $name, $keyColumn = null);
 
     abstract public function getNullPointer();
 
+    /**
+     * @param string $component
+     */
     abstract public function getElement(array $data, $component);
 
+    /**
+     * @param array|Doctrine_Collection $coll
+     */
     abstract public function getLastKey(&$coll);
 
+    /**
+     * @param array $prev
+     * @param array|Doctrine_Collection $coll
+     * @param boolean|int $index
+     * @param string $dqlAlias
+     * @param mixed $oneToOne
+     */
     abstract public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne);
 
     /**
@@ -393,6 +422,7 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
      * @todo this function could use reflection to check the first time it runs
      * if the subclassing option is not set.
      *
+     * @param string $component
      * @return string The name of the class to create
      *
      */

@@ -33,6 +33,7 @@
 class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
 {
     /**
+     * @param string $component
      * @return array
      */
     public function getElementCollection($component)
@@ -41,6 +42,7 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
     }
 
     /**
+     * @param string $component
      * @return array
      */
     public function getElement(array $data, $component)
@@ -49,6 +51,7 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
     }
 
     /**
+     * @param array|Doctrine_Collection $coll
      * @return void
      */
     public function registerCollection($coll)
@@ -57,6 +60,9 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
     }
 
     /**
+     * @param Doctrine_Record $record
+     * @param string $name
+     * @param string $keyColumn
      * @return true
      */
     public function initRelated(&$record, $name, $keyColumn = null)
@@ -76,7 +82,7 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
     }
 
     /**
-     * @param  Doctrine_Collection $coll
+     * @param  Doctrine_Collection|array $coll
      * @return mixed
      */
     public function getLastKey(&$coll)
@@ -86,6 +92,11 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
     }
 
     /**
+     * @param array $prev
+     * @param array|Doctrine_Collection $coll
+     * @param int|bool $index
+     * @param string $dqlAlias
+     * @param bool $oneToOne
      * @return void
      */
     public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne)

@@ -67,6 +67,7 @@ class Doctrine_Task_Dql extends Doctrine_Task
     }
 
     /**
+     * @param array $array
      * @return void
      */
     protected function _printResults($array)

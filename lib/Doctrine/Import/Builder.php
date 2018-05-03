@@ -1075,6 +1075,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     }
 
     /**
+     * @param string $className
      * @return string
      */
     protected function _getBaseClassName($className)
@@ -1083,6 +1084,9 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     }
 
     /**
+     * @param string $className
+     * @param array $definition
+     * @param array $options
      * @return string
      */
     public function buildTableClassDefinition($className, $definition, $options = array())
@@ -1128,7 +1132,8 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
     /**
      * writeTableClassDefinition
-     *
+     * @param string $path
+     * @param array $options
      * @return void
      */
     public function writeTableClassDefinition(array $definition, $path, $options = array())

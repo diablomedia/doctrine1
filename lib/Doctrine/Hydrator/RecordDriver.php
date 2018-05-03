@@ -57,6 +57,9 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
     }
 
     /**
+     * @param Doctrine_Record $record
+     * @param string $name
+     * @param string $keyColumn
      * @return true
      */
     public function initRelated(&$record, $name, $keyColumn = null)
@@ -72,6 +75,7 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
     }
 
     /**
+     * @param array|Doctrine_Collection $coll
      * @return void
      */
     public function registerCollection($coll)
@@ -102,6 +106,7 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
     }
 
     /**
+     * @param Doctrine_Collection $coll
      * @return mixed
      */
     public function getLastKey(&$coll)
@@ -115,7 +120,11 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
      * sets the last element of given data array / collection
      * as previous element
      *
+     * @param array $prev
+     * @param Doctrine_Collection $coll
      * @param boolean|integer $index
+     * @param string $dqlAlias
+     * @param mixed $oneToOne (seems to be unused)
      * @return void
      * @todo Detailed documentation
      */

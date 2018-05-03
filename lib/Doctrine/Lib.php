@@ -204,7 +204,7 @@ class Doctrine_Lib
 
     // Code from symfony sfToolkit class. See LICENSE
     // code from php at moechofe dot com (array_merge comment on php.net)
-    /*
+    /**
      * arrayDeepMerge
      *
      * array arrayDeepMerge ( array array1 [, array array2 [, array ...]] )
@@ -223,6 +223,7 @@ class Doctrine_Lib
      *
      * Different from array_merge
      *  If string keys have arrays for values, these arrays will merge recursively.
+     * @return array|false
      */
      public static function arrayDeepMerge()
      {

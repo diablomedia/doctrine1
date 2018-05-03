@@ -32,6 +32,9 @@
  */
 class Doctrine_Query_Offset extends Doctrine_Query_Part
 {
+    /**
+     * @return int
+     */
     public function parse($offset)
     {
         return (int) $offset;

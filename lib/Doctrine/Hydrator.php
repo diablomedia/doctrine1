@@ -54,6 +54,8 @@ class Doctrine_Hydrator
      * @param mixed $hydrationMode  One of the Doctrine_Core::HYDRATE_* constants or
      *                              a string representing the name of the hydration mode or
      *                              or an instance of the hydration class
+     *
+     * @return void
      */
     public function setHydrationMode($hydrationMode)
     {
@@ -74,6 +76,8 @@ class Doctrine_Hydrator
      * Set the array of query components
      *
      * @param array $queryComponents
+     *
+     * @return void
      */
     public function setQueryComponents(array $queryComponents)
     {

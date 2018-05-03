@@ -344,6 +344,8 @@ class sfYamlParser
 
   /**
    * Moves the parser to the next line.
+   *
+   * @return bool
    */
   protected function moveToNextLine()
   {
@@ -359,6 +361,8 @@ class sfYamlParser
 
   /**
    * Moves the parser to the previous line.
+   *
+   * @return void
    */
   protected function moveToPreviousLine()
   {
@@ -493,7 +497,7 @@ class sfYamlParser
   /**
    * Returns true if the next line is indented.
    *
-   * @return Boolean Returns true if the next line is indented, false otherwise
+   * @return bool Returns true if the next line is indented, false otherwise
    */
   protected function isNextLineIndented()
   {
@@ -524,7 +528,7 @@ class sfYamlParser
   /**
    * Returns true if the current line is blank or if it is a comment line.
    *
-   * @return Boolean Returns true if the current line is empty or if it is a comment line, false otherwise
+   * @return bool Returns true if the current line is empty or if it is a comment line, false otherwise
    */
   protected function isCurrentLineEmpty()
   {
@@ -534,7 +538,7 @@ class sfYamlParser
   /**
    * Returns true if the current line is blank.
    *
-   * @return Boolean Returns true if the current line is blank, false otherwise
+   * @return bool Returns true if the current line is blank, false otherwise
    */
   protected function isCurrentLineBlank()
   {
@@ -544,7 +548,7 @@ class sfYamlParser
   /**
    * Returns true if the current line is a comment line.
    *
-   * @return Boolean Returns true if the current line is a comment line, false otherwise
+   * @return bool Returns true if the current line is a comment line, false otherwise
    */
   protected function isCurrentLineComment()
   {

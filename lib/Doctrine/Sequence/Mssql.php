@@ -44,7 +44,7 @@ class Doctrine_Sequence_Mssql extends Doctrine_Sequence
      * @param string $seqName   name of the sequence
      * @param bool   $onDemand  when true missing sequences are automatic created
      *
-     * @return integer          next id in the given sequence
+     * @return integer|string          next id in the given sequence
      */
     public function nextId($seqName, $onDemand = true)
     {
@@ -129,8 +129,10 @@ class Doctrine_Sequence_Mssql extends Doctrine_Sequence
      * Returns the autoincrement ID if supported or $id or fetches the current
      * ID in a sequence called: $table.(empty($field) ? '' : '_'.$field)
      *
-     * @param   string  $table name of the table into which a new row was inserted
-     * @param   string  $field name of the field into which a new row was inserted
+     * @param string  $table name of the table into which a new row was inserted
+     * @param string  $field name of the field into which a new row was inserted
+     *
+     * @return string
      */
     public function lastInsertId($table = null, $field = null)
     {
@@ -157,7 +159,7 @@ class Doctrine_Sequence_Mssql extends Doctrine_Sequence
      *
      * @param string $seqName   name of the sequence
      *
-     * @return integer          current id in the given sequence
+     * @return integer|string          current id in the given sequence
      */
     public function currId($seqName)
     {

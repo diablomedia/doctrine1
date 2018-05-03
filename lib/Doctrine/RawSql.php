@@ -109,6 +109,8 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      * Add select parts to fields.
      *
      * @param string $queryPart The name of the querypart
+     *
+     * @return void
      */
     private function _parseSelectFields($queryPart)
     {

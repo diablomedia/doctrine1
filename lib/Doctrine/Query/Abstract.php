@@ -540,6 +540,8 @@ abstract class Doctrine_Query_Abstract
      * setParams
      *
      * @param array $params
+     *
+     * @return void
      */
     public function setParams(array $params = array())
     {
@@ -568,7 +570,9 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
-     * @nodoc
+     * @nodoc 
+     *
+     * @return void
      */
     public function fixArrayParameterValues($params = array())
     {
@@ -1071,6 +1075,8 @@ abstract class Doctrine_Query_Abstract
 
     /**
      * Blank template method free(). Override to be used to free query object memory
+     *
+     * @return void
      */
     public function free()
     {
@@ -1424,7 +1430,9 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
-     * @nodoc
+     * @nodoc 
+     *
+     * @return string
      */
     protected function _processWhereIn($expr, $params = array(), $not = false)
     {
@@ -1821,6 +1829,8 @@ abstract class Doctrine_Query_Abstract
 
     /**
      * Gets the components of this query.
+     *
+     * @return array
      */
     public function getQueryComponents()
     {
@@ -2184,12 +2194,17 @@ abstract class Doctrine_Query_Abstract
      * restrict the query object from using the limit sub query method of tranversing many relationships.
      *
      * @param boolean $disableLimitSubquery
+     *
+     * @return void
      */
     public function setDisableLimitSubquery($disableLimitSubquery)
     {
         $this->disableLimitSubquery = $disableLimitSubquery;
     }
 
+    /**
+     * @return array
+     */
     protected function array_diff_assoc_recursive($array1,$array2)
     {
         $difference = array();

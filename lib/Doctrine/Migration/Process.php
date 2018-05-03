@@ -32,14 +32,16 @@
  */
 class Doctrine_Migration_Process
 {
-    protected
-        $_migration;
+    protected $_migration;
 
     public function __construct(Doctrine_Migration $migration)
     {
         $this->_migration = $migration;
     }
 
+    /**
+     * @return Doctrine_Connection
+     */
     public function getConnection()
     {
         return $this->_migration->getConnection();

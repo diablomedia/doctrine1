@@ -39,6 +39,9 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
         $this->_aliases = $aliases;
     }
 
+    /**
+     * @return void
+     */
     public function init()
     {
     	// check that all aliases exist
@@ -52,6 +55,8 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
      * defines an implementation for filtering the set() method of Doctrine_Record
      *
      * @param mixed $name                       name of the property or related component
+     *
+     * @return Doctrine_Record
      */
     public function filterSet(Doctrine_Record $record, $name, $value)
     {
@@ -62,7 +67,7 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
 
                 if (isset($relation[$name])) {
                     $relation[$name] = $value;
-                    
+
                     return $record;
                 }
             } else {
@@ -81,6 +86,7 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
      * defines an implementation for filtering the get() method of Doctrine_Record
      *
      * @param mixed $name                       name of the property or related component
+     * @return mixed
      */
     public function filterGet(Doctrine_Record $record, $name)
     {

@@ -246,6 +246,8 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      * Parse an OrderBy-Statement into chunks
      *
      * @param string $orderby
+     *
+     * @return array
      */
     private function parseOrderBy($orderby)
     {
@@ -265,10 +267,15 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
 
         $tokens = preg_split('/,/', $parsed);
 
+        if ($tokens === false) {
+            return array();
+        }
+
         for ($i = 0, $iMax = count($tokens); $i < $iMax; $i++) {
             $tokens[$i] = trim(
                 preg_replace_callback(
                     '/##(\d+)##/',
+                    /** @return string */
                     function ($m) use ($chunks) { return $chunks[$m[1]]; },
                     $tokens[$i]
                 )
@@ -408,6 +415,8 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      *
      * @param string $query
      * @param array $params
+     *
+     * @return string|null
      */
     protected function replaceBoundParamsWithInlineValuesInQuery($query, array $params)
     {
@@ -422,6 +431,9 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
 
         $query = preg_replace_callback(
             '/##(\d+)##/',
+            /**
+             * @return string
+             */
             function ($m) use ($value, $params) { return is_null($value) ? 'NULL' : $this->quote($params[$m[1]]); },
             $query
         );

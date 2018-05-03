@@ -32,6 +32,9 @@
  */
 class Doctrine_Search_Indexer_Dir
 {
+    /**
+     * @return void
+     */
     public function add($dir)
     {
         if ( ! file_exists($dir)) {

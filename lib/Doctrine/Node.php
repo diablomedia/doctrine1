@@ -127,6 +127,8 @@ class Doctrine_Node implements IteratorAggregate
      * setter for record attribute
      *
      * @param Doctrine_Record $record                    instance of Doctrine_Record
+     *
+     * @return void
      */
     public function setRecord(Doctrine_Record $record)
     {
@@ -148,6 +150,8 @@ class Doctrine_Node implements IteratorAggregate
      *
      * @param string $type                      type of iterator (Pre | Post | Level)
      * @param array $options                    options
+     *
+     * @return Traversable
      */
     public function traverse($type = 'Pre', $options = array())
     {
@@ -180,6 +184,8 @@ class Doctrine_Node implements IteratorAggregate
      * sets node's iterator type
      *
      * @param int $type
+     *
+     * @return void
      */
     public function setIteratorType($type)
     {
@@ -190,6 +196,8 @@ class Doctrine_Node implements IteratorAggregate
      * sets node's iterator options
      *
      * @param array $options
+     *
+     * @return void
      */
     public function setIteratorOptions($options)
     {

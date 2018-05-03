@@ -390,6 +390,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function postConnect(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -397,6 +400,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function preConnect(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -404,6 +410,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function preQuery(Doctrine_Event $event)
     { 
         foreach ($this->_listeners as $listener) {
@@ -411,6 +420,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function postQuery(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -418,6 +430,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function prePrepare(Doctrine_Event $event)
     { 
         foreach ($this->_listeners as $listener) {
@@ -425,6 +440,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function postPrepare(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -432,6 +450,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function preExec(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -439,6 +460,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function postExec(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -446,6 +470,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function preError(Doctrine_Event $event)
     { 
         foreach ($this->_listeners as $listener) {
@@ -453,6 +480,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function postError(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -460,6 +490,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function preFetch(Doctrine_Event $event)
     { 
         foreach ($this->_listeners as $listener) {
@@ -467,6 +500,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function postFetch(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -474,6 +510,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function preFetchAll(Doctrine_Event $event)
     { 
         foreach ($this->_listeners as $listener) {
@@ -481,6 +520,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function postFetchAll(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -488,6 +530,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function preStmtExecute(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {
@@ -495,6 +540,9 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
         }
     }
 
+    /**
+     * @return void
+     */
     public function postStmtExecute(Doctrine_Event $event)
     {
         foreach ($this->_listeners as $listener) {

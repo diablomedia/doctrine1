@@ -37,13 +37,15 @@ class Doctrine_Record_Listener implements Doctrine_Record_Listener_Interface
      */
     protected $_options = array('disabled' => false); 
 
-    /** 
+    /**
      * setOption 
-     * sets an option in order to allow flexible listener 
-     * 
-     * @param mixed $name              the name of the option to set 
-     * @param mixed $value              the value of the option 
-     */ 
+     * sets an option in order to allow flexible listener
+     *
+     * @param mixed $name              the name of the option to set
+     * @param mixed $value              the value of the option
+     *
+     * @return void
+     */
     public function setOption($name, $value = null) 
     { 
         if (is_array($name)) { 
@@ -80,60 +82,117 @@ class Doctrine_Record_Listener implements Doctrine_Record_Listener_Interface
         return null; 
     }
 	
+    /**
+     * @return void
+     */
     public function preSerialize(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function postSerialize(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preUnserialize(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function postUnserialize(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preDqlSelect(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preSave(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function postSave(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preDqlDelete(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preDelete(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function postDelete(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preDqlUpdate(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preUpdate(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function postUpdate(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preInsert(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function postInsert(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preHydrate(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function postHydrate(Doctrine_Event $event)
     { }
 
+    /**
+     * @return void
+     */
     public function preValidate(Doctrine_Event $event)
     { }
     
+    /**
+     * @return void
+     */
     public function postValidate(Doctrine_Event $event)
     { }
 }

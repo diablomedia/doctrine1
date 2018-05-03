@@ -226,6 +226,9 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         return $oci_error['message'] . " : " . $oci_error['sqltext'];
     }
 
+    /**
+     * @return array|false
+     */
     private function getOciError()
     {
         if (is_resource($this->statement)) {
@@ -555,6 +558,9 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         throw new Doctrine_Adapter_Exception("Unsupported");
     }
 
+    /**
+     * @return void
+     */
     private function handleError($params=array())
     {
 
@@ -588,6 +594,9 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         // Replace ? bind-placeholders with :oci_b_var_ variables
         $query = preg_replace_callback(
             "/(\?)/",
+            /**
+             * @return string
+             */
             function($m) use (&$bind_index) { return ":oci_b_var_" . $bind_index++; },
             $query
         );

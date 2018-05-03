@@ -623,10 +623,12 @@ class Doctrine_Core
     /**
      * Recursively load all models from a directory or array of directories
      *
-     * @param  string   $directory      Path to directory of models or array of directory paths
-     * @param  integer  $modelLoading   Pass value of Doctrine_Core::ATTR_MODEL_LOADING to force a certain style of model loading
+     * @param string   $directory      Path to directory of models or array of directory paths
+     * @param integer  $modelLoading   Pass value of Doctrine_Core::ATTR_MODEL_LOADING to force a certain style of model loading
      *                                  Allowed Doctrine_Core::MODEL_LOADING_AGGRESSIVE(default) or Doctrine_Core::MODEL_LOADING_CONSERVATIVE
-     * @param  string  $classPrefix     The class prefix of the models to load. This is useful if the class name and file name are not the same
+     * @param string  $classPrefix     The class prefix of the models to load. This is useful if the class name and file name are not the same
+     *
+     * @return array
      */
     public static function loadModels($directory, $modelLoading = null, $classPrefix = null)
     {
@@ -1026,6 +1028,7 @@ class Doctrine_Core
      *
      * @param string $className Name of the Migration class to generate
      * @param string $migrationsPath Path to directory which contains your migration classes
+     * @return mixed
      */
     public static function generateMigrationClass($className, $migrationsPath)
     {
@@ -1135,6 +1138,9 @@ class Doctrine_Core
         return false;
     }
 
+    /**
+     * @return bool
+     */
     public static function modelsAutoload($className)
     {
         if (class_exists($className, false) || interface_exists($className, false)) {

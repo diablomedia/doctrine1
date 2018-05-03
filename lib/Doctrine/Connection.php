@@ -334,6 +334,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
     /**
      * returns an array of available PDO drivers
+     *
+     * @return array
      */
     public static function getAvailableDrivers()
     {
@@ -531,6 +533,9 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         return true;
     }
 
+    /**
+     * @return void
+     */
     public function incrementQueryCount()
     {
         $this->_count++;
@@ -540,6 +545,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * converts given driver name
      *
      * @param string $name
+     *
+     * @return void
      */
     public function driverName($name)
     {
@@ -569,28 +576,32 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * query isemulated through this method for other DBMS using standard types
      * of queries inside a transaction to assure the atomicity of the operation.
      *
-     * @param   Doctrine_Table  $table  name of the table on which the REPLACE query will
-     *                          be executed.
      *
-     * @param   array           $fields an associative array that describes the fields and the
-     *                          values that will be inserted or updated in the specified table. The
-     *                          indexes of the array are the names of all the fields of the table.
+     *
+     *
      *
      *                          The values of the array are values to be assigned to the specified field.
      *
-     * @param array $keys       an array containing all key fields (primary key fields
-     *                          or unique index fields) for this table
+     *
      *
      *                          the uniqueness of a row will be determined according to
      *                          the provided key fields
      *
      *                          this method will fail if no key fields are specified
      *
+     * @param Doctrine_Table  $table  name of the table on which the REPLACE query will
+     *                          be executed.
+     * @param array           $fields an associative array that describes the fields and the
+     *                          values that will be inserted or updated in the specified table. The
+     *                          indexes of the array are the names of all the fields of the table.
+     * @param array $keys       an array containing all key fields (primary key fields
+     *                          or unique index fields) for this table
+     *
      * @throws Doctrine_Connection_Exception        if this driver doesn't support replace
      * @throws Doctrine_Connection_Exception        if some of the key values was null
      * @throws Doctrine_Connection_Exception        if there were no key fields
      * @throws PDOException                         if something fails at PDO level
-     * @ return integer                              number of rows affected
+     * @return integer                              number of rows affected
      */
     public function replace(Doctrine_Table $table, array $fields, array $keys)
     {
@@ -1094,6 +1105,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * rethrowException
      *
      * @throws Doctrine_Connection_Exception
+     *
+     * @return void
      */
     public function rethrowException(Exception $e, $invoker, $query = null)
     {
@@ -1377,6 +1390,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @param string $table     name of the table into which a new row was inserted
      * @param string $field     name of the field into which a new row was inserted
+     * @return int|mixed
      */
     public function lastInsertId($table = null, $field = null)
     {
@@ -1401,6 +1415,10 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         return $this->transaction->beginTransaction($savepoint);
     }
 
+    /**
+     * @param  string $savepoint
+     * @return int
+     */
     public function beginInternalTransaction($savepoint = null)
     {
         return $this->transaction->beginInternalTransaction($savepoint);
@@ -1649,6 +1667,14 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         return $this->_generateUniqueName('indexes', $parts, $key, $format, $this->getAttribute(Doctrine_Core::ATTR_MAX_IDENTIFIER_LENGTH));
     }
 
+    /**
+     * @param  string $type
+     * @param  array $parts
+     * @param  string $key
+     * @param  string $format
+     * @param  int $maxLength
+     * @return string
+     */
     protected function _generateUniqueName($type, $parts, $key, $format = '%s', $maxLength = null)
     {
         if (isset($this->_usedNames[$type][$key])) {

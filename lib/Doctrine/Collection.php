@@ -109,6 +109,9 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         self::$null = $null;
     }
 
+    /**
+     * @return Doctrine_Collection
+     */
     public static function create($table, $keyColumn = null, $class = null)
     {
         if (is_null($class)) {
@@ -693,6 +696,8 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Mimics the result of a $query->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
      *
      * @param boolean $deep
+     *
+     * @return array
      */
     public function toArray($deep = true, $prefixKey = false)
     {
@@ -723,6 +728,9 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         return $result;
     }
 
+    /**
+     * @return self
+     */
     public function toHierarchy()
     {
         $collection = $this;
@@ -793,6 +801,8 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * on the collection, update the ones that do and remove the ones missing in the $array
      *
      * @param array $array representation of a Doctrine_Collection
+     *
+     * @return void
      */
     public function synchronizeWithArray(array $array)
     {
@@ -811,9 +821,12 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         }
     }
 
+    /**
+     * @return void
+     */
     public function synchronizeFromArray(array $array)
     {
-        return $this->synchronizeWithArray($array);
+        $this->synchronizeWithArray($array);
     }
 
     /**

@@ -83,6 +83,8 @@ class Doctrine_Cli
 
     /**
      * @param array $config
+     *
+     * @return void
      */
     public function setConfig(array $config)
     {
@@ -99,6 +101,8 @@ class Doctrine_Cli
 
     /**
      * @param Doctrine_Cli_Formatter $formatter Doctrine_Cli_Formatter
+     *
+     * @return void
      */
     public function setFormatter(Doctrine_Cli_Formatter $formatter)
     {
@@ -167,6 +171,8 @@ class Doctrine_Cli
      * Sets the array of registered tasks
      *
      * @param array $registeredTask
+     *
+     * @return void
      */
     public function setRegisteredTasks(array $registeredTask)
     {
@@ -217,6 +223,8 @@ class Doctrine_Cli
 
     /**
      * @param Doctrine_Task $task Doctrine_Task
+     *
+     * @return void
      */
     public function setTaskInstance(Doctrine_Task $task)
     {
@@ -237,6 +245,8 @@ class Doctrine_Cli
      *
      * The second round of registering will pick-up loaded custom Tasks.  Methods are provided that will allow users to
      * register Tasks loaded after creating an instance of Doctrine_Cli.
+     *
+     * @return void
      */
     protected function includeAndRegisterTaskClasses()
     {
@@ -254,6 +264,8 @@ class Doctrine_Cli
      * If no directory is given it looks in the default Doctrine/Task folder for the core tasks
      *
      * @param mixed $directories Can be a string path or array of paths
+     *
+     * @return void
      */
     protected function includeAndRegisterDoctrineTaskClasses($directories = null)
     {
@@ -329,8 +341,11 @@ class Doctrine_Cli
      * Registers the specified _included_ task-class
      *
      * @param string $className
+     *
      * @throws InvalidArgumentException If the class does not exist or the task-name is blank
      * @throws DomainException If the class is not a Doctrine Task
+     *
+     * @return void
      */
     public function registerTaskClass($className)
     {
@@ -380,6 +395,8 @@ class Doctrine_Cli
      * Registers all loaded classes - by default - or the specified loaded Task classes
      *
      * This method will skip registered task classes, so it can be safely called many times over
+     *
+     * @return void
      */
     public function registerIncludedTaskClasses()
     {
@@ -503,7 +520,10 @@ class Doctrine_Cli
      *
      * @param Doctrine_Task $task Doctrine_Task
      * @param array $preparedArguments
+     *
      * @throws Doctrine_Cli_Exception If required arguments are missing
+     *
+     * @return void
      */
     protected function executeTask(Doctrine_Task $task, array $preparedArguments)
     {
@@ -568,7 +588,10 @@ class Doctrine_Cli
      *
      * @param string|null $taskName
      * @param bool $full
+     *
      * @todo Continue refactoring for testing
+     *
+     * @return void
      */
     public function printTasks($taskName = null, $full = false)
     {
@@ -649,7 +672,9 @@ class Doctrine_Cli
     /**
      * Old method retained for backwards compatibility
      *
-     * @deprecated
+     * @deprecated 
+     *
+     * @return array
      */
     public function loadTasks($directory = null)
     {
@@ -660,7 +685,9 @@ class Doctrine_Cli
     /**
      * Old method retained for backwards compatibility
      *
-     * @deprecated
+     * @deprecated 
+     *
+     * @return string
      */
     protected function _getTaskClassFromArgs(array $args)
     {
@@ -670,7 +697,9 @@ class Doctrine_Cli
     /**
      * Old method retained for backwards compatibility
      *
-     * @deprecated
+     * @deprecated 
+     *
+     * @return array
      */
     public function getLoadedTasks()
     {

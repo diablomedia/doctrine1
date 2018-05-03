@@ -59,15 +59,15 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
                           'identifier_quoting'   => true,
                           'pattern_escaping'     => true,
                           );
-        
+
         $this->properties['sql_file_delimiter']    = "\n/\n";
         $this->properties['number_max_precision']  = 38;
         $this->properties['max_identifier_length'] = 30;
 
         parent::__construct($manager, $adapter);
-        
+
         // moving properties to params to make them changeable by user
-        // VARCHAR2 allowed length is 4000 BYTE. For UTF8 strings is better to use 1000 CHAR 
+        // VARCHAR2 allowed length is 4000 BYTE. For UTF8 strings is better to use 1000 CHAR
         $this->setParam('varchar2_max_length', 4000);
         // Oracle's default unit for char data types is BYTE. For UTF8 string it is better to use CHAR
         $this->setParam('char_unit', null);
@@ -94,7 +94,14 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
     {
         return $this->_createLimitSubquery($query, $limit, $offset);
     }
-    
+
+    /**
+     * @param  string $query
+     * @param  int $limit
+     * @param  int $offset
+     * @param  string $column
+     * @return string
+     */
     private function _createLimitSubquery($query, $limit, $offset, $column = null)
     {
         $limit = (int) $limit;
@@ -120,7 +127,7 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
         }
         return $query;
     }
-    
+
     /**
      * Creates the SQL for Oracle that can be used in the subquery for the limit-subquery
      * algorithm.
@@ -153,10 +160,10 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
             if ($input === null) {
                 return null;
             } else {
-                return $input ? 1 : 0;    
+                return $input ? 1 : 0;
             }
         } else {
-            return parent::quote($input, $type);  
+            return parent::quote($input, $type);
         }
     }
 }

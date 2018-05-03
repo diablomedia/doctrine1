@@ -41,12 +41,12 @@ abstract class Doctrine_Relation implements ArrayAccess
      * constant for ONE_TO_ONE and MANY_TO_ONE relationships
      */
     const ONE   = 0;
-    
+
     /**
      * constant for MANY_TO_MANY and ONE_TO_MANY relationships
      */
     const MANY  = 1;
-    
+
     // TRUE => mandatory, everything else is just a default value. this should be refactored
     // since TRUE can bot be used as a default value this way. All values should be default values.
     /**
@@ -93,10 +93,10 @@ abstract class Doctrine_Relation implements ArrayAccess
      *          refTable                the reference table object (if any)
      *
      *          onDelete                referential delete action
-     *  
+     *
      *          onUpdate                referential update action
      *
-     *          deferred                deferred constraint checking 
+     *          deferred                deferred constraint checking
      *
      *          alias                   relation alias
      *
@@ -114,10 +114,10 @@ abstract class Doctrine_Relation implements ArrayAccess
      *          in the parent table or in the child table.
      *
      * SET NULL: Delete or update the row from the parent table and set the foreign key column or columns in the
-     *          child table to NULL. This is valid only if the foreign key columns do not have the NOT NULL qualifier 
+     *          child table to NULL. This is valid only if the foreign key columns do not have the NOT NULL qualifier
      *          specified. Both ON DELETE SET NULL and ON UPDATE SET NULL clauses are supported.
      *
-     * NO ACTION: In standard SQL, NO ACTION means no action in the sense that an attempt to delete or update a primary 
+     * NO ACTION: In standard SQL, NO ACTION means no action in the sense that an attempt to delete or update a primary
      *           key value is not allowed to proceed if there is a related foreign key value in the referenced table.
      *
      * RESTRICT: Rejects the delete or update operation for the parent table. NO ACTION and RESTRICT are the same as
@@ -135,7 +135,7 @@ abstract class Doctrine_Relation implements ArrayAccess
             if (isset($definition[$key])) {
                 $def[$key] = $definition[$key];
             } else {
-                $def[$key] = $this->definition[$key];          
+                $def[$key] = $this->definition[$key];
             }
         }
         $this->definition = $def;
@@ -154,35 +154,57 @@ abstract class Doctrine_Relation implements ArrayAccess
                 ($this->definition['onDelete']));
     }
 
+    /**
+     * @return bool|null
+     */
     public function isDeferred()
     {
         return $this->definition['deferred'];
     }
 
+    /**
+     * @return bool|null
+     */
     public function isDeferrable()
     {
         return $this->definition['deferrable'];
     }
 
+    /**
+     * @return bool
+     */
     public function isEqual()
     {
         return $this->definition['equal'];
     }
 
+    /**
+     * @param mixed $offset
+     * @return bool
+     */
     public function offsetExists($offset)
     {
         return isset($this->definition[$offset]);
     }
 
+    /**
+     * @param mixed $offset
+     * @return null|array
+     */
     public function offsetGet($offset)
     {
         if (isset($this->definition[$offset])) {
             return $this->definition[$offset];
         }
-        
+
         return null;
     }
 
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     * @return void
+     */
     public function offsetSet($offset, $value)
     {
         if (isset($this->definition[$offset])) {
@@ -190,6 +212,10 @@ abstract class Doctrine_Relation implements ArrayAccess
         }
     }
 
+    /**
+     * @param mixed $offset
+     * @return void
+     */
     public function offsetUnset($offset)
     {
         $this->definition[$offset] = false;
@@ -200,7 +226,7 @@ abstract class Doctrine_Relation implements ArrayAccess
      *
      * @return array
      */
-    public function toArray() 
+    public function toArray()
     {
         return $this->definition;
     }
@@ -227,7 +253,7 @@ abstract class Doctrine_Relation implements ArrayAccess
     {
         return $this->definition['type'];
     }
-    
+
     /**
      * Checks whether this relation cascades deletions to the related objects
      * on the application level.
@@ -273,10 +299,11 @@ abstract class Doctrine_Relation implements ArrayAccess
     {
         return $this->definition['local'];
     }
-    
+
     /**
      * getLocalFieldName
      * returns the field name of the local column
+     * @return string
      */
     final public function getLocalFieldName()
     {
@@ -305,10 +332,11 @@ abstract class Doctrine_Relation implements ArrayAccess
     {
         return $this->definition['foreign'];
     }
-    
+
     /**
      * getLocalFieldName
      * returns the field name of the foreign column
+     * @return string
      */
     final public function getForeignFieldName()
     {
@@ -418,6 +446,9 @@ abstract class Doctrine_Relation implements ArrayAccess
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isRefClass()
     {
         if ($this->_isRefClass === null) {

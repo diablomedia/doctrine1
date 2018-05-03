@@ -306,6 +306,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
     /**
      * Initializes the in-memory table definition.
+     *
+     * @return Doctrine_Record
      */
     public function initDefinition()
     {
@@ -630,6 +632,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $method
      * @param string $class
+     *
+     * @return void
      */
     public function setMethodOwner($method, $class)
     {
@@ -1719,7 +1723,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param string $fieldName         field for the WHERE clause
      * @param string $value             prepared statement parameter
      * @param int $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
-     * @return Doctrine_Record
+     * @return Doctrine_Record|array|false
      */
     public function findOneBy($fieldName, $value, $hydrationMode = null)
     {
@@ -1756,7 +1760,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param array $params         prepared statement params (if any)
      * @param int $hydrationMode    Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
      * @throws Doctrine_Query_Registry if no query for given queryKey is found
-     * @return Doctrine_Record|array
+     * @return Doctrine_Record|array|false
      */
     public function executeOne($queryKey, $params = array(), $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
     {
@@ -2134,6 +2138,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Pushes error to the record error stack if they are generated.
      *
      * @param Doctrine_Record $record
+     *
+     * @return void
      */
     public function validateUniques(Doctrine_Record $record)
     {
@@ -2733,6 +2739,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $a
      * @param string $b
+     *
+     * @return int
      */
     private function isGreaterThan($a, $b)
     {
@@ -2740,6 +2748,9 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         return (strlen($a) > strlen($b)) ? 1 : -1;
     }
 
+    /**
+     * @return string
+     */
     public function buildFindByWhere($fieldName)
     {
         // Get all variations of possible field names

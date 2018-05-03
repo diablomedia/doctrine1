@@ -32,6 +32,9 @@
  */
 class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
 {
+    /**
+     * @return string
+     */
     public function load($condition)
     {
         $condition = trim($condition);
@@ -132,6 +135,9 @@ class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
     }
 
 
+    /**
+     * @return int|false
+     */
     protected function _processPossibleAggExpression(& $expr, & $matches = array())
     {
         $hasAggExpr = preg_match('/(.*[^\s\(\=])\(([^\)]*)\)(.*)/', $expr, $matches);

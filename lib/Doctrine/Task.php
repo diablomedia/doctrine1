@@ -224,7 +224,10 @@ abstract class Doctrine_Task
      * Sets the name of the task, the name that's used to invoke it through a CLI
      *
      * @param string $taskName
+     *
      * @throws InvalidArgumentException If the task name is invalid
+     *
+     * @return void
      */
     protected function setTaskName($taskName)
     {

@@ -85,6 +85,8 @@ class Doctrine_Relation_ForeignKey extends Doctrine_Relation
      * getCondition
      *
      * @param string $alias
+     *
+     * @return string
      */
     public function getCondition($alias = null)
     {

@@ -32,11 +32,19 @@
  */
 class Doctrine_Expression_Driver extends Doctrine_Connection_Module
 {
+    /**
+     * @param  string|int $column
+     * @return string|int
+     */
     public function getIdentifier($column)
     {
         return $column;
     }
 
+    /**
+     * @param  array $columns
+     * @return array
+     */
     public function getIdentifiers($columns)
     {
         return $columns;
@@ -302,6 +310,8 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      * must contain an expression or an array with expressions.
      *
      * @param string ...$args strings that will be concatinated.
+     *
+     * @return string
      */
     public function concat(...$args)
     {

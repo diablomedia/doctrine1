@@ -35,6 +35,9 @@ abstract class Doctrine_Hook_Parser
     protected $condition;
     protected $params = array();
 
+    /**
+     * @return string
+     */
     public function getCondition()
     {
         return $this->condition;

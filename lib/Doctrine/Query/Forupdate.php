@@ -32,6 +32,9 @@
  */
 class Doctrine_Query_Forupdate extends Doctrine_Query_Part
 {
+    /**
+     * @return bool
+     */
     public function parse($forUpdate) 
     {
         return (bool) $forUpdate;

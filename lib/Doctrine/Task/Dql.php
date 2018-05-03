@@ -55,6 +55,9 @@ class Doctrine_Task_Dql extends Doctrine_Task
         $this->_printResults($results);
     }
 
+    /**
+     * @return void
+     */
     protected function _printResults($array)
     {
         $yaml = Doctrine_Parser::dump($array, 'yml');

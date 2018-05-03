@@ -43,6 +43,9 @@ class Doctrine_Relation_Association extends Doctrine_Relation
         return $this->definition['refTable'];
     }
 
+    /**
+     * @return Doctrine_Table
+     */
     public function getAssociationTable()
     {
         return $this->definition['refTable'];
@@ -83,6 +86,7 @@ class Doctrine_Relation_Association extends Doctrine_Relation
 	/**
      * getLocalRefColumnName
      * returns the column name of the local reference column
+     * @return string
      */
     final public function getLocalRefColumnName()
     {
@@ -92,6 +96,7 @@ class Doctrine_Relation_Association extends Doctrine_Relation
     /**
      * getLocalRefFieldName
      * returns the field name of the local reference column
+     * @return string
      */
     final public function getLocalRefFieldName()
     {
@@ -101,6 +106,7 @@ class Doctrine_Relation_Association extends Doctrine_Relation
     /**
      * getForeignRefColumnName
      * returns the column name of the foreign reference column
+     * @return string
      */
     final public function getForeignRefColumnName()
     {
@@ -110,6 +116,7 @@ class Doctrine_Relation_Association extends Doctrine_Relation
     /**
      * getForeignRefFieldName
      * returns the field name of the foreign reference column
+     * @return string
      */
     final public function getForeignRefFieldName()
     {

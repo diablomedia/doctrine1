@@ -70,6 +70,8 @@ class Doctrine_Tree
      * Used to define table attributes required for the given implementation
      *
      * @throws Doctrine_Tree_Exception          if table attributes have not been defined
+     *
+     * @return void
      */
     public function setTableDefinition()
     {
@@ -79,6 +81,7 @@ class Doctrine_Tree
     /**
      * this method is used for setting up relations and attributes and should be used by specific implementations
      *
+     * @return void
      */
     public function setUp()
     {
@@ -107,7 +110,7 @@ class Doctrine_Tree
 
     /**
      * gets tree attribute value
-     *
+     * @return null|mixed
      */
     public function getAttribute($name)
     {
@@ -118,6 +121,8 @@ class Doctrine_Tree
      * sets tree attribute value
      *
      * @param mixed $value
+     *
+     * @return void
      */
     public function setAttribute($name, $value)
     {
@@ -126,6 +131,7 @@ class Doctrine_Tree
 
     /**
      * Returns the base tree component.
+     * @return string
      */
     public function getBaseComponent()
     {

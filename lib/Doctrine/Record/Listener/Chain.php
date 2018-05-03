@@ -42,38 +42,40 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
     /**
      * @var array $_options        an array containing chain options
      */
-    protected $_options = array('disabled' => false); 
+    protected $_options = array('disabled' => false);
 
-    /** 
-     * setOption 
-     * sets an option in order to allow flexible listener chaining 
-     * 
-     * @param mixed $name              the name of the option to set 
-     * @param mixed $value              the value of the option 
-     */ 
-    public function setOption($name, $value = null) 
-    { 
-        if (is_array($name)) { 
-            $this->_options = Doctrine_Lib::arrayDeepMerge($this->_options, $name); 
-        } else { 
-            $this->_options[$name] = $value; 
+    /**
+     * setOption
+     * sets an option in order to allow flexible listener chaining
+     *
+     * @param mixed $name              the name of the option to set
+     * @param mixed $value              the value of the option
+     *
+     * @return void
+     */
+    public function setOption($name, $value = null)
+    {
+        if (is_array($name)) {
+            $this->_options = Doctrine_Lib::arrayDeepMerge($this->_options, $name);
+        } else {
+            $this->_options[$name] = $value;
         }
-    } 
+    }
 
-    /** 
-     * getOption 
-     * returns the value of given option 
-     * 
-     * @param string $name  the name of the option 
-     * @return mixed        the value of given option 
-     */ 
-    public function getOption($name) 
-    { 
-        if (isset($this->_options[$name])) { 
-            return $this->_options[$name]; 
-        } 
+    /**
+     * getOption
+     * returns the value of given option
+     *
+     * @param string $name  the name of the option
+     * @return mixed        the value of given option
+     */
+    public function getOption($name)
+    {
+        if (isset($this->_options[$name])) {
+            return $this->_options[$name];
+        }
 
-        return null; 
+        return null;
     }
 
     /**
@@ -135,10 +137,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         $this->_listeners[$key] = $listener;
     }
 
+    /**
+     * @return void
+     */
     public function preSerialize(Doctrine_Event $event)
     {
 	    $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preSerialize', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -150,10 +155,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function postSerialize(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('postSerialize', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -165,10 +173,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preUnserialize(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preUnserialize', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -180,10 +191,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function postUnserialize(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('postUnserialize', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -195,10 +209,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preDqlSelect(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preDqlSelect', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -210,10 +227,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preSave(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preSave', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -225,10 +245,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function postSave(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('postSave', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -240,10 +263,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preDqlDelete(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preDqlDelete', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -255,10 +281,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preDelete(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preDelete', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -270,10 +299,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function postDelete(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('postDelete', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -285,10 +317,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preDqlUpdate(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preDqlUpdate', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -300,10 +335,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preUpdate(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preUpdate', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -315,10 +353,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function postUpdate(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('postUpdate', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -330,10 +371,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preInsert(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preInsert', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -345,10 +389,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function postInsert(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('postInsert', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -360,10 +407,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function preHydrate(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preHydrate', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -375,10 +425,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
         }
     }
 
+    /**
+     * @return void
+     */
     public function postHydrate(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-        
+
         if ($disabled !== true && ! (is_array($disabled) && in_array('postHydrate', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -389,11 +442,14 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
             }
         }
     }
-    
+
+    /**
+     * @return void
+     */
     public function preValidate(Doctrine_Event $event)
-    { 
+    {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('preValidate', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');
@@ -404,11 +460,14 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
             }
         }
     }
-    
+
+    /**
+     * @return void
+     */
     public function postValidate(Doctrine_Event $event)
     {
         $disabled = $this->getOption('disabled');
-	
+
 	    if ($disabled !== true && ! (is_array($disabled) && in_array('postValidate', $disabled))) {
             foreach ($this->_listeners as $listener) {
                 $disabled = $listener->getOption('disabled');

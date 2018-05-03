@@ -39,10 +39,16 @@ class Doctrine_Search_Listener extends Doctrine_Record_Listener
         $this->_search = $search;
     }
 
+    /**
+     * @return void
+     */
     public function preUpdate(Doctrine_Event $event)
     {
     }
 
+    /**
+     * @return void
+     */
     public function postUpdate(Doctrine_Event $event)
     {
         $record = $event->getInvoker(); 
@@ -50,6 +56,9 @@ class Doctrine_Search_Listener extends Doctrine_Record_Listener
         $this->_search->updateIndex($record->toArray()); 
     }
 
+    /**
+     * @return void
+     */
     public function postInsert(Doctrine_Event $event)
     {
         $record = $event->getInvoker();

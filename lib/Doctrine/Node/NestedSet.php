@@ -587,7 +587,10 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * @param Doctrine_Record $dest
      * @param int $newLeftValue
      * @param string $moveType
+     *
      * @todo Better exception handling/wrapping
+     *
+     * @return bool
      */
     private function _moveBetweenTrees(Doctrine_Record $dest, $newLeftValue, $moveType)
     {
@@ -673,7 +676,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * moves node as prev sibling of dest record
-     *
+     * @return bool
      */
     public function moveAsPrevSiblingOf(Doctrine_Record $dest)
     {
@@ -701,7 +704,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * moves node as next sibling of dest record
-     *
+     * @return bool
      */
     public function moveAsNextSiblingOf(Doctrine_Record $dest)
     {
@@ -729,7 +732,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * moves node as first child of dest record
-     *
+     * @return bool
      */
     public function moveAsFirstChildOf(Doctrine_Record $dest)
     {
@@ -757,7 +760,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * moves node as last child of dest record
-     *
+     * @return bool
      */
     public function moveAsLastChildOf(Doctrine_Record $dest)
     {
@@ -787,6 +790,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * Makes this node a root node. Only used in multiple-root trees.
      *
      * @todo Exception handling/wrapping
+     *
+     * @return bool
      */
     public function makeRoot($newRootId)
     {
@@ -847,6 +852,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * adds node as last child of record
      *
+     * @return void
      */
     public function addChild(Doctrine_Record $record)
     {
@@ -941,6 +947,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * Detaches the node from the tree by invalidating it's lft & rgt values
      * (they're set to 0).
+     *
+     * @return void
      */
     public function detach()
     {
@@ -950,7 +958,10 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * deletes node and it's descendants
+     *
      * @todo Delete more efficiently. Wrap in transaction if needed.
+     *
+     * @return true
      */
     public function delete()
     {
@@ -991,6 +1002,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      *
      * @param int     $destLeft     node left value
      * @param int        $destRight    node right value
+     *
+     * @return void
      */
     private function insertNode($destLeft = 0, $destRight = 0, $destRoot = 1)
     {
@@ -1004,7 +1017,10 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * move node's and its children to location $destLeft and updates rest of tree
      *
      * @param int     $destLeft    destination left value
+     *
      * @todo Wrap in transaction
+     *
+     * @return true
      */
     private function updateNode($destLeft, $levelDiff)
     {
@@ -1062,6 +1078,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      *
      * @param int $first         First node to be shifted
      * @param int $delta         Value to be shifted by, can be negative
+     *
+     * @return void
      */
     private function shiftRlValues($first, $delta, $rootId = 1)
     {
@@ -1101,6 +1119,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * @param int $first     First node to be shifted (L value)
      * @param int $last     Last node to be shifted (L value)
      * @param int $delta         Value to be shifted by, can be negative
+     *
+     * @return void
      */
     private function shiftRlRange($first, $last, $delta, $rootId = 1)
     {
@@ -1145,6 +1165,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * sets record's left value
      *
      * @param int $lft
+     *
+     * @return void
      */
     public function setLeftValue($lft)
     {
@@ -1165,6 +1187,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * sets record's right value
      *
      * @param int $rgt
+     *
+     * @return void
      */
     public function setRightValue($rgt)
     {
@@ -1195,7 +1219,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * get records root id value
-     *
+     * @return int
      */
     public function getRootValue()
     {
@@ -1209,6 +1233,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * sets records root id value
      *
      * @param int $value
+     *
+     * @return void
      */
     public function setRootValue($value)
     {

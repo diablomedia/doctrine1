@@ -77,6 +77,8 @@ class Doctrine_Relation_LocalKey extends Doctrine_Relation
      * getCondition
      *
      * @param string $alias
+     *
+     * @return string
      */
     public function getCondition($alias = null)
     {

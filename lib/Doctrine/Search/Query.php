@@ -69,7 +69,9 @@ class Doctrine_Search_Query
         $this->_condition = $foreignId . ' %s (SELECT ' . $foreignId . ' FROM ' . $this->_table->getTableName() . ' WHERE ';
     }
 
-
+    /**
+     * @return void
+     */
     public function query($text, $includeRelevance = true)
     {
         $text = trim($text);
@@ -107,6 +109,11 @@ class Doctrine_Search_Query
         }
     }
 
+    /**
+     * @param  string $originalClause
+     * @param  bool $recursive
+     * @return string
+     */
     public function parseClause($originalClause, $recursive = false)
     {
         $clause = $this->_tokenizer->bracketTrim($originalClause);
@@ -178,6 +185,9 @@ class Doctrine_Search_Query
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isExpression($term)
     {
         if (strpos($term, '(') !== false) {
@@ -189,6 +199,10 @@ class Doctrine_Search_Query
         }
     }
 
+    /**
+     * @param  string $term
+     * @return string
+     */
     public function parseTerm($term)
     {
         $negation = false;
@@ -211,6 +225,9 @@ class Doctrine_Search_Query
         return $where;
     }
 
+    /**
+     * @return string
+     */
     public function parseWord($word)
     {
         $this->_words[] = str_replace('*', '', $word);
@@ -232,16 +249,25 @@ class Doctrine_Search_Query
         return $where;
     }
 
+    /**
+     * @return array
+     */
     public function getWords()
     {
         return $this->_words;
     }
 
+    /**
+     * @return array
+     */
     public function getParams()
     {
         return $this->_params;
     }
 
+    /**
+     * @return string
+     */
     public function getSqlQuery()
     {
         return $this->_sql;

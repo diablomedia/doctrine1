@@ -149,6 +149,9 @@ class Doctrine_Pager
         return $this->_executed;
     }
 
+    /**
+     * @return bool
+     */
     public function getCountExecuted()
     {
         return $this->_countExecuted;
@@ -167,6 +170,9 @@ class Doctrine_Pager
         $this->_executed = $executed;
     }
 
+    /**
+     * @return void
+     */
     protected function _setCountExecuted($executed)
     {
         $this->_countExecuted = $executed;
@@ -567,6 +573,9 @@ class Doctrine_Pager
         return $this->getQuery()->execute($params, $hydrationMode);
     }
 
+    /**
+     * @return void
+     */
     public function executeCount($params = array())
     {
         if ( !$this->getCountExecuted()) {

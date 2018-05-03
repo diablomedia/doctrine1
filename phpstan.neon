@@ -169,6 +169,12 @@ parameters:
         - '#Method Doctrine_Query::fetchArray\(\) should return array but returns array\|Doctrine_Collection\.#'
         # This one does not allow specifying the hydration mode, so should default to Doctrine_Collection (record hydration)
         - '#Method Doctrine_IntegrityMapper::buildIntegrityRelationQuery\(\) should return Doctrine_Collection but returns array\|Doctrine_Collection\.#'
+        # Not clear why phpstan complains on this one. If $collection is_scalar, it won't be a Doctrine_Collection
+        - '#Method Doctrine_Query::fetchOne\(\) should return array\|Doctrine_Record\|false but returns array\|Doctrine_Collection\.#'
+        # $mutator can be any string really, and there's no contract that mutator functions should return $this
+        - '#Method Doctrine_Record::set\(\) should return \$this but returns \$this->{\$mutator}\(\$value, \$load, \$fieldName\)\.#'
+        # Filters should return the record object they're given (which is $this)
+        - '#Method Doctrine_Record::_set\(\) should return \$this but returns \$value\.#'
 
         #########
         # Level 4
@@ -359,6 +365,9 @@ parameters:
         # The Memcache::getExtendedStats() may return false, should probably modify these foreach loops to check for that before looping
         # Doctrine/Cache/Memcache.php:137|141
         - '#Argument of an invalid type array|bool supplied for foreach, only iterables are supported.#'
+        # There is a method_exists check before this call, perhaps a migration can be Doctrine_Migration here, which does have this
+        # method, Doctrine_Migration_Base does not (which is what the migration classes are supposed to extend)
+        - '#Call to an undefined method Doctrine_Migration_Base::migrate\(\)\.#'
 
         #########
         # Level 7
@@ -411,6 +420,11 @@ parameters:
         # These are optional parameters in Doctrine_Connection_Statement::fetch, maybe should be cast to ints, or not set on the event if null?
         - '#Property Doctrine_Event::\$cursorOffset \(int\) does not accept int\|null\.#'
         - '#Property Doctrine_Event::\$columnIndex \(int\) does not accept int\|null\.#'
+        # Doctrine_Lib::arrayDeepMerge only returns false if called with no parameters
+        - '#Property Doctrine_Record_Listener_Chain::\$_options \(array\) does not accept array\|false\.#'
+        - '#Property Doctrine_Record_Listener::\$_options \(array\) does not accept array\|false\.#'
+        - '#Property Doctrine_AuditLog::\$_options \(array\) does not accept array\|false\.#'
+        - '#Property Doctrine_Template::\$_options \(array\) does not accept array\|false\.#'
         # Default value on the $notification parameter should probably be changed to an empty string instead of null (Doctrine_Cli_Formatter is set that way)
         # in Doctrine_Cli:406
         - '#Parameter \#1 \$text of method Doctrine_Cli_Formatter::format\(\) expects string, string\|null given\.#'
@@ -432,3 +446,11 @@ parameters:
         - '#Parameter \#2 \$queryPart of method Doctrine_Query_Abstract::_addDqlQueryPart\(\) expects int\|string, string\|null given\.#'
         # Another case where the default should probably be an empty string instead of null, Doctrine_Query_Abstract:1874
         - '#Property Doctrine_Query_Abstract::\$_resultCacheHash \(string\) does not accept string\|null\.#'
+        # The Doctrine_Connection_Mssql::replaceBoundParamsWithInlineValuesInQuery method may return null if the preg_replace_callback
+        # function encounters an error, which would cause $query to be null. Not sure what do do in this error situation.
+        - '#Parameter \#1 \$query of method Doctrine_Connection::execute\(\) expects string, string\|null given\.#'
+        - '#Parameter \#1 \$query of method Doctrine_Connection::exec\(\) expects string, string\|null given\.#'
+        # This doesn't make much sense, as it passes a null value to a method that just returns the passed in value, assigns that to $len
+        # and then doesn't use $len at all before it returns.  This call to getIdentifier can probably just be removed.
+        # Doctrine_Expression_Pgsql:75
+        - '#Parameter \#1 \$column of method Doctrine_Expression_Driver::getIdentifier\(\) expects int|string, null given\.#'

@@ -25,6 +25,8 @@ class sfYaml
    * Sets the YAML specification version to use.
    *
    * @param string $version The YAML specification version
+   *
+   * @return void
    */
   static public function setSpecVersion($version)
   {
@@ -128,6 +130,8 @@ class sfYaml
  * Wraps echo to automatically provide a newline.
  *
  * @param string $string The string to echo with new line
+ *
+ * @return void
  */
 function echoln($string)
 {

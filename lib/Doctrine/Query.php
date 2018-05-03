@@ -194,6 +194,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 
     /**
      * Clears all the sql parts.
+     * @return void
      */
     protected function clear()
     {
@@ -204,6 +205,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 
     /**
      * Resets the query to the state just after it has been instantiated.
+     *
+     * @return void
      */
     public function reset()
     {
@@ -274,7 +277,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      *
      * @param array $params        Query parameters
      * @param int $hydrationMode    Hydration mode: see Doctrine_Core::HYDRATE_* constants
-     * @return mixed                Array or Doctrine_Collection, depending on hydration mode. False if no result.
+     * @return array|Doctrine_Record|false         Array or Doctrine_Record, depending on hydration mode. False if no result.
      */
     public function fetchOne($params = array(), $hydrationMode = null)
     {
@@ -363,6 +366,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     /**
      * Adjust the processed param index for "foo.bar IN ?" support
      *
+     * @return void
      */
     public function adjustProcessedParam($index)
     {
@@ -599,7 +603,10 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * adds selected fields to pendingFields array
      *
      * @param string $dql
+     *
      * @todo Description: What information is extracted (and then stored)?
+     *
+     * @return void
      */
     public function parseSelect($dql)
     {
@@ -822,11 +829,19 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         return $str;
     }
 
+    /**
+     * @return void
+     */
     public function parseIdentifierReference($expr)
     {
 
     }
 
+    /**
+     * @param  string $expr
+     * @param  callable $parseCallback
+     * @return string
+     */
     public function parseFunctionExpression($expr, $parseCallback = null)
     {
         $pos = strpos($expr, '(');
@@ -855,6 +870,9 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
 
+    /**
+     * @return string
+     */
     public function parseSubquery($subquery)
     {
         $trimmed = trim($this->_tokenizer->bracketTrim($subquery));
@@ -1424,7 +1442,10 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
                 foreach ($e as $f) {
                     if ($f == 0 || $f % 2 == 0) {
                         $partOriginal = str_replace(',', '', trim($f));
-                        $callback = function($e) {
+                        $callback = /**
+                         * @return string
+                         */
+                        function($e) {
                             return trim($e, '[]`"');
                         };
                         $part = trim(implode('.', array_map($callback, explode('.', $partOriginal))));
@@ -1683,6 +1704,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * @todo Describe & refactor... too long and nested.
      * @param string $path          component alias
      * @param boolean $loadFields
+     * @return array
      */
     public function load($path, $loadFields = true)
     {
@@ -1868,6 +1890,9 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         return $this->buildIndexBy($componentAlias, $mapWith);
     }
 
+    /**
+     * @return string
+     */
     protected function buildSimpleRelationSql(Doctrine_Relation $relation, $foreignAlias, $localAlias, $overrideJoin, $join)
     {
         $queryPart = $join . $this->_conn->quoteIdentifier($relation->getTable()->getTableName())
@@ -1884,6 +1909,11 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         return $queryPart;
     }
 
+    /**
+     * @param  string $componentAlias
+     * @param  string $mapWith
+     * @return array
+     */
     protected function buildIndexBy($componentAlias, $mapWith = null)
     {
         $table = $this->_queryComponents[$componentAlias]['table'];
@@ -1917,6 +1947,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 
     /**
      * @param Doctrine_Relation_Association $relation
+     *
+     * @return string
      */
     protected function buildAssociativeRelationSql(Doctrine_Relation $relation, $assocAlias, $foreignAlias, $localAlias)
     {
@@ -2230,6 +2262,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * the reference and re-assigns the old value but not by reference
      *
      * @param string $key
+     *
+     * @return void
      */
     protected function _killReference($key)
     {

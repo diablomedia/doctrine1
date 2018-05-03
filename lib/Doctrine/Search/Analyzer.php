@@ -39,6 +39,11 @@ class Doctrine_Search_Analyzer implements Doctrine_Search_Analyzer_Interface
         $this->_options = $options;
     }
 
+    /**
+     * @param  string $text
+     * @param  string $encoding
+     * @return string
+     */
     public function analyze($text, $encoding = null)
     {
         return $text;

@@ -32,6 +32,9 @@
  */
 class Doctrine_File_Index extends Doctrine_Record
 {
+    /**
+     * @return void
+     */
     public function setTableDefinition()
     {
         $this->hasColumn('keyword', 'string', 255, array('notnull' => true,

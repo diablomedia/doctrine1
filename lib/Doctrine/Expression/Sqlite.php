@@ -80,25 +80,40 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
         return strpos($str, $substr);
     }
 
+    /**
+     * @return string
+     */
     public static function sha1Impl($str)
     {
         return sha1($str);
     }
 
+    /**
+     * @return string
+     */
     public static function ltrimImpl($str)
     {
         return ltrim($str);
     }
 
+    /**
+     * @return string
+     */
     public static function rtrimImpl($str)
     {
         return rtrim($str);
     }
 
+    /**
+     * @return string
+     */
     public static function trimImpl($str)
     {
         return trim($str);
     }
+    /**
+     * @return string
+     */
     public static function nowImpl()
     {
         return date('Y-m-d h:i:s');

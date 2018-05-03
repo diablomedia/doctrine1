@@ -371,6 +371,9 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
 
     abstract public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne);
 
+    /**
+     * @return void
+     */
     public function flush()
     {
 

@@ -78,11 +78,17 @@ class Doctrine_Migration
         }
     }
 
+    /**
+     * @return Doctrine_Connection
+     */
     public function getConnection()
     {
         return $this->_connection;
     }
 
+    /**
+     * @return void
+     */
     public function setConnection(Doctrine_Connection $conn)
     {
         $this->_connection = $conn;
@@ -422,7 +428,10 @@ class Doctrine_Migration
      * Get instance of migration class for number/version specified
      *
      * @param integer $num
+     *
      * @throws Doctrine_Migration_Exception $e
+     *
+     * @return Doctrine_Migration_Base
      */
     public function getMigrationClass($num)
     {

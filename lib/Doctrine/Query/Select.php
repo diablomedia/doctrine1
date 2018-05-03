@@ -32,6 +32,9 @@
  */
 class Doctrine_Query_Select extends Doctrine_Query_Part
 {
+    /**
+     * @return void
+     */
     public function parse($dql) 
     {
         $this->query->parseSelect($dql);

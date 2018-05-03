@@ -289,6 +289,9 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
        return $this->config['username'];
     }
 
+    /**
+     * @return int
+     */
     public function errorCode()
     {
         if (is_resource($this->connection)) {
@@ -299,6 +302,9 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
         return $error['code'];
     }
 
+    /**
+     * @return string
+     */
     public function errorInfo()
     {
         if (is_resource($this->connection)) {

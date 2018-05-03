@@ -63,6 +63,9 @@ abstract class Doctrine_Migration_Base
         return $this->_changes;
     }
 
+    /**
+     * @return int
+     */
     public function getNumChanges()
     {
         return count($this->_changes);
@@ -92,6 +95,8 @@ abstract class Doctrine_Migration_Base
      * Sets the default options for tables created using Doctrine_Migration_Base::createTable()
      *
      * @param array $options
+     *
+     * @return void
      */
     public static function setDefaultTableOptions(array $options)
     {
@@ -487,18 +492,30 @@ abstract class Doctrine_Migration_Base
         $this->index('down', $tableName, $indexName);
     }
 
+    /**
+     * @return void
+     */
     public function preUp()
     {
     }
 
+    /**
+     * @return void
+     */
     public function postUp()
     {
     }
 
+    /**
+     * @return void
+     */
     public function preDown()
     {
     }
 
+    /**
+     * @return void
+     */
     public function postDown()
     {
     }

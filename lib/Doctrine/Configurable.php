@@ -116,6 +116,10 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
         $this->attributes[$attribute] = $value;
     }
 
+    /**
+     * @param  int $namespace
+     * @return array|null
+     */
     public function getParams($namespace = null)
     {
     	if ($namespace == null) {
@@ -129,11 +133,17 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
         return $this->_params[$namespace];
     }
 
+    /**
+     * @return array
+     */
     public function getParamNamespaces()
     {
         return array_keys($this->_params);
     }
 
+    /**
+     * @return $this
+     */
     public function setParam($name, $value, $namespace = null)
     {
     	if ($namespace == null) {
@@ -145,6 +155,11 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
     	return $this;
     }
 
+    /**
+     * @param  string $name
+     * @param  int $namespace
+     * @return mixed
+     */
     public function getParam($name, $namespace = null)
     {
     	if ($namespace == null) {
@@ -195,7 +210,10 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
         return $this->_impl[$template];
     }
 
-
+    /**
+     * @param  string $template
+     * @return bool
+     */
     public function hasImpl($template)
     {
         if ( ! isset($this->_impl[$template])) {
@@ -366,6 +384,8 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      * Set the charset
      *
      * @param string $charset
+     *
+     * @return void
      */
     public function setCharset($charset)
     {
@@ -386,6 +406,8 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      * Set the collate
      *
      * @param string $collate
+     *
+     * @return void
      */
     public function setCollate($collate)
     {

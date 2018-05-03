@@ -154,6 +154,9 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
         return new ArrayIterator($this->_errors);
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return $this->_errors;

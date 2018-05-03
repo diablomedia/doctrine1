@@ -32,6 +32,9 @@
  */
 class Doctrine_Query_Set extends Doctrine_Query_Part
 {
+    /**
+     * @return string
+     */
     public function parse($dql)
     {
 	    $terms = $this->_tokenizer->sqlExplode($dql, ' ');
@@ -78,6 +81,9 @@ class Doctrine_Query_Set extends Doctrine_Query_Part
     }
 
 
+    /**
+     * @return int|false
+     */
     protected function _processPossibleAggExpression(& $expr, & $matches = array())
     {
         $hasAggExpr = preg_match('/(.*[^\s\(\=])\(([^\)]*)\)(.*)/', $expr, $matches);

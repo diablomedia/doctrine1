@@ -37,6 +37,10 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
     protected $_collections = array();
     private $_initializedRelations = array();
 
+    /**
+     * @param  string $component
+     * @return Doctrine_Collection
+     */
     public function getElementCollection($component)
     {
         $coll = Doctrine_Collection::create($component);
@@ -45,6 +49,9 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
         return $coll;
     }
 
+    /**
+     * @return true
+     */
     public function initRelated(&$record, $name, $keyColumn = null)
     {
         if ( ! isset($this->_initializedRelations[$record->getOid()][$name])) {
@@ -57,16 +64,26 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
         return true;
     }
 
+    /**
+     * @return void
+     */
     public function registerCollection($coll)
     {
         $this->_collections[] = $coll;
     }
 
+    /**
+     * @return Doctrine_Null
+     */
     public function getNullPointer()
     {
         return self::$_null;
     }
 
+    /**
+     * @param  string $component
+     * @return Doctrine_Record
+     */
     public function getElement(array $data, $component)
     {
         $component = $this->_getClassnameToReturn($data, $component);
@@ -77,6 +94,9 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
         return $record;
     }
 
+    /**
+     * @return mixed
+     */
     public function getLastKey(&$coll)
     {
         $coll->end();
@@ -111,6 +131,9 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
         }
     }
 
+    /**
+     * @return void
+     */
     public function flush()
     {
         // take snapshots from all initialized collections

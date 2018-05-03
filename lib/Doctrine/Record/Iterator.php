@@ -57,6 +57,8 @@ class Doctrine_Record_Iterator extends ArrayIterator
      * initNullObject
      *
      * @param Doctrine_Null $null
+     *
+     * @return void
      */
     public static function initNullObject(Doctrine_Null $null)
     {

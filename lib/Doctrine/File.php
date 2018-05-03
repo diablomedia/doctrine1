@@ -32,6 +32,9 @@
  */
 class Doctrine_File extends Doctrine_Record
 {
+    /**
+     * @return void
+     */
     public function setTableDefinition()
     {
         $this->hasColumn('url', 'string', 255);

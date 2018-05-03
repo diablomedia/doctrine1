@@ -87,6 +87,7 @@ class Doctrine_Table_Repository implements Countable, IteratorAggregate
     /**
      * get
      * @param integer $oid
+     * @return mixed
      * @throws Doctrine_Table_Repository_Exception
      */
     public function get($oid)
@@ -145,7 +146,10 @@ class Doctrine_Table_Repository implements Countable, IteratorAggregate
 
     /**
      * contains
+     *
      * @param integer $oid                  object identifier
+     *
+     * @return bool
      */
     public function contains($oid)
     {

@@ -50,6 +50,9 @@ class Doctrine_Collection_OnDemand implements Iterator
         $this->_hydrateCurrent();
     }
 
+    /**
+     * @return void
+     */
     private function _hydrateCurrent()
     {
         $record = $this->_hydrator->hydrateResultSet($this->_stmt);

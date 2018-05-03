@@ -57,6 +57,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
      * used to define table attributes required for the NestetSet implementation
      * adds lft and rgt columns for corresponding left and right values
      *
+     * @return void
      */
     public function setTableDefinition()
     {
@@ -83,6 +84,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
      * and root id columns.
      *
      * @param Doctrine_Record $record        instance of Doctrine_Record
+     * @return Doctrine_Record
      */
     public function createRoot(Doctrine_Record $record = null)
     {
@@ -119,6 +121,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
      * Fetches a/the root node.
      *
      * @param integer $rootId
+     * @return mixed
      * @todo Better $rootid = null and exception if $rootId == null && hasManyRoots?
      *       Fetching with id = 1 is too magical and cant work reliably anyway.
      */
@@ -269,8 +272,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
     }
 
     /**
-     * Enter description here...
-     *
+     * @return string
      */
     public function getBaseAlias()
     {
@@ -280,6 +282,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
     /**
      * Enter description here...
      *
+     * @return Doctrine_Query
      */
     private function _createBaseQuery()
     {
@@ -294,6 +297,8 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
      * Enter description here...
      *
      * @param Doctrine_Query $query
+     *
+     * @return void
      */
     public function setBaseQuery(Doctrine_Query $query)
     {
@@ -308,6 +313,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
     /**
      * Enter description here...
      *
+     * @return void
      */
     public function resetBaseQuery()
     {

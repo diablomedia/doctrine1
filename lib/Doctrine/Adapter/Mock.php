@@ -273,6 +273,9 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
         $this->_queries[] = 'ROLLBACK';
     }
 
+    /**
+     * @return string|null
+     */
     public function getAttribute($attribute)
     {
         if ($attribute == Doctrine_Core::ATTR_DRIVER_NAME) {
@@ -280,15 +283,27 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
         }
     }
 
+    /**
+     * @return void
+     */
     public function errorCode()
     { }
 
+    /**
+     * @return void
+     */
     public function errorInfo()
     { }
 
+    /**
+     * @return void
+     */
     public function setAttribute($attribute, $value)
     { }
 
+    /**
+     * @return void
+     */
     public function sqliteCreateFunction()
     { }
 }

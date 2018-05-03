@@ -160,6 +160,9 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
         return $this->_nestingLevel;
     }
 
+    /**
+     * @return int
+     */
     public function getInternalTransactionLevel()
     {
         return $this->_internalNestingLevel;
@@ -403,6 +406,8 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
 
     /**
      * Performs the rollback.
+     *
+     * @return void
      */
     protected function _doRollback()
     {
@@ -411,6 +416,8 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
 
     /**
      * Performs the commit.
+     *
+     * @return void
      */
     protected function _doCommit()
     {
@@ -419,6 +426,8 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
 
     /**
      * Begins a database transaction.
+     *
+     * @return void
      */
     protected function _doBeginTransaction()
     {
@@ -504,6 +513,8 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      *
      * This method must only be used by Doctrine itself to initiate transactions.
      * Userland-code must use {@link beginTransaction()}.
+     *
+     * @return int
      */
     public function beginInternalTransaction($savepoint = null)
     {

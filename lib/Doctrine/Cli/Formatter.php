@@ -75,6 +75,8 @@ class Doctrine_Cli_Formatter
      * @param string  $section The section name
      * @param string  $text The text message
      * @param integer $size The maximum size allowed for a line (65 by default)
+     *
+     * @return string
      */
     public function formatSection($section, $text, $size = null)
     {
@@ -108,6 +110,8 @@ class Doctrine_Cli_Formatter
      * Sets the maximum line size.
      *
      * @param integer $size  The maximum line size for a message
+     *
+     * @return void
      */
     public function setMaxLineSize($size)
     {

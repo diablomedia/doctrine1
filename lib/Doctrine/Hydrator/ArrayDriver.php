@@ -32,21 +32,33 @@
  */
 class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
 {
+    /**
+     * @return array
+     */
     public function getElementCollection($component)
     {
         return array();
     }
 
+    /**
+     * @return array
+     */
     public function getElement(array $data, $component)
     {
         return $data;
     }
 
+    /**
+     * @return void
+     */
     public function registerCollection($coll)
     {
 
     }
 
+    /**
+     * @return true
+     */
     public function initRelated(&$record, $name, $keyColumn = null)
     {
         if ( ! isset($record[$name])) {
@@ -55,17 +67,27 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
         return true;
     }
 
-    public function getNullPointer() 
+    /**
+     * @return null
+     */
+    public function getNullPointer()
     {
-        return null;    
+        return null;
     }
 
+    /**
+     * @param  Doctrine_Collection $coll
+     * @return mixed
+     */
     public function getLastKey(&$coll)
     {
         end($coll);
         return key($coll);
     }
 
+    /**
+     * @return void
+     */
     public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne)
     {
         if ($coll === null) {
@@ -79,7 +101,7 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
             $prev[$dqlAlias] =& $coll[$index];
             return;
         }
-        
+
         if ($coll) {
             if ($oneToOne) {
                 $prev[$dqlAlias] =& $coll;

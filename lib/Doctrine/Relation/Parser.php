@@ -97,6 +97,8 @@ class Doctrine_Relation_Parser
      * Removes a relation. Warning: this only affects pending relations
      *
      * @param string $name           relation to remove
+     *
+     * @return void
      */
     public function unsetPendingRelations($name)
     {
@@ -150,6 +152,7 @@ class Doctrine_Relation_Parser
      * getRelation
      *
      * @param string $alias      relation alias
+     * @return Doctrine_Relation
      */
     public function getRelation($alias, $recursive = true)
     {
@@ -260,6 +263,7 @@ class Doctrine_Relation_Parser
      * table class for the given record
      *
      * @param string $template
+     * @return Doctrine_Table
      */
     public function getImpl($template)
     {
@@ -335,6 +339,8 @@ class Doctrine_Relation_Parser
      * [componentName].[identifier]
      *
      * @param Doctrine_Table $table     table object to retrieve identifiers from
+     *
+     * @return array|string
      */
     public function getIdentifiers(Doctrine_Table $table)
     {
@@ -357,7 +363,7 @@ class Doctrine_Relation_Parser
      *
      * @param array $classes                    an array of class names
      * @param Doctrine_Table $foreignTable      foreign table object
-     * @return array                            an array of column names
+     * @return array|string                            an array of column names
      */
     public function guessColumns(array $classes, Doctrine_Table $foreignTable)
     {

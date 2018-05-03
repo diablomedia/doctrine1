@@ -37,11 +37,17 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      */
     protected $_table;
 
+    /**
+     * @return void
+     */
     public function setTableDefinition()
     {
 
     }
 
+    /**
+     * @return void
+     */
     public function setUp()
     {
 
@@ -130,21 +136,33 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
         $this->_table->unique($fields, $options, $createUniqueIndex);
     }
 
+    /**
+     * @return void
+     */
     public function setAttribute($attr, $value)
     {
         $this->_table->setAttribute($attr, $value);
     }
 
+    /**
+     * @return void
+     */
     public function setTableName($tableName)
     {
         $this->_table->setTableName($tableName);
     }
 
+    /**
+     * @return void
+     */
     public function setInheritanceMap($map)
     {
         $this->_table->setOption('inheritanceMap', $map);
     }
 
+    /**
+     * @return void
+     */
     public function setSubclasses($map)
     {
         $class = get_class($this);
@@ -326,6 +344,9 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
         return $this;
     }
 
+    /**
+     * @return void
+     */
     public function loadGenerator(Doctrine_Record_Generator $generator)
     {
     	$generator->initialize($this->_table);

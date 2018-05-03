@@ -46,6 +46,9 @@ class Doctrine_Validator_Exception extends Doctrine_Exception implements Countab
         parent::__construct($this->generateMessage());
     }
 
+    /**
+     * @return array
+     */
     public function getInvalidRecords()
     {
         return $this->invalid;
@@ -63,6 +66,8 @@ class Doctrine_Validator_Exception extends Doctrine_Exception implements Countab
 
     /**
      * Generate a message with all classes that have exceptions
+     *
+     * @return string
      */
     private function generateMessage()
     {
@@ -79,6 +84,8 @@ class Doctrine_Validator_Exception extends Doctrine_Exception implements Countab
      *
      * @param callable $function Either string with function name or array with object,
      * functionname. See call_user_func in php manual for more inforamtion
+     *
+     * @return void
      */
     public function inspect($function)
     {

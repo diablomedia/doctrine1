@@ -147,7 +147,7 @@ class Doctrine_AuditLog extends Doctrine_Record_Generator
      * Get the max version number for a given Doctrine_Record
      *
      * @param Doctrine_Record $record
-     * @return Integer $versionnumber
+     * @return int $versionnumber
      */
     public function getMaxVersion(Doctrine_Record $record)
     {

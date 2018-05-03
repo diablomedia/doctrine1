@@ -32,6 +32,10 @@
  */
 class Doctrine_Query_Where extends Doctrine_Query_Condition
 {
+    /**
+     * @param  string $where
+     * @return string
+     */
     public function load($where)
     {
         // Handle operator ("AND" | "OR"), reducing overhead of this method processment
@@ -44,7 +48,7 @@ class Doctrine_Query_Where extends Doctrine_Query_Condition
 
         $where = $this->_tokenizer->bracketTrim(trim($where));
         $conn  = $this->query->getConnection();
-        $terms = $this->_tokenizer->sqlExplode($where);  
+        $terms = $this->_tokenizer->sqlExplode($where);
 
         if (count($terms) > 1) {
             if (substr($where, 0, 6) == 'EXISTS') {
@@ -76,15 +80,15 @@ class Doctrine_Query_Where extends Doctrine_Query_Condition
                     $map = $this->query->load($reference, false);
                     $alias = $this->query->getSqlTableAlias($reference);
                 }
-                
+
                 // DC-843 Modifiy operator for MSSQL
                 // @TODO apply database dependent parsing
-                //       list($leftExpr, $operator, $rightExpr) = $conn->modifyWhereCondition($leftExpr, $operator, $rightExpr); 
+                //       list($leftExpr, $operator, $rightExpr) = $conn->modifyWhereCondition($leftExpr, $operator, $rightExpr);
                 $driverName = strtolower($conn->getDriverName());
                 if ($driverName == 'mssql' && !empty($reference)) {
                     $cmp = $this->query->getQueryComponent($reference);
                     $table = $cmp['table'];
-                
+
                     /* @var $table Doctrine_Table */
                     $column = $table->getColumnName($fieldname);
                     $columndef = $table->getColumnDefinition($column);
@@ -104,6 +108,9 @@ class Doctrine_Query_Where extends Doctrine_Query_Condition
     }
 
 
+    /**
+     * @return string
+     */
     protected function _buildSql($leftExpr, $operator, $rightExpr)
     {
         $leftExprOriginal = $leftExpr;
@@ -131,7 +138,7 @@ class Doctrine_Query_Where extends Doctrine_Query_Condition
                 $leftExprOriginal . ' ' . $operator . ' ' . $rightExpr . '"'
             );
         }
-        
+
         // Right Expression
         $rightExpr = ($rightExpr == '?' && $isInX)
             ? $this->_buildWhereInArraySqlPart($rightExpr)
@@ -141,6 +148,9 @@ class Doctrine_Query_Where extends Doctrine_Query_Condition
     }
 
 
+    /**
+     * @return string
+     */
     protected function _buildWhereInArraySqlPart($rightExpr)
     {
         $params = $this->query->getInternalParams();

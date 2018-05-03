@@ -35,16 +35,25 @@ abstract class Doctrine_Record_Filter
 {
     protected $_table;
 
+    /**
+     * @return void
+     */
     public function setTable(Doctrine_Table $table)
     {
         $this->_table = $table;
     }
 
+    /**
+     * @return Doctrine_Table
+     */
     public function getTable()
     {
         return $this->_table;
     }
 
+    /**
+     * @return void
+     */
     public function init()
     {
     }

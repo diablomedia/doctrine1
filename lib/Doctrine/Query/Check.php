@@ -114,6 +114,9 @@ class Doctrine_Query_Check
         return '(' . $r . ')';
     }
 
+    /**
+     * @return string
+     */
     public function parseSingle($part)
     {
         $e = explode(' ', $part);
@@ -135,6 +138,10 @@ class Doctrine_Query_Check
         return implode(' ', $e);
     }
 
+    /**
+     * @param  string $dql
+     * @return mixed
+     */
     public function parseFunction($dql)
     {
         if (($pos = strpos($dql, '(')) !== false) {

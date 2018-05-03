@@ -331,10 +331,13 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * @param  string $table
      * @param  array  $tableColumns
      */
+    /**
+     * @return string|null
+     */
     public function buildTableDefinition(array $definition)
     {
         if (isset($definition['inheritance']['type']) && ($definition['inheritance']['type'] == 'simple' || $definition['inheritance']['type'] == 'column_aggregation')) {
-            return;
+            return null;
         }
 
         $ret = array();
@@ -604,6 +607,9 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * @param  string $table
      * @param  array  $columns
      */
+    /**
+     * @return string
+     */
     public function buildAccessors(array $definition)
     {
         $accessors = array();
@@ -637,6 +643,9 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * Build the phpDoc for a class definition
      *
      * @param  array  $definition
+     */
+    /**
+     * @return string
      */
     public function buildPhpDocs(array $definition)
     {
@@ -742,7 +751,10 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
     /**
      * buildActAs: builds a complete actAs code. It supports hierarchy of plugins
+     *
      * @param array $actAs array of plugin definitions and options
+     *
+     * @return string
      */
     public function buildActAs($actAs)
     {
@@ -1062,11 +1074,17 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         }
     }
 
+    /**
+     * @return string
+     */
     protected function _getBaseClassName($className)
     {
         return $this->_baseClassPrefix . $className;
     }
 
+    /**
+     * @return string
+     */
     public function buildTableClassDefinition($className, $definition, $options = array())
     {
         $extends = isset($options['extends']) ? $options['extends']:$this->_baseTableClassName;

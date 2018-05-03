@@ -35,6 +35,9 @@
  */
 final class Doctrine_Null
 { 
+    /**
+     * @return false
+     */
     public function exists()
     {
         return false;    

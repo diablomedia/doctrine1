@@ -105,6 +105,8 @@ class Doctrine_Hook
      *
      * @param string $type              type name
      * @param string|object $parser     parser name or custom parser object
+     *
+     * @return void
      */
     public function setTypeParser($type, $parser)
     {
@@ -116,6 +118,8 @@ class Doctrine_Hook
      *
      * @param string $field             field name
      * @param string|object $parser     parser name or custom parser object
+     *
+     * @return void
      */
     public function setFieldParser($field, $parser)
     {
@@ -222,6 +226,8 @@ class Doctrine_Hook
      * set the hook offset
      *
      * @param integer $offset
+     *
+     * @return void
      */
     public function hookOffset($offset)
     {

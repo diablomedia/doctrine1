@@ -47,6 +47,9 @@ class Doctrine_Hydrator_ScalarDriver extends Doctrine_Hydrator_Abstract
         return $result;
     }
 
+    /**
+     * @return array
+     */
     protected function _gatherRowData($data, &$cache, $aliasPrefix = true)
     {
         $rowData = array();

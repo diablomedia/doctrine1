@@ -978,7 +978,10 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * an exception
      *
      * @throws Doctrine_Exception_Exception     if unknown referential action given
+     *
      * @param string $action    foreign key referential action
+     *
+     * @return string
      */
     public function getForeignKeyReferentialAction($action)
     {
@@ -1101,6 +1104,9 @@ class Doctrine_Export extends Doctrine_Connection_Module
         $this->exportClasses($models);
     }
 
+    /**
+     * @return array
+     */
     public function exportSortedClassesSql($classes, $groupByConnection = true)
     {
          $connections = array();

@@ -34,16 +34,25 @@ class Doctrine_Export_Reporter implements IteratorAggregate
 {
     protected $messages = array();
 
+    /**
+     * @return void
+     */
     public function add($code, $message)
     {
         $this->messages[] = array($code, $message);
     }
 
+    /**
+     * @return array
+     */
     public function pop()
     {
         return array_pop($this->messages);
     }
 
+    /**
+     * @return ArrayIterator
+     */
     public function getIterator()
     {
         return new ArrayIterator($this->messages);

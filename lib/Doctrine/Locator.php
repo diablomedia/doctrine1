@@ -86,6 +86,8 @@ class Doctrine_Locator implements Countable, IteratorAggregate
      * setClassPrefix
      *
      * @param string $prefix
+     *
+     * @return void
      */
     public function setClassPrefix($prefix)
     {

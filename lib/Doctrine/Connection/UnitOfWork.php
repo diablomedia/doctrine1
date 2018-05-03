@@ -178,6 +178,8 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      * application-level delete cascades.
      *
      * @param array $deletions  Map of the records to delete. Keys=Oids Values=Records.
+     *
+     * @return void
      */
     private function _collectDeletions(Doctrine_Record $record, array &$deletions)
     {
@@ -363,7 +365,10 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      * saves all related (through ForeignKey) records to $record
      *
      * @throws PDOException         if something went wrong at database level
+     *
      * @param Doctrine_Record $record
+     *
+     * @return Doctrine_Relation_ForeignKey[]
      */
     public function saveRelatedForeignKeys(Doctrine_Record $record)
     {
@@ -383,7 +388,10 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      * saves all related (through LocalKey) records to $record
      *
      * @throws PDOException         if something went wrong at database level
+     *
      * @param Doctrine_Record $record
+     *
+     * @return void
      */
     public function saveRelatedLocalKeys(Doctrine_Record $record)
     {
@@ -483,6 +491,8 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
 
     /**
      * Invokes postDelete event listeners.
+     *
+     * @return void
      */
     private function _postDelete(Doctrine_Record $record)
     {
@@ -799,6 +809,8 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      * Support dropped for 0.10/1.0.
      *
      * Note: This is flawed. We also need to delete from subclass tables.
+     *
+     * @return void
      */
     private function _deleteCTIParents(Doctrine_Table $table, $record)
     {
@@ -813,6 +825,8 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
     /**
      * Class Table Inheritance code.
      * Support dropped for 0.10/1.0.
+     *
+     * @return void
      */
     private function _insertCTIRecord(Doctrine_Table $table, Doctrine_Record $record)
     {
@@ -841,6 +855,8 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
     /**
      * Class Table Inheritance code.
      * Support dropped for 0.10/1.0.
+     *
+     * @return void
      */
     private function _updateCTIRecord(Doctrine_Table $table, Doctrine_Record $record)
     {
@@ -875,6 +891,8 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
     /**
      * Class Table Inheritance code.
      * Support dropped for 0.10/1.0.
+     *
+     * @return array[]
      */
     private function _formatDataSet(Doctrine_Record $record)
     {
@@ -911,6 +929,9 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
         return $dataSet;
     }
 
+    /**
+     * @return int|null
+     */
     protected function _assignSequence(Doctrine_Record $record, &$fields = null)
     {
         $table = $record->getTable();
@@ -929,6 +950,9 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
         }
     }
 
+    /**
+     * @return void
+     */
     protected function _assignIdentifier(Doctrine_Record $record)
     {
         $table = $record->getTable();

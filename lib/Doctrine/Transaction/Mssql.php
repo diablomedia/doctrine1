@@ -68,6 +68,8 @@ class Doctrine_Transaction_Mssql extends Doctrine_Transaction
 
     /**
      * Performs the rollback.
+     *
+     * @return void
      */
     protected function _doRollback()
     {
@@ -76,6 +78,8 @@ class Doctrine_Transaction_Mssql extends Doctrine_Transaction
 
     /**
      * Performs the commit.
+     *
+     * @return void
      */
     protected function _doCommit()
     {
@@ -84,6 +88,8 @@ class Doctrine_Transaction_Mssql extends Doctrine_Transaction
 
     /**
      * Begins a database transaction.
+     *
+     * @return void
      */
     protected function _doBeginTransaction()
     {

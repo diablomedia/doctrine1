@@ -179,6 +179,7 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * @param mixed $offset The offset to set
      * @param mixed $value The value to set the offset to
      *
+     * @return void
      */
     public function set($offset, $value)
     {

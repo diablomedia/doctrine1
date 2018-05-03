@@ -58,6 +58,8 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
      *
      * @param string $name The style name
      * @param array  $options An array of options
+     *
+     * @return void
      */
     public function setStyle($name, $options = array())
     {
@@ -110,6 +112,8 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
      * @param string  $section The section name
      * @param string  $text  The text message
      * @param integer $size The maximum size allowed for a line (65 by default)
+     *
+     * @return string
      */
     public function formatSection($section, $text, $size = null)
     {
@@ -151,7 +155,7 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
      *
      * @param  mixed $stream A stream
      *
-     * @return Boolean true if the stream supports colorization, false otherwise
+     * @return bool true if the stream supports colorization, false otherwise
      */
     public function supportsColors($stream)
     {

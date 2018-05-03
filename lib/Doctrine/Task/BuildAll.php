@@ -32,14 +32,35 @@
  */
 class Doctrine_Task_BuildAll extends Doctrine_Task
 {
-    public $description          =   'Calls generate-models-from-yaml, create-db, and create-tables',
-           $requiredArguments    =   array(),
-           $optionalArguments    =   array();
+    /**
+     * @var string
+     */
+    public $description          =   'Calls generate-models-from-yaml, create-db, and create-tables';
 
-    protected $models,
-              $tables;
+    /**
+     * @var array
+     */
+    public $requiredArguments    =   array();
+
+    /**
+     * @var array
+     */
+    public $optionalArguments    =   array();
+
+    /**
+     * @var Doctrine_Task_GenerateModelsYaml
+     */
+    protected $models;
+
+    /**
+     * @var Doctrine_Task_CreateTables
+     */
+    protected $tables;
 
     // This was undefined, added for static analysis and set to public so api isn't changed
+    /**
+     * @var Doctrine_Task_CreateDb
+     */
     public $createDb;
 
     public function __construct($dispatcher = null)

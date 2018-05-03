@@ -68,9 +68,24 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
     protected $count;
 
     // These were undefined, added for static analysis and set to public so api isn't changed
+    /**
+     * @var int
+     */
     public $level;
+
+    /**
+     * @var int
+     */
     public $maxLevel;
+
+    /**
+     * @var array
+     */
     public $options;
+
+    /**
+     * @var int
+     */
     public $prevLeft;
 
     public function __construct($record, $opts)

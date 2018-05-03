@@ -34,15 +34,49 @@
  */
 class Doctrine_Migration
 {
-    protected $_migrationTableName = 'migration_version',
-              $_migrationTableCreated = false,
-              $_connection,
-              $_migrationClassesDirectory = array(),
-              $_migrationClasses = array(),
-              $_reflectionClass,
-              $_errors = array(),
-              $_process;
+    /**
+     * @var string
+     */
+    protected $_migrationTableName = 'migration_version';
 
+    /**
+     * @var bool
+     */
+    protected $_migrationTableCreated = false;
+
+    /**
+     * @var Doctrine_Connection
+     */
+    protected $_connection;
+
+    /**
+     * @var string
+     */
+    protected $_migrationClassesDirectory = '';
+
+    /**
+     * @var array
+     */
+    protected $_migrationClasses = array();
+
+    /**
+     * @var ReflectionClass
+     */
+    protected $_reflectionClass;
+
+    /**
+     * @var array
+     */
+    protected $_errors = array();
+
+    /**
+     * @var Doctrine_Migration_Process
+     */
+    protected $_process;
+
+    /**
+     * @var array
+     */
     protected static $_migrationClassesForDirectories = array();
 
     /**
@@ -71,7 +105,7 @@ class Doctrine_Migration
 
         $this->_process = new Doctrine_Migration_Process($this);
 
-        if ($directory != null) {
+        if ($directory !== null) {
             $this->_migrationClassesDirectory = $directory;
 
             $this->loadMigrationClassesFromDirectory();

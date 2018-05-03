@@ -38,7 +38,10 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
      */
     private static $validators = array();
 
-    // This was undefined, added for static analysis and set to public so api isn't changed
+    /**
+     * This was undefined, added for static analysis and set to public so api isn't changed
+     * @var array
+     */
     public $stack;
 
     /**

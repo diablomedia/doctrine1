@@ -143,7 +143,7 @@ class Doctrine_Query_Tokenizer
      * </code>
      *
      * @param string $str String to be bracket exploded
-     * @param string $d   Delimeter which explodes the string
+     * @param string|array $d   Delimeter which explodes the string
      * @param string $e1  First bracket, usually '('
      * @param string $e2  Second bracket, usually ')'
      *
@@ -230,7 +230,7 @@ class Doctrine_Query_Tokenizer
      *     );
      *
      * @param string $str String to be SQL exploded
-     * @param string $d   Delimeter which explodes the string
+     * @param string|array $d   Delimeter which explodes the string
      * @param string $e1  First bracket, usually '('
      * @param string $e2  Second bracket, usually ')'
      *

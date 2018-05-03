@@ -32,6 +32,9 @@
  */
 abstract class Doctrine_Hook_Parser_Complex extends Doctrine_Hook_Parser
 {
+    /**
+     * @var Doctrine_Query_Tokenizer
+     */
     protected $_tokenizer;
 
     /**

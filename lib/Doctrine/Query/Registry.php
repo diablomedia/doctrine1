@@ -32,6 +32,9 @@
  */
 class Doctrine_Query_Registry
 {
+    /**
+     * @var array
+     */
     protected $_queries = array();
 
     /**

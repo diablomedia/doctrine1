@@ -34,7 +34,14 @@
  */
 class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
 {
+    /**
+     * @var array|null
+     */
     protected $_collections = array();
+
+    /**
+     * @var array|null
+     */
     private $_initializedRelations = array();
 
     /**

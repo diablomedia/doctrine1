@@ -42,12 +42,15 @@
  */
 class Doctrine_Cli_Formatter
 {
+    /**
+     * @var int
+     */
     protected $_size = 65;
 
     /**
      * __construct
      *
-     * @param string $maxLineSize
+     * @param int $maxLineSize
      * @return void
      */
     function __construct($maxLineSize = 65)

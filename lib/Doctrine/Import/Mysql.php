@@ -37,6 +37,9 @@ class Doctrine_Import_Mysql extends Doctrine_Import
      */
     protected $conn;
 
+    /**
+     * @var array
+     */
     protected $sql  = array(
                             'listDatabases'   => 'SHOW DATABASES',
                             'listTableFields' => 'DESCRIBE %s',

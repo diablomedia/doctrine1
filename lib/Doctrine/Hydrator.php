@@ -34,14 +34,30 @@
  */
 class Doctrine_Hydrator
 {
-    protected static
-        $_totalHydrationTime = 0;
+    /**
+     * @var int
+     */
+    protected static $_totalHydrationTime = 0;
 
-    protected
-        $_hydrators,
-        $_rootAlias = null,
-        $_hydrationMode = Doctrine_Core::HYDRATE_RECORD,
-        $_queryComponents = array();
+    /**
+     * @var array
+     */
+    protected $_hydrators;
+
+    /**
+     * @var string|null
+     */
+    protected $_rootAlias = null;
+
+    /**
+     * @var int
+     */
+    protected $_hydrationMode = Doctrine_Core::HYDRATE_RECORD;
+
+    /**
+     * @var array
+     */
+    protected $_queryComponents = array();
 
     public function __construct()
     {
@@ -97,7 +113,7 @@ class Doctrine_Hydrator
     /**
      * Get the name of the driver class for the passed hydration mode
      *
-     * @param string $mode
+     * @param int $mode
      * @return string $className
      */
     public function getHydratorDriverClassName($mode = null)
@@ -116,7 +132,7 @@ class Doctrine_Hydrator
     /**
      * Get an instance of the hydration driver for the passed hydration mode
      *
-     * @param string $mode
+     * @param int $mode
      * @param array $tableAliases
      * @return Doctrine_Hydrator_Abstract
      */

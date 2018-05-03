@@ -32,6 +32,9 @@
  */
 class Doctrine_I18n extends Doctrine_Record_Generator
 {
+    /**
+     * @var array
+     */
     protected $_options = array(
                             'className'     => '%CLASS%Translation',
                             'tableName'     => '%TABLE%_translation',

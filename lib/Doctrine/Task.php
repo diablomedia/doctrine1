@@ -34,12 +34,35 @@
  */
 abstract class Doctrine_Task
 {
-    public $dispatcher           =   null,
-           $taskName             =   null,  /*Treat as protected*/
-           $description          =   null,
-           $arguments            =   array(),
-           $requiredArguments    =   array(),
-           $optionalArguments    =   array();
+    /**
+     * @var Doctrine_Cli|null
+     */
+    public $dispatcher           =   null;
+
+    /**
+     * @var string|null
+     */
+    public $taskName             =   null;  /*Treat as protected*/
+
+    /**
+     * @var string|null
+     */
+    public $description          =   null;
+
+    /**
+     * @var array
+     */
+    public $arguments            =   array();
+
+    /**
+     * @var array
+     */
+    public $requiredArguments    =   array();
+
+    /**
+     * @var array
+     */
+    public $optionalArguments    =   array();
 
     /**
      * __construct
@@ -56,7 +79,7 @@ abstract class Doctrine_Task
         $taskName = $this->getTaskName();
 
         //Derive the task name only if it wasn't entered at design-time
-        if (! strlen($taskName)) {
+        if ($taskName === null || !strlen($taskName)) {
             $taskName = self::deriveTaskName(get_class($this));
         }
 
@@ -243,7 +266,7 @@ abstract class Doctrine_Task
     /**
      * getTaskName
      *
-     * @return string $taskName
+     * @return string|null $taskName
      */
     public function getTaskName()
     {
@@ -253,7 +276,7 @@ abstract class Doctrine_Task
     /**
      * getDescription
      *
-     * @return string $description
+     * @return string|null $description
      */
     public function getDescription()
     {

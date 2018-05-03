@@ -33,7 +33,14 @@
  */
 class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Interface
 {
+    /**
+     * @var Doctrine_Query
+     */
     private $_baseQuery;
+
+    /**
+     * @var string
+     */
     private $_baseAlias = "base";
 
     /**

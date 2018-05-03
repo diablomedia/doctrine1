@@ -32,8 +32,14 @@
  */
 class Doctrine_Node_MaterializedPath_PostOrderIterator implements Iterator
 {
+    /**
+     * @var Doctrine_Node
+     */
     private $topNode = null;
 
+    /**
+     * @var Doctrine_Node
+     */
     private $curNode = null;
 
     public function __construct($node, $opts)

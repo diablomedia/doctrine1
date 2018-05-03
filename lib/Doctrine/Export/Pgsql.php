@@ -33,6 +33,9 @@
  */
 class Doctrine_Export_Pgsql extends Doctrine_Export
 {
+    /**
+     * @var string
+     */
     public $tmpConnectionDatabase = 'postgres';
 
     /**

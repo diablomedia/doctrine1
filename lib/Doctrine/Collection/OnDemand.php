@@ -33,10 +33,29 @@
  */
 class Doctrine_Collection_OnDemand implements Iterator
 {
+    /**
+     * @var Doctrine_Adapter_Statement_Interface|PDOStatement
+     */
     protected $_stmt;
+
+    /**
+     * @var mixed
+     */
     protected $_current;
+
+    /**
+     * @var array
+     */
     protected $_tableAliasMap;
+
+    /**
+     * @var Doctrine_Hydrator_Abstract
+     */
     protected $_hydrator;
+
+    /**
+     * @var int
+     */
     protected $index;
 
     public function __construct($stmt, $hydrator, $tableAliasMap)
@@ -67,6 +86,9 @@ class Doctrine_Collection_OnDemand implements Iterator
         }
     }
 
+    /**
+     * @return void
+     */
     public function rewind()
     {
         $this->index = 0;
@@ -76,16 +98,25 @@ class Doctrine_Collection_OnDemand implements Iterator
         $this->_hydrateCurrent();
     }
 
+    /**
+     * @return int
+     */
     public function key()
     {
         return $this->index;
     }
 
+    /**
+     * @return mixed
+     */
     public function current()
     {
         return $this->_current;
     }
 
+    /**
+     * @return void
+     */
     public function next()
     {
         $this->_current = null;
@@ -93,6 +124,9 @@ class Doctrine_Collection_OnDemand implements Iterator
         $this->_hydrateCurrent();
     }
 
+    /**
+     * @return bool
+     */
     public function valid()
     {
         if ( ! is_null($this->_current) && $this->_current !== false) {

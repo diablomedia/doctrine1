@@ -39,8 +39,14 @@ abstract class Doctrine_Migration_Base
      */
     private static $defaultTableOptions = array();
 
+    /**
+     * @var array
+     */
     protected $_changes = array();
 
+    /**
+     * @var array
+     */
     protected static $_opposites = array('created_table'       => 'dropped_table',
                                          'dropped_table'       => 'created_table',
                                          'created_constraint'  => 'dropped_constraint',

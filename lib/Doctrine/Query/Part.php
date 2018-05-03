@@ -36,7 +36,10 @@ abstract class Doctrine_Query_Part
      * @var Doctrine_Query $query           the query object associated with this parser
      */
     protected $query;
-    
+
+    /**
+     * @var Doctrine_Query_Tokenizer
+     */
     protected $_tokenizer;
 
     /**

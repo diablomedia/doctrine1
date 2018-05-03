@@ -72,6 +72,9 @@ class Doctrine_Pager
      */
     protected $_executed;
 
+    /**
+     * @var bool
+     */
     protected $_countExecuted;
 
 

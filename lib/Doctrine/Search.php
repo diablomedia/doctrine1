@@ -36,6 +36,9 @@ class Doctrine_Search extends Doctrine_Record_Generator
 
     const INDEX_TABLES = 1;
 
+    /**
+     * @var array
+     */
     protected $_options = array('generateFiles'    => false,
                                 'analyzer'         => 'Doctrine_Search_Analyzer_Standard',
                                 'analyzer_options' => array(),

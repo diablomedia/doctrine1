@@ -32,7 +32,9 @@
  */
 class Doctrine_Import_Pgsql extends Doctrine_Import
 {
-
+    /**
+     * @var array
+     */
     protected $sql = array(
                         'listDatabases' => 'SELECT datname FROM pg_database',
                         'listFunctions' => "SELECT
@@ -174,7 +176,7 @@ class Doctrine_Import_Pgsql extends Doctrine_Import
                 $length = preg_replace('~.*\(([0-9]*)\).*~', '$1', $val['complete_type']);
                 $val['length'] = $length;
             }
-            
+
             $decl = $this->conn->dataDict->getPortableDeclaration($val);
 
             $description = array(
@@ -190,10 +192,10 @@ class Doctrine_Import_Pgsql extends Doctrine_Import
                 'primary'   => ($val['pri'] == 't'),
             );
 
-            // If postgres enum type            
+            // If postgres enum type
             if ($val['type'] == 'e'){
                 $description['default'] = isset($decl['default']) ? $decl['default'] : null;
-                $t_result = $this->conn->fetchAssoc(sprintf('select enum_range(null::%s) as range ', $decl['enum_name']));                
+                $t_result = $this->conn->fetchAssoc(sprintf('select enum_range(null::%s) as range ', $decl['enum_name']));
                 if (isset($t_result[0])){
                     $range =  $t_result[0]['range'];
                     $range = str_replace('{','',$range);
@@ -203,11 +205,11 @@ class Doctrine_Import_Pgsql extends Doctrine_Import
                 }
             }
 
-            $matches = array(); 
+            $matches = array();
 
-            if (preg_match("/^nextval\('(.*)'(::.*)?\)$/", $description['default'], $matches)) { 
-                $description['sequence'] = $this->conn->formatter->fixSequenceName($matches[1]); 
-                $description['default'] = null; 
+            if (preg_match("/^nextval\('(.*)'(::.*)?\)$/", $description['default'], $matches)) {
+                $description['sequence'] = $this->conn->formatter->fixSequenceName($matches[1]);
+                $description['default'] = null;
             } else if (preg_match("/^'(.*)'::character varying$/", $description['default'], $matches)) {
                 $description['default'] = $matches[1];
             } else if (preg_match("/^(.*)::character varying$/", $description['default'], $matches)) {
@@ -222,7 +224,7 @@ class Doctrine_Import_Pgsql extends Doctrine_Import
 
             $columns[$val['field']] = $description;
         }
-        
+
         return $columns;
     }
 

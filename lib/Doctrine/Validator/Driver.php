@@ -36,7 +36,15 @@ class Doctrine_Validator_Driver
      * @var array $_args     an array of plugin specific args
      */
     public $args;
+
+    /**
+     * @var Doctrine_Record
+     */
     public $invoker;
+
+    /**
+     * @var string|array
+     */
     public $field;
 
     /**

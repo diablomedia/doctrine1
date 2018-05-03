@@ -43,6 +43,9 @@ class Doctrine_Query_Check
      */
     protected $sql;
 
+    /**
+     * @var Doctrine_Query_Tokenizer
+     */
     protected $_tokenizer;
 
     /**

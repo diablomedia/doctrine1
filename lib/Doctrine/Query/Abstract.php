@@ -130,6 +130,9 @@ abstract class Doctrine_Query_Abstract
      */
     protected $_expireResultCache = false;
 
+    /**
+     * @var int
+     */
     protected $_resultCacheTTL;
 
     /**
@@ -137,9 +140,15 @@ abstract class Doctrine_Query_Abstract
      */
     protected $_queryCache;
 
+    /**
+     * @var bool
+     */
     protected $_expireQueryCache = false;
-    protected $_queryCacheTTL;
 
+    /**
+     * @var int
+     */
+    protected $_queryCacheTTL;
 
     /**
      * @var Doctrine_Connection  The connection used by this query object.
@@ -570,7 +579,7 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
-     * @nodoc 
+     * @nodoc
      *
      * @return void
      */
@@ -1430,7 +1439,7 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
-     * @nodoc 
+     * @nodoc
      *
      * @return string
      */

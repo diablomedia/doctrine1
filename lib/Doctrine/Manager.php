@@ -79,6 +79,9 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
         Doctrine_Core::HYDRATE_ARRAY_SHALLOW    => 'Doctrine_Hydrator_ArrayShallowDriver',
     );
 
+    /**
+     * @var array
+     */
     protected $_connectionDrivers = array(
         'db2'      => 'Doctrine_Connection_Db2',
         'mysql'    => 'Doctrine_Connection_Mysql',
@@ -94,6 +97,9 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
         'mock'     => 'Doctrine_Connection_Mock'
     );
 
+    /**
+     * @var array
+     */
     protected $_extensions = array();
 
     /**
@@ -101,8 +107,14 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      */
     protected $_loadedValidatorsFromDisk = false;
 
+    /**
+     * @var self|null
+     */
     protected static $_instance;
 
+    /**
+     * @var bool
+     */
     private $_initialized = false;
 
     /**

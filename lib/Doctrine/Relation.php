@@ -71,9 +71,10 @@ abstract class Doctrine_Relation implements ArrayAccess
                                   'owningSide'  => false, // whether this is the owning side
                                   'refClassRelationAlias' => null,
                                   'foreignKeyName' => null,
-                                  'orderBy' => null
-                                  );
-
+                                  'orderBy' => null);
+    /**
+     * @var bool|null
+     */
     protected $_isRefClass = null;
 
     /**

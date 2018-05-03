@@ -32,6 +32,9 @@
  */
 class Doctrine_IntegrityMapper
 {
+    /**
+     * @var Doctrine_Connection
+     */
     public $conn;
 
     /**

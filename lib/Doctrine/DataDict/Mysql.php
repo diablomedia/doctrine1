@@ -31,6 +31,9 @@
  */
 class Doctrine_DataDict_Mysql extends Doctrine_DataDict
 {
+    /**
+     * @var array
+     */
     protected $keywords = array(
                           'ADD', 'ALL', 'ALTER',
                           'ANALYZE', 'AND', 'AS',

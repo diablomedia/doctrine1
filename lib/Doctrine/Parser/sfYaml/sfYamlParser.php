@@ -25,12 +25,30 @@ if (!defined('PREG_BAD_UTF8_OFFSET_ERROR'))
  */
 class sfYamlParser
 {
-  protected
-      $offset        = 0,
-      $lines         = array(),
-      $currentLineNb = -1,
-      $currentLine   = '',
-      $refs          = array();
+  /**
+   * @var int
+   */      
+  protected $offset        = 0;
+
+  /**
+   * @var array
+   */
+  protected $lines         = array();
+
+  /**
+   * @var int
+   */
+  protected $currentLineNb = -1;
+
+  /**
+   * @var string
+   */
+  protected $currentLine   = '';
+
+  /**
+   * @var array
+   */
+  protected $refs          = array();
 
   /**
    * Constructor

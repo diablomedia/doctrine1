@@ -35,8 +35,19 @@
  */
 class Doctrine_Expression
 {
+    /**
+     * @var string
+     */
     protected $_expression;
+
+    /**
+     * @var Doctrine_Connection
+     */
     protected $_conn;
+
+    /**
+     * @var Doctrine_Query_Tokenizer
+     */
     protected $_tokenizer;
 
     /**

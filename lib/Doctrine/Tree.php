@@ -33,7 +33,7 @@
 class Doctrine_Tree
 {
     /**
-     * @param object $table   reference to associated Doctrine_Table instance
+     * @param Doctrine_Table $table   reference to associated Doctrine_Table instance
      */
     protected $table;
 
@@ -42,6 +42,9 @@ class Doctrine_Tree
      */
     protected $options = array();
 
+    /**
+     * @var string
+     */
     protected $_baseComponent;
 
     /**

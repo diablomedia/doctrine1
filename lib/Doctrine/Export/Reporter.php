@@ -32,6 +32,9 @@
  */
 class Doctrine_Export_Reporter implements IteratorAggregate
 {
+    /**
+     * @var array
+     */
     protected $messages = array();
 
     /**

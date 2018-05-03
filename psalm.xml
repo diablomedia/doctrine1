@@ -19,7 +19,6 @@
         <DeprecatedClass errorLevel="info" />
         <DeprecatedInterface errorLevel="info" />
 
-        <MissingPropertyType errorLevel="info" />
         <InvalidDocblock errorLevel="info" />
         <MisplacedRequiredParam errorLevel="info" />
 

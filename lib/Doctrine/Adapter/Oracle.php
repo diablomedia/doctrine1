@@ -36,16 +36,20 @@
 class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
 {
     /**
-     *    execution mode
+     * execution mode
+     * @var int
      */
     protected $executeMode = OCI_COMMIT_ON_SUCCESS;
 
     /**
      * Resource representing connection to database
+     * @var false|resource
      */
     protected $connection = false;
 
-
+    /**
+     * @var array
+     */
     protected $attributes = array(Doctrine_Core::ATTR_DRIVER_NAME    => "oci8",
                                   Doctrine_Core::ATTR_ERRMODE        => Doctrine_Core::ERRMODE_SILENT);
 

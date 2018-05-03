@@ -33,9 +33,20 @@
  */
 class Doctrine_Migration_Diff
 {
-    protected $_from,
-              $_to,
-              $_changes = array('created_tables'      =>  array(),
+    /**
+     * @var string|array
+     */
+    protected $_from;
+
+    /**
+     * @var string
+     */
+    protected $_to;
+
+    /**
+     * @var array
+     */
+    protected $_changes = array('created_tables'      =>  array(),
                                 'dropped_tables'      =>  array(),
                                 'created_foreign_keys'=>  array(),
                                 'dropped_foreign_keys'=>  array(),
@@ -43,13 +54,31 @@ class Doctrine_Migration_Diff
                                 'dropped_columns'     =>  array(),
                                 'changed_columns'     =>  array(),
                                 'created_indexes'     =>  array(),
-                                'dropped_indexes'     =>  array()),
-              $_migration,
-              $_startingModelFiles = array(),
-              $_tmpPath;
+                                'dropped_indexes'     =>  array());
+    /**
+     * @var Doctrine_Migration
+     */
+    protected $_migration;
 
-    protected static $_toPrefix   = 'ToPrfx',
-                     $_fromPrefix = 'FromPrfx';
+    /**
+     * @var array
+     */
+    protected $_startingModelFiles = array();
+
+    /**
+     * @var string
+     */
+    protected $_tmpPath;
+
+    /**
+     * @var string
+     */
+    protected static $_toPrefix   = 'ToPrfx';
+
+    /**
+     * @var string
+     */
+    protected static $_fromPrefix = 'FromPrfx';
 
     /**
      * Instantiate new Doctrine_Migration_Diff instance

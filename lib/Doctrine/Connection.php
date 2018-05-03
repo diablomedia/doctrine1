@@ -185,6 +185,9 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     protected $serverInfo = array();
 
+    /**
+     * @var array
+     */
     protected $options    = array();
 
     /**
@@ -197,6 +200,9 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
                                         'Mssql',
                                         'Sqlite',
                                         );
+    /**
+     * @var int
+     */
     protected $_count = 0;
 
     /**

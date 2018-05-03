@@ -32,7 +32,14 @@
  */
 abstract class Doctrine_Hook_Parser
 {
+    /**
+     * @var string
+     */
     protected $condition;
+
+    /**
+     * @var array
+     */
     protected $params = array();
 
     /**

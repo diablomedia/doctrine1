@@ -32,20 +32,34 @@
  */
 class Doctrine_Search_Query
 {
-
     /**
      * @var Doctrine_Table $_table          the index table
      */
     protected $_table;
 
+    /**
+     * @var string
+     */
     protected $_sql = '';
 
+    /**
+     * @var array
+     */
     protected $_params = array();
 
+    /**
+     * @var array
+     */
     protected $_words = array();
 
+    /**
+     * @var Doctrine_Query_Tokenizer
+     */
     protected $_tokenizer;
 
+    /**
+     * @var string
+     */
     protected $_condition;
 
     /**

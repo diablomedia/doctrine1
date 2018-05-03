@@ -32,15 +32,25 @@
  */
 class Doctrine_Task_GenerateModelsYaml extends Doctrine_Task
 {
-    public $description          =   'Generates your Doctrine_Record definitions from a Yaml schema file',
-           $requiredArguments    =   array('yaml_schema_path'   =>  'Specify the complete directory path to your yaml schema files.',
-                                           'models_path'        =>  'Specify complete path to your Doctrine_Record definitions.'),
-           $optionalArguments    =   array('generate_models_options'    =>  'Array of options for generating models');
-    
+    /**
+     * @var string
+     */
+    public $description          =   'Generates your Doctrine_Record definitions from a Yaml schema file';
+
+    /**
+     * @var array
+     */
+    public $requiredArguments    =   array('yaml_schema_path'   =>  'Specify the complete directory path to your yaml schema files.',
+                                           'models_path'        =>  'Specify complete path to your Doctrine_Record definitions.');
+    /**
+     * @var array
+     */
+    public $optionalArguments    =   array('generate_models_options'    =>  'Array of options for generating models');
+
     public function execute()
     {
         Doctrine_Core::generateModelsFromYaml($this->getArgument('yaml_schema_path'), $this->getArgument('models_path'), $this->getArgument('generate_models_options', array()));
-        
+
         $this->notify('Generated models successfully from YAML schema');
     }
 }

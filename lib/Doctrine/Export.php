@@ -33,6 +33,9 @@
  */
 class Doctrine_Export extends Doctrine_Connection_Module
 {
+    /**
+     * @var array
+     */
     protected $valid_default_values = array(
         'text'      => '',
         'boolean'   => true,

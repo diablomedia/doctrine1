@@ -32,11 +32,25 @@
  */
 abstract class Doctrine_Hydrator_Abstract extends Doctrine_Locator_Injectable
 {
-    protected
-        $_queryComponents = array(),
-        $_tableAliases = array(),
-        $_priorRow,
-        $_hydrationMode;
+    /**
+     * @var array
+     */
+    protected $_queryComponents = array();
+
+    /**
+     * @var array
+     */
+    protected $_tableAliases = array();
+
+    /**
+     * @var null|array
+     */
+    protected $_priorRow;
+
+    /**
+     * @var int
+     */
+    protected $_hydrationMode;
 
     public function __construct($queryComponents = null, $tableAliases = null, $hydrationMode = null)
     {

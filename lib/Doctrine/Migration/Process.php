@@ -32,6 +32,9 @@
  */
 class Doctrine_Migration_Process
 {
+    /**
+     * @var Doctrine_Migration
+     */
     protected $_migration;
 
     public function __construct(Doctrine_Migration $migration)

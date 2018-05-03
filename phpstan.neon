@@ -21,8 +21,9 @@ parameters:
         - '#Call to an undefined method Doctrine_Expression_.+sql::patternEscapeString\(\)\.#'
         # These two exception classes are found in the same "experimental" method as the above error
         - '#Instantiated class Doctrine_Expression_.+sql_Exception not found\.#'
-        # This method does not exist anywhere in Doctrine
+        # These methods do not exist anywhere in Doctrine
         - '#Call to an undefined method Doctrine_Search_Indexer_Dir::indexFile\(\)\.#'
+        - '#Call to an undefined method Doctrine_Transaction::addDelete\(\)\.#'
         # Doctrine_Query_Abstract defines this with just one parameter but Doctrine_Query (which extends Doctrine_Query_Abstract)
         # defines it with a second parameter ($limitSubQuery). Since this is called from Doctrine_Query_Abstract, the abstract
         # signature should probably be changed, but that could break other implementations.
@@ -417,6 +418,8 @@ parameters:
         - '#Calling method getConnection\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
         - '#Calling method isSubquery\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
         - '#Calling method set\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
+        # Not sure that the invoker will ever be null when tasks are called
+        - '#Calling method getConfig\(\) on possibly null value of type Doctrine_Cli\|null\.#'
         # These are optional parameters in Doctrine_Connection_Statement::fetch, maybe should be cast to ints, or not set on the event if null?
         - '#Property Doctrine_Event::\$cursorOffset \(int\) does not accept int\|null\.#'
         - '#Property Doctrine_Event::\$columnIndex \(int\) does not accept int\|null\.#'
@@ -425,6 +428,8 @@ parameters:
         - '#Property Doctrine_Record_Listener::\$_options \(array\) does not accept array\|false\.#'
         - '#Property Doctrine_AuditLog::\$_options \(array\) does not accept array\|false\.#'
         - '#Property Doctrine_Template::\$_options \(array\) does not accept array\|false\.#'
+        - '#Property Doctrine_I18n::\$_options \(array\) does not accept array\|false\.#'
+        - '#Property Doctrine_Search::\$_options \(array\) does not accept array\|false\.#'
         # Default value on the $notification parameter should probably be changed to an empty string instead of null (Doctrine_Cli_Formatter is set that way)
         # in Doctrine_Cli:406
         - '#Parameter \#1 \$text of method Doctrine_Cli_Formatter::format\(\) expects string, string\|null given\.#'
@@ -454,3 +459,7 @@ parameters:
         # and then doesn't use $len at all before it returns.  This call to getIdentifier can probably just be removed.
         # Doctrine_Expression_Pgsql:75
         - '#Parameter \#1 \$column of method Doctrine_Expression_Driver::getIdentifier\(\) expects int|string, null given\.#'
+        # Oracle adapter will throw an exception if $this->connection is false after it tries to connect, so shouldn't be passing false around here
+        - '#Parameter \#1 \$connection of function oci_commit expects resource, false\|resource given\.#'
+        - '#Parameter \#1 \$connection of function oci_rollback expects resource, false\|resource given\.#'
+        - '#Method Doctrine_Adapter_Oracle::getConnection\(\) should return resource but returns false\|resource\.#'

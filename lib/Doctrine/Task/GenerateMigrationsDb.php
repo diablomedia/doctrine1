@@ -32,10 +32,21 @@
  */
 class Doctrine_Task_GenerateMigrationsDb extends Doctrine_Task
 {
-    public $description          =   'Generate migration classes for an existing database',
-           $requiredArguments    =   array('migrations_path' => 'Specify the complete path to your migration classes folder.'),
-           $optionalArguments    =   array();
-    
+    /**
+     * @var string
+     */
+    public $description          =   'Generate migration classes for an existing database';
+
+    /**
+     * @var array
+     */
+    public $requiredArguments    =   array('migrations_path' => 'Specify the complete path to your migration classes folder.');
+
+    /**
+     * @var array
+     */
+    public $optionalArguments    =   array();
+
     public function execute()
     {
         try {

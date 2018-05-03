@@ -33,6 +33,9 @@
  */
 abstract class Doctrine_Record_Filter
 {
+    /**
+     * @var Doctrine_Table
+     */
     protected $_table;
 
     /**

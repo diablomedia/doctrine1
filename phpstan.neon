@@ -184,7 +184,7 @@ parameters:
         # "null" to the allowed types for these, as usually these will just coerce the value or set some default when "null" is passed (sometimes
         # an exception is thrown)
         - '#Call to function is_null\(\) will always evaluate to false\.#'
-        - '#Strict comparison using (!|=)== between (string|array|Doctrine_Record_Generator|array\|Doctrine_Collection|int|bool\|Doctrine_Cache_Interface|int\|string) and null will always evaluate to (true|false)\.#'
+        - '#Strict comparison using (!|=)== between (array\|bool\|float\|int\|string|string|array|Doctrine_Record_Generator|array\|Doctrine_Collection|int|bool\|Doctrine_Cache_Interface|int\|string) and null will always evaluate to (true|false)\.#'
         # These are done for similar reasons, but comparing to false. These are probably rarely needed, since a ture "false" isn't returned by the
         # methods setting these values
         - '#Strict comparison using !== between (Doctrine_Cache_Interface\|true|string) and false will always evaluate to true\.#'

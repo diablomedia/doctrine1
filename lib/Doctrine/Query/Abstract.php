@@ -1320,7 +1320,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * Alias for @see andWhere().
      * @param string $where
-     * @param mixed $params
+     * @param array|scalar $params
      * @return $this   this object
      */
     public function addWhere($where, $params = array())
@@ -1335,7 +1335,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $where Query WHERE part
-     * @param mixed $params An array of parameters or a simple scalar
+     * @param array|scalar $params An array of parameters or a simple scalar
      * @return $this
      */
     public function andWhere($where, $params = array())
@@ -1360,7 +1360,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $where Query WHERE part
-     * @param mixed $params An array of parameters or a simple scalar
+     * @param array|scalar $params An array of parameters or a simple scalar
      * @return $this
      */
     public function orWhere($where, $params = array())
@@ -1382,7 +1382,7 @@ abstract class Doctrine_Query_Abstract
      * Adds IN condition to the query WHERE part. Alias to @see andWhereIn().
      *
      * @param string $expr          the operand of the IN
-     * @param mixed $params         an array of parameters or a simple scalar
+     * @param array|scalar $params         an array of parameters or a simple scalar
      * @param boolean $not          whether or not to use NOT in front of IN
      * @return $this
      */
@@ -1398,14 +1398,14 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $expr      The operand of the IN
-     * @param mixed $params     An array of parameters or a simple scalar
+     * @param array|scalar $params     An array of parameters or a simple scalar
      * @param boolean $not      Whether or not to use NOT in front of IN. Defaults to false (simple IN clause)
      * @return $this   this object.
      */
     public function andWhereIn($expr, $params = array(), $not = false)
     {
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if (isset($params) and is_array($params) and (count($params) == 0)) {
+        if ($params !== null && is_array($params) && (count($params) == 0)) {
             return $this;
         }
 
@@ -1425,14 +1425,14 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $expr The operand of the IN
-     * @param mixed $params An array of parameters or a simple scalar
+     * @param array|scalar $params An array of parameters or a simple scalar
      * @param boolean $not Whether or not to use NOT in front of IN
      * @return $this
      */
     public function orWhereIn($expr, $params = array(), $not = false)
     {
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if (isset($params) and is_array($params) and (count($params) == 0)) {
+        if ($params !== null && is_array($params) && (count($params) == 0)) {
             return $this;
         }
 
@@ -1445,7 +1445,7 @@ abstract class Doctrine_Query_Abstract
 
     /**
      * @param string $expr
-     * @param array|string $params
+     * @param array|scalar $params
      * @param bool $not
      * @return string
      */
@@ -1482,7 +1482,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $expr          the operand of the NOT IN
-     * @param mixed $params         an array of parameters or a simple scalar
+     * @param array|scalar $params         an array of parameters or a simple scalar
      * @return $this       this object
      */
     public function whereNotIn($expr, $params = array())
@@ -1495,7 +1495,7 @@ abstract class Doctrine_Query_Abstract
      * Alias for @see whereNotIn().
      *
      * @param string $expr The operand of the NOT IN
-     * @param mixed $params An array of parameters or a simple scalar
+     * @param array|scalar $params An array of parameters or a simple scalar
      * @return $this
      */
     public function andWhereNotIn($expr, $params = array())
@@ -1507,7 +1507,7 @@ abstract class Doctrine_Query_Abstract
      * Adds NOT IN condition to the query WHERE part
      *
      * @param string $expr The operand of the NOT IN
-     * @param mixed $params An array of parameters or a simple scalar
+     * @param array|scalar $params An array of parameters or a simple scalar
      * @return $this
      */
     public function orWhereNotIn($expr, $params = array())
@@ -1539,7 +1539,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $having        Query HAVING part
-     * @param mixed $params         an array of parameters or a simple scalar
+     * @param array|scalar $params         an array of parameters or a simple scalar
      * @return $this
      */
     public function addHaving($having, $params = array())
@@ -1646,7 +1646,7 @@ abstract class Doctrine_Query_Abstract
      * sets the SET part of the query
      * @param array|string $key
      * @param mixed $value
-     * @param array|string|int $params
+     * @param array|scalar $params
      * @return $this
      */
     public function set($key, $value = null, $params = null)
@@ -1689,7 +1689,7 @@ abstract class Doctrine_Query_Abstract
      * appends an INNER JOIN to the FROM part of the query
      *
      * @param string $join         Query INNER JOIN
-     * @param array $params
+     * @param array|scalar $params
      * @return $this
      */
     public function innerJoin($join, $params = array())
@@ -1708,7 +1708,7 @@ abstract class Doctrine_Query_Abstract
      * appends a LEFT JOIN to the FROM part of the query
      *
      * @param string $join         Query LEFT JOIN
-     * @param array $params
+     * @param array|scalar $params
      * @return $this
      */
     public function leftJoin($join, $params = array())
@@ -1739,7 +1739,7 @@ abstract class Doctrine_Query_Abstract
      * sets the WHERE part of the query
      *
      * @param string $where         Query WHERE part
-     * @param mixed $params        an array of parameters or a simple scalar
+     * @param array|scalar $params        an array of parameters or a simple scalar
      * @return $this
      */
     public function where($where, $params = array())
@@ -1760,7 +1760,7 @@ abstract class Doctrine_Query_Abstract
      * sets the HAVING part of the query
      *
      * @param string $having       Query HAVING part
-     * @param mixed $params        an array of parameters or a simple scalar
+     * @param array|scalar $params        an array of parameters or a simple scalar
      * @return $this
      */
     public function having($having, $params = array())

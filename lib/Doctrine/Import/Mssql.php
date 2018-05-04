@@ -116,7 +116,9 @@ class Doctrine_Import_Mssql extends Doctrine_Import
 
             $val['type'] = $type;
             $val['identity'] = $identity;
-            $decl = $this->conn->dataDict->getPortableDeclaration($val);
+            /** @var Doctrine_DataDict_Mssql $dataDict */
+            $dataDict = $this->conn->dataDict;
+            $decl = $dataDict->getPortableDeclaration($val);
 
             $isIdentity = (strtoupper(trim($identity)) == 'IDENTITY');
             $isNullable = (strtoupper(trim($val['is_nullable'])) == 'NO');

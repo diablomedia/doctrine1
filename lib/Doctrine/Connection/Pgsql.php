@@ -123,8 +123,8 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
      * Changes a query string for various DBMS specific reasons
      *
      * @param string $query         query to modify
-     * @param integer $limit|false        limit the number of rows
-     * @param integer $offset       start reading from given offset
+     * @param integer|false $limit        limit the number of rows
+     * @param integer|false $offset       start reading from given offset
      * @param boolean $isManip      if the query is a DML query
      * @return string               modified query
      */
@@ -163,7 +163,7 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
     /**
      * return version information about the server
      *
-     * @param string $native    determines if the raw version string should be returned
+     * @param bool   $native    determines if the raw version string should be returned
      * @return array|string     an array or string with version information
      */
     public function getServerVersion($native = false)

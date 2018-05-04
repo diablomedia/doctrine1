@@ -226,7 +226,9 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
             $q->addWhere($this->_baseAlias . ".level BETWEEN ? AND ?", array($record->get('level'), $record->get('level')+$depth));
         }
 
-        $q = $this->returnQueryWithRootId($q, $record->getNode()->getRootValue());
+        /** @var Doctrine_Node_NestedSet $node */
+        $node = $record->getNode();
+        $q = $this->returnQueryWithRootId($q, $node->getRootValue());
 
         return $q->execute(array(), $hydrationMode);
     }

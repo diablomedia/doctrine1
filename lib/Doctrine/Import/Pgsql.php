@@ -177,7 +177,9 @@ class Doctrine_Import_Pgsql extends Doctrine_Import
                 $val['length'] = $length;
             }
 
-            $decl = $this->conn->dataDict->getPortableDeclaration($val);
+            /** @var Doctrine_DataDict_Pgsql $dataDict */
+            $dataDict = $this->conn->dataDict;
+            $decl = $dataDict->getPortableDeclaration($val);
 
             $description = array(
                 'name'      => $val['field'],

@@ -105,16 +105,20 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
             $query = $q->where("$componentName.lft > ? AND $componentName.rgt < ?", $params)->orderBy("$componentName.lft asc");
         }
 
-        $query = $record->getTable()->getTree()->returnQueryWithRootId($query, $record->getNode()->getRootValue());
+        /** @var Doctrine_Tree_NestedSet $tree */
+        $tree = $record->getTable()->getTree();
+        /** @var Doctrine_Node_NestedSet $node */
+        $node = $record->getNode();
+        $query = $tree->returnQueryWithRootId($query, $node->getRootValue());
 
-        $this->maxLevel   = isset($opts['depth']) ? ($opts['depth'] + $record->getNode()->getLevel()) : 0;
+        $this->maxLevel   = isset($opts['depth']) ? ($opts['depth'] + $node->getLevel()) : 0;
         $this->options    = $opts;
         $this->collection = isset($opts['collection']) ? $opts['collection'] : $query->execute();
         $this->keys       = $this->collection->getKeys();
         $this->count      = $this->collection->count();
         $this->index      = -1;
-        $this->level      = $record->getNode()->getLevel();
-        $this->prevLeft   = $record->getNode()->getLeftValue();
+        $this->level      = $node->getLevel();
+        $this->prevLeft   = $node->getLeftValue();
 
         // clear the table identity cache
         $record->getTable()->clear();
@@ -149,7 +153,9 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
     public function current()
     {
         $record = $this->collection->get($this->key);
-        $record->getNode()->setLevel($this->level);
+        /** @var Doctrine_Node_NestedSet $node */
+        $node = $record->getNode();
+        $node->setLevel($this->level);
         return $record;
     }
 
@@ -193,7 +199,9 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
     private function updateLevel()
     {
         if ( ! (isset($this->options['include_record']) && $this->options['include_record'] && $this->index == 0)) {
-            $left = $this->collection->get($this->key)->getNode()->getLeftValue();
+            /** @var Doctrine_Node_NestedSet $node */
+            $node = $this->collection->get($this->key)->getNode();
+            $left = $node->getLeftValue();
             $this->level += $this->prevLeft - $left + 2;
             $this->prevLeft = $left;
         }

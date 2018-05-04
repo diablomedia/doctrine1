@@ -51,7 +51,9 @@ class Doctrine_Validator_Timestamp extends Doctrine_Validator_Driver
         $date = isset($e[0]) ? $e[0] : null;
         $time = isset($e[1]) ? $e[1] : null;
 
+        /** @var Doctrine_Validator_Date $dateValidator */
         $dateValidator = Doctrine_Validator::getValidator('date');
+        /** @var Doctrine_Validator_Time $timeValidator */
         $timeValidator = Doctrine_Validator::getValidator('time');
 
         if ( ! $dateValidator->validate($date)) {
@@ -60,7 +62,7 @@ class Doctrine_Validator_Timestamp extends Doctrine_Validator_Driver
 
         if ( ! $timeValidator->validate($time)) {
             return false;
-        } 
+        }
 
         return true;
     }

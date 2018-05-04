@@ -89,8 +89,8 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
      * Adds an driver-specific LIMIT clause to the query
      *
      * @param string $query         query to modify
-     * @param integer $limit        limit the number of rows
-     * @param integer $offset       start reading from given offset
+     * @param integer|false $limit        limit the number of rows
+     * @param integer|false $offset       start reading from given offset
      * @param bool $isManip
      * @return string               the modified query
      */

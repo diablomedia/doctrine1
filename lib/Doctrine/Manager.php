@@ -108,7 +108,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     protected $_loadedValidatorsFromDisk = false;
 
     /**
-     * @var self|null
+     * @var Doctrine_Manager|null
      */
     protected static $_instance;
 

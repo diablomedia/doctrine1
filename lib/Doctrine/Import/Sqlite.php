@@ -136,7 +136,9 @@ class Doctrine_Import_Sqlite extends Doctrine_Import
         $columns     = array();
         foreach ($result as $key => $val) {
             $val = array_change_key_case($val, CASE_LOWER);
-            $decl = $this->conn->dataDict->getPortableDeclaration($val);
+            /** @var Doctrine_DataDict_Sqlite $dataDict */
+            $dataDict = $this->conn->dataDict;
+            $decl = $dataDict->getPortableDeclaration($val);
 
             $description = array(
                     'name'          => $val['name'],

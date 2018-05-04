@@ -76,11 +76,15 @@ class Doctrine_Cache_Xcache extends Doctrine_Cache_Driver
      *
      * @param string $id        cache id
      * @param string $data      data to cache
-     * @param int $lifeTime     if != false, set a specific lifetime for this cache record (null => infinite lifeTime)
+     * @param int|false $lifeTime     if != false, set a specific lifetime for this cache record (null => infinite lifeTime)
      * @return boolean true if no problem
      */
     protected function _doSave($id, $data, $lifeTime = false)
     {
+        if ($lifeTime === false) {
+            return xcache_set($id, $data);
+        }
+
         return xcache_set($id, $data, $lifeTime);
     }
 

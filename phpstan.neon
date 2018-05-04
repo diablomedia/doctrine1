@@ -19,8 +19,6 @@ parameters:
         # Both Doctrine_Expression_Mysql and Doctrine_Expression_Pgsql call this, but doesn't seem to exist anywhere in
         # the Doctrine codebase. Both methods it appears in are marked as "experimental"
         - '#Call to an undefined method Doctrine_Expression_.+sql::patternEscapeString\(\)\.#'
-        # These two exception classes are found in the same "experimental" method as the above error
-        - '#Instantiated class Doctrine_Expression_.+sql_Exception not found\.#'
         # These methods do not exist anywhere in Doctrine
         - '#Call to an undefined method Doctrine_Search_Indexer_Dir::indexFile\(\)\.#'
         - '#Call to an undefined method Doctrine_Transaction::addDelete\(\)\.#'
@@ -99,8 +97,6 @@ parameters:
         - '#Variable \$stmt might not be defined\.#'
         # Similar to the one above in Doctrine_Connection:1075
         - '#Variable \$count might not be defined\.#'
-        # This, in Doctrine_RawSql:160|167|168|173, is intentional when tokenizing so that data is appended to the previous $type (during loop)
-        - '#Variable \$type might not be defined\.#'
         # Doctrine_Relation_Parser:512, $table must always be set since nobody that has cared has complained about this, but seems like it should
         # either be set to an initial value, or have an isset() check around it. There's a comment questioning if it should be $table or $this->table
         - '#Variable \$table might not be defined\.#'
@@ -110,8 +106,6 @@ parameters:
         # In Doctrine_Table:506, seems to change $this->_identifier from an array to the last value of that array, intentional?  $pk won't be defined if
         # $this->_identifier is empty
         - '#Variable \$pk might not be defined\.#'
-        # In Doctrine_Query_Tokenizer:90, this seems to be intentional to add parts of the query to the previous type until a new token is found
-        - '#Variable \$p might not be defined\.#'
         # Doctrine_Query:981|988|990|1195, not sure what good defaults should be (assuming blank string for most of these is what's happening now)
         - '#Variable \$tableAlias might not be defined\.#'
         - '#Variable \$componentAlias might not be defined\.#'
@@ -139,10 +133,6 @@ parameters:
         # In Doctrine_Export:744, all extending classes of Doctrine_DataDict implement this method, but Doctrine_DataDict does not (should probably be added
         # as an abstract definition, which does break public API)
         - '#Call to an undefined method Doctrine_DataDict::getNativeDeclaration\(\)\.#'
-        # In Doctrine_Import_Sqlite:139, similar to above, the extending classes define this method but base class does not
-        - '#Call to an undefined method Doctrine_DataDict::getPortableDeclaration\(\)\.#'
-        # In Doctrine_Query:905, this method doesn't appear to exist on Doctrine_Query or its parents, not covered by tests at all, probably broken
-        - '#Call to an undefined method Doctrine_Query::getQuery\(\)\.#'
         # In Doctrine_Import_Sqlite:78, this function only seems to exist on the Doctrine_Formatter class, and I don't see any path from Doctrine_Connection
         # to Doctrine_Formatter that would work here (no __call in Doctrine_Connection), not covered by tests
         - '#Call to an undefined method Doctrine_Connection::fixSequenceName\(\)\.#'
@@ -218,7 +208,6 @@ parameters:
         # but that would break public API). These came up now because I changed the doc block for the _invoker property (and related methods)
         # in Doctrine_Template to match the PHP typehint of the setInvoker method.
         - '#Call to an undefined method Doctrine_Record_Abstract::delete\(\)\.#'
-        - '#Call to an undefined method Doctrine_Record_Abstract::merge\(\)\.#'
         # In Doctrine_Record:1973, false should be checked for, as it's a valid return from toArray
         - '#Parameter \#1 \$array of method Doctrine_Record::fromArray\(\) expects array, array\|false given\.#'
         # Similar to above, just different method
@@ -261,13 +250,11 @@ parameters:
         # These all happen in Doctrine_Node_NestedSet, it seems that it's pretty much assumed that the $_tree property will never
         # be false, as there are no "hasTree" checks done here. Perhaps within the NestedSet objects it's not possible for $_tree
         # to ever be false.
-        - '#Cannot call method getBaseAlias\(\) on Doctrine_Tree\|false\.#'
-        - '#Cannot call method getBaseQuery\(\) on Doctrine_Tree\|false\.#'
-        - '#Cannot call method returnQueryWithRootId\(\) on Doctrine_Tree\|false\.#'
-        - '#Cannot call method getBaseComponent\(\) on Doctrine_Tree\|false\.#'
-        - '#Cannot call method getAttribute\(\) on Doctrine_Tree\|false\.#'
-        # This one also does not have an isTree check, but does happen in nested set specific code
-        - '#Cannot call method createRoot\(\) on Doctrine_Tree\|false\.#'
+        - '#Cannot call method getBaseAlias\(\) on Doctrine_Tree_NestedSet\|false\.#'
+        - '#Cannot call method getBaseQuery\(\) on Doctrine_Tree_NestedSet\|false\.#'
+        - '#Cannot call method returnQueryWithRootId\(\) on Doctrine_Tree_NestedSet\|false\.#'
+        - '#Cannot call method getBaseComponent\(\) on Doctrine_Tree_NestedSet\|false\.#'
+        - '#Cannot call method getAttribute\(\) on Doctrine_Tree_NestedSet\|false\.#'
         # These are similar to the above ones on Doctrine_Tree. The getNode method of Doctrine_Record may return false if the Table
         # object isn't a tree. These calls all happen in the Doctrine_Node_NestedSet class, assuming these won't be reached if the
         # Table isn't a tree.
@@ -280,13 +267,8 @@ parameters:
         - '#Cannot call method insertAsLastChildOf\(\) on Doctrine_Node\|false\.#'
         # Similar to above, also in NestedSet related code, Doctrine_Tree_NestedSet:101
         - '#Cannot call method setRootValue\(\) on Doctrine_Node\|false\.#'
-        # Same as above, Doctrine_Node_NestedSet_PreOrderIterator:133
-        - '#Cannot call method setLevel\(\) on Doctrine_Node\|false\.#'
-        # Also same, even though it's in Doctrine_Data_Import, it is in a NestedSet specific method, Doctrine_Data_Import:383
-        - '#Cannot call method addChild\(\) on Doctrine_Node\|false\.#'
-        # This one doesn't deal with the potential false value at all, but as far as I can tell, is never called within Doctrine
-        # codebase.  Doctrine_Record:2682
-        - '#Cannot call method delete\(\) on Doctrine_Node\|false\.#'
+        # setLevel method does not exist, perhaps supposed to be updateLevel
+        - '#Call to an undefined method Doctrine_Node_NestedSet::setLevel\(\)\.#'
         # This could be false if the value of $pk isn't a valid column name, so should be checked before looping, in Doctrine_Table:484
         - '#Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.#'
         # Both of these don't specify a hydration mode, so a Doctrine_Collection should be returned by default, not an array
@@ -308,17 +290,17 @@ parameters:
         # or anything else, specifically the boolean false). Doctrine_Connection_Statement:58
         - '#Strict comparison using === between Doctrine_Adapter_Statement_Interface\|PDOStatement and false will always evaluate to false\.#'
         # These all happen in Doctrine_Template_Listener_SoftDelete, they're all called on the result of Doctrine_Event:getQuery which
-        # is marked as being either a string or Doctrine_Query_Abstract. I have search the codebase and do find instances where this would be
+        # is marked as being either a string or Doctrine_Query. I have searched the codebase and do find instances where this would be
         # either a string or Doctrine_Query_Abstract, so these calls are valid but are making an assumption that they're working on an object
         # (which may be valid in this case, perhaps the Event passed to these listeners will always contain a query object, not a string)
         # Happens in Doctrine_Template_Listener_Timestampable as well.
-        - '#Cannot call method contains\(\) on Doctrine_Query_Abstract\|string\.#'
-        - '#Cannot call method from\(\) on Doctrine_Query_Abstract\|string\.#'
-        - '#Cannot call method set\(\) on Doctrine_Query_Abstract\|string\.#'
-        - '#Cannot call method addWhere\(\) on Doctrine_Query_Abstract\|string\.#'
-        - '#Cannot call method getConnection\(\) on Doctrine_Query_Abstract\|string\.#'
-        - '#Cannot call method isSubquery\(\) on Doctrine_Query_Abstract\|string\.#'
-        - '#Cannot call method addPendingJoinCondition\(\) on Doctrine_Query_Abstract\|string\.#'
+        - '#Cannot call method contains\(\) on Doctrine_Query\|string\.#'
+        - '#Cannot call method from\(\) on Doctrine_Query\|string\.#'
+        - '#Cannot call method set\(\) on Doctrine_Query\|string\.#'
+        - '#Cannot call method addWhere\(\) on Doctrine_Query\|string\.#'
+        - '#Cannot call method getConnection\(\) on Doctrine_Query\|string\.#'
+        - '#Cannot call method isSubquery\(\) on Doctrine_Query\|string\.#'
+        - '#Cannot call method addPendingJoinCondition\(\) on Doctrine_Query\|string\.#'
         # In Doctrine_Connection_Statement:350, the $_stmt object can be PDOStatement or Doctrine_Adapter_Statement_Interface. PDOStatement allows
         # more than 1 parameter for this method, the interface isn't defined that way (would be nice if these matched). 2 of the 3 classes that
         # implement the interface do allow the second parameter. Interface (and the one class that doesn't have the second parameter) should probably
@@ -414,13 +396,13 @@ parameters:
         - '#Calling method getSqlTableAlias\(\) on possibly null value of type Doctrine_Query\|null\.#'
         # These listeners don't check if the query object returned from getQuery is actually a null value (it could be since it's allowed
         # on the Doctrine_Event constructor)
-        - '#Calling method addPendingJoinCondition\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
-        - '#Calling method addWhere\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
-        - '#Calling method contains\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
-        - '#Calling method from\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
-        - '#Calling method getConnection\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
-        - '#Calling method isSubquery\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
-        - '#Calling method set\(\) on possibly null value of type Doctrine_Query_Abstract\|string\|null\.#'
+        - '#Calling method addPendingJoinCondition\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
+        - '#Calling method addWhere\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
+        - '#Calling method contains\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
+        - '#Calling method from\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
+        - '#Calling method getConnection\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
+        - '#Calling method isSubquery\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
+        - '#Calling method set\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
         # Not sure that the invoker will ever be null when tasks are called
         - '#Calling method getConfig\(\) on possibly null value of type Doctrine_Cli\|null\.#'
         # These are optional parameters in Doctrine_Connection_Statement::fetch, maybe should be cast to ints, or not set on the event if null?

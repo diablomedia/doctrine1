@@ -34,6 +34,13 @@
 class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Interface
 {
     /**
+     * The tree to which the node belongs.
+     *
+     * @var Doctrine_Tree_NestedSet|false
+     */
+    protected $_tree;
+
+    /**
      * test if node has previous sibling
      *
      * @return bool

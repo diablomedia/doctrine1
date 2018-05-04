@@ -962,7 +962,7 @@ class Doctrine_Core
     /**
      * Creates databases for connections
      *
-     * @param string $specifiedConnections Array of connections you wish to create the database for
+     * @param array $specifiedConnections Array of connections you wish to create the database for
      * @return void
      */
     public static function createDatabases($specifiedConnections = array())
@@ -973,7 +973,7 @@ class Doctrine_Core
     /**
      * Drops databases for connections
      *
-     * @param string $specifiedConnections Array of connections you wish to drop the database for
+     * @param array $specifiedConnections Array of connections you wish to drop the database for
      * @return void
      */
     public static function dropDatabases($specifiedConnections = array())

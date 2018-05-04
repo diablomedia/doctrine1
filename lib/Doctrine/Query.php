@@ -921,7 +921,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 
             $subquery = $this->createSubquery();
 
-            $sql = $subquery->parseDqlQuery($dql, false)->getQuery();
+            $sql = $subquery->parseDqlQuery($dql, false)->getSqlQuery();
             $subquery->free();
 
             reset($this->_queryComponents);

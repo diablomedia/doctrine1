@@ -133,7 +133,9 @@ QEND;
 
         foreach($result as $val) {
             $val = array_change_key_case($val, CASE_LOWER);
-            $decl = $this->conn->dataDict->getPortableDeclaration($val);
+            /** @var Doctrine_DataDict_Oracle $dataDict */
+            $dataDict = $this->conn->dataDict;
+            $decl = $dataDict->getPortableDeclaration($val);
 
             $descr[$val['column_name']] = array(
                'name'       => $val['column_name'],

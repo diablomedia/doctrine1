@@ -1132,6 +1132,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
             $message .= sprintf('. Failing Query: "%s"', $query);
         }
 
+        /** @var Doctrine_Connection_Exception $exc */
         $exc  = new $name($message, (int) $e->getCode());
         if ( ! isset($e->errorInfo) || ! is_array($e->errorInfo)) {
             $e->errorInfo = array(null, null, null, null);
@@ -1585,8 +1586,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * Some dbms require specific functionality for this. Check the other connection adapters for examples
      *
      * @param string $query
-     * @param int $limit
-     * @param int $offset
+     * @param int|false $limit
+     * @param int|false $offset
      * @param bool $isManip
      * @return string
      */
@@ -1600,14 +1601,18 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * context of the limit-subquery algorithm.
      *
      * @param string $query
-     * @param int $limit
-     * @param int $offset
+     * @param int|false $limit
+     * @param int|false $offset
      * @param bool $isManip
      * @return string
      */
-    public function modifyLimitSubquery(Doctrine_Table $rootTable, $query, $limit = false,
-            $offset = false, $isManip = false)
-    {
+    public function modifyLimitSubquery(
+        Doctrine_Table $rootTable,
+        $query,
+        $limit = false,
+        $offset = false,
+        $isManip = false
+    ) {
         return $this->modifyLimitQuery($query, $limit, $offset, $isManip);
     }
 

@@ -137,6 +137,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
         $tokens = $this->_tokenizer->sqlExplode($query, ' ');
 
         $parts = array();
+        $type  = null;
         foreach ($tokens as $key => $part) {
             $partLowerCase = strtolower($part);
             switch ($partLowerCase) {

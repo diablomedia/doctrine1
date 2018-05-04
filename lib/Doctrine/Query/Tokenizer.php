@@ -60,6 +60,7 @@ class Doctrine_Query_Tokenizer
     {
         $tokens = $this->sqlExplode($query, ' ');
         $parts = array();
+        $p = null;
 
         foreach ($tokens as $index => $token) {
             $token = trim($token);
@@ -96,7 +97,7 @@ class Doctrine_Query_Tokenizer
                     continue;
 
                 default:
-                    if ( ! isset($p)) {
+                    if ($p === null) {
                         throw new Doctrine_Query_Tokenizer_Exception(
                             "Couldn't tokenize query. Encountered invalid token: '$token'."
                         );

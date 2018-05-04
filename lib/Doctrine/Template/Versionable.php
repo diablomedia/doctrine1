@@ -120,9 +120,10 @@ class Doctrine_Template_Versionable extends Doctrine_Template
             throw new Doctrine_Record_Exception('Version ' . $version . ' does not exist!');
         }
 
-        $this->getInvoker()->merge($data[0]);
+        /** @var Doctrine_Record $invoker */
+        $invoker = $this->getInvoker();
+        $invoker->merge($data[0]);
 
-
-        return $this->getInvoker();
+        return $invoker;
     }
 }

@@ -6,8 +6,14 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config ./vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="lib" />
+        <directory name="./lib/" />
     </projectFiles>
+
+    <stubs>
+        <file name="./vendor/jetbrains/phpstorm-stubs/memcache/memcache.php" />
+        <file name="./vendor/jetbrains/phpstorm-stubs/oci8/oci8.php" />
+        <file name="./vendor/jetbrains/phpstorm-stubs/xcache/xcache.php" />
+    </stubs>
 
     <issueHandlers>
         <LessSpecificReturnType errorLevel="info" />
@@ -19,11 +25,16 @@
         <DeprecatedClass errorLevel="info" />
         <DeprecatedInterface errorLevel="info" />
 
+        <MissingClosureReturnType errorLevel="info" />
+        <MissingReturnType errorLevel="info" />
+        <MissingPropertyType errorLevel="info" />
         <InvalidDocblock errorLevel="info" />
         <MisplacedRequiredParam errorLevel="info" />
 
         <PropertyNotSetInConstructor errorLevel="info" />
         <MissingConstructor errorLevel="info" />
+        <MissingClosureParamType errorLevel="info" />
+        <MissingParamType errorLevel="info" />
 
         <DocblockTypeContradiction errorLevel="info" />
         <RedundantConditionGivenDocblockType errorLevel="info" />
@@ -98,23 +109,74 @@
         <InvalidReturnType errorLevel="info" />
         <UndefinedThisPropertyAssignment errorLevel="info" />
 
+        <!-- level 7 issues - even worse -->
 
-        <UndefinedMethod errorLevel="info" />
-        <InvalidParamDefault errorLevel="info" />
-        <UndefinedThisPropertyFetch errorLevel="info" />
-        <InvalidPropertyAssignmentValue errorLevel="info" />
-        <InvalidArrayAssignment errorLevel="info" />
-        <InvalidArgument errorLevel="info" />
-        <InvalidArrayAccess errorLevel="info" />
-        <UndefinedClass errorLevel="info" />
-        <UndefinedVariable errorLevel="info" />
-        <InvalidArrayOffset errorLevel="info" />
-        <EmptyArrayAccess errorLevel="info" />
-        <InvalidThrow errorLevel="info" />
-        <AssignmentToVoid errorLevel="info" />
-        <NonStaticSelfCall errorLevel="info" />
-        <UndefinedConstant errorLevel="info" />
+        <UndefinedThisPropertyAssignment errorLevel="info" />
         <UndefinedPropertyAssignment errorLevel="info" />
+        <UndefinedThisPropertyFetch errorLevel="info" />
+        <UndefinedPropertyFetch errorLevel="info" />
+
+        <InvalidReturnStatement errorLevel="info" />
+        <InvalidReturnType errorLevel="info" />
+        <InvalidArgument errorLevel="info" />
+        <InvalidPropertyAssignmentValue errorLevel="info" />
+        <InvalidArrayOffset errorLevel="info" />
+        <InvalidArrayAssignment errorLevel="info" />
+        <InvalidArrayAccess errorLevel="info" />
+        <InvalidClone errorLevel="info" />
+
+        <!-- These all come from missing extensions, and psalm apparently doesn't load them from stubs files -->
+        <UndefinedConstant errorLevel="info" />
+        <EmptyArrayAccess>
+            <errorLevel type="info">
+                <!-- This array is built in a do/while loop, so will be empty on first time through -->
+                <file name="lib/Doctrine/Hydrator/Graph.php" />
+                <!-- I believe this is broken (isn't covered by tests). Almost seems like $match should come from a preg_match call perhaps -->
+                <file name="lib/Doctrine/Connection/Pgsql.php" />
+            </errorLevel>
+        </EmptyArrayAccess>
+        <UndefinedVariable>
+            <errorLevel type="info">
+                <!-- This variable will be defined on the first iteration of the loop -->
+                <file name="lib/Doctrine/Connection/UnitOfWork.php" />
+            </errorLevel>
+        </UndefinedVariable>
+        <UndefinedMethod>
+            <errorLevel type="info">
+                <!-- No Doctrine_Collection objects define the "expand" method, and no __call implementations that I can see -->
+                <file name="lib/Doctrine/Collection/Iterator/Expandable.php" />
+                <!-- getSequenceName does not live on Doctrine_Connection (or any subclasses), but does live on Doctrine_Formatter, don't see a path to it from Doctrine_Connection though -->
+                <file name="lib/Doctrine/Export/Mssql.php" />
+                <!-- The getNode() call on the record here should return a Doctrine_Node_NestedSet, not easy to hint that though without breaking up the if condition -->
+                <file name="lib/Doctrine/Tree/NestedSet.php" />
+                <!-- Can't hint which validator this is, and Doctrine_Validator_Driver doesn't implement the validate method -->
+                <file name="lib/Doctrine/Table.php" />
+                <!-- This should be hinted to Doctrine_Record (since Doctrine_Record_Abstract doesn't define the delete method), would need to pull $this->_invoker to a variable for that though -->
+                <file name="lib/Doctrine/Template/SoftDelete.php" />
+                <!-- _connect and lastSquenceId don't exist -->
+                <file name="lib/Doctrine/Sequence/Db2.php" />
+                <!-- indexFile does not exist anywhere -->
+                <file name="lib/Doctrine/Search/Indexer/Dir.php" />
+                <!-- parseLiteralValue does not exist on Doctrine_Query_Set or its parents, does live on Doctrine_Query_Condition, but not path to that that I can see -->
+                <file name="lib/Doctrine/Query/Set.php" />
+                <!-- load method exists in subclasses, but not this base class -->
+                <file name="lib/Doctrine/Query/Condition.php" />
+                <!-- parse method exists in subclass, but not this base class -->
+                <file name="lib/Doctrine/Query/Abstract.php" />
+                <!-- experimental code, no tests, methods live on Doctrine_Formatter, not Doctrine_Connection -->
+                <file name="lib/Doctrine/Expression/Mysql.php" />
+                <!-- experimental code, no tests, methods live on Doctrine_Formatter, not Doctrine_Connection -->
+                <file name="lib/Doctrine/Expression/Pgsql.php" />
+                <!-- fixSequenceName lives on Doctrine_Formatter, not on any Doctrine_Connection objects, no path there, not covered by tests -->
+                <file name="lib/Doctrine/Import/Sqlite.php" />
+                <!-- getDeleteActions does not exist, not covered by tests -->
+                <file name="lib/Doctrine/IntegrityMapper.php" />
+                <!-- setLevel doesn't exist anywhere, updateLevel does, perhaps this is supposed to be updateLevel -->
+                <file name="lib/Doctrine/Node/NestedSet/PreOrderIterator.php" />
+                <!-- There are a bunch here due to calls to "getNode" on Doctrine_Record. Since this is NestedSet, these probably return Doctrine_Node_NestedSet, not Doctrine_Node. Could try to hint all of them, but not really worth it -->
+                <file name="lib/Doctrine/Node/NestedSet.php" />
+            </errorLevel>
+        </UndefinedMethod>
 
     </issueHandlers>
 </psalm>

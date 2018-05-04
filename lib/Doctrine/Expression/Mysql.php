@@ -85,7 +85,7 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
                     $match = $field.'LIKE BINARY ';
                     break;
                 default:
-                    throw new Doctrine_Expression_Mysql_Exception('not a supported operator type:'. $operator);
+                    throw new Doctrine_Expression_Exception('not a supported operator type:'. $operator);
             }
         }
         $match.= "'";
@@ -114,7 +114,7 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
     /**
      * Returns the year from dbms
      *
-     * @param string $column 
+     * @param string $column
      * @return string to get year from dbms
      */
     public function year($column)
@@ -126,7 +126,7 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
     /**
      * Returns the month from dbms
      *
-     * @param string $column 
+     * @param string $column
      * @return string to get month from dbms
      */
     public function month($column)
@@ -138,7 +138,7 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
     /**
      * Returns day from dbms
      *
-     * @param string $column 
+     * @param string $column
      * @return string to get day from dbms
      */
     public function day($column)

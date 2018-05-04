@@ -110,6 +110,7 @@ class Doctrine_Template_Listener_SoftDelete extends Doctrine_Record_Listener
     {
         $params = $event->getParams();
         $field = $params['alias'] . '.' . $this->_options['name'];
+        /** @var Doctrine_Query|null|string $query */
         $query = $event->getQuery();
         if ( ! $query->contains($field)) {
             $query->from('')->update($params['component']['table']->getOption('name') . ' ' . $params['alias']);
@@ -137,6 +138,7 @@ class Doctrine_Template_Listener_SoftDelete extends Doctrine_Record_Listener
     {
         $params = $event->getParams();
         $field = $params['alias'] . '.' . $this->_options['name'];
+        /** @var Doctrine_Query|string|null $query */
         $query = $event->getQuery();
 
         // We only need to add the restriction if:

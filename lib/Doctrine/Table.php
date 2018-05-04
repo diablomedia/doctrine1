@@ -2145,6 +2145,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     public function validateUniques(Doctrine_Record $record)
     {
         $errorStack = $record->getErrorStack();
+        /** @var Doctrine_Validator_Unique $validator */
         $validator = Doctrine_Validator::getValidator('unique');
         $validator->invoker = $record;
 

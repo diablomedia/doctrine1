@@ -96,7 +96,7 @@ class Doctrine_Connection_Exception extends Doctrine_Exception
      */
     public function getPortableMessage()
     {
-        return self::errorMessage($this->portableCode);
+        return $this->errorMessage($this->portableCode);
     }
 
     /**

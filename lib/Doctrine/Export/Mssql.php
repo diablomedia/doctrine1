@@ -332,7 +332,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      * create sequence
      *
      * @param string $seqName name of the sequence to be created
-     * @param string $start start value of the sequence; default is 1
+     * @param int    $start start value of the sequence; default is 1
      * @param array     $options  An associative array of table options:
      *                          array(
      *                              'comment' => 'Foo',

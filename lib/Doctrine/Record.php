@@ -2753,7 +2753,9 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      */
     public function deleteNode()
     {
-        $this->getNode()->delete();
+        /** @var Doctrine_Node_NestedSet $node */
+        $node = $this->getNode();
+        $node->delete();
     }
 
     /**

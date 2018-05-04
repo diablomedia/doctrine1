@@ -100,7 +100,7 @@ class Doctrine_Cache_Memcache extends Doctrine_Cache_Driver
      *
      * @param string $id        cache id
      * @param string $data      data to cache
-     * @param int $lifeTime     if != false, set a specific lifetime for this cache record (null => infinite lifeTime)
+     * @param int|false $lifeTime     if != false, set a specific lifetime for this cache record (null => infinite lifeTime)
      * @return boolean true if no problem
      */
     protected function _doSave($id, $data, $lifeTime = false)
@@ -109,6 +109,10 @@ class Doctrine_Cache_Memcache extends Doctrine_Cache_Driver
             $flag = MEMCACHE_COMPRESSED;
         } else {
             $flag = 0;
+        }
+
+        if ($lifeTime === false) {
+            $lifeTime = null;
         }
 
         return $this->_memcache->set($id, $data, $flag, $lifeTime);

@@ -150,7 +150,10 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
 
             $this->_exception = array();
 
-            throw new $name($e[1], $e[2]);
+            /** @var Exception $exception */
+            $exception = new $name($e[1], $e[2]);
+
+            throw $exception;
         }
 
         $stmt = new Doctrine_Adapter_Statement_Mock($this);
@@ -197,7 +200,10 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
 
             $this->_exception = array();
 
-            throw new $name($e[1], $e[2]);
+            /** @var Exception $exception */
+            $exception = new $name($e[1], $e[2]);
+
+            throw $exception;
         }
 
         return 0;

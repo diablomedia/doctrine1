@@ -44,7 +44,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      *
      * @param string    $table        name of table that should be used in method
      * @param string    $name         name of the constraint to be dropped
-     * @param string    $primary      hint if the constraint is primary
+     * @param bool      $primary      hint if the constraint is primary
      * @return int
      */
     public function dropConstraint($table, $name, $primary = false)
@@ -486,7 +486,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      * create sequence
      *
      * @param string    $sequenceName name of the sequence to be created
-     * @param string    $start        start value of the sequence; default is 1
+     * @param int       $start        start value of the sequence; default is 1
      * @param array     $options  An associative array of table options:
      *                          array(
      *                              'comment' => 'Foo',

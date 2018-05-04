@@ -470,7 +470,10 @@ class Doctrine_Cli
         } catch (Exception $exception) {
             //Do not rethrow exceptions by default
             if ($this->getConfigValue('rethrow_exceptions', false)) {
-                throw new $exception($this->formatExceptionMessage($exception));
+                $exceptionClass = get_class($exception);
+                /** @var Exception $exception */
+                $exception = new $exceptionClass($this->formatExceptionMessage($exception));
+                throw $exception;
             }
 
             $this->notifyException($exception);

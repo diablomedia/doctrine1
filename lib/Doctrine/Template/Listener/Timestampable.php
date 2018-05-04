@@ -105,6 +105,7 @@ class Doctrine_Template_Listener_Timestampable extends Doctrine_Record_Listener
             $params = $event->getParams();
             $updatedName = $event->getInvoker()->getTable()->getFieldName($this->_options['updated']['name']);
             $field = $params['alias'] . '.' . $updatedName;
+            /** @var Doctrine_Query|null|string $query */
             $query = $event->getQuery();
 
             if ( ! $query->contains($field)) {

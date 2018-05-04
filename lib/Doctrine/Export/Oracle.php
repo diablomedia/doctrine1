@@ -99,7 +99,7 @@ SQL;
      *
      * @param string $name  name of the PK field
      * @param string $table name of the table
-     * @param string $start start value for the sequence
+     * @param int    $start start value for the sequence
      * @return array        Sql code
      */
     public function _makeAutoincrement($name, $table, $start = 1)

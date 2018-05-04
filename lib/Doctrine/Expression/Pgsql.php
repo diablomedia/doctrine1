@@ -203,7 +203,7 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
                 $match = $field.'LIKE ';
                 break;
             default:
-                throw new Doctrine_Expression_Pgsql_Exception('not a supported operator type:'. $operator);
+                throw new Doctrine_Expression_Exception('not a supported operator type:'. $operator);
             }
         }
         $match.= "'";

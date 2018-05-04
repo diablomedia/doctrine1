@@ -316,8 +316,8 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      * context of the limit-subquery algorithm.
      *
      * @param string $query
-     * @param int $limit
-     * @param int $offset
+     * @param int|false $limit
+     * @param int|false $offset
      * @param bool $isManip
      * @return string
      */

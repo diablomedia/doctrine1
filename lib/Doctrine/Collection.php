@@ -234,7 +234,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the first record in the collection
      *
-     * @return Doctrine_Record
+     * @return Doctrine_Record|false
      */
     public function getFirst()
     {
@@ -244,7 +244,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the last record in the collection
      *
-     * @return Doctrine_Record
+     * @return Doctrine_Record|false
      */
     public function getLast()
     {
@@ -254,7 +254,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the last record in the collection
      *
-     * @return Doctrine_Record
+     * @return Doctrine_Record|false
      */
     public function end()
     {
@@ -264,7 +264,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the current key
      *
-     * @return Doctrine_Record
+     * @return Doctrine_Record|null
      */
     public function key()
     {
@@ -508,7 +508,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Merges collection into $this and returns merged collection
      *
      * @param Doctrine_Collection $coll
-     * @return Doctrine_Collection
+     * @return $this
      */
     public function merge(Doctrine_Collection $coll)
     {
@@ -657,7 +657,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Doctrine_Collection::save() attaches the diff with the help of last
      * snapshot.
      *
-     * @return Doctrine_Collection
+     * @return $this
      */
     public function takeSnapshot()
     {
@@ -685,7 +685,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * The process would remove object 4
      *
-     * @return Doctrine_Collection
+     * @return $this
      */
     public function processDiff()
     {
@@ -909,7 +909,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @param Doctrine_Connection $conn     optional connection parameter
      * @param bool $processDiff
-     * @return Doctrine_Collection
+     * @return $this
      */
     public function save(Doctrine_Connection $conn = null, $processDiff = true)
     {
@@ -945,7 +945,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @param Doctrine_Connection $conn     optional connection parameter
      * @param bool $processDiff
-     * @return Doctrine_Collection
+     * @return $this
      */
     public function replace(Doctrine_Connection $conn = null, $processDiff = true)
     {
@@ -979,7 +979,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Deletes all records from this collection
      *
      * @param bool $clearColl
-     * @return Doctrine_Collection
+     * @return $this
      */
     public function delete(Doctrine_Connection $conn = null, $clearColl = true)
     {
@@ -1045,7 +1045,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get collection data iterator
      *
-     * @return Iterator
+     * @return ArrayIterator
      */
     public function getIterator()
     {

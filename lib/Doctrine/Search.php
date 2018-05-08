@@ -135,7 +135,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
      *
      * @param array $data
      * @param string $encoding
-     * @return integer
+     * @return void
      */
     public function updateIndex(array $data, $encoding = null)
     {

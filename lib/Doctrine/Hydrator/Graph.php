@@ -36,6 +36,12 @@
 abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
 {
     /**
+     * This was previously undefined, setting to protected to match Doctrine_Hydrator
+     * @var string|null
+     */
+    protected $_rootAlias = null;
+
+    /**
      * @var array|null
      */
     protected $_tables = array();
@@ -399,7 +405,7 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
      * @param array|Doctrine_Collection $coll
      * @param boolean|int $index
      * @param string $dqlAlias
-     * @param mixed $oneToOne
+     * @param bool $oneToOne
      */
     abstract public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne);
 

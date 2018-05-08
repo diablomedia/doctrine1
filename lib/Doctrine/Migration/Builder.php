@@ -423,7 +423,7 @@ END;
      *
      * @param string $tableName
      * @param string $columnName
-     * @param string $column
+     * @param array $column
      * @return string $code
      */
     public function buildRemoveColumn($tableName, $columnName, $column)

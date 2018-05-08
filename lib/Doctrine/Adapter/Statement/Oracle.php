@@ -40,7 +40,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     public $queryString;
 
     /**
-     * @var resource $connection        OCI connection handler
+     * @var resource|false $connection        OCI connection handler
      */
     protected $connection;
 
@@ -112,7 +112,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      * @param mixed $value          The value to bind to the parameter.
      * @param integer $type         Explicit data type for the parameter using the Doctrine_Core::PARAM_* constants.
      *
-     * @return boolean              Returns TRUE on success or FALSE on failure.
+     * @return void
      */
     public function bindValue($param, $value, $type = null)
     {
@@ -391,7 +391,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      *                                      value is supplied, Doctrine_Adapter_Statement_Interface->fetchColumn()
      *                                      fetches the first column.
      *
-     * @return mixed|false                       returns a single column in the next row of a result set.
+     * @return string|false                       returns a single column in the next row of a result set.
      */
     public function fetchColumn($columnIndex = 0)
     {
@@ -522,7 +522,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      *
      * @param integer $attribute
      * @param mixed $value                  the value of given attribute
-     * @return boolean                      Returns TRUE on success or FALSE on failure.
+     * @return void
      */
     public function setAttribute($attribute, $value)
     {

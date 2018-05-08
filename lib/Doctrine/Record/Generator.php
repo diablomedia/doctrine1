@@ -134,7 +134,7 @@ abstract class Doctrine_Record_Generator extends Doctrine_Record_Abstract
      *
      * @see Doctrine_Template_I18n
      * @param  Doctrine_Table $table
-     * @return bool
+     * @return bool|null
      */
     public function initialize(Doctrine_Table $table)
     {

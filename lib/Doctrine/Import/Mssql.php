@@ -152,7 +152,7 @@ class Doctrine_Import_Mssql extends Doctrine_Import
      */
     public function listTableIndexes($table)
     {
-
+        return array();
     }
 
     /**

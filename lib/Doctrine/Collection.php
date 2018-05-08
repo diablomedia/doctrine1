@@ -152,7 +152,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * This method is automatically called when this Doctrine_Collection is serialized
      *
-     * @return array
+     * @return string
      */
     public function serialize()
     {
@@ -530,7 +530,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Load all relationships or the named relationship passed
      *
      * @param mixed $name
-     * @return boolean|null
+     * @return null|Doctrine_Query
      */
     public function loadRelated($name = null)
     {

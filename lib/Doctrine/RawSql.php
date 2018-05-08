@@ -44,6 +44,12 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
     private $fields = array();
 
     /**
+     * This was previously undefined, setting to public to prevent any sort of BC break
+     * @var bool
+     */
+    public $_preQuery;
+
+    /**
      * Constructor.
      *
      * @param Doctrine_Connection $connection The connection object the query will use.

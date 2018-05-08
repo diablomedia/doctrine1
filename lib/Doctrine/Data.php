@@ -194,7 +194,7 @@ class Doctrine_Data
      * @param string $format
      * @param array $models
      * @param bool $_exportIndividualFiles
-     * @return int|false|string
+     * @return int|false|string|null
      */
     public function exportData($directory, $format = 'yml', $models = array(), $_exportIndividualFiles = false)
     {

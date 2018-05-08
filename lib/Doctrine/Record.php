@@ -727,7 +727,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * sets the default values for records internal data
      *
      * @param boolean $overwrite                whether or not to overwrite the already set values
-     * @return boolean
+     * @return boolean|null
      */
     public function assignDefaultValues($overwrite = false)
     {
@@ -1262,7 +1262,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @param string $fieldName
      * @param string $accessor
-     * @return boolean
+     * @return boolean|null
      */
     public function hasAccessor($fieldName, $accessor = null)
     {
@@ -1317,7 +1317,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @param string $fieldName
      * @param string $mutator
-     * @return boolean
+     * @return boolean|null
      */
     public function hasMutator($fieldName, $mutator = null)
     {
@@ -1631,7 +1631,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @param string $name                                  related component alias in the relation
      * @param Doctrine_Record|Doctrine_Collection|null $value    object to be linked as a related component
-     * @return $this
+     * @return $this|null
      *
      * @todo Refactor. What about composite keys?
      */

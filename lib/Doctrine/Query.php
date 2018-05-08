@@ -231,6 +231,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     public function createSubquery()
     {
         $class = get_class($this);
+        /** @var Doctrine_Query $obj */
         $obj   = new $class();
 
         // copy the aliases to the subquery
@@ -311,7 +312,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * value of Doctrine_Query::$isSubquery.
      *
      * @param boolean|null $bool     whether or not this query acts as a subquery
-     * @return Doctrine_Query|bool
+     * @return $this|bool
      */
     public function isSubquery($bool = null)
     {
@@ -2240,6 +2241,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
             $query = $this;
         }
 
+        /** @var Doctrine_Query $new */
         $new = clone $query;
 
         return $new;

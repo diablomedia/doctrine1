@@ -399,7 +399,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * buildSetUp
      *
      * @param  array $definition
-     * @return string
+     * @return string|null
      */
     public function buildSetUp(array $definition)
     {

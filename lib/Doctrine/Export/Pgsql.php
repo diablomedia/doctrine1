@@ -279,11 +279,16 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      *                             can perform the requested table alterations if the value is true or
      *                             actually perform them otherwise.
      * @throws Doctrine_Connection_Exception
-     * @return boolean
+     * @return true|array
      */
     public function alterTable($name, array $changes, $check = false)
     {
         $sql = $this->alterTableSql($name, $changes, $check);
+
+        if ($check === true) {
+            return $sql;
+        }
+
         foreach ($sql as $query) {
             $this->conn->exec($query);
         }

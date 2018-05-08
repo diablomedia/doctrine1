@@ -134,7 +134,7 @@ class Doctrine_Import_Pgsql extends Doctrine_Import
      */
     public function listTriggers($database = null)
     {
-
+        return array();
     }
 
     /**

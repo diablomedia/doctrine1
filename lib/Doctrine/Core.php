@@ -465,7 +465,7 @@ class Doctrine_Core
     /**
      * Path to Doctrine root
      *
-     * @var string $path            doctrine root directory
+     * @var string|false $path            doctrine root directory
      */
     private static $_path;
 
@@ -554,7 +554,7 @@ class Doctrine_Core
     /**
      * Get the root path to Doctrine
      *
-     * @return string
+     * @return string|false
      */
     public static function getPath()
     {
@@ -986,7 +986,7 @@ class Doctrine_Core
      *
      * @param string $yamlPath Path to write the yaml data fixtures to
      * @param bool $individualFiles Whether or not to dump data to individual fixtures files
-     * @return int|false|string
+     * @return int|false|string|null
      */
     public static function dumpData($yamlPath, $individualFiles = false)
     {

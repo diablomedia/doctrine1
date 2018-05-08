@@ -219,6 +219,12 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     protected $parent;
 
     /**
+     * Previously undefined, set as public for no BC break
+     * @var array
+     */
+    public $exported;
+
+    /**
      * the constructor
      *
      * @param Doctrine_Manager $manager                 the manager object
@@ -1175,9 +1181,11 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
         if (class_exists($class, $this->getAttribute(Doctrine_Core::ATTR_AUTOLOAD_TABLE_CLASSES)) &&
                 in_array('Doctrine_Table', class_parents($class))) {
+            /** @var Doctrine_Table $table */
             $table = new $class($name, $this, true);
         } else {
             $tableClass = $this->getAttribute(Doctrine_Core::ATTR_TABLE_CLASS);
+            /** @var Doctrine_Table $table */
             $table = new $tableClass($name, $this, true);
         }
 
@@ -1479,7 +1487,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * Issue create database command for this instance of Doctrine_Connection
      *
-     * @return string       Doctrine_Exception catched in case of failure
+     * @return void
      */
     public function createDatabase()
     {
@@ -1512,7 +1520,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * Issue drop database command for this instance of Doctrine_Connection
      *
-     * @return string       success string. Doctrine_Exception if operation failed
+     * @return void
      */
     public function dropDatabase()
     {

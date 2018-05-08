@@ -65,7 +65,7 @@ class Doctrine_Export_Oracle extends Doctrine_Export
      * drop an existing database
      *
      * @param string $name name of the database that should be dropped
-     * @return boolean      success of operation
+     * @return void
      * @access public
      */
     public function dropDatabase($name)

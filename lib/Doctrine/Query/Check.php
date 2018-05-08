@@ -77,7 +77,7 @@ class Doctrine_Query_Check
      * parse
      *
      * @param string $dql       DQL CHECK constraint definition
-     * @return string
+     * @return void
      */
     public function parse($dql)
     {

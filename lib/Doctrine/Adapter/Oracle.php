@@ -278,7 +278,7 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
     /**
      * Returns established OCI connection handler
      *
-     * @return resource OCI connection handler
+     * @return resource|false OCI connection handler
      */
     public function getConnection()
     {

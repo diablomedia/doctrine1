@@ -33,5 +33,7 @@
 class Doctrine_Collection_Iterator_Offset extends Doctrine_Collection_Iterator
 {
     public function valid()
-    { }
+    {
+        return true;
+    }
 }

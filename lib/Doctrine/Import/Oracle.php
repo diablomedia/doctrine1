@@ -33,7 +33,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
     /**
      * lists all databases
      *
-     * @return mixed|false
+     * @return string|false
      */
     public function listDatabases()
     {
@@ -218,7 +218,7 @@ QEND;
      */
     public function listTableTriggers($table)
     {
-
+        return array();
     }
 
     /**
@@ -229,7 +229,7 @@ QEND;
      */
     public function listTableViews($table)
     {
-
+        return array();
     }
 
     /**

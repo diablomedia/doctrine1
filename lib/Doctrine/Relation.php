@@ -412,7 +412,7 @@ abstract class Doctrine_Relation implements ArrayAccess
      *
      * @param string $alias        The alias to use
      * @param boolean $columnNames Whether or not to use column names instead of field names
-     * @return string $orderBy
+     * @return string|null $orderBy
      */
     public function getOrderBy($alias = null, $columnNames = false)
     {
@@ -430,7 +430,7 @@ abstract class Doctrine_Relation implements ArrayAccess
      *
      * @param string $alias        The alias to use
      * @param boolean $columnNames Whether or not to use column names instead of field names
-     * @return string $orderByStatement
+     * @return string|null $orderByStatement
      */
     public function getOrderByStatement($alias = null, $columnNames = false)
     {

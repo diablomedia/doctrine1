@@ -46,7 +46,7 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
     {
         $data = self::arrayToXml($array, 'data', null, $charset);
 
-        return $this->doDump($data, $path);
+        return $this->doDump((string) $data, $path);
     }
 
     /**
@@ -56,7 +56,7 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
      * @param  string $rootNodeName Name of the root node
      * @param  SimpleXMLElement|null $xml          SimpleXmlElement, if null SimpleXMLElement will be created
      * @param  string $charset
-     * @return string $asXml        String of xml built from array
+     * @return string|false         String of xml built from array
      */
     public static function arrayToXml($array, $rootNodeName = 'data', $xml = null, $charset = null)
     {

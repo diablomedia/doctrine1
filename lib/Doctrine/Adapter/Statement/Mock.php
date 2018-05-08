@@ -69,7 +69,9 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      * @return boolean              Returns TRUE on success or FALSE on failure
      */
     public function bindColumn($column, $param, $type = null)
-    { }
+    {
+        return false;
+    }
 
     /**
      * bindValue
@@ -87,7 +89,9 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      * @return boolean              Returns TRUE on success or FALSE on failure.
      */
     public function bindValue($param, $value, $type = null)
-    { }
+    {
+        return false;
+    }
 
     /**
      * bindParam
@@ -119,7 +123,7 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      */
     public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = array())
     {
-
+        return false;
     }
 
     /**
@@ -337,7 +341,9 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      *          pdo_type                    The type of this column as represented by the PDO::PARAM_* constants.
      */
     public function getColumnMeta($column)
-    { }
+    {
+        return array();
+    }
 
     /**
      * getAttribute
@@ -349,7 +355,9 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      * @return mixed                        the attribute value
      */
     public function getAttribute($attribute)
-    { }
+    {
+        return null;
+    }
 
     /**
      * setAttribute
@@ -361,7 +369,9 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      * @return boolean                      Returns TRUE on success or FALSE on failure.
      */
     public function setAttribute($attribute, $value)
-    { }
+    {
+        return false;
+    }
 
     /**
      * setFetchMode
@@ -371,8 +381,10 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      * @param integer $mode                 The fetch mode must be one of the Doctrine_Core::FETCH_* constants.
      * @param int $arg1
      * @param array $arg2
-     * @return boolean                      Returns 1 on success or FALSE on failure.
+     * @return bool
      */
     public function setFetchMode($mode, $arg1 = null, $arg2 = null)
-    { }
+    {
+        return false;
+    }
 }

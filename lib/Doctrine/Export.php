@@ -161,7 +161,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *
      * @throws Doctrine_Connection_Exception     if something fails at database level
      * @param string $sequenceName      name of the sequence to be dropped
-     * @return int
+     * @return void
      */
     public function dropSequence($sequenceName)
     {
@@ -1382,8 +1382,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *
      * @throws Doctrine_Connection_Exception    if some error other than Doctrine_Core::ERR_ALREADY_EXISTS
      *                                          occurred during the create table operation
-     * @return boolean                          whether or not the export operation was successful
-     *                                          false if table already existed in the database
+     * @return void
      */
     public function exportTable(Doctrine_Table $table)
     {

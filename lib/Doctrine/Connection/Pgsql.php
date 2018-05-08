@@ -163,7 +163,7 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
     /**
      * return version information about the server
      *
-     * @param bool   $native    determines if the raw version string should be returned
+     * @param bool $native    determines if the raw version string should be returned
      * @return array|string     an array or string with version information
      */
     public function getServerVersion($native = false)

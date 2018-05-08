@@ -81,6 +81,9 @@ class Doctrine_Relation_Association_Self extends Doctrine_Relation_Association
         return $dql;
     }
 
+    /**
+     * @return Doctrine_Collection
+     */
     public function fetchRelatedFor(Doctrine_Record $record)
     {
         $id      = $record->getIncremented();
@@ -112,7 +115,7 @@ class Doctrine_Relation_Association_Self extends Doctrine_Relation_Association
                 );
         $q->addComponent($tableName,  $record->getTable()->getComponentName());
         $q->addComponent($assocTable, $record->getTable()->getComponentName(). '.' . $this->getAssociationFactory()->getComponentName());
-        $q->orderBy($this->getOrderByStatement($tableName, true));
+        $q->orderBy((string) $this->getOrderByStatement($tableName, true));
 
         return $q->execute(array($id, $id));
     }

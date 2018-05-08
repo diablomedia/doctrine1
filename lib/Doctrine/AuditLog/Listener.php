@@ -155,7 +155,7 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
      * Get the next version number for the audit log
      *
      * @param Doctrine_Record $record
-     * @return integer $nextVersion
+     * @return integer|null $nextVersion
      */
     protected function _getNextVersion(Doctrine_Record $record)
     {

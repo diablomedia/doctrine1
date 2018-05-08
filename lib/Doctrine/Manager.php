@@ -348,6 +348,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
         }
 
         $className = $this->_connectionDrivers[$driverName];
+        /** @var Doctrine_Connection $conn */
         $conn = new $className($this, $adapter);
         $conn->setName($name);
 
@@ -570,7 +571,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      *
      * @param string $componentName
      * @param string $connectionName
-     * @return boolean
+     * @return void
      */
     public function bindComponent($componentName, $connectionName)
     {

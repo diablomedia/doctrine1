@@ -37,7 +37,7 @@ class Doctrine_Parser_Serialize extends Doctrine_Parser
      *
      * Dump an array of data to a specified path or return
      *
-     * @param string $array
+     * @param array $array
      * @param string $path
      * @param string $charset The charset of the data being dumped
      * @return false|int|string

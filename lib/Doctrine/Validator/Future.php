@@ -48,11 +48,11 @@ class Doctrine_Validator_Future extends Doctrine_Validator_Driver
         if (count($e) !== 3) {
             return false;
         }
-        
+
         if (is_array($this->args) && isset($this->args['timezone'])) {
             switch (strtolower($this->args['timezone'])) {
                 case 'gmt':
-                    $now = gmdate("U") - date("Z");
+                    $now = getdate((int) gmdate("U") - (int) date("Z"));
                     break;
                 default:
                     $now = getdate();
@@ -61,7 +61,7 @@ class Doctrine_Validator_Future extends Doctrine_Validator_Driver
         } else {
             $now = getdate();
         }
-        
+
         if ($now['year'] > $e[0]) {
             return false;
         } else if ($now['year'] == $e[0]) {

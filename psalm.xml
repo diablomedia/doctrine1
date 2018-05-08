@@ -95,20 +95,6 @@
         <MissingDocblockType errorLevel="info" />
         <ImplementedReturnTypeMismatch errorLevel="info" />
 
-        <!-- level 6 issues - really bad things -->
-
-        <InvalidNullableReturnType errorLevel="info" />
-        <NullableReturnStatement errorLevel="info" />
-        <InvalidFalsableReturnType errorLevel="info" />
-        <FalsableReturnStatement errorLevel="info" />
-
-        <MoreSpecificImplementedParamType errorLevel="info" />
-        <MoreSpecificImplementedReturnType errorLevel="info" />
-
-        <InvalidReturnStatement errorLevel="info" />
-        <InvalidReturnType errorLevel="info" />
-        <UndefinedThisPropertyAssignment errorLevel="info" />
-
         <!-- These all come from missing extensions, and psalm apparently doesn't load them from stubs files -->
         <UndefinedConstant errorLevel="info" />
         <EmptyArrayAccess>
@@ -176,6 +162,51 @@
                 <file name="lib/Doctrine/Validator/Readonly.php" />
             </errorLevel>
         </InvalidArgument>
+
+        <InvalidReturnType>
+            <errorLevel type="info">
+                <!-- Hydration mode not specified, defaults to Doctrine_Collection -->
+                <file name="lib/Doctrine/View.php" />
+                <file name="lib/Doctrine/Relation/Association/Self.php" />
+                <file name="lib/Doctrine/IntegrityMapper.php" />
+                <file name="lib/Doctrine/Node/NestedSet.php" />
+                <!-- Hydration mode is specified as HYDRATE_ARRAY, will be an array -->
+                <file name="lib/Doctrine/Query.php" />
+                <!-- Cannot be bool, if it is, gets converted to an int -->
+                <file name="lib/Doctrine/Formatter.php" />
+            </errorLevel>
+        </InvalidReturnType>
+
+        <InvalidReturnStatement>
+            <errorLevel type="info">
+                <!-- Hydration mode not specified, defaults to Doctrine_Collection -->
+                <file name="lib/Doctrine/View.php" />
+                <file name="lib/Doctrine/Relation/Association/Self.php" />
+                <file name="lib/Doctrine/IntegrityMapper.php" />
+                <file name="lib/Doctrine/Node/NestedSet.php" />
+                <!-- Hydration mode is specified as HYDRATE_ARRAY, will be an array -->
+                <file name="lib/Doctrine/Query.php" />
+                <!-- Cannot be bool, if it is, gets converted to an int -->
+                <file name="lib/Doctrine/Formatter.php" />
+            </errorLevel>
+        </InvalidReturnStatement>
+
+        <MoreSpecificImplementedParamType errorLevel="info" />
+
+        <InvalidNullableReturnType>
+            <errorLevel type="info">
+                <!-- The prepare method will throw an exception before it'll return null -->
+                <file name="lib/Doctrine/Connection.php" />
+                <!-- The migrate method sets $to to an int if it's null via call to getVersion -->
+                <file name="lib/Doctrine/Migration.php" />
+            </errorLevel>
+        </InvalidNullableReturnType>
+        <NullableReturnStatement>
+            <errorLevel type="info">
+                <!-- The migrate method sets $to to an int if it's null via call to getVersion -->
+                <file name="lib/Doctrine/Migration.php" />
+            </errorLevel>
+        </NullableReturnStatement>
 
     </issueHandlers>
 </psalm>

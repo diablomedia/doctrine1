@@ -323,6 +323,11 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
         return 'DROP TABLE ' . $sequenceName;
     }
 
+    /**
+     * @param  string $name
+     * @param  bool $check
+     * @return string|bool
+     */
     public function alterTableSql($name, array $changes, $check = false)
     {
         if ( ! $name) {

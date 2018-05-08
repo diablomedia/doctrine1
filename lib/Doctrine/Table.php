@@ -648,8 +648,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @throws Doctrine_Connection_Exception    if some error other than Doctrine_Core::ERR_ALREADY_EXISTS
      *                                          occurred during the create table operation
-     * @return boolean                          whether or not the export operation was successful
-     *                                          false if table already existed in the database
+     * @return void
      */
     public function export()
     {
@@ -973,7 +972,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param mixed ...$args first value is a string, name of related component;
      *                             second value is array, options for the relation.
      * @see Doctrine_Relation::_$definition
-     * @return Doctrine_Record          this object
+     * @return void
      */
     public function hasOne(...$args)
     {
@@ -986,7 +985,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param mixed ...$args first value is a string, name of related component;
      *                             second value is array, options for the relation.
      * @see Doctrine_Relation::_$definition
-     * @return Doctrine_Record          this object
+     * @return void
      */
     public function hasMany(...$args)
     {
@@ -1101,7 +1100,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @see Doctrine_Table::$_options   for available options
      * @param string $name  the name of the option
-     * @return mixed        the value of given option
+     * @return mixed|null        the value of given option
      */
     public function getOption($name)
     {
@@ -1117,7 +1116,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $alias        The alias to use
      * @param boolean $columnNames Whether or not to use column names instead of field names
-     * @return string $orderByStatement
+     * @return string|null $orderByStatement
      */
     public function getOrderByStatement($alias = null, $columnNames = false)
     {
@@ -1541,6 +1540,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      */
     public function create(array $array = array())
     {
+        /** @var Doctrine_Record $record */
         $record = new $this->_options['name']($this, true);
         $record->fromArray($array);
 
@@ -1856,6 +1856,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
             if ($found) {
                 $recordName = $this->getComponentName();
+                /** @var Doctrine_Record $record **/
                 $record = new $recordName($this, true);
                 $this->_data = array();
                 return $record;

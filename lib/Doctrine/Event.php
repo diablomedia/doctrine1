@@ -152,7 +152,7 @@ class Doctrine_Event
      * getName
      * returns the name of this event
      *
-     * @return string       the name of this event
+     * @return string|null       the name of this event
      */
     public function getName()
     {
@@ -288,7 +288,7 @@ class Doctrine_Event
      * start
      * starts the internal timer of this event
      *
-     * @return $this   this object
+     * @return void
      */
     public function start()
     {

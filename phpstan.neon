@@ -42,15 +42,6 @@ parameters:
         - '#Constructor of class Doctrine_Connection has an unused parameter \$pass\.#'
         # These aren't implemented yet (throw an exception stating such)
         - '#Constructor of class Doctrine_Node_MaterializedPath_.+Iterator has an unused parameter \$(node|opts)\.#'
-        # This might be a type-o, not sure. Doctrine_Connection has a __get magic method that returns various properties, most of
-        # them defined in the $modules property. There's an "export" property defined there, but not "exported"
-        - '#Access to an undefined property Doctrine_Connection::\$exported\.#'
-        # This one is probably supposed to be $_preQueried, not $_preQuery, which exists on Doctrine_Query_Abstract that Doctrine_RawSql extends
-        # Didn't change as I don't know what the effect would be
-        - '#Access to an undefined property Doctrine_RawSql::\$_preQuery\.#'
-        # This is defined in Doctrine_Hydrator, but not Doctrine_Hydrator_Abstract (which both Doctrine_Hydrator and Doctrine_Hydrator_Graph extend)
-        # Should probably be defined in the Abstract
-        - '#Access to an undefined property Doctrine_Hydrator_Graph::\$_rootAlias\.#'
 
         #########
         # Level 1
@@ -149,6 +140,7 @@ parameters:
         - '#Method Doctrine_Query::fetchArray\(\) should return array but returns array\|Doctrine_Collection\.#'
         # This one does not allow specifying the hydration mode, so should default to Doctrine_Collection (record hydration)
         - '#Method Doctrine_IntegrityMapper::buildIntegrityRelationQuery\(\) should return Doctrine_Collection but returns array\|Doctrine_Collection\.#'
+        - '#Method Doctrine_Relation_Association_Self::fetchRelatedFor\(\) should return Doctrine_Collection but returns array\|Doctrine_Collection\.#'
         # Not clear why phpstan complains on this one. If $collection is_scalar, it won't be a Doctrine_Collection
         - '#Method Doctrine_Query::fetchOne\(\) should return array\|Doctrine_Record\|false but returns array\|Doctrine_Collection\.#'
         # $mutator can be any string really, and there's no contract that mutator functions should return $this
@@ -416,7 +408,8 @@ parameters:
         # Oracle adapter will throw an exception if $this->connection is false after it tries to connect, so shouldn't be passing false around here
         - '#Parameter \#1 \$connection of function oci_commit expects resource, false\|resource given\.#'
         - '#Parameter \#1 \$connection of function oci_rollback expects resource, false\|resource given\.#'
-        - '#Method Doctrine_Adapter_Oracle::getConnection\(\) should return resource but returns false\|resource\.#'
         # Doctrine_Table::getIdentifier may return a string or an array (an array if the primary key is multi-column), would need
         # to check that this value isn't an array. Doctrine_Connection_UnitOfWork:947
         - '#Invalid array key type array\|string\.#'
+        # Shouldn't be null here, but could be
+        - '#Parameter \#1 \$connection of function oci_parse expects resource, false\|resource given\.#'

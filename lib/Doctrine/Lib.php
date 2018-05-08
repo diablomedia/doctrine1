@@ -40,7 +40,7 @@ class Doctrine_Lib
      * @see Doctrine_Record::STATE_* constants
      *
      * @param integer $state    the state of record
-     * @return string           description of given state
+     * @return string|null           description of given state
      */
     public static function getRecordStateAsString($state)
     {
@@ -93,7 +93,7 @@ class Doctrine_Lib
      * in a english description.
      * @see Doctrine_Transaction::STATE_* constants
      * @param integer $state    state of the connection as a string
-     * @return string
+     * @return string|null
      */
     public static function getConnectionStateAsString($state)
     {

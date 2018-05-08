@@ -73,7 +73,7 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
      *
      * @param string $substr    literal string to find
      * @param string $str       literal string
-     * @return string
+     * @return int|false
      */
     public static function locateImpl($substr, $str)
     {
@@ -115,6 +115,7 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
     {
         return trim($str);
     }
+
     /**
      * @return string
      */

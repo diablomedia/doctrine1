@@ -494,7 +494,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      *                              'collate' => 'utf8_unicode_ci',
      *                              'type'    => 'innodb',
      *                          );
-     * @return boolean
+     * @return boolean|null
      */
     public function createSequence($sequenceName, $start = 1, array $options = array())
     {

@@ -170,6 +170,7 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
     /**
      * Override quote behaviour for boolean to fix issues with quoting of
      * boolean values.
+     * @return null|int|string
      */
     public function quote($input, $type = null)
     {

@@ -143,11 +143,13 @@ class Doctrine_Hydrator
             if (!$driverClass instanceOf Doctrine_Hydrator_Abstract) {
                 throw new Doctrine_Hydrator_Exception('Invalid hydration class specified: '.get_class($driverClass));
             }
+            /** @var Doctrine_Hydrator_Abstract $driver */
             $driver = $driverClass;
             $driver->setQueryComponents($this->_queryComponents);
             $driver->setTableAliases($tableAliases);
             $driver->setHydrationMode($mode);
         } else {
+            /** @var Doctrine_Hydrator_Abstract $driver */
             $driver = new $driverClass($this->_queryComponents, $tableAliases, $mode);
         }
 

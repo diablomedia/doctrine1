@@ -64,7 +64,7 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
     /**
      * setFilterQueryType
      *
-     * @return boolean
+     * @return void
      */
     public function setFilterQueryType() {
 

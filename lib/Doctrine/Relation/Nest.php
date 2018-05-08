@@ -32,6 +32,9 @@
  */
 class Doctrine_Relation_Nest extends Doctrine_Relation_Association
 {
+    /**
+     * @return Doctrine_Collection
+     */
     public function fetchRelatedFor(Doctrine_Record $record)
     {
         $id = $record->getIncremented();
@@ -82,6 +85,7 @@ class Doctrine_Relation_Nest extends Doctrine_Relation_Association
 
             $params = ($this->definition['equal']) ? array($id, $id) : array($id);
 
+            /** @var Doctrine_Collection $res No hydration parameter passed */
             $res = $q->execute($params);
 
             return $res;

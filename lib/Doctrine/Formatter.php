@@ -46,7 +46,7 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      */
     public function escapePattern($text)
     {
-        if ( ! $this->string_quoting['escape_pattern']) {
+        if ( ! $this->conn->string_quoting['escape_pattern']) {
             return $text;
         }
         $tmp = $this->conn->string_quoting;
@@ -55,7 +55,7 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
             $tmp['escape_pattern'] .
             $tmp['escape_pattern'], $text);
 
-        foreach ($this->wildcards as $wildcard) {
+        foreach ($this->conn->wildcards as $wildcard) {
             $text = str_replace($wildcard, $tmp['escape_pattern'] . $wildcard, $text);
         }
         return $text;
@@ -270,6 +270,6 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
     public function getTableName($table)
     {
         $format = $this->conn->getAttribute(Doctrine_Core::ATTR_TBLNAME_FORMAT);
-        return sprintf($format, str_replace(sprintf($format, null), null, $table));
+        return sprintf($format, str_replace(sprintf($format, null), '', $table));
     }
 }

@@ -91,7 +91,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      * to keep the collections up to date with the database
      *
      * @param Doctrine_Collection $coll     a collection to be added
-     * @return Doctrine_Transaction         this object
+     * @return $this         this object
      */
     public function addCollection(Doctrine_Collection $coll)
     {

@@ -124,7 +124,7 @@ class Doctrine_Event
     /**
      * constructor
      *
-     * @param Doctrine_Connection|Doctrine_Connection_Statement|Doctrine_Connection_UnitOfWork|Doctrine_Transaction|Doctrine_Record $invoker   the handler which invoked this event
+     * @param Doctrine_Connection|Doctrine_Connection_Statement|Doctrine_Connection_UnitOfWork|Doctrine_Transaction|Doctrine_Record|null $invoker   the handler which invoked this event
      * @param integer $code                                                  the event code
      * @param string|Doctrine_Query_Abstract $query                                                  the sql query associated with this event (if any)
      * @param array $params
@@ -275,7 +275,7 @@ class Doctrine_Event
      *
      * @param string $option    the name of the option
      * @param mixed $value      the value of the given option
-     * @return Doctrine_Event   this object
+     * @return $this   this object
      */
     public function set($option, &$value)
     {
@@ -288,7 +288,7 @@ class Doctrine_Event
      * start
      * starts the internal timer of this event
      *
-     * @return Doctrine_Event   this object
+     * @return $this   this object
      */
     public function start()
     {
@@ -310,7 +310,7 @@ class Doctrine_Event
      * end
      * ends the internal timer of this event
      *
-     * @return Doctrine_Event   this object
+     * @return $this   this object
      */
     public function end()
     {

@@ -711,7 +711,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      *
      * @param int $level
      * @param string $name
-     * @param string $option
+     * @param string|null $option
      * @return string assignation code
      */
     private function emitAssign($level, $name, $option)

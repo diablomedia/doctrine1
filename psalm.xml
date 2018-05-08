@@ -109,22 +109,6 @@
         <InvalidReturnType errorLevel="info" />
         <UndefinedThisPropertyAssignment errorLevel="info" />
 
-        <!-- level 7 issues - even worse -->
-
-        <UndefinedThisPropertyAssignment errorLevel="info" />
-        <UndefinedPropertyAssignment errorLevel="info" />
-        <UndefinedThisPropertyFetch errorLevel="info" />
-        <UndefinedPropertyFetch errorLevel="info" />
-
-        <InvalidReturnStatement errorLevel="info" />
-        <InvalidReturnType errorLevel="info" />
-        <InvalidArgument errorLevel="info" />
-        <InvalidPropertyAssignmentValue errorLevel="info" />
-        <InvalidArrayOffset errorLevel="info" />
-        <InvalidArrayAssignment errorLevel="info" />
-        <InvalidArrayAccess errorLevel="info" />
-        <InvalidClone errorLevel="info" />
-
         <!-- These all come from missing extensions, and psalm apparently doesn't load them from stubs files -->
         <UndefinedConstant errorLevel="info" />
         <EmptyArrayAccess>
@@ -177,6 +161,21 @@
                 <file name="lib/Doctrine/Node/NestedSet.php" />
             </errorLevel>
         </UndefinedMethod>
+
+        <InvalidArrayAssignment>
+            <errorLevel type="info">
+                <!-- A count is performed on the data variable, which should prevent getFirst here from returning false -->
+                <file name="lib/Doctrine/Tree/NestedSet.php" />
+            </errorLevel>
+        </InvalidArrayAssignment>
+
+        <InvalidArgument>
+            <errorLevel type="info">
+                <file name="lib/Doctrine/Adapter/Statement/Oracle.php" />
+                <file name="lib/Doctrine/Template/Listener/Timestampable.php" />
+                <file name="lib/Doctrine/Validator/Readonly.php" />
+            </errorLevel>
+        </InvalidArgument>
 
     </issueHandlers>
 </psalm>

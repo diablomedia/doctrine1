@@ -2667,6 +2667,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             }
 
             foreach ($ids as $id) {
+                /** @var Doctrine_Record $record */
                 $record = new $modelClassName;
                 $record[$localFieldName] = $identifier;
                 $record[$foreignFieldName] = $id;

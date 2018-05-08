@@ -76,7 +76,7 @@ class Doctrine_Validator_Driver
      *
      * @param string $arg          the name of the option to be changed
      * @param mixed $value        the value of the option
-     * @return Doctrine_Validator_Driver    this object
+     * @return $this    this object
      */
     public function __set($arg, $value)
     {
@@ -94,7 +94,7 @@ class Doctrine_Validator_Driver
     public function getArg($arg)
     {
         if ( ! isset($this->args[$arg])) {
-            throw new Doctrine_Validator_Exception('Unknown option ' . $arg);
+            throw new Doctrine_Validator_Exception(array('Unknown option ' . $arg));
         }
 
         return $this->args[$arg];
@@ -105,7 +105,7 @@ class Doctrine_Validator_Driver
      *
      * @param string $arg          the name of the option to be changed
      * @param mixed $value        the value of the option
-     * @return Doctrine_Validator_Driver    this object
+     * @return $this    this object
      */
     public function setArg($arg, $value)
     {

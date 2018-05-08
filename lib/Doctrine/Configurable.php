@@ -187,7 +187,7 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      *
      * @param string $template      name of the class template
      * @param string $class         name of the class to be bound
-     * @return Doctrine_Configurable    this object
+     * @return $this                this object
      */
     public function setImpl($template, $class)
     {

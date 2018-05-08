@@ -656,7 +656,7 @@ class Doctrine_Core
 
                     if (end($e) === 'php' && strpos($file->getFileName(), '.inc') === false) {
                         if ($modelLoading == Doctrine_Core::MODEL_LOADING_PEAR) {
-                            $className = str_replace($dir . DIRECTORY_SEPARATOR, null, $file->getPathName());
+                            $className = str_replace($dir . DIRECTORY_SEPARATOR, '', $file->getPathName());
                             $className = str_replace(DIRECTORY_SEPARATOR, '_', $className);
                             $className = substr($className, 0, strpos($className, '.'));
                         } else {

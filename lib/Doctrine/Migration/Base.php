@@ -178,7 +178,7 @@ abstract class Doctrine_Migration_Base
      *
      * @param string $upDown            Whether to add the up(create) or down(drop) create change.
      * @param string $tableName         Name of the table.
-     * @param string $constraintName    Name of the constraint.
+     * @param string|null $constraintName    Name of the constraint.
      * @param array  $definition        Array for the constraint definition.
      * @return void
      */
@@ -193,7 +193,7 @@ abstract class Doctrine_Migration_Base
      * Add a create constraint change.
      *
      * @param string $tableName         Name of the table.
-     * @param string $constraintName    Name of the constraint.
+     * @param string|null $constraintName    Name of the constraint.
      * @param array  $definition        Array for the constraint definition.
      * @return void
      */
@@ -206,7 +206,7 @@ abstract class Doctrine_Migration_Base
      * Add a drop constraint change.
      *
      * @param string $tableName         Name of the table.
-     * @param string $constraintName    Name of the constraint.
+     * @param string|null $constraintName    Name of the constraint.
      * @param bool $primary
      * @return void
      */

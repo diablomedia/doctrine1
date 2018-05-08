@@ -428,7 +428,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      */
     public function initIdentifier()
     {
-        switch (count($this->_identifier)) {
+        switch (count((array) $this->_identifier)) {
             case 0:
                 if ( ! empty($this->_options['joinedParents'])) {
                     $root = current($this->_options['joinedParents']);
@@ -1076,7 +1076,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @see Doctrine_Table::$_options   for available options
      * @param string $name              the name of the option to set
      * @param mixed $value              the value of the option
-     * @return Doctrine_Table           this object
+     * @return void
      */
     public function setOption($name, $value)
     {
@@ -1504,7 +1504,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * to create queries.
      *
      * @params Doctrine_Connection      a connection object
-     * @return Doctrine_Table           this object; fluent interface
+     * @return $this                    this object; fluent interface
      */
     public function setConnection(Doctrine_Connection $conn)
     {
@@ -2498,7 +2498,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $template          template name
      * @param Doctrine_Template $impl   behavior to attach
-     * @return Doctrine_Table
+     * @return $this
      */
     public function addTemplate($template, Doctrine_Template $impl)
     {
@@ -2548,7 +2548,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param Doctrine_Record_Generator $generator
      * @param string $name
-     * @return Doctrine_Table
+     * @return $this
      */
     public function addGenerator(Doctrine_Record_Generator $generator, $name = null)
     {
@@ -2700,7 +2700,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * unshiftFilter
      *
      * @param  Doctrine_Record_Filter $filter
-     * @return Doctrine_Table                           this object (provides a fluent interface)
+     * @return $this                  this object (provides a fluent interface)
      */
     public function unshiftFilter(Doctrine_Record_Filter $filter)
     {

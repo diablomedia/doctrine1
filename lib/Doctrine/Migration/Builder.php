@@ -407,7 +407,7 @@ END;
      *
      * @param string $tableName
      * @param string $columnName
-     * @param string $column
+     * @param array $column
      * @return string $code
      */
     public function buildAddColumn($tableName, $columnName, $column)
@@ -436,7 +436,7 @@ END;
      *
      * @param string $tableName
      * @param string $columnName
-     * @param string $column
+     * @param array $column
      * @return string $code
      */
     public function buildChangeColumn($tableName, $columnName, $column)

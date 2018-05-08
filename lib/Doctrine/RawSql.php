@@ -381,7 +381,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      *
      * @param string $tableAlias
      * @param string $path
-     * @return Doctrine_RawSql
+     * @return $this
      */
     public function addComponent($tableAlias, $path)
     {

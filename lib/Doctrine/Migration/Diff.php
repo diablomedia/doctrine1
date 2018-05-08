@@ -356,7 +356,7 @@ class Doctrine_Migration_Diff
                 Doctrine_Inflector::tableize(self::$_toPrefix),
                 Doctrine_Inflector::tableize(self::$_fromPrefix)
             );
-            return str_replace($find, null, $info);
+            return str_replace($find, '', $info);
         }
     }
 

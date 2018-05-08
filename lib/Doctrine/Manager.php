@@ -50,7 +50,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     protected $_index         = 0;
 
     /**
-     * @var integer $currIndex          the current connection index
+     * @var integer|string $currIndex          the current connection index
      */
     protected $_currIndex     = 0;
 
@@ -250,7 +250,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Sets the query registry
      *
-     * @return Doctrine_Manager     this object
+     * @return $this     this object
      */
     public function setQueryRegistry(Doctrine_Query_Registry $registry)
     {
@@ -362,7 +362,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Parse a pdo style dsn in to an array of parts
      *
-     * @param array $dsn An array of dsn information
+     * @param string $dsn A DSN string (colon delimited parts)
      * @return array The array parsed
      * @todo package:dbal
      */

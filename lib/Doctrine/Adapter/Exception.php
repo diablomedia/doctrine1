@@ -31,4 +31,9 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Adapter_Exception extends Doctrine_Exception
-{ }
+{
+    /**
+     * @var array
+     */
+    public $errorInfo;
+}

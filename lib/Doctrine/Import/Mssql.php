@@ -219,10 +219,10 @@ class Doctrine_Import_Mssql extends Doctrine_Import
         }
         $table = $this->conn->quote($table, 'text');
         $query = 'EXEC sp_statistics @table_name = ' . $this->conn->quoteIdentifier($table, true);
-        $indexes = $this->conn->fetchColumn($query, $keyName);
+        $indexes = $this->conn->fetchColumn($query, array($keyName));
 
         $query = 'EXEC sp_pkeys @table_name = ' . $this->conn->quoteIdentifier($table, true);
-        $pkAll = $this->conn->fetchColumn($query, $pkName);
+        $pkAll = $this->conn->fetchColumn($query, array($pkName));
 
         $result = array();
 

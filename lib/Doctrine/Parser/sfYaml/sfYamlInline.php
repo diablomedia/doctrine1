@@ -180,6 +180,8 @@ class sfYamlInline
    */
   static public function parseScalar($scalar, $delimiters = null, $stringDelimiters = array('"', "'"), &$i = 0, $evaluate = true)
   {
+    $scalar = (string) $scalar;
+
     if (in_array($scalar[$i], $stringDelimiters))
     {
       // quoted scalar
@@ -225,6 +227,8 @@ class sfYamlInline
    */
   static protected function parseQuotedScalar($scalar, &$i)
   {
+    $scalar = (string) $scalar;
+
     if (!preg_match('/'.self::REGEX_QUOTED_STRING.'/Au', substr($scalar, $i), $match))
     {
       throw new InvalidArgumentException(sprintf('Malformed inline YAML string (%s).', substr($scalar, $i)));

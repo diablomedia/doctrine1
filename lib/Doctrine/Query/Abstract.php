@@ -332,7 +332,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $name      option name
      * @param string $value     option value
-     * @return Doctrine_Query   this object
+     * @return void
      */
     public function setOption($name, $value)
     {
@@ -2121,7 +2121,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $queryPartName     the name of the query part
      * @param array $queryParts         an array containing the query part data
-     * @return Doctrine_Query           this object
+     * @return void
      * @todo Better description. "parses given query part" ??? Then wheres the difference
      *       between process/parseQueryPart? I suppose this does something different.
      */
@@ -2184,7 +2184,7 @@ abstract class Doctrine_Query_Abstract
      * parses a dql query
      *
      * @param string $query         query to be parsed
-     * @return Doctrine_Query_Abstract  this object
+     * @return $this  this object
      */
     abstract public function parseDqlQuery($query);
 

@@ -142,7 +142,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Set the data for the Doctrin_Collection instance
      *
      * @param array $data
-     * @return Doctrine_Collection
+     * @return void
      */
     public function setData(array $data)
     {
@@ -202,7 +202,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Sets the key column for this collection
      *
      * @param string $column
-     * @return Doctrine_Collection $this
+     * @return $this
      */
     public function setKeyColumn($column)
     {

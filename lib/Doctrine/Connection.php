@@ -73,7 +73,7 @@
  * @property int $varchar_max_length
  * @property array $wildcards
  * Not initially defined, but added later
- * @property string $dsn
+ * @property string|array $dsn
  * Set by Doctrine_Connection_Oracle
  * @property int $number_max_precision
  */
@@ -1115,6 +1115,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @throws Doctrine_Connection_Exception
      *
+     * @param PDOException|Doctrine_Adapter_Exception $e
      * @param mixed $invoker
      * @param string $query
      * @return void

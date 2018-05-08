@@ -247,7 +247,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      *
      * @param string $componentAlias    component alias
      * @param string $joinCondition     dql join condition
-     * @return Doctrine_Query           this object
+     * @return void
      */
     public function addPendingJoinCondition($componentAlias, $joinCondition)
     {
@@ -2288,7 +2288,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * This method can therefore be used to reduce memory usage when creating
      * a lot of query objects during a request.
      *
-     * @return Doctrine_Query   this object
+     * @return void
      */
     public function free()
     {

@@ -42,7 +42,7 @@ interface Doctrine_Tree_Interface {
     /**
      * returns root node
      *
-     * @return Doctrine_Record
+     * @return Doctrine_Record|false
      */
     public function fetchRoot($root_id = 1);
 
@@ -50,8 +50,8 @@ interface Doctrine_Tree_Interface {
      * optimised method to returns iterator for traversal of the entire tree from root
      *
      * @param array $options                    options
-     * @param integer $hydrationMode  One of the Doctrine_Core::HYDRATE_* constants.
-     * @return Iterator                 instance of Doctrine_Node_<Implementation>_PreOrderIterator
+     * @param integer $hydrationMode            One of the Doctrine_Core::HYDRATE_* constants.
+     * @return Traversable|false|array          instance of Doctrine_Node_<Implementation>_PreOrderIterator
      */
     public function fetchTree($options = array(), $hydrationMode = null);
 
@@ -60,8 +60,8 @@ interface Doctrine_Tree_Interface {
      *
      * @param mixed $pk                         primary key as used by table::find() to locate node to traverse tree from
      * @param array $options                    options
-     * @param integer $hydrationMode                One of the Doctrine_Core::HYDRATE_* constants.
-     * @return Iterator                         instance of Doctrine_Node_<Implementation>_PreOrderIterator
+     * @param integer $hydrationMode            One of the Doctrine_Core::HYDRATE_* constants.
+     * @return Traversable|false|array          instance of Doctrine_Node_<Implementation>_PreOrderIterator
      */
     public function fetchBranch($pk, $options = array(), $hydrationMode = null);
 }

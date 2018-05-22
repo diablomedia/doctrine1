@@ -107,7 +107,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
 
             $localeInfo = localeconv();
             $decimalPoint = $localeInfo['mon_decimal_point'] ? $localeInfo['mon_decimal_point'] : $localeInfo['decimal_point'];
-            $e = explode($decimalPoint, $value);
+            $e = explode($decimalPoint, (string) $value);
 
             $length = strlen($e[0]);
 

@@ -389,9 +389,9 @@ class Doctrine_Import extends Doctrine_Connection_Module
               $definition['columns'] = $connection->import->listTableColumns($table);
               $definition['connection'] = $connection->getName();
               $definition['connectionClassName'] = $definition['className'];
+              $definition['relations'] = array();
 
               try {
-                  $definition['relations'] = array();
                   $relations = $connection->import->listTableRelations($table);
                   $relClasses = array();
                   foreach ($relations as $relation) {

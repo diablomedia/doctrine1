@@ -231,7 +231,7 @@ abstract class Doctrine_Query_Abstract
     protected $_type = self::SELECT;
 
     /**
-     * @var Doctrine_Hydrator_Abstract|Doctrine_Hydrator   The hydrator object used to hydrate query results.
+     * @var Doctrine_Hydrator|Doctrine_Hydrator_Abstract   The hydrator object used to hydrate query results.
      */
     protected $_hydrator;
 
@@ -295,7 +295,7 @@ abstract class Doctrine_Query_Abstract
      * Constructor.
      *
      * @param Doctrine_Connection $connection The connection object the query will use.
-     * @param Doctrine_Hydrator_Abstract $hydrator The hydrator that will be used for generating result sets.
+     * @param Doctrine_Hydrator_Abstract|null $hydrator The hydrator that will be used for generating result sets.
      */
     public function __construct(Doctrine_Connection $connection = null,
             Doctrine_Hydrator_Abstract $hydrator = null)
@@ -1055,7 +1055,11 @@ abstract class Doctrine_Query_Abstract
                 // cache miss
                 $stmt = $this->_execute($params);
                 $this->_hydrator->setQueryComponents($this->_queryComponents);
-                $result = $this->_hydrator->hydrateResultSet($stmt, $this->_tableAliasMap);
+                if ($this->_hydrator instanceof Doctrine_Hydrator) {
+                    $result = $this->_hydrator->hydrateResultSet($stmt, $this->_tableAliasMap);
+                } else {
+                    $result = $this->_hydrator->hydrateResultSet($stmt);
+                }
 
                 $cached = $this->getCachedForm($result);
                 $cacheDriver->save($hash, $cached, $this->getResultCacheLifeSpan());
@@ -1073,7 +1077,11 @@ abstract class Doctrine_Query_Abstract
                     $hydrationDriver = $this->_hydrator->getHydratorDriver($hydrationMode, $this->_tableAliasMap);
                     $result = new Doctrine_Collection_OnDemand($stmt, $hydrationDriver, $this->_tableAliasMap);
                 } else {
-                    $result = $this->_hydrator->hydrateResultSet($stmt, $this->_tableAliasMap);
+                    if ($this->_hydrator instanceof Doctrine_Hydrator) {
+                        $result = $this->_hydrator->hydrateResultSet($stmt, $this->_tableAliasMap);
+                    } else {
+                        $result = $this->_hydrator->hydrateResultSet($stmt);
+                    }
                 }
             }
         }
@@ -2176,8 +2184,9 @@ abstract class Doctrine_Query_Abstract
      * by this query object at the time of this method call.
      *
      * @param array $params
+     * @param bool $limitSubquery
      */
-    abstract public function getSqlQuery($params = array());
+    abstract public function getSqlQuery($params = array(), $limitSubquery = true);
 
     /**
      * parseDqlQuery

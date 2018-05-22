@@ -81,18 +81,23 @@
         <PossiblyUndefinedVariable errorLevel="info" />
         <PossiblyUndefinedMethod errorLevel="info" />
 
-        <!-- level 5 issues - should be avoided at mosts costs... -->
 
-        <ForbiddenCode errorLevel="info" />
-        <ImplicitToStringCast errorLevel="info" />
-        <InvalidScalarArgument errorLevel="info" />
-        <InvalidToString errorLevel="info" />
-        <InvalidOperand errorLevel="info" />
-        <NoInterfaceProperties errorLevel="info" />
-        <TooManyArguments errorLevel="info" />
-        <TypeDoesNotContainType errorLevel="info" />
-        <TypeDoesNotContainNull errorLevel="info" />
-        <MissingDocblockType errorLevel="info" />
+        <TooManyArguments>
+            <errorLevel type="info">
+                <!-- different number of parameters passed depending on the mode -->
+                <file name="lib/Doctrine/Connection/Statement.php" />
+            </errorLevel>
+        </TooManyArguments>
+
+        <TypeDoesNotContainType>
+            <errorLevel type="info">
+                <!-- In this case the variable will never be an int, can probably remove the is_int condition, though maybe
+                needs to be changed to something like is_numeric -->
+                <file name="lib/Doctrine/Parser/Xml.php" />
+            </errorLevel>
+        </TypeDoesNotContainType>
+
+        <!-- Doctrine isn't terribly consistent with its inherited/overridden methods -->
         <ImplementedReturnTypeMismatch errorLevel="info" />
 
         <!-- These all come from missing extensions, and psalm apparently doesn't load them from stubs files -->
@@ -174,6 +179,9 @@
                 <file name="lib/Doctrine/Query.php" />
                 <!-- Cannot be bool, if it is, gets converted to an int -->
                 <file name="lib/Doctrine/Formatter.php" />
+                <!-- SimpleXMLElement::asXml returns string|false if filename isn't specified to asXml call, which is the
+                case here, so "true" won't ever be returned in this case. -->
+                <file name="lib/Doctrine/Parser/Xml.php" />
             </errorLevel>
         </InvalidReturnType>
 
@@ -188,6 +196,11 @@
                 <file name="lib/Doctrine/Query.php" />
                 <!-- Cannot be bool, if it is, gets converted to an int -->
                 <file name="lib/Doctrine/Formatter.php" />
+                <!-- SimpleXMLElement::asXml returns string|false if filename isn't specified to asXml call, which is the
+                case here, so "true" won't ever be returned in this case. -->
+                <file name="lib/Doctrine/Parser/Xml.php" />
+                <!-- Psalm wants to use numeric type, but other analyzers, like phpstan, don't like that type -->
+                <file name="lib/Doctrine/Parser/sfYaml/sfYamlInline.php" />
             </errorLevel>
         </InvalidReturnStatement>
 
@@ -208,5 +221,30 @@
             </errorLevel>
         </NullableReturnStatement>
 
+        <InvalidScalarArgument>
+            <errorLevel type="info">
+                <!-- scalar|null is probably fine here, will be coerced to be an array key, or could change the docblock -->
+                <file name="lib/Doctrine/Validator/ErrorStack.php" />
+            </errorLevel>
+        </InvalidScalarArgument>
+
+        <NoInterfaceProperties>
+            <errorLevel type="info">
+                <!-- this is defined as a @property annotation on Doctrine_Adapter_Statement_Interface, probably needs to be
+                moved to the concrete implementations -->
+                <file name="lib/Doctrine/Connection/Statement.php" />
+            </errorLevel>
+        </NoInterfaceProperties>
+
+        <PossiblyUndefinedArrayOffset>
+            <errorLevel type="info">
+                <!-- Tokenizer does weird things in a loop -->
+                <file name="lib/Doctrine/Query/Tokenizer.php" />
+            </errorLevel>
+        </PossiblyUndefinedArrayOffset>
+
+        <!-- newer version of psalm does not like the @property annotations -->
+        <UndefinedThisPropertyFetch errorLevel="info" />
+        <UndefinedPropertyFetch errorLevel="info" />
     </issueHandlers>
 </psalm>

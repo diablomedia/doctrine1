@@ -30,6 +30,7 @@
  * @version     $Revision: 7490 $
  * @link        www.doctrine-project.org
  * @since       1.0
+ * @property Doctrine_DataDict_Pgsql $dataDict
  */
 class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
 {

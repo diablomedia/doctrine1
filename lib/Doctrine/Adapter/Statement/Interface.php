@@ -178,7 +178,7 @@ interface Doctrine_Adapter_Statement_Interface
      *
      * @return array
      */
-    public function fetchAll($fetchStyle = Doctrine_Core::FETCH_BOTH);
+    public function fetchAll($fetchStyle = Doctrine_Core::FETCH_BOTH, $colnum = 0);
 
     /**
      * Returns a single column from the next row of a

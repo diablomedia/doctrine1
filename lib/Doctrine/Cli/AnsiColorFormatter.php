@@ -154,7 +154,7 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
             return $text;
         }
 
-        $subsize = floor(($size - 3) / 2);
+        $subsize = (int) floor(($size - 3) / 2);
 
         return substr($text, 0, $subsize) . $this->format('...', 'INFO').substr($text, -$subsize);
     }

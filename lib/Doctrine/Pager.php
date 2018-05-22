@@ -130,7 +130,7 @@ class Doctrine_Pager
     {
         // Define new total of pages
         $this->_setLastPage(
-            max(1, ceil($this->getNumResults() / $this->getMaxPerPage()))
+            (int) max(1, ceil($this->getNumResults() / $this->getMaxPerPage()))
         );
         $offset = ($this->getPage() - 1) * $this->getMaxPerPage();
 

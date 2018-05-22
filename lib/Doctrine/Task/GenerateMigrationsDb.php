@@ -62,7 +62,7 @@ class Doctrine_Task_GenerateMigrationsDb extends Doctrine_Task
                 $connections[] = $connection->getName();
             }
             $changes = Doctrine_Core::generateMigrationsFromDiff($migrationsPath, $connections, $yamlSchemaPath);
-            $numChanges = count($changes, true) - count($changes);
+            $numChanges = count($changes, COUNT_RECURSIVE) - count($changes);
             $result = ($result1 || $numChanges) ? true:false;
         } catch (Exception $e) {
             $result = false;

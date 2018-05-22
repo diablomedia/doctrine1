@@ -955,7 +955,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *                          second value is array, options for the relation.
      *                          @see Doctrine_Relation::_$definition
      * @param integer $type     Doctrine_Relation::ONE or Doctrine_Relation::MANY
-     * @return void
+     * @return $this
      * @todo Name proposal: addRelation
      */
     public function bind($args, $type)
@@ -964,6 +964,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         $options['type'] = $type;
 
         $this->_parser->bind($args[0], $options);
+
+        return $this;
     }
 
     /**

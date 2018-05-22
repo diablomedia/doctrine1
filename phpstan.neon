@@ -1,5 +1,5 @@
 parameters:
-    bootstrap: %rootDir%/../../../phpstan-bootstrap.php
+    bootstrap: phpstan-bootstrap.php
     ignoreErrors:
         #########
         # Level 0
@@ -22,13 +22,6 @@ parameters:
         # These methods do not exist anywhere in Doctrine
         - '#Call to an undefined method Doctrine_Search_Indexer_Dir::indexFile\(\)\.#'
         - '#Call to an undefined method Doctrine_Transaction::addDelete\(\)\.#'
-        # Doctrine_Query_Abstract defines this with just one parameter but Doctrine_Query (which extends Doctrine_Query_Abstract)
-        # defines it with a second parameter ($limitSubQuery). Since this is called from Doctrine_Query_Abstract, the abstract
-        # signature should probably be changed, but that could break other implementations.
-        - '#Method Doctrine_Query_Abstract::getSqlQuery\(\) invoked with 2 parameters, 0-1 required\.#'
-        # In Doctrine_Column, not sure the intent here, seems like $field was to be passed to filter which enum value was sent?
-        # Either way, this method does not accept a parameter.
-        - '#Method Doctrine_Column::getEnumValues\(\) invoked with 1 parameter, 0 required\.#'
         # In Doctrine_Cli_Formatter:81, this seems like a bug, the format probably has a type-o, but not sure what the intent was
         # php > echo sprintf(">> %-$9s %s", 'testing', 'another test');
         #   >> 9s another test
@@ -103,10 +96,6 @@ parameters:
         # (nor its parents).  This code isn't currently touched by tests, assuming it's broken.
         # (https://codecov.io/gh/diablomedia/doctrine1/src/master/lib/Doctrine/IntegrityMapper.php#L56)
         - '#Call to an undefined method Doctrine_Manager::getDeleteActions\(\)\.#'
-        # There is one Doctrine_Connection subclass that has 6 parameters (Doctrine_Connection_Mssql), could perhaps branch this code
-        # and detect for that particular class and call it with 6 parameters in that case, otherwise with 4
-        # Doctrine_Query:1375
-        - '#Method Doctrine_Connection::modifyLimitQuery\(\) invoked with 6 parameters, 1-4 required\.#'
         # In Doctrine_Collection_Iterator_Expandable:40, no static references to a function named "expand" in the codebase, and don't see any __call methods
         # on Doctrine_Collection or its parents.
         - '#Call to an undefined method Doctrine_Collection::expand\(\)\.#'
@@ -270,11 +259,6 @@ parameters:
         - '#Cannot call method getConnection\(\) on Doctrine_Query\|string\.#'
         - '#Cannot call method isSubquery\(\) on Doctrine_Query\|string\.#'
         - '#Cannot call method addPendingJoinCondition\(\) on Doctrine_Query\|string\.#'
-        # In Doctrine_Connection_Statement:350, the $_stmt object can be PDOStatement or Doctrine_Adapter_Statement_Interface. PDOStatement allows
-        # more than 1 parameter for this method, the interface isn't defined that way (would be nice if these matched). 2 of the 3 classes that
-        # implement the interface do allow the second parameter. Interface (and the one class that doesn't have the second parameter) should probably
-        # be updated, but would break public API
-        - '#Method Doctrine_Adapter_Statement_Interface::fetchAll\(\) invoked with 2 parameters, 0-1 required\.#'
         # In Doctrine_Connection_Statement:240 the default for the "$params" parameter should probably be changed to an empty array instead
         # of null, there's also a truthy check on the param a bit later that would need to be modified to check if $params is empty
         - '#Argument of an invalid type array\|null supplied for foreach, only iterables are supported\.#'

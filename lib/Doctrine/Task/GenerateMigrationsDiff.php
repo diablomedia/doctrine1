@@ -57,7 +57,7 @@ class Doctrine_Task_GenerateMigrationsDiff extends Doctrine_Task
         $diff = new Doctrine_Migration_Diff($modelsPath, $yamlSchemaPath, $migration);
         $changes = $diff->generateMigrationClasses();
 
-        $numChanges = count($changes, true) - count($changes);
+        $numChanges = count($changes, COUNT_RECURSIVE) - count($changes);
 
         if ( ! $numChanges) {
             throw new Doctrine_Task_Exception('Could not generate migration classes from difference');

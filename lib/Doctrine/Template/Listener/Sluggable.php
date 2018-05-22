@@ -240,7 +240,7 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
         // and try to generate a unique slug again
         $length = $table->getFieldLength($this->_options['name']);
         if (strlen($slug) > $length) {
-            $slug = substr($slug, 0, $length - (strlen($i) + 1));
+            $slug = substr($slug, 0, $length - (strlen((string) $i) + 1));
             $slug = $this->getUniqueSlug($record, $slug);
         }
 

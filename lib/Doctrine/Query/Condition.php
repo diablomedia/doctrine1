@@ -115,7 +115,7 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
             $value = $this->query->getConnection()
                      ->dataDict->parseBoolean($value);
 
-            $a = explode('.', $value);
+            $a = explode('.', (string) $value);
 
             if (count($a) > 1) {
                 // either a float or a component..

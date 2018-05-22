@@ -35,7 +35,7 @@ class Doctrine_Validator_Date extends Doctrine_Validator_Driver
     /**
      * checks if given value is a valid date
      *
-     * @param mixed $value
+     * @param null|string $value
      * @return boolean
      */
     public function validate($value)
@@ -50,6 +50,6 @@ class Doctrine_Validator_Date extends Doctrine_Validator_Driver
         }
         $e2 = explode(' ', $e[2]);
         $e[2] = $e2[0];
-        return checkdate($e[1], $e[2], $e[0]);
+        return checkdate((int) $e[1], (int) $e[2], (int) $e[0]);
     }
 }

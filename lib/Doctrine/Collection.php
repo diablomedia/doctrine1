@@ -186,7 +186,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
             $this->$name = $values;
         }
 
-        $this->_table = $connection->getTable($this->_table);
+        $this->_table = $connection->getTable((string) $this->_table);
 
         $keyColumn = isset($array['keyColumn']) ? $array['keyColumn'] : null;
         if ($keyColumn === null) {
@@ -571,7 +571,11 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
             return null;
         }
 
-        $dql     = $rel->getRelationDql(count($list), 'collection');
+        if ($rel instanceof Doctrine_Relation_Association) {
+            $dql     = $rel->getRelationDql(count($list), 'collection');
+        } else {
+            $dql     = $rel->getRelationDql(count($list));
+        }
 
         $coll    = $query->query($dql, $list);
 

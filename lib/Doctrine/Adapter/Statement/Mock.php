@@ -223,7 +223,7 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      *
      * @return array
      */
-    public function fetchAll($fetchMode = Doctrine_Core::FETCH_BOTH)
+    public function fetchAll($fetchMode = Doctrine_Core::FETCH_BOTH, $colnum = 0)
     {
         return array();
     }

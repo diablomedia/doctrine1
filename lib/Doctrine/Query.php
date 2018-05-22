@@ -704,7 +704,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * 4. Quotes all identifiers
      * 5. Parses nested clauses and subqueries recursively
      * @param string $clause
-     * @return string|int   SQL string
+     * @return string   SQL string
      * @todo Description: What is a 'dql clause' (and what not)?
      *       Refactor: Too long & nesting level
      */
@@ -713,7 +713,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         $clause = $this->_conn->dataDict->parseBoolean(trim($clause));
 
         if (is_numeric($clause)) {
-           return $clause;
+           return (string) $clause;
         }
 
         $terms = $this->_tokenizer->clauseExplode($clause, array(' ', '+', '-', '*', '/', '<', '>', '=', '>=', '<=', '&', '|'));
@@ -1392,7 +1392,11 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         $q .= ( ! empty($this->_sqlParts['orderby'])) ? ' ORDER BY ' . implode(', ', $this->_sqlParts['orderby'])  : '';
 
         if ($modifyLimit) {
-            $q = $this->_conn->modifyLimitQuery($q, $this->_sqlParts['limit'], $this->_sqlParts['offset'], false, false, $this);
+            if ($this->_conn instanceof Doctrine_Connection_Mssql) {
+                $q = $this->_conn->modifyLimitQuery($q, $this->_sqlParts['limit'], $this->_sqlParts['offset'], false, false, $this);
+            } else {
+                $q = $this->_conn->modifyLimitQuery($q, $this->_sqlParts['limit'], $this->_sqlParts['offset'], false);
+            }
         }
 
         $q .= $this->_sqlParts['forUpdate'] === true ? ' FOR UPDATE ' : '';

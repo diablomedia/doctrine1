@@ -214,7 +214,7 @@ class Doctrine_Data_Import extends Doctrine_Data
      * Process a row and make all the appropriate relations between the imported data
      *
      * @param string $rowKey
-     * @param string $row
+     * @param string|array $row
      * @return void
      */
     protected function _processRow($rowKey, $row)

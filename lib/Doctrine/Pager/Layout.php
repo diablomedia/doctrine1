@@ -380,7 +380,7 @@ class Doctrine_Pager_Layout
      */
     public function __toString()
     {
-      return $this->display(array(), true);
+      return (string) $this->display(array(), true);
     }
 
     /**

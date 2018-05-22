@@ -74,12 +74,13 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
                 foreach ($value as $k => $v) {
                     if (is_numeric($v)) {
                         unset($value[$k]);
-                        $node->addAttribute($k, $v);
+                        $node->addAttribute($k, (string) $v);
                     }
                 }
 
                 self::arrayToXml($value, $rootNodeName, $node, $charset);
             } else if (is_int($key)) {
+                // $key will never be an int, since preg_replace never returns an int
                 $xml->addChild($value, 'true');
             } else {
                 $charset = $charset ? $charset : 'utf-8';

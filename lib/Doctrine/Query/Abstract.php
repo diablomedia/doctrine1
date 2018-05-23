@@ -1328,7 +1328,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * Alias for @see andWhere().
      * @param string $where
-     * @param array|scalar $params
+     * @param array|scalar|null $params
      * @return $this   this object
      */
     public function addWhere($where, $params = array())
@@ -1343,7 +1343,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $where Query WHERE part
-     * @param array|scalar $params An array of parameters or a simple scalar
+     * @param array|scalar|null $params An array of parameters or a simple scalar
      * @return $this
      */
     public function andWhere($where, $params = array())
@@ -1368,7 +1368,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $where Query WHERE part
-     * @param array|scalar $params An array of parameters or a simple scalar
+     * @param array|scalar|null $params An array of parameters or a simple scalar
      * @return $this
      */
     public function orWhere($where, $params = array())
@@ -1413,7 +1413,7 @@ abstract class Doctrine_Query_Abstract
     public function andWhereIn($expr, $params = array(), $not = false)
     {
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if ($params !== null && is_array($params) && (count($params) == 0)) {
+        if (is_array($params) && (count($params) == 0)) {
             return $this;
         }
 
@@ -1440,7 +1440,7 @@ abstract class Doctrine_Query_Abstract
     public function orWhereIn($expr, $params = array(), $not = false)
     {
         // if there's no params, return (else we'll get a WHERE IN (), invalid SQL)
-        if ($params !== null && is_array($params) && (count($params) == 0)) {
+        if (is_array($params) && (count($params) == 0)) {
             return $this;
         }
 
@@ -1747,7 +1747,7 @@ abstract class Doctrine_Query_Abstract
      * sets the WHERE part of the query
      *
      * @param string $where         Query WHERE part
-     * @param array|scalar $params        an array of parameters or a simple scalar
+     * @param array|scalar|null $params        an array of parameters or a simple scalar
      * @return $this
      */
     public function where($where, $params = array())

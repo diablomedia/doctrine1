@@ -683,7 +683,40 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                 $name = trim($name);
                 $fieldName = trim($fieldName);
 
-                $ret[] = '@property ' . $column['type'] . ' $' . $fieldName;
+                switch (strtolower($column['type'])) {
+                    case 'boolean':
+                    case 'integer':
+                    case 'float':
+                    case 'string':
+                    case 'array':
+                    case 'object':
+                    default:
+                        $type = strtolower($column['type']);
+                        break;
+                    case 'decimal':
+                        $type = 'float';
+                        break;
+                    case 'blob':
+                    case 'clob':
+                    case 'timestamp':
+                    case 'time':
+                    case 'date':
+                    case 'datetime':
+                    case 'enum':
+                    case 'gzip':
+                        $type = 'string';
+                        break;
+                }
+
+                // Add "null" union types for columns that aren't marked as notnull = true
+                if (!isset($column['notnull']) || ((bool) $column['notnull'] === false)) {
+                    // But not our primary columns, as they're notnull = true implicitly in Doctrine
+                    if (!isset($column['primary']) || (bool) $column['primary'] !== true) {
+                        $type .= '|null';
+                    }
+                }
+
+                $ret[] = '@property ' . $type . ' $' . $fieldName;
             }
 
             if (isset($definition['relations']) && ! empty($definition['relations'])) {

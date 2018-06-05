@@ -43,4 +43,4 @@ jobs:
     - stage: style check
       php: 7.2
       script:
-        - php-cs-fixer fix --dry-run -vv
+        - ./vendor/bin/php-cs-fixer fix --dry-run -vv

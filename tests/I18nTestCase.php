@@ -32,9 +32,9 @@
  */
 class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
 {
-
     public function prepareData()
-    { }
+    {
+    }
 
     public function prepareTables()
     {
@@ -45,9 +45,9 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
 
     public function testTranslationTableGetsExported()
     {
-    	$this->conn->setAttribute(Doctrine_Core::ATTR_EXPORT, Doctrine_Core::EXPORT_ALL);
-    	
-    	$this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_TABLES);
+        $this->conn->setAttribute(Doctrine_Core::ATTR_EXPORT, Doctrine_Core::EXPORT_ALL);
+        
+        $this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_TABLES);
         $this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_CONSTRAINTS);
         $this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_PLUGINS);
 
@@ -70,17 +70,17 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
 
     public function testTranslationTableIsInitializedProperly()
     {
-        $i = new I18nTest();
+        $i     = new I18nTest();
         $i->id = 1;
 
-        $i->Translation['EN']->name = 'some name';
+        $i->Translation['EN']->name  = 'some name';
         $i->Translation['EN']->title = 'some title';
         $this->assertEqual($i->Translation->getTable()->getComponentName(), 'I18nTestTranslation');
 
 
-        $i->Translation['FI']->name = 'joku nimi';
+        $i->Translation['FI']->name  = 'joku nimi';
         $i->Translation['FI']->title = 'joku otsikko';
-        $i->Translation['FI']->lang = 'FI';
+        $i->Translation['FI']->lang  = 'FI';
 
         $i->save();
 
@@ -91,7 +91,6 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($t->name, 'some name');
         $this->assertEqual($t->title, 'some title');
         $this->assertEqual($t->lang, 'EN');
-
     }
 
 
@@ -99,7 +98,7 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
     {
         $i = Doctrine_Query::create()->query('FROM I18nTest')->getFirst();
 
-        $i->Translation['EN']->name = 'updated name';
+        $i->Translation['EN']->name  = 'updated name';
         $i->Translation['EN']->title = 'updated title';
 
         $i->Translation->save();
@@ -128,7 +127,7 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
     
     public function testIndexByLangIsAttachedToNewlyCreatedCollections()
     {
-    	$coll = new Doctrine_Collection('I18nTestTranslation');
+        $coll = new Doctrine_Collection('I18nTestTranslation');
 
         $coll['EN']['name'] = 'some name';
         

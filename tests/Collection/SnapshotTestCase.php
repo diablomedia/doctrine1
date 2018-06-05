@@ -25,7 +25,7 @@
  * This test case is used for testing the snapshot functionality
  * of the Doctrine_Collection
  *
- * Snapshots are used for counting the diff between original and changed 
+ * Snapshots are used for counting the diff between original and changed
  * state of the collection.
  *
  * @package     Doctrine
@@ -98,13 +98,12 @@ class Doctrine_Collection_Snapshot_TestCase extends Doctrine_UnitTestCase
         $coll = $q->execute();
 
         $this->assertEqual($coll[0]->Phonenumber->count(), 1);
-
     }
 
     public function testDiffForManyToManyRelatedCollection()
     {
-        $user = new User();
-        $user->name = 'zYne';
+        $user                 = new User();
+        $user->name           = 'zYne';
         $user->Group[0]->name = 'PHP';
         $user->Group[1]->name = 'Web';
         $user->save();
@@ -137,7 +136,5 @@ class Doctrine_Collection_Snapshot_TestCase extends Doctrine_UnitTestCase
                  ->where('u.id = ' . $user->id)->execute();
         
         $this->assertEqual(count($user->Group), 0);
-
     }
-
 }

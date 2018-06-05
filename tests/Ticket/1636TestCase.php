@@ -36,7 +36,7 @@ class Doctrine_Ticket_1636_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'Ticket_1636_File';
         $this->tables[] = 'Ticket_1636_FileType';
         parent::prepareTables();
@@ -45,16 +45,16 @@ class Doctrine_Ticket_1636_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
         for ($i = 1; $i <= 2; $i++) {
-            $fileType = new Ticket_1636_FileType();
-            $fileType->id = $i;
+            $fileType       = new Ticket_1636_FileType();
+            $fileType->id   = $i;
             $fileType->name = 'Type ' . $i;
             $fileType->save();
         }
 
         for ($i = 1; $i <= 10; $i++) {
-            $file = new Ticket_1636_File();
-            $file->id = $i;
-            $file->type_id = 1;
+            $file           = new Ticket_1636_File();
+            $file->id       = $i;
+            $file->type_id  = 1;
             $file->filename = 'File ' . $i;
             $file->save();
         }
@@ -84,9 +84,11 @@ class Doctrine_Ticket_1636_TestCase extends Doctrine_UnitTestCase
         // Results should be getted from memcache.
         $files = $query->execute(array(1));
 
-        if (count($files))
-            foreach ($files as $file)
+        if (count($files)) {
+            foreach ($files as $file) {
                 $justForTest = $file->type->id;
+            }
+        }
 
         $executeQueryCount = 0;
 
@@ -102,22 +104,22 @@ class Doctrine_Ticket_1636_TestCase extends Doctrine_UnitTestCase
     }
 }
 
-class Ticket_1636_FileType extends Doctrine_Record {
-
+class Ticket_1636_FileType extends Doctrine_Record
+{
     public function setTableDefinition()
     {
         static $columns = array(
             'id' => array(
-                'type' => 'integer',
-                'length' => 4,
+                'type'     => 'integer',
+                'length'   => 4,
                 'unsigned' => true,
-                'notnull' => true,
-                'primary' => true,
-                'autoinc' => true
+                'notnull'  => true,
+                'primary'  => true,
+                'autoinc'  => true
             ),
             'name' => array(
-                'type' => 'string',
-                'length' => 32,
+                'type'    => 'string',
+                'length'  => 32,
                 'notnull' => true
             )
         );
@@ -129,34 +131,33 @@ class Ticket_1636_FileType extends Doctrine_Record {
     public function setUp()
     {
         $this->hasMany('Ticket_1636_File as files', array(
-            'local' => 'id',
+            'local'   => 'id',
             'foreign' => 'type_id'
         ));
     }
-
 }
 
-class Ticket_1636_File extends Doctrine_Record {
-
+class Ticket_1636_File extends Doctrine_Record
+{
     public function setTableDefinition()
     {
         static $columns = array(
             'id' => array(
-                'type' => 'integer',
-                'length' => 10,
+                'type'     => 'integer',
+                'length'   => 10,
                 'unsigned' => true,
-                'notnull' => true,
-                'primary' => true,
-                'autoinc' => true
+                'notnull'  => true,
+                'primary'  => true,
+                'autoinc'  => true
             ),
             'type_id' => array(
-                'type' => 'integer',
-                'length' => 4,
+                'type'    => 'integer',
+                'length'  => 4,
                 'notnull' => true
             ),
             'filename' => array(
-                'type' => 'string',
-                'length' => 255,
+                'type'    => 'string',
+                'length'  => 255,
                 'notnull' => true
             )
         );
@@ -168,9 +169,8 @@ class Ticket_1636_File extends Doctrine_Record {
     public function setUp()
     {
         $this->hasOne('Ticket_1636_FileType as type', array(
-            'local' => 'type_id',
+            'local'   => 'type_id',
             'foreign' => 'id'
         ));
     }
-
 }

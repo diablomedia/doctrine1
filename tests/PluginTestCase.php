@@ -30,14 +30,15 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Plugin_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Plugin_TestCase extends Doctrine_UnitTestCase
 {
-
     public function prepareData()
-    { }
+    {
+    }
 
     public function prepareTables()
-    { }
+    {
+    }
 
     public function testNestedPluginsGetExportedRecursively()
     {
@@ -52,7 +53,6 @@ class Doctrine_Plugin_TestCase extends Doctrine_UnitTestCase
         foreach ($sql as $query) {
             $this->conn->exec($query);
         }
-
     }
 
     public function testCreatingNewRecordsInvokesAllPlugins()
@@ -61,9 +61,9 @@ class Doctrine_Plugin_TestCase extends Doctrine_UnitTestCase
         $wiki->state(Doctrine_Record::STATE_TDIRTY);
         $wiki->save();
 
-        $fi = $wiki->Translation['FI'];
-        $fi->title = 'Michael Jeffrey Jordan';
-        $fi->content = "Michael Jeffrey Jordan (s. 17. helmikuuta 1963, Brooklyn, New York) on yhdysvaltalainen entinen NBA-koripalloilija, jota pidet��n yleisesti kaikkien aikojen parhaana pelaajana.";
+        $fi          = $wiki->Translation['FI'];
+        $fi->title   = 'Michael Jeffrey Jordan';
+        $fi->content = 'Michael Jeffrey Jordan (s. 17. helmikuuta 1963, Brooklyn, New York) on yhdysvaltalainen entinen NBA-koripalloilija, jota pidet��n yleisesti kaikkien aikojen parhaana pelaajana.';
 
         $fi->save();
         $this->assertEqual($fi->version, 1);
@@ -76,7 +76,7 @@ class Doctrine_Plugin_TestCase extends Doctrine_UnitTestCase
 
     public function testSavingUnmodifiedRecordsDoesNotInvokeTimestampableListener()
     {
-    	$this->conn->clear();
+        $this->conn->clear();
 
         $wiki = Doctrine_Query::create()->from('Wiki w')->where('w.id = 1')->fetchOne();
         
@@ -87,20 +87,20 @@ class Doctrine_Plugin_TestCase extends Doctrine_UnitTestCase
 
     public function testSearchableChildTemplate()
     {
-    	  $this->conn->clear();
+        $this->conn->clear();
 
         $wiki = new Wiki();
         $wiki->state(Doctrine_Record::STATE_TDIRTY);
         $wiki->save();
-        $fi = $wiki->Translation['FI'];
-        $fi->title = 'New Title';
+        $fi          = $wiki->Translation['FI'];
+        $fi->title   = 'New Title';
         $fi->content = "Sorry, I'm not able to write a Finish sentence about Michael Jordan...";
 
         $fi->save();
 
-        $t = Doctrine_Core::getTable('WikiTranslationIndex');
+        $t      = Doctrine_Core::getTable('WikiTranslationIndex');
         $oQuery = new Doctrine_Search_Query($t);
-        $oQuery->query("jordan");
+        $oQuery->query('jordan');
         $out = $this->conn->fetchAll($oQuery->getSqlQuery(), $oQuery->getParams());
 
         $this->assertEqual($out[0]['relevance'], 2);
@@ -111,18 +111,18 @@ class Doctrine_Plugin_TestCase extends Doctrine_UnitTestCase
 
     public function testSluggableChildTemplate()
     {
-    	  $this->conn->clear();
+        $this->conn->clear();
 
         $wiki = new Wiki();
         $wiki->state(Doctrine_Record::STATE_TDIRTY);
         $wiki->save();
-        $fi = $wiki->Translation['FI'];
-        $fi->title = 'This is the title';
-        $fi->content = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla sed.";
+        $fi          = $wiki->Translation['FI'];
+        $fi->title   = 'This is the title';
+        $fi->content = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla sed.';
 
         $fi->save();
         $this->assertEqual($fi->slug, 'this-is-the-title');
-		}
+    }
 }
 
 class Wiki extends Doctrine_Record
@@ -135,11 +135,11 @@ class Wiki extends Doctrine_Record
 
     public function setUp()
     {
-        $options = array('fields' => array('title', 'content'));
+        $options  = array('fields' => array('title', 'content'));
         $auditLog = new Doctrine_Template_Versionable($options);
-        $search = new Doctrine_Template_Searchable($options);
-        $slug = new Doctrine_Template_Sluggable(array('fields' => array('title'), 'indexName' => 'plugin_test_case_sluggable'));
-        $i18n = new Doctrine_Template_I18n($options);
+        $search   = new Doctrine_Template_Searchable($options);
+        $slug     = new Doctrine_Template_Sluggable(array('fields' => array('title'), 'indexName' => 'plugin_test_case_sluggable'));
+        $i18n     = new Doctrine_Template_I18n($options);
 
         $i18n->addChild($auditLog)
              ->addChild($search)

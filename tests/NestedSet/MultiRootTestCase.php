@@ -39,10 +39,12 @@ class Doctrine_NestedSet_MultiRoot_TestCase extends Doctrine_UnitTestCase
     }
 
     public function prepareData()
-    {}
+    {
+    }
     
-    public function testSavingNewRecordAsRootWithoutRootIdThrowsException() {
-        $node = new NestedSet_MultiRootNode();
+    public function testSavingNewRecordAsRootWithoutRootIdThrowsException()
+    {
+        $node       = new NestedSet_MultiRootNode();
         $node->name = 'root';
         try {
             $treeMngr = $this->conn->getTable('NestedSet_MultiRootNode')->getTree();
@@ -53,9 +55,10 @@ class Doctrine_NestedSet_MultiRoot_TestCase extends Doctrine_UnitTestCase
         }
     }
     
-    public function testSavingNewRecordWithRootIdWorks() {
-        $node = new NestedSet_MultiRootNode();
-        $node->name = 'root';
+    public function testSavingNewRecordWithRootIdWorks()
+    {
+        $node          = new NestedSet_MultiRootNode();
+        $node->name    = 'root';
         $node->root_id = 42;
         try {
             $treeMngr = $this->conn->getTable('NestedSet_MultiRootNode')->getTree();
@@ -68,8 +71,9 @@ class Doctrine_NestedSet_MultiRoot_TestCase extends Doctrine_UnitTestCase
         }
     }
     
-    public function testSavingPersistentRecordAsRootAssignsIdToRootId() {
-        $node = new NestedSet_MultiRootNode();
+    public function testSavingPersistentRecordAsRootAssignsIdToRootId()
+    {
+        $node       = new NestedSet_MultiRootNode();
         $node->name = 'root';
         $node->save();
         try {
@@ -84,8 +88,9 @@ class Doctrine_NestedSet_MultiRoot_TestCase extends Doctrine_UnitTestCase
         }
     }
     
-    public function testSaveMultipleRootsWithChildren() {
-        $root1 = new NestedSet_MultiRootNode();
+    public function testSaveMultipleRootsWithChildren()
+    {
+        $root1       = new NestedSet_MultiRootNode();
         $root1->name = 'root1';
         $root1->save();
         try {
@@ -98,7 +103,7 @@ class Doctrine_NestedSet_MultiRoot_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
         
-        $root2 = new NestedSet_MultiRootNode();
+        $root2       = new NestedSet_MultiRootNode();
         $root2->name = 'root';
         $root2->save();
         try {
@@ -112,8 +117,8 @@ class Doctrine_NestedSet_MultiRoot_TestCase extends Doctrine_UnitTestCase
         }
         
         // now a child for root1
-        $child1 = new NestedSet_MultiRootNode();
-        $child1->name = "child1";
+        $child1       = new NestedSet_MultiRootNode();
+        $child1->name = 'child1';
         $child1->getNode()->insertAsLastChildOf($root1);
         
         $root1->refresh(); // ! updates lft/rgt
@@ -127,8 +132,8 @@ class Doctrine_NestedSet_MultiRoot_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(0, $root1->level);
         
         // now a child for root2
-        $child2 = new NestedSet_MultiRootNode();
-        $child2->name = "child2";
+        $child2       = new NestedSet_MultiRootNode();
+        $child2->name = 'child2';
         $child2->getNode()->insertAsLastChildOf($root2);
         
         $root2->refresh(); // ! updates lft/rgt
@@ -147,19 +152,18 @@ class Doctrine_NestedSet_MultiRoot_TestCase extends Doctrine_UnitTestCase
         $this->conn->getTable('NestedSet_MultiRootNode')->clear();
         // check the root1 child
         $treeMngr = $this->conn->getTable('NestedSet_MultiRootNode')->getTree();
-        $root1 = $treeMngr->fetchRoot($root1Id);
-        $desc = $root1->getNode()->getDescendants();
+        $root1    = $treeMngr->fetchRoot($root1Id);
+        $desc     = $root1->getNode()->getDescendants();
         $this->assertTrue($desc !== false);
         $this->assertEqual(1, count($desc));
         $this->assertEqual('child1', $desc[0]['name']);
         $this->assertEqual(1, $desc[0]['level']);
         // check the root2 child
         $root2 = $treeMngr->fetchRoot($root2Id);
-        $desc = $root2->getNode()->getDescendants();
+        $desc  = $root2->getNode()->getDescendants();
         $this->assertTrue($desc !== false);
         $this->assertEqual(1, count($desc));
         $this->assertEqual('child2', $desc[0]['name']);
         $this->assertEqual(1, $desc[0]['level']);
     }
-
 }

@@ -8,7 +8,7 @@ class Policy extends Doctrine_Record
   
     public function setUp()
     {
-        $this->hasMany('PolicyAsset as PolicyAssets', array('local' => 'policy_number',
+        $this->hasMany('PolicyAsset as PolicyAssets', array('local'   => 'policy_number',
                                                             'foreign' => 'policy_number'));
         $this->index('policy_number_index', array('fields' => array('policy_number')));
     }

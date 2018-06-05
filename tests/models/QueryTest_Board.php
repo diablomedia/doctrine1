@@ -7,14 +7,30 @@ class QueryTest_Board extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('id', 'integer', 4, array('primary', 'autoincrement', 'notnull'));
-        $this->hasColumn('categoryId as categoryId', 'integer', 4,
-                array('notnull'));
-        $this->hasColumn('name as name', 'string', 100,
-                array('notnull', 'unique'));
-        $this->hasColumn('lastEntryId as lastEntryId', 'integer', 4,
-                array('default' => 0));
-        $this->hasColumn('position as position', 'integer', 4,
-                array('default' => 0, 'notnull'));
+        $this->hasColumn(
+            'categoryId as categoryId',
+            'integer',
+            4,
+                array('notnull')
+        );
+        $this->hasColumn(
+            'name as name',
+            'string',
+            100,
+                array('notnull', 'unique')
+        );
+        $this->hasColumn(
+            'lastEntryId as lastEntryId',
+            'integer',
+            4,
+                array('default' => 0)
+        );
+        $this->hasColumn(
+            'position as position',
+            'integer',
+            4,
+                array('default' => 0, 'notnull')
+        );
     }
 
     /**

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1545_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1545_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,7 +41,7 @@ class Doctrine_Ticket_1545_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         try {
-            $foo = new Ticket_1545_Foo();
+            $foo    = new Ticket_1545_Foo();
             $foo->a = null;
             $this->assertEqual($foo->b, null);
             $foo->custom = 'test';
@@ -70,14 +70,13 @@ class Ticket_1545_FooFilter extends Doctrine_Record_Filter
 {
     public function init()
     {
-        
     }
 
     public function filterGet(Doctrine_Record $record, $name)
     {
         if ($name == 'b') {
             return $record->a;
-        } else if ($name == 'custom') {
+        } elseif ($name == 'custom') {
             return $record->a;
         }
     }

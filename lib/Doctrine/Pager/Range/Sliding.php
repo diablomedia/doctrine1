@@ -76,7 +76,7 @@ class Doctrine_Pager_Range_Sliding extends Doctrine_Pager_Range
     protected function _setChunkLength($chunkLength)
     {
         $chunkLength = (int) $chunkLength;
-        if ( !$chunkLength) {
+        if (!$chunkLength) {
             $chunkLength = 1;
         } else {
             $this->_chunkLength = $chunkLength;
@@ -105,18 +105,18 @@ class Doctrine_Pager_Range_Sliding extends Doctrine_Pager_Range
             }
 
             $chunkStart = $page - (floor($chunk / 2));
-            $chunkEnd   = $page + (ceil($chunk / 2)-1);
+            $chunkEnd   = $page + (ceil($chunk / 2) - 1);
 
             if ($chunkStart < 1) {
-                $adjust = 1 - $chunkStart;
+                $adjust     = 1 - $chunkStart;
                 $chunkStart = 1;
-                $chunkEnd = $chunkEnd + $adjust;
+                $chunkEnd   = $chunkEnd + $adjust;
             }
 
             if ($chunkEnd > $pages) {
-                $adjust = $chunkEnd - $pages;
+                $adjust     = $chunkEnd   - $pages;
                 $chunkStart = $chunkStart - $adjust;
-                $chunkEnd = $pages;
+                $chunkEnd   = $pages;
             }
 
             return range($chunkStart, $chunkEnd);

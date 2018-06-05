@@ -31,4 +31,5 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Record_State_Exception extends Doctrine_Record_Exception
-{ }
+{
+}

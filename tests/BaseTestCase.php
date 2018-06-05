@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Base_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Base_TestCase extends Doctrine_UnitTestCase
 {
     public function testAggressiveModelLoading()
     {
@@ -44,12 +44,12 @@ class Doctrine_Base_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(isset($models['AggressiveModelLoadingContact']) && $models['AggressiveModelLoadingContact'] == 'AggressiveModelLoadingContact');
 
         // Make sure it does not include the base classes
-        $this->assertTrue( ! isset($models['BaseAggressiveModelLoadingUser']));
+        $this->assertTrue(! isset($models['BaseAggressiveModelLoadingUser']));
         
         $filteredModels = Doctrine_Core::filterInvalidModels($models);
 
         // Make sure filterInvalidModels filters out base abstract classes
-        $this->assertTrue( ! isset($models['BaseAggressiveModelLoadingUser']));
+        $this->assertTrue(! isset($models['BaseAggressiveModelLoadingUser']));
     }
 
     public function testConservativeModelLoading()
@@ -58,10 +58,10 @@ class Doctrine_Base_TestCase extends Doctrine_UnitTestCase
 
         $models = Doctrine_Core::loadModels($path, Doctrine_Core::MODEL_LOADING_CONSERVATIVE);
 
-        $this->assertTrue( ! class_exists('ConservativeModelLoadingUser', false));
-        $this->assertTrue( ! class_exists('ConservativeModelLoadingProfile', false));
-        $this->assertTrue( ! class_exists('ConservativeModelLoadingContact', false));
-        $this->assertTrue( ! class_exists('BaseConservativeModelLoadingUser', false));
+        $this->assertTrue(! class_exists('ConservativeModelLoadingUser', false));
+        $this->assertTrue(! class_exists('ConservativeModelLoadingProfile', false));
+        $this->assertTrue(! class_exists('ConservativeModelLoadingContact', false));
+        $this->assertTrue(! class_exists('BaseConservativeModelLoadingUser', false));
     }
 
     public function testAllModelsAvailable()
@@ -72,10 +72,10 @@ class Doctrine_Base_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(class_exists('AggressiveModelLoadingContact'));
         $this->assertTrue(class_exists('BaseAggressiveModelLoadingUser'));
 
-        $this->assertTrue( class_exists('ConservativeModelLoadingUser', true));
-        $this->assertTrue( class_exists('ConservativeModelLoadingProfile', true));
-        $this->assertTrue( class_exists('ConservativeModelLoadingContact', true));
-        $this->assertTrue( class_exists('BaseConservativeModelLoadingUser', true));
+        $this->assertTrue(class_exists('ConservativeModelLoadingUser', true));
+        $this->assertTrue(class_exists('ConservativeModelLoadingProfile', true));
+        $this->assertTrue(class_exists('ConservativeModelLoadingContact', true));
+        $this->assertTrue(class_exists('BaseConservativeModelLoadingUser', true));
     }
 
     public function testModelLoadingCacheInformation()

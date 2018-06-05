@@ -39,20 +39,21 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
         parent::prepareTables();
     }
     public function prepareData()
-    { }
+    {
+    }
 
     public function testInitData()
     {
         $e = new SearchTest();
 
-        $e->title = 'Once there was an ORM framework';
+        $e->title   = 'Once there was an ORM framework';
         $e->content = 'There are many ORM frameworks, but nevertheless we decided to create one.';
 
         $e->save();
 
         $e = new SearchTest();
 
-        $e->title = 'Doctrine development continues';
+        $e->title   = 'Doctrine development continues';
         $e->content = 'The development has been going well so far.';
 
         $e->save();
@@ -60,7 +61,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsAndOperator()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('doctrine AND orm');
 
         $sql = 'id IN (SELECT id FROM search_test_index WHERE keyword = ?) '
@@ -71,7 +72,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsMixingOfOperatorsAndParenthesis()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('((doctrine OR orm) AND dbal) OR database');
 
         $sql = '(id IN (SELECT id FROM search_test_index WHERE keyword = ? OR keyword = ?) AND id IN (SELECT id FROM search_test_index WHERE keyword = ?)) OR keyword = ?';
@@ -81,7 +82,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsMixingOfOperators3()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('doctrine OR orm AND dbal');
 
         $sql = 'keyword = ? OR id IN (SELECT id FROM search_test_index WHERE keyword = ?) AND id IN (SELECT id FROM search_test_index WHERE keyword = ?)';
@@ -91,7 +92,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsMixingOfOperators()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('(doctrine OR orm) AND dbal');
 
         $sql = 'id IN (SELECT id FROM search_test_index WHERE keyword = ? OR keyword = ?) AND id IN (SELECT id FROM search_test_index WHERE keyword = ?)';
@@ -101,7 +102,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsMixingOfOperators2()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('(doctrine OR orm) dbal');
 
         $sql = 'id IN (SELECT id FROM search_test_index WHERE keyword = ? OR keyword = ?) AND id IN (SELECT id FROM search_test_index WHERE keyword = ?)';
@@ -111,7 +112,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsMixingOfOperatorsAndDeeplyNestedParenthesis()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('(((doctrine OR orm) AND dbal) OR database) AND rdbms');
 
         $sql = '((id IN (SELECT id FROM search_test_index WHERE keyword = ? OR keyword = ?) AND id IN (SELECT id FROM search_test_index WHERE keyword = ?)) OR keyword = ?) AND id IN (SELECT id FROM search_test_index WHERE keyword = ?)';
@@ -121,7 +122,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsMixingOfOperatorsAndParenthesis2()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('rdbms (dbal OR database)');
 
         $sql = 'id IN (SELECT id FROM search_test_index WHERE keyword = ?) AND id IN (SELECT id FROM search_test_index WHERE keyword = ? OR keyword = ?)';
@@ -131,7 +132,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsMixingOfOperatorsAndDeeplyNestedParenthesis2()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('rdbms (((doctrine OR orm) AND dbal) OR database)');
 
         $sql = 'id IN (SELECT id FROM search_test_index WHERE keyword = ?) AND ((id IN (SELECT id FROM search_test_index WHERE keyword = ? OR keyword = ?) AND id IN (SELECT id FROM search_test_index WHERE keyword = ?)) OR keyword = ?)';
@@ -141,7 +142,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsNegationOperator()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('rdbms -doctrine');
 
         $sql = 'id IN (SELECT id FROM search_test_index WHERE keyword = ?) AND '
@@ -152,7 +153,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseOrOperator2()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('rdbms doctrine OR database');
 
         $sql = 'id IN (SELECT id FROM search_test_index WHERE keyword = ?) AND '
@@ -164,7 +165,7 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testParseClauseSupportsNegationOperatorWithOrOperator()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q   = new Doctrine_Search_Query('SearchTestIndex');
         $ret = $q->parseClause('rdbms -doctrine OR database');
 
         $sql = 'id IN (SELECT id FROM search_test_index WHERE keyword = ?) AND '
@@ -319,10 +320,9 @@ class Doctrine_Search_Query_TestCase extends Doctrine_UnitTestCase
 
     public function testSearchReturnsFalseForEmptyStrings()
     {
-        $q = new Doctrine_Search_Query('SearchTestIndex');
+        $q      = new Doctrine_Search_Query('SearchTestIndex');
         $result = $q->query(' ');
 
         $this->assertFalse($result);
     }
-
 }

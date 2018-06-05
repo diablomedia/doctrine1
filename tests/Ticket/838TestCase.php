@@ -20,7 +20,6 @@ class Doctrine_Ticket_838_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-
     }
     
     /**
@@ -28,9 +27,9 @@ class Doctrine_Ticket_838_TestCase extends Doctrine_UnitTestCase
      */
     public function testMoveRoot()
     {
-        $node = new NestedSetTest_SingleRootNode();
+        $node       = new NestedSetTest_SingleRootNode();
         $node->name = 'oldroot';
-        $tree = $this->conn->getTable('NestedSetTest_SingleRootNode')->getTree();
+        $tree       = $this->conn->getTable('NestedSetTest_SingleRootNode')->getTree();
         $tree->createRoot($node);
         
         $oldRoot = $node->copy();
@@ -44,7 +43,7 @@ class Doctrine_Ticket_838_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(0, $oldRoot['rgt']);
         $this->assertEqual(0, $oldRoot['level']);
         
-        $newRoot = new NestedSetTest_SingleRootNode();
+        $newRoot       = new NestedSetTest_SingleRootNode();
         $newRoot->name = 'newroot';
         $tree->createRoot($newRoot);
         $this->assertEqual(1, $newRoot['lft']);
@@ -62,10 +61,10 @@ class Doctrine_Ticket_838_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(1, $newRoot['lft']);
         $this->assertEqual(4, $newRoot['rgt']);
         $this->assertEqual(0, $newRoot['level']);
-		
+        
         $children = $newRoot->getNode()->getChildren();
-        $oldRoot = $children[0];
-	
+        $oldRoot  = $children[0];
+    
         $this->assertEqual(2, $oldRoot['lft']);
         $this->assertEqual(3, $oldRoot['rgt']);
         $this->assertEqual(1, $oldRoot['level']);

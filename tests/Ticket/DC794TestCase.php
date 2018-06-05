@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC794_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC794_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -53,9 +53,9 @@ class Ticket_DC794_Model extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('id', 'integer', null, array(
-            'type' => 'integer',
-            'unsigned' => false,
-            'primary' => true,
+            'type'          => 'integer',
+            'unsigned'      => false,
+            'primary'       => true,
             'autoincrement' => true,
         ));
         $this->hasColumn('idOrigenOportunidadCliente', 'string', 255);

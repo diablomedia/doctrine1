@@ -33,14 +33,14 @@ class Doctrine_Ticket_927_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
     {
-        $oEmail = new Email;
+        $oEmail          = new Email;
         $oEmail->address = 'david.stendardi@adenclassifieds.com';
         $oEmail->save();
     }
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'Email';
 
         parent :: prepareTables();
@@ -48,16 +48,16 @@ class Doctrine_Ticket_927_TestCase extends Doctrine_UnitTestCase
 
     public function testTicket()
     {
-      $q = new Doctrine_Query();
+        $q = new Doctrine_Query();
 
-      try {
-          // simple query with deep relations
-          $q->update('Email')
+        try {
+            // simple query with deep relations
+            $q->update('Email')
               ->set('address', '?', 'new@doctrine.org')
               ->where('address = ?', 'david.stendardi@adenclassifieds.com')
               ->execute();
-      } catch (Exception $e) {
-        $this->fail('Query :: set do not support values containing dot. Exception: ' . $e->getMessage());
-      }
+        } catch (Exception $e) {
+            $this->fail('Query :: set do not support values containing dot. Exception: ' . $e->getMessage());
+        }
     }
 }

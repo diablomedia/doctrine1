@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -32,7 +32,7 @@
  */
 class Doctrine_Query_Groupby_TestCase extends Doctrine_UnitTestCase
 {
-    public function testAggregateFunctionsInHavingReturnValidSql() 
+    public function testAggregateFunctionsInHavingReturnValidSql()
     {
         $q = new Doctrine_Query();
         

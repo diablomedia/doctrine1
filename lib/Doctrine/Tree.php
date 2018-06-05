@@ -55,10 +55,10 @@ class Doctrine_Tree
      */
     public function __construct(Doctrine_Table $table, $options)
     {
-        $this->table = $table;
-        $this->options = $options;
+        $this->table          = $table;
+        $this->options        = $options;
         $this->_baseComponent = $table->getComponentName();
-        $class = $this->_baseComponent;
+        $class                = $this->_baseComponent;
         if ($table->getOption('inheritanceMap')) {
             $subclasses = $table->getOption('subclasses');
             while (in_array($class, $subclasses)) {
@@ -105,7 +105,7 @@ class Doctrine_Tree
     public static function factory(Doctrine_Table $table, $implName, $options = array())
     {
         $class = 'Doctrine_Tree_' . $implName;
-        if ( ! class_exists($class)) {
+        if (! class_exists($class)) {
             throw new Doctrine_Exception('The chosen class must extend Doctrine_Tree');
         }
         return new $class($table, $options);
@@ -118,7 +118,7 @@ class Doctrine_Tree
      */
     public function getAttribute($name)
     {
-      return isset($this->options[$name]) ? $this->options[$name] : null;
+        return isset($this->options[$name]) ? $this->options[$name] : null;
     }
 
     /**
@@ -131,7 +131,7 @@ class Doctrine_Tree
      */
     public function setAttribute($name, $value)
     {
-      $this->options[$name] = $value;
+        $this->options[$name] = $value;
     }
 
     /**

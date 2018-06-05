@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC7_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC7_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,7 +41,7 @@ class Doctrine_Ticket_DC7_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
         for ($i = 0; $i < 10; $i++) {
-            $user = new Ticket_DC7_User();
+            $user           = new Ticket_DC7_User();
             $user->username = $i;
             $user->password = $i;
             $user->save();

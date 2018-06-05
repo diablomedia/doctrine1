@@ -20,11 +20,13 @@ class Doctrine_Ticket_583_TestCase extends Doctrine_UnitTestCase
         parent::prepareTables();
     }
 
-    public function prepareData() { }
+    public function prepareData()
+    {
+    }
 
     public function testBug()
     {
-        $entity = new Entity();
+        $entity       = new Entity();
         $entity->name = 'myname';
         $entity->save();
 

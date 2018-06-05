@@ -2,7 +2,7 @@
 
 ini_set('memory_limit', -1);
 
-$_SERVER['DOCTRINE_DIR'] = realpath(dirname(__FILE__).'/../');
+$_SERVER['DOCTRINE_DIR'] = realpath(dirname(__FILE__) . '/../');
 
 require 'bootstrap.php';
 
@@ -23,9 +23,9 @@ $ticketTestCases = glob(dirname(__FILE__) . '/Ticket/*TestCase.php');
 
 foreach ($ticketTestCases as $testCase) {
     $fileInfo = pathinfo($testCase);
-    $name = str_replace('TestCase', '', $fileInfo['filename']);
+    $name     = str_replace('TestCase', '', $fileInfo['filename']);
 
-    if ( ! in_array($name, $excludeTickets)) {
+    if (! in_array($name, $excludeTickets)) {
         $name = sprintf('Doctrine_Ticket_%s_TestCase', $name);
         $tickets->addTestCase(new $name());
     }

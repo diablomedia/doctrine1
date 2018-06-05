@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2007_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2007_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -52,18 +52,18 @@ class Ticket_2007_Faq extends Doctrine_Record
         $this->setTableName('faq');
         $this->hasColumn('id_faq', 'integer', 4, array(
              'primary' => true,
-             'type' => 'integer',
-             'length' => '4',
+             'type'    => 'integer',
+             'length'  => '4',
              ));
         $this->hasColumn('n_clicks', 'integer', 4, array(
              'unsigned' => '1',
-             'notnull' => true,
-             'default' => 0,
-             'type' => 'integer',
-             'length' => '4',
+             'notnull'  => true,
+             'default'  => 0,
+             'type'     => 'integer',
+             'length'   => '4',
              ));
         $this->hasColumn('title', 'string', 255, array(
-             'type' => 'string',
+             'type'   => 'string',
              'length' => '255',
              ));
         $this->hasColumn('description', 'string', null, array(
@@ -74,8 +74,7 @@ class Ticket_2007_Faq extends Doctrine_Record
     public function setUp()
     {
         $searchable0 = new Doctrine_Template_Searchable(array(
-             'fields' => 
-             array(
+             'fields' => array(
               0 => 'title',
               1 => 'description',
              ),

@@ -31,4 +31,5 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Table_Repository_Exception extends Doctrine_Exception
-{ }
+{
+}

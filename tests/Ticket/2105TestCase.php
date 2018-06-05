@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2105_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2105_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -50,10 +50,10 @@ class Doctrine_Ticket_2105_TestCase extends Doctrine_UnitTestCase
             //echo $q->getSqlQuery().PHP_EOL;
             
             $this->assertEqual(
-                $q->getSqlQuery(), 
-                'SELECT t.id AS t__id, t2.id AS t2__id, t2.lang AS t2__lang '.
-                'FROM ticket_2105__article t '.
-                'INNER JOIN ticket_2105__article_translation t2 '.
+                $q->getSqlQuery(),
+                'SELECT t.id AS t__id, t2.id AS t2__id, t2.lang AS t2__lang ' .
+                'FROM ticket_2105__article t ' .
+                'INNER JOIN ticket_2105__article_translation t2 ' .
                 'ON t.id = t2.id AND (t2.name != ?)'
             );
             
@@ -63,10 +63,10 @@ class Doctrine_Ticket_2105_TestCase extends Doctrine_UnitTestCase
             //echo $q->getSqlQuery().PHP_EOL;
             
             $this->assertEqual(
-                $q->getSqlQuery(), 
-                'SELECT t.id AS t__id, t2.id AS t2__id, t2.lang AS t2__lang, t2.name AS t2__name '.
-                'FROM ticket_2105__article t '.
-                'INNER JOIN ticket_2105__article_translation t2 '.
+                $q->getSqlQuery(),
+                'SELECT t.id AS t__id, t2.id AS t2__id, t2.lang AS t2__lang, t2.name AS t2__name ' .
+                'FROM ticket_2105__article t ' .
+                'INNER JOIN ticket_2105__article_translation t2 ' .
                 'ON t.id = t2.id AND (t2.name != ?)'
             );
             

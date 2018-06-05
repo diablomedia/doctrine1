@@ -33,19 +33,20 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareTables() 
-    { 
+    public function prepareTables()
+    {
         $this->tables = array('Entity', 'Phonenumber');
         
         parent::prepareTables();
     }
 
     public function prepareData()
-    { }
+    {
+    }
 
-    public function testQuerySupportsIdentifierQuoting() 
+    public function testQuerySupportsIdentifierQuoting()
     {
         $this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
 
@@ -80,14 +81,13 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
     }
     */
 
-    public function testQuerySupportsIdentifierQuotingWithJoins() 
+    public function testQuerySupportsIdentifierQuotingWithJoins()
     {
         $q = new Doctrine_Query();
 
         $q->parseDqlQuery('SELECT u.name FROM User u LEFT JOIN u.Phonenumber p');
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT "e"."id" AS "e__id", "e"."name" AS "e__name" FROM "entity" "e" LEFT JOIN "phonenumber" "p" ON "e"."id" = "p"."entity_id" WHERE ("e"."type" = 0)');
-
     }
 
     public function testLimitSubqueryAlgorithmSupportsIdentifierQuoting()

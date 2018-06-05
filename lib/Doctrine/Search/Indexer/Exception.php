@@ -31,4 +31,5 @@
  * @since       1.0
  */
 class Doctrine_Search_Indexer_Exception extends Doctrine_Search_Exception
-{ }
+{
+}

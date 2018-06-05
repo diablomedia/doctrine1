@@ -31,4 +31,5 @@
  * @author      Joe Simms <joe.simms@websites4.com>
  */
 abstract class Doctrine_Tree_AdjacencyList extends Doctrine_Tree implements Doctrine_Tree_Interface
-{ }
+{
+}

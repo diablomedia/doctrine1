@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1799_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1799_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,9 +42,9 @@ class Doctrine_Ticket_1799_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
         try {
-            $test = new Ticket_1799_Test();
-            $test->name = 'test';
-            $test->latitude = '49.3583848';
+            $test            = new Ticket_1799_Test();
+            $test->name      = 'test';
+            $test->latitude  = '49.3583848';
             $test->longitude = '49.3583848';
             $test->save();
             $this->pass();

@@ -61,14 +61,14 @@ class Doctrine_Sequence_Mssql extends Doctrine_Sequence
 
         try {
             $this->conn->exec($query);
-        } catch(Doctrine_Connection_Exception $e) {
+        } catch (Doctrine_Connection_Exception $e) {
             if ($onDemand && $e->getPortableCode() == Doctrine_Core::ERR_NOSUCHTABLE) {
                 // Since we are creating the sequence on demand
                 // we know the first id = 1 so initialize the
                 // sequence at 2
                 try {
                     $this->conn->export->createSequence($seqName, 2);
-                } catch(Doctrine_Exception $e) {
+                } catch (Doctrine_Exception $e) {
                     throw new Doctrine_Sequence_Exception('on demand sequence ' . $seqName . ' could not be created');
                 }
 
@@ -140,9 +140,7 @@ class Doctrine_Sequence_Mssql extends Doctrine_Sequence
         if (is_array($serverInfo)
             && ! is_null($serverInfo['major'])
             && $serverInfo['major'] >= 8) {
-
-            if (isset($table))
-            {
+            if (isset($table)) {
                 $query = 'SELECT IDENT_CURRENT(\'' . $this->conn->quoteIdentifier($table) . '\')';
             } else {
                 $query = 'SELECT SCOPE_IDENTITY()';

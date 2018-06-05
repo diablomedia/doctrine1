@@ -44,7 +44,7 @@ class Doctrine_PessimisticLocking_TestCase extends Doctrine_UnitTestCase
         $this->lockingManager = new Doctrine_Locking_Manager_Pessimistic($this->connection);
         
         // Create sample data to test on
-        $entry1 = new Forum_Entry();
+        $entry1         = new Forum_Entry();
         $entry1->author = 'Bart Simpson';
         $entry1->topic  = 'I love donuts!';
         $entry1->save();
@@ -58,8 +58,8 @@ class Doctrine_PessimisticLocking_TestCase extends Doctrine_UnitTestCase
 
     /**
      * Tests the basic locking mechanism
-     * 
-     * Currently tested: successful lock, failed lock, release lock 
+     *
+     * Currently tested: successful lock, failed lock, release lock
      */
     public function testLock()
     {

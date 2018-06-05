@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1230_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1230_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,10 +40,10 @@ class Doctrine_Ticket_1230_TestCase extends Doctrine_UnitTestCase
 
     public function testTicket()
     {
-        $categoriesTable = Doctrine_Core::getTable('Ticket_1230_Category');
+        $categoriesTable      = Doctrine_Core::getTable('Ticket_1230_Category');
         $categoriesTreeObject = $categoriesTable->getTree();
 
-        $category = new Ticket_1230_Category();
+        $category       = new Ticket_1230_Category();
         $category->name = 'Testing';
         $category->save();
         $categoriesTreeObject->createRoot($category);

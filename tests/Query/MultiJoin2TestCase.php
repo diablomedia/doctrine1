@@ -30,48 +30,48 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_MultiJoin2_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_MultiJoin2_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
-    { }
+    {
+    }
     public function prepareTables()
-    { 
+    {
         $this->tables = array('QueryTest_Category', 'QueryTest_Board', 'QueryTest_User', 'QueryTest_Entry');
         
         parent::prepareTables();
     }
-    public function testInitializeData() 
+    public function testInitializeData()
     {
         $query = new Doctrine_Query($this->connection);
         
         $cat = new QueryTest_Category();
 
-        $cat->rootCategoryId = 0;
+        $cat->rootCategoryId   = 0;
         $cat->parentCategoryId = 0;
-        $cat->name = "Cat1";
-        $cat->position = 0;
+        $cat->name             = 'Cat1';
+        $cat->position         = 0;
         $cat->save();
         
-        $board = new QueryTest_Board();
-        $board->name = "B1";
+        $board             = new QueryTest_Board();
+        $board->name       = 'B1';
         $board->categoryId = $cat->id;
-        $board->position = 0;
+        $board->position   = 0;
         $board->save();
         
-        $author = new QueryTest_User();
-        $author->username = "romanb";
+        $author           = new QueryTest_User();
+        $author->username = 'romanb';
         $author->save();
 
-        $lastEntry = new QueryTest_Entry();
+        $lastEntry           = new QueryTest_Entry();
         $lastEntry->authorId = $author->id;
-        $lastEntry->date = 1234;
+        $lastEntry->date     = 1234;
         $lastEntry->save();
-
     }
 
-    public function testMultipleJoinFetchingWithDeepJoins() 
+    public function testMultipleJoinFetchingWithDeepJoins()
     {
-        $query = new Doctrine_Query($this->connection);
+        $query      = new Doctrine_Query($this->connection);
         $queryCount = $this->connection->count();
         try {
             $categories = $query->select('c.*, subCats.*, b.*, le.*, a.*')
@@ -93,9 +93,9 @@ class Doctrine_Query_MultiJoin2_TestCase extends Doctrine_UnitTestCase
         }
     }
     
-    public function testMultipleJoinFetchingWithArrayFetching() 
+    public function testMultipleJoinFetchingWithArrayFetching()
     {
-        $query = new Doctrine_Query($this->connection);
+        $query      = new Doctrine_Query($this->connection);
         $queryCount = $this->connection->count();
         try {
             $categories = $query->select('c.*, subCats.*, b.*, le.*, a.*')

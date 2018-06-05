@@ -1,5 +1,5 @@
 <?php
-class SerializeTest extends Doctrine_Record 
+class SerializeTest extends Doctrine_Record
 {
     public function setTableDefinition()
     {
@@ -16,7 +16,10 @@ class SerializeTest extends Doctrine_Record
         $this->hasColumn('timestamptest', 'timestamp');
         $this->hasColumn('timetest', 'time');
         $this->hasColumn('datetest', 'date');
-        $this->hasColumn('enumtest', 'enum', 4, 
+        $this->hasColumn(
+            'enumtest',
+            'enum',
+            4,
                          array(
                             'values' => array(
                                         'php',
@@ -27,5 +30,4 @@ class SerializeTest extends Doctrine_Record
         );
         $this->hasColumn('gziptest', 'gzip');
     }
-
 }

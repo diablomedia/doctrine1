@@ -21,7 +21,7 @@
 
 /**
  * Doctrine_Task_TestCase
- * 
+ *
  * N.B. Invalid task classes are loaded just-in-time to avoid clashes with the CLI tests.  Other test-specific
  * subclasses are declared at the bottom of this file.
  *
@@ -33,11 +33,15 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Task_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Task_TestCase extends Doctrine_UnitTestCase
 {
-    public function setUp() {}
+    public function setUp()
+    {
+    }
 
-    public function tearDown() {}
+    public function tearDown()
+    {
+    }
 
     public function testDerivetasknameReturnsTheNameOfATaskFromItsClassName()
     {
@@ -48,7 +52,7 @@ class Doctrine_Task_TestCase extends Doctrine_UnitTestCase
 
         /*
          * PHP 5.3-specific tests
-         * 
+         *
          * One would hope that authors of custom tasks would name their tasks manually, but since we can't guarantee
          * anything, we'll have to _try_ to create a sensible name
          */
@@ -71,7 +75,7 @@ class Doctrine_Task_TestCase extends Doctrine_UnitTestCase
 
     /**
      * Loads a PHP fixture from the directory for this test case
-     * 
+     *
      * @ignore
      * @param string $basename
      */
@@ -127,8 +131,7 @@ class Doctrine_Task_TestCase extends Doctrine_UnitTestCase
 
         if ($numPasses == count($aClassWithInvalidTaskName)) {
             $this->pass();
-        }
-        else {
+        } else {
             $this->fail();
         }
     }
@@ -136,7 +139,9 @@ class Doctrine_Task_TestCase extends Doctrine_UnitTestCase
 
 class Doctrine_Task_TestCase_TestTask001 extends Doctrine_Task
 {
-    public function execute() {}
+    public function execute()
+    {
+    }
 }
 
 class Doctrine_Task_TestCase_TestTask002 extends Doctrine_Task
@@ -146,12 +151,16 @@ class Doctrine_Task_TestCase_TestTask002 extends Doctrine_Task
         $this->setTaskName('better-task-name');
     }
 
-    public function execute() {}
+    public function execute()
+    {
+    }
 }
 
 class Doctrine_Task_TestCase_TestTask003 extends Doctrine_Task
 {
     public $taskName = 'better-task-name';
 
-    public function execute() {}
+    public function execute()
+    {
+    }
 }

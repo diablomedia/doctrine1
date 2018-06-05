@@ -53,7 +53,7 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      */
     public function __construct($mock)
     {
-        $this->_mock  = $mock;
+        $this->_mock = $mock;
     }
 
     /**
@@ -205,10 +205,11 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      *
      * @return mixed
      */
-    public function fetch($fetchStyle = Doctrine_Core::FETCH_BOTH,
+    public function fetch(
+        $fetchStyle = Doctrine_Core::FETCH_BOTH,
                           $cursorOrientation = Doctrine_Core::FETCH_ORI_NEXT,
-                          $cursorOffset = null)
-    {
+                          $cursorOffset = null
+    ) {
         return array();
     }
 

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1257_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1257_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,9 +41,9 @@ class Doctrine_Ticket_1257_TestCase extends Doctrine_UnitTestCase
 
     public function testTicket()
     {
-        $user = new Ticket_1257_User();
-        $user->username = 'jwage';
-        $user->Role->name = 'Developer';
+        $user                    = new Ticket_1257_User();
+        $user->username          = 'jwage';
+        $user->Role->name        = 'Developer';
         $user->Role->description = 'Programmer/Developer';
         $user->save();
 

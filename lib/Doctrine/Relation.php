@@ -40,38 +40,38 @@ abstract class Doctrine_Relation implements ArrayAccess
     /**
      * constant for ONE_TO_ONE and MANY_TO_ONE relationships
      */
-    const ONE   = 0;
+    const ONE = 0;
 
     /**
      * constant for MANY_TO_MANY and ONE_TO_MANY relationships
      */
-    const MANY  = 1;
+    const MANY = 1;
 
     // TRUE => mandatory, everything else is just a default value. this should be refactored
     // since TRUE can bot be used as a default value this way. All values should be default values.
     /**
      * @var array $definition   @see __construct()
      */
-    protected $definition = array('alias'       => true,
-                                  'foreign'     => true,
-                                  'local'       => true,
-                                  'class'       => true,
-                                  'type'        => true,
-                                  'table'       => true,
-                                  'localTable'  => true,
-                                  'name'        => null,
-                                  'refTable'    => null,
-                                  'onDelete'    => null,
-                                  'onUpdate'    => null,
-                                  'deferred'    => null,
-                                  'deferrable'  => null,
-                                  'constraint'  => null,
-                                  'equal'       => false,
-                                  'cascade'     => array(), // application-level cascades
-                                  'owningSide'  => false, // whether this is the owning side
+    protected $definition = array('alias'                 => true,
+                                  'foreign'               => true,
+                                  'local'                 => true,
+                                  'class'                 => true,
+                                  'type'                  => true,
+                                  'table'                 => true,
+                                  'localTable'            => true,
+                                  'name'                  => null,
+                                  'refTable'              => null,
+                                  'onDelete'              => null,
+                                  'onUpdate'              => null,
+                                  'deferred'              => null,
+                                  'deferrable'            => null,
+                                  'constraint'            => null,
+                                  'equal'                 => false,
+                                  'cascade'               => array(), // application-level cascades
+                                  'owningSide'            => false, // whether this is the owning side
                                   'refClassRelationAlias' => null,
-                                  'foreignKeyName' => null,
-                                  'orderBy' => null);
+                                  'foreignKeyName'        => null,
+                                  'orderBy'               => null);
     /**
      * @var bool|null
      */
@@ -130,7 +130,7 @@ abstract class Doctrine_Relation implements ArrayAccess
     {
         $def = array();
         foreach ($this->definition as $key => $val) {
-            if ( ! isset($definition[$key]) && $val) {
+            if (! isset($definition[$key]) && $val) {
                 throw new Doctrine_Exception($key . ' is required!');
             }
             if (isset($definition[$key])) {
@@ -352,7 +352,7 @@ abstract class Doctrine_Relation implements ArrayAccess
      */
     final public function getForeignColumnName()
     {
-       return $this->definition['table']->getColumnName($this->definition['foreign']);
+        return $this->definition['table']->getColumnName($this->definition['foreign']);
     }
 
     /**
@@ -376,7 +376,7 @@ abstract class Doctrine_Relation implements ArrayAccess
     {
         $component = $this->getTable()->getComponentName();
 
-        $dql  = 'FROM ' . $component
+        $dql = 'FROM ' . $component
               . ' WHERE ' . $component . '.' . $this->definition['foreign']
               . ' IN (' . substr(str_repeat('?, ', $count), 0, -2) . ')'
               . $this->getOrderBy($component);
@@ -416,8 +416,8 @@ abstract class Doctrine_Relation implements ArrayAccess
      */
     public function getOrderBy($alias = null, $columnNames = false)
     {
-        if ( ! $alias) {
-           $alias = $this->getTable()->getComponentName();
+        if (! $alias) {
+            $alias = $this->getTable()->getComponentName();
         }
 
         if ($orderBy = $this->getOrderByStatement($alias, $columnNames)) {
@@ -436,8 +436,8 @@ abstract class Doctrine_Relation implements ArrayAccess
     {
         $table = $this->getTable();
 
-        if ( ! $alias) {
-           $alias = $table->getComponentName();
+        if (! $alias) {
+            $alias = $table->getComponentName();
         }
 
         if (isset($this->definition['orderBy'])) {
@@ -454,7 +454,7 @@ abstract class Doctrine_Relation implements ArrayAccess
     {
         if ($this->_isRefClass === null) {
             $this->_isRefClass = false;
-            $table = $this->getTable();
+            $table             = $this->getTable();
             foreach ($table->getRelations() as $name => $relation) {
                 foreach ($relation['table']->getRelations() as $relation) {
                     if (isset($relation['refTable']) && $relation['refTable'] === $table) {
@@ -475,14 +475,14 @@ abstract class Doctrine_Relation implements ArrayAccess
      */
     public function __toString()
     {
-        $r[] = "<pre>";
+        $r[] = '<pre>';
         foreach ($this->definition as $k => $v) {
             if (is_object($v)) {
                 $v = 'Object(' . get_class($v) . ')';
             }
             $r[] = $k . ' : ' . $v;
         }
-        $r[] = "</pre>";
+        $r[] = '</pre>';
         return implode("\n", $r);
     }
 }

@@ -1,11 +1,18 @@
 <?php
-class QueryTest_User extends Doctrine_Record 
-{   
-
+class QueryTest_User extends Doctrine_Record
+{
     public function setTableDefinition()
-    {        
-        $this->hasColumn('username as username', 'string', 50,
-                array('notnull'));
+    {
+        $this->hasColumn(
+        
+            'username as username',
+        
+            'string',
+        
+            50,
+                array('notnull')
+        
+        );
         $this->hasColumn('visibleRankId', 'integer', 4);
         $this->hasColumn('subscriptionId', 'integer', 4);
     }

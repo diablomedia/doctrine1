@@ -40,16 +40,16 @@ class Doctrine_NestedSet_SingleRoot_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $node = new NestedSetTest_SingleRootNode();
+        $node       = new NestedSetTest_SingleRootNode();
         $node->name = 'root';
-        $treeMngr = $this->conn->getTable('NestedSetTest_SingleRootNode')->getTree();
+        $treeMngr   = $this->conn->getTable('NestedSetTest_SingleRootNode')->getTree();
         $treeMngr->createRoot($node);
         
-        $node2 = new NestedSetTest_SingleRootNode();
+        $node2       = new NestedSetTest_SingleRootNode();
         $node2->name = 'node2';
         $node2->getNode()->insertAsLastChildOf($node);
         
-        $node3 = new NestedSetTest_SingleRootNode();
+        $node3       = new NestedSetTest_SingleRootNode();
         $node3->name = 'node3';
         $node3->getNode()->insertAsLastChildOf($node2);
     }
@@ -57,7 +57,7 @@ class Doctrine_NestedSet_SingleRoot_TestCase extends Doctrine_UnitTestCase
     public function testLftRgtValues()
     {
         $treeMngr = $this->conn->getTable('NestedSetTest_SingleRootNode')->getTree();
-        $root = $treeMngr->fetchRoot();
+        $root     = $treeMngr->fetchRoot();
         $this->assertEqual(1, $root['lft']);
         $this->assertEqual(6, $root['rgt']);
     }
@@ -65,8 +65,8 @@ class Doctrine_NestedSet_SingleRoot_TestCase extends Doctrine_UnitTestCase
     public function testGetDescendants()
     {
         $treeMngr = $this->conn->getTable('NestedSetTest_SingleRootNode')->getTree();
-        $root = $treeMngr->fetchRoot();
-        $desc = $root->getNode()->getDescendants();
+        $root     = $treeMngr->fetchRoot();
+        $desc     = $root->getNode()->getDescendants();
         $this->assertTrue($desc !== false);
         $this->assertEqual(2, count($desc));
         $this->assertEqual('node2', $desc[0]['name']);
@@ -76,15 +76,17 @@ class Doctrine_NestedSet_SingleRoot_TestCase extends Doctrine_UnitTestCase
     public function testGetNumberChildren()
     {
         $treeMngr = $this->conn->getTable('NestedSetTest_SingleRootNode')->getTree();
-        $root = $treeMngr->fetchRoot();
+        $root     = $treeMngr->fetchRoot();
         $this->assertEqual(1, $root->getNode()->getNumberChildren());
         $this->assertFalse($root->getNode()->hasParent());
     }
     
     public function testGetAncestors()
     {
-        $node = $this->conn->query("SELECT n.* FROM NestedSetTest_SingleRootNode n WHERE n.name = ?",
-                array('node2'))->getFirst();
+        $node = $this->conn->query(
+            'SELECT n.* FROM NestedSetTest_SingleRootNode n WHERE n.name = ?',
+                array('node2')
+        )->getFirst();
         $anc = $node->getNode()->getAncestors();
         $this->assertTrue($anc !== false);
         $this->assertEqual(1, count($anc));
@@ -95,7 +97,7 @@ class Doctrine_NestedSet_SingleRoot_TestCase extends Doctrine_UnitTestCase
 
     public function testInvalidNodeHasParent()
     {
-        $node = new NestedSetTest_SingleRootNode();
+        $node       = new NestedSetTest_SingleRootNode();
         $node->name = 'root';
 
         $this->assertFalse($node->getNode()->hasParent());

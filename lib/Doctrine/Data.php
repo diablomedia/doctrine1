@@ -245,7 +245,6 @@ class Doctrine_Data
             if ($relationData['local'] === $fieldName) {
                 return $relationData;
             }
-
         }
 
         return false;
@@ -269,7 +268,7 @@ class Doctrine_Data
 
         $connections = array();
         foreach ($models as $model) {
-          $connections[Doctrine_Core::getTable($model)->getConnection()->getName()][] = $model;
+            $connections[Doctrine_Core::getTable($model)->getConnection()->getName()][] = $model;
         }
 
         foreach ($connections as $connection => $models) {

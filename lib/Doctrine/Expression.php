@@ -79,7 +79,7 @@ class Doctrine_Expression
      */
     public function getConnection()
     {
-        if ( ! isset($this->_conn)) {
+        if (! isset($this->_conn)) {
             return Doctrine_Manager::connection();
         }
 
@@ -109,7 +109,7 @@ class Doctrine_Expression
      */
     public function parseExpression($expr)
     {
-        $pos  = strpos($expr, '(');
+        $pos    = strpos($expr, '(');
         $quoted = (substr($expr, 0, 1) === "'" && substr($expr, -1) === "'");
         if ($pos === false || $quoted) {
             return $expr;
@@ -118,11 +118,11 @@ class Doctrine_Expression
         // get the name of the function
         $name   = substr($expr, 0, $pos);
         $argStr = substr($expr, ($pos + 1), -1);
-        $args = [];
+        $args   = array();
 
         // parse args
         foreach ($this->_tokenizer->bracketExplode($argStr, ',') as $arg) {
-           $args[] = $this->parseClause($arg);
+            $args[] = $this->parseClause($arg);
         }
 
         return call_user_func_array(array($this->getConnection()->expression, $name), $args);

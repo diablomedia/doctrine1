@@ -30,26 +30,29 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_Condition_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_Condition_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() { }
-    public function prepareTables() { }
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
+    {
+    }
     
     /** @todo belongs in TokenizerTestCase? */
-    public function testBracktExplode() 
+    public function testBracktExplode()
     {
         $tokenizer = new Doctrine_Query_Tokenizer();
-        $str   = "item OR item OR item";
-        $parts = $tokenizer->bracketExplode($str, array(' OR '), "(", ")");
+        $str       = 'item OR item OR item';
+        $parts     = $tokenizer->bracketExplode($str, array(' OR '), '(', ')');
 
         $this->assertEqual($parts, array('item','item','item'));
-
     }
-    public function testConditionParser() 
+    public function testConditionParser()
     {
         $query = new Doctrine_Query($this->connection);
 
-        $query->select('User.id')->from("User")->where("User.name LIKE 'z%' OR User.name LIKE 's%'");
+        $query->select('User.id')->from('User')->where("User.name LIKE 'z%' OR User.name LIKE 's%'");
 
         $sql = "SELECT e.id AS e__id FROM entity e WHERE (e.name LIKE 'z%' OR e.name LIKE 's%') AND (e.type = 0)";
         $this->assertEqual($query->getSqlQuery(), $sql);
@@ -80,11 +83,11 @@ class Doctrine_Query_Condition_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($query->getSqlQuery(), "SELECT e.id AS e__id FROM entity e WHERE ((e.name LIKE 'z%' OR e.name LIKE 's%') AND e.name LIKE 'a%') AND (e.type = 0)");
     }
 
-    public function testConditionParser2() 
+    public function testConditionParser2()
     {
         $query = new Doctrine_Query($this->connection);
 
-        $query->select('User.id')->from("User")->where("User.name LIKE 'z%' OR User.name LIKE 's%'");
+        $query->select('User.id')->from('User')->where("User.name LIKE 'z%' OR User.name LIKE 's%'");
 
         $sql = "SELECT e.id AS e__id FROM entity e WHERE (e.name LIKE 'z%' OR e.name LIKE 's%') AND (e.type = 0)";
         $this->assertEqual($query->getSqlQuery(), $sql);

@@ -30,21 +30,21 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Connection_UnitOfWork_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Connection_UnitOfWork_TestCase extends Doctrine_UnitTestCase
 {
-    public function testFlush() 
+    public function testFlush()
     {
         $user = $this->connection->getTable('User')->find(4);
         $this->assertTrue(is_numeric($user->Phonenumber[0]->entity_id));
 
-        $user    = $this->connection->create('Email');
-        $user    = $this->connection->create('User');
-        $record  = $this->connection->create('Phonenumber');
+        $user   = $this->connection->create('Email');
+        $user   = $this->connection->create('User');
+        $record = $this->connection->create('Phonenumber');
 
         $user->Email->address = 'example@drinkmore.info';
         $this->assertTrue($user->email_id instanceof Email);
 
-        $user->name = 'Example user';
+        $user->name           = 'Example user';
         $user->Group[0]->name = 'Example group 1';
         $user->Group[1]->name = 'Example group 2';
 
@@ -80,7 +80,7 @@ class Doctrine_Connection_UnitOfWork_TestCase extends Doctrine_UnitTestCase
 
         $user = $this->objTable->find(5);
 
-        $pf   = $this->connection->getTable('Phonenumber');
+        $pf = $this->connection->getTable('Phonenumber');
 
         $this->assertTrue($user->Phonenumber instanceof Doctrine_Collection);
         $this->assertTrue($user->Phonenumber->count() == 3);
@@ -144,8 +144,8 @@ class Doctrine_Connection_UnitOfWork_TestCase extends Doctrine_UnitTestCase
         // REPLACING ONE-TO-MANY REFERENCE
 
         unset($coll);
-        $coll = new Doctrine_Collection($pf);
-        $coll[0]->phonenumber = '123 123';
+        $coll                      = new Doctrine_Collection($pf);
+        $coll[0]->phonenumber      = '123 123';
         $coll['home']->phonenumber = '444 444';
         $coll['work']->phonenumber = '444 444';
 
@@ -171,9 +171,9 @@ class Doctrine_Connection_UnitOfWork_TestCase extends Doctrine_UnitTestCase
 
         // REPLACING ONE-TO-ONE REFERENCES
 
-        $email = $this->connection->create('Email');
+        $email          = $this->connection->create('Email');
         $email->address = 'absolutist@nottodrink.com';
-        $user->Email = $email;
+        $user->Email    = $email;
 
         $this->assertTrue($user->Email instanceof Email);
         $this->assertEqual($user->Email->address, 'absolutist@nottodrink.com');
@@ -188,13 +188,12 @@ class Doctrine_Connection_UnitOfWork_TestCase extends Doctrine_UnitTestCase
         //$this->assertEqual(count($emails),0);
     }
 
-    public function testTransactions() 
+    public function testTransactions()
     {
-
         $this->connection->beginTransaction();
-        $this->assertEqual($this->connection->transaction->getState(),Doctrine_Transaction::STATE_ACTIVE);
+        $this->assertEqual($this->connection->transaction->getState(), Doctrine_Transaction::STATE_ACTIVE);
         $this->connection->commit();
-        $this->assertEqual($this->connection->transaction->getState(),Doctrine_Transaction::STATE_SLEEP);
+        $this->assertEqual($this->connection->transaction->getState(), Doctrine_Transaction::STATE_SLEEP);
 
         $this->connection->beginTransaction();
         
@@ -206,8 +205,5 @@ class Doctrine_Connection_UnitOfWork_TestCase extends Doctrine_UnitTestCase
 
         $user = $this->objTable->find(6);
         $this->assertEqual($user->name, 'Jack Daniels');
-
     }
-
-
 }

@@ -30,9 +30,9 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Import_Pgsql_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Import_Pgsql_TestCase extends Doctrine_UnitTestCase
 {
-    public function testListSequencesExecutesSql() 
+    public function testListSequencesExecutesSql()
     {
         $this->import->listSequences('table');
         

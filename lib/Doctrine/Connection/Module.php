@@ -49,7 +49,7 @@ class Doctrine_Connection_Module
      */
     public function __construct($conn = null)
     {
-        if ( ! ($conn instanceof Doctrine_Connection)) {
+        if (! ($conn instanceof Doctrine_Connection)) {
             $conn = Doctrine_Manager::getInstance()->getCurrentConnection();
         }
         $this->conn = $conn;

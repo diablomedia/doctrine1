@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_963_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_963_TestCase extends Doctrine_UnitTestCase
 {
     public function testInit()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mysql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mysql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh);
     }
 
@@ -50,33 +50,33 @@ class Doctrine_Ticket_963_TestCase extends Doctrine_UnitTestCase
 
 class Ticket_963_User extends Doctrine_Record
 {
-  public function setTableDefinition()
-  {
-    $this->hasColumn('username', 'string', 255);
-    $this->hasColumn('password', 'string', 255);
-  }
+    public function setTableDefinition()
+    {
+        $this->hasColumn('username', 'string', 255);
+        $this->hasColumn('password', 'string', 255);
+    }
 
-  public function setUp()
-  {
-    $this->hasOne('Ticket_963_Email as Email', array('local' => 'id',
-                                 'foreign' => 'user_id'));
-  }
+    public function setUp()
+    {
+        $this->hasOne('Ticket_963_Email as Email', array('local' => 'id',
+                                 'foreign'                       => 'user_id'));
+    }
 }
 
 class Ticket_963_Email extends Doctrine_Record
 {
-  public function setTableDefinition()
-  {
-    $this->hasColumn('user_id', 'integer', 4, array('primary' => true));
-    $this->hasColumn('address2', 'string', 255);
-  }
+    public function setTableDefinition()
+    {
+        $this->hasColumn('user_id', 'integer', 4, array('primary' => true));
+        $this->hasColumn('address2', 'string', 255);
+    }
 
-  public function setUp()
-  {
-    $this->hasOne('Ticket_963_User as User', array(
-                                'local' => 'user_id',
-                                'foreign' => 'id',
+    public function setUp()
+    {
+        $this->hasOne('Ticket_963_User as User', array(
+                                'local'      => 'user_id',
+                                'foreign'    => 'id',
                                 'owningSide' => true,
-                                'onDelete' => 'CASCADE'));
-  }
+                                'onDelete'   => 'CASCADE'));
+    }
 }

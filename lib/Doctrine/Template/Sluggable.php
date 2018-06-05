@@ -40,19 +40,19 @@ class Doctrine_Template_Sluggable extends Doctrine_Template
      * @var array
      */
     protected $_options = array(
-        'name'          =>  'slug',
-        'alias'         =>  null,
-        'type'          =>  'string',
-        'length'        =>  255,
-        'unique'        =>  true,
-        'options'       =>  array(),
-        'fields'        =>  array(),
-        'uniqueBy'      =>  array(),
-        'uniqueIndex'   =>  true,
-        'canUpdate'     =>  false,
-        'builder'       =>  array('Doctrine_Inflector', 'urlize'),
-        'provider'      =>  null,
-        'indexName'     =>  null
+        'name'        => 'slug',
+        'alias'       => null,
+        'type'        => 'string',
+        'length'      => 255,
+        'unique'      => true,
+        'options'     => array(),
+        'fields'      => array(),
+        'uniqueBy'    => array(),
+        'uniqueIndex' => true,
+        'canUpdate'   => false,
+        'builder'     => array('Doctrine_Inflector', 'urlize'),
+        'provider'    => null,
+        'indexName'   => null
     );
 
     /**
@@ -67,7 +67,7 @@ class Doctrine_Template_Sluggable extends Doctrine_Template
             $name .= ' as ' . $this->_options['alias'];
         }
         if ($this->_options['indexName'] === null) {
-            $this->_options['indexName'] = $this->getTable()->getTableName().'_sluggable';
+            $this->_options['indexName'] = $this->getTable()->getTableName() . '_sluggable';
         }
         $this->hasColumn($name, $this->_options['type'], $this->_options['length'], $this->_options['options']);
 
@@ -75,7 +75,7 @@ class Doctrine_Template_Sluggable extends Doctrine_Template
             $indexFields = array($this->_options['name']);
             $indexFields = array_merge($indexFields, $this->_options['uniqueBy']);
             $this->index($this->_options['indexName'], array('fields' => $indexFields,
-                                                             'type' => 'unique'));
+                                                             'type'   => 'unique'));
         }
 
         $this->addListener(new Doctrine_Template_Listener_Sluggable($this->_options));

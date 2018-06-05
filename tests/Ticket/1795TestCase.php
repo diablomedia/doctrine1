@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1795_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1795_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,7 +40,7 @@ class Doctrine_Ticket_1795_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $test = new Ticket_1795_BlogPost();
+        $test                           = new Ticket_1795_BlogPost();
         $test->Translation['en']->title = 'test';
         try {
             $value = $test->Translation['en']->customMethod();

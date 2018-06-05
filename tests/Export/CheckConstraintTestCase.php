@@ -30,12 +30,14 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Export_CheckConstraint_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Export_CheckConstraint_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
-    { }
+    {
+    }
     public function prepareTables()
-    { }
+    {
+    }
     
     public function testCheckConstraints()
     {

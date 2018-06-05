@@ -49,7 +49,8 @@ class Doctrine_Transaction_Mssql extends Doctrine_Transaction
      * @throws Doctrine_Transaction_Exception       if using unknown isolation level or unknown wait option
      * @return void
      */
-    public function setIsolation($isolation, $options = array()) {
+    public function setIsolation($isolation, $options = array())
+    {
         switch ($isolation) {
             case 'READ UNCOMMITTED':
             case 'READ COMMITTED':

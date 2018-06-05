@@ -19,13 +19,13 @@ class Doctrine_Ticket_428_TestCase extends Doctrine_UnitTestCase
     {
     }
 
-    public function testInitData() 
+    public function testInitData()
     {
         // Since the tests do a $this->objTable()->clear() before each method call
         // using the User model is not recommended for this test
         $albums = new Doctrine_Collection('Album');
 
-        $albums[0]->name = 'Revolution';
+        $albums[0]->name           = 'Revolution';
         $albums[0]->Song[0]->title = 'Revolution';
         $albums[0]->Song[1]->title = 'Hey Jude';
         $albums[0]->Song[2]->title = 'Across the Universe';
@@ -35,7 +35,7 @@ class Doctrine_Ticket_428_TestCase extends Doctrine_UnitTestCase
         $this->_albums = $albums;
     }
 
-    public function testAggregateValueMappingSupportsLeftJoins() 
+    public function testAggregateValueMappingSupportsLeftJoins()
     {
         foreach ($this->_albums as $album) {
             $album->clearRelated();

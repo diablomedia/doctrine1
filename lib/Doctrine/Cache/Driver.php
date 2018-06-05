@@ -72,7 +72,7 @@ abstract class Doctrine_Cache_Driver implements Doctrine_Cache_Interface
      */
     public function getOption($option)
     {
-        if ( ! isset($this->_options[$option])) {
+        if (! isset($this->_options[$option])) {
             return null;
         }
 
@@ -146,7 +146,7 @@ abstract class Doctrine_Cache_Driver implements Doctrine_Cache_Interface
     public function deleteByRegex($regex)
     {
         $count = 0;
-        $keys = $this->_getCacheKeys();
+        $keys  = $this->_getCacheKeys();
         if (is_array($keys)) {
             foreach ($keys as $key) {
                 if (preg_match($regex, $key)) {
@@ -167,7 +167,7 @@ abstract class Doctrine_Cache_Driver implements Doctrine_Cache_Interface
     public function deleteByPrefix($prefix)
     {
         $count = 0;
-        $keys = $this->_getCacheKeys();
+        $keys  = $this->_getCacheKeys();
         if (is_array($keys)) {
             foreach ($keys as $key) {
                 if (strpos($key, $prefix) === 0) {
@@ -188,7 +188,7 @@ abstract class Doctrine_Cache_Driver implements Doctrine_Cache_Interface
     public function deleteBySuffix($suffix)
     {
         $count = 0;
-        $keys = $this->_getCacheKeys();
+        $keys  = $this->_getCacheKeys();
         if (is_array($keys)) {
             foreach ($keys as $key) {
                 if (substr($key, -1 * strlen($suffix)) == $suffix) {
@@ -227,7 +227,7 @@ abstract class Doctrine_Cache_Driver implements Doctrine_Cache_Interface
     {
         $prefix = isset($this->_options['prefix']) ? $this->_options['prefix'] : '';
 
-        if ( ! $prefix || strpos($id, $prefix) === 0) {
+        if (! $prefix || strpos($id, $prefix) === 0) {
             return $id;
         } else {
             return $prefix . $id;

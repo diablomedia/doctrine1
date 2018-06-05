@@ -1,8 +1,10 @@
 <?php
-class BadLyNamed__Class extends Doctrine_Record {
-    public function setTableDefinition() {
-                                         	
+class BadLyNamed__Class extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
     }
-    public function setUp() { }
+    public function setUp()
+    {
+    }
 }
-

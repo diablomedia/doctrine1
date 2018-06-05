@@ -52,7 +52,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      */
     public function createDatabaseSql($name)
     {
-        $query  = 'CREATE DATABASE ' . $this->conn->quoteIdentifier($name);
+        $query = 'CREATE DATABASE ' . $this->conn->quoteIdentifier($name);
 
         return $query;
     }
@@ -67,7 +67,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      */
     public function dropDatabaseSql($name)
     {
-        $query  = 'DROP DATABASE ' . $this->conn->quoteIdentifier($name);
+        $query = 'DROP DATABASE ' . $this->conn->quoteIdentifier($name);
 
         return $query;
     }
@@ -148,8 +148,8 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
         if (isset($changes['remove']) && is_array($changes['remove'])) {
             foreach ($changes['remove'] as $fieldName => $field) {
                 $fieldName = $this->conn->quoteIdentifier($fieldName, true);
-                $query = 'DROP ' . $fieldName;
-                $sql[] = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' ' . $query;
+                $query     = 'DROP ' . $fieldName;
+                $sql[]     = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' ' . $query;
             }
         }
 
@@ -160,7 +160,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
                     $serverInfo = $this->conn->getServerVersion();
 
                     if (is_array($serverInfo) && $serverInfo['major'] < 8) {
-                        throw new Doctrine_Export_Exception('changing column type for "'.$field['type'].'\" requires PostgreSQL 8.0 or above');
+                        throw new Doctrine_Export_Exception('changing column type for "' . $field['type'] . '\" requires PostgreSQL 8.0 or above');
                     }
                     $query = 'ALTER ' . $fieldName . ' TYPE ' . $this->conn->dataDict->getNativeDeclaration($field['definition']);
                     $sql[] = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' ' . $query;
@@ -169,7 +169,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
                     $query = 'ALTER ' . $fieldName . ' SET DEFAULT ' . $this->conn->quote($field['definition']['default'], $field['definition']['type']);
                     $sql[] = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' ' . $query;
                 }
-                if ( isset($field['definition']['notnull'])) {
+                if (isset($field['definition']['notnull'])) {
                     $query = 'ALTER ' . $fieldName . ' ' . ($field['definition']['notnull'] ? 'SET' : 'DROP') . ' NOT NULL';
                     $sql[] = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' ' . $query;
                 }
@@ -179,14 +179,14 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
         if (isset($changes['rename']) && is_array($changes['rename'])) {
             foreach ($changes['rename'] as $fieldName => $field) {
                 $fieldName = $this->conn->quoteIdentifier($fieldName, true);
-                $sql[] = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' RENAME COLUMN ' . $fieldName . ' TO ' . $this->conn->quoteIdentifier($field['name'], true);
+                $sql[]     = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' RENAME COLUMN ' . $fieldName . ' TO ' . $this->conn->quoteIdentifier($field['name'], true);
             }
         }
 
         $name = $this->conn->quoteIdentifier($name, true);
         if (isset($changes['name'])) {
             $changeName = $this->conn->quoteIdentifier($changes['name'], true);
-            $sql[] = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' RENAME TO ' . $changeName;
+            $sql[]      = 'ALTER TABLE ' . $this->conn->quoteIdentifier($name, true) . ' RENAME TO ' . $changeName;
         }
 
         return $sql;
@@ -338,7 +338,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      */
     public function createTableSql($name, array $fields, array $options = array())
     {
-        if ( ! $name) {
+        if (! $name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
         }
 
@@ -370,13 +370,12 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
         $sql[] = $query;
 
         if (isset($options['indexes']) && ! empty($options['indexes'])) {
-            foreach($options['indexes'] as $index => $definition) {
+            foreach ($options['indexes'] as $index => $definition) {
                 $sql[] = $this->createIndexSql($name, $index, $definition);
             }
         }
 
         if (isset($options['foreignKeys'])) {
-
             foreach ((array) $options['foreignKeys'] as $k => $definition) {
                 if (is_array($definition)) {
                     $sql[] = $this->createForeignKeySql($name, $definition);
@@ -389,21 +388,21 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
         return $sql;
     }
 
-     /**
-     * Get the stucture of a field into an array.
-     *
-     * @param string    $table         name of the table on which the index is to be created
-     * @param string    $name          name of the index to be created
-     * @param array     $definition    associative array that defines properties of the index to be created.
-     * @see Doctrine_Export::createIndex()
-     * @return string
-     */
+    /**
+    * Get the stucture of a field into an array.
+    *
+    * @param string    $table         name of the table on which the index is to be created
+    * @param string    $name          name of the index to be created
+    * @param array     $definition    associative array that defines properties of the index to be created.
+    * @see Doctrine_Export::createIndex()
+    * @return string
+    */
     public function createIndexSql($table, $name, array $definition)
     {
-		$query = parent::createIndexSql($table, $name, $definition);
-		if (isset($definition['where'])) {
-			return $query . ' WHERE ' . $definition['where'];
-		}
+        $query = parent::createIndexSql($table, $name, $definition);
+        if (isset($definition['where'])) {
+            return $query . ' WHERE ' . $definition['where'];
+        }
         return $query;
     }
 }

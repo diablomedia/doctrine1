@@ -49,15 +49,14 @@ class Doctrine_Ticket_2251_TestCase extends Doctrine_UnitTestCase
         );
         
         $expected = array(
-            'mysql'     => 'CREATE TABLE test_string_length (id BIGINT AUTO_INCREMENT, test_string TEXT, PRIMARY KEY(id)) ENGINE = INNODB',
-            'sqlite'    => 'CREATE TABLE test_string_length (id INTEGER PRIMARY KEY AUTOINCREMENT, test_string TEXT)',
-            'pgsql'     => 'CREATE TABLE test_string_length (id BIGSERIAL, test_string TEXT, PRIMARY KEY(id))',
-            'oracle'    => 'CREATE TABLE test_string_length (id NUMBER(20), test_string CLOB, PRIMARY KEY(id))',
-            'mssql'     => 'CREATE TABLE test_string_length (id INT NOT NULL identity, test_string TEXT NULL, PRIMARY KEY([id]))'
+            'mysql'  => 'CREATE TABLE test_string_length (id BIGINT AUTO_INCREMENT, test_string TEXT, PRIMARY KEY(id)) ENGINE = INNODB',
+            'sqlite' => 'CREATE TABLE test_string_length (id INTEGER PRIMARY KEY AUTOINCREMENT, test_string TEXT)',
+            'pgsql'  => 'CREATE TABLE test_string_length (id BIGSERIAL, test_string TEXT, PRIMARY KEY(id))',
+            'oracle' => 'CREATE TABLE test_string_length (id NUMBER(20), test_string CLOB, PRIMARY KEY(id))',
+            'mssql'  => 'CREATE TABLE test_string_length (id INT NOT NULL identity, test_string TEXT NULL, PRIMARY KEY([id]))'
         );
 
-        foreach ($drivers as $driver)
-        {
+        foreach ($drivers as $driver) {
             $dbh = new Doctrine_Adapter_Mock($driver);
 
             $conn = Doctrine_Manager::getInstance()->connection($dbh, $driver);
@@ -76,8 +75,8 @@ class Ticket_2251_TestStringLength extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-            $this->setTableName('test_string_length');
-            $this->hasColumn('test_string', 'string');
+        $this->setTableName('test_string_length');
+        $this->hasColumn('test_string', 'string');
     }
 
     public function setUp()

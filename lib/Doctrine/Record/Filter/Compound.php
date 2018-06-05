@@ -47,10 +47,10 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
      */
     public function init()
     {
-    	// check that all aliases exist
-    	foreach ($this->_aliases as $alias) {
+        // check that all aliases exist
+        foreach ($this->_aliases as $alias) {
             $this->_table->getRelation($alias);
-    	}
+        }
     }
 
     /**
@@ -67,8 +67,7 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
         foreach ($this->_aliases as $alias) {
             $relation = $record[$alias];
 
-            if ( ! $record->exists()) {
-
+            if (! $record->exists()) {
                 if (isset($relation[$name])) {
                     $relation[$name] = $value;
 
@@ -95,7 +94,7 @@ class Doctrine_Record_Filter_Compound extends Doctrine_Record_Filter
     public function filterGet(Doctrine_Record $record, $name)
     {
         foreach ($this->_aliases as $alias) {
-            if ( ! $record->exists()) {
+            if (! $record->exists()) {
                 if (isset($record[$alias][$name])) {
                     return $record[$alias][$name];
                 }

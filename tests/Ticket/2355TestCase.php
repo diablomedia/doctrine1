@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2355_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2355_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -120,10 +120,10 @@ class News extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('title', 'string', 255, array(
-             'type' => 'string',
-             'notnull' => true,
+             'type'     => 'string',
+             'notnull'  => true,
              'notblank' => true,
-             'length' => '255',
+             'length'   => '255',
              ));
     }
 }
@@ -133,32 +133,31 @@ class Episode extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('season', 'integer', 1, array(
-             'type' => 'integer',
-             'length' => 1,
-             'notnull' => true,
+             'type'     => 'integer',
+             'length'   => 1,
+             'notnull'  => true,
              'notblank' => true,
              ));
         $this->hasColumn('number', 'integer', 1, array(
-             'type' => 'integer',
-             'length' => 1,
-             'notnull' => true,
+             'type'     => 'integer',
+             'length'   => 1,
+             'notnull'  => true,
              'notblank' => true,
              ));
         $this->hasColumn('title_us', 'string', 100, array(
-             'type' => 'string',
-             'notnull' => true,
+             'type'     => 'string',
+             'notnull'  => true,
              'notblank' => true,
-             'length' => '100',
+             'length'   => '100',
              ));
         $this->hasColumn('title_fr', 'string', 100, array(
-             'type' => 'string',
+             'type'   => 'string',
              'length' => '100',
              ));
 
 
         $this->index('episode', array(
-             'fields' => 
-             array(
+             'fields' => array(
               0 => 'season',
               1 => 'number',
              ),
@@ -170,20 +169,20 @@ class Episode extends Doctrine_Record
     {
         $this->hasMany('Writer as Writers', array(
              'refClass' => 'WriterEpisode',
-             'local' => 'episode_id',
-             'foreign' => 'writer_id'));
+             'local'    => 'episode_id',
+             'foreign'  => 'writer_id'));
 
         $this->hasMany('Director as Directors', array(
              'refClass' => 'DirectorEpisode',
-             'local' => 'episode_id',
-             'foreign' => 'director_id'));
+             'local'    => 'episode_id',
+             'foreign'  => 'director_id'));
 
         $this->hasMany('WriterEpisode', array(
-             'local' => 'id',
+             'local'   => 'id',
              'foreign' => 'episode_id'));
 
         $this->hasMany('DirectorEpisode', array(
-             'local' => 'id',
+             'local'   => 'id',
              'foreign' => 'episode_id'));
     }
 }
@@ -193,11 +192,11 @@ class Writer extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 150, array(
-             'type' => 'string',
-             'notnull' => true,
+             'type'     => 'string',
+             'notnull'  => true,
              'notblank' => true,
-             'unique' => true,
-             'length' => '150',
+             'unique'   => true,
+             'length'   => '150',
              ));
     }
 
@@ -205,11 +204,11 @@ class Writer extends Doctrine_Record
     {
         $this->hasMany('Episode', array(
              'refClass' => 'WriterEpisode',
-             'local' => 'writer_id',
-             'foreign' => 'episode_id'));
+             'local'    => 'writer_id',
+             'foreign'  => 'episode_id'));
 
         $this->hasMany('WriterEpisode', array(
-             'local' => 'id',
+             'local'   => 'id',
              'foreign' => 'writer_id'));
     }
 }
@@ -219,11 +218,11 @@ class WriterEpisode extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('episode_id', 'integer', null, array(
-             'type' => 'integer',
+             'type'    => 'integer',
              'primary' => true,
              ));
         $this->hasColumn('writer_id', 'integer', null, array(
-             'type' => 'integer',
+             'type'    => 'integer',
              'primary' => true,
              ));
     }
@@ -231,13 +230,13 @@ class WriterEpisode extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Writer', array(
-             'local' => 'writer_id',
-             'foreign' => 'id',
+             'local'    => 'writer_id',
+             'foreign'  => 'id',
              'onDelete' => 'CASCADE'));
 
         $this->hasOne('Episode', array(
-             'local' => 'episode_id',
-             'foreign' => 'id',
+             'local'    => 'episode_id',
+             'foreign'  => 'id',
              'onDelete' => 'CASCADE'));
     }
 }
@@ -247,11 +246,11 @@ class Director extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 150, array(
-             'type' => 'string',
-             'notnull' => true,
+             'type'     => 'string',
+             'notnull'  => true,
              'notblank' => true,
-             'unique' => true,
-             'length' => '150',
+             'unique'   => true,
+             'length'   => '150',
              ));
     }
 
@@ -259,11 +258,11 @@ class Director extends Doctrine_Record
     {
         $this->hasMany('Episode', array(
              'refClass' => 'DirectorEpisode',
-             'local' => 'director_id',
-             'foreign' => 'episode_id'));
+             'local'    => 'director_id',
+             'foreign'  => 'episode_id'));
 
         $this->hasMany('DirectorEpisode', array(
-             'local' => 'id',
+             'local'   => 'id',
              'foreign' => 'director_id'));
     }
 }
@@ -273,11 +272,11 @@ class DirectorEpisode extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('episode_id', 'integer', null, array(
-             'type' => 'integer',
+             'type'    => 'integer',
              'primary' => true,
              ));
         $this->hasColumn('director_id', 'integer', null, array(
-             'type' => 'integer',
+             'type'    => 'integer',
              'primary' => true,
              ));
     }
@@ -285,13 +284,13 @@ class DirectorEpisode extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Director', array(
-             'local' => 'director_id',
-             'foreign' => 'id',
+             'local'    => 'director_id',
+             'foreign'  => 'id',
              'onDelete' => 'CASCADE'));
 
         $this->hasOne('Episode', array(
-             'local' => 'episode_id',
-             'foreign' => 'id',
+             'local'    => 'episode_id',
+             'foreign'  => 'id',
              'onDelete' => 'CASCADE'));
     }
 }

@@ -35,17 +35,17 @@ class Doctrine_Task_BuildAll extends Doctrine_Task
     /**
      * @var string
      */
-    public $description          =   'Calls generate-models-from-yaml, create-db, and create-tables';
+    public $description = 'Calls generate-models-from-yaml, create-db, and create-tables';
 
     /**
      * @var array
      */
-    public $requiredArguments    =   array();
+    public $requiredArguments = array();
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array();
+    public $optionalArguments = array();
 
     /**
      * @var Doctrine_Task_GenerateModelsYaml
@@ -70,9 +70,9 @@ class Doctrine_Task_BuildAll extends Doctrine_Task
     {
         parent::__construct($dispatcher);
 
-        $this->models = new Doctrine_Task_GenerateModelsYaml($this->dispatcher);
+        $this->models   = new Doctrine_Task_GenerateModelsYaml($this->dispatcher);
         $this->createDb = new Doctrine_Task_CreateDb($this->dispatcher);
-        $this->tables = new Doctrine_Task_CreateTables($this->dispatcher);
+        $this->tables   = new Doctrine_Task_CreateTables($this->dispatcher);
 
         $this->requiredArguments = array_merge($this->requiredArguments, $this->models->requiredArguments, $this->createDb->requiredArguments, $this->tables->requiredArguments);
         $this->optionalArguments = array_merge($this->optionalArguments, $this->models->optionalArguments, $this->createDb->optionalArguments, $this->tables->optionalArguments);

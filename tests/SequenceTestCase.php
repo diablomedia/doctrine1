@@ -30,25 +30,25 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Sequence_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Sequence_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
+    public function prepareData()
     {
     }
-    public function prepareTables() 
+    public function prepareTables()
     {
     }
     public function testSequencesAreSupportedForRecords()
     {
         $this->adapter->forceLastInsertIdFail();
-        $r = new CustomSequenceRecord;
+        $r       = new CustomSequenceRecord;
         $r->name = 'custom seq';
         $r->save();
         
-                 /**
+        /**
         // the last profiled event is transaction commit
         $this->assertEqual($this->adapter->pop(), 'COMMIT');
-        // query execution                                         
+        // query execution
 
         $this->assertEqual($this->adapter->pop(), 'INSERT INTO custom_sequence_record (name, id) VALUES (?, ?)');
         // query prepare

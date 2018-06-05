@@ -31,4 +31,5 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_DataDict_Exception extends Doctrine_Exception
-{ }
+{
+}

@@ -235,7 +235,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
      */
     public function createTableSql($name, array $fields, array $options = array())
     {
-        if ( ! $name) {
+        if (! $name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
         }
 
@@ -252,11 +252,11 @@ class Doctrine_Export extends Doctrine_Connection_Module
         }
 
         if (isset($options['indexes']) && ! empty($options['indexes'])) {
-            foreach($options['indexes'] as $index => $definition) {
+            foreach ($options['indexes'] as $index => $definition) {
                 $indexDeclaration = $this->getIndexDeclaration($index, $definition);
                 // append only created index declarations
-                if ( ! is_null($indexDeclaration)) {
-                    $queryFields .= ', '.$indexDeclaration;
+                if (! is_null($indexDeclaration)) {
+                    $queryFields .= ', ' . $indexDeclaration;
                 }
             }
         }
@@ -265,7 +265,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
 
         $check = $this->getCheckDeclaration($fields);
 
-        if ( ! empty($check)) {
+        if (! empty($check)) {
             $query .= ', ' . $check;
         }
 
@@ -274,7 +274,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
         $sql[] = $query;
 
         if (isset($options['foreignKeys'])) {
-
             foreach ((array) $options['foreignKeys'] as $k => $definition) {
                 if (is_array($definition)) {
                     $sql[] = $this->createForeignKeySql($name, $definition);
@@ -420,7 +419,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
         foreach (array_keys($definition['fields']) as $field) {
             $fields[] = $this->conn->quoteIdentifier($field, true);
         }
-        $query .= ' ('. implode(', ', $fields) . ')';
+        $query .= ' (' . implode(', ', $fields) . ')';
 
         return $query;
     }
@@ -472,9 +471,9 @@ class Doctrine_Export extends Doctrine_Connection_Module
      */
     public function createIndexSql($table, $name, array $definition)
     {
-        $table  = $this->conn->quoteIdentifier($table);
-        $name   = $this->conn->quoteIdentifier($name);
-        $type   = '';
+        $table = $this->conn->quoteIdentifier($table);
+        $name  = $this->conn->quoteIdentifier($name);
+        $type  = '';
 
         if (isset($definition['type'])) {
             switch (strtolower($definition['type'])) {
@@ -721,21 +720,20 @@ class Doctrine_Export extends Doctrine_Connection_Module
      */
     public function getDeclaration($name, array $field)
     {
+        $default = $this->getDefaultFieldDeclaration($field);
 
-        $default   = $this->getDefaultFieldDeclaration($field);
-
-        $charset   = (isset($field['charset']) && $field['charset']) ?
+        $charset = (isset($field['charset']) && $field['charset']) ?
                     ' ' . $this->getCharsetFieldDeclaration($field['charset']) : '';
 
         $collation = (isset($field['collation']) && $field['collation']) ?
                     ' ' . $this->getCollationFieldDeclaration($field['collation']) : '';
 
-        $notnull   = $this->getNotNullFieldDeclaration($field);
+        $notnull = $this->getNotNullFieldDeclaration($field);
 
-        $unique    = (isset($field['unique']) && $field['unique']) ?
+        $unique = (isset($field['unique']) && $field['unique']) ?
                     ' ' . $this->getUniqueFieldDeclaration() : '';
 
-        $check     = (isset($field['check']) && $field['check']) ?
+        $check = (isset($field['check']) && $field['check']) ?
                     ' ' . $field['check'] : '';
 
         $method = 'get' . $field['type'] . 'Declaration';
@@ -752,7 +750,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
         } catch (Exception $e) {
             throw new Doctrine_Exception('Around field ' . $name . ': ' . $e->getMessage());
         }
-
     }
 
     /**
@@ -841,8 +838,8 @@ class Doctrine_Export extends Doctrine_Connection_Module
      */
     public function getIndexDeclaration($name, array $definition)
     {
-        $name   = $this->conn->quoteIdentifier($name);
-        $type   = '';
+        $name = $this->conn->quoteIdentifier($name);
+        $type = '';
 
         if (isset($definition['type'])) {
             if (strtolower($definition['type']) == 'unique') {
@@ -854,7 +851,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
             }
         }
 
-        if ( ! isset($definition['fields']) || ! is_array($definition['fields'])) {
+        if (! isset($definition['fields']) || ! is_array($definition['fields'])) {
             throw new Doctrine_Export_Exception('No columns given for index ' . $name);
         }
 
@@ -948,7 +945,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
      */
     public function getForeignKeyDeclaration(array $definition)
     {
-        $sql  = $this->getForeignKeyBaseDeclaration($definition);
+        $sql = $this->getForeignKeyBaseDeclaration($definition);
         $sql .= $this->getAdvancedForeignKeyOptions($definition);
 
         return $sql;
@@ -965,10 +962,10 @@ class Doctrine_Export extends Doctrine_Connection_Module
     public function getAdvancedForeignKeyOptions(array $definition)
     {
         $query = '';
-        if ( ! empty($definition['onUpdate'])) {
+        if (! empty($definition['onUpdate'])) {
             $query .= ' ON UPDATE ' . $this->getForeignKeyReferentialAction($definition['onUpdate']);
         }
-        if ( ! empty($definition['onDelete'])) {
+        if (! empty($definition['onDelete'])) {
             $query .= ' ON DELETE ' . $this->getForeignKeyReferentialAction($definition['onDelete']);
         }
         return $query;
@@ -1018,20 +1015,20 @@ class Doctrine_Export extends Doctrine_Connection_Module
         }
         $sql .= 'FOREIGN KEY (';
 
-        if ( ! isset($definition['local'])) {
+        if (! isset($definition['local'])) {
             throw new Doctrine_Export_Exception('Local reference field missing from definition.');
         }
-        if ( ! isset($definition['foreign'])) {
+        if (! isset($definition['foreign'])) {
             throw new Doctrine_Export_Exception('Foreign reference field missing from definition.');
         }
-        if ( ! isset($definition['foreignTable'])) {
+        if (! isset($definition['foreignTable'])) {
             throw new Doctrine_Export_Exception('Foreign reference table missing from definition.');
         }
 
-        if ( ! is_array($definition['local'])) {
+        if (! is_array($definition['local'])) {
             $definition['local'] = array($definition['local']);
         }
-        if ( ! is_array($definition['foreign'])) {
+        if (! is_array($definition['foreign'])) {
             $definition['foreign'] = array($definition['foreign']);
         }
 
@@ -1114,91 +1111,91 @@ class Doctrine_Export extends Doctrine_Connection_Module
      */
     public function exportSortedClassesSql($classes, $groupByConnection = true)
     {
-         $connections = array();
-         foreach ($classes as $class) {
-             $connection = Doctrine_Manager::getInstance()->getConnectionForComponent($class);
-             $connectionName = $connection->getName();
+        $connections = array();
+        foreach ($classes as $class) {
+            $connection     = Doctrine_Manager::getInstance()->getConnectionForComponent($class);
+            $connectionName = $connection->getName();
 
-             if ( ! isset($connections[$connectionName])) {
-                 $connections[$connectionName] = array(
+            if (! isset($connections[$connectionName])) {
+                $connections[$connectionName] = array(
                      'create_tables'    => array(),
                      'create_sequences' => array(),
                      'create_indexes'   => array(),
                      'alters'           => array(),
                      'create_triggers'  => array(),
                  );
-             }
+            }
 
-             $sql = $connection->export->exportClassesSql(array($class));
+            $sql = $connection->export->exportClassesSql(array($class));
 
-             // Build array of all the creates
-             // We need these to happen first
-             foreach ($sql as $key => $query) {
-                 // If create table statement
-                 if (substr($query, 0, strlen('CREATE TABLE')) == 'CREATE TABLE') {
-                     $connections[$connectionName]['create_tables'][] = $query;
+            // Build array of all the creates
+            // We need these to happen first
+            foreach ($sql as $key => $query) {
+                // If create table statement
+                if (substr($query, 0, strlen('CREATE TABLE')) == 'CREATE TABLE') {
+                    $connections[$connectionName]['create_tables'][] = $query;
 
-                     unset($sql[$key]);
-                     continue;
-                 }
+                    unset($sql[$key]);
+                    continue;
+                }
 
-                 // If create sequence statement
-                 if (substr($query, 0, strlen('CREATE SEQUENCE')) == 'CREATE SEQUENCE') {
-                     $connections[$connectionName]['create_sequences'][] = $query;
+                // If create sequence statement
+                if (substr($query, 0, strlen('CREATE SEQUENCE')) == 'CREATE SEQUENCE') {
+                    $connections[$connectionName]['create_sequences'][] = $query;
 
-                     unset($sql[$key]);
-                     continue;
-                 }
+                    unset($sql[$key]);
+                    continue;
+                }
 
-                 // If create index statement
-                 if (preg_grep("/CREATE ([^ ]* )?INDEX/", array($query))) {
-                     $connections[$connectionName]['create_indexes'][] =  $query;
+                // If create index statement
+                if (preg_grep('/CREATE ([^ ]* )?INDEX/', array($query))) {
+                    $connections[$connectionName]['create_indexes'][] = $query;
 
-                     unset($sql[$key]);
-                     continue;
-                 }
+                    unset($sql[$key]);
+                    continue;
+                }
 
-                 // If alter table statement or oracle anonymous block enclosing alter
-                 if (substr($query, 0, strlen('ALTER TABLE')) == 'ALTER TABLE'
+                // If alter table statement or oracle anonymous block enclosing alter
+                if (substr($query, 0, strlen('ALTER TABLE')) == 'ALTER TABLE'
                        || substr($query, 0, strlen('DECLARE')) == 'DECLARE') {
-                     $connections[$connectionName]['alters'][] = $query;
+                    $connections[$connectionName]['alters'][] = $query;
 
-                     unset($sql[$key]);
-                     continue;
-                 }
+                    unset($sql[$key]);
+                    continue;
+                }
 
-                 // If create trgger statement
-                 if (substr($query, 0, strlen('CREATE TRIGGER')) == 'CREATE TRIGGER') {
-                     $connections[$connectionName]['create_triggers'][] = $query;
+                // If create trgger statement
+                if (substr($query, 0, strlen('CREATE TRIGGER')) == 'CREATE TRIGGER') {
+                    $connections[$connectionName]['create_triggers'][] = $query;
 
-                 	 unset($sql[$key]);
-                     continue;
-                 }
+                    unset($sql[$key]);
+                    continue;
+                }
 
-                 // If comment statement
-                 if (substr($query, 0, strlen('COMMENT ON')) == 'COMMENT ON') {
-                     $connections[$connectionName]['comments'][] = $query;
+                // If comment statement
+                if (substr($query, 0, strlen('COMMENT ON')) == 'COMMENT ON') {
+                    $connections[$connectionName]['comments'][] = $query;
 
-                     unset($sql[$key]);
-                     continue;
-                 }
-             }
-         }
+                    unset($sql[$key]);
+                    continue;
+                }
+            }
+        }
 
-         // Loop over all the sql again to merge everything together so it is in the correct order
-         $build = array();
-         foreach ($connections as $connectionName => $sql) {
-             $build[$connectionName] = array_unique(array_merge($sql['create_tables'], $sql['create_sequences'], $sql['create_indexes'], $sql['alters'], $sql['create_triggers']));
-         }
+        // Loop over all the sql again to merge everything together so it is in the correct order
+        $build = array();
+        foreach ($connections as $connectionName => $sql) {
+            $build[$connectionName] = array_unique(array_merge($sql['create_tables'], $sql['create_sequences'], $sql['create_indexes'], $sql['alters'], $sql['create_triggers']));
+        }
 
-         if ( ! $groupByConnection) {
-             $new = array();
-             foreach($build as $connectionname => $sql) {
-                 $new = array_unique(array_merge($new, $sql));
-             }
-             $build = $new;
-         }
-         return $build;
+        if (! $groupByConnection) {
+            $new = array();
+            foreach ($build as $connectionname => $sql) {
+                $new = array_unique(array_merge($new, $sql));
+            }
+            $build = $new;
+        }
+        return $build;
     }
 
     /**
@@ -1212,30 +1209,30 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * @param array $classes
      * @return void
      */
-     public function exportClasses(array $classes)
-     {
-         $queries = $this->exportSortedClassesSql($classes);
+    public function exportClasses(array $classes)
+    {
+        $queries = $this->exportSortedClassesSql($classes);
 
-         foreach ($queries as $connectionName => $sql) {
-             $connection = Doctrine_Manager::getInstance()->getConnection($connectionName);
+        foreach ($queries as $connectionName => $sql) {
+            $connection = Doctrine_Manager::getInstance()->getConnection($connectionName);
 
-             $connection->beginTransaction();
+            $connection->beginTransaction();
 
-             foreach ($sql as $query) {
-                 try {
-                     $connection->exec($query);
-                 } catch (Doctrine_Connection_Exception $e) {
-                     // we only want to silence table already exists errors
-                     if ($e->getPortableCode() !== Doctrine_Core::ERR_ALREADY_EXISTS) {
-                         $connection->rollback();
-                         throw new Doctrine_Export_Exception($e->getMessage() . '. Failing Query: ' . $query);
-                     }
-                 }
-             }
+            foreach ($sql as $query) {
+                try {
+                    $connection->exec($query);
+                } catch (Doctrine_Connection_Exception $e) {
+                    // we only want to silence table already exists errors
+                    if ($e->getPortableCode() !== Doctrine_Core::ERR_ALREADY_EXISTS) {
+                        $connection->rollback();
+                        throw new Doctrine_Export_Exception($e->getMessage() . '. Failing Query: ' . $query);
+                    }
+                }
+            }
 
-             $connection->commit();
-         }
-     }
+            $connection->commit();
+        }
+    }
 
     /**
      * exportClassesSql
@@ -1253,12 +1250,12 @@ class Doctrine_Export extends Doctrine_Connection_Module
         $sql = array();
 
         foreach ($models as $name) {
-            $record = new $name();
-            $table = $record->getTable();
+            $record  = new $name();
+            $table   = $record->getTable();
             $parents = $table->getOption('joinedParents');
 
             foreach ($parents as $parent) {
-                $data  = $table->getConnection()->getTable($parent)->getExportableFormat();
+                $data = $table->getConnection()->getTable($parent)->getExportableFormat();
 
                 $query = $this->conn->export->createTableSql($data['tableName'], $data['columns'], $data['options']);
 
@@ -1332,7 +1329,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
      */
     public function exportGeneratorsSql(Doctrine_Table $table)
     {
-    	$sql = array();
+        $sql = array();
 
         foreach ($this->getAllGenerators($table) as $name => $generator) {
             $table = $generator->getTable();
@@ -1390,7 +1387,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
             $data = $table->getExportableFormat();
 
             $this->conn->export->createTable($data['tableName'], $data['columns'], $data['options']);
-        } catch(Doctrine_Connection_Exception $e) {
+        } catch (Doctrine_Connection_Exception $e) {
             // we only want to silence table already exists errors
             if ($e->getPortableCode() !== Doctrine_Core::ERR_ALREADY_EXISTS) {
                 throw $e;

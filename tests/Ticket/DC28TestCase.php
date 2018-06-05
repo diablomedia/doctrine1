@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC28_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC28_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -50,24 +50,24 @@ class Doctrine_Ticket_DC28_TestCase extends Doctrine_UnitTestCase
             //echo $q->getSqlQuery().PHP_EOL;
             
             $this->assertEqual(
-                $q->getSqlQuery(), 
-                'SELECT t.id AS t__id, t2.id AS t2__id, t2.lang AS t2__lang '.
-                'FROM ticket__d_c28__tree t '.
-                'INNER JOIN ticket__d_c28__tree_translation t2 '.
+                $q->getSqlQuery(),
+                'SELECT t.id AS t__id, t2.id AS t2__id, t2.lang AS t2__lang ' .
+                'FROM ticket__d_c28__tree t ' .
+                'INNER JOIN ticket__d_c28__tree_translation t2 ' .
                 'ON t.id = t2.id AND (t2.name != ?)'
             );
             
             //echo $q->getSqlQuery().PHP_EOL;
             $tree_table = Doctrine_Core::getTable('Ticket_DC28_Tree');
-            $tree = $tree_table->getTree();
+            $tree       = $tree_table->getTree();
             $tree->setBaseQuery($q);
             //echo $q->getSqlQuery().PHP_EOL;
             
             $this->assertEqual(
-                $q->getSqlQuery(), 
-                'SELECT t.id AS t__id, t.lft AS t__lft, t.rgt AS t__rgt, t.level AS t__level, t2.id AS t2__id, t2.lang AS t2__lang '.
-                'FROM ticket__d_c28__tree t '.
-                'INNER JOIN ticket__d_c28__tree_translation t2 '.
+                $q->getSqlQuery(),
+                'SELECT t.id AS t__id, t.lft AS t__lft, t.rgt AS t__rgt, t.level AS t__level, t2.id AS t2__id, t2.lang AS t2__lang ' .
+                'FROM ticket__d_c28__tree t ' .
+                'INNER JOIN ticket__d_c28__tree_translation t2 ' .
                 'ON t.id = t2.id AND (t2.name != ?)'
             );
             

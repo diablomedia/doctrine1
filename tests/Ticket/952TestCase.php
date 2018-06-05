@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_952_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_952_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,8 +41,8 @@ class Doctrine_Ticket_952_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $parent = new Ticket_952_Parent();
-        $parent->name = 'Parent';
+        $parent                    = new Ticket_952_Parent();
+        $parent->name              = 'Parent';
         $parent->Children[0]->name = 'Child 1';
         $parent->Children[1]->name = 'Child 2';
         $parent->save();

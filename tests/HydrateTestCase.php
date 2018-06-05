@@ -55,7 +55,8 @@ class Doctrine_Hydrate_TestCase extends Doctrine_UnitTestCase
                                   )
                               );
     public function prepareData()
-    { }
+    {
+    }
 
     public function testHydrateHooks()
     {
@@ -76,16 +77,16 @@ class Doctrine_Hydrate_TestCase extends Doctrine_UnitTestCase
 
 class HydrationListener extends Doctrine_Record_Listener
 {
-    public function preHydrate(Doctrine_Event $event) 
+    public function preHydrate(Doctrine_Event $event)
     {
-        $data = $event->data;
+        $data             = $event->data;
         $data['password'] = 'default pass';
         
         $event->data = $data;
     }
     public function postHydrate(Doctrine_Event $event)
     {
-    	foreach ($event->data as $key => $value) {
+        foreach ($event->data as $key => $value) {
             $event->data[$key] = strtoupper($value);
         }
     }

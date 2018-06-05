@@ -6,6 +6,6 @@ class AddProfile extends Doctrine_Migration_Base
 {
     public function migrate($direction)
     {
-		$this->table($direction, 'migration_profile', array('id' => array('type' => 'integer', 'length' => 20, 'autoincrement' => true, 'primary' => true), 'name' => array('type' => 'string', 'length' => 255)), array('indexes' => array(), 'primary' => array(0 => 'id')));
+        $this->table($direction, 'migration_profile', array('id' => array('type' => 'integer', 'length' => 20, 'autoincrement' => true, 'primary' => true), 'name' => array('type' => 'string', 'length' => 255)), array('indexes' => array(), 'primary' => array(0 => 'id')));
     }
 }

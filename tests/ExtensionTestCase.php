@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Extension_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Extension_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        Doctrine_Core::setExtensionsPath(dirname(__FILE__).'/Extension');
+        Doctrine_Core::setExtensionsPath(dirname(__FILE__) . '/Extension');
         spl_autoload_register(array('Doctrine', 'extensionsAutoload'));
 
         Doctrine_Manager::getInstance()

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1500_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1500_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,19 +41,19 @@ class Doctrine_Ticket_1500_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $group = new T1500_Group();
+        $group       = new T1500_Group();
         $group->name = 'admin';
         $group->save();
 
-        $user = new T1500_User();
+        $user          = new T1500_User();
         $user->groupId = $group->id;
-        $user->name = 'jwage';
+        $user->name    = 'jwage';
         $user->save();
 
-        $user = new T1500_User();
+        $user          = new T1500_User();
         $user->groupId = $group->id;
-        $user->name = 'guilhermeblanco';
-        $user->save();        
+        $user->name    = 'guilhermeblanco';
+        $user->save();
     }
 
     public function testTicket()

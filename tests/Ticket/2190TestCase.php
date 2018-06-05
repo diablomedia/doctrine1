@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2190_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2190_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,23 +42,23 @@ class Doctrine_Ticket_2190_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
 
-        $article = new Ticket_2190_Article();
+        $article       = new Ticket_2190_Article();
         $article->name = 'test';
         $article->body = str_repeat('a', 300);
         $article->save();
 
-        $article = new Ticket_2190_Article();
+        $article       = new Ticket_2190_Article();
         $article->name = 'test';
         $article->body = str_repeat('a', 256);
         $article->save();
 
-        $article = new Ticket_2190_Article();
+        $article       = new Ticket_2190_Article();
         $article->name = 'test';
         $article->body = str_repeat('a', 257);
         $article->save();
 
         for ($i = 1; $i <= 5; $i++) {
-            $article = new Ticket_2190_Article();
+            $article       = new Ticket_2190_Article();
             $article->name = 'test';
             $article->body = str_repeat('a', 300);
             $article->save();

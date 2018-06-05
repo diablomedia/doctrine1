@@ -35,12 +35,12 @@ class Doctrine_Task_CreateDb extends Doctrine_Task
     /**
      * @var string
      */
-    public $description          =   'Create all databases for your connections. If the database already exists, nothing happens.';
+    public $description = 'Create all databases for your connections. If the database already exists, nothing happens.';
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array();
+    public $optionalArguments = array();
 
     public function execute()
     {

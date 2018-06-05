@@ -60,8 +60,8 @@ class Doctrine_Hydrate_Driver_TestCase extends Doctrine_UnitTestCase
     public function testCustomHydratorConstructor()
     {
         $queryComponents = array('queryComponents');
-        $tableAliases = array('tableAliases');
-        $hydrationMode = array('hydrationMode');
+        $tableAliases    = array('tableAliases');
+        $hydrationMode   = array('hydrationMode');
 
         $hydrator = new MyHydrator($queryComponents, $tableAliases, $hydrationMode);
 
@@ -77,7 +77,7 @@ class Doctrine_Hydrate_Driver_TestCase extends Doctrine_UnitTestCase
             ->registerHydrator('MyHydrator', $hydrator);
 
         try {
-             Doctrine_Core::getTable('User')
+            Doctrine_Core::getTable('User')
                 ->createQuery('u')
                 ->execute(array(), 'MyHydrator');
 

@@ -37,7 +37,7 @@ class Doctrine_View
     /**
      * SQL DROP constant
      */
-    const DROP   = 'DROP VIEW %s';
+    const DROP = 'DROP VIEW %s';
 
     /**
      * SQL CREATE constant
@@ -85,9 +85,9 @@ class Doctrine_View
         $this->_name  = $viewName;
         $this->_query = $query;
         $this->_query->setView($this);
-        $this->_conn   = $query->getConnection();
-        $this->_dql = $query->getDql();
-        $this->_sql = $query->getSqlQuery();
+        $this->_conn = $query->getConnection();
+        $this->_dql  = $query->getDql();
+        $this->_sql  = $query->getSqlQuery();
     }
 
     /**
@@ -131,7 +131,7 @@ class Doctrine_View
         $sql = sprintf(self::CREATE, $this->_name, $this->_query->getSqlQuery());
         try {
             $this->_conn->execute($sql, $this->_query->getFlattenedParams());
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             throw new Doctrine_View_Exception($e->__toString());
         }
     }
@@ -146,7 +146,7 @@ class Doctrine_View
     {
         try {
             $this->_conn->execute(sprintf(self::DROP, $this->_name));
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             throw new Doctrine_View_Exception($e->__toString());
         }
     }

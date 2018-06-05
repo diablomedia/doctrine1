@@ -77,9 +77,9 @@ abstract class Doctrine_Collection_Iterator implements Iterator
     public function rewind()
     {
         $this->index = 0;
-        $i = $this->index;
+        $i           = $this->index;
         if (isset($this->keys[$i])) {
-            $this->key   = $this->keys[$i];
+            $this->key = $this->keys[$i];
         }
     }
 
@@ -113,7 +113,7 @@ abstract class Doctrine_Collection_Iterator implements Iterator
         $this->index++;
         $i = $this->index;
         if (isset($this->keys[$i])) {
-            $this->key   = $this->keys[$i];
+            $this->key = $this->keys[$i];
         }
     }
 }

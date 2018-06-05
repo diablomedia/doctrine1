@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1940_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1940_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -56,15 +56,15 @@ class Doctrine_Ticket_1940_TestCase extends Doctrine_UnitTestCase
 
 class Ticket_1940_User extends Doctrine_Record
 {
-	public function setTableDefinition()
-	{
-		$this->hasColumn('username', 'string', 255);
-		$this->hasColumn('password', 'string', 255);
-		$this->hasColumn('email_address', 'string', 255);
+    public function setTableDefinition()
+    {
+        $this->hasColumn('username', 'string', 255);
+        $this->hasColumn('password', 'string', 255);
+        $this->hasColumn('email_address', 'string', 255);
 
-		$this->hasMutator('password', 'customSetPassword');
-		$this->hasAccessor('username', 'customGetUsername');
-	}
+        $this->hasMutator('password', 'customSetPassword');
+        $this->hasAccessor('username', 'customGetUsername');
+    }
 
     public function getEmailAddress()
     {
@@ -76,13 +76,13 @@ class Ticket_1940_User extends Doctrine_Record
         $this->_set('email_address', $emailAddress . '-modified');
     }
 
-	public function customGetUsername()
-	{
-		return $this->_get('username').'-modified';
-	}
+    public function customGetUsername()
+    {
+        return $this->_get('username') . '-modified';
+    }
 
-	public function customSetPassword($value)
-	{
-		return $this->_set('password', md5($value));
-	}
+    public function customSetPassword($value)
+    {
+        return $this->_set('password', md5($value));
+    }
 }

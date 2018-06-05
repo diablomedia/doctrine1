@@ -3,8 +3,8 @@ class BarRecord extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-    	$this->setTableName('bar');
-    	$this->hasColumn('name', 'string', 200);
+        $this->setTableName('bar');
+        $this->hasColumn('name', 'string', 200);
     }
     public function setUp()
     {

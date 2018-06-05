@@ -39,19 +39,20 @@ class Doctrine_Table_NamedQuery_TestCase extends Doctrine_UnitTestCase
         parent::prepareTables();
     }
 
-    public function prepareData() {
-        $f1 = new MyFoo();
-        $f1->name = 'jwage';
+    public function prepareData()
+    {
+        $f1         = new MyFoo();
+        $f1->name   = 'jwage';
         $f1->value0 = 0;
         $f1->save();
 
-        $f2 = new MyFoo();
-        $f2->name = 'jonwage';
+        $f2         = new MyFoo();
+        $f2->name   = 'jonwage';
         $f2->value0 = 1;
         $f2->save();
 
-        $f3 = new MyFoo();
-        $f3->name = 'jonathanwage';
+        $f3         = new MyFoo();
+        $f3->name   = 'jonathanwage';
         $f3->value0 = 2;
         $f3->save();
     }
@@ -96,7 +97,8 @@ class MyFooTable extends Doctrine_Table
     {
         $this->addNamedQuery('get.by.id', 'SELECT f.* FROM MyFoo f WHERE f.id = ?');
         $this->addNamedQuery(
-            'get.by.similar.names', Doctrine_Query::create()
+            'get.by.similar.names',
+            Doctrine_Query::create()
                 ->select('f.id, f.value0')
                 ->from('MyFoo f')
                 ->where('LOWER(f.name) LIKE LOWER(?)')

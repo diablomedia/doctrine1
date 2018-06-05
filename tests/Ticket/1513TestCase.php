@@ -51,7 +51,7 @@ class T1513_Class1 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('T1513_Class2 as Classes2', array('local'    => 'c1_id',
+        $this->hasMany('T1513_Class2 as Classes2', array('local'       => 'c1_id',
                                                             'foreign'  => 'c2_id',
                                                             'refClass' => 'T1513_Relation'));
     }
@@ -66,7 +66,7 @@ class T1513_Class2 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('T1513_Class1 as Classes1', array('local'    => 'c2_id',
+        $this->hasMany('T1513_Class1 as Classes1', array('local'     => 'c2_id',
                                                           'foreign'  => 'c1_id',
                                                           'refClass' => 'T1513_Relation'));
     }

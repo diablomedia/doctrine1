@@ -30,13 +30,15 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_JoinCondition_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_JoinCondition_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
+    public function prepareData()
+    {
+    }
 
-    public function prepareTables() 
-    { }
+    public function prepareTables()
+    {
+    }
 
     public function testJoinConditionsAreSupportedForOneToManyLeftJoins()
     {
@@ -60,27 +62,27 @@ class Doctrine_Query_JoinCondition_TestCase extends Doctrine_UnitTestCase
     {
         $q = new Doctrine_Query();
         
-        $q->parseDqlQuery("SELECT u.name, g.id FROM User u LEFT JOIN u.Group g ON g.id > 2");
+        $q->parseDqlQuery('SELECT u.name, g.id FROM User u LEFT JOIN u.Group g ON g.id > 2');
 
-        $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id, e.name AS e__name, e2.id AS e2__id FROM entity e LEFT JOIN groupuser g ON (e.id = g.user_id) LEFT JOIN entity e2 ON (e2.id > 2) AND e2.type = 1 WHERE (e.type = 0)");
+        $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name, e2.id AS e2__id FROM entity e LEFT JOIN groupuser g ON (e.id = g.user_id) LEFT JOIN entity e2 ON (e2.id > 2) AND e2.type = 1 WHERE (e.type = 0)');
     }
 
     public function testJoinConditionsAreSupportedForManyToManyInnerJoins()
     {
         $q = new Doctrine_Query();
         
-        $q->parseDqlQuery("SELECT u.name, g.id FROM User u INNER JOIN u.Group g ON g.id > 2");
+        $q->parseDqlQuery('SELECT u.name, g.id FROM User u INNER JOIN u.Group g ON g.id > 2');
     
-        $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id, e.name AS e__name, e2.id AS e2__id FROM entity e INNER JOIN groupuser g ON (e.id = g.user_id) INNER JOIN entity e2 ON (e2.id > 2) AND e2.type = 1 WHERE (e.type = 0)");
+        $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name, e2.id AS e2__id FROM entity e INNER JOIN groupuser g ON (e.id = g.user_id) INNER JOIN entity e2 ON (e2.id > 2) AND e2.type = 1 WHERE (e.type = 0)');
     }
 
     public function testJoinConditionsWithClauseAndAliases()
     {
         $q = new Doctrine_Query();
 
-        $q->parseDqlQuery("SELECT a.name, b.id FROM User a LEFT JOIN a.Phonenumber b ON a.name = b.phonenumber");
+        $q->parseDqlQuery('SELECT a.name, b.id FROM User a LEFT JOIN a.Phonenumber b ON a.name = b.phonenumber');
 
-        $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id, e.name AS e__name, p.id AS p__id FROM entity e LEFT JOIN phonenumber p ON (e.name = p.phonenumber) WHERE (e.type = 0)");
+        $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name, p.id AS p__id FROM entity e LEFT JOIN phonenumber p ON (e.name = p.phonenumber) WHERE (e.type = 0)');
     }
 
     public function testJoinWithConditionAndNotInClause()
@@ -88,8 +90,8 @@ class Doctrine_Query_JoinCondition_TestCase extends Doctrine_UnitTestCase
         // Related to ticket #1329
         $q = new Doctrine_Query();
 
-        $q->parseDqlQuery("SELECT a.name, b.id FROM User a LEFT JOIN a.Phonenumber b WITH a.id NOT IN (1, 2, 3)");
+        $q->parseDqlQuery('SELECT a.name, b.id FROM User a LEFT JOIN a.Phonenumber b WITH a.id NOT IN (1, 2, 3)');
 
-        $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id, e.name AS e__name, p.id AS p__id FROM entity e LEFT JOIN phonenumber p ON e.id = p.entity_id AND (e.id NOT IN (1, 2, 3)) WHERE (e.type = 0)");
+        $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name, p.id AS p__id FROM entity e LEFT JOIN phonenumber p ON e.id = p.entity_id AND (e.id NOT IN (1, 2, 3)) WHERE (e.type = 0)');
     }
 }

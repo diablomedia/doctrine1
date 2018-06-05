@@ -30,50 +30,49 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Relation_ManyToMany2_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Relation_ManyToMany2_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
+    public function prepareData()
     {
     }
     
-    public function prepareTables() 
+    public function prepareTables()
     {
         $this->tables = array('TestUser', 'TestMovie', 'TestMovieUserBookmark', 'TestMovieUserVote');
         parent::prepareTables();
     }
     
-    public function testManyToManyCreateSelectAndUpdate() 
+    public function testManyToManyCreateSelectAndUpdate()
     {
-        $user = new TestUser();
+        $user         = new TestUser();
         $user['name'] = 'tester';
         $user->save();
         
-        $data = new TestMovie();
-        $data['name'] = 'movie';
-        $data['User'] =  $user;
+        $data                      = new TestMovie();
+        $data['name']              = 'movie';
+        $data['User']              = $user;
         $data['MovieBookmarks'][0] = $user;
-        $data['MovieVotes'][0] = $user;
+        $data['MovieVotes'][0]     = $user;
         $data->save(); //All ok here
         
         $this->conn->clear();
 
-        $q = new Doctrine_Query();
+        $q       = new Doctrine_Query();
         $newdata = $q->select('m.*')
                       ->from('TestMovie m')
                       ->execute()
-                      ->getFirst();     
-        $newdata['name'] = 'movie2';    
+                      ->getFirst();
+        $newdata['name'] = 'movie2';
         try {
             $newdata->save(); //big failure here
             $this->pass();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->fail();
         }
-        
     }
     public function testManyToManyJoinsandSave()
     {
-        $q = new Doctrine_Query();
+        $q       = new Doctrine_Query();
         $newdata = $q->select('d.*, i.*, u.*, c.*')
                        ->from('TestMovie d, d.MovieBookmarks i, i.UserVotes u, u.User c')
                        ->execute()
@@ -82,22 +81,22 @@ class Doctrine_Relation_ManyToMany2_TestCase extends Doctrine_UnitTestCase
         try {
             $newdata->save();
             $this->pass();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->fail();
         }
     }
 
     public function testInitMoreData()
     {
-        $user = new TestUser();
+        $user       = new TestUser();
         $user->name = 'test user';
         $user->save();
 
-        $movie = new TestMovie();
+        $movie       = new TestMovie();
         $movie->name = 'test movie';
         $movie->save();
 
-        $movie = new TestMovie();
+        $movie       = new TestMovie();
         $movie->name = 'test movie 2';
         $movie->save();
 

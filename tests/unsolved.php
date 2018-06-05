@@ -8,11 +8,11 @@ spl_autoload_register(array('Doctrine', 'autoload'));
 require_once 'classes.php';
 require_once dirname(__FILE__) . '/../models/location.php';
 
-print "<pre>";
+print '<pre>';
 
 $manager = Doctrine_Manager::getInstance();
-$dbh = Doctrine_Db::getConnection('sqlite::memory:');
-$conn = $manager->openConnection($dbh);
+$dbh     = Doctrine_Db::getConnection('sqlite::memory:');
+$conn    = $manager->openConnection($dbh);
 /**
 $user = new User();
 $user->name = 'zYne';
@@ -29,10 +29,10 @@ if ($city->District === $city->district_id) {
 }
 */
 
-$c = new Record_Country();
-$c->name = 'Some country';
-$city = $c->City[0];
-$city->name = 'City 1';
+$c                    = new Record_Country();
+$c->name              = 'Some country';
+$city                 = $c->City[0];
+$city->name           = 'City 1';
 $city->District->name = 'District 1';
 
 $c->save();

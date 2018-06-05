@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC843_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC843_TestCase extends Doctrine_UnitTestCase
 {
     private $sqlStackCounter = 0;
     
@@ -42,7 +42,7 @@ class Doctrine_Ticket_DC843_TestCase extends Doctrine_UnitTestCase
 
     public function testInit()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mssql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mssql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh, 'DC843');
     }
 
@@ -51,7 +51,7 @@ class Doctrine_Ticket_DC843_TestCase extends Doctrine_UnitTestCase
         Doctrine::getTable('Ticket_DC843_Model')->findByUsernameAndFoo('foo', 'bar');
 
         $expected = "SELECT [t].[model_id] AS [t__model_id], [t].[username] AS [t__username], [t].[password] AS [t__password], [t].[foo] AS [t__foo] FROM [ticket__d_c843__model] [t] WHERE ([t].[username] = 'foo' AND [t].[foo] LIKE 'bar')";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -65,7 +65,7 @@ class Doctrine_Ticket_DC843_TestCase extends Doctrine_UnitTestCase
             ->execute();
 
         $expected = "SELECT [t].[model_id] AS [t__model_id], [t].[username] AS [t__username], [t].[password] AS [t__password], [t].[foo] AS [t__foo] FROM [ticket__d_c843__model] [t] WHERE ([t].[username] = 'foo' AND [t].[foo] LIKE 'bar')";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -79,7 +79,7 @@ class Doctrine_Ticket_DC843_TestCase extends Doctrine_UnitTestCase
             ->execute();
 
         $expected = "SELECT [t].[model_id] AS [t__model_id], [t].[username] AS [t__username], [t].[password] AS [t__password], [t].[foo] AS [t__foo] FROM [ticket__d_c843__model] [t] WHERE ([t].[username] LIKE 'foo' AND [t].[foo] LIKE 'bar')";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -90,9 +90,9 @@ class Ticket_DC843_Model extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('model_id as id', 'integer', null, array(
-            'type' => 'integer',
-            'unsigned' => false,
-            'primary' => true,
+            'type'          => 'integer',
+            'unsigned'      => false,
+            'primary'       => true,
             'autoincrement' => true,
         ));
         $this->hasColumn('username', 'string', 255);

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1858_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1858_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,13 +40,14 @@ class Doctrine_Ticket_1858_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $foo_id = 1234; 
+        $foo_id     = 1234;
         $adjustment = -3;
 
         $query = Doctrine_Query::create()
             ->update('T1858_Foo')
             ->set(
-            	'quantity','GREATEST(CAST(quantity AS SIGNED) + :adjustment,0)', 
+                'quantity',
+                'GREATEST(CAST(quantity AS SIGNED) + :adjustment,0)',
                 array(':adjustment' => $adjustment)
             )
             ->where('id = :id', array(':id' => $foo_id));

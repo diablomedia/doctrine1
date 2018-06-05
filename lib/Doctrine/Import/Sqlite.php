@@ -102,14 +102,14 @@ class Doctrine_Import_Sqlite extends Doctrine_Import
         } else {
             $query .= 'tbl_name = ' . $table;
         }
-        $query  .= ' AND sql NOT NULL ORDER BY name';
+        $query .= ' AND sql NOT NULL ORDER BY name';
         $indexes = $this->conn->fetchColumn($query);
 
         $result = array();
         foreach ($indexes as $sql) {
-            if (preg_match("/^create unique index ([^ ]+) on /i", $sql, $tmp)) {
+            if (preg_match('/^create unique index ([^ ]+) on /i', $sql, $tmp)) {
                 $index = $this->conn->formatter->fixIndexName($tmp[1]);
-                if ( ! empty($index)) {
+                if (! empty($index)) {
                     $result[$index] = true;
                 }
             }
@@ -138,7 +138,7 @@ class Doctrine_Import_Sqlite extends Doctrine_Import
             $val = array_change_key_case($val, CASE_LOWER);
             /** @var Doctrine_DataDict_Sqlite $dataDict */
             $dataDict = $this->conn->dataDict;
-            $decl = $dataDict->getPortableDeclaration($val);
+            $decl     = $dataDict->getPortableDeclaration($val);
 
             $description = array(
                     'name'          => $val['name'],
@@ -167,9 +167,9 @@ class Doctrine_Import_Sqlite extends Doctrine_Import
      */
     public function listTableIndexes($table)
     {
-        $sql  = 'PRAGMA index_list(' . $table . ')';
+        $sql = 'PRAGMA index_list(' . $table . ')';
         return $this->conn->fetchColumn($sql);
-   }
+    }
     /**
      * lists tables
      *
@@ -179,7 +179,7 @@ class Doctrine_Import_Sqlite extends Doctrine_Import
     public function listTables($database = null)
     {
         $sql = "SELECT name FROM sqlite_master WHERE type = 'table' AND name != 'sqlite_sequence' "
-             . "UNION ALL SELECT name FROM sqlite_temp_master "
+             . 'UNION ALL SELECT name FROM sqlite_temp_master '
              . "WHERE type = 'table' ORDER BY name";
 
         return $this->conn->fetchColumn($sql);
@@ -210,7 +210,7 @@ class Doctrine_Import_Sqlite extends Doctrine_Import
         $result = array();
         foreach ($views as $row) {
             if (preg_match("/^create view .* \bfrom\b\s+\b{$table}\b /i", $row['sql'])) {
-                if ( ! empty($row['name'])) {
+                if (! empty($row['name'])) {
                     $result[$row['name']] = true;
                 }
             }

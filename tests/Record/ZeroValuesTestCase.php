@@ -41,11 +41,11 @@ class Doctrine_Record_ZeroValues_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $user = new ZeroValueTest();
+        $user                   = new ZeroValueTest();
         $user['is_super_admin'] = 0; // set it to 0 and it should be 0 when we pull it back from the database
-        $user['username'] = 'jwage';
-        $user['salt'] = 'test';
-        $user['password'] = 'test';
+        $user['username']       = 'jwage';
+        $user['salt']           = 'test';
+        $user['password']       = 'test';
         $user->save();
     }
 
@@ -64,7 +64,7 @@ class Doctrine_Record_ZeroValues_TestCase extends Doctrine_UnitTestCase
 
         $this->assertIdentical($users[0]['is_super_admin'], false);
         // check for aggregate bug
-        $this->assertTrue( ! isset($users[0][0]));
+        $this->assertTrue(! isset($users[0][0]));
     }
 
     public function testZeroValuesMaintained3()
@@ -75,5 +75,4 @@ class Doctrine_Record_ZeroValues_TestCase extends Doctrine_UnitTestCase
 
         $this->assertIdentical($users[0]['is_super_admin'], false);
     }
-
 }

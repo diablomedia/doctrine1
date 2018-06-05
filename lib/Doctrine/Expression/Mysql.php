@@ -72,23 +72,23 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
     public function matchPattern($pattern, $operator = null, $field = null)
     {
         $match = '';
-        if ( ! is_null($operator)) {
-            $field = is_null($field) ? '' : $field.' ';
+        if (! is_null($operator)) {
+            $field    = is_null($field) ? '' : $field . ' ';
             $operator = strtoupper($operator);
             switch ($operator) {
                 // case insensitive
                 case 'ILIKE':
-                    $match = $field.'LIKE ';
+                    $match = $field . 'LIKE ';
                     break;
                 // case sensitive
                 case 'LIKE':
-                    $match = $field.'LIKE BINARY ';
+                    $match = $field . 'LIKE BINARY ';
                     break;
                 default:
-                    throw new Doctrine_Expression_Exception('not a supported operator type:'. $operator);
+                    throw new Doctrine_Expression_Exception('not a supported operator type:' . $operator);
             }
         }
-        $match.= "'";
+        $match .= "'";
         foreach ($pattern as $key => $value) {
             if ($key % 2) {
                 $match .= $value;
@@ -96,8 +96,8 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
                 $match .= $this->conn->escapePattern($this->conn->escape($value));
             }
         }
-        $match.= "'";
-        $match.= $this->patternEscapeString();
+        $match .= "'";
+        $match .= $this->patternEscapeString();
         return $match;
     }
 
@@ -120,7 +120,7 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
     public function year($column)
     {
         $column = $this->getIdentifier($column);
-        return 'YEAR(' .  $column . ')';
+        return 'YEAR(' . $column . ')';
     }
 
     /**
@@ -132,7 +132,7 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
     public function month($column)
     {
         $column = $this->getIdentifier($column);
-        return 'MONTH(' .  $column . ')';
+        return 'MONTH(' . $column . ')';
     }
 
     /**
@@ -144,7 +144,7 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
     public function day($column)
     {
         $column = $this->getIdentifier($column);
-        return 'DAY(' .  $column . ')';
+        return 'DAY(' . $column . ')';
     }
 
     /**

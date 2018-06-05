@@ -46,14 +46,14 @@ class Doctrine_Query_Having extends Doctrine_Query_Condition
         if ($pos === 0 && substr($func, 1, 6) == 'SELECT') {
             // This code is taken from WHERE.php
             $sub = $this->_tokenizer->bracketTrim($func);
-            $q = $this->query->createSubquery()->parseDqlQuery($sub, false);
+            $q   = $this->query->createSubquery()->parseDqlQuery($sub, false);
             $sql = $q->getSqlQuery();
             $q->free();
             return '(' . $sql . ')';
         }
 
         if ($pos !== false) {
-            $funcs  = array();
+            $funcs = array();
 
             $name   = substr($func, 0, $pos);
             $func   = substr($func, ($pos + 1), -1);
@@ -80,7 +80,7 @@ class Doctrine_Query_Having extends Doctrine_Query_Condition
      */
     final private function _parseAliases($value)
     {
-        if ( ! is_numeric($value)) {
+        if (! is_numeric($value)) {
             $a = explode('.', $value);
 
             if (count($a) > 1) {
@@ -109,10 +109,10 @@ class Doctrine_Query_Having extends Doctrine_Query_Condition
      */
     final public function load($having)
     {
-        $tokens = $this->_tokenizer->bracketExplode($having, ' ', '(', ')');
-        $part = $this->parseAggregateFunction(array_shift($tokens));
-        $operator  = array_shift($tokens);
-        $value     = implode(' ', $tokens);
+        $tokens   = $this->_tokenizer->bracketExplode($having, ' ', '(', ')');
+        $part     = $this->parseAggregateFunction(array_shift($tokens));
+        $operator = array_shift($tokens);
+        $value    = implode(' ', $tokens);
 
         // check the RHS for aggregate functions
         $value = $this->parseAggregateFunction($value);

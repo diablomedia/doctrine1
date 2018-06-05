@@ -59,30 +59,30 @@ class Doctrine_Data_Export extends Doctrine_Data
      */
     public function doExport()
     {
-        $models = Doctrine_Core::getLoadedModels();
+        $models          = Doctrine_Core::getLoadedModels();
         $specifiedModels = $this->getModels();
 
         $data = array();
 
-		    // for situation when the $models array is empty, but the $specifiedModels array isn't
+        // for situation when the $models array is empty, but the $specifiedModels array isn't
         if (empty($models)) {
-          $models = $specifiedModels;
+            $models = $specifiedModels;
         }
 
         $models = Doctrine_Core::initializeModels($models);
 
         // temporarily disable indexBy query parts of selected and related tables
         $originalIndexBy = array();
-        foreach ($models AS $name) {
-          $table = Doctrine_Core::getTable($name);
-          if ( !is_null($indexBy = $table->getBoundQueryPart('indexBy'))) {
-            $originalIndexBy[$name] = $indexBy;
-            $table->bindQueryPart('indexBy', null);
-          }
+        foreach ($models as $name) {
+            $table = Doctrine_Core::getTable($name);
+            if (!is_null($indexBy = $table->getBoundQueryPart('indexBy'))) {
+                $originalIndexBy[$name] = $indexBy;
+                $table->bindQueryPart('indexBy', null);
+            }
         }
 
-        foreach ($models AS $name) {
-            if ( ! empty($specifiedModels) AND ! in_array($name, $specifiedModels)) {
+        foreach ($models as $name) {
+            if (! empty($specifiedModels) and ! in_array($name, $specifiedModels)) {
                 continue;
             }
 
@@ -94,7 +94,7 @@ class Doctrine_Data_Export extends Doctrine_Data
         }
 
         // Restore the temporarily disabled indexBy query parts
-        foreach($originalIndexBy AS $name => $indexBy) {
+        foreach ($originalIndexBy as $name => $indexBy) {
             Doctrine_Core::getTable($name)->bindQueryPart('indexBy', $indexBy);
         }
 
@@ -114,18 +114,18 @@ class Doctrine_Data_Export extends Doctrine_Data
     public function dumpData(array $data)
     {
         $directory = $this->getDirectory();
-        $format = $this->getFormat();
+        $format    = $this->getFormat();
 
         if ($this->exportIndividualFiles()) {
             if (is_array($directory)) {
                 throw new Doctrine_Data_Exception('You must specify a single path to a folder in order to export individual files.');
-            } else if ( ! is_dir($directory) && is_file($directory)) {
+            } elseif (! is_dir($directory) && is_file($directory)) {
                 $directory = dirname($directory);
             }
 
             foreach ($data as $className => $classData) {
-                if ( ! empty($classData)) {
-                    Doctrine_Parser::dump(array($className => $classData), $format, $directory.DIRECTORY_SEPARATOR.$className.'.'.$format);
+                if (! empty($classData)) {
+                    Doctrine_Parser::dump(array($className => $classData), $format, $directory . DIRECTORY_SEPARATOR . $className . '.' . $format);
                 }
             }
         } else {
@@ -133,7 +133,7 @@ class Doctrine_Data_Export extends Doctrine_Data
                 $directory .= DIRECTORY_SEPARATOR . 'data.' . $format;
             }
 
-            if ( ! empty($data)) {
+            if (! empty($data)) {
                 return Doctrine_Parser::dump($data, $format, $directory);
             }
         }
@@ -151,12 +151,12 @@ class Doctrine_Data_Export extends Doctrine_Data
     {
         $preparedData = array();
 
-        foreach ($data AS $className => $classData) {
+        foreach ($data as $className => $classData) {
             $preparedData[$className] = array();
-            $keyType = $classData->getTable()->getIdentifierType();
+            $keyType                  = $classData->getTable()->getIdentifierType();
             foreach ($classData as $record) {
-                $className = get_class($record);
-                $recordKey = $className . '_' . implode('_', $record->identifier());
+                $className                            = get_class($record);
+                $recordKey                            = $className . '_' . implode('_', $record->identifier());
                 $preparedData[$className][$recordKey] = array();
 
                 // skip single primary keys, we need to maintain composite primary keys
@@ -165,8 +165,8 @@ class Doctrine_Data_Export extends Doctrine_Data
                 $recordData = $record->toArray(false);
 
                 foreach ($recordData as $key => $value) {
-                    if ( ! is_array($keys)) {
-                      $keys = array($keys);
+                    if (! is_array($keys)) {
+                        $keys = array($keys);
                     }
 
                     if ($keyType !== Doctrine_Core::IDENTIFIER_NATURAL && count($keys) <= 1 && in_array($key, $keys)) {
@@ -179,10 +179,10 @@ class Doctrine_Data_Export extends Doctrine_Data
                     }
 
                     if ($relation = $this->isRelation($record, $key)) {
-                        if ( ! $value) {
+                        if (! $value) {
                             continue;
                         }
-                        $relationAlias = $relation['alias'];
+                        $relationAlias  = $relation['alias'];
                         $relationRecord = $record->$relationAlias;
 
                         // If collection then get first so we have an instance of the related record
@@ -201,7 +201,7 @@ class Doctrine_Data_Export extends Doctrine_Data
                         $relationValue = $relationClassName . '_' . $value;
 
                         $preparedData[$className][$recordKey][$relationAlias] = $relationValue;
-                    } else if ($record->getTable()->hasField($key)) {
+                    } elseif ($record->getTable()->hasField($key)) {
                         $preparedData[$className][$recordKey][$key] = $value;
                     }
                 }

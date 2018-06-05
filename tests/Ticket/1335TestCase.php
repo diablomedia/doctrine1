@@ -30,12 +30,12 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1335_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1335_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
         try {
-            $q = Doctrine_Query::create();
+            $q       = Doctrine_Query::create();
             $results = $q->execute();
             $this->fail();
         } catch (Exception $e) {

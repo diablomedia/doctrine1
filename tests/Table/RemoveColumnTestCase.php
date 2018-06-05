@@ -32,7 +32,6 @@
  */
 class Doctrine_Table_RemoveColumn_TestCase extends Doctrine_UnitTestCase
 {
-
     public function prepareTables()
     {
         $this->tables[] = 'RemoveColumnTest';
@@ -47,14 +46,14 @@ class Doctrine_Table_RemoveColumn_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($nrColumns, count($table->getColumns()));
 
         $this->assertEqual($nrColumns, count($table->getFieldNames()));
-        foreach($table->getFieldNames() as $field) {
+        foreach ($table->getFieldNames() as $field) {
             $this->assertTrue($table->hasField($field));
         }
 
         // the following are trivial because both getColumnNames and
         // hasColumn use Table::_columns instead of Table::_fieldNames
         $this->assertEqual($nrColumns, count($table->getColumnNames()));
-        foreach($table->getColumnNames() as $column) {
+        foreach ($table->getColumnNames() as $column) {
             $this->assertTrue($table->hasColumn($column));
         }
     }
@@ -80,7 +79,7 @@ class RemoveColumnTest extends Doctrine_Record
     {
         $this->hasColumn('AA', 'integer', null, array('primary' => true));
         $this->hasColumn('bb', 'integer');
-        $this->hasColumn('CC', 'string',10);
-        $this->hasColumn('dd', 'string',10);
+        $this->hasColumn('CC', 'string', 10);
+        $this->hasColumn('dd', 'string', 10);
     }
 }

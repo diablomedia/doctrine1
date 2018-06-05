@@ -55,7 +55,7 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
     /**
      * @var array
      */
-    protected $_options    = array('bold' => 1, 'underscore' => 4, 'blink' => 5, 'reverse' => 7, 'conceal' => 8);
+    protected $_options = array('bold' => 1, 'underscore' => 4, 'blink' => 5, 'reverse' => 7, 'conceal' => 8);
 
     /**
      * @var array
@@ -90,15 +90,15 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
      */
     public function format($text = '', $parameters = array(), $stream = STDOUT)
     {
-        if ( ! $this->supportsColors($stream)) {
+        if (! $this->supportsColors($stream)) {
             return $text;
         }
 
-        if ( ! is_array($parameters) && 'NONE' == $parameters) {
+        if (! is_array($parameters) && 'NONE' == $parameters) {
             return $text;
         }
 
-        if ( ! is_array($parameters) && isset($this->_styles[$parameters])) {
+        if (! is_array($parameters) && isset($this->_styles[$parameters])) {
             $parameters = $this->_styles[$parameters];
         }
 
@@ -117,7 +117,7 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
             }
         }
 
-        return "\033[".implode(';', $codes).'m'.$text."\033[0m";
+        return "\033[" . implode(';', $codes) . 'm' . $text . "\033[0m";
     }
 
     /**
@@ -146,7 +146,7 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
      */
     public function excerpt($text, $size = null)
     {
-        if ( ! $size) {
+        if (! $size) {
             $size = $this->_size;
         }
 
@@ -156,7 +156,7 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
 
         $subsize = (int) floor(($size - 3) / 2);
 
-        return substr($text, 0, $subsize) . $this->format('...', 'INFO').substr($text, -$subsize);
+        return substr($text, 0, $subsize) . $this->format('...', 'INFO') . substr($text, -$subsize);
     }
 
     /**

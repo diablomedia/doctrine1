@@ -35,18 +35,18 @@ class Doctrine_Task_Compile extends Doctrine_Task
     /**
      * @var string
      */
-    public $description          =   'Compile doctrine classes in to one single php file';
+    public $description = 'Compile doctrine classes in to one single php file';
 
     /**
      * @var array
      */
-    public $requiredArguments    =   array();
+    public $requiredArguments = array();
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array('drivers'        =>  'Specify list of drivers you wish to compile. Ex: mysql|mssql|sqlite',
-                                           'compiled_path'  =>  'The path where you want to write the compiled doctrine libs.');
+    public $optionalArguments = array('drivers'            => 'Specify list of drivers you wish to compile. Ex: mysql|mssql|sqlite',
+                                           'compiled_path' => 'The path where you want to write the compiled doctrine libs.');
 
     public function execute()
     {

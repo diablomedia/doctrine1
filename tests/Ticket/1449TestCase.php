@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1449_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1449_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,8 +41,8 @@ class Doctrine_Ticket_1449_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $document = new Ticket_1449_Document();
-        $document->name = 'test';
+        $document                      = new Ticket_1449_Document();
+        $document->name                = 'test';
         $document->Attachments[]->name = 'test 1';
         $document->Attachments[]->name = 'test 2';
         $document->Attachments[]->name = 'test 3';
@@ -58,8 +58,7 @@ class Doctrine_Ticket_1449_TestCase extends Doctrine_UnitTestCase
             ->limit(1)
             ->fetchOne();
         $this->assertEqual($document->state(), 4);
-        foreach ($document->Attachments as $attachment)
-        {
+        foreach ($document->Attachments as $attachment) {
             $this->assertEqual($attachment->state(), 4);
         }
     }

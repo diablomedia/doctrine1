@@ -34,11 +34,11 @@ class Doctrine_Ticket_2015_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
     {
-        $deer = new mkAnimal();
+        $deer        = new mkAnimal();
         $deer->title = 'Cervus Elaphus';
         $deer->save();
 
-        $beech = new mkPlant();
+        $beech        = new mkPlant();
         $beech->title = 'Fagus sylvatica';
         $beech->save();
     }

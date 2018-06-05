@@ -29,10 +29,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1015_TestCase extends Doctrine_UnitTestCase {
-
-    public function prepareTables() {
-        $this->tables = array();
+class Doctrine_Ticket_1015_TestCase extends Doctrine_UnitTestCase
+{
+    public function prepareTables()
+    {
+        $this->tables   = array();
         $this->tables[] = 'T1015_Person';
         $this->tables[] = 'T1015_Points';
 
@@ -41,8 +42,8 @@ class Doctrine_Ticket_1015_TestCase extends Doctrine_UnitTestCase {
 
     public function prepareData()
     {
-        $person = new T1015_Person();
-        $person['name'] = "James";
+        $person                          = new T1015_Person();
+        $person['name']                  = 'James';
         $person['T1015_Points']['total'] = 15;
         $person->save();
     }
@@ -50,7 +51,6 @@ class Doctrine_Ticket_1015_TestCase extends Doctrine_UnitTestCase {
 
     public function testDoctrineQueryJoinSelect()
     {
-
         $q = new Doctrine_Query();
         $q->select('person.id, points.total')
         ->from('T1015_Person person')
@@ -62,7 +62,6 @@ class Doctrine_Ticket_1015_TestCase extends Doctrine_UnitTestCase {
 
         // number of points for person id of 1 should be 15
         $this->assertEqual(15, $person['T1015_Points']['total']); //THIS WILL FAIL
-         
     }
 
     public function testDoctrineRawSQLJoinSelect()

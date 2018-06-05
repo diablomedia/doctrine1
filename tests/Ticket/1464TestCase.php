@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1464_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1464_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,8 +42,8 @@ class Doctrine_Ticket_1464_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
         try {
-            $user = new Ticket_1464_User();
-            $user->username = 'jwage';
+            $user             = new Ticket_1464_User();
+            $user->username   = 'jwage';
             $user->created_at = '2004-10-14 11:51:17.621832+02';
             $user->save();
             $user->created_at = '2004-10-14 11:51:17';

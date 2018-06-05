@@ -52,8 +52,8 @@ class Doctrine_File_Index extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Doctrine_File', array('local' => 'file_id',
-                                             'foreign' => 'id',
+        $this->hasOne('Doctrine_File', array('local'    => 'file_id',
+                                             'foreign'  => 'id',
                                              'onDelete' => 'CASCADE',
                                              'onUpdate' => 'CASCADE'));
     }

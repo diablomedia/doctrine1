@@ -237,8 +237,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
             $this->_conn->getListener()->preStmtExecute($event);
 
             $result = true;
-            if ( ! $event->skipOperation) {
-
+            if (! $event->skipOperation) {
                 if ($this->_conn->getAttribute(Doctrine_Core::ATTR_PORTABILITY) & Doctrine_Core::PORTABILITY_EMPTY_TO_NULL) {
                     foreach ($params as $key => $value) {
                         if ($value === '') {
@@ -304,19 +303,20 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      *
      * @return mixed
      */
-    public function fetch($fetchMode = Doctrine_Core::FETCH_BOTH,
+    public function fetch(
+        $fetchMode = Doctrine_Core::FETCH_BOTH,
                           $cursorOrientation = Doctrine_Core::FETCH_ORI_NEXT,
-                          $cursorOffset = null)
-    {
+                          $cursorOffset = null
+    ) {
         $event = new Doctrine_Event($this, Doctrine_Event::STMT_FETCH, $this->getQuery());
 
-        $event->fetchMode = $fetchMode;
+        $event->fetchMode         = $fetchMode;
         $event->cursorOrientation = $cursorOrientation;
-        $event->cursorOffset = $cursorOffset;
+        $event->cursorOffset      = $cursorOffset;
 
         $data = $this->_conn->getListener()->preFetch($event);
 
-        if ( ! $event->skipOperation) {
+        if (! $event->skipOperation) {
             $data = $this->_stmt->fetch($fetchMode, $cursorOrientation, $cursorOffset);
         }
 
@@ -338,17 +338,18 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      *
      * @return array
      */
-    public function fetchAll($fetchMode = Doctrine_Core::FETCH_BOTH,
-                             $columnIndex = null)
-    {
-        $event = new Doctrine_Event($this, Doctrine_Event::STMT_FETCHALL, $this->getQuery());
-        $event->fetchMode = $fetchMode;
+    public function fetchAll(
+        $fetchMode = Doctrine_Core::FETCH_BOTH,
+                             $columnIndex = null
+    ) {
+        $event              = new Doctrine_Event($this, Doctrine_Event::STMT_FETCHALL, $this->getQuery());
+        $event->fetchMode   = $fetchMode;
         $event->columnIndex = $columnIndex;
-        $data = array();
+        $data               = array();
 
         $this->_conn->getListener()->preFetchAll($event);
 
-        if ( ! $event->skipOperation) {
+        if (! $event->skipOperation) {
             if ($columnIndex !== null) {
                 $data = $this->_stmt->fetchAll($fetchMode, $columnIndex);
             } else {

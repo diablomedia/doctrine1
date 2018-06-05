@@ -6,4 +6,3 @@ class ConcreteUser extends Doctrine_Record
         $this->actAs('UserTemplate');
     }
 }
-

@@ -32,9 +32,9 @@
  */
 class Doctrine_Ticket_1028_TestCase extends Doctrine_UnitTestCase
 {
-
     public function prepareData()
-    { }
+    {
+    }
 
     public function prepareTables()
     {
@@ -45,12 +45,12 @@ class Doctrine_Ticket_1028_TestCase extends Doctrine_UnitTestCase
 
     public function testRelationIsNotInOriginalTableAnymore()
     {
-        $i18n = Doctrine_Core::getTable('I18nRelationTest');
-        $relation = NULL;
+        $i18n     = Doctrine_Core::getTable('I18nRelationTest');
+        $relation = null;
         try {
             $relation = $i18n->getRelation('I18nAuthorTest');
             $this->fail();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->pass();
         }
     }
@@ -59,15 +59,13 @@ class Doctrine_Ticket_1028_TestCase extends Doctrine_UnitTestCase
     public function testRelationsAreMovedToTranslationTable()
     {
         $translation = Doctrine_Core::getTable('I18nRelationTestTranslation');
-        $relation = NULL;
+        $relation    = null;
         try {
             $relation = $translation->getRelation('I18nAuthorTest');
             $this->pass();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($relation instanceof Doctrine_Relation_LocalKey);
     }
-
-   
 }

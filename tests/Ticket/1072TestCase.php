@@ -4,16 +4,16 @@
  * Relation testing (accessing) throws an Doctrine_Record_Exception
  * with message 'Unknown record property / related component
  * "payment_detail_id" on "T1072BankTransaction"'.
- * 
+ *
  * It happens if I access the relation, save the record, and access
  * the relation column (in this order).
- * 
+ *
  * UPDATE:
  * There are three addition checks for the column value type that
  * must be NULL and not an object which is not true after accessing
  * the relation.
  */
-class Doctrine_Ticket_1072_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1072_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
     {
@@ -21,7 +21,7 @@ class Doctrine_Ticket_1072_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'T1072BankTransaction';
         $this->tables[] = 'T1072PaymentDetail';
         parent::prepareTables();
@@ -29,7 +29,7 @@ class Doctrine_Ticket_1072_TestCase extends Doctrine_UnitTestCase
 
     public function testTicket()
     {
-        $bt = new T1072BankTransaction();
+        $bt       = new T1072BankTransaction();
         $bt->name = 'Test Bank Transaction';
         
         // (additional check: value must be NULL)
@@ -75,7 +75,7 @@ class Doctrine_Ticket_1072_TestCase extends Doctrine_UnitTestCase
     
     public function testTicket2()
     {
-        $bt = new T1072BankTransaction();
+        $bt       = new T1072BankTransaction();
         $bt->name = 'Test Bank Transaction';
 
         try {
@@ -88,12 +88,12 @@ class Doctrine_Ticket_1072_TestCase extends Doctrine_UnitTestCase
             $this->assertEqual(gettype($bt->T1072PaymentDetail), 'object');
             $this->assertEqual(gettype($bt->T1072PaymentDetail->name), 'string');
             $this->assertEqual(gettype($bt->payment_detail_id), gettype(null));
-			
+            
             $bt->save();
-			
+            
             // After the object gets saved, the foreign key is finally set
             $this->assertEqual($bt->payment_detail_id, 1);
-			
+            
             $this->pass();
         } catch (Doctrine_Record_Exception $e) {
             $this->fail($e->getMessage());
@@ -114,7 +114,7 @@ class T1072BankTransaction extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('T1072PaymentDetail', array('local' => 'payment_detail_id',
+        $this->hasOne('T1072PaymentDetail', array('local'   => 'payment_detail_id',
                                                   'foreign' => 'id'));
     }
 }
@@ -131,7 +131,7 @@ class T1072PaymentDetail extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('T1072BankTransaction', array('local' => 'id',
+        $this->hasOne('T1072BankTransaction', array('local'   => 'id',
                                                     'foreign' => 'payment_detail_id'));
     }
 }

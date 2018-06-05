@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC56_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC56_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,10 +40,10 @@ class Doctrine_Ticket_DC56_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $test = new Ticket_DC56_Location();
-        $test->lat = 50;
+        $test       = new Ticket_DC56_Location();
+        $test->lat  = 50;
         $test->long = 50;
-        $q = $test->getDistanceQuery();
+        $q          = $test->getDistanceQuery();
         $this->assertEqual($q->getSqlQuery(), 'SELECT t.id AS t__id, t.title AS t__title, t.lat AS t__lat, t.long AS t__long, ((ACOS(SIN(50 * PI() / 180) * SIN(t.lat * PI() / 180) + COS(50 * PI() / 180) * COS(t.lat * PI() / 180) * COS((50 - t.long) * PI() / 180)) * 180 / PI()) * 60 * 1.1515) AS t__0, ((ACOS(SIN(50 * PI() / 180) * SIN(t.lat * PI() / 180) + COS(50 * PI() / 180) * COS(t.lat * PI() / 180) * COS((50 - t.long) * PI() / 180)) * 180 / PI()) * 60 * 1.1515 * 1.609344) AS t__1 FROM ticket__d_c56__location t');
     }
 }

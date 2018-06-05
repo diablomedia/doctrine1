@@ -24,7 +24,7 @@
  *
  * @package     Doctrine
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @author      Jan Schaefer <tanken@gmx.de> 
+ * @author      Jan Schaefer <tanken@gmx.de>
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @category    Object Relational Mapping
  * @link        www.doctrine-project.org
@@ -33,10 +33,10 @@
  */
 class Doctrine_Relation_CircularSaving_TestCase extends Doctrine_UnitTestCase
 {
-
-    public function prepareData() 
-    { }
-    public function prepareTables() 
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
     {
         $this->tables = array('NestTest', 'NestReference');
         
@@ -45,21 +45,21 @@ class Doctrine_Relation_CircularSaving_TestCase extends Doctrine_UnitTestCase
 
     public function testMultiplePrimaryKeys()
     {
-        $r = new Doctrine_Collection('NestReference');
+        $r               = new Doctrine_Collection('NestReference');
         $r[0]->parent_id = 1;
-        $r[0]->child_id = 2;
+        $r[0]->child_id  = 2;
         $r[1]->parent_id = 2;
-        $r[1]->child_id = 3;
+        $r[1]->child_id  = 3;
         $r->save();
 
         $r->delete();
         $this->conn->clear();
-        $q = new Doctrine_Query();
+        $q    = new Doctrine_Query();
         $coll = $q->from('NestReference')->execute();
         $this->assertEqual(count($coll), 0);
     }
 
-    public function testCircularNonEqualSelfReferencingRelationSaving() 
+    public function testCircularNonEqualSelfReferencingRelationSaving()
     {
         $n1 = new NestTest();
         $n1->set('name', 'node1');
@@ -73,7 +73,7 @@ class Doctrine_Relation_CircularSaving_TestCase extends Doctrine_UnitTestCase
         $n2->get('Children')->add($n1);
         $n2->save();
 
-        $q = new Doctrine_Query();
+        $q    = new Doctrine_Query();
         $coll = $q->from('NestReference')->execute();
 
         $this->assertEqual(count($coll), 2);
@@ -81,12 +81,12 @@ class Doctrine_Relation_CircularSaving_TestCase extends Doctrine_UnitTestCase
         $coll->delete();
         $this->conn->clear();
 
-        $q = new Doctrine_Query();
+        $q    = new Doctrine_Query();
         $coll = $q->from('NestReference')->execute();
         $this->assertEqual(count($coll), 0);
     }
 
-    public function testCircularEqualSelfReferencingRelationSaving() 
+    public function testCircularEqualSelfReferencingRelationSaving()
     {
         $n1 = new NestTest();
         $n1->set('name', 'node1');
@@ -100,7 +100,7 @@ class Doctrine_Relation_CircularSaving_TestCase extends Doctrine_UnitTestCase
         $n2->get('Relatives')->add($n1);
         $n2->save();
 
-        $q = new Doctrine_Query();
+        $q    = new Doctrine_Query();
         $coll = $q->from('NestReference')->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         $this->assertEqual(count($coll), 1);

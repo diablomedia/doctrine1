@@ -40,7 +40,6 @@ class Doctrine_Query_MultiJoin_TestCase extends Doctrine_UnitTestCase
     }
     public function testInitializeData()
     {
-
         $query = new Doctrine_Query($this->connection);
 
         $user = $this->connection->getTable('User')->find(4);
@@ -75,8 +74,8 @@ class Doctrine_Query_MultiJoin_TestCase extends Doctrine_UnitTestCase
 
         $user = $this->connection->getTable('User')->find(5);
 
-        $user->Album[0]->name = 'Clayman';
-        $user->Album[1]->name = 'Colony';
+        $user->Album[0]->name           = 'Clayman';
+        $user->Album[1]->name           = 'Colony';
         $user->Album[1]->Song[0]->title = 'Colony';
         $user->Album[1]->Song[1]->title = 'Ordinary Story';
 
@@ -122,22 +121,22 @@ class Doctrine_Query_MultiJoin_TestCase extends Doctrine_UnitTestCase
 
     public function testInitializeMoreData()
     {
-        $user = $this->connection->getTable('User')->find(4);
-        $user->Book[0]->name = 'The Prince';
+        $user                           = $this->connection->getTable('User')->find(4);
+        $user->Book[0]->name            = 'The Prince';
         $user->Book[0]->Author[0]->name = 'Niccolo Machiavelli';
         $user->Book[0]->Author[1]->name = 'Someone';
-        $user->Book[1]->name = 'The Art of War';
+        $user->Book[1]->name            = 'The Art of War';
         $user->Book[1]->Author[0]->name = 'Someone';
         $user->Book[1]->Author[1]->name = 'Niccolo Machiavelli';
 
 
         $user->save();
 
-        $user = $this->connection->getTable('User')->find(5);
-        $user->Book[0]->name = 'Zadig';
+        $user                           = $this->connection->getTable('User')->find(5);
+        $user->Book[0]->name            = 'Zadig';
         $user->Book[0]->Author[0]->name = 'Voltaire';
         $user->Book[0]->Author[1]->name = 'Someone';
-        $user->Book[1]->name = 'Candide';
+        $user->Book[1]->name            = 'Candide';
         $user->Book[1]->Author[0]->name = 'Someone';
         $user->Book[1]->Author[1]->name = 'Voltaire';
         $user->save();
@@ -148,7 +147,7 @@ class Doctrine_Query_MultiJoin_TestCase extends Doctrine_UnitTestCase
     {
         $query = new Doctrine_Query();
 
-        $users = $query->query("FROM User.Album.Song, User.Book.Author WHERE User.id IN (4,5) ORDER BY User.id, User.Album.name, User.Album.Song.title, User.Book.name, User.Book.Author.name");
+        $users = $query->query('FROM User.Album.Song, User.Book.Author WHERE User.id IN (4,5) ORDER BY User.id, User.Album.name, User.Album.Song.title, User.Book.name, User.Book.Author.name');
 
         $this->assertEqual($users->count(), 2);
 
@@ -188,6 +187,6 @@ class Doctrine_Query_MultiJoin_TestCase extends Doctrine_UnitTestCase
     {
         $query = new Doctrine_Query();
 
-        $users = $query->query("FROM User.Album.Song WHERE User.id IN (4,5) ORDER BY User.Album.Song.title DESC");
+        $users = $query->query('FROM User.Album.Song WHERE User.id IN (4,5) ORDER BY User.Album.Song.title DESC');
     }
 }

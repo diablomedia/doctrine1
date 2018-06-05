@@ -58,12 +58,13 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
      */
     public function getNativeDeclaration($field)
     {
-        if ( ! isset($field['type'])) {
+        if (! isset($field['type'])) {
             throw new Doctrine_DataDict_Exception('Missing column type.');
         }
         switch ($field['type']) {
             case 'enum':
                 $field['length'] = isset($field['length']) && $field['length'] ? $field['length']:255;
+                // no break
             case 'array':
             case 'object':
             case 'text':
@@ -74,20 +75,20 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 $length = !empty($field['length'])
                     ? $field['length'] : false;
 
-                $fixed  = ((isset($field['fixed']) && $field['fixed']) || $field['type'] == 'char') ? true : false;
+                $fixed = ((isset($field['fixed']) && $field['fixed']) || $field['type'] == 'char') ? true : false;
 
-                return $fixed ? ($length ? 'CHAR('.$length.')' : 'CHAR('.$this->conn->varchar_max_length.')')
-                    : (($length && $length <= $this->conn->varchar_max_length) ? 'VARCHAR('.$length.')' : 'TEXT');
+                return $fixed ? ($length ? 'CHAR(' . $length . ')' : 'CHAR(' . $this->conn->varchar_max_length . ')')
+                    : (($length && $length <= $this->conn->varchar_max_length) ? 'VARCHAR(' . $length . ')' : 'TEXT');
             case 'clob':
-                if ( ! empty($field['length'])) {
+                if (! empty($field['length'])) {
                     $length = $field['length'];
                     if ($length <= 8000) {
-                        return 'VARCHAR('.$length.')';
+                        return 'VARCHAR(' . $length . ')';
                     }
-                 }
+                }
                  return 'TEXT';
             case 'blob':
-                if ( ! empty($field['length'])) {
+                if (! empty($field['length'])) {
                     $length = $field['length'];
                     if ($length <= 8000) {
                         return "VARBINARY($length)";
@@ -109,10 +110,10 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 return 'FLOAT';
             case 'decimal':
                 $length = !empty($field['length']) ? $field['length'] : 18;
-                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
-                return 'DECIMAL('.$length.','.$scale.')';
+                $scale  = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
+                return 'DECIMAL(' . $length . ',' . $scale . ')';
         }
-        return $field['type'] . (isset($field['length']) ? '('.$field['length'].')':null);
+        return $field['type'] . (isset($field['length']) ? '(' . $field['length'] . ')':null);
     }
 
     /**
@@ -123,15 +124,16 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
      */
     public function getPortableDeclaration($field)
     {
-        $db_type = preg_replace('/[\d\(\)]/','', strtolower($field['type']) );
+        $db_type = preg_replace('/[\d\(\)]/', '', strtolower($field['type']));
         $length  = (isset($field['length']) && $field['length'] > 0) ? $field['length'] : null;
 
         $type = array();
         // todo: unsigned handling seems to be missing
         $unsigned = $fixed = null;
 
-        if ( ! isset($field['name']))
+        if (! isset($field['name'])) {
             $field['name'] = '';
+        }
 
         switch ($db_type) {
             case 'bit':
@@ -169,6 +171,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
             case 'ntext':
             case 'nvarchar':
                 $fixed = false;
+                // no break
             case 'char':
             case 'nchar':
                 $type[0] = 'string';
@@ -238,7 +241,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
     public function getIntegerDeclaration($name, $field)
     {
         $default = $autoinc = '';
-        if ( ! empty($field['autoincrement'])) {
+        if (! empty($field['autoincrement'])) {
             $autoinc = ' identity';
         } elseif (array_key_exists('default', $field)) {
             if ($field['default'] === '') {
@@ -263,7 +266,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
         // MSSQL does not support the UNSIGNED keyword
         $unsigned = '';
         $comment  = (isset($field['comment']) && $field['comment'])
-            ? " COMMENT " . $this->conn->quote($field['comment'], 'text') : '';
+            ? ' COMMENT ' . $this->conn->quote($field['comment'], 'text') : '';
 
         $name = $this->conn->quoteIdentifier($name, true);
 

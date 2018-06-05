@@ -32,7 +32,7 @@
  */
 class Doctrine_Ticket_1305_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareTables() 
+    public function prepareTables()
     {
         $this->tables[] = 'Ticket_1305_Record';
 

@@ -42,13 +42,13 @@ class Doctrine_Ticket_1280_TestCase extends Doctrine_UnitTestCase
 
     public function testTicket()
     {
-        $group = new Ticket_1280_Group();
+        $group       = new Ticket_1280_Group();
         $group->name = 'Core Dev';
         $group->save();
 
-        $user = new Ticket_1280_User();
+        $user        = new Ticket_1280_User();
         $user->Group = $group;
-        $user->name = 'jwage';
+        $user->name  = 'jwage';
         $user->save();
 
         $this->assertEqual($user->group_id, $group->id);
@@ -79,7 +79,7 @@ class Ticket_1280_User extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_1280_Group as Group', array(
-            'local' => 'group_id',
+            'local'   => 'group_id',
             'foreign' => 'id'
         ));
     }
@@ -96,7 +96,7 @@ class Ticket_1280_Group extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('Ticket_1280_User as Users', array(
-            'local' => 'id',
+            'local'   => 'id',
             'foreign' => 'group_id'
         ));
     }

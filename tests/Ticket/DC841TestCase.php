@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
 {
     private $sqlStackCounter = 0;
     
@@ -42,7 +42,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
 
     public function testInit()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mssql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mssql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh, 'DC841');
     }
     
@@ -57,7 +57,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
             ->execute();
 
         $expected = "SELECT [t].[id] AS [t__id], [t].[username] AS [t__username], [t].[password] AS [t__password], [t].[foo] AS [t__foo] FROM [ticket__d_c841__model] [t] WHERE ([t].[username] <> 'foo' AND [t].[foo] = 't.foo = ?' AND [t].[foo] <> 'bar' AND [t].[foo] LIKE 'foo')";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -71,7 +71,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
             ->execute();
 
         $expected = "SELECT [t].[id] AS [t__id], [t].[username] AS [t__username], [t].[password] AS [t__password], [t].[foo] AS [t__foo], [t2].[id] AS [t2__id], [t2].[username] AS [t2__username], [t2].[password] AS [t2__password], [t2].[foo] AS [t2__foo] FROM [ticket__d_c841__model] [t] LEFT JOIN [ticket__d_c841__model] [t2] ON [t].[id] = [t2].[id] AND ([t].[id] = 30) WHERE ([t].[username] = 'foo')";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -83,11 +83,11 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
             ->createQuery('t')
             ->where('t.username = ?', 'foo')
             ->andWhere("t.foo = 't.foo = ?'")
-            ->andWhere("t.password = ?", 'test')
+            ->andWhere('t.password = ?', 'test')
             ->execute();
 
         $expected = "SELECT [t].[id] AS [t__id], [t].[username] AS [t__username], [t].[password] AS [t__password], [t].[foo] AS [t__foo] FROM [ticket__d_c841__model] [t] WHERE ([t].[username] = 'foo' AND [t].[foo] = 't.foo = ?' AND [t].[password] = 'test')";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -100,7 +100,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
             ->execute();
 
         $expected = "SELECT [t].[id] AS [t__id], [t].[username] AS [t__username], [t].[password] AS [t__password], [t].[foo] AS [t__foo] FROM [ticket__d_c841__model] [t] WHERE ([t].[username] IN ('foo', 'bar'))";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -108,11 +108,11 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
     public function testInsert()
     {
         try {
-          $o = new Ticket_DC841_Model();
-          $o->username = 'abc';
-          $o->password = 'abc';
-          $o->foo = 'abc';
-          $o->save();
+            $o           = new Ticket_DC841_Model();
+            $o->username = 'abc';
+            $o->password = 'abc';
+            $o->foo      = 'abc';
+            $o->save();
         } catch (Doctrine_Connection_Exception $e) {
             // Ignore: Couldn't get last insert identifier.
         }
@@ -120,7 +120,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
         $this->sqlStackCounter += 1;
         
         $expected = "INSERT INTO [ticket__d_c841__model] ([username], [password], [foo]) VALUES ('abc', 'abc', 'abc')";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -131,7 +131,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
         $o->assignIdentifier(33);
         $o->username = 'abc';
         $o->password = 'abc';
-        $o->foo = 'abc';
+        $o->foo      = 'abc';
         $o->state(Doctrine_Record::STATE_CLEAN);
 
         $this->sqlStackCounter += 7;
@@ -140,7 +140,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
         $o->save();
 
         $expected = "UPDATE [ticket__d_c841__model] SET [password] = 'foobar' WHERE id = 33";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -151,15 +151,15 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
         $o->assignIdentifier(33);
         $o->username = 'abc';
         $o->password = 'abc';
-        $o->foo = 'abc';
+        $o->foo      = 'abc';
         $o->state(Doctrine_Record::STATE_CLEAN);
 
         $this->sqlStackCounter += 5;
             
         $o->delete();
 
-        $expected = "DELETE FROM [ticket__d_c841__model] WHERE [id] = 33";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $expected = 'DELETE FROM [ticket__d_c841__model] WHERE [id] = 33';
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -170,9 +170,9 @@ class Ticket_DC841_Model extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('id', 'integer', null, array(
-            'type' => 'integer',
-            'unsigned' => false,
-            'primary' => true,
+            'type'          => 'integer',
+            'unsigned'      => false,
+            'primary'       => true,
             'autoincrement' => true,
         ));
         $this->hasColumn('username', 'string', 255);
@@ -183,7 +183,7 @@ class Ticket_DC841_Model extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_DC841_Model', array(
-             'local' => 'id',
-             'foreign' => 'id'));    
+             'local'   => 'id',
+             'foreign' => 'id'));
     }
 }

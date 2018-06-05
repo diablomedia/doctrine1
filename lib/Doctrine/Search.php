@@ -63,11 +63,11 @@ class Doctrine_Search extends Doctrine_Record_Generator
     {
         $this->_options = Doctrine_Lib::arrayDeepMerge($this->_options, $options);
 
-        if ( ! isset($this->_options['analyzer'])) {
+        if (! isset($this->_options['analyzer'])) {
             $this->_options['analyzer'] = 'Doctrine_Search_Analyzer_Standard';
         }
 
-        if ( ! isset($this->_options['analyzer_options'])) {
+        if (! isset($this->_options['analyzer_options'])) {
             $this->_options['analyzer_options'] = array();
         }
 
@@ -81,8 +81,8 @@ class Doctrine_Search extends Doctrine_Record_Generator
     {
         parent::buildTable();
 
-        if ( ! isset($this->_options['connection'])) {
-            $manager = Doctrine_Manager::getInstance();
+        if (! isset($this->_options['connection'])) {
+            $manager                      = Doctrine_Manager::getInstance();
             $this->_options['connection'] = $manager->getConnectionForComponent($this->_options['table']->getComponentName());
             $manager->bindComponent($this->_options['className'], $this->_options['connection']->getName());
         }
@@ -105,11 +105,11 @@ class Doctrine_Search extends Doctrine_Record_Generator
             $newQuery = $query->copy();
             $query->getSqlQuery();
             $key = (array) $this->getOption('table')->getIdentifier();
-            $newQuery->addWhere($query->getRootAlias() . '.'.current($key).' IN (SQL:' . $q->getSqlQuery() . ')', $q->getParams());
+            $newQuery->addWhere($query->getRootAlias() . '.' . current($key) . ' IN (SQL:' . $q->getSqlQuery() . ')', $q->getParams());
 
             return $newQuery;
         } else {
-            if ( ! isset($this->_options['connection'])) {
+            if (! isset($this->_options['connection'])) {
                 $this->_options['connection'] = $this->_table->getConnection();
             }
             $q->query($string);
@@ -141,10 +141,10 @@ class Doctrine_Search extends Doctrine_Record_Generator
     {
         $this->initialize($this->_options['table']);
 
-        $fields = $this->getOption('fields');
-        $class  = $this->getOption('className');
-        $name   = $this->getOption('table')->getComponentName();
-        $conn   = $this->getOption('table')->getConnection();
+        $fields     = $this->getOption('fields');
+        $class      = $this->getOption('className');
+        $name       = $this->getOption('table')->getComponentName();
+        $conn       = $this->getOption('table')->getConnection();
         $identifier = $this->_options['table']->getIdentifier();
 
         $q = Doctrine_Core::getTable($class)
@@ -165,7 +165,6 @@ class Doctrine_Search extends Doctrine_Record_Generator
             $index->save();
         } else {
             foreach ($fields as $field) {
-
                 $value = isset($data[$field]) ? $data[$field] : null;
 
                 $terms = $this->analyze($value, $encoding);
@@ -173,9 +172,9 @@ class Doctrine_Search extends Doctrine_Record_Generator
                 foreach ($terms as $pos => $term) {
                     $index = new $class();
 
-                    $index->keyword = $term;
+                    $index->keyword  = $term;
                     $index->position = $pos;
-                    $index->field = $field;
+                    $index->field    = $field;
                     foreach ((array) $this->_options['table']->getIdentifier() as $id) {
                         $index->$id = $data[$id];
                     }
@@ -230,10 +229,10 @@ class Doctrine_Search extends Doctrine_Record_Generator
 
         $this->initialize($table);
 
-        $id        = $table->getIdentifierColumnNames();
-        $class     = $this->_options['className'];
-        $fields    = $this->_options['fields'];
-        $conn      = $this->_options['table']->getConnection();
+        $id     = $table->getIdentifierColumnNames();
+        $class  = $this->_options['className'];
+        $fields = $this->_options['fields'];
+        $conn   = $this->_options['table']->getConnection();
 
         for ($i = 0; $i < count($fields); $i++) {
             $fields[$i] = $table->getColumnName($fields[$i], $fields[$i]);
@@ -248,8 +247,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
             }
         }
 
-        if (count($ids) > 0)
-        {
+        if (count($ids) > 0) {
             $sql = 'DELETE FROM ' . $conn->quoteIdentifier($this->_table->getTableName());
 
             if (count($id) == 1) {
@@ -275,16 +273,16 @@ class Doctrine_Search extends Doctrine_Record_Generator
             $conn->beginTransaction();
             try {
                 foreach ($fields as $field) {
-                    $data  = $row[$field];
+                    $data = $row[$field];
 
                     $terms = $this->analyze($data, $encoding);
 
                     foreach ($terms as $pos => $term) {
                         $index = new $class();
 
-                        $index->keyword = $term;
+                        $index->keyword  = $term;
                         $index->position = $pos;
-                        $index->field = $field;
+                        $index->field    = $field;
 
                         foreach ((array) $table->getIdentifier() as $identifier) {
                             $index->$identifier = $row[$table->getColumnName($identifier, $identifier)];
@@ -309,9 +307,9 @@ class Doctrine_Search extends Doctrine_Record_Generator
      */
     public function setTableDefinition()
     {
-    	if ( ! isset($this->_options['table'])) {
-    	    throw new Doctrine_Record_Exception("Unknown option 'table'.");
-    	}
+        if (! isset($this->_options['table'])) {
+            throw new Doctrine_Record_Exception("Unknown option 'table'.");
+        }
 
         $componentName = $this->_options['table']->getComponentName();
 
@@ -330,11 +328,11 @@ class Doctrine_Search extends Doctrine_Record_Generator
             $this->_table->removeColumn($name);
         }
 
-        $columns = array('keyword'  => array('type'    => 'string',
+        $columns = array('keyword' => array('type'     => 'string',
                                              'length'  => 200,
                                              'primary' => true,
                                              ),
-                         'field'    => array('type'    => 'string',
+                         'field' => array('type'       => 'string',
                                              'length'  => 50,
                                              'primary' => true),
                          'position' => array('type'    => 'integer',

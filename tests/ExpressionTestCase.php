@@ -41,7 +41,7 @@ class Doctrine_Expression_TestCase extends Doctrine_UnitTestCase
         $e = new Doctrine_Expression("CONCAT('some', 'one')");
         $this->assertEqual($e->getSql(), "CONCAT('some', 'one')");
 
-        $u = new User();
+        $u       = new User();
         $u->name = $e;
         $u->save();
         $u->refresh();
@@ -66,4 +66,3 @@ class Doctrine_Expression_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($e->getSql(), "CONCAT('(some)', '(one)')");
     }
 }
-

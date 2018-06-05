@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1729_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1729_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,12 +42,12 @@ class Doctrine_Ticket_1729_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
 
-        $user = new Ticket_1729_User();
+        $user           = new Ticket_1729_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->save();
 
-        $user = new Ticket_1729_User();
+        $user           = new Ticket_1729_User();
         $user->username = 'romanb';
         $user->password = 'changeme';
         $user->save();

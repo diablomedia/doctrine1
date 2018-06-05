@@ -31,4 +31,5 @@
  * @link        www.doctrine-project.org
  */
 class Doctrine_Transaction_Exception extends Doctrine_Exception
-{ }
+{
+}

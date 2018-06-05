@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1763_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1763_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,7 +41,7 @@ class Doctrine_Ticket_1763_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
-        $user = new Ticket_1763_User();
+        $user  = new Ticket_1763_User();
         $valid = $user->isValid();
         $this->assertFalse($valid);
         $string = $user->getErrorStackAsString();
@@ -75,9 +75,9 @@ class Ticket_1763_User extends Doctrine_Record
         $this->hasColumn('email_address', 'string', 255, array('unique'  => true,
                                                                'notnull' => true,
                                                                'email'   => true));
-        $this->hasColumn('username', 'string', 255, array('unique'   => true,
-                                                          'notnull'  => true));
+        $this->hasColumn('username', 'string', 255, array('unique'  => true,
+                                                          'notnull' => true));
         $this->hasColumn('password', 'string', 255);
-        $this->hasColumn('ip_address','string', 255, array('notnull' => true, 'ip' => true));
+        $this->hasColumn('ip_address', 'string', 255, array('notnull' => true, 'ip' => true));
     }
 }

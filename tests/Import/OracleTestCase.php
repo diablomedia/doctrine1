@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Import_Oracle_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Import_Oracle_TestCase extends Doctrine_UnitTestCase
 {
     public function testListSequencesExecutesSql()
     {
@@ -38,7 +38,7 @@ class Doctrine_Import_Oracle_TestCase extends Doctrine_UnitTestCase
 
         $this->import->listSequences('table');
         
-        $this->assertEqual($this->adapter->pop(), "SELECT sequence_name FROM sys.user_sequences");
+        $this->assertEqual($this->adapter->pop(), 'SELECT sequence_name FROM sys.user_sequences');
     }
     public function testListTableColumnsExecutesSql()
     {
@@ -106,7 +106,7 @@ WHERE tc.table_name = :tableName ORDER BY column_id";
     {
         $this->import->listTableConstraints('table');
         
-        $q = "SELECT index_name name FROM user_constraints"
+        $q = 'SELECT index_name name FROM user_constraints'
            . " WHERE table_name = 'table' OR table_name = 'TABLE'";
 
         $this->assertEqual($this->adapter->pop(), $q);

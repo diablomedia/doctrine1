@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1658_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1658_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,7 +42,7 @@ class Doctrine_Ticket_1658_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE, true);
         try {
-            $user = new Ticket_1658_User();
+            $user           = new Ticket_1658_User();
             $user->password = 'test';
             $this->fail();
         } catch (Doctrine_Exception $e) {

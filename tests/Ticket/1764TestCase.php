@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1764_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1764_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,10 +42,10 @@ class Doctrine_Ticket_1764_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
 
-        $user = new Ticket_1764_User();
+        $user           = new Ticket_1764_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
-        $user->rate = 1;
+        $user->rate     = 1;
         $this->assertEqual($user->isValid(), true);
 
         $sql = Doctrine_Core::generateSqlFromArray(array('Ticket_1764_User'));

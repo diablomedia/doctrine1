@@ -41,14 +41,14 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $user = new User();
+        $user       = new User();
         $user->name = 'Hans';
         $user->save();
     }
 
     public function testAsResultCache()
     {
-        if ( !$this->_isEnabled()) {
+        if (!$this->_isEnabled()) {
             return;
         }
         $this->_clearCache();
@@ -64,7 +64,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
                 ->execute();
 
             $this->assertEqual(1, count($u));
-            $this->assertEqual("Hans", $u[0]->name);
+            $this->assertEqual('Hans', $u[0]->name);
 
             if ($i == 0) {
                 // Store where we're at with query count
@@ -81,7 +81,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
 
     public function testCacheCore()
     {
-        if ( !$this->_isEnabled()) {
+        if (!$this->_isEnabled()) {
             return;
         }
         $this->_clearCache();
@@ -99,7 +99,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
 
     public function testDeleteByPrefix()
     {
-        if ( !$this->_isEnabled()) {
+        if (!$this->_isEnabled()) {
             return;
         }
         $this->_clearCache();
@@ -118,7 +118,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
 
     public function testDeleteBySuffix()
     {
-        if ( !$this->_isEnabled()) {
+        if (!$this->_isEnabled()) {
             return;
         }
         $this->_clearCache();
@@ -137,7 +137,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
 
     public function testDeleteByRegex()
     {
-        if ( !$this->_isEnabled()) {
+        if (!$this->_isEnabled()) {
             return;
         }
         $this->_clearCache();

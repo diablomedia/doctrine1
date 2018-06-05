@@ -30,9 +30,9 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
 {
-    public function testLoadRelatedForAssociation() 
+    public function testLoadRelatedForAssociation()
     {
         $coll = $this->connection->query('FROM User');
 
@@ -88,7 +88,7 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $this->connection->clear();
     }
 
-    public function testOffsetGetWithNullArgumentReturnsNewRecord() 
+    public function testOffsetGetWithNullArgumentReturnsNewRecord()
     {
         $coll = new Doctrine_Collection('User');
         $this->assertEqual($coll->count(), 0);
@@ -99,13 +99,13 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($coll[0]->name, 'zYne');
     }
 
-    public function testLoadRelatedForNormalAssociation() 
+    public function testLoadRelatedForNormalAssociation()
     {
-        $resource = new Doctrine_Collection('Resource');
-        $resource[0]->name = 'resource 1';
+        $resource                   = new Doctrine_Collection('Resource');
+        $resource[0]->name          = 'resource 1';
         $resource[0]->Type[0]->type = 'type 1';
         $resource[0]->Type[1]->type = 'type 2';
-        $resource[1]->name = 'resource 2';
+        $resource[1]->name          = 'resource 2';
         $resource[1]->Type[0]->type = 'type 3';
         $resource[1]->Type[1]->type = 'type 4';
 
@@ -130,23 +130,23 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(($count + 1), $this->connection->count());
     }
     
-    public function testAdd() 
+    public function testAdd()
     {
         $coll = new Doctrine_Collection($this->objTable);
         $coll->add(new User());
-        $this->assertEqual($coll->count(),1);
+        $this->assertEqual($coll->count(), 1);
         $coll->add(new User());
-        $this->assertTrue($coll->count(),2);
+        $this->assertTrue($coll->count(), 2);
 
         $this->assertEqual($coll->getKeys(), array(0,1));
 
         $coll[2] = new User();
 
-        $this->assertTrue($coll->count(),3);
+        $this->assertTrue($coll->count(), 3);
         $this->assertEqual($coll->getKeys(), array(0,1,2));
     }
 
-    public function testLoadRelated() 
+    public function testLoadRelated()
     {
         $coll = $this->connection->query('FROM User u');
 
@@ -166,7 +166,7 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($count, $this->connection->count());
     }
 
-    public function testLoadRelatedForLocalKeyRelation() 
+    public function testLoadRelatedForLocalKeyRelation()
     {
         $coll = $this->connection->query('FROM User');
 
@@ -192,17 +192,17 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $this->connection->clear();
     }
 
-    public function testLoadRelatedForForeignKey() 
+    public function testLoadRelatedForForeignKey()
     {
-        $coll = $this->connection->query("FROM User");
+        $coll = $this->connection->query('FROM User');
         $this->assertEqual($coll->count(), 8);
         
         $count = $this->connection->count();
-        $coll->loadRelated("Phonenumber");
+        $coll->loadRelated('Phonenumber');
 
         $this->assertEqual(($count + 1), $this->connection->count());
 
-        $this->assertEqual($coll[0]->Phonenumber[0]->phonenumber, "123 123");
+        $this->assertEqual($coll[0]->Phonenumber[0]->phonenumber, '123 123');
 
         $this->assertEqual(($count + 1), $this->connection->count());
 
@@ -210,23 +210,23 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual(($count + 1), $this->connection->count());
 
-        $this->assertEqual($coll[4]->Phonenumber[0]->phonenumber, "111 555 333");
-        $this->assertEqual($coll[4]["Phonenumber"][1]->phonenumber, "123 213");
-        $this->assertEqual($coll[4]["Phonenumber"][2]->phonenumber, "444 555");
+        $this->assertEqual($coll[4]->Phonenumber[0]->phonenumber, '111 555 333');
+        $this->assertEqual($coll[4]['Phonenumber'][1]->phonenumber, '123 213');
+        $this->assertEqual($coll[4]['Phonenumber'][2]->phonenumber, '444 555');
 
-        $this->assertEqual($coll[5]->Phonenumber[0]->phonenumber, "111 222 333");
+        $this->assertEqual($coll[5]->Phonenumber[0]->phonenumber, '111 222 333');
 
 
-        $this->assertEqual($coll[6]->Phonenumber[0]->phonenumber, "111 222 333");
-        $this->assertEqual($coll[6]["Phonenumber"][1]->phonenumber, "222 123");
-        $this->assertEqual($coll[6]["Phonenumber"][2]->phonenumber, "123 456");
+        $this->assertEqual($coll[6]->Phonenumber[0]->phonenumber, '111 222 333');
+        $this->assertEqual($coll[6]['Phonenumber'][1]->phonenumber, '222 123');
+        $this->assertEqual($coll[6]['Phonenumber'][2]->phonenumber, '123 456');
         
         $this->assertEqual(($count + 1), $this->connection->count());
         
         $this->connection->clear();
     }
 
-    public function testCount() 
+    public function testCount()
     {
         $coll = new Doctrine_Collection($this->connection->getTable('User'));
         $this->assertEqual($coll->count(), 0);
@@ -234,26 +234,25 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($coll->count(), 1);
     }
 
-    public function testGenerator() 
+    public function testGenerator()
     {
         $coll = new Doctrine_Collection($this->objTable);
         $coll->setKeyColumn('name');
 
-        $user = new User();
-        $user->name = "name";
+        $user       = new User();
+        $user->name = 'name';
         $coll->add($user);
 
-        $this->assertTrue($coll["name"] === $user);
+        $this->assertTrue($coll['name'] === $user);
 
-        $this->connection->getTable("email")->setAttribute(Doctrine_Core::ATTR_COLL_KEY,"address");
-        $emails = $this->connection->getTable("email")->findAll();
-        foreach($emails as $k => $v) {
-            $this->assertTrue(gettype($k), "string");
+        $this->connection->getTable('email')->setAttribute(Doctrine_Core::ATTR_COLL_KEY, 'address');
+        $emails = $this->connection->getTable('email')->findAll();
+        foreach ($emails as $k => $v) {
+            $this->assertTrue(gettype($k), 'string');
         }
-
     }
 
-    public function testFetchCollectionWithIdAsIndex() 
+    public function testFetchCollectionWithIdAsIndex()
     {
         $user = new User();
         $user->attribute(Doctrine_Core::ATTR_COLL_KEY, 'id');
@@ -263,7 +262,7 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($users->count(), 8);
     }
 
-    public function testFetchCollectionWithNameAsIndex() 
+    public function testFetchCollectionWithNameAsIndex()
     {
         $user = new User();
         $user->attribute(Doctrine_Core::ATTR_COLL_KEY, 'name');
@@ -273,7 +272,7 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($users->count(), 8);
     }
 
-    public function testFetchMultipleCollections() 
+    public function testFetchMultipleCollections()
     {
         $this->connection->clear();
         
@@ -283,7 +282,7 @@ class Doctrine_Collection_TestCase extends Doctrine_UnitTestCase
         $phonenumber->attribute(Doctrine_Core::ATTR_COLL_KEY, 'id');
 
 
-        $q = new Doctrine_Query();
+        $q     = new Doctrine_Query();
         $users = $q->from('User u, u.Phonenumber p')->execute();
         $this->assertFalse($users->contains(0));
         $this->assertEqual($users->count(), 8);

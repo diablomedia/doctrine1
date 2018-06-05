@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1674_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1674_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
-        $users  = Doctrine_Query::create()
+        $users = Doctrine_Query::create()
             ->from('User u')
             ->leftJoin('u.Phonenumber p')
             ->having('COUNT(p.id) > 0')
@@ -42,8 +42,8 @@ class Doctrine_Ticket_1674_TestCase extends Doctrine_UnitTestCase
             ->limit(1)
             ->execute();
 
-        $xml = $users->exportTo('xml'); 
-	
+        $xml = $users->exportTo('xml');
+    
         // Enforce NOEMPTYTAG for backwards compatibility
         $doc = new DOMDocument();
         $doc->loadXML($xml);

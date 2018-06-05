@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_255_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_255_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,17 +41,17 @@ class Doctrine_Ticket_255_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, true);
-        $user = new Ticket_255_User();
-        $user->username = 'jwage';
+        $user                = new Ticket_255_User();
+        $user->username      = 'jwage';
         $user->email_address = 'jonwage@gmail.com';
-        $user->password = 'changeme';
+        $user->password      = 'changeme';
         $user->save();
 
         try {
-            $user = new Ticket_255_User();
-            $user->username = 'jwage';
+            $user                = new Ticket_255_User();
+            $user->username      = 'jwage';
             $user->email_address = 'jonwage@gmail.com';
-            $user->password = 'changeme';
+            $user->password      = 'changeme';
             $user->save();
             $this->fail();
         } catch (Exception $e) {
@@ -63,9 +63,9 @@ class Doctrine_Ticket_255_TestCase extends Doctrine_UnitTestCase
 
     public function testTest2()
     {
-        $dbh = new Doctrine_Adapter_Mock('mysql');
+        $dbh  = new Doctrine_Adapter_Mock('mysql');
         $conn = Doctrine_Manager::connection($dbh);
-        $sql = $conn->export->exportClassesSql(array('Ticket_255_User'));
+        $sql  = $conn->export->exportClassesSql(array('Ticket_255_User'));
 
         $this->assertEqual($sql[0], 'CREATE TABLE ticket_255__user (id BIGINT AUTO_INCREMENT, username VARCHAR(255), email_address VARCHAR(255), password VARCHAR(255), UNIQUE INDEX username_email_address_unqidx_idx (username, email_address), PRIMARY KEY(id)) ENGINE = INNODB');
     }

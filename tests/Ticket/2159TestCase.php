@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2159_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2159_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
@@ -40,10 +40,10 @@ class Doctrine_Ticket_2159_TestCase extends Doctrine_UnitTestCase
         $sql = 'SELECT COUNT(*) AS num_results FROM entity e WHERE (e.type = 0)';
         $this->assertEqual($q->getCountSqlQuery(), $sql);
         $results1 = $q->execute();
-        $count1 = $q->count();
+        $count1   = $q->count();
         $this->assertEqual($q->getCountSqlQuery(), $sql);
         $results2 = $q->execute();
-        $count2 = $q->count();
+        $count2   = $q->count();
         $this->assertEqual($results1, $results2);
         $this->assertEqual($count1, $count2);
 

@@ -30,21 +30,21 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1125_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1125_TestCase extends Doctrine_UnitTestCase
 {
     public function setUp()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mysql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mysql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh);
     }
 
     public function testTest()
     {
-        $fields = array('id'    => array('primary'         => true,
-                                         'autoincrement'   => true,
-                                         'type'            => 'integer',
-                                         'length'          => 4),
-                        'name'  => array('type'            => 'string'));
+        $fields = array('id' => array('primary'          => true,
+                                         'autoincrement' => true,
+                                         'type'          => 'integer',
+                                         'length'        => 4),
+                        'name' => array('type' => 'string'));
         $this->conn->export->createTable('test', $fields);
         $this->assertEqual($this->dbh->pop(), 'CREATE TABLE test (id INT AUTO_INCREMENT, name TEXT, PRIMARY KEY(id)) ENGINE = INNODB');
     }

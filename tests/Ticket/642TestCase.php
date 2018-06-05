@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_642_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_642_TestCase extends Doctrine_UnitTestCase
 {
     public function testInit()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mysql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mysql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh);
     }
 
@@ -46,7 +46,7 @@ class Doctrine_Ticket_642_TestCase extends Doctrine_UnitTestCase
 
         // Default was not being defined, even if notnull was set
         $this->assertEqual("CREATE TABLE st_dummy_obj (id BIGINT AUTO_INCREMENT, startdate DATETIME DEFAULT '0000-00-00 00:00:00' NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB", $queries[1]);
-	}
+    }
 }
 
 
@@ -56,10 +56,8 @@ class stDummyObj extends Doctrine_Record
     {
         $this->setTableName('st_dummy_obj');
         $this->hasColumn('startDate', 'timestamp', null, array(
-            'notnull' => true, 
+            'notnull' => true,
             'default' => '0000-00-00 00:00:00'
         ));
     }
 }
-
-?>

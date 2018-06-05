@@ -32,7 +32,8 @@
  */
 class Doctrine_Connection_Mssql_TestCase extends Doctrine_UnitTestCase
 {
-    public function testAlreadyExistsErrorIsSupported() {
+    public function testAlreadyExistsErrorIsSupported()
+    {
         $this->assertTrue($this->exc->processErrorInfo(array(0, 2714, '')));
         
         $this->assertEqual($this->exc->getPortableCode(), Doctrine_Core::ERR_ALREADY_EXISTS);

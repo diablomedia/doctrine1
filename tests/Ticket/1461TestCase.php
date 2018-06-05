@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1461_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1461_TestCase extends Doctrine_UnitTestCase
 {
     public function testFetchArraySupportsTwoAggregates()
     {
@@ -62,7 +62,7 @@ class Doctrine_Ticket_1461_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($users[0]['concat2'], '123 123_2');
         
         $this->assertEqual($users[0]['concat1'], '123 123_1');
-    } 
+    }
 
     public function testFetchArraySupportsTwoAggregatesInRelationAndRoot()
     {

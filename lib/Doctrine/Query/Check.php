@@ -53,12 +53,12 @@ class Doctrine_Query_Check
      */
     public function __construct($table)
     {
-        if ( ! ($table instanceof Doctrine_Table)) {
+        if (! ($table instanceof Doctrine_Table)) {
             $table = Doctrine_Manager::getInstance()
                         ->getCurrentConnection()
                         ->getTable($table);
         }
-        $this->table = $table;
+        $this->table      = $table;
         $this->_tokenizer = new Doctrine_Query_Tokenizer();
     }
 
@@ -152,13 +152,13 @@ class Doctrine_Query_Check
             $func  = substr($dql, 0, $pos);
             $value = substr($dql, ($pos + 1), -1);
 
-            $expr  = $this->table->getConnection()->expression;
+            $expr = $this->table->getConnection()->expression;
 
-            if ( ! method_exists($expr, $func)) {
+            if (! method_exists($expr, $func)) {
                 throw new Doctrine_Query_Exception('Unknown function ' . $func);
             }
 
-            $func  = $expr->$func($value);
+            $func = $expr->$func($value);
         }
         return $func;
     }

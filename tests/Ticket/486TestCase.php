@@ -30,9 +30,10 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_486_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_486_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareTables() {
+    public function prepareTables()
+    {
         $this->tables = array('Country', 'State', 'Resort');
         parent::prepareTables();
     }
@@ -94,7 +95,7 @@ class Doctrine_Ticket_486_TestCase extends Doctrine_UnitTestCase
 
     public function createCountry($name)
     {
-        $tmp = new Country();
+        $tmp       = new Country();
         $tmp->name = $name;
         $tmp->save();
 
@@ -104,8 +105,8 @@ class Doctrine_Ticket_486_TestCase extends Doctrine_UnitTestCase
 
     public function createState($country, $name)
     {
-        $tmp = new State();
-        $tmp->name = $name;
+        $tmp          = new State();
+        $tmp->name    = $name;
         $tmp->Country = $country;
         $tmp->save();
 
@@ -115,8 +116,8 @@ class Doctrine_Ticket_486_TestCase extends Doctrine_UnitTestCase
 
     public function createResort($state, $name)
     {
-        $tmp = new Resort();
-        $tmp->name = $name;
+        $tmp        = new Resort();
+        $tmp->name  = $name;
         $tmp->State = $state;
         $tmp->save();
 

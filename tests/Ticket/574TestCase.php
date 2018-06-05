@@ -30,33 +30,32 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_574_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_574_TestCase extends Doctrine_UnitTestCase
 {
-  /**
-   * prepareData
-   */
+    /**
+     * prepareData
+     */
     public function prepareData()
     {
-	    for($i=0; $i < 10; $i++)
-	    {
-	       $oAuthor = new Author;
-	       $oAuthor->book_id = $i;
-	       $oAuthor->name = "Author $i";
-	       $oAuthor->save();
-	    }
+        for ($i = 0; $i < 10; $i++) {
+            $oAuthor          = new Author;
+            $oAuthor->book_id = $i;
+            $oAuthor->name    = "Author $i";
+            $oAuthor->save();
+        }
     }
-	
+    
     /**
      * prepareTables
      */
     
     public function prepareTables()
     {
-      $this->tables = array();
-      $this->tables[] = 'Author';
-      $this->tables[] = 'Book';
+        $this->tables   = array();
+        $this->tables[] = 'Author';
+        $this->tables[] = 'Book';
       
-      parent :: prepareTables();
+        parent :: prepareTables();
     }
     
     
@@ -74,12 +73,10 @@ class Doctrine_Ticket_574_TestCase extends Doctrine_UnitTestCase
         // simple query, with 1 join and all columns selected
         $cAuthors = $q->from('Author, Author.Book')->execute();
         
-        foreach($cAuthors as $oAuthor)
-        {
-          if ( ! $oAuthor->name)
-          {
-            $this->fail('Querying the same table multiple times triggers hydration/caching(?) bug');
-          }
-        }   	     
+        foreach ($cAuthors as $oAuthor) {
+            if (! $oAuthor->name) {
+                $this->fail('Querying the same table multiple times triggers hydration/caching(?) bug');
+            }
+        }
     }
 }

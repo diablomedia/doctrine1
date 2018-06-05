@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1562_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1562_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -81,7 +81,6 @@ class Ticket_1562_User extends Doctrine_Record
 
 class Ticket_1562_UserTable extends Doctrine_Table
 {
-    
 }
 
 class Ticket_1562_Template extends Doctrine_Template

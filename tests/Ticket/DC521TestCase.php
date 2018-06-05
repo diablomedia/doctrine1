@@ -25,8 +25,8 @@ class DC521TestModel extends Doctrine_Record
     {
         $this->setTableName('dc521_test_model');
         $this->hasColumn('id', 'integer', null, array(
-             'type' => 'integer',
-             'primary' => true,
+             'type'          => 'integer',
+             'primary'       => true,
              'autoincrement' => true,
              ));
         $this->hasColumn('data', 'string', null, array(
@@ -37,7 +37,6 @@ class DC521TestModel extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        
     }
 }
 
@@ -47,8 +46,8 @@ class DC521IdOnlyTestModel extends Doctrine_Record
     {
         $this->setTableName('dc521_idonly_test_model');
         $this->hasColumn('id', 'integer', null, array(
-             'type' => 'integer',
-             'primary' => true,
+             'type'          => 'integer',
+             'primary'       => true,
              'autoincrement' => true,
              ));
     }
@@ -56,7 +55,6 @@ class DC521IdOnlyTestModel extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        
     }
 }
 
@@ -71,23 +69,23 @@ class DC521IdOnlyTestModel extends Doctrine_Record
  * @since       1.2
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC521_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC521_TestCase extends Doctrine_UnitTestCase
 {
     public function init()
     {
         Doctrine_Manager::connection('pgsql://test:test@localhost/doctrine', 'Pgsql');
-    	   $this->driverName = 'Pgsql';
-    	   parent::init();
+        $this->driverName = 'Pgsql';
+        parent::init();
         $this->prepareTables();
     }
-    
+
     public function setUp()
     {
-    	   $this->driverName = 'Pgsql';
+        $this->driverName = 'Pgsql';
         Doctrine_Manager::connection('pgsql://test:test@localhost/doctrine', 'Pgsql');
-    	   parent::setUp();
+        parent::setUp();
     }
-    
+
     public function testEmptyPgsqlAutoIncrementField()
     {
         $m = new DC521TestModel();
@@ -101,42 +99,43 @@ class Doctrine_Ticket_DC521_TestCase extends Doctrine_UnitTestCase
         $m->save();
         $this->assertEqual($m->id, 1);
     }
-    
+
     public function testIdOnlyPgsqlAutoIncrementFieldWithDefinedValue()
     {
-        $m = new DC521IdOnlyTestModel();
+        $m     = new DC521IdOnlyTestModel();
         $m->id = 9999;
         $m->save();
         $this->assertEqual($m->id, 9999);
     }
-    
+
     public function testPgsqlAutoIncrementFieldWithDefinedValue()
     {
-        $m = new DC521TestModel();
+        $m     = new DC521TestModel();
         $m->id = 9999;
         $m->save();
         $this->assertEqual($m->id, 9999);
     }
-    
+
     public function testPgsqlAutoIncrementFieldWithDefinedValueAndData()
     {
         $m = new DC521TestModel();
         $this->assertEqual($m->id, null);
-        $m->id = 111111;
-        $m->data = "testdata";
+        $m->id   = 111111;
+        $m->data = 'testdata';
         $m->save();
         $this->assertEqual($m->id, 111111);
     }
-    
-    public function prepareTables() 
+
+    public function prepareTables()
     {
         $this->tables = array('DC521TestModel', 'DC521IdOnlyTestModel');
         parent::prepareTables();
     }
-    
+
     public function tearDown()
     {
         Doctrine_Manager::resetInstance();
-    	   $this->driverName = null;
-    	   parent::tearDown();
+        $this->driverName = null;
+        parent::tearDown();
     }
+}

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1133_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1133_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,8 +41,8 @@ class Doctrine_Ticket_1133_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $foo = new Ticket_1133_Foo();
-        $foo->name = 'test';
+        $foo            = new Ticket_1133_Foo();
+        $foo->name      = 'test';
         $foo->Bar->name = 'test2';
         $foo->save();
 
@@ -56,8 +56,8 @@ class Doctrine_Ticket_1133_TestCase extends Doctrine_UnitTestCase
 
     public function testTest2()
     {
-        $foo = new Ticket_1133_Foo();
-        $foo->name = 'test';
+        $foo            = new Ticket_1133_Foo();
+        $foo->name      = 'test';
         $foo->Bar->name = 'test2';
         $foo->save();
 
@@ -71,7 +71,6 @@ class Doctrine_Ticket_1133_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($q->count(), 2);
         $this->assertEqual($q->execute()->count(), 1);
     }
-
 }
 
 class Ticket_1133_Foo extends Doctrine_Record

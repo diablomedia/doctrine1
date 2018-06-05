@@ -176,7 +176,7 @@ parameters:
         # in Doctrine_Template to match the PHP typehint of the setInvoker method.
         - '#Call to an undefined method Doctrine_Record_Abstract::delete\(\)\.#'
         # In Doctrine_Record:1973, false should be checked for, as it's a valid return from toArray
-        - '#Parameter \#1 \$array of method Doctrine_Record::fromArray\(\) expects array, array\|false given\.#'
+        - '#Parameter \#1 \$array of method Doctrine_Record::fromArray\(\) expects array, array\|Doctrine_Record\|false given\.#'
         # Similar to above, just different method
         - '#Parameter \#1 \$array of static method Doctrine_Parser::dump\(\) expects array, array\|false given\.#'
         # Also appears in Doctrine_Collection:847

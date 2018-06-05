@@ -111,7 +111,7 @@ class Doctrine_Pager
     {
         // retrieve the number of items found
         $countQuery = $this->getCountQuery();
-        $count = $countQuery->count($this->getCountQueryParams($params));
+        $count      = $countQuery->count($this->getCountQueryParams($params));
 
         $this->_setNumResults($count);
         $this->_setCountExecuted(true);
@@ -391,7 +391,7 @@ class Doctrine_Pager
      */
     protected function _setPage($page)
     {
-        $page = intval($page);
+        $page        = intval($page);
         $this->_page = ($page <= 0) ? 1 : $page;
     }
 
@@ -419,7 +419,7 @@ class Doctrine_Pager
     {
         if ($max > 0) {
             $this->_maxPerPage = $max;
-        } else if ($max == 0) {
+        } elseif ($max == 0) {
             $this->_maxPerPage = 25;
         } else {
             $this->_maxPerPage = abs($max);
@@ -566,7 +566,7 @@ class Doctrine_Pager
      */
     public function execute($params = array(), $hydrationMode = null)
     {
-        if ( !$this->getCountExecuted()) {
+        if (!$this->getCountExecuted()) {
             $this->_initialize($params);
         } else {
             $this->_adjustOffset();
@@ -583,7 +583,7 @@ class Doctrine_Pager
      */
     public function executeCount($params = array())
     {
-        if ( !$this->getCountExecuted()) {
+        if (!$this->getCountExecuted()) {
             $this->_initialize($params);
         }
     }

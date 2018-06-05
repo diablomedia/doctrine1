@@ -70,13 +70,13 @@ class Doctrine_Connection_Mysql extends Doctrine_Connection_Common
                           'pattern_escaping'     => true
                           );
 
-        $this->properties['string_quoting'] = array('start' => "'",
-                                                    'end' => "'",
-                                                    'escape' => '\\',
+        $this->properties['string_quoting'] = array('start'          => "'",
+                                                    'end'            => "'",
+                                                    'escape'         => '\\',
                                                     'escape_pattern' => '\\');
 
-        $this->properties['identifier_quoting'] = array('start' => '`',
-                                                        'end' => '`',
+        $this->properties['identifier_quoting'] = array('start'  => '`',
+                                                        'end'    => '`',
                                                         'escape' => '`');
 
         $this->properties['sql_comments'] = array(
@@ -98,13 +98,13 @@ class Doctrine_Connection_Mysql extends Doctrine_Connection_Common
      * @see Doctrine_Connection :: connect();
      * @return boolean connected
      */
-     public function connect()
-     {
-         $connected = parent::connect();
-         $this->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
+    public function connect()
+    {
+        $connected = parent::connect();
+        $this->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
 
-         return $connected;
-     }
+        return $connected;
+    }
 
 
     /**
@@ -202,12 +202,12 @@ class Doctrine_Connection_Mysql extends Doctrine_Connection_Common
         }
 
         $columns = array();
-        $values = array();
-        $params = array();
+        $values  = array();
+        $params  = array();
         foreach ($fields as $fieldName => $value) {
             $columns[] = $table->getColumnName($fieldName);
-            $values[] = '?';
-            $params[] = $value;
+            $values[]  = '?';
+            $params[]  = $value;
         }
 
         $query = 'REPLACE INTO ' . $this->quoteIdentifier($table->getTableName()) . ' (' . implode(',', $columns) . ') VALUES (' . implode(',', $values) . ')';

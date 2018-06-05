@@ -49,33 +49,33 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
     {
         // initialize all driver options
         $this->supported = array(
-                          'sequences'               => true,
-                          'indexes'                 => true,
-                          'affected_rows'           => true,
-                          'summary_functions'       => true,
-                          'order_by_text'           => true,
-                          'transactions'            => true,
-                          'savepoints'              => true,
-                          'current_id'              => true,
-                          'limit_queries'           => true,
-                          'LOBs'                    => true,
-                          'replace'                 => 'emulated',
-                          'sub_selects'             => true,
-                          'auto_increment'          => 'emulated',
-                          'primary_key'             => true,
-                          'result_introspection'    => true,
-                          'prepared_statements'     => true,
-                          'identifier_quoting'      => true,
-                          'pattern_escaping'        => true,
+                          'sequences'            => true,
+                          'indexes'              => true,
+                          'affected_rows'        => true,
+                          'summary_functions'    => true,
+                          'order_by_text'        => true,
+                          'transactions'         => true,
+                          'savepoints'           => true,
+                          'current_id'           => true,
+                          'limit_queries'        => true,
+                          'LOBs'                 => true,
+                          'replace'              => 'emulated',
+                          'sub_selects'          => true,
+                          'auto_increment'       => 'emulated',
+                          'primary_key'          => true,
+                          'result_introspection' => true,
+                          'prepared_statements'  => true,
+                          'identifier_quoting'   => true,
+                          'pattern_escaping'     => true,
                           );
 
-        $this->properties['string_quoting'] = array('start' => "'",
-                                                    'end' => "'",
-                                                    'escape' => "'",
+        $this->properties['string_quoting'] = array('start'          => "'",
+                                                    'end'            => "'",
+                                                    'escape'         => "'",
                                                     'escape_pattern' => '\\');
 
-        $this->properties['identifier_quoting'] = array('start' => '"',
-                                                        'end' => '"',
+        $this->properties['identifier_quoting'] = array('start'  => '"',
+                                                        'end'    => '"',
                                                         'escape' => '"');
         parent::__construct($manager, $adapter);
     }
@@ -89,7 +89,7 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
      */
     public function setCharset($charset)
     {
-        $query = 'SET NAMES '.$this->quote($charset);
+        $query = 'SET NAMES ' . $this->quote($charset);
         $this->exec($query);
         parent::setCharset($charset);
     }
@@ -113,9 +113,9 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
                 }
             }
         } else {
-           if (is_bool($item) || is_numeric($item)) {
-               $item = ($item) ? 'true' : 'false';
-           }
+            if (is_bool($item) || is_numeric($item)) {
+                $item = ($item) ? 'true' : 'false';
+            }
         }
         return $item;
     }
@@ -148,13 +148,12 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
                 $where = $match[3];
                 $query = $manip . ' ' . $from . ' WHERE ctid=(SELECT ctid FROM '
                        . $from . ' ' . $where . ' LIMIT ' . (int)$limit . ')';
-
             } else {
-                if ( ! empty($limit)) {
-                  $query .= ' LIMIT ' . (int)$limit;
+                if (! empty($limit)) {
+                    $query .= ' LIMIT ' . (int)$limit;
                 }
-                if ( ! empty($offset)) {
-                  $query .= ' OFFSET ' . (int)$offset;
+                if (! empty($offset)) {
+                    $query .= ' OFFSET ' . (int)$offset;
                 }
             }
         }
@@ -173,25 +172,25 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
 
         $serverInfo = $this->fetchOne($query);
 
-        if ( ! $native) {
+        if (! $native) {
             $tmp = explode('.', $serverInfo, 3);
 
             if (empty($tmp[2]) && isset($tmp[1])
                 && preg_match('/(\d+)(.*)/', $tmp[1], $tmp2)
             ) {
                 $serverInfo = array(
-                    'major' => $tmp[0],
-                    'minor' => $tmp2[1],
-                    'patch' => null,
-                    'extra' => $tmp2[2],
+                    'major'  => $tmp[0],
+                    'minor'  => $tmp2[1],
+                    'patch'  => null,
+                    'extra'  => $tmp2[2],
                     'native' => $serverInfo,
                 );
             } else {
                 $serverInfo = array(
-                    'major' => isset($tmp[0]) ? $tmp[0] : null,
-                    'minor' => isset($tmp[1]) ? $tmp[1] : null,
-                    'patch' => isset($tmp[2]) ? $tmp[2] : null,
-                    'extra' => null,
+                    'major'  => isset($tmp[0]) ? $tmp[0] : null,
+                    'minor'  => isset($tmp[1]) ? $tmp[1] : null,
+                    'patch'  => isset($tmp[2]) ? $tmp[2] : null,
+                    'extra'  => null,
                     'native' => $serverInfo,
                 );
             }
@@ -217,14 +216,14 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
         $a = array();
 
         foreach ($fields as $fieldName => $value) {
-        	if ($table->isIdentifier($fieldName)
-        	           && $table->isIdentifierAutoincrement()
-        	           && $value == null) {
-        		// Autoincrement fields should not be added to the insert statement
-        		// if their value is null
-        		unset($fields[$fieldName]);
-        		continue;
-        	}
+            if ($table->isIdentifier($fieldName)
+                       && $table->isIdentifierAutoincrement()
+                       && $value == null) {
+                // Autoincrement fields should not be added to the insert statement
+                // if their value is null
+                unset($fields[$fieldName]);
+                continue;
+            }
             $cols[] = $this->quoteIdentifier($table->getColumnName($fieldName));
             if ($value instanceof Doctrine_Expression) {
                 $a[] = $value->getSql();
@@ -235,7 +234,7 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
         }
 
         if (count($fields) == 0) {
-        	// Real fix #1786 and #2327 (default values when table is just 'id' as PK)
+            // Real fix #1786 and #2327 (default values when table is just 'id' as PK)
             return $this->exec('INSERT INTO ' . $this->quoteIdentifier($tableName)
                               . ' '
                               . ' VALUES (DEFAULT)');

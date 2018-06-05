@@ -70,7 +70,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
     public function avg($column)
     {
         $column = $this->getIdentifier($column);
-        return 'AVG(' .  $column . ')';
+        return 'AVG(' . $column . ')';
     }
 
     /**
@@ -296,9 +296,9 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
     public function substring($value, $from, $len = null)
     {
         $value = $this->getIdentifier($value);
-        if ($len === null)
+        if ($len === null) {
             return 'SUBSTRING(' . $value . ' FROM ' . $from . ')';
-        else {
+        } else {
             $len = $this->getIdentifier($len);
             return 'SUBSTRING(' . $value . ' FROM ' . $from . ' FOR ' . $len . ')';
         }
@@ -382,7 +382,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      */
     public function sub(array $args)
     {
-        return $this->basicMath('-', $args );
+        return $this->basicMath('-', $args);
     }
 
     /**
@@ -516,7 +516,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      */
     public function in($column, $values)
     {
-        if ( ! is_array($values)) {
+        if (! is_array($values)) {
             $values = array($values);
         }
         $values = $this->getIdentifiers($values);
@@ -570,9 +570,9 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
     public function between($expression, $value1, $value2)
     {
         $expression = $this->getIdentifier($expression);
-        $value1 = $this->getIdentifier($value1);
-        $value2 = $this->getIdentifier($value2);
-        return $expression . ' BETWEEN ' .$value1 . ' AND ' . $value2;
+        $value1     = $this->getIdentifier($value1);
+        $value2     = $this->getIdentifier($value2);
+        return $expression . ' BETWEEN ' . $value1 . ' AND ' . $value2;
     }
 
     /**
@@ -636,7 +636,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
     {
         $args = func_get_args();
 
-	    return 'COALESCE(' . join(', ', (array) $args) . ')';
+        return 'COALESCE(' . join(', ', (array) $args) . ')';
     }
 
     /**

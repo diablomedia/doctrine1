@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_950_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_950_TestCase extends Doctrine_UnitTestCase
 {
     public function testInit()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mysql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mysql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh);
     }
 
@@ -50,39 +50,39 @@ class Doctrine_Ticket_950_TestCase extends Doctrine_UnitTestCase
 
 class Ticket_950_AdresseRecord extends Doctrine_Record
 {
-	public function setTableDefinition()
-	{
-		$this->setTableName('adresse_record');
-		$this->hasColumn('id', 'integer', 20, array('notnull' => true,
-                                              'primary' => true,
+    public function setTableDefinition()
+    {
+        $this->setTableName('adresse_record');
+        $this->hasColumn('id', 'integer', 20, array('notnull' => true,
+                                              'primary'       => true,
                                               'autoincrement' => true));
 
-		$this->hasColumn('adresse', 'string', 255);
-		$this->hasColumn('cp', 'string', 60);
-		$this->hasColumn('ville', 'string', 255);
-		$this->hasColumn('pays', 'string', 2);
-	}
+        $this->hasColumn('adresse', 'string', 255);
+        $this->hasColumn('cp', 'string', 60);
+        $this->hasColumn('ville', 'string', 255);
+        $this->hasColumn('pays', 'string', 2);
+    }
 
-	public function setUp()
-	{
-		$this->hasOne('Ticket_950_CountryRecord as Country', array('local' => 'pays', 'foreign' => 'iso'));
-	}
+    public function setUp()
+    {
+        $this->hasOne('Ticket_950_CountryRecord as Country', array('local' => 'pays', 'foreign' => 'iso'));
+    }
 }
 
 class Ticket_950_CountryRecord extends Doctrine_Record
 {
-	public function setTableDefinition()
-	{
-		$this->setTableName('country_record');
-		$this->hasColumn('id', 'integer', 11, array('notnull' => true,
-                                              'primary' => true,
+    public function setTableDefinition()
+    {
+        $this->setTableName('country_record');
+        $this->hasColumn('id', 'integer', 11, array('notnull' => true,
+                                              'primary'       => true,
                                               'autoincrement' => true));
 
-		$this->hasColumn('iso', 'string', 2, array('notnull' => true));
+        $this->hasColumn('iso', 'string', 2, array('notnull' => true));
 
-		$this->hasColumn('name', 'string', 80);
-		$this->hasColumn('printable_name', 'string', 80);
-		$this->hasColumn('iso3', 'string', 3);
-		$this->hasColumn('numcode', 'integer', 10);
-	}
+        $this->hasColumn('name', 'string', 80);
+        $this->hasColumn('printable_name', 'string', 80);
+        $this->hasColumn('iso3', 'string', 3);
+        $this->hasColumn('numcode', 'integer', 10);
+    }
 }

@@ -1,9 +1,10 @@
 <?php
-class Doctrine_Ticket_1113_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1113_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
-    public function prepareTables() 
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
     {
         $this->tables = array('VIH_Model_Course', 'VIH_Model_Course_Period', 'VIH_Model_Course_SubjectGroup', 'VIH_Model_Subject', 'VIH_Model_Course_SubjectGroup_Subject', 'VIH_Model_Course_Registration', 'VIH_Model_Course_Registration_Subject');
         
@@ -12,22 +13,22 @@ class Doctrine_Ticket_1113_TestCase extends Doctrine_UnitTestCase
 
     public function testSubjectsCanBeRetrievedWhenReopeningTheRegistrationEvenThoughNoSubjectsWasSavedInitally()
     {
-        $course1 = new VIH_Model_Course();
+        $course1       = new VIH_Model_Course();
         $course1->navn = 'Course 1';
         
-        $period1 = new VIH_Model_Course_Period();
-        $period1->name = 'Period 1';
+        $period1         = new VIH_Model_Course_Period();
+        $period1->name   = 'Period 1';
         $period1->Course = $course1;
         $period1->save();
         
-        $group1 = new VIH_Model_Course_SubjectGroup();
-        $group1->name = 'SubjectGroup 1';
+        $group1         = new VIH_Model_Course_SubjectGroup();
+        $group1->name   = 'SubjectGroup 1';
         $group1->Period = $period1;
         
-        $subject1 = new VIH_Model_Subject();
+        $subject1             = new VIH_Model_Subject();
         $subject1->identifier = 'Subject 1';
         
-        $subject2 = new VIH_Model_Subject();
+        $subject2             = new VIH_Model_Subject();
         $subject2->identifier = 'Subject 2';
         
         $group1->Subjects[] = $subject1;
@@ -45,7 +46,7 @@ class Doctrine_Ticket_1113_TestCase extends Doctrine_UnitTestCase
                 
         // saved without Subjects
         try {
-            $registrar = new VIH_Model_Course_Registration();
+            $registrar         = new VIH_Model_Course_Registration();
             $registrar->Course = $course1;
             // $registrar->Subjects; // if this is uncommented the test will pass
             $registrar->save();
@@ -70,7 +71,6 @@ class Doctrine_Ticket_1113_TestCase extends Doctrine_UnitTestCase
         } catch (Doctrine_Record_Exception $e) {
             $this->fail($e->getMessage());
         }
-        
     }
 }
 
@@ -86,7 +86,7 @@ class VIH_Model_Subject extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany(
-            'VIH_Model_Course_SubjectGroup as SubjectGroups', 
+            'VIH_Model_Course_SubjectGroup as SubjectGroups',
             array(
                 'refClass' => 'VIH_Model_Course_SubjectGroup_Subject',
                 'local'    => 'subject_id',
@@ -115,9 +115,9 @@ class VIH_Model_Course extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('VIH_Model_Course_Period as Periods', array('local' => 'id',
+        $this->hasMany('VIH_Model_Course_Period as Periods', array('local'   => 'id',
                                                                    'foreign' => 'course_id'));
-        $this->hasMany('VIH_Model_Course_SubjectGroup as SubjectGroups', array('local' => 'id',
+        $this->hasMany('VIH_Model_Course_SubjectGroup as SubjectGroups', array('local'   => 'id',
                                                                                'foreign' => 'course_id'));
     }
 }
@@ -136,7 +136,6 @@ class VIH_Model_Course_Period extends Doctrine_Record
     {
         $this->hasOne('VIH_Model_Course as Course', array('local' => 'course_id', 'foreign' => 'id'));
     }
-
 }
 
 class VIH_Model_Course_Registration extends Doctrine_Record
@@ -156,8 +155,8 @@ class VIH_Model_Course_Registration extends Doctrine_Record
                                                           'foreign' => 'id'));
 
         $this->hasMany('VIH_Model_Subject as Subjects', array('refClass' => 'VIH_Model_Course_Registration_Subject',
-                                                             'local'    => 'registration_id',
-                                                             'foreign'  => 'subject_id'));
+                                                             'local'     => 'registration_id',
+                                                             'foreign'   => 'subject_id'));
     }
 }
 
@@ -179,8 +178,8 @@ class VIH_Model_Course_SubjectGroup extends Doctrine_Record
                                                           'foreign' => 'id'));
 
         $this->hasMany('VIH_Model_Subject as Subjects', array('refClass' => 'VIH_Model_Course_SubjectGroup_Subject',
-                                                             'local'    => 'subject_group_id',
-                                                             'foreign'  => 'subject_id'));
+                                                             'local'     => 'subject_group_id',
+                                                             'foreign'   => 'subject_id'));
     }
 }
 

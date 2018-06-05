@@ -40,7 +40,7 @@ class Doctrine_Record_FromArray_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
         # Create an existing group
-        $group = new Group();
+        $group       = new Group();
         $group->name = 'Group One';
         $group->save();
         $this->previous_group = $group['id'];
@@ -48,7 +48,7 @@ class Doctrine_Record_FromArray_TestCase extends Doctrine_UnitTestCase
 
     public function testFromArrayRecord()
     {
-        $user = new User();
+        $user      = new User();
         $userArray = $user->toArray();
 
         # add a Phonenumber
@@ -70,16 +70,16 @@ class Doctrine_Record_FromArray_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($user->Group[1]->name, 'Group One');
 
         try {
-          $user->save();
-        } catch (Exception $e ) {
-          $this->fail("Failed saving with " . $e->getMessage());
+            $user->save();
+        } catch (Exception $e) {
+            $this->fail('Failed saving with ' . $e->getMessage());
         }
     }
 
     public function testFromArrayAfterSaveRecord()
     {
         // This is fetching the user made in the previous test apparently
-        $user = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber, u.Group')->fetchOne();
+        $user   = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber, u.Group')->fetchOne();
         $groups = array();
 
         $this->assertEqual($user->Phonenumber->count(), 1);

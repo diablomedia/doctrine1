@@ -31,20 +31,20 @@
  * @version     $Revision$
  */
 class Doctrine_Ticket_1395_TestCase extends Doctrine_UnitTestCase
-{    
+{
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'T1395_MyModel';
         parent::prepareTables();
     }
 
     public function prepareData()
     {
-	    $myModel = new T1395_MyModel();
-	    $myModel->dt_created = '2005-10-01';
-	    $myModel->id = 0;
-	    $myModel->save();
+        $myModel             = new T1395_MyModel();
+        $myModel->dt_created = '2005-10-01';
+        $myModel->id         = 0;
+        $myModel->save();
     }
 
     public function testTicket()
@@ -57,7 +57,7 @@ class Doctrine_Ticket_1395_TestCase extends Doctrine_UnitTestCase
         } catch (Doctrine_Exception $e) {
             $this->fail($e->getMessage());
         }
-   }
+    }
 }
 
 class T1395_MyModel extends Doctrine_Record
@@ -72,7 +72,6 @@ class T1395_MyModel extends Doctrine_Record
     {
         $this->addListener(new T1395_Listener());
     }
-
 }
 
 class T1395_Listener extends Doctrine_Record_Listener
@@ -82,7 +81,7 @@ class T1395_Listener extends Doctrine_Record_Listener
         $data = $event->data;
         
         // Calculate days since creation
-        $days = (strtotime('now') - strtotime($data['dt_created'])) / (24 * 60 * 60);
+        $days             = (strtotime('now') - strtotime($data['dt_created'])) / (24 * 60 * 60);
         $data['days_old'] = number_format($days, 2);
 
         self::addSomeData($data);

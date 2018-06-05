@@ -30,15 +30,15 @@ class Doctrine_Ticket_749_TestCase extends Doctrine_UnitTestCase
         parent::prepareTables();
     }
 
-    public function prepareData() 
+    public function prepareData()
     {
-        $record = new Record749();
-        $record['title'] = 'Test Record 1';
+        $record                       = new Record749();
+        $record['title']              = 'Test Record 1';
         $record['Related']['content'] = 'Test Content 1';
         $record->save();
 
-        $record = new Record749();
-        $record['title'] = 'Test Record 2';
+        $record                       = new Record749();
+        $record['title']              = 'Test Record 2';
         $record['Related']['content'] = 'Test Content 2';
         $record->save();
     }
@@ -52,7 +52,6 @@ class Doctrine_Ticket_749_TestCase extends Doctrine_UnitTestCase
     
     public function testSelectDataFromParentClassAsCollection()
     {
-        
         $records = Doctrine_Query::create()->query('FROM Parent749 p ORDER BY p.title', array());
         $this->verifyRecords($records);
     }
@@ -61,10 +60,11 @@ class Doctrine_Ticket_749_TestCase extends Doctrine_UnitTestCase
      * This method is used by both tests, as the collection of records should
      * be identical for both of them if things are working properly.
      */
-    private function verifyRecords ($records) {
+    private function verifyRecords($records)
+    {
         $expected_values = array(
-            array('title'=>'Test Record 1', 'content'=>'Test Content 1'),
-            array('title'=>'Test Record 2', 'content'=>'Test Content 2'),
+            array('title' => 'Test Record 1', 'content' => 'Test Content 1'),
+            array('title' => 'Test Record 2', 'content' => 'Test Content 2'),
         );
 
         foreach ($records as $record) {
@@ -76,68 +76,66 @@ class Doctrine_Ticket_749_TestCase extends Doctrine_UnitTestCase
             } catch (Exception $e) {
                 $this->fail('Caught exception when trying to get related content: ' . $e->getMessage());
             }
-        }        
+        }
     }
 }
 
 class Parent749 extends Doctrine_Record
 {
-  public function setTableDefinition()
-  {
-    $this->setTableName('mytable');
-    $this->hasColumn('id', 'integer', 4, array (
-      'primary' => true,
+    public function setTableDefinition()
+    {
+        $this->setTableName('mytable');
+        $this->hasColumn('id', 'integer', 4, array(
+      'primary'       => true,
       'autoincrement' => true,
-      'notnull' => true,
+      'notnull'       => true,
     ));
 
-    $this->hasColumn('title', 'string', 255, array ());
-    $this->hasColumn('type', 'integer', 11, array ());
+        $this->hasColumn('title', 'string', 255, array());
+        $this->hasColumn('type', 'integer', 11, array());
 
-    $this->setSubclasses(array('Record749' => array('type' => 1)));
-  }
+        $this->setSubclasses(array('Record749' => array('type' => 1)));
+    }
 
-  public function setUp()
-  {
-  }
+    public function setUp()
+    {
+    }
 }
 
 class Record749 extends Parent749
 {
-  public function setTableDefinition()
-  {
-    parent::setTableDefinition();
-    $this->setTableName('mytable');
-  }
+    public function setTableDefinition()
+    {
+        parent::setTableDefinition();
+        $this->setTableName('mytable');
+    }
 
-  public function setUp()
-  {
-    parent::setUp();
-    $this->hasOne('RelatedRecord749 as Related', array('local' => 'id',
-                                                    'foreign' => 'record_id'));
-  }
+    public function setUp()
+    {
+        parent::setUp();
+        $this->hasOne('RelatedRecord749 as Related', array('local' => 'id',
+                                                    'foreign'      => 'record_id'));
+    }
 }
 
 class RelatedRecord749 extends Doctrine_Record
 {
-  public function setTableDefinition()
-  {
-    $this->hasColumn('id', 'integer', 4, array (
-      'primary' => true,
+    public function setTableDefinition()
+    {
+        $this->hasColumn('id', 'integer', 4, array(
+      'primary'       => true,
       'autoincrement' => true,
-      'notnull' => true,
+      'notnull'       => true,
     ));
 
-    $this->hasColumn('content', 'string', 255, array ());
-    $this->hasColumn('record_id', 'integer', null, array ('unique' => true,));
-  }
+        $this->hasColumn('content', 'string', 255, array());
+        $this->hasColumn('record_id', 'integer', null, array('unique' => true,));
+    }
 
-  public function setUp()
-  {
-    $this->hasOne('Record749 as Record', array('local' => 'record_id',
-                                  'foreign' => 'id',
-                                  'onDelete' => 'cascade'));
-  }
-
+    public function setUp()
+    {
+        $this->hasOne('Record749 as Record', array('local' => 'record_id',
+                                  'foreign'                => 'id',
+                                  'onDelete'               => 'cascade'));
+    }
 }
-

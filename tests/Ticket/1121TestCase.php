@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1121_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1121_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -44,7 +44,7 @@ class Doctrine_Ticket_1121_TestCase extends Doctrine_UnitTestCase
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
         $q = Doctrine_Query::create()
                 ->from('Ticket_1121_User u')
-                // UserProfile has SoftDelete behavior but because it is aliased as Profile, it tries to 
+                // UserProfile has SoftDelete behavior but because it is aliased as Profile, it tries to
                 // call the dql callbacks for the query on a class named Profile instead of UserProfile
                 // Code responsible for this is in Doctrine_Query_Abstract::_preQuery()
                 ->leftJoin('u.Profile p');

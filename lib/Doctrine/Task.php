@@ -37,32 +37,32 @@ abstract class Doctrine_Task
     /**
      * @var Doctrine_Cli|null
      */
-    public $dispatcher           =   null;
+    public $dispatcher = null;
 
     /**
      * @var string|null
      */
-    public $taskName             =   null;  /*Treat as protected*/
+    public $taskName = null;  /*Treat as protected*/
 
     /**
      * @var string|null
      */
-    public $description          =   null;
+    public $description = null;
 
     /**
      * @var array
      */
-    public $arguments            =   array();
+    public $arguments = array();
 
     /**
      * @var array
      */
-    public $requiredArguments    =   array();
+    public $requiredArguments = array();
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array();
+    public $optionalArguments = array();
 
     /**
      * __construct
@@ -106,7 +106,7 @@ abstract class Doctrine_Task
         $nameParts = explode('\\', $className);
 
         foreach ($nameParts as &$namePart) {
-            $prefix = __CLASS__ . '_';
+            $prefix   = __CLASS__ . '_';
             $baseName = strpos($namePart, $prefix) === 0 ? substr($namePart, strlen($prefix)) : $namePart;
             $namePart = str_replace('_', '-', Doctrine_Inflector::tableize($baseName));
         }
@@ -126,7 +126,7 @@ abstract class Doctrine_Task
             $args = func_get_args();
 
             return call_user_func_array(array($this->dispatcher, 'notify'), $args);
-        } else if ( $notification !== null ) {
+        } elseif ($notification !== null) {
             return $notification;
         } else {
             return false;
@@ -157,7 +157,7 @@ abstract class Doctrine_Task
      * @return void
      * @abstract
      */
-    abstract function execute();
+    abstract public function execute();
 
     /**
      * validate
@@ -171,7 +171,7 @@ abstract class Doctrine_Task
         $requiredArguments = $this->getRequiredArguments();
 
         foreach ($requiredArguments as $arg) {
-            if ( ! isset($this->arguments[$arg])) {
+            if (! isset($this->arguments[$arg])) {
                 return false;
             }
         }

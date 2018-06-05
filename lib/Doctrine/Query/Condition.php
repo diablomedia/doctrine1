@@ -48,7 +48,7 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
         if (count($parts) > 1) {
             $ret = array();
             foreach ($parts as $part) {
-                $part = $this->_tokenizer->bracketTrim($part, '(', ')');
+                $part  = $this->_tokenizer->bracketTrim($part, '(', ')');
                 $ret[] = $this->parse($part);
             }
             $r = implode(' OR ', $ret);
@@ -63,7 +63,7 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
 
                 if (count($test) == 3 && strtoupper($test[1]) == 'BETWEEN') {
                     $tmp[] = $parts[$i] . ' AND ' . $parts[++$i];
-                } else if (count($test) == 4 && strtoupper($test[1]) == 'NOT' && strtoupper($test[2]) == 'BETWEEN') {
+                } elseif (count($test) == 4 && strtoupper($test[1]) == 'NOT' && strtoupper($test[2]) == 'BETWEEN') {
                     $tmp[] = $parts[$i] . ' AND ' . $parts[++$i];
                 } else {
                     $tmp[] = $parts[$i];
@@ -76,7 +76,7 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
             if (count($parts) > 1) {
                 $ret = array();
                 foreach ($parts as $part) {
-                    $part = $this->_tokenizer->bracketTrim($part, '(', ')');
+                    $part  = $this->_tokenizer->bracketTrim($part, '(', ')');
                     $ret[] = $this->parse($part);
                 }
                 $r = implode(' AND ', $ret);
@@ -87,7 +87,7 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
                 } else {
                     // Processing NOT here
                     if (strtoupper(substr($parts[0], 0, 4)) === 'NOT ' && strtoupper(substr($parts[0], 4, 6)) !== 'EXISTS') {
-                        $r = 'NOT ('.$this->parse(substr($parts[0], 4)).')';
+                        $r = 'NOT (' . $this->parse(substr($parts[0], 4)) . ')';
                     } else {
                         return $this->load($parts[0]);
                     }
@@ -120,12 +120,12 @@ abstract class Doctrine_Query_Condition extends Doctrine_Query_Part
             if (count($a) > 1) {
                 // either a float or a component..
 
-                if ( ! is_numeric($a[0])) {
+                if (! is_numeric($a[0])) {
                     // a component found
                     $field     = array_pop($a);
                     $reference = implode('.', $a);
                     $value     = $this->query->getConnection()->quoteIdentifier(
-                        $this->query->getSqlTableAlias($reference). '.' . $field
+                        $this->query->getSqlTableAlias($reference) . '.' . $field
                     );
                 }
             }

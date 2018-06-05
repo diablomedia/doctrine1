@@ -68,7 +68,6 @@ class Doctrine_Connection_Sqlite_Exception extends Doctrine_Connection_Exception
     {
         foreach (self::$errorRegexps as $regexp => $code) {
             if (preg_match($regexp, $errorInfo[2])) {
-
                 $this->portableCode = $code;
                 return true;
             }

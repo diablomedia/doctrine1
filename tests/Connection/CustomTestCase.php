@@ -30,14 +30,14 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Connection_Custom_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Connection_Custom_TestCase extends Doctrine_UnitTestCase
 {
     public function setUp()
     {
         $manager = Doctrine_Manager::getInstance();
         $manager->registerConnectionDriver('test', 'Doctrine_Connection_Test');
         $this->_conn = $manager->openConnection('test://username:password@localhost/dbname', false);
-        $this->_dbh = $this->_conn->getDbh();
+        $this->_dbh  = $this->_conn->getDbh();
     }
 
     public function testConnection()
@@ -49,7 +49,6 @@ class Doctrine_Connection_Custom_TestCase extends Doctrine_UnitTestCase
 
 class Doctrine_Connection_Test extends Doctrine_Connection_Common
 {
-    
 }
 
 class Doctrine_Adapter_Test implements Doctrine_Adapter_Interface

@@ -9,8 +9,8 @@ class MysqlUser extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('MysqlGroup', array(
-            'local' => 'user_id',
-            'foreign' => 'group_id',
+            'local'    => 'user_id',
+            'foreign'  => 'group_id',
             'refClass' => 'MysqlGroupMember'
         ));
     }

@@ -30,37 +30,37 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1254_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1254_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables[] = "RelX";
-        $this->tables[] = "RelY";
+        $this->tables[] = 'RelX';
+        $this->tables[] = 'RelY';
         parent::prepareTables();
     }
 
-    public function prepareData() 
+    public function prepareData()
     {
-	    Doctrine_Manager::getInstance()->getCurrentConnection()->beginTransaction();
+        Doctrine_Manager::getInstance()->getCurrentConnection()->beginTransaction();
 
         $cats = array('cat1', 'cat2');
-	    $now = time();
+        $now  = time();
 
         for ($i = 0; $i < 10; $i++) {
-		    $age = $now - $i * 1000;
-            $x = new RelX();
-	        $x->name = "x $i";
-		    $x->category = $cats[$i % 2];
-		    $x->set('created_at', strftime("%Y-%m-%d %H:%M:%S", $age));
-	        $x->save();
+            $age         = $now - $i * 1000;
+            $x           = new RelX();
+            $x->name     = "x $i";
+            $x->category = $cats[$i % 2];
+            $x->set('created_at', strftime('%Y-%m-%d %H:%M:%S', $age));
+            $x->save();
         
-	        for ($j = 0; $j < 10; $j++) {
-		        $y = new RelY();
-		        $y->name = "y ".($i * 10 + $j);
-		        $y->rel_x_id = $x->id;
-		        $y->save();
-		    }
-	    }
+            for ($j = 0; $j < 10; $j++) {
+                $y           = new RelY();
+                $y->name     = 'y ' . ($i * 10 + $j);
+                $y->rel_x_id = $x->id;
+                $y->save();
+            }
+        }
         
         Doctrine_Manager::getInstance()->getCurrentConnection()->commit();
     }
@@ -69,48 +69,47 @@ class Doctrine_Ticket_1254_TestCase extends Doctrine_UnitTestCase
     {
         $q = new Doctrine_Query();
         $q->from('RelX x');
-    	$q->leftJoin('x.y xy');
-    	$q->where('x.created_at IN (SELECT MAX(x2.created_at) latestInCategory FROM RelX x2 WHERE x.category = x2.category)');
-    	$q->limit(5);
+        $q->leftJoin('x.y xy');
+        $q->where('x.created_at IN (SELECT MAX(x2.created_at) latestInCategory FROM RelX x2 WHERE x.category = x2.category)');
+        $q->limit(5);
 
         //echo $sql = $q->getSqlQuery();
         //	echo $sql;
 
         $xs = $q->execute();
 
-        // Doctrine_Ticket_1254_TestCase : method testSubqueryExtractionUsesWrongAliases failed on line 76 
+        // Doctrine_Ticket_1254_TestCase : method testSubqueryExtractionUsesWrongAliases failed on line 76
         // This fails sometimes at
         $this->assertEqual(2, count($xs));
-        
+    }
+}
+
+class RelX extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
+        $this->setTableName('rel_x');
+        $this->hasColumn('name', 'string', 25, array());
+        $this->hasColumn('category', 'string', 25, array());
+        $this->hasColumn('created_at', 'timestamp', null, array());
     }
 
+    public function setUp()
+    {
+        $this->HasMany('RelY as y', array('local' => 'id', 'foreign' => 'rel_x_id'));
+    }
 }
 
-class RelX extends Doctrine_Record {
+class RelY extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
+        $this->setTableName('rel_y');
+        $this->hasColumn('name', 'string', 25, array());
+        $this->hasColumn('rel_x_id', 'integer', 10, array());
+    }
 
-  public function setTableDefinition() {
-    $this->setTableName('rel_x');
-    $this->hasColumn('name', 'string', 25, array());
-    $this->hasColumn('category', 'string', 25, array());
-    $this->hasColumn('created_at', 'timestamp', null, array());
-  }
-
-  public function setUp() {
-    $this->HasMany('RelY as y', array('local' => 'id', 'foreign' => 'rel_x_id'));
-  }
-
-}
-
-class RelY extends Doctrine_Record {
-
-  public function setTableDefinition() {
-    $this->setTableName('rel_y');
-    $this->hasColumn('name', 'string', 25, array());
-    $this->hasColumn('rel_x_id', 'integer', 10, array());
-  }
-
-  public function setUp() {
-
-  }
-
+    public function setUp()
+    {
+    }
 }

@@ -1,6 +1,8 @@
 <?php
-class PackageVersion extends Doctrine_Record {
-    public function setTableDefinition() {
+class PackageVersion extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('package_id', 'integer');
         $this->hasColumn('description', 'string', 255);
     }

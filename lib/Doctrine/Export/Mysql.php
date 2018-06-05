@@ -51,7 +51,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
     {
         $table = $this->conn->quoteIdentifier($table);
 
-        if ( ! $primary) {
+        if (! $primary) {
             $name = 'CONSTRAINT ' . $this->conn->quoteIdentifier($name);
         } else {
             $name = 'PRIMARY KEY';
@@ -122,11 +122,12 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function createTableSql($name, array $fields, array $options = array())
     {
-        if ( ! $name)
+        if (! $name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
+        }
 
         if (empty($fields)) {
-            throw new Doctrine_Export_Exception('no fields specified for table "'.$name.'"');
+            throw new Doctrine_Export_Exception('no fields specified for table "' . $name . '"');
         }
         $queryFields = $this->getFieldDeclarationList($fields);
 
@@ -140,7 +141,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
                         if (is_string($definition['fields'])) {
                             // Check if index already exists on the column
                             $found = $found || ($local == $definition['fields']);
-                        } else if (in_array($local, $definition['fields']) && count($definition['fields']) === 1) {
+                        } elseif (in_array($local, $definition['fields']) && count($definition['fields']) === 1) {
                             // Index already exists on the column
                             $found = true;
                         }
@@ -152,13 +153,13 @@ class Doctrine_Export_Mysql extends Doctrine_Export
                     $found = true;
                 }
 
-                if ( ! $found) {
+                if (! $found) {
                     if (is_array($local)) {
-                      foreach($local as $localidx) {
-                        $options['indexes'][$localidx] = array('fields' => array($localidx => array()));
-                      }
+                        foreach ($local as $localidx) {
+                            $options['indexes'][$localidx] = array('fields' => array($localidx => array()));
+                        }
                     } else {
-                      $options['indexes'][$local] = array('fields' => array($local => array()));
+                        $options['indexes'][$local] = array('fields' => array($local => array()));
                     }
                 }
             }
@@ -177,7 +178,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
             }
             unset($dupes);
 
-            foreach($options['indexes'] as $index => $definition) {
+            foreach ($options['indexes'] as $index => $definition) {
                 $queryFields .= ', ' . $this->getIndexDeclaration($index, $definition);
             }
         }
@@ -216,13 +217,12 @@ class Doctrine_Export_Mysql extends Doctrine_Export
             $optionStrings[] = 'ENGINE = ' . $type;
         }
 
-        if ( ! empty($optionStrings)) {
-            $query.= ' '.implode(' ', $optionStrings);
+        if (! empty($optionStrings)) {
+            $query .= ' ' . implode(' ', $optionStrings);
         }
         $sql[] = $query;
 
         if (isset($options['foreignKeys'])) {
-
             foreach ((array) $options['foreignKeys'] as $k => $definition) {
                 if (is_array($definition)) {
                     $sql[] = $this->createForeignKeySql($name, $definition);
@@ -266,25 +266,24 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function getDeclaration($name, array $field)
     {
+        $default = $this->getDefaultFieldDeclaration($field);
 
-        $default   = $this->getDefaultFieldDeclaration($field);
-
-        $charset   = (isset($field['charset']) && $field['charset']) ?
+        $charset = (isset($field['charset']) && $field['charset']) ?
                     ' ' . $this->getCharsetFieldDeclaration($field['charset']) : '';
 
         $collation = (isset($field['collation']) && $field['collation']) ?
                     ' ' . $this->getCollationFieldDeclaration($field['collation']) : '';
 
-        $notnull   = (isset($field['notnull']) && $field['notnull']) ? ' NOT NULL' : '';
+        $notnull = (isset($field['notnull']) && $field['notnull']) ? ' NOT NULL' : '';
 
-        $unique    = (isset($field['unique']) && $field['unique']) ?
+        $unique = (isset($field['unique']) && $field['unique']) ?
                     ' ' . $this->getUniqueFieldDeclaration() : '';
 
-        $check     = (isset($field['check']) && $field['check']) ?
+        $check = (isset($field['check']) && $field['check']) ?
                     ' ' . $field['check'] : '';
 
-        $comment   = (isset($field['comment']) && $field['comment']) ?
-                    " COMMENT " . $this->conn->quote($field['comment'], 'text') : '';
+        $comment = (isset($field['comment']) && $field['comment']) ?
+                    ' COMMENT ' . $this->conn->quote($field['comment'], 'text') : '';
 
         $method = 'get' . $field['type'] . 'Declaration';
 
@@ -392,7 +391,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function alterTableSql($name, array $changes, $check = false)
     {
-        if ( ! $name) {
+        if (! $name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
         }
         foreach ($changes as $changeName => $change) {
@@ -413,21 +412,21 @@ class Doctrine_Export_Mysql extends Doctrine_Export
         }
 
         $query = '';
-        if ( ! empty($changes['name'])) {
+        if (! empty($changes['name'])) {
             $change_name = $this->conn->quoteIdentifier($changes['name']);
             $query .= 'RENAME TO ' . $change_name;
         }
 
-        if ( ! empty($changes['add']) && is_array($changes['add'])) {
+        if (! empty($changes['add']) && is_array($changes['add'])) {
             foreach ($changes['add'] as $fieldName => $field) {
                 if ($query) {
-                    $query.= ', ';
+                    $query .= ', ';
                 }
-                $query.= 'ADD ' . $this->getDeclaration($fieldName, $field);
+                $query .= 'ADD ' . $this->getDeclaration($fieldName, $field);
             }
         }
 
-        if ( ! empty($changes['remove']) && is_array($changes['remove'])) {
+        if (! empty($changes['remove']) && is_array($changes['remove'])) {
             foreach ($changes['remove'] as $fieldName => $field) {
                 if ($query) {
                     $query .= ', ';
@@ -438,16 +437,16 @@ class Doctrine_Export_Mysql extends Doctrine_Export
         }
 
         $rename = array();
-        if ( ! empty($changes['rename']) && is_array($changes['rename'])) {
+        if (! empty($changes['rename']) && is_array($changes['rename'])) {
             foreach ($changes['rename'] as $fieldName => $field) {
                 $rename[$field['name']] = $fieldName;
             }
         }
 
-        if ( ! empty($changes['change']) && is_array($changes['change'])) {
+        if (! empty($changes['change']) && is_array($changes['change'])) {
             foreach ($changes['change'] as $fieldName => $field) {
                 if ($query) {
-                    $query.= ', ';
+                    $query .= ', ';
                 }
                 if (isset($rename[$fieldName])) {
                     $oldFieldName = $rename[$fieldName];
@@ -461,19 +460,19 @@ class Doctrine_Export_Mysql extends Doctrine_Export
             }
         }
 
-        if ( ! empty($rename) && is_array($rename)) {
+        if (! empty($rename) && is_array($rename)) {
             foreach ($rename as $renameName => $renamedField) {
                 if ($query) {
-                    $query.= ', ';
+                    $query .= ', ';
                 }
-                $field = $changes['rename'][$renamedField];
+                $field        = $changes['rename'][$renamedField];
                 $renamedField = $this->conn->quoteIdentifier($renamedField, true);
                 $query .= 'CHANGE ' . $renamedField . ' '
                         . $this->getDeclaration($field['name'], $field['definition']);
             }
         }
 
-        if ( ! $query) {
+        if (! $query) {
             return false;
         }
 
@@ -498,8 +497,8 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function createSequence($sequenceName, $start = 1, array $options = array())
     {
-        $sequenceName   = $this->conn->quoteIdentifier($sequenceName, true);
-        $seqcolName     = $this->conn->quoteIdentifier($this->conn->getAttribute(Doctrine_Core::ATTR_SEQCOL_NAME), true);
+        $sequenceName = $this->conn->quoteIdentifier($sequenceName, true);
+        $seqcolName   = $this->conn->quoteIdentifier($this->conn->getAttribute(Doctrine_Core::ATTR_SEQCOL_NAME), true);
 
         $optionsStrings = array();
 
@@ -528,34 +527,34 @@ class Doctrine_Export_Mysql extends Doctrine_Export
 
 
         try {
-            $query  = 'CREATE TABLE ' . $sequenceName
+            $query = 'CREATE TABLE ' . $sequenceName
                     . ' (' . $seqcolName . ' BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY ('
                     . $seqcolName . ')) ' . implode($optionsStrings, ' ');
 
-            $res    = $this->conn->exec($query);
-        } catch(Doctrine_Connection_Exception $e) {
+            $res = $this->conn->exec($query);
+        } catch (Doctrine_Connection_Exception $e) {
             throw new Doctrine_Export_Exception('could not create sequence table');
         }
 
-        if ($start == 1 && $res == 1)
+        if ($start == 1 && $res == 1) {
             return true;
+        }
 
-        $query  = 'INSERT INTO ' . $sequenceName
+        $query = 'INSERT INTO ' . $sequenceName
                 . ' (' . $seqcolName . ') VALUES (' . ($start - 1) . ')';
 
-        $res    = $this->conn->exec($query);
+        $res = $this->conn->exec($query);
 
-        if ($res == 1)
+        if ($res == 1) {
             return true;
+        }
 
         // Handle error
         try {
             $result = $this->conn->exec('DROP TABLE ' . $sequenceName);
-        } catch(Doctrine_Connection_Exception $e) {
+        } catch (Doctrine_Connection_Exception $e) {
             throw new Doctrine_Export_Exception('could not drop inconsistent sequence table');
         }
-
-
     }
 
     /**
@@ -594,12 +593,12 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function createIndexSql($table, $name, array $definition)
     {
-        $table  = $table;
-        $table  = $this->conn->quoteIdentifier($table, true);
+        $table = $table;
+        $table = $this->conn->quoteIdentifier($table, true);
 
-        $name   = $this->conn->formatter->getIndexName($name);
-        $name   = $this->conn->quoteIdentifier($name);
-        $type   = '';
+        $name = $this->conn->formatter->getIndexName($name);
+        $name = $this->conn->quoteIdentifier($name);
+        $type = '';
         if (isset($definition['type'])) {
             switch (strtolower($definition['type'])) {
                 case 'fulltext':
@@ -612,7 +611,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
                     );
             }
         }
-        $query  = 'CREATE ' . $type . 'INDEX ' . $name . ' ON ' . $table;
+        $query = 'CREATE ' . $type . 'INDEX ' . $name . ' ON ' . $table;
         $query .= ' (' . $this->getIndexFieldDeclarationList($definition['fields']) . ')';
 
         return $query;
@@ -629,7 +628,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
     public function getDefaultFieldDeclaration($field)
     {
         $default = '';
-        if (isset($field['default']) && ( ! isset($field['length']) || $field['length'] <= 255)) {
+        if (isset($field['default']) && (! isset($field['length']) || $field['length'] <= 255)) {
             if ($field['default'] === '') {
                 $field['default'] = empty($field['notnull'])
                     ? null : $this->valid_default_values[$field['type']];
@@ -667,8 +666,8 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function getIndexDeclaration($name, array $definition)
     {
-        $name   = $this->conn->formatter->getIndexName($name);
-        $type   = '';
+        $name = $this->conn->formatter->getIndexName($name);
+        $type = '';
         if (isset($definition['type'])) {
             switch (strtolower($definition['type'])) {
                 case 'fulltext':
@@ -682,10 +681,10 @@ class Doctrine_Export_Mysql extends Doctrine_Export
             }
         }
 
-        if ( ! isset($definition['fields'])) {
+        if (! isset($definition['fields'])) {
             throw new Doctrine_Export_Exception('No columns given for index ' . $name);
         }
-        if ( ! is_array($definition['fields'])) {
+        if (! is_array($definition['fields'])) {
             $definition['fields'] = array($definition['fields']);
         }
 
@@ -769,13 +768,13 @@ class Doctrine_Export_Mysql extends Doctrine_Export
     public function getAdvancedForeignKeyOptions(array $definition)
     {
         $query = '';
-        if ( ! empty($definition['match'])) {
+        if (! empty($definition['match'])) {
             $query .= ' MATCH ' . $definition['match'];
         }
-        if ( ! empty($definition['onUpdate'])) {
+        if (! empty($definition['onUpdate'])) {
             $query .= ' ON UPDATE ' . $this->getForeignKeyReferentialAction($definition['onUpdate']);
         }
-        if ( ! empty($definition['onDelete'])) {
+        if (! empty($definition['onDelete'])) {
             $query .= ' ON DELETE ' . $this->getForeignKeyReferentialAction($definition['onDelete']);
         }
         return $query;
@@ -790,8 +789,8 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function dropIndexSql($table, $name)
     {
-        $table  = $this->conn->quoteIdentifier($table, true);
-        $name   = $this->conn->quoteIdentifier($this->conn->formatter->getIndexName($name), true);
+        $table = $this->conn->quoteIdentifier($table, true);
+        $name  = $this->conn->quoteIdentifier($this->conn->formatter->getIndexName($name), true);
         return 'DROP INDEX ' . $name . ' ON ' . $table;
     }
 
@@ -804,7 +803,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      */
     public function dropTableSql($table)
     {
-        $table  = $this->conn->quoteIdentifier($table, true);
+        $table = $this->conn->quoteIdentifier($table, true);
         return 'DROP TABLE ' . $table;
     }
 

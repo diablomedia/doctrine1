@@ -277,7 +277,7 @@ class Doctrine_Search_Analyzer_Standard extends Doctrine_Search_Analyzer impleme
         $terms = explode(' ', $text);
 
         $ret = array();
-        if ( ! empty($terms)) {
+        if (! empty($terms)) {
             foreach ($terms as $i => $term) {
                 if (empty($term)) {
                     continue;

@@ -46,14 +46,17 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      */
     public function escapePattern($text)
     {
-        if ( ! $this->conn->string_quoting['escape_pattern']) {
+        if (! $this->conn->string_quoting['escape_pattern']) {
             return $text;
         }
         $tmp = $this->conn->string_quoting;
 
-        $text = str_replace($tmp['escape_pattern'],
+        $text = str_replace(
+            $tmp['escape_pattern'],
             $tmp['escape_pattern'] .
-            $tmp['escape_pattern'], $text);
+            $tmp['escape_pattern'],
+            $text
+        );
 
         foreach ($this->conn->wildcards as $wildcard) {
             $text = str_replace($wildcard, $tmp['escape_pattern'] . $wildcard, $text);
@@ -125,9 +128,12 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
             return $str;
         }
         $tmp = $this->conn->identifier_quoting;
-        $str = str_replace($tmp['end'],
+        $str = str_replace(
+            $tmp['end'],
             $tmp['escape'] .
-            $tmp['end'], $str);
+            $tmp['end'],
+            $str
+        );
 
         return $tmp['start'] . $str . $tmp['end'];
     }
@@ -148,7 +154,7 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
             $arr[$k] = $this->quoteIdentifier($v, $checkOption);
         }
 
-		return $arr;
+        return $arr;
     }
 
     /**
@@ -175,6 +181,7 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
         case 'array':
         case 'object':
             $input = serialize($input);
+            // no break
         case 'date':
         case 'time':
         case 'timestamp':
@@ -188,7 +195,7 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
         case 'enum':
         case 'set':
         case 'boolean':
-        return "'" . str_replace("'","''",$input) . "'";
+        return "'" . str_replace("'", "''", $input) . "'";
         }
     }
 
@@ -200,7 +207,7 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      */
     public function fixSequenceName($sqn)
     {
-        $seqPattern = '/^'.preg_replace('/%s/', '([a-z0-9_]+)',  $this->conn->getAttribute(Doctrine_Core::ATTR_SEQNAME_FORMAT)).'$/i';
+        $seqPattern = '/^' . preg_replace('/%s/', '([a-z0-9_]+)', $this->conn->getAttribute(Doctrine_Core::ATTR_SEQNAME_FORMAT)) . '$/i';
         $seqName    = preg_replace($seqPattern, '\\1', $sqn);
 
         if ($seqName && ! strcasecmp($sqn, $this->getSequenceName($seqName))) {
@@ -217,8 +224,8 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      */
     public function fixIndexName($idx)
     {
-        $indexPattern   = '/^'.preg_replace('/%s/', '([a-z0-9_]+)', $this->conn->getAttribute(Doctrine_Core::ATTR_IDXNAME_FORMAT)).'$/i';
-        $indexName      = preg_replace($indexPattern, '\\1', $idx);
+        $indexPattern = '/^' . preg_replace('/%s/', '([a-z0-9_]+)', $this->conn->getAttribute(Doctrine_Core::ATTR_IDXNAME_FORMAT)) . '$/i';
+        $indexName    = preg_replace($indexPattern, '\\1', $idx);
         if ($indexName && ! strcasecmp($idx, $this->getIndexName($indexName))) {
             return $indexName;
         }
@@ -233,8 +240,10 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      */
     public function getSequenceName($sqn)
     {
-        return sprintf($this->conn->getAttribute(Doctrine_Core::ATTR_SEQNAME_FORMAT),
-            preg_replace('/[^a-z0-9_\$.]/i', '_', $sqn));
+        return sprintf(
+            $this->conn->getAttribute(Doctrine_Core::ATTR_SEQNAME_FORMAT),
+            preg_replace('/[^a-z0-9_\$.]/i', '_', $sqn)
+        );
     }
 
     /**
@@ -245,8 +254,10 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      */
     public function getIndexName($idx)
     {
-        return sprintf($this->conn->getAttribute(Doctrine_Core::ATTR_IDXNAME_FORMAT),
-            preg_replace('/[^a-z0-9_\$]/i', '_', $idx));
+        return sprintf(
+            $this->conn->getAttribute(Doctrine_Core::ATTR_IDXNAME_FORMAT),
+            preg_replace('/[^a-z0-9_\$]/i', '_', $idx)
+        );
     }
 
     /**
@@ -257,8 +268,10 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      */
     public function getForeignKeyName($fkey)
     {
-        return sprintf($this->conn->getAttribute(Doctrine_Core::ATTR_FKNAME_FORMAT),
-            preg_replace('/[^a-z0-9_\$]/i', '_', $fkey));
+        return sprintf(
+            $this->conn->getAttribute(Doctrine_Core::ATTR_FKNAME_FORMAT),
+            preg_replace('/[^a-z0-9_\$]/i', '_', $fkey)
+        );
     }
 
     /**

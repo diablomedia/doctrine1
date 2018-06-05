@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1630_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1630_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,26 +40,26 @@ class Doctrine_Ticket_1630_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $test = new Ticket_1630_BlogPost();
+        $test                           = new Ticket_1630_BlogPost();
         $test->Translation['en']->title = 'en test';
         $test->Translation['fr']->title = 'fr test';
-        $test->body = 'test';
+        $test->body                     = 'test';
         $test->save();
 
-        $test = new Ticket_1630_BlogPost();
+        $test                           = new Ticket_1630_BlogPost();
         $test->Translation['en']->title = 'cool';
-        $test->body = 'very cool';
+        $test->body                     = 'very cool';
         $test->save();
     }
 
     public function testTest()
     {
-        $cacheConn = Doctrine_Manager::getInstance()->openConnection('sqlite::memory:', 'cache', false);
-		$cacheDriver = new Doctrine_Cache_Db(array('tableName' => 'cache', 'connection' => $cacheConn));
-		$cacheDriver->createTable();
+        $cacheConn   = Doctrine_Manager::getInstance()->openConnection('sqlite::memory:', 'cache', false);
+        $cacheDriver = new Doctrine_Cache_Db(array('tableName' => 'cache', 'connection' => $cacheConn));
+        $cacheDriver->createTable();
 
         $currentCacheDriver = $this->conn->getAttribute(Doctrine_Core::ATTR_QUERY_CACHE);
-		$this->conn->setAttribute(Doctrine_Core::ATTR_QUERY_CACHE, $cacheDriver);
+        $this->conn->setAttribute(Doctrine_Core::ATTR_QUERY_CACHE, $cacheDriver);
 
         try {
             $q = Doctrine_Query::create()

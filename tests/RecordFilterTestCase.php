@@ -1,19 +1,24 @@
 <?php
-class Doctrine_RecordFilter_TestCase extends Doctrine_UnitTestCase {
-    public function prepareData() { }
-    public function prepareTables() {
+class Doctrine_RecordFilter_TestCase extends Doctrine_UnitTestCase
+{
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
+    {
         $this->tables = array('RecordFilterTest');
 
         parent::prepareTables();
     }
 
-    public function testValueWrapper() {
+    public function testValueWrapper()
+    {
         $orig = Doctrine_Manager::getInstance()->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE);
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE, true);
 
-        $e = new RecordFilterTest;
-        $e->name = "something";
-        $e->password = "123";
+        $e           = new RecordFilterTest;
+        $e->name     = 'something';
+        $e->password = '123';
 
         $this->assertEqual($e->get('name'), 'SOMETHING');
 

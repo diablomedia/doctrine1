@@ -73,15 +73,15 @@ class Doctrine_Migration_TestCase extends Doctrine_UnitTestCase
         $this->assertFalse($this->conn->import->tableExists('migration_user'));
         $this->assertFalse($this->conn->import->tableExists('migration_profile'));
         $this->assertEqual(array(
-          1 => 'AddPhonenumber',
-          2 => 'AddUser',
-          3 => 'AddProfile',
-          4 => 'DropProfile',
-          5 => 'Test5',
-          6 => 'Test6',
-          7 => 'Test7',
-          8 => 'Test8',
-          9 => 'Test9',
+          1  => 'AddPhonenumber',
+          2  => 'AddUser',
+          3  => 'AddProfile',
+          4  => 'DropProfile',
+          5  => 'Test5',
+          6  => 'Test6',
+          7  => 'Test7',
+          8  => 'Test8',
+          9  => 'Test9',
           10 => 'Test10',
           11 => 'Test11',
         ), $migration->getMigrationClasses());

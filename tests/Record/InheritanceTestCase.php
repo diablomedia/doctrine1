@@ -31,7 +31,7 @@ class Doctrine_Record_Inheritance_TestCase extends Doctrine_UnitTestCase
 
     public function testInit()
     {
-        $record = new SymfonyRecord();
+        $record         = new SymfonyRecord();
         $record['name'] = 'Test me';
         $record->save();
     }
@@ -40,7 +40,9 @@ class Doctrine_Record_Inheritance_TestCase extends Doctrine_UnitTestCase
     {
         // load our record
         $record = Doctrine_Query::create()->query(
-            'SELECT * FROM SymfonyRecord r', array())->getFirst();
+            'SELECT * FROM SymfonyRecord r',
+            array()
+        )->getFirst();
 
         // did we get a record object?
         $this->assertTrue($record instanceof SymfonyRecord);
@@ -53,7 +55,5 @@ class Doctrine_Record_Inheritance_TestCase extends Doctrine_UnitTestCase
 
         // does it have the expected data?
         $this->assertEqual($record['name'], 'Test me');
-        
-
     }
 }

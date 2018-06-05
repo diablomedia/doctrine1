@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase
 {
     private $sqlStackCounter = 0;
   
@@ -42,7 +42,7 @@ class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase
 
     public function testInit()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mssql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mssql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh, 'DC840');
     }
 
@@ -61,7 +61,7 @@ class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase
         $q->execute();
          
         $expected = "SELECT [t].[id] AS [t__id] FROM [ticket__d_c840__model] [t] WHERE ([t].[password] = 'abc' AND [t].[modified_at] > '2010-01-01' AND [t].[modified_at] < '2010-01-01' AND [t].[modified_at] <> '2010-01-01' AND [t].[modified_at] <= '2010-01-01' AND [t].[modified_at] >= '2010-01-01')";
-        $sql = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
+        $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
         $this->assertEqual($expected, $sql);
     }
@@ -72,9 +72,9 @@ class Ticket_DC840_Model extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('id', 'integer', null, array(
-            'type' => 'integer',
-            'unsigned' => false,
-            'primary' => true,
+            'type'          => 'integer',
+            'unsigned'      => false,
+            'primary'       => true,
             'autoincrement' => true,
         ));
         $this->hasColumn('modified_at', 'timestamp');

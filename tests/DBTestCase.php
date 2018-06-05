@@ -32,17 +32,19 @@
  */
 class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
 {
+    public function prepareData()
+    {
+    }
 
-    public function prepareData() 
-    { }
+    public function prepareTables()
+    {
+    }
 
-    public function prepareTables() 
-    { }
-
-    public function init() 
-    { }
+    public function init()
+    {
+    }
     
-    public function testInitialize() 
+    public function testInitialize()
     {
         $this->conn = Doctrine_Manager::getInstance()->openConnection(array('sqlite::memory:'));
         $this->conn->exec('CREATE TABLE entity (id INTEGER, name TEXT)');
@@ -54,7 +56,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($this->conn->getAttribute(Doctrine_Core::ATTR_DRIVER_NAME), 'sqlite');
     }
 
-    public function testAddValidEventListener() 
+    public function testAddValidEventListener()
     {
         $this->conn->setListener(new Doctrine_EventListener());
 
@@ -63,7 +65,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
             $ret = $this->conn->addListener(new Doctrine_Connection_TestLogger());
             $this->pass();
             $this->assertTrue($ret instanceof Doctrine_Connection);
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_EventListener_Chain);
@@ -73,7 +75,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
             $ret = $this->conn->addListener(new Doctrine_Connection_TestValidListener());
             $this->pass();
             $this->assertTrue($ret instanceof Doctrine_Connection);
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_EventListener_Chain);
@@ -84,7 +86,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
             $ret = $this->conn->addListener(new Doctrine_EventListener_Chain(), 'chain');
             $this->pass();
             $this->assertTrue($ret instanceof Doctrine_Connection);
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_EventListener_Chain);
@@ -98,7 +100,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
             $ret = $this->conn->addListener(new Doctrine_EventListener_Chain(), 'chain');
             $this->pass();
             $this->assertTrue($ret instanceof Doctrine_Connection);
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_EventListener_Chain);
@@ -107,11 +109,11 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($this->conn->getListener()->get('chain') instanceof Doctrine_EventListener_Chain);
     }
 
-    public function testListeningEventsWithSingleListener() 
+    public function testListeningEventsWithSingleListener()
     {
         $this->conn->setListener(new Doctrine_Connection_TestLogger());
         $listener = $this->conn->getListener();
-        $stmt = $this->conn->prepare('INSERT INTO entity (id) VALUES(?)');
+        $stmt     = $this->conn->prepare('INSERT INTO entity (id) VALUES(?)');
 
         $this->assertEqual($listener->pop(), 'postPrepare');
         $this->assertEqual($listener->pop(), 'prePrepare');
@@ -142,7 +144,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($listener->pop(), 'preTransactionCommit');
     }
 
-    public function testListeningQueryEventsWithListenerChain() 
+    public function testListeningQueryEventsWithListenerChain()
     {
         $this->conn->exec('DROP TABLE entity');
 
@@ -151,7 +153,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
 
         $this->conn->exec('CREATE TABLE entity (id INT)');
 
-        $listener = $this->conn->getListener()->get(0);
+        $listener  = $this->conn->getListener()->get(0);
         $listener2 = $this->conn->getListener()->get(1);
         $this->assertEqual($listener->pop(), 'postExec');
         $this->assertEqual($listener->pop(), 'preExec');
@@ -160,11 +162,10 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($listener2->pop(), 'preExec');
     }
 
-    public function testListeningPrepareEventsWithListenerChain() 
+    public function testListeningPrepareEventsWithListenerChain()
     {
-
-        $stmt = $this->conn->prepare('INSERT INTO entity (id) VALUES(?)');
-        $listener = $this->conn->getListener()->get(0);
+        $stmt      = $this->conn->prepare('INSERT INTO entity (id) VALUES(?)');
+        $listener  = $this->conn->getListener()->get(0);
         $listener2 = $this->conn->getListener()->get(1);
         $this->assertEqual($listener->pop(), 'postPrepare');
         $this->assertEqual($listener->pop(), 'prePrepare');
@@ -238,7 +239,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
     public function testListeningExecEventsWithListenerChain()
     {
         $this->conn->exec('DELETE FROM entity');
-        $listener = $this->conn->getListener()->get(0);
+        $listener  = $this->conn->getListener()->get(0);
         $listener2 = $this->conn->getListener()->get(1);
         $this->assertEqual($listener->pop(), 'postExec');
         $this->assertEqual($listener->pop(), 'preExec');
@@ -247,10 +248,10 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($listener2->pop(), 'preExec');
     }
 
-    public function testListeningTransactionEventsWithListenerChain() 
+    public function testListeningTransactionEventsWithListenerChain()
     {
         $this->conn->beginTransaction();
-        $listener = $this->conn->getListener()->get(0);
+        $listener  = $this->conn->getListener()->get(0);
         $listener2 = $this->conn->getListener()->get(1);
         $this->assertEqual($listener->pop(), 'postTransactionBegin');
         $this->assertEqual($listener->pop(), 'preTransactionBegin');
@@ -271,97 +272,96 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->conn->exec('DROP TABLE entity');
     }
 
-    public function testSetValidEventListener() 
+    public function testSetValidEventListener()
     {
         try {
             $this->conn->setListener(new Doctrine_Connection_TestLogger());
             $this->pass();
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_Connection_TestLogger);
         try {
             $this->conn->setListener(new Doctrine_Connection_TestValidListener());
             $this->pass();
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_Connection_TestValidListener);
         try {
             $this->conn->setListener(new Doctrine_EventListener_Chain());
             $this->pass();
-
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_EventListener_Chain);
         try {
             $this->conn->setListener(new Doctrine_EventListener());
             $this->pass();
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->fail();
         }
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_EventListener);
     }
 
-    public function testSetInvalidEventListener() 
+    public function testSetInvalidEventListener()
     {
         try {
             $this->conn->setListener(new Doctrine_Connection_TestInvalidListener());
             $this->fail();
-        } catch(Doctrine_EventListener_Exception $e) {
+        } catch (Doctrine_EventListener_Exception $e) {
             $this->pass();
         }
     }
-    public function testInvalidDSN() 
+    public function testInvalidDSN()
     {
         $manager = Doctrine_Manager::getInstance();
         try {
             $this->conn = $manager->openConnection('');
             $this->fail();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->pass();
         }
         try {
             $this->conn = $manager->openConnection('unknown');
             $this->fail();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->pass();
-        }   
+        }
         try {
             $this->conn = $manager->openConnection(0);
             $this->fail();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->pass();
         }
     }
-    public function testInvalidScheme() 
+    public function testInvalidScheme()
     {
         $manager = Doctrine_Manager::getInstance();
         try {
             $this->conn = $manager->openConnection('unknown://:memory:');
             $this->fail();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->pass();
         }
     }
-    public function testInvalidHost() 
+    public function testInvalidHost()
     {
         $manager = Doctrine_Manager::getInstance();
         try {
             $this->conn = $manager->openConnection('mysql://user:password@');
             $this->fail();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->pass();
         }
     }
-    public function testInvalidDatabase() 
+    public function testInvalidDatabase()
     {
         $manager = Doctrine_Manager::getInstance();
         try {
             $this->conn = $manager->openConnection('mysql://user:password@host/');
             $this->fail();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->pass();
         }
     }
@@ -401,20 +401,28 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($this->conn->getOption('password'), false);
     }
     */
-}   
+}
 
-class Doctrine_Connection_TestLogger implements Doctrine_Overloadable {
+class Doctrine_Connection_TestLogger implements Doctrine_Overloadable
+{
     private $messages = array();
     
-    public function __call($m, $a) {
+    public function __call($m, $a)
+    {
         $this->messages[] = $m;
     }
-    public function pop() {
+    public function pop()
+    {
         return array_pop($this->messages);
     }
-    public function getAll() {
+    public function getAll()
+    {
         return $this->messages;
     }
 }
-class Doctrine_Connection_TestValidListener extends Doctrine_EventListener { }
-class Doctrine_Connection_TestInvalidListener { }
+class Doctrine_Connection_TestValidListener extends Doctrine_EventListener
+{
+}
+class Doctrine_Connection_TestInvalidListener
+{
+}

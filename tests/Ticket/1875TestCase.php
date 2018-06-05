@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1875_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1875_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,8 +42,8 @@ class Doctrine_Ticket_1875_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
 
-        $account = new Ticket_1875_Account();
-        $account->name = 'Test';
+        $account         = new Ticket_1875_Account();
+        $account->name   = 'Test';
         $account->amount = '25.99';
         $this->assertTrue($account->isValid());
 

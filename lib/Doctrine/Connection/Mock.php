@@ -46,6 +46,5 @@ class Doctrine_Connection_Mock extends Doctrine_Connection_Common
      */
     public function __construct(Doctrine_Manager $manager, $adapter)
     {
-
     }
 }

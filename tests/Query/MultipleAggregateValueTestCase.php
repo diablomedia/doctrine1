@@ -31,13 +31,14 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_MultipleAggregateValue_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_MultipleAggregateValue_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
+    public function prepareData()
+    {
+    }
     public function testInitData()
     {
-        $user = new User();
+        $user       = new User();
         $user->name = 'jon';
         
         $user->Album[0] = new Album();
@@ -61,9 +62,9 @@ class Doctrine_Query_MultipleAggregateValue_TestCase extends Doctrine_UnitTestCa
         $user = $query->execute()->getFirst();
         
         try {
-            $name = $user->name;
+            $name       = $user->name;
             $num_albums = $user->num_albums;
-            $num_books = $user->num_books;    
+            $num_books  = $user->num_books;
         } catch (Doctrine_Exception $e) {
             $this->fail();
         }
@@ -83,9 +84,9 @@ class Doctrine_Query_MultipleAggregateValue_TestCase extends Doctrine_UnitTestCa
         $users = $query->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
         try {
-            $name = $users[0]['name'];
+            $name       = $users[0]['name'];
             $num_albums = $users[0]['num_albums'];
-            $num_books = $users[0]['num_books'];
+            $num_books  = $users[0]['num_books'];
         } catch (Doctrine_Exception $e) {
             $this->fail();
         }

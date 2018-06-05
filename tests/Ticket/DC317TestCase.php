@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC317_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC317_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,13 +40,13 @@ class Doctrine_Ticket_DC317_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $page = new Ticket_DC317_Page();
+        $page        = new Ticket_DC317_Page();
         $page->topic = 'my-topic';
         $page->title = 'My Title';
         $page->save();
 
         $tree = Doctrine::getTable('Ticket_DC317_Page')->getTree();
-        $tree->createRoot( $page );
+        $tree->createRoot($page);
 
         $this->assertEqual($page->topic, 'my-topic');
 
@@ -60,14 +60,14 @@ class Ticket_DC317_Page extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('topic', 'string', 32, array(
-             'type' => 'string',
+             'type'    => 'string',
              'notnull' => true,
-             'length' => '32',
+             'length'  => '32',
              ));
         $this->hasColumn('title', 'string', 255, array(
-             'type' => 'string',
+             'type'    => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length'  => '255',
              ));
 
         $this->option('type', 'InnoDB');
@@ -78,7 +78,7 @@ class Ticket_DC317_Page extends Doctrine_Record
     public function setUp()
     {
         $nestedset0 = new Doctrine_Template_NestedSet(array(
-             'hasManyRoots' => true,
+             'hasManyRoots'   => true,
              'rootColumnName' => 'topic',
              ));
         $this->actAs($nestedset0);

@@ -30,17 +30,17 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Sequence_Sqlite_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Sequence_Sqlite_TestCase extends Doctrine_UnitTestCase
 {
-    public function testCurrIdExecutesSql() 
+    public function testCurrIdExecutesSql()
     {
-         $this->adapter->forceLastInsertIdFail(false);
+        $this->adapter->forceLastInsertIdFail(false);
 
         $this->sequence->currId('user');
 
         $this->assertEqual($this->adapter->pop(), 'SELECT MAX(id) FROM user_seq');
     }
-    public function testNextIdExecutesSql() 
+    public function testNextIdExecutesSql()
     {
         $id = $this->sequence->nextId('user');
         
@@ -50,7 +50,7 @@ class Doctrine_Sequence_Sqlite_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($this->adapter->pop(), 'LAST_INSERT_ID()');
         $this->assertEqual($this->adapter->pop(), 'INSERT INTO user_seq (id) VALUES (NULL)');
     }
-    public function testLastInsertIdCallsPdoLevelEquivalent() 
+    public function testLastInsertIdCallsPdoLevelEquivalent()
     {
         $id = $this->sequence->lastInsertId('user');
         

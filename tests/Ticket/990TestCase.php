@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_990_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_990_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -39,8 +39,8 @@ class Doctrine_Ticket_990_TestCase extends Doctrine_UnitTestCase
     }
 
     public function testOverwriteIdentityMap()
-    {        
-        $person = new Ticket_990_Person();
+    {
+        $person            = new Ticket_990_Person();
         $person->firstname = 'John';
         $person->save();
         
@@ -55,15 +55,15 @@ class Doctrine_Ticket_990_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_HYDRATE_OVERWRITE, false);
 
-        $user = Doctrine_Core::getTable('User')->createQuery()->fetchOne();
+        $user       = Doctrine_Core::getTable('User')->createQuery()->fetchOne();
         $user->name = 'test';
-        $user = Doctrine_Core::getTable('User')->find($user->id);
+        $user       = Doctrine_Core::getTable('User')->find($user->id);
         $this->assertEqual($user->name, 'test');
 
         
-        $person = new Ticket_990_Person();
+        $person            = new Ticket_990_Person();
         $person->firstname = 'John';
-        $person->save(); 
+        $person->save();
         
         $person->firstname = 'Alice';
         
@@ -85,7 +85,7 @@ class Doctrine_Ticket_990_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_HYDRATE_OVERWRITE, false);
         
-        $person = new Ticket_990_Person();
+        $person            = new Ticket_990_Person();
         $person->firstname = 'John';
         $person->save();
         
@@ -104,7 +104,7 @@ class Ticket_990_Person extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('person');
-        $this->hasColumn('id', 'integer', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true) );
+        $this->hasColumn('id', 'integer', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->hasColumn('firstname', 'string');
         $this->hasColumn('lastname', 'string');
     }

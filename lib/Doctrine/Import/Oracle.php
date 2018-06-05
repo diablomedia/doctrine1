@@ -37,11 +37,11 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listDatabases()
     {
-        if ( ! $this->conn->getAttribute(Doctrine_Core::ATTR_EMULATE_DATABASE)) {
+        if (! $this->conn->getAttribute(Doctrine_Core::ATTR_EMULATE_DATABASE)) {
             throw new Doctrine_Import_Exception('database listing is only supported if the "emulate_database" option is enabled');
         }
 
-        $query   = 'SELECT username FROM sys.user_users';
+        $query = 'SELECT username FROM sys.user_users';
 
         /** @var Doctrine_Adapter_Statement_Oracle|PDOStatement $result2 */
         $result2 = $this->conn->standaloneQuery($query);
@@ -70,7 +70,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listTriggers($database = null)
     {
-        $query = "SELECT trigger_name FROM sys.user_triggers";
+        $query = 'SELECT trigger_name FROM sys.user_triggers';
         return $this->conn->fetchColumn($query);
     }
 
@@ -82,7 +82,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listSequences($database = null)
     {
-        $query = "SELECT sequence_name FROM sys.user_sequences";
+        $query = 'SELECT sequence_name FROM sys.user_sequences';
 
         $tableNames = $this->conn->fetchColumn($query);
 
@@ -115,7 +115,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listTableColumns($table)
     {
-		$sql = <<<QEND
+        $sql = <<<QEND
 SELECT tc.column_name, data_type,
 CASE WHEN data_type = 'NUMBER' THEN data_precision ELSE data_length END AS data_length,
 nullable, data_default, data_scale, data_precision, pk.primary
@@ -131,24 +131,24 @@ QEND;
 
         $descr = array();
 
-        foreach($result as $val) {
+        foreach ($result as $val) {
             $val = array_change_key_case($val, CASE_LOWER);
             /** @var Doctrine_DataDict_Oracle $dataDict */
             $dataDict = $this->conn->dataDict;
-            $decl = $dataDict->getPortableDeclaration($val);
+            $decl     = $dataDict->getPortableDeclaration($val);
 
             $descr[$val['column_name']] = array(
-               'name'       => $val['column_name'],
-               'notnull'    => ($val['nullable'] === 'N'),
-               'ntype'      => $val['data_type'],
-               'type'       => $decl['type'][0],
-               'alltypes'   => $decl['type'],
-               'fixed'      => (bool) $decl['fixed'],
-               'unsigned'   => (bool) $decl['unsigned'],
-               'default'    => $val['data_default'],
-               'length'     => $val['data_length'],
-               'primary'    => (bool) $val['primary'],
-               'scale'      => isset($val['scale']) ? $val['scale']:null,
+               'name'     => $val['column_name'],
+               'notnull'  => ($val['nullable'] === 'N'),
+               'ntype'    => $val['data_type'],
+               'type'     => $decl['type'][0],
+               'alltypes' => $decl['type'],
+               'fixed'    => (bool) $decl['fixed'],
+               'unsigned' => (bool) $decl['unsigned'],
+               'default'  => $val['data_default'],
+               'length'   => $val['data_length'],
+               'primary'  => (bool) $val['primary'],
+               'scale'    => isset($val['scale']) ? $val['scale']:null,
             );
         }
 
@@ -179,7 +179,7 @@ QEND;
     public function listTableRelations($table)
     {
         $relations = array();
-        $sql = 'SELECT '
+        $sql       = 'SELECT '
              . 'rcc.table_name AS referenced_table_name, '
              . 'lcc.column_name AS local_column_name, '
              . 'rcc.column_name AS referenced_column_name '
@@ -190,7 +190,7 @@ QEND;
 
         $results = $this->conn->fetchAssoc($sql, array(':tableName' => $table));
         foreach ($results as $result) {
-            $result = array_change_key_case($result, CASE_LOWER);
+            $result      = array_change_key_case($result, CASE_LOWER);
             $relations[] = array('table'   => $result['referenced_table_name'],
                                  'local'   => $result['local_column_name'],
                                  'foreign' => $result['referenced_column_name']);

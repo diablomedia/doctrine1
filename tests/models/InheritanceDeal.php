@@ -5,8 +5,8 @@ class InheritanceDeal extends Doctrine_Record
     {
         $this->setTableName('inheritance_deal');
         
-        $this->hasColumn('id', 'integer', 4, array (  'primary' => true,  'autoincrement' => true,));
-        $this->hasColumn('name', 'string', 255, array ());
+        $this->hasColumn('id', 'integer', 4, array(  'primary' => true,  'autoincrement' => true,));
+        $this->hasColumn('name', 'string', 255, array());
     }
   
     public function setUp()

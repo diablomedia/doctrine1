@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1543_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1543_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,8 +40,8 @@ class Doctrine_Ticket_1543_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $article = new Ticket_1543_Article();
-        $article->title = 'test';
+        $article             = new Ticket_1543_Article();
+        $article->title      = 'test';
         $article->created_at = '2008-09-01 01:50:20';
         $article->updated_at = '2008-09-01 01:50:20';
         $article->save();

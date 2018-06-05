@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_632_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_632_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,9 +42,9 @@ class Doctrine_Ticket_632_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $user = new Ticket_632_User();
-        $user->username = 'jwage';
-        $user->password = 'changeme';
+        $user                 = new Ticket_632_User();
+        $user->username       = 'jwage';
+        $user->password       = 'changeme';
         $user->Groups[]->name = 'Group One';
         $user->Groups[]->name = 'Group Two';
         $user->Groups[]->name = 'Group Three';
@@ -79,8 +79,8 @@ class Ticket_632_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_632_Group as Groups', array('local'   => 'user_id',
-                                                           'foreign' => 'group_id',
+        $this->hasMany('Ticket_632_Group as Groups', array('local'    => 'user_id',
+                                                           'foreign'  => 'group_id',
                                                            'refClass' => 'Ticket_632_UserGroup'));
     }
 }
@@ -94,8 +94,8 @@ class Ticket_632_Group extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_632_User as Users', array('local'   => 'group_id',
-                                                         'foreign' => 'user_id',
+        $this->hasMany('Ticket_632_User as Users', array('local'    => 'group_id',
+                                                         'foreign'  => 'user_id',
                                                          'refClass' => 'Ticket_632_UserGroup'));
     }
 }
@@ -113,7 +113,7 @@ class Ticket_632_UserGroup extends Doctrine_Record
         $this->hasOne('Ticket_632_User as User', array('local'   => 'user_id',
                                                        'foreign' => 'id'));
 
-        $this->hasOne('Ticket_632_Group as Group', array('local' => 'group_id',
+        $this->hasOne('Ticket_632_Group as Group', array('local'   => 'group_id',
                                                          'foreign' => 'id'));
     }
 }

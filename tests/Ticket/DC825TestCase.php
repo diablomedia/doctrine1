@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC825_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC825_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,16 +42,16 @@ class Doctrine_Ticket_DC825_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
 
-        $user = new Ticket_DC825_Model();
+        $user           = new Ticket_DC825_Model();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->save();
         $user->delete();
 
-        $version = $user->getAuditLog()->getVersion($user, 2, Doctrine_Core::HYDRATE_RECORD);
-	$versionTable = $version[0]->getTable();
-	$versionTableColumns = $versionTable->getColumnNames();
-	$recordTableColumns = $user->getTable()->getColumnNames();
+        $version             = $user->getAuditLog()->getVersion($user, 2, Doctrine_Core::HYDRATE_RECORD);
+        $versionTable        = $version[0]->getTable();
+        $versionTableColumns = $versionTable->getColumnNames();
+        $recordTableColumns  = $user->getTable()->getColumnNames();
 
         $this->assertFalse(in_array('id', $versionTableColumns));
         $this->assertTrue(in_array('model_id', $versionTableColumns));
@@ -67,9 +67,9 @@ class Ticket_DC825_Model extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('model_id as id', 'integer', null, array(
-            'type' => 'integer',
-            'unsigned' => false,
-            'primary' => true,
+            'type'          => 'integer',
+            'unsigned'      => false,
+            'primary'       => true,
             'autoincrement' => true,
         ));
         $this->hasColumn('username', 'string', 255);
@@ -81,8 +81,8 @@ class Ticket_DC825_Model extends Doctrine_Record
         $this->actAs('Timestampable');
         $this->actAs('SoftDelete');
         $this->actAs('Versionable', array(
-			'auditLog' => true,
-        		'generateRelations' => false,
-        		'deleteVersions' => false));
+            'auditLog'              => true,
+                'generateRelations' => false,
+                'deleteVersions'    => false));
     }
 }

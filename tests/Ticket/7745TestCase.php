@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_7745_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_7745_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -46,11 +46,11 @@ class Doctrine_Ticket_7745_TestCase extends Doctrine_UnitTestCase
         $table = Doctrine_Core::getTable('RecordTest2');
         $table->addRecordListener(new RecordTest2Listener());
 
-        $test2 = new RecordTest2();
+        $test2       = new RecordTest2();
         $test2->name = 'test';
 
-        $test1 = new RecordTest1();
-        $test1->name = 'test';
+        $test1              = new RecordTest1();
+        $test1->name        = 'test';
         $test1->RecordTest2 = $test2;
         $test1->save();
         
@@ -82,7 +82,7 @@ class RecordTest1 extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('RecordTest2', array(
-            'local' => 'record_test2_id',
+            'local'   => 'record_test2_id',
             'foreign' => 'id'
         ));
     }
@@ -98,7 +98,7 @@ class RecordTest2 extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('RecordTest1', array(
-            'local' => 'id',
+            'local'   => 'id',
             'foreign' => 'record_test2_id'
         ));
     }
@@ -109,7 +109,7 @@ class RecordTest2Listener extends Doctrine_Record_Listener
     public function preDqlSelect(Doctrine_Event $event)
     {
         $params = $event->getParams();
-        $alias = $params['alias'];
+        $alias  = $params['alias'];
 
         $event->getQuery()->leftJoin($alias . '.RecordTest1');
     }

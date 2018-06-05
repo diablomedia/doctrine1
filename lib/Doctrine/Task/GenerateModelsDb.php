@@ -35,17 +35,17 @@ class Doctrine_Task_GenerateModelsDb extends Doctrine_Task
     /**
      * @var string
      */
-    public $description          =   'Generates your Doctrine_Record definitions from your existing database connections.';
+    public $description = 'Generates your Doctrine_Record definitions from your existing database connections.';
 
     /**
      * @var array
      */
-    public $requiredArguments    =   array('models_path'    =>  'Specify path to your Doctrine_Record definitions.');
+    public $requiredArguments = array('models_path' => 'Specify path to your Doctrine_Record definitions.');
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array('connection'     =>  'Optionally specify a single connection to generate the models for.');
+    public $optionalArguments = array('connection' => 'Optionally specify a single connection to generate the models for.');
 
     public function execute()
     {

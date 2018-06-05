@@ -31,4 +31,5 @@
  * @author      Joe Simms <joe.simms@websites4.com>
  */
 class Doctrine_Node_NestedSet_LevelOrderIterator
-{ }
+{
+}

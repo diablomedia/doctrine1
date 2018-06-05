@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
 {
     public function testCachedResultsAreSpecificToDsn()
     {
@@ -49,7 +49,7 @@ class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
 
         Doctrine_Core::createTablesFromArray(array('Ticket_1706_User'));
 
-        $user = new Ticket_1706_User();
+        $user       = new Ticket_1706_User();
         $user->name = 'Allen';
         $user->save();
 
@@ -58,7 +58,7 @@ class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
 
         Doctrine_Core::createTablesFromArray(array('Ticket_1706_User'));
 
-        $user = new Ticket_1706_User();
+        $user       = new Ticket_1706_User();
         $user->name = 'Bob';
         $user->save();
         

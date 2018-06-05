@@ -31,7 +31,8 @@
  * @version     $Revision: 7490 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
-interface Doctrine_Overloadable {
+interface Doctrine_Overloadable
+{
     /**
      * __call
      * method overloader

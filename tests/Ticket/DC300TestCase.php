@@ -34,19 +34,19 @@ class Doctrine_Ticket_DC300_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
     {
-        $g1 = new Ticket_DC300_Group();
+        $g1         = new Ticket_DC300_Group();
         $g1['name'] = 'group1';
         $g1->save();
 
-        $g2 = new Ticket_DC300_Group();
+        $g2         = new Ticket_DC300_Group();
         $g2['name'] = 'group2';
         $g2->save();
 
-        $g3 = new Ticket_DC300_Group();
+        $g3         = new Ticket_DC300_Group();
         $g3['name'] = 'group3';
         $g3->save();
 
-        $u1 = new Ticket_DC300_User();
+        $u1         = new Ticket_DC300_User();
         $u1['name'] = 'user1';
         $u1['Groups']->add($g1);
         $u1['Groups']->add($g2);
@@ -63,65 +63,64 @@ class Doctrine_Ticket_DC300_TestCase extends Doctrine_UnitTestCase
 
     public function testRefTableEntriesOnManyToManyRelationsWithSynchronizeWithArray()
     {
-		$u1 = Doctrine::getTable('Ticket_DC300_User')->find(1);
+        $u1 = Doctrine::getTable('Ticket_DC300_User')->find(1);
 
-		// update the groups user (id 1) is linked to
-		$u1->synchronizeWithArray(array(
-			'Groups' => array(
-				array('name' => 'group1 update'),
-				array('name' => 'group2 update')
-			)
-		));
-		$u1->save();
+        // update the groups user (id 1) is linked to
+        $u1->synchronizeWithArray(array(
+            'Groups' => array(
+                array('name' => 'group1 update'),
+                array('name' => 'group2 update')
+            )
+        ));
+        $u1->save();
 
-		// update the user-objects with real data from database
-		$u1->loadReference('Groups');
+        // update the user-objects with real data from database
+        $u1->loadReference('Groups');
 
-		// check wether the two database-entries in RefTable exists
-		$this->assertEqual(count($u1->Groups), 2);
+        // check wether the two database-entries in RefTable exists
+        $this->assertEqual(count($u1->Groups), 2);
     }
-   
 }
 
 class Ticket_DC300_Group extends Doctrine_Record
 {
-	public function setTableDefinition()
-	{
-		$this->hasColumn('name', 'string', 255);
-	}
-	
-	public function setUp()
-	{
-		$this->hasMany('Ticket_DC300_User as Users', array(
-			'local' => 'group_id',
-			'foreign' => 'user_id',
-			'refClass' => 'Ticket_DC300_UserGroup'
-		));
-	}
+    public function setTableDefinition()
+    {
+        $this->hasColumn('name', 'string', 255);
+    }
+    
+    public function setUp()
+    {
+        $this->hasMany('Ticket_DC300_User as Users', array(
+            'local'    => 'group_id',
+            'foreign'  => 'user_id',
+            'refClass' => 'Ticket_DC300_UserGroup'
+        ));
+    }
 }
 
 class Ticket_DC300_User extends Doctrine_Record
 {
-	public function setTableDefinition()
-	{
-		$this->hasColumn('name', 'string', 255);
-	}
+    public function setTableDefinition()
+    {
+        $this->hasColumn('name', 'string', 255);
+    }
 
-	public function setUp()
-	{
-		$this->hasMany('Ticket_DC300_Group as Groups', array(
-			'local' => 'user_id',
-			'foreign' => 'group_id',
-			'refClass' => 'Ticket_DC300_UserGroup'
-		));
-	}
+    public function setUp()
+    {
+        $this->hasMany('Ticket_DC300_Group as Groups', array(
+            'local'    => 'user_id',
+            'foreign'  => 'group_id',
+            'refClass' => 'Ticket_DC300_UserGroup'
+        ));
+    }
 }
 
 class Ticket_DC300_UserGroup extends Doctrine_Record
 {
-	public function setTableDefinition()
-	{
-		$this->hasColumn('user_id', 'integer');
-		$this->hasColumn('group_id', 'integer');
-	}
+    public function setTableDefinition()
+    {
+        $this->hasColumn('user_id', 'integer');
+        $this->hasColumn('group_id', 'integer');
+    }
 }

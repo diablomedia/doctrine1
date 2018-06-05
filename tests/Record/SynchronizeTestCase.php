@@ -39,15 +39,15 @@ class Doctrine_Record_Synchronize_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $user = new User();
-        $user->name = 'John';
-        $user->Email->address = 'john@mail.com';
+        $user                              = new User();
+        $user->name                        = 'John';
+        $user->Email->address              = 'john@mail.com';
         $user->Phonenumber[0]->phonenumber = '555 123';
         $user->Phonenumber[1]->phonenumber = '555 448';
         $user->save();
 
         # Create an existing group
-        $group = new Group();
+        $group       = new Group();
         $group->name = 'Group One';
         $group->save();
         $this->previous_group = $group['id'];
@@ -55,7 +55,7 @@ class Doctrine_Record_Synchronize_TestCase extends Doctrine_UnitTestCase
 
     public function testSynchronizeRecord()
     {
-        $user = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
+        $user      = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
         $userArray = $user->toArray(true);
         $this->assertEqual($user->Phonenumber->count(), 2);
         $this->assertEqual($user->Phonenumber[0]->phonenumber, '555 123');
@@ -80,17 +80,17 @@ class Doctrine_Record_Synchronize_TestCase extends Doctrine_UnitTestCase
         // change Email
         $userArray['Email']['address'] = 'johndow@mail.com';
         try {
-          $user->synchronizeWithArray($userArray);
+            $user->synchronizeWithArray($userArray);
         } catch (Exception $e) {
-          $this->fail($e->getMessage());
+            $this->fail($e->getMessage());
         }
 
         $this->assertEqual($user->Email->address, 'johndow@mail.com');
 
         try {
-          $user->save();
-        } catch (Exception $e ) {
-          $this->fail("Failed saving with " . $e->getMessage());
+            $user->save();
+        } catch (Exception $e) {
+            $this->fail('Failed saving with ' . $e->getMessage());
         }
     }
 
@@ -111,8 +111,8 @@ class Doctrine_Record_Synchronize_TestCase extends Doctrine_UnitTestCase
 
     public function testSynchronizeAddRecord()
     {
-        $user = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
-        $userArray = $user->toArray(true);
+        $user                       = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
+        $userArray                  = $user->toArray(true);
         $userArray['Phonenumber'][] = array('phonenumber' => '333 238');
 
         $user->synchronizeWithArray($userArray);
@@ -124,7 +124,7 @@ class Doctrine_Record_Synchronize_TestCase extends Doctrine_UnitTestCase
 
     public function testSynchronizeAfterAddRecord()
     {
-        $user = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
+        $user   = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
         $phones = array();
 
         $this->assertEqual($user->Phonenumber->count(), 2);
@@ -137,7 +137,7 @@ class Doctrine_Record_Synchronize_TestCase extends Doctrine_UnitTestCase
 
     public function testSynchronizeRemoveRecord()
     {
-        $user = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
+        $user      = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber')->fetchOne();
         $userArray = $user->toArray(true);
         unset($userArray['Phonenumber']);
         unset($userArray['Email']);

@@ -30,13 +30,13 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1307_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1307_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
         $charset = 'test_charset';
         $collate = 'test_collate';
-        $conn = Doctrine_Manager::connection('sqlite::memory:');
+        $conn    = Doctrine_Manager::connection('sqlite::memory:');
         $conn->setCharset($charset);
         $conn->setCollate($collate);
 

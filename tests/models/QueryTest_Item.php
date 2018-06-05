@@ -7,4 +7,3 @@ class QueryTest_Item extends Doctrine_Record
         $this->hasColumn('quantity', 'integer');
     }
 }
-

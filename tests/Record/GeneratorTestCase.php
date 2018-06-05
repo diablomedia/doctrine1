@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Record_Generator_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Record_Generator_TestCase extends Doctrine_UnitTestCase
 {
     public function testGeneratorComponentBinding()
     {
@@ -39,8 +39,8 @@ class Doctrine_Record_Generator_TestCase extends Doctrine_UnitTestCase
         Doctrine_Core::createTablesFromArray(array('I18nGeneratorComponentBinding'));
 
         try {
-            $i = new I18nGeneratorComponentBinding();
-            $i->name = 'test';
+            $i                           = new I18nGeneratorComponentBinding();
+            $i->name                     = 'test';
             $i->Translation['EN']->title = 'en test';
             $i->Translation['FR']->title = 'fr test';
             $i->save();

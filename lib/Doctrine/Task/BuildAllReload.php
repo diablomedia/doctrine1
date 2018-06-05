@@ -35,17 +35,17 @@ class Doctrine_Task_BuildAllReload extends Doctrine_Task
     /**
      * @var string
      */
-    public $description          =   'Calls rebuild-db and load-data';
+    public $description = 'Calls rebuild-db and load-data';
 
     /**
      * @var array
      */
-    public $requiredArguments    =   array();
+    public $requiredArguments = array();
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array();
+    public $optionalArguments = array();
 
     // These were undefined, added for static analysis and set to public so api isn't changed
     /**
@@ -66,7 +66,7 @@ class Doctrine_Task_BuildAllReload extends Doctrine_Task
         parent::__construct($dispatcher);
 
         $this->rebuildDb = new Doctrine_Task_RebuildDb($this->dispatcher);
-        $this->loadData = new Doctrine_Task_LoadData($this->dispatcher);
+        $this->loadData  = new Doctrine_Task_LoadData($this->dispatcher);
 
         $this->requiredArguments = array_merge($this->requiredArguments, $this->rebuildDb->requiredArguments, $this->loadData->requiredArguments);
         $this->optionalArguments = array_merge($this->optionalArguments, $this->rebuildDb->optionalArguments, $this->loadData->optionalArguments);

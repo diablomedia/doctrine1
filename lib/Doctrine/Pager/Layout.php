@@ -180,13 +180,13 @@ class Doctrine_Pager_Layout
     }
 
 
-     /**
-     * getTemplate
-     *
-     * Returns the Template to be applied for inactive pages
-     *
-     * @return string        Template to be applied for inactive pages
-     */
+    /**
+    * getTemplate
+    *
+    * Returns the Template to be applied for inactive pages
+    *
+    * @return string        Template to be applied for inactive pages
+    */
     public function getTemplate()
     {
         return $this->_template;
@@ -323,7 +323,7 @@ class Doctrine_Pager_Layout
     public function display($options = array(), $return = false)
     {
         $range = $this->getPagerRange()->rangeAroundPage();
-        $str = '';
+        $str   = '';
 
         // For each page in range
         for ($i = 0, $l = count($range); $i < $l; $i++) {
@@ -357,7 +357,7 @@ class Doctrine_Pager_Layout
     public function processPage($options = array())
     {
         // Check if at least basic options are defined
-        if ( !isset($options['page_number'])) {
+        if (!isset($options['page_number'])) {
             throw new Doctrine_Pager_Exception(
                 'Cannot process template of the given page. ' .
                 'Missing at least one of needed parameters: \'page\' or \'page_number\''
@@ -368,7 +368,7 @@ class Doctrine_Pager_Layout
         }
 
         // Assign "page" options index if not defined yet
-        if ( !isset($this->_maskReplacements['page']) && !isset($options['page'])) {
+        if (!isset($this->_maskReplacements['page']) && !isset($options['page'])) {
             $options['page'] = $options['page_number'];
         }
 
@@ -380,7 +380,7 @@ class Doctrine_Pager_Layout
      */
     public function __toString()
     {
-      return (string) $this->display(array(), true);
+        return (string) $this->display(array(), true);
     }
 
     /**
@@ -393,7 +393,7 @@ class Doctrine_Pager_Layout
      */
     protected function _parseTemplate($options = array())
     {
-        $str = $this->_parseUrlTemplate($options);
+        $str          = $this->_parseUrlTemplate($options);
         $replacements = $this->_parseReplacementsTemplate($options);
 
         return strtr($str, $replacements);
@@ -441,7 +441,7 @@ class Doctrine_Pager_Layout
         $replacements = array();
 
         foreach ($options as $k => $v) {
-            $replacements['{%'.$k.'}'] = $v;
+            $replacements['{%' . $k . '}'] = $v;
         }
 
         return $replacements;
@@ -462,7 +462,7 @@ class Doctrine_Pager_Layout
         $replacements = array();
 
         foreach ($options as $k => $v) {
-            $replacements['{%'.$k.'}'] = $v;
+            $replacements['{%' . $k . '}'] = $v;
         }
 
         return strtr($str, $replacements);
@@ -481,7 +481,7 @@ class Doctrine_Pager_Layout
         $replacements = array();
 
         foreach ($this->_maskReplacements as $k => $v) {
-            $replacements['{%'.$k.'}'] = ($v['asValue'] === true) ? $v['newMask'] : '{%'.$v['newMask'].'}';
+            $replacements['{%' . $k . '}'] = ($v['asValue'] === true) ? $v['newMask'] : '{%' . $v['newMask'] . '}';
         }
 
         return strtr($str, $replacements);

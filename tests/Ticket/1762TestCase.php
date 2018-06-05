@@ -30,13 +30,13 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1762_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1762_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
-        $adapter = new Doctrine_Adapter_Mock('pgsql');
-        $conn = Doctrine_Manager::connection($adapter);
+        $adapter  = new Doctrine_Adapter_Mock('pgsql');
+        $conn     = Doctrine_Manager::connection($adapter);
         $profiler = new Doctrine_Connection_Profiler();
         $conn->setListener($profiler);
 
@@ -44,7 +44,7 @@ class Doctrine_Ticket_1762_TestCase extends Doctrine_UnitTestCase
             ->from('User2 u')
             ->leftJoin('u.Roles')
             ->orderBy('u.id');
-        $pager = new Doctrine_Pager($query, 1, 20);
+        $pager   = new Doctrine_Pager($query, 1, 20);
         $records = $pager->execute($conn);
 
         $queries = $adapter->getAll();
@@ -63,9 +63,9 @@ class User2 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Role2 as Roles', array('refClass' => 'UserRole2', 
-                                                          'local'    => 'user_id',
-                                                          'foreign'  => 'role_id'));
+        $this->hasMany('Role2 as Roles', array('refClass'           => 'UserRole2',
+                                                          'local'   => 'user_id',
+                                                          'foreign' => 'role_id'));
     }
 }
 
@@ -78,9 +78,9 @@ class Role2 extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('User2 as Users', array('refClass' => 'UserRole2', 
-                                                          'local'    => 'role_id',
-                                                          'foreign'  => 'User_id'));
+        $this->hasMany('User2 as Users', array('refClass'           => 'UserRole2',
+                                                          'local'   => 'role_id',
+                                                          'foreign' => 'User_id'));
     }
 }
 

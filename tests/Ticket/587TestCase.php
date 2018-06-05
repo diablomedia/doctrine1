@@ -26,13 +26,13 @@ class Doctrine_Ticket_587_TestCase extends Doctrine_UnitTestCase
 
     public function testInit()
     {
-        $user = new BookmarkUser();
+        $user         = new BookmarkUser();
         $user['name'] = 'Anonymous';
         $user->save();
 
-        $pages = new Doctrine_Collection('Page');
+        $pages            = new Doctrine_Collection('Page');
         $pages[0]['name'] = 'Yahoo';
-        $pages[0]['url'] = 'http://www.yahoo.com';
+        $pages[0]['url']  = 'http://www.yahoo.com';
         $pages->save();
 
         $this->assertEqual(count($pages), 1);
@@ -52,13 +52,14 @@ class Doctrine_Ticket_587_TestCase extends Doctrine_UnitTestCase
     {
         // load our user and our collection of pages
         $user = Doctrine_Query::create()->query(
-            'SELECT * FROM BookmarkUser u WHERE u.name=?', array('Anonymous')
+            'SELECT * FROM BookmarkUser u WHERE u.name=?',
+            array('Anonymous')
         )->getFirst();
         $pages = Doctrine_Query::create()->query('SELECT * FROM Page');
 
         // bookmark the pages (manually)
         foreach ($pages as $page) {
-            $bookmark = new Bookmark();
+            $bookmark            = new Bookmark();
             $bookmark['page_id'] = $page['id'];
             $bookmark['user_id'] = $user['id'];
             $bookmark->save();
@@ -86,7 +87,7 @@ class Doctrine_Ticket_587_TestCase extends Doctrine_UnitTestCase
 
         // now recreate bookmarks and verify they exist:
         foreach ($pages as $page) {
-            $bookmark = new Bookmark();
+            $bookmark            = new Bookmark();
             $bookmark['page_id'] = $page['id'];
             $bookmark['user_id'] = $user['id'];
             $bookmark->save();

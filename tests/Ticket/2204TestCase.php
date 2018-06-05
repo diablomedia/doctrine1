@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2204_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2204_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,7 +41,7 @@ class Doctrine_Ticket_2204_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
-        $model = new Ticket_2204_Model();
+        $model               = new Ticket_2204_Model();
         $model->test_decimal = '-123.456789';
         try {
             $model->save();

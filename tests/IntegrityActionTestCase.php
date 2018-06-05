@@ -30,10 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_IntegrityAction_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_IntegrityAction_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
-    { }
+    {
+    }
     public function prepareTables()
     {
         $this->tables = array('CascadeDeleteTest', 'CascadeDeleteRelatedTest', 'CascadeDeleteRelatedTest2');
@@ -42,7 +43,7 @@ class Doctrine_IntegrityAction_TestCase extends Doctrine_UnitTestCase
     }
     public function testIntegrityActionsAreAddedIntoGlobalActionsArray()
     {
-        $c = new CascadeDeleteTest;
+        $c  = new CascadeDeleteTest;
         $c2 = new CascadeDeleteRelatedTest;
 
         $expected = array('CascadeDeleteRelatedTest' => 'CASCADE');
@@ -53,10 +54,10 @@ class Doctrine_IntegrityAction_TestCase extends Doctrine_UnitTestCase
     }
     public function testOnDeleteCascadeEmulation()
     {
-        $c = new CascadeDeleteTest;
-        $c->name = 'c 1';
-        $c->Related[]->name = 'r 1';
-        $c->Related[]->name = 'r 2';
+        $c                              = new CascadeDeleteTest;
+        $c->name                        = 'c 1';
+        $c->Related[]->name             = 'r 1';
+        $c->Related[]->name             = 'r 2';
         $c->Related[0]->Related[]->name = 'r r 1';
         $c->Related[1]->Related[]->name = 'r r 2';
         

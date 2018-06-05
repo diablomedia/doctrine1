@@ -52,12 +52,12 @@ class Doctrine_Hook_Integer extends Doctrine_Hook_Parser_Complex
         foreach ($e as $v) {
             $v = trim($v);
 
-            $e2   = explode('-', $v);
+            $e2 = explode('-', $v);
 
-            $name = $alias. '.' . $field;
+            $name = $alias . '.' . $field;
 
             if (count($e2) == 1) {
-                 // one '-' found
+                // one '-' found
 
                 $a[] = $name . ' = ?';
 
@@ -69,7 +69,6 @@ class Doctrine_Hook_Integer extends Doctrine_Hook_Parser_Complex
 
                 $this->params += array($e2[0], $e2[1]);
             }
-
         }
         return implode(' OR ', $a);
     }

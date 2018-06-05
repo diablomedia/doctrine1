@@ -30,9 +30,9 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Import_Mssql_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Import_Mssql_TestCase extends Doctrine_UnitTestCase
 {
-    public function testListSequencesExecutesSql() 
+    public function testListSequencesExecutesSql()
     {
         $this->import->listSequences('table');
         
@@ -43,7 +43,7 @@ class Doctrine_Import_Mssql_TestCase extends Doctrine_UnitTestCase
         $this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, false);
         $this->import->listTableColumns('table');
         
-        $this->assertEqual($this->adapter->pop(), "EXEC sp_columns @table_name = table");
+        $this->assertEqual($this->adapter->pop(), 'EXEC sp_columns @table_name = table');
     }
     public function testListTablesExecutesSql()
     {

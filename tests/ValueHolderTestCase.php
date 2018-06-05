@@ -1,8 +1,10 @@
 <?php
-require_once("UnitTestCase.php");
+require_once('UnitTestCase.php');
 
-class Doctrine_ValueHolder_TestCase extends Doctrine_UnitTestCase {
-    public function testGetSet() {
+class Doctrine_ValueHolder_TestCase extends Doctrine_UnitTestCase
+{
+    public function testGetSet()
+    {
         $this->valueHolder->data[0] = 'first';
         
         $this->assertEqual($this->valueHolder->data[0], 'first');
@@ -16,17 +18,17 @@ class Doctrine_ValueHolder_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual($this->valueHolder['key'], 'second');
         $this->assertEqual($this->valueHolder->get('key'), 'second');
     }
-    public function testSimpleQuery() {
+    public function testSimpleQuery()
+    {
         $q = new Doctrine_Query($this->connection);
-        $q->from("User");
+        $q->from('User');
         $users = $q->execute(array(), Doctrine_Core::FETCH_VHOLDER);
         $this->assertEqual($users->count(), 8);
-
-
     }
-    public function testQueryWithOneToManyRelation() {
+    public function testQueryWithOneToManyRelation()
+    {
         $q = new Doctrine_Query($this->connection);
-        $q->from("User.Phonenumber");
+        $q->from('User.Phonenumber');
         $users = $q->execute(array(), Doctrine_Core::FETCH_VHOLDER);
         $this->assertEqual($users->count(), 8);
         $this->assertTrue($users[0] instanceof Doctrine_ValueHolder);
@@ -39,20 +41,22 @@ class Doctrine_ValueHolder_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual(count($users[3]->Phonenumber), 1);
         $this->assertEqual(count($users[4]->Phonenumber), 3);
     }
-    public function testDelete() {
+    public function testDelete()
+    {
         $f = false;
         try {
             $this->valueHolder->delete();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $f = true;
         }
         $this->assertTrue($f);
     }
-    public function testSave() {
+    public function testSave()
+    {
         $f = false;
         try {
             $this->valueHolder->save();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $f = true;
         }
         $this->assertTrue($f);

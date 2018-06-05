@@ -3,11 +3,11 @@ class TreeLeaf extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-    	$this->hasColumn('name', 'string');
+        $this->hasColumn('name', 'string');
         $this->hasColumn('parent_id', 'integer');
     }
 
-    public function setUp() 
+    public function setUp()
     {
         $this->hasOne('TreeLeaf as Parent', array(
             'local' => 'parent_id', 'foreign' => 'id'

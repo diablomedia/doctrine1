@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1385_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1385_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -44,21 +44,21 @@ class Doctrine_Ticket_1385_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
 
-        $user = new Ticket_1385_User1();
-        $user->username = 'jwage';
-        $user->password = 'changeme';
+        $user                = new Ticket_1385_User1();
+        $user->username      = 'jwage';
+        $user->password      = 'changeme';
         $user->email_address = 'jonwage@ertoihertionerti.com';
         $this->assertTrue($user->isValid());
 
-        $user = new Ticket_1385_User2();
-        $user->username = 'jwage';
-        $user->password = 'changeme';
+        $user                = new Ticket_1385_User2();
+        $user->username      = 'jwage';
+        $user->password      = 'changeme';
         $user->email_address = 'jonwage@ertoihertionerti.com';
         $this->assertFalse($user->isValid());
 
-        $user = new Ticket_1385_User3();
-        $user->username = 'jwage';
-        $user->password = 'changeme';
+        $user                = new Ticket_1385_User3();
+        $user->username      = 'jwage';
+        $user->password      = 'changeme';
         $user->email_address = 'jonwage@ertoihertionerti.com';
         $this->assertFalse($user->isValid());
 

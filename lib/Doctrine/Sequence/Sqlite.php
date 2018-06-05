@@ -48,20 +48,20 @@ class Doctrine_Sequence_Sqlite extends Doctrine_Sequence
 
         try {
             $this->conn->exec($query);
-        } catch(Doctrine_Connection_Exception $e) {
+        } catch (Doctrine_Connection_Exception $e) {
             if ($onDemand && $e->getPortableCode() == Doctrine_Core::ERR_NOSUCHTABLE) {
                 // Since we are creating the sequence on demand
                 // we know the first id = 1 so initialize the
                 // sequence at 2
                 try {
                     $this->conn->export->createSequence($seqName, 2);
-                } catch(Doctrine_Exception $e) {
+                } catch (Doctrine_Exception $e) {
                     throw new Doctrine_Sequence_Exception('on demand sequence ' . $seqName . ' could not be created');
                 }
                 // First ID of a newly created sequence is 1
                 return 1;
             } else {
-                throw new Doctrine_Sequence_Exception('sequence ' .$seqName . ' does not exist');
+                throw new Doctrine_Sequence_Exception('sequence ' . $seqName . ' does not exist');
             }
         }
 
@@ -100,7 +100,7 @@ class Doctrine_Sequence_Sqlite extends Doctrine_Sequence
         $sequenceName = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($seqName), true);
         $seqcolName   = $this->conn->quoteIdentifier($this->conn->getAttribute(Doctrine_Core::ATTR_SEQCOL_NAME), true);
 
-        $query        = 'SELECT MAX(' . $seqcolName . ') FROM ' . $sequenceName;
+        $query = 'SELECT MAX(' . $seqcolName . ') FROM ' . $sequenceName;
 
         return (int) $this->conn->fetchOne($query);
     }

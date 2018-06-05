@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_832_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_832_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -46,7 +46,7 @@ class Doctrine_Ticket_832_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         try {
-            $user = new Ticket_832_User();
+            $user       = new Ticket_832_User();
             $user->name = 'test';
             $user->save();
             $this->assertEqual($user->name, 'test');

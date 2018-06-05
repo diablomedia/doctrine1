@@ -37,29 +37,29 @@ class Doctrine_Ticket_DC356_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $p1 = new DC356Page();
+        $p1         = new DC356Page();
         $p1['name'] = 'Test Page 1';
         $p1->save();
         //$this->p1 = $p1;
 
-        $p2 = new DC356Page();
+        $p2         = new DC356Page();
         $p2['name'] = 'Test Page 2';
         $p2->save();
         //$this->p2 = $p2;
 
-        $p3 = new DC356Page();
+        $p3         = new DC356Page();
         $p3['name'] = 'Test Page 3';
         $p3->save();
         //$this->p3 = $p3;
 
-        $pp1 = new DC356Page_Page();
+        $pp1              = new DC356Page_Page();
         $pp1['parent_id'] = 1;
-        $pp1['child_id'] = 2;
+        $pp1['child_id']  = 2;
         $pp1->save();
 
-        $pp2 = new DC356Page_Page();
+        $pp2              = new DC356Page_Page();
         $pp2['parent_id'] = 1;
-        $pp2['child_id'] = 3;
+        $pp2['child_id']  = 3;
         $pp2->save();
     }
 
@@ -106,21 +106,25 @@ class DC356Page extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('Pages');
-        $this->hasColumn('id', 'integer', 4,
-            array('primary'=>true,'autoincrement'=>true));
+        $this->hasColumn(
+            'id',
+            'integer',
+            4,
+            array('primary' => true,'autoincrement' => true)
+        );
         $this->hasColumn('name', 'string', 64, array('notnull' => true));
     }
 
     public function setUp()
     {
         $this->hasMany('DC356Page as Children', array(
-            'local' => 'parent_id',
-            'foreign' => 'child_id',
+            'local'    => 'parent_id',
+            'foreign'  => 'child_id',
             'refClass' => 'DC356Page_Page'
         ));
         $this->hasMany('DC356Page as Parents', array(
-            'local' => 'child_id',
-            'foreign' => 'parent_id',
+            'local'    => 'child_id',
+            'foreign'  => 'parent_id',
             'refClass' => 'DC356Page_Page'
         ));
     }
@@ -131,8 +135,12 @@ class DC356Page_Page extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('Pages_Pages');
-        $this->hasColumn('id', 'integer', 4,
-            array('primary'=>true,'autoincrement'=>true));
+        $this->hasColumn(
+            'id',
+            'integer',
+            4,
+            array('primary' => true,'autoincrement' => true)
+        );
         $this->hasColumn('parent_id', 'integer', 4, array());
         $this->hasColumn('child_id', 'integer', 4, array());
     }

@@ -30,13 +30,14 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Record_CascadingDelete_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Record_CascadingDelete_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
-    { }
+    {
+    }
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'ForeignKeyTest';
         $this->tables[] = 'CascadeDelete_HouseOwner';
         $this->tables[] = 'CascadeDelete_House';
@@ -48,8 +49,8 @@ class Doctrine_Record_CascadingDelete_TestCase extends Doctrine_UnitTestCase
     }
     public function testCascadingDeleteEmulation()
     {
-        $r = new ForeignKeyTest;
-        $r->name = 'Parent';
+        $r                    = new ForeignKeyTest;
+        $r->name              = 'Parent';
         $r->Children[0]->name = 'Child 1';
         $this->assertEqual($r->id, null);
         $this->assertEqual($r->Children[0]->id, null);
@@ -82,11 +83,11 @@ class Doctrine_Record_CascadingDelete_TestCase extends Doctrine_UnitTestCase
         $cascadeListener = new CascadeDeleteListener($this);
         $this->conn->getTable('ForeignKeyTest')->addRecordListener($cascadeListener);
         
-        $r = new ForeignKeyTest;
-        $r->name = 'Parent';
-        $r->Children[0]->name = 'Child 1';
+        $r                                 = new ForeignKeyTest;
+        $r->name                           = 'Parent';
+        $r->Children[0]->name              = 'Child 1';
         $r->Children[0]->Children[0]->name = 'Child 1 Child 1';
-        $r->Children[1]->name = 'Child 2';
+        $r->Children[1]->name              = 'Child 2';
         $r->save();
 
         $this->connection->clear();
@@ -112,13 +113,13 @@ class Doctrine_Record_CascadingDelete_TestCase extends Doctrine_UnitTestCase
     }
     
     public function testBidirectionalCascadeDeleteDoesNotCauseInfiniteLoop()
-    {        
-        $house = new CascadeDelete_House();
+    {
+        $house            = new CascadeDelete_House();
         $house->bathrooms = 4;
-        $owner = new CascadeDelete_HouseOwner();
-        $owner->name = 'Bill Clinton';
-        $owner->house = $house;
-        $house->owner = $owner;
+        $owner            = new CascadeDelete_HouseOwner();
+        $owner->name      = 'Bill Clinton';
+        $owner->house     = $house;
+        $house->owner     = $owner;
         $owner->save();
         
         $this->assertEqual(Doctrine_Record::STATE_CLEAN, $owner->state());
@@ -132,26 +133,24 @@ class Doctrine_Record_CascadingDelete_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(Doctrine_Record::STATE_TCLEAN, $house->state());
         $this->assertFalse($owner->exists());
         $this->assertFalse($house->exists());
-        
     }
     
     public function testCascadingDeleteInOneToZeroOrOneRelation()
     {
-        $owner = new CascadeDelete_HouseOwner();
+        $owner       = new CascadeDelete_HouseOwner();
         $owner->name = 'Jeff Bridges';
         $owner->save();
         try {
             $owner->delete();
             $this->pass();
         } catch (Doctrine_Exception $e) {
-            $this->fail("Failed to delete record. Message:" . $e->getMessage());
+            $this->fail('Failed to delete record. Message:' . $e->getMessage());
         }
-        
     }
     
     public function testDeletionOfCompositeKeys()
     {
-        $compItem = new CascadeDelete_CompositeKeyItem();
+        $compItem      = new CascadeDelete_CompositeKeyItem();
         $compItem->id1 = 10;
         $compItem->id2 = 11;
         $compItem->save();
@@ -163,9 +162,9 @@ class Doctrine_Record_CascadingDelete_TestCase extends Doctrine_UnitTestCase
     
     public function testCascadeDeleteManyMany()
     {
-        $a1 = new CascadeDelete_ManyManySideA();
+        $a1       = new CascadeDelete_ManyManySideA();
         $a1->name = 'some';
-        $b1 = new CascadeDelete_ManyManySideB();
+        $b1       = new CascadeDelete_ManyManySideB();
         $b1->name = 'other';
         $a1->Bs[] = $b1;
         //$b1->As[] = $a1; <- This causes 2 insertions into the AToB table => BUG
@@ -188,63 +187,72 @@ class Doctrine_Record_CascadingDelete_TestCase extends Doctrine_UnitTestCase
 
 /* This listener is used to verify the correct invocations of listeners during the
    delete procedure, as well as to verify the object states at the defined points. */
-class CascadeDeleteListener extends Doctrine_Record_Listener {
-    
+class CascadeDeleteListener extends Doctrine_Record_Listener
+{
     private $_test;
-    public $preDeleteInvoked = false;
-    public $preDeleteInvocationCount = 0;
-    public $postDeleteInvoked = false;
+    public $preDeleteInvoked          = false;
+    public $preDeleteInvocationCount  = 0;
+    public $postDeleteInvoked         = false;
     public $postDeleteInvocationCount = 0;
     
-    public function __construct($test) {
+    public function __construct($test)
+    {
         $this->_test = $test;
     }
     
-    public function preDelete(Doctrine_Event $event) {
+    public function preDelete(Doctrine_Event $event)
+    {
         $this->_test->assertEqual(Doctrine_Record::STATE_CLEAN, $event->getInvoker()->state());
         $this->preDeleteInvoked = true;
         $this->preDeleteInvocationCount++;
     }
     
-    public function postDelete(Doctrine_Event $event) {
+    public function postDelete(Doctrine_Event $event)
+    {
         $this->_test->assertEqual(Doctrine_Record::STATE_TCLEAN, $event->getInvoker()->state());
         $this->postDeleteInvoked = true;
         $this->postDeleteInvocationCount++;
     }
     
-    public function reset() {
-        $this->preDeleteInvoked = false;
-        $this->preDeleteInvocationCount = 0;
-        $this->postDeleteInvoked = false;
+    public function reset()
+    {
+        $this->preDeleteInvoked          = false;
+        $this->preDeleteInvocationCount  = 0;
+        $this->postDeleteInvoked         = false;
         $this->postDeleteInvocationCount = 0;
     }
-    
 }
 
 /* The following is a typical one-to-one cascade => delete scenario. The association
    is bidirectional, as is the cascade. */
 
-class CascadeDelete_HouseOwner extends Doctrine_Record {
-    public function setTableDefinition() {
+class CascadeDelete_HouseOwner extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
         $this->hasColumn('name', 'string', 50);
     }
-    public function setUp() {
+    public function setUp()
+    {
         $this->hasOne('CascadeDelete_House as house', array(
-                'local' => 'id', 'foreign' => 'owner_id',
+                'local'   => 'id', 'foreign' => 'owner_id',
                 'cascade' => array('delete')));
     }
 }
 
-class CascadeDelete_House extends Doctrine_Record {
-    public function setTableDefinition() {
+class CascadeDelete_House extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
         $this->hasColumn('bathrooms', 'integer', 1);
         $this->hasColumn('owner_id', 'integer', 4);
     }
-    public function setUp() {
+    public function setUp()
+    {
         $this->hasOne('CascadeDelete_HouseOwner as owner', array(
-                'local' => 'owner_id', 'foreign' => 'id',
+                'local'   => 'owner_id', 'foreign' => 'id',
                 'cascade' => array('delete')));
     }
 }
@@ -254,8 +262,10 @@ class CascadeDelete_House extends Doctrine_Record {
    deletion routines with composite keys. Composite foreign keys are currently not
    supported, so we can't test this class in a cascade => delete scenario. */
 
-class CascadeDelete_CompositeKeyItem extends Doctrine_Record {
-    public function setTableDefinition() {
+class CascadeDelete_CompositeKeyItem extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('id1', 'integer', 4, array('primary' => true));
         $this->hasColumn('id2', 'integer', 4, array('primary' => true));
     }
@@ -263,52 +273,58 @@ class CascadeDelete_CompositeKeyItem extends Doctrine_Record {
 
 
 /* The following is an app-level cascade => delete setup of a many-many association
-   Note that such a scenario is very unlikely in the real world and also pretty 
+   Note that such a scenario is very unlikely in the real world and also pretty
    slow. */
 
-class CascadeDelete_ManyManySideA extends Doctrine_Record {
-    public function setTableDefinition() {
+class CascadeDelete_ManyManySideA extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
         $this->hasColumn('name', 'string', 4);
     }
-    public function setUp() {
+    public function setUp()
+    {
         $this->hasMany('CascadeDelete_ManyManySideB as Bs', array(
-                'local' => 'a_id', 'foreign' => 'b_id',
+                'local'    => 'a_id', 'foreign' => 'b_id',
                 'refClass' => 'CascadeDelete_ManyManyAToB',
-                'cascade' => array('delete')));
+                'cascade'  => array('delete')));
                 
         // overrides the doctrine-generated relation to the association class
         // in order to apply the app-level cascade
         $this->hasMany('CascadeDelete_ManyManyAToB as assocsA', array(
-                'local' => 'id', 'foreign' => 'a_id',
+                'local'   => 'id', 'foreign' => 'a_id',
                 'cascade' => array('delete')));
     }
 }
 
-class CascadeDelete_ManyManySideB extends Doctrine_Record {
-    public function setTableDefinition() {
+class CascadeDelete_ManyManySideB extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('id', 'integer', 4, array('primary' => true, 'autoincrement' => true));
         $this->hasColumn('name', 'string', 4);
     }
-    public function setUp() {
+    public function setUp()
+    {
         $this->hasMany('CascadeDelete_ManyManySideA as As', array(
-                'local' => 'b_id', 'foreign' => 'a_id',
+                'local'    => 'b_id', 'foreign' => 'a_id',
                 'refClass' => 'CascadeDelete_ManyManyAToB',
-                'cascade' => array('delete')));
+                'cascade'  => array('delete')));
         
         // overrides the doctrine-generated relation to the association class
         // in order to apply the app-level cascade
         $this->hasMany('CascadeDelete_ManyManyAToB as assocsB', array(
-                'local' => 'id', 'foreign' => 'b_id',
+                'local'   => 'id', 'foreign' => 'b_id',
                 'cascade' => array('delete')));
     }
 }
 
-class CascadeDelete_ManyManyAToB extends Doctrine_Record {
-    public function setTableDefinition() {
+class CascadeDelete_ManyManyAToB extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('a_id', 'integer', 4, array('primary' => true));
         $this->hasColumn('b_id', 'integer', 4, array('primary' => true));
     }
 }
-
-

@@ -37,7 +37,7 @@ class Doctrine_Search_QueryWeight_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Search_Query('SearchTestIndex');
         $q->search("doctrine^2 OR 'dbal database'");
 
-        $sql = 'SELECT foreign_id, SUM(relevancy) AS relevancy_sum ' 
+        $sql = 'SELECT foreign_id, SUM(relevancy) AS relevancy_sum '
              . 'FROM (SELECT COUNT(keyword) * 2 AS relevancy, foreign_id '
              . 'FROM search_index '
              . 'WHERE keyword = ? '

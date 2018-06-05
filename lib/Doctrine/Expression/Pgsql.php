@@ -97,8 +97,9 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
      * @param string $timestamp2 optional; if given: subtract arguments
      * @return string
      */
-    public function age($timestamp1, $timestamp2 = null) {
-        if ( $timestamp2 == null ) {
+    public function age($timestamp1, $timestamp2 = null)
+    {
+        if ($timestamp2 == null) {
             return 'AGE(' . $timestamp1 . ')';
         }
         return 'AGE(' . $timestamp1 . ', ' . $timestamp2 . ')';
@@ -123,7 +124,8 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
      * @param string $text how to the format the output
      * @return string
      */
-    public function to_char($time, $text) {
+    public function to_char($time, $text)
+    {
         return 'TO_CHAR(' . $time . ', ' . $text . ')';
     }
 
@@ -135,7 +137,7 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
      */
     public function concat(...$args)
     {
-        return join(' || ' , $args);
+        return join(' || ', $args);
     }
 
     /**
@@ -189,32 +191,32 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
     public function matchPattern($pattern, $operator = null, $field = null)
     {
         $match = '';
-        if ( ! is_null($operator)) {
-            $field = is_null($field) ? '' : $field.' ';
+        if (! is_null($operator)) {
+            $field    = is_null($field) ? '' : $field . ' ';
             $operator = strtoupper($operator);
             switch ($operator) {
                 // case insensitive
             case 'ILIKE':
-                $match = $field.'ILIKE ';
+                $match = $field . 'ILIKE ';
                 break;
                 // case sensitive
             case 'LIKE':
-                $match = $field.'LIKE ';
+                $match = $field . 'LIKE ';
                 break;
             default:
-                throw new Doctrine_Expression_Exception('not a supported operator type:'. $operator);
+                throw new Doctrine_Expression_Exception('not a supported operator type:' . $operator);
             }
         }
-        $match.= "'";
+        $match .= "'";
         foreach ($pattern as $key => $value) {
             if ($key % 2) {
-                $match.= $value;
+                $match .= $value;
             } else {
-                $match.= $this->conn->escapePattern($this->conn->escape($value));
+                $match .= $this->conn->escapePattern($this->conn->escape($value));
             }
         }
-        $match.= "'";
-        $match.= $this->patternEscapeString();
+        $match .= "'";
+        $match .= $this->patternEscapeString();
         return $match;
     }
 
@@ -228,8 +230,8 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
      */
     public function translate($string, $from, $to)
     {
-    	$translate = 'TRANSLATE(' . $string . ', ' . $from . ', ' . $to . ')';
-    	return $translate;
+        $translate = 'TRANSLATE(' . $string . ', ' . $from . ', ' . $to . ')';
+        return $translate;
     }
 
     /**
@@ -254,7 +256,7 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
     public function position($substr, $str)
     {
         $substr = $this->getIdentifier($substr);
-        $str = $this->getIdentifier($str);
+        $str    = $this->getIdentifier($str);
 
         return sprintf('POSITION(%s IN %s)', $substr, $str);
     }

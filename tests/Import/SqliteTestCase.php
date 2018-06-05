@@ -30,9 +30,9 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Import_Sqlite_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Import_Sqlite_TestCase extends Doctrine_UnitTestCase
 {
-    public function testListSequencesExecutesSql() 
+    public function testListSequencesExecutesSql()
     {
         $this->import->listSequences('table');
         
@@ -42,13 +42,13 @@ class Doctrine_Import_Sqlite_TestCase extends Doctrine_UnitTestCase
     {
         $this->import->listTableColumns('table');
         
-        $this->assertEqual($this->adapter->pop(), "PRAGMA table_info(table)");
+        $this->assertEqual($this->adapter->pop(), 'PRAGMA table_info(table)');
     }
     public function testListTableIndexesExecutesSql()
     {
         $this->import->listTableIndexes('table');
         
-        $this->assertEqual($this->adapter->pop(), "PRAGMA index_list(table)");
+        $this->assertEqual($this->adapter->pop(), 'PRAGMA index_list(table)');
     }
     public function testListTablesExecutesSql()
     {

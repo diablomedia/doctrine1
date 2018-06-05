@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1341_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1341_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,20 +42,19 @@ class Doctrine_Ticket_1341_TestCase extends Doctrine_UnitTestCase
     public function testTest()
     {
         try {
-            $user = new Ticket_1341_User();
-            $user->username = 'jwage';
-            $user->password = 'changeme';
+            $user                = new Ticket_1341_User();
+            $user->username      = 'jwage';
+            $user->password      = 'changeme';
             $user->Profile->name = 'Jonathan H. Wage';
             $user->save();
             $this->pass();
             $this->assertEqual($user->toArray(true), array(
-              'id' => '1',
+              'id'       => '1',
               'username' => 'jwage',
               'password' => 'changeme',
-              'Profile' => 
-              array(
-                'id' => '1',
-                'name' => 'Jonathan H. Wage',
+              'Profile'  => array(
+                'id'      => '1',
+                'name'    => 'Jonathan H. Wage',
                 'user_id' => '1',
               ),
             ));

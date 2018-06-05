@@ -65,11 +65,11 @@ class Doctrine_Collection_OnDemand implements Iterator
      */
     public function __construct($stmt, $hydrator, $tableAliasMap)
     {
-        $this->_stmt = $stmt;
-        $this->_hydrator = $hydrator;
+        $this->_stmt          = $stmt;
+        $this->_hydrator      = $hydrator;
         $this->_tableAliasMap = $tableAliasMap;
-        $this->_current = null;
-        $this->index = 0;
+        $this->_current       = null;
+        $this->index          = 0;
 
         $this->_hydrateCurrent();
     }
@@ -82,9 +82,9 @@ class Doctrine_Collection_OnDemand implements Iterator
         $record = $this->_hydrator->hydrateResultSet($this->_stmt);
         if ($record instanceof Doctrine_Collection) {
             $this->_current = $record->getFirst();
-        } else if (is_array($record) && count($record) == 0) {
+        } elseif (is_array($record) && count($record) == 0) {
             $this->_current = null;
-        } else if (is_array($record) && isset($record[0])) {
+        } elseif (is_array($record) && isset($record[0])) {
             $this->_current = $record[0];
         } else {
             $this->_current = $record;
@@ -134,7 +134,7 @@ class Doctrine_Collection_OnDemand implements Iterator
      */
     public function valid()
     {
-        if ( ! is_null($this->_current) && $this->_current !== false) {
+        if (! is_null($this->_current) && $this->_current !== false) {
             return true;
         }
         return false;

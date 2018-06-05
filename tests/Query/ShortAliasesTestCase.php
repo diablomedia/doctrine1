@@ -1,5 +1,6 @@
 <?php
-class Doctrine_Query_ShortAliases_TestCase extends Doctrine_UnitTestCase {
+class Doctrine_Query_ShortAliases_TestCase extends Doctrine_UnitTestCase
+{
     /**
     public function testShortAliasesWithSingleComponent() {
         $q = new Doctrine_Query();
@@ -9,7 +10,8 @@ class Doctrine_Query_ShortAliases_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name FROM entity e WHERE (e.type = 0)');
     }
     */
-    public function testShortAliasesWithOneToManyLeftJoin() {
+    public function testShortAliasesWithOneToManyLeftJoin()
+    {
         $q = new Doctrine_Query();
         
         $q->select('u.name, p.id')->from('User u LEFT JOIN u.Phonenumber p');
@@ -19,7 +21,6 @@ class Doctrine_Query_ShortAliases_TestCase extends Doctrine_UnitTestCase {
         $users = $q->execute();
         
         $this->assertEqual($users->count(), 8);
-
     }
 
     public function testQuoteEncapedDots()

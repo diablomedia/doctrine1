@@ -35,8 +35,8 @@ class UnitTestCase
         if ($value == $value2) {
             $this->pass();
         } else {
-            $seperator = "<br>";
-            if (PHP_SAPI === "cli") {
+            $seperator = '<br>';
+            if (PHP_SAPI === 'cli') {
                 $seperator = "\n";
             }
 
@@ -82,7 +82,7 @@ class UnitTestCase
 
     public function assertFalse($expr)
     {
-        if ( ! $expr) {
+        if (! $expr) {
             $this->pass();
         } else {
             $this->_fail();
@@ -107,21 +107,21 @@ class UnitTestCase
         }
     }
 
-    public function pass() 
+    public function pass()
     {
         $class = get_class($this);
-        if ( ! isset(self::$_passesAndFails['fails'][$class])) {
+        if (! isset(self::$_passesAndFails['fails'][$class])) {
             self::$_passesAndFails['passes'][$class] = $class;
         }
         $this->_passed++;
     }
 
-    public function fail($message = "")
+    public function fail($message = '')
     {
-        $this->_fail($message);    
+        $this->_fail($message);
     }
 
-    public function _fail($message = "")
+    public function _fail($message = '')
     {
         $trace = debug_backtrace();
         array_shift($trace);
@@ -131,12 +131,12 @@ class UnitTestCase
             if (substr($stack['function'], 0, 4) === 'test') {
                 $class = new ReflectionClass($stack['class']);
 
-                if ( ! isset($line)) {
+                if (! isset($line)) {
                     $line = $stack['line'];
                 }
 
-                $errorMessage = $class->getName() . ' : method ' . $stack['function'] . ' failed on line ' . $line;
-                $this->_messages[] =  $errorMessage . " " . $message;
+                $errorMessage      = $class->getName() . ' : method ' . $stack['function'] . ' failed on line ' . $line;
+                $this->_messages[] = $errorMessage . ' ' . $message;
                 break;
             }
             $line = $stack['line'];
@@ -149,7 +149,7 @@ class UnitTestCase
         self::$_passesAndFails['fails'][$class] = $class;
     }
 
-    public function run(DoctrineTest_Reporter $reporter = null, $filter = null) 
+    public function run(DoctrineTest_Reporter $reporter = null, $filter = null)
     {
         foreach (get_class_methods($this) as $method) {
             if (substr($method, 0, 4) === 'test') {
@@ -162,7 +162,7 @@ class UnitTestCase
         }
     }
 
-    public function getMessages() 
+    public function getMessages()
     {
         return $this->_messages;
     }
@@ -180,7 +180,7 @@ class UnitTestCase
     public function getPassesAndFailsCachePath()
     {
         $dir = dirname(__FILE__) . '/doctrine_tests';
-        if ( ! is_dir($dir)) {
+        if (! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
 
@@ -217,14 +217,15 @@ class UnitTestCase
     public function getNewFails()
     {
         $newFails = array();
-        $fails = self::$_passesAndFails['fails'];
+        $fails    = self::$_passesAndFails['fails'];
         foreach ($fails as $fail) {
             // If it passed before then it is a new fail
             if (isset(self::$_lastRunsPassesAndFails['passes'][$fail])) {
                 $newFails[$fail] = $fail;
             }
         }
-        return $newFails;;
+        return $newFails;
+        ;
     }
 
     public function getFixedFails()
@@ -237,7 +238,8 @@ class UnitTestCase
                 $fixed[$fail] = $fail;
             }
         }
-        return $fixed;;
+        return $fixed;
+        ;
     }
 
     public function getNumNewFails()

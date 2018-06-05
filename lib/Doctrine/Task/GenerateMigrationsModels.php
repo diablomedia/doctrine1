@@ -35,18 +35,18 @@ class Doctrine_Task_GenerateMigrationsModels extends Doctrine_Task
     /**
      * @var string
      */
-    public $description          =   'Generate migration classes for an existing set of models';
+    public $description = 'Generate migration classes for an existing set of models';
 
     /**
      * @var array
      */
-    public $requiredArguments    =   array('migrations_path' => 'Specify the path to your migration classes folder.',
-                                           'models_path'     => 'Specify the path to your doctrine models folder.');
+    public $requiredArguments = array('migrations_path'  => 'Specify the path to your migration classes folder.',
+                                           'models_path' => 'Specify the path to your doctrine models folder.');
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array();
+    public $optionalArguments = array();
 
     public function execute()
     {

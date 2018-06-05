@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC23_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC23_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -137,9 +137,11 @@ class Ticket_DC23_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC23_Contact as Contact', array(
-                'local' => 'contact_id',
-                'foreign' => 'id',
+        $this->hasOne(
+            'Ticket_DC23_Contact as Contact',
+            array(
+                'local'    => 'contact_id',
+                'foreign'  => 'id',
                 'onDelete' => 'CASCADE'
             )
         );
@@ -156,15 +158,19 @@ class Ticket_DC23_Contact extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC23_Address as Address', array(
-                'local' => 'address_id',
-                'foreign' => 'id',
+        $this->hasOne(
+            'Ticket_DC23_Address as Address',
+            array(
+                'local'    => 'address_id',
+                'foreign'  => 'id',
                 'onDelete' => 'CASCADE'
             )
         );
 
-        $this->hasMany('Ticket_DC23_Phonenumber as Phonenumbers', array(
-                'local' => 'id',
+        $this->hasMany(
+            'Ticket_DC23_Phonenumber as Phonenumbers',
+            array(
+                'local'   => 'id',
                 'foreign' => 'contact_id'
             )
         );
@@ -189,9 +195,11 @@ class Ticket_DC23_Phonenumber extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Ticket_DC23_Contact as Contact', array(
-                'local' => 'contact_id',
-                'foreign' => 'id',
+        $this->hasOne(
+            'Ticket_DC23_Contact as Contact',
+            array(
+                'local'    => 'contact_id',
+                'foreign'  => 'id',
                 'onDelete' => 'CASCADE'
             )
         );

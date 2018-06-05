@@ -32,19 +32,22 @@
  */
 class Doctrine_Ticket_973_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareTables() {
-        $this->tables = array();
+    public function prepareTables()
+    {
+        $this->tables   = array();
         $this->tables[] = 'T973_Day';
 
         parent::prepareTables();
     }
 
-    public function prepareData() {}
+    public function prepareData()
+    {
+    }
 
 
     public function testTicket()
     {
-       $query = Doctrine_Query::create()
+        $query = Doctrine_Query::create()
                 ->from('T973_Day d')
                 ->where('d.id IN(46)');
         $this->assertEqual(' FROM T973_Day d WHERE d.id IN(46)', $query->getDql());

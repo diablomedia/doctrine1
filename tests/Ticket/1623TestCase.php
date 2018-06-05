@@ -28,13 +28,13 @@
  * @category    Object Relational Mapping
  * @link        www.doctrine-project.org
  * @since       1.1
- * @version     $Revision$ 
+ * @version     $Revision$
  */
-class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'Ticket_1623_User';
         $this->tables[] = 'Ticket_1623_UserReference';
         parent::prepareTables();
@@ -43,14 +43,14 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
         $firstUser = null;
-        $oldUser = null;
+        $oldUser   = null;
         
         for ($i = 1; $i <= 20; $i++) {
-            $userI = $user = new Ticket_1623_User();
+            $userI       = $user       = new Ticket_1623_User();
             $userI->name = "test$i";
             for ($j = 1; $j <= 20; $j++) {
-                $userJ = new Ticket_1623_User();
-                $userJ->name = "test$i-$j";
+                $userJ             = new Ticket_1623_User();
+                $userJ->name       = "test$i-$j";
                 $userI->children[] = $userJ;
                 $userJ->save();
             }
@@ -58,8 +58,8 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
             $floriankChilds[] = $userI;
         }
 
-        $user = new Ticket_1623_User();
-        $user->name = "floriank";
+        $user       = new Ticket_1623_User();
+        $user->name = 'floriank';
         foreach ($floriankChilds as $child) {
             $user->children[] = $child;
         }
@@ -70,16 +70,16 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
         
-        $newChild = new Ticket_1623_User();
+        $newChild       = new Ticket_1623_User();
         $newChild->name = 'myChild';
         $newChild->save();
         
-        $user = Doctrine_Core::getTable('Ticket_1623_User')->findOneByName('floriank');
+        $user             = Doctrine_Core::getTable('Ticket_1623_User')->findOneByName('floriank');
         $user->children[] = $newChild;
         
         $start = microtime(true);
         $user->save();
-        $end = microtime(true);
+        $end  = microtime(true);
         $diff = $end - $start;
         //assuming save() should not take longer than one second
         $this->assertTrue($diff < 1);
@@ -90,17 +90,17 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_CASCADE_SAVES, false);
 
-        $newChild = new Ticket_1623_User();
+        $newChild       = new Ticket_1623_User();
         $newChild->name = 'myGrandGrandChild';
         
-        $user = Doctrine_Core::getTable('Ticket_1623_User')->findOneByName('floriank');
+        $user                                       = Doctrine_Core::getTable('Ticket_1623_User')->findOneByName('floriank');
         $user->children[0]->children[0]->children[] = $newChild;
         
         $user->save();
         
         $user = Doctrine_Core::getTable('Ticket_1623_User')->findByName('myGrandGrandChild');
-        //as of Doctrine's default behaviour $newChild should have 
-        //been implicitly saved with $user->save()  
+        //as of Doctrine's default behaviour $newChild should have
+        //been implicitly saved with $user->save()
         $this->assertEqual($user->count(), 0);
 
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_NONE);
@@ -118,26 +118,32 @@ class Ticket_1623_User extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasMany('Ticket_1623_User as parents', 
-                                                array('local'    => 'parentId',
-                                                'refClass' => 'Ticket_1623_UserReference', 
-                                                'foreign'  => 'childId',
+        $this->hasMany(
+            'Ticket_1623_User as parents',
+                                                array('local'           => 'parentId',
+                                                'refClass'              => 'Ticket_1623_UserReference',
+                                                'foreign'               => 'childId',
                                                 'refClassRelationAlias' => 'childrenLinks'
-                                                ));
+                                                )
+        );
                                                 
-        $this->hasMany('Ticket_1623_User as children', 
-                                                 array('local'    => 'childId',
-                                                 'foreign'  => 'parentId',
-                                                 'refClass' => 'Ticket_1623_UserReference',
+        $this->hasMany(
+                                                
+            'Ticket_1623_User as children',
+                                                 array('local'           => 'childId',
+                                                 'foreign'               => 'parentId',
+                                                 'refClass'              => 'Ticket_1623_UserReference',
                                                  'refClassRelationAlias' => 'parentLinks'
-                                                 ));
+                                                 )
+                                                
+        );
     }
     
     protected function validate()
     {
-        // lets get some silly load in the validation: 
+        // lets get some silly load in the validation:
         // we do not want any child or parent to have the name 'caesar'
-        $unwantedName = false; 
+        $unwantedName = false;
         foreach ($this->children as $child) {
             if ($child->name == 'caesar') {
                 $unwantedName = true;

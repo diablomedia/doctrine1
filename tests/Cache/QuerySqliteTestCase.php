@@ -8,25 +8,26 @@ class Doctrine_Cache_Query_SqliteTestCase extends Doctrine_UnitTestCase
 
         $dir = $this->connection->getAttribute(Doctrine_Core::ATTR_CACHE_DIR);
 
-        if (file_exists($dir.DIRECTORY_SEPARATOR."stats.cache"))
-            unlink($dir.DIRECTORY_SEPARATOR."stats.cache");
+        if (file_exists($dir . DIRECTORY_SEPARATOR . 'stats.cache')) {
+            unlink($dir . DIRECTORY_SEPARATOR . 'stats.cache');
+        }
 
         $this->cache = new Doctrine_Cache_Query_Sqlite($this->connection);
         $this->cache->deleteAll();
     }
 
-    public function testStore() {
-
-        $this->cache->store("SELECT * FROM user", array(array('name' => 'Jack Daniels')), 60);
+    public function testStore()
+    {
+        $this->cache->store('SELECT * FROM user', array(array('name' => 'Jack Daniels')), 60);
         $this->assertEqual($this->cache->count(), 1);
 
-        $this->cache->store("SELECT * FROM group", array(array('name' => 'Drinkers club')), 60);
+        $this->cache->store('SELECT * FROM group', array(array('name' => 'Drinkers club')), 60);
         
-        $md5 = md5("SELECT * FROM user");
+        $md5    = md5('SELECT * FROM user');
         $result = $this->cache->fetch($md5);
         $this->assertEqual($result, array(array('name' => 'Jack Daniels')));
 
-        $md5 = md5("SELECT * FROM group");
+        $md5    = md5('SELECT * FROM group');
         $result = $this->cache->fetch($md5);
         $this->assertEqual($result, array(array('name' => 'Drinkers club')));
 

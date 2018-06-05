@@ -30,9 +30,8 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_View_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_View_TestCase extends Doctrine_UnitTestCase
 {
-
     public function testCreateView()
     {
         $query = new Doctrine_Query($this->connection);
@@ -50,7 +49,7 @@ class Doctrine_View_TestCase extends Doctrine_UnitTestCase
 
         try {
             $view->create();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $success = false;
         }
         $this->assertTrue($success);
@@ -66,13 +65,13 @@ class Doctrine_View_TestCase extends Doctrine_UnitTestCase
         $success = true;
         try {
             $view->drop();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $success = false;
         }
         $this->assertTrue($success);
     }
 
-    public function testConstructor() 
+    public function testConstructor()
     {
     }
 }

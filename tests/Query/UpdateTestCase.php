@@ -31,16 +31,17 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_Update_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_Update_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
-    public function prepareTables() 
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
     {
         $this->tables = array('Entity', 'User', 'EnumTest');
         parent::prepareTables();
     }
-    public function testUpdateAllWithColumnAggregationInheritance() 
+    public function testUpdateAllWithColumnAggregationInheritance()
     {
         $q = new Doctrine_Query();
 
@@ -55,7 +56,7 @@ class Doctrine_Query_Update_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($q->getSqlQuery(), "UPDATE entity SET name = 'someone' WHERE (type = 0)");
     }
 
-    public function testUpdateWorksWithMultipleColumns() 
+    public function testUpdateWorksWithMultipleColumns()
     {
         $q = new Doctrine_Query();
 
@@ -70,7 +71,7 @@ class Doctrine_Query_Update_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($q->getSqlQuery(), "UPDATE entity SET name = 'someone', email_id = 5 WHERE (type = 0)");
     }
     
-    public function testUpdateSupportsConditions() 
+    public function testUpdateSupportsConditions()
     {
         $q = new Doctrine_Query();
 
@@ -84,7 +85,7 @@ class Doctrine_Query_Update_TestCase extends Doctrine_UnitTestCase
 
         $q->update('User u')->set('u.id', 'u.id + 1');
 
-        $this->assertEqual($q->getSqlQuery(), "UPDATE entity SET id = id + 1 WHERE (type = 0)");
+        $this->assertEqual($q->getSqlQuery(), 'UPDATE entity SET id = id + 1 WHERE (type = 0)');
     }
     public function testUpdateSupportsComplexExpressions()
     {
@@ -95,10 +96,10 @@ class Doctrine_Query_Update_TestCase extends Doctrine_UnitTestCase
     }
     public function testUpdateSupportsNullSetting()
     {
-        $user = new User();
-        $user->name = 'jon';
+        $user            = new User();
+        $user->name      = 'jon';
         $user->loginname = 'jwage';
-        $user->password = 'changeme';
+        $user->password  = 'changeme';
         $user->save();
 
         $id = $user->id;
@@ -122,9 +123,9 @@ class Doctrine_Query_Update_TestCase extends Doctrine_UnitTestCase
     }
     public function testEnumAndAnotherColumnUpdate()
     {
-        $enumTest = new EnumTest();
+        $enumTest         = new EnumTest();
         $enumTest->status = 'open';
-        $enumTest->text = 'test';
+        $enumTest->text   = 'test';
         $enumTest->save();
 
         $id = $enumTest->id;

@@ -32,8 +32,8 @@
  */
 class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareTables() 
-    { 
+    public function prepareTables()
+    {
         // we don't need the standard tables here
         $this->tables = array('TreeLeaf');
         parent::prepareTables();
@@ -41,10 +41,9 @@ class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
     
     public function prepareData()
     {
-
     }
 
-    public function testSelfReferentialRelationship() 
+    public function testSelfReferentialRelationship()
     {
         $component = new TreeLeaf();
 
@@ -52,12 +51,13 @@ class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
             $rel = $component->getTable()->getRelation('Parent');
             $rel = $component->getTable()->getRelation('Children');
             $this->pass();
-        } catch(Doctrine_Exception $e) {
+        } catch (Doctrine_Exception $e) {
             $this->fail();
         }
     }
 
-    public function testLocalAndForeignKeysAreSetCorrectly() {
+    public function testLocalAndForeignKeysAreSetCorrectly()
+    {
         $component = new TreeLeaf();
 
         $rel = $component->getTable()->getRelation('Parent');
@@ -69,7 +69,7 @@ class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($rel->getForeign(), 'parent_id');
     }
 
-    public function testTreeLeafRelationships() 
+    public function testTreeLeafRelationships()
     {
         /* structure:
          *
@@ -83,23 +83,23 @@ class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
          * leaf with no parents or children.
          */
 
-        $o1 = new TreeLeaf();
+        $o1       = new TreeLeaf();
         $o1->name = 'o1';
         $o1->save();
 
-        $o2 = new TreeLeaf();
+        $o2         = new TreeLeaf();
         $o2->name   = 'o2';
         $o2->Parent = $o1;
         $o2->save();
 
-        $o3 = new TreeLeaf();
+        $o3         = new TreeLeaf();
         $o3->name   = 'o3';
         $o3->Parent = $o1;
         $o3->save();
 
         //$o1->refresh();
 
-        $o4 = new TreeLeaf();
+        $o4       = new TreeLeaf();
         $o4->name = 'o4';
         $o4->save();
 
@@ -122,7 +122,5 @@ class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
           ->groupby('l.id, c.id');
 
         $coll = $q->execute();
-
     }
 }
-

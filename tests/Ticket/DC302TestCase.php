@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -43,19 +43,19 @@ class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase
     
     public function prepareData()
     {
-        $role1 = new Ticket_DC302_Role();
+        $role1       = new Ticket_DC302_Role();
         $role1->name = 'admin'; // id: 1
         $role1->save();
         
-        $role2 = new Ticket_DC302_Role();
+        $role2       = new Ticket_DC302_Role();
         $role2->name = 'publisher'; // id: 2
         $role2->save();
         
-        $role3 = new Ticket_DC302_Role();
+        $role3       = new Ticket_DC302_Role();
         $role3->name = 'reviewer'; // id: 3
         $role3->save();
         
-        $role4 = new Ticket_DC302_Role();
+        $role4       = new Ticket_DC302_Role();
         $role4->name = 'mod'; // id: 4
         $role4->save();
         
@@ -86,7 +86,7 @@ class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase
             ->execute();
             
             
-        $user = new Ticket_DC302_User();
+        $user           = new Ticket_DC302_User();
         $user->username = 'test';
         $user->password = 'test';
         $user->fromArray(array('Roles' => array(4, 2)));
@@ -111,13 +111,13 @@ class Doctrine_Ticket_DC302_TestCase extends Doctrine_UnitTestCase
         $profiler = new Doctrine_Connection_Profiler();
         $this->conn->addListener($profiler);
 
-		$role = Doctrine::getTable('Ticket_DC302_Role')->find(3);
-		$parents = $role->Parents->toArray();
+        $role    = Doctrine::getTable('Ticket_DC302_Role')->find(3);
+        $parents = $role->Parents->toArray();
         
         $this->assertEqual($parents[1]['Ticket_DC302_RoleReference'][0]['position'], 1);
 
         $events = $profiler->getAll();
-        $event = array_pop($events);
+        $event  = array_pop($events);
         $this->assertEqual($event->getQuery(), 'SELECT ticket__d_c302__role.id AS ticket__d_c302__role__id, ticket__d_c302__role.name AS ticket__d_c302__role__name, ticket__d_c302__role_reference.id_role_parent AS ticket__d_c302__role_reference__id_role_parent, ticket__d_c302__role_reference.id_role_child AS ticket__d_c302__role_reference__id_role_child, ticket__d_c302__role_reference.position AS ticket__d_c302__role_reference__position FROM ticket__d_c302__role INNER JOIN ticket__d_c302__role_reference ON ticket__d_c302__role.id = ticket__d_c302__role_reference.id_role_parent WHERE ticket__d_c302__role.id IN (SELECT id_role_parent FROM ticket__d_c302__role_reference WHERE id_role_child = ?) ORDER BY position');
     }
 }

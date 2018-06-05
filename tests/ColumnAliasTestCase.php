@@ -30,24 +30,24 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
+    public function prepareData()
     {
-        $book1 = new Book();
+        $book1       = new Book();
         $book1->name = 'Das Boot';
         $book1->save();
         
-        $record1 = new ColumnAliasTest();
-        $record1->alias1 = 'first';
-        $record1->alias2 = 123;
+        $record1               = new ColumnAliasTest();
+        $record1->alias1       = 'first';
+        $record1->alias2       = 123;
         $record1->anotherField = 'camelCase';
-        $record1->bookId = $book1->id;
+        $record1->bookId       = $book1->id;
         $record1->save();
         
-        $record2 = new ColumnAliasTest();
-        $record2->alias1 = 'one';
-        $record2->alias2 = 456;
+        $record2               = new ColumnAliasTest();
+        $record2->alias1       = 'one';
+        $record2->alias2       = 456;
         $record2->anotherField = 'KoQ';
         $record2->save();
         
@@ -55,7 +55,7 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
     }
     
     public function prepareTables()
-    { 
+    {
         $this->tables = array('ColumnAliasTest', 'Book');
         
         parent::prepareTables();
@@ -152,4 +152,3 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($coll[0]->alias2, 456);
     }
 }
-

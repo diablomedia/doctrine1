@@ -15,19 +15,19 @@ class Doctrine_Ticket_1830_TestCase extends Doctrine_UnitTestCase
 
     public function run(DoctrineTest_Reporter $reporter = null, $filter = null)
     {
-      parent::run($reporter, $filter);
-      $this->manager->closeConnection($this->connection);
+        parent::run($reporter, $filter);
+        $this->manager->closeConnection($this->connection);
     }
 
-    public function prepareData() 
+    public function prepareData()
     {
     }
     
-    public function prepareTables() 
+    public function prepareTables()
     {
         try {
             $this->conn->exec('DROP TABLE ticket_1830__article_translation');
-        } catch(Doctrine_Connection_Exception $e) {
+        } catch (Doctrine_Connection_Exception $e) {
         }
         $this->tables = array('Ticket_1830_Article');
         parent::prepareTables();
@@ -37,24 +37,23 @@ class Doctrine_Ticket_1830_TestCase extends Doctrine_UnitTestCase
     {
         $this->connection->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
 
-        $article = new Ticket_1830_Article();
+        $article                           = new Ticket_1830_Article();
         $article->Translation['en']->title = 'Node1';
         $article->save($this->connection);
-        $article = new Ticket_1830_Article();
+        $article                           = new Ticket_1830_Article();
         $article->Translation['en']->title = 'Node2';
         $article->save($this->connection);
-        $article = new Ticket_1830_Article();
+        $article                           = new Ticket_1830_Article();
         $article->Translation['en']->title = 'Node3';
         $article->save($this->connection);
-        $article = new Ticket_1830_Article();
+        $article                           = new Ticket_1830_Article();
         $article->Translation['en']->title = 'Node4';
         $article->save($this->connection);
-        $article = new Ticket_1830_Article();
+        $article                           = new Ticket_1830_Article();
         $article->Translation['en']->title = 'Node5';
         $article->save($this->connection);
 
-        try
-        {
+        try {
             $q = Doctrine_Core::getTable('Ticket_1830_Article')
                 ->createQuery('a')
                 ->select('a.*, t.*')
@@ -65,10 +64,8 @@ class Doctrine_Ticket_1830_TestCase extends Doctrine_UnitTestCase
             $results = $q->execute();
             $this->assertEqual(count($results), 1);
             $this->assertEqual($results[0]->id, 3);
-        }
-        catch (Exception $e)
-        {
-          $this->fail($e->getMessage());
+        } catch (Exception $e) {
+            $this->fail($e->getMessage());
         }
 
         $this->connection->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, false);

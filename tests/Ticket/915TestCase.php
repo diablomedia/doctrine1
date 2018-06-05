@@ -32,11 +32,13 @@
  */
 class Doctrine_Ticket_915_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() { }
+    public function prepareData()
+    {
+    }
     public function prepareTables()
     {
         $this->tables[] = 'Account';
-        parent::prepareTables();    
+        parent::prepareTables();
     }
 
     public function testBug()
@@ -60,7 +62,7 @@ END;
 
         file_put_contents('test.yml', $yml);
         $import = new Doctrine_Data_Import('test.yml');
-        $import->setFormat("yml");
+        $import->setFormat('yml');
 
         // try to import garbled records (with incorrect field names,
         // e.g. "Amount" instead of "amount") and expect that doctrine

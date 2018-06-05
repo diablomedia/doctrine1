@@ -31,4 +31,5 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Util extends Doctrine_Connection_Module
-{ }
+{
+}

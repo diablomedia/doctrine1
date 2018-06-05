@@ -21,7 +21,7 @@
 
 /**
  * Doctrine_Migration_Base_TestCase
- * 
+ *
  * @package     Doctrine
  * @author      Dan Bettles <danbettles@yahoo.co.uk>
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
@@ -30,9 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Migration_Base_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Migration_Base_TestCase extends Doctrine_UnitTestCase
 {
-    public function setUp() {}
+    public function setUp()
+    {
+    }
 
     public function testIsAbstract()
     {
@@ -68,13 +70,13 @@ class Doctrine_Migration_Base_TestCase extends Doctrine_UnitTestCase
     {
         $fixtures = array(
             array(
-                'default' => array('type' => 'INNODB', 'charset' => 'utf8', 'collate' => 'utf8_unicode_ci'),
-                'user' => array(),
+                'default'  => array('type' => 'INNODB', 'charset' => 'utf8', 'collate' => 'utf8_unicode_ci'),
+                'user'     => array(),
                 'expected' => array('type' => 'INNODB', 'charset' => 'utf8', 'collate' => 'utf8_unicode_ci'),
             ),
             array(
-                'default' => array('type' => 'INNODB', 'charset' => 'utf8', 'collate' => 'utf8_unicode_ci'),
-                'user' => array('charset' => 'latin1', 'collate' => 'latin1_general_ci'),
+                'default'  => array('type' => 'INNODB', 'charset' => 'utf8', 'collate' => 'utf8_unicode_ci'),
+                'user'     => array('charset' => 'latin1', 'collate' => 'latin1_general_ci'),
                 'expected' => array('type' => 'INNODB', 'charset' => 'latin1', 'collate' => 'latin1_general_ci'),
             ),
         );

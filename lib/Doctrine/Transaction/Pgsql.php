@@ -96,7 +96,7 @@ class Doctrine_Transaction_Pgsql extends Doctrine_Transaction
             case 'SERIALIZABLE':
                 break;
             default:
-                throw new Doctrine_Transaction_Exception('Isolation level '.$isolation.' is not supported.');
+                throw new Doctrine_Transaction_Exception('Isolation level ' . $isolation . ' is not supported.');
         }
 
         $query = 'SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL ' . $isolation;

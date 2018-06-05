@@ -29,7 +29,6 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_Parser 
+class Doctrine_Query_Parser
 {
-        
 }

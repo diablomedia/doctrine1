@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1417_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1417_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
-        $user = new User();
+        $user       = new User();
         $user->name = 'jwagejon';
         $this->assertEqual($user->getModified(), array('name' => 'jwagejon'));
         $this->assertEqual($user->getModified(true), array('name' => null));

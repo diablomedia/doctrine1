@@ -28,38 +28,37 @@
  * @since       1.2
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC399_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC399_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-      parent::prepareTables();
+        parent::prepareTables();
     }
-    public function prepareData() 
+    public function prepareData()
     {
-      $user = new User();
-      $user->name = "sacho";
-      $user->Phonenumber[0]->phonenumber = "1234567";
-      $user->Phonenumber[1]->phonenumber = "123123123";
-      $user->Phonenumber[2]->phonenumber = "345345345";
+        $user                              = new User();
+        $user->name                        = 'sacho';
+        $user->Phonenumber[0]->phonenumber = '1234567';
+        $user->Phonenumber[1]->phonenumber = '123123123';
+        $user->Phonenumber[2]->phonenumber = '345345345';
 
-      $user->save();
+        $user->save();
     }
 
     public function testUnlinkCausesDeleteAfterSave()
     {
-      $user = Doctrine_Core::getTable("User")->findOneByName("sacho");
-      $user->refreshRelated("Phonenumber");
+        $user = Doctrine_Core::getTable('User')->findOneByName('sacho');
+        $user->refreshRelated('Phonenumber');
       
-      //Unlinking(even with now=true) removes the connection between User and Phonenumber, but does not delete the phone number
-      //Only updates phonenumber's user_id to null
-      //However, if we unlink and then save the $user, the phonenumber is deleted from the database
+        //Unlinking(even with now=true) removes the connection between User and Phonenumber, but does not delete the phone number
+        //Only updates phonenumber's user_id to null
+        //However, if we unlink and then save the $user, the phonenumber is deleted from the database
 
-      $phone_id = $user->Phonenumber[0]->id;
-      $user->unlink("Phonenumber", $user->Phonenumber[0]->id);
-      $user->save();
+        $phone_id = $user->Phonenumber[0]->id;
+        $user->unlink('Phonenumber', $user->Phonenumber[0]->id);
+        $user->save();
 
-      $phone = Doctrine::getTable("Phonenumber")->find($phone_id);
-      $this->assertEqual($phone_id, $phone->id);
+        $phone = Doctrine::getTable('Phonenumber')->find($phone_id);
+        $this->assertEqual($phone_id, $phone->id);
     }
-
 }

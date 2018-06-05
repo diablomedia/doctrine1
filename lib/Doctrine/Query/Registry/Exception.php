@@ -31,4 +31,5 @@
  * @version     $Revision$
  */
 class Doctrine_Query_Registry_Exception extends Doctrine_Query_Exception
-{ }
+{
+}

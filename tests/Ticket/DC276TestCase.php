@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC276_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC276_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -56,7 +56,7 @@ class Ticket_DC276_Post extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('content', 'string', 1000, array(
-             'type' => 'string',
+             'type'   => 'string',
              'length' => '1000',
              ));
         $this->hasColumn('max_comments', 'integer', null, array(
@@ -67,7 +67,7 @@ class Ticket_DC276_Post extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_DC276_Comment as Comments', array(
-             'local' => 'id',
+             'local'   => 'id',
              'foreign' => 'post_id'));
     }
 }
@@ -80,7 +80,7 @@ class Ticket_DC276_Comment extends Doctrine_Record
              'type' => 'integer',
              ));
         $this->hasColumn('content', 'string', 100, array(
-             'type' => 'string',
+             'type'   => 'string',
              'length' => '100',
              ));
     }
@@ -88,7 +88,7 @@ class Ticket_DC276_Comment extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('Ticket_DC276_Post', array(
-             'local' => 'post_id',
+             'local'   => 'post_id',
              'foreign' => 'id'));
     }
 }

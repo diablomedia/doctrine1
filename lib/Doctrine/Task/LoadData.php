@@ -35,18 +35,18 @@ class Doctrine_Task_LoadData extends Doctrine_Task
     /**
      * @var string
      */
-    public $description          =   'Load data from a yaml data fixture file.';
+    public $description = 'Load data from a yaml data fixture file.';
 
     /**
      * @var array
      */
-    public $requiredArguments    =   array('data_fixtures_path' =>  'Specify the complete path to load the yaml data fixtures files from.',
-                                           'models_path'        =>  'Specify path to your Doctrine_Record definitions.');
+    public $requiredArguments = array('data_fixtures_path' => 'Specify the complete path to load the yaml data fixtures files from.',
+                                           'models_path'   => 'Specify path to your Doctrine_Record definitions.');
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array('append'             =>  'Whether or not to append the data');
+    public $optionalArguments = array('append' => 'Whether or not to append the data');
 
     /**
      * @return void

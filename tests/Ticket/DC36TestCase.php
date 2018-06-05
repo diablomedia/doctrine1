@@ -30,6 +30,6 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC36_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC36_TestCase extends Doctrine_UnitTestCase
 {
 }

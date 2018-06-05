@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1077_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1077_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -43,7 +43,7 @@ class Doctrine_Ticket_1077_TestCase extends Doctrine_UnitTestCase
     {
         $orig = Doctrine_Manager::getInstance()->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE);
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE, true);
-        $user = new Ticket_1077_User();
+        $user           = new Ticket_1077_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->save();
@@ -58,7 +58,7 @@ class Doctrine_Ticket_1077_TestCase extends Doctrine_UnitTestCase
             $this->assertEqual($e->getMessage(), 'Testing that getPhonenumbers() is invoked');
         }
 
-        $numbers = new Doctrine_Collection('Phonenumber');
+        $numbers            = new Doctrine_Collection('Phonenumber');
         $user->Phonenumbers = $numbers;
         
         $this->assertIdentical($user->phonenumbersTest, $numbers);
@@ -68,7 +68,7 @@ class Doctrine_Ticket_1077_TestCase extends Doctrine_UnitTestCase
 
     public function testDefiningCustomAccessorsAndMutators()
     {
-        $user = new Ticket_1077_User();
+        $user           = new Ticket_1077_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->hasAccessor('username', 'usernameAccessor');

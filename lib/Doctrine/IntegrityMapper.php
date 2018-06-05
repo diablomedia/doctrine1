@@ -64,8 +64,8 @@ class Doctrine_IntegrityMapper
         foreach ($record->getTable()->getRelations() as $relation) {
             $componentName = $relation->getTable()->getComponentName();
 
-            foreach($record->get($relation->getAlias()) as $coll) {
-                if ( ! ($coll instanceof Doctrine_Collection)) {
+            foreach ($record->get($relation->getAlias()) as $coll) {
+                if (! ($coll instanceof Doctrine_Collection)) {
                     $coll = array($coll);
                 }
                 foreach ($coll as $record) {
@@ -78,7 +78,6 @@ class Doctrine_IntegrityMapper
                             $this->conn->transaction->addDelete($record);
                         }
                     }
-
                 }
             }
         }
@@ -96,25 +95,25 @@ class Doctrine_IntegrityMapper
 
         $aliases = array();
         $indexes = array();
-        $fields = array();
-        $cond = array();
-        $params = '';
+        $fields  = array();
+        $cond    = array();
+        $params  = '';
 
-        $root = $record->getTable()->getComponentName();
-        $rootAlias = strtolower(substr($root, 0, 1));
+        $root                = $record->getTable()->getComponentName();
+        $rootAlias           = strtolower(substr($root, 0, 1));
         $aliases[$rootAlias] = $root;
 
         foreach ((array) $record->getTable()->getIdentifier() as $id) {
-            $field = $rootAlias . '.' . $id;
+            $field    = $rootAlias . '.' . $id;
             $cond[]   = $field . ' = ?';
             $fields[] = $field;
             $params   = $record->get($id);
         }
-        $fields = implode(', ', $fields);
+        $fields       = implode(', ', $fields);
         $components[] = $root;
         $this->buildIntegrityRelations($record->getTable(), $aliases, $fields, $indexes, $components);
 
-        $q->select($fields)->from($root. ' ' . $rootAlias);
+        $q->select($fields)->from($root . ' ' . $rootAlias);
 
         foreach ($aliases as $alias => $name) {
             $q->leftJoin($rootAlias . '.' . $name . ' ' . $alias);
@@ -148,7 +147,7 @@ class Doctrine_IntegrityMapper
 
             $alias = strtolower(substr($relation->getAlias(), 0, 1));
 
-            if ( ! isset($indexes[$alias])) {
+            if (! isset($indexes[$alias])) {
                 $indexes[$alias] = 1;
             }
 

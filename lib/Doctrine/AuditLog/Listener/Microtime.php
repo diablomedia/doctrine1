@@ -87,5 +87,4 @@ class Doctrine_AuditLog_Listener_Microtime extends Doctrine_AuditLog_Listener
         $version = str_replace('.', '', (string)$version);
         return substr($version, 0, $this->accuracy);
     }
-
 }

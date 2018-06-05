@@ -1,6 +1,6 @@
 <?php
 class LocationI18n extends Doctrine_Record
-{ 
+{
     public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 50, array());

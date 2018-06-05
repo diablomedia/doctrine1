@@ -50,7 +50,7 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
      */
     public function getElementCollection($component)
     {
-        $coll = Doctrine_Collection::create($component);
+        $coll                 = Doctrine_Collection::create($component);
         $this->_collections[] = $coll;
 
         return $coll;
@@ -64,11 +64,11 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
      */
     public function initRelated(&$record, $name, $keyColumn = null)
     {
-        if ( ! isset($this->_initializedRelations[$record->getOid()][$name])) {
+        if (! isset($this->_initializedRelations[$record->getOid()][$name])) {
             $relation = $record->getTable()->getRelation($name);
-            $coll = Doctrine_Collection::create($relation->getTable()->getComponentName(), $keyColumn);
+            $coll     = Doctrine_Collection::create($relation->getTable()->getComponentName(), $keyColumn);
             $coll->setReference($record, $relation);
-            $record[$name] = $coll;
+            $record[$name]                                         = $coll;
             $this->_initializedRelations[$record->getOid()][$name] = true;
         }
         return true;
@@ -157,7 +157,7 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
             $coll->takeSnapshot();
         }
         $this->_initializedRelations = null;
-        $this->_collections = null;
-        $this->_tables = null;
+        $this->_collections          = null;
+        $this->_tables               = null;
     }
 }

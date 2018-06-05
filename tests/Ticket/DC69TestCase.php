@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC69_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC69_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
@@ -39,7 +39,7 @@ class Doctrine_Ticket_DC69_TestCase extends Doctrine_UnitTestCase
                 ->createQuery('u')
                 ->limit(1)
                 ->fetchOne();
-            $user->link('Email', 4);        
+            $user->link('Email', 4);
             $user->save();
             $this->pass();
         } catch (Exception $e) {

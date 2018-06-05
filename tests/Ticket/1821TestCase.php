@@ -45,7 +45,6 @@ class Doctrine_Ticket_1821_TestCase extends Doctrine_UnitTestCase
     
     public function prepareData()
     {
-        
     }
     
     public function execTest($klass)
@@ -54,20 +53,19 @@ class Doctrine_Ticket_1821_TestCase extends Doctrine_UnitTestCase
         $validation = Doctrine_Manager::getInstance()->getAttribute(Doctrine_Core::ATTR_VALIDATE);
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
         
-        $record = new $klass();
-		$record->name = 'test';
-		try {
-		    $record->save();
-		}
-		catch(Exception $e) {
-		    $this->fail(
-		        'Failed to execute validation with class = "' . $klass 
-		        . '". Exception message is: ' . $e->getMessage()
-		    );
-		}
-		$this->pass();
-		
-		Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, $validation);
+        $record       = new $klass();
+        $record->name = 'test';
+        try {
+            $record->save();
+        } catch (Exception $e) {
+            $this->fail(
+                'Failed to execute validation with class = "' . $klass
+                . '". Exception message is: ' . $e->getMessage()
+            );
+        }
+        $this->pass();
+        
+        Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, $validation);
     }
     
     public function testShouldAllowNotUsingAliases()
@@ -91,58 +89,66 @@ class Doctrine_Ticket_1821_TestCase extends Doctrine_UnitTestCase
     }
 }
         
-class Doctrine_Ticket_1821_Record_Full_Aliased extends Doctrine_Record {
-    public function setTableDefinition() {
+class Doctrine_Ticket_1821_Record_Full_Aliased extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('user_id as id', 'integer', 4, array(
                 'autoincrement' => true,
-                'notnull' => true,
-                'primary' => true
+                'notnull'       => true,
+                'primary'       => true
                 ));
         $this->hasColumn('user_name as name', 'string', 255, array(
                 'notnull' => true,
-                'unique' => true
+                'unique'  => true
                 ));
     }
 }
 
-class Doctrine_Ticket_1821_Record_ID_Aliased extends Doctrine_Record {
-    public function setTableDefinition() {
+class Doctrine_Ticket_1821_Record_ID_Aliased extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('user_id as id', 'integer', 4, array(
                 'autoincrement' => true,
-                'notnull' => true,
-                'primary' => true
+                'notnull'       => true,
+                'primary'       => true
                 ));
         $this->hasColumn('name', 'string', 255, array(
                 'notnull' => true,
-                'unique' => true
+                'unique'  => true
                 ));
     }
 }
 
-class Doctrine_Ticket_1821_Record_Column_Aliased extends Doctrine_Record {
-    public function setTableDefinition() {
+class Doctrine_Ticket_1821_Record_Column_Aliased extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('id', 'integer', 4, array(
                 'autoincrement' => true,
-                'notnull' => true,
-                'primary' => true
+                'notnull'       => true,
+                'primary'       => true
                 ));
         $this->hasColumn('user_name as name', 'string', 255, array(
                 'notnull' => true,
-                'unique' => true
+                'unique'  => true
                 ));
     }
 }
 
-class Doctrine_Ticket_1821_Record extends Doctrine_Record {
-    public function setTableDefinition() {
+class Doctrine_Ticket_1821_Record extends Doctrine_Record
+{
+    public function setTableDefinition()
+    {
         $this->hasColumn('id', 'integer', 4, array(
                 'autoincrement' => true,
-                'notnull' => true,
-                'primary' => true
+                'notnull'       => true,
+                'primary'       => true
                 ));
         $this->hasColumn('name', 'string', 255, array(
                 'notnull' => true,
-                'unique' => true
+                'unique'  => true
                 ));
     }
 }

@@ -61,18 +61,18 @@ class Doctrine_Locking_Manager_Pessimistic
         $this->conn = $conn;
 
         if ($this->conn->getAttribute(Doctrine_Core::ATTR_EXPORT) & Doctrine_Core::EXPORT_TABLES) {
-            $columns = array();
-            $columns['object_type']        = array('type'    => 'string',
+            $columns                = array();
+            $columns['object_type'] = array('type'           => 'string',
                                                    'length'  => 50,
                                                    'notnull' => true,
                                                    'primary' => true);
 
-            $columns['object_key']         = array('type'    => 'string',
+            $columns['object_key'] = array('type'            => 'string',
                                                    'length'  => 250,
                                                    'notnull' => true,
                                                    'primary' => true);
 
-            $columns['user_ident']         = array('type'    => 'string',
+            $columns['user_ident'] = array('type'            => 'string',
                                                    'length'  => 50,
                                                    'notnull' => true);
 
@@ -83,8 +83,7 @@ class Doctrine_Locking_Manager_Pessimistic
             $options = array('primary' => array('object_type', 'object_key'));
             try {
                 $this->conn->export->createTable($this->_lockTable, $columns, $options);
-            } catch(Exception $e) {
-
+            } catch (Exception $e) {
             }
         }
     }
@@ -104,7 +103,7 @@ class Doctrine_Locking_Manager_Pessimistic
         $key        = $record->getTable()->getIdentifier();
 
         $gotLock = false;
-        $time = time();
+        $time    = time();
 
         if (is_array($key)) {
             // Composite key
@@ -128,12 +127,12 @@ class Doctrine_Locking_Manager_Pessimistic
                 $stmt->execute();
                 $gotLock = true;
 
-            // we catch an Exception here instead of PDOException since we might also be catching Doctrine_Exception
-            } catch(Exception $pkviolation) {
+                // we catch an Exception here instead of PDOException since we might also be catching Doctrine_Exception
+            } catch (Exception $pkviolation) {
                 // PK violation occured => existing lock!
             }
 
-            if ( ! $gotLock) {
+            if (! $gotLock) {
                 $lockingUserIdent = $this->_getLockingUserIdent($objectType, $key);
                 if ($lockingUserIdent !== null && $lockingUserIdent == $userIdent) {
                     $gotLock = true; // The requesting user already has a lock
@@ -178,7 +177,7 @@ class Doctrine_Locking_Manager_Pessimistic
         }
 
         try {
-            $dbh = $this->conn->getDbh();
+            $dbh  = $this->conn->getDbh();
             $stmt = $dbh->prepare("DELETE FROM $this->_lockTable WHERE
                                         object_type = :object_type AND
                                         object_key  = :object_key  AND
@@ -212,15 +211,15 @@ class Doctrine_Locking_Manager_Pessimistic
         }
 
         try {
-            $dbh = $this->conn->getDbh();
+            $dbh  = $this->conn->getDbh();
             $stmt = $dbh->prepare('SELECT user_ident FROM ' . $this->_lockTable
                                   . ' WHERE object_type = :object_type AND object_key = :object_key');
             $stmt->bindParam(':object_type', $objectType);
             $stmt->bindParam(':object_key', $key);
             $success = $stmt->execute();
 
-            if ( ! $success) {
-                throw new Doctrine_Locking_Exception("Failed to determine locking user");
+            if (! $success) {
+                throw new Doctrine_Locking_Exception('Failed to determine locking user');
             }
 
             $userIdent = $stmt->fetchColumn();
@@ -261,7 +260,7 @@ class Doctrine_Locking_Manager_Pessimistic
         $age = time() - $age;
 
         try {
-            $dbh = $this->conn->getDbh();
+            $dbh  = $this->conn->getDbh();
             $stmt = $dbh->prepare('DELETE FROM ' . $this->_lockTable . ' WHERE timestamp_obtained < :age');
             $stmt->bindParam(':age', $age);
             $query = 'DELETE FROM ' . $this->_lockTable . ' WHERE timestamp_obtained < :age';

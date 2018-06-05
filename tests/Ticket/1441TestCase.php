@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1441_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1441_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,7 +40,7 @@ class Doctrine_Ticket_1441_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $user = new Ticket_1441_User();
+        $user           = new Ticket_1441_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->save();
@@ -51,7 +51,7 @@ class Doctrine_Ticket_1441_TestCase extends Doctrine_UnitTestCase
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
         $q = Doctrine_Query::create()
             ->update('Ticket_1441_User u')
-            ->set('u.password', '?',  'test')
+            ->set('u.password', '?', 'test')
             ->where('u.username = ?', 'jwage');
 
         $q->execute();

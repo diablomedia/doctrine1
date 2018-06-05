@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_SoftDeleteBC_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_SoftDeleteBC_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,8 +42,8 @@ class Doctrine_SoftDeleteBC_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
         
-        $test = new SoftDeleteBCTest();
-        $test->name = 'test';
+        $test            = new SoftDeleteBCTest();
+        $test->name      = 'test';
         $test->something = 'test';
         $test->save();
         $test->delete();
@@ -77,8 +77,8 @@ class Doctrine_SoftDeleteBC_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
         
-        $test = new SoftDeleteBCTest();
-        $test->name = 'test1';
+        $test            = new SoftDeleteBCTest();
+        $test->name      = 'test1';
         $test->something = 'test2';
         $test->save();
 

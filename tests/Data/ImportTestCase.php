@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Data_Import_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Data_Import_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -188,7 +188,7 @@ END;
             $this->fail($e->getMessage());
         }
 
-        unlink('test.yml'); 
+        unlink('test.yml');
     }
 
     public function testImportNestedSetData()
@@ -242,7 +242,7 @@ END;
             $this->fail();
         }
 
-        unlink('test.yml'); 
+        unlink('test.yml');
     }
     
     public function testImportNestedSetMultipleTreeData()
@@ -327,7 +327,7 @@ END;
             $this->fail();
         }
 
-        unlink('test.yml'); 
+        unlink('test.yml');
     }
 
     public function testMany2ManyManualDataFixtures()
@@ -546,9 +546,8 @@ END;
             $this->fail($e->getMessage());
         }
 
-        unlink('test.yml'); 
+        unlink('test.yml');
     }
-
 }
 
 class ImportNestedSet extends Doctrine_Record
@@ -574,8 +573,9 @@ class ImportNestedSetMultipleTree extends Doctrine_Record
     public function setUp()
     {
         $this->actAs(
-            'NestedSet', array(
-                'hasManyRoots' => true,
+            'NestedSet',
+            array(
+                'hasManyRoots'   => true,
                 'rootColumnName' => 'root_id'
             )
         );

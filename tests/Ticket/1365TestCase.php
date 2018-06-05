@@ -33,13 +33,13 @@
 class Doctrine_Ticket_1365_TestCase extends Doctrine_UnitTestCase
 {
     public function testInit()
-	{
-        $this->dbh = new Doctrine_Adapter_Mock('mysql');
+    {
+        $this->dbh  = new Doctrine_Adapter_Mock('mysql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh);
 
         $this->conn->setCharset('utf8');
         $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM, true);
-	}
+    }
 
     public function prepareData()
     {
@@ -47,7 +47,7 @@ class Doctrine_Ticket_1365_TestCase extends Doctrine_UnitTestCase
 
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'T1365_Person';
         $this->tables[] = 'T1365_Skill';
         $this->tables[] = 'T1365_PersonHasSkill';

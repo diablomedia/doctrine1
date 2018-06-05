@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC187_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC187_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,17 +42,17 @@ class Doctrine_Ticket_DC187_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
 
-        $user = new Ticket_DC187_User();
+        $user           = new Ticket_DC187_User();
         $user->username = 'jwage';
-        $user->email = 'jonwage@gmail.com';
+        $user->email    = 'jonwage@gmail.com';
         $user->password = 'changeme';
         $user->save();
         $user->delete();
 
         try {
-            $user = new Ticket_DC187_User();
+            $user           = new Ticket_DC187_User();
             $user->username = 'jwage';
-            $user->email = 'jonwage@gmail.com';
+            $user->email    = 'jonwage@gmail.com';
             $user->password = 'changeme';
             $user->save();
             $this->pass();
@@ -61,9 +61,9 @@ class Doctrine_Ticket_DC187_TestCase extends Doctrine_UnitTestCase
         }
 
         try {
-            $user = new Ticket_DC187_User();
+            $user           = new Ticket_DC187_User();
             $user->username = 'jwage';
-            $user->email = 'jonwage@gmail.com';
+            $user->email    = 'jonwage@gmail.com';
             $user->password = 'changeme';
             $user->save();
             $this->fail();
@@ -85,7 +85,7 @@ class Ticket_DC187_User extends Doctrine_Record
 
         $this->unique(
             array('username', 'email'),
-            array('where' => "deleted_at IS NULL"),
+            array('where' => 'deleted_at IS NULL'),
             false
         );
     }

@@ -1,4 +1,4 @@
-<?PHP
+<?php
 /**
  *  $Id: Exception.php 7490 2010-03-29 19:53:27Z jwage $
  *
@@ -34,4 +34,5 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Locking_Exception extends Doctrine_Exception
-{}
+{
+}

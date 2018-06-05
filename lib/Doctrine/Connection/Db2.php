@@ -43,15 +43,16 @@ class Doctrine_Connection_Db2 extends Doctrine_Connection_Common
      */
     public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)
     {
-        if ($limit <= 0)
+        if ($limit <= 0) {
             return $query;
+        }
 
         if ($offset == 0) {
-            return $query . ' FETCH FIRST '. (int)$limit .' ROWS ONLY';
+            return $query . ' FETCH FIRST ' . (int)$limit . ' ROWS ONLY';
         } else {
             $sqlPieces = explode('from', $query);
-            $select = $sqlPieces[0];
-            $table = $sqlPieces[1];
+            $select    = $sqlPieces[0];
+            $table     = $sqlPieces[1];
 
             $col = explode('select', $select);
 

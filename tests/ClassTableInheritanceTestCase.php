@@ -30,12 +30,14 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
-    { }
+    {
+    }
     public function prepareData()
-    { }
+    {
+    }
 
     public function testClassTableInheritanceIsTheDefaultInheritanceType()
     {
@@ -76,22 +78,22 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
 
     public function testNewlyCreatedRecordsHaveInheritedPropertiesInitialized()
     {
-    	$profiler = new Doctrine_Connection_Profiler();
+        $profiler = new Doctrine_Connection_Profiler();
 
-    	$this->conn->addListener($profiler);
+        $this->conn->addListener($profiler);
 
         $record = new CTITest();
 
-        $this->assertEqual($record->toArray(), array('id' => null,
-                                                    'age' => null,
-                                                    'name' => null,
+        $this->assertEqual($record->toArray(), array('id'      => null,
+                                                    'age'      => null,
+                                                    'name'     => null,
                                                     'verified' => null,
-                                                    'added' => null));
+                                                    'added'    => null));
 
-        $record->age = 13;
-        $record->name = 'Jack Daniels';
+        $record->age      = 13;
+        $record->name     = 'Jack Daniels';
         $record->verified = true;
-        $record->added = time();
+        $record->added    = time();
         $record->save();
         
         // pop the commit event
@@ -137,10 +139,10 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
 
     public function testFetchingCtiRecordsSupportsLimitSubqueryAlgorithm()
     {
-    	$record = new CTITestOneToManyRelated;
-    	$record->name = 'Someone';
-    	$record->cti_id = 1;
-    	$record->save();
+        $record         = new CTITestOneToManyRelated;
+        $record->name   = 'Someone';
+        $record->cti_id = 1;
+        $record->save();
 
         $this->conn->clear();
 
@@ -166,14 +168,14 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
         $this->conn->clear();
 
         $profiler = new Doctrine_Connection_Profiler();
-    	$this->conn->addListener($profiler);
+        $this->conn->addListener($profiler);
 
         $record = $this->conn->getTable('CTITest')->find(1);
         
-        $record->age = 11;
-        $record->name = 'Jack';
+        $record->age      = 11;
+        $record->name     = 'Jack';
         $record->verified = false;
-        $record->added = 0;
+        $record->added    = 0;
         
         $record->save();
         
@@ -207,7 +209,7 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
         $this->conn->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
         $record = $this->conn->getTable('CTITest')->find(1);
         try {
-            $record->name = "winston";
+            $record->name = 'winston';
             $this->assertTrue($record->isValid());
             $this->pass();
         } catch (Exception $e) {
@@ -221,7 +223,7 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
         $this->conn->clear();
 
         $profiler = new Doctrine_Connection_Profiler();
-    	$this->conn->addListener($profiler);
+        $this->conn->addListener($profiler);
 
         $record = $this->conn->getTable('CTITest')->find(1);
         
@@ -241,8 +243,8 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
     
     public function testNoIdCti()
     {
-        $NoIdTestChild = new NoIdTestChild();
-        $NoIdTestChild->name = 'test';
+        $NoIdTestChild               = new NoIdTestChild();
+        $NoIdTestChild->name         = 'test';
         $NoIdTestChild->child_column = 'test';
         $NoIdTestChild->save();
         
@@ -253,7 +255,8 @@ class Doctrine_ClassTableInheritance_TestCase extends Doctrine_UnitTestCase
     }
 }
 abstract class CTIAbstractBase extends Doctrine_Record
-{ }
+{
+}
 class CTITestParent1 extends CTIAbstractBase
 {
     public function setTableDefinition()
@@ -265,7 +268,7 @@ class CTITestParent2 extends CTITestParent1
 {
     public function setTableDefinition()
     {
-    	parent::setTableDefinition();
+        parent::setTableDefinition();
 
         $this->hasColumn('verified', 'boolean', 1);
     }
@@ -286,7 +289,6 @@ class CTITestParent4 extends CTITestParent3
 }
 class CTITest extends CTITestParent4
 {
-
 }
 
 class CTITestOneToManyRelated extends Doctrine_Record

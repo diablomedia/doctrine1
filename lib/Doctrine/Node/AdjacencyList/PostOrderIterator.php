@@ -31,4 +31,5 @@
  * @author      Joe Simms <joe.simms@websites4.com>
  */
 abstract class Doctrine_Node_AdjacencyList_PostOrderIterator implements Iterator
-{ }
+{
+}

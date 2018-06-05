@@ -30,15 +30,20 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase {
-    public function prepareData() { }
-    public function prepareTables() {
-        $this->tables = array("BooleanTest");
+class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase
+{
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
+    {
+        $this->tables = array('BooleanTest');
         parent::prepareTables();
     }
    
-    public function testSetFalse() {
-        $test = new BooleanTest();
+    public function testSetFalse()
+    {
+        $test             = new BooleanTest();
         $test->is_working = false;
 
         $this->assertIdentical($test->is_working, false);
@@ -49,8 +54,9 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase {
         $this->assertIdentical($test->is_working, false);
     }
 
-    public function testSetTrue() {
-        $test = new BooleanTest();
+    public function testSetTrue()
+    {
+        $test             = new BooleanTest();
         $test->is_working = true;
         $this->assertIdentical($test->is_working, true);
         $test->save();
@@ -63,38 +69,42 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase {
         $test = $test->getTable()->find($test->id);
         $this->assertIdentical($test->is_working, true);
     }
-    public function testNormalQuerying() {
+    public function testNormalQuerying()
+    {
         $query = new Doctrine_Query($this->connection);
-        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = 0');
+        $ret   = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = 0');
         $this->assertEqual(count($ret), 1);
 
         $query = new Doctrine_Query($this->connection);
-        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = 1');
-
-        $this->assertEqual(count($ret), 1);
-    }
-    public function testPreparedQueries() {
-        $query = new Doctrine_Query($this->connection);
-        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = ?', array(false));
-        $this->assertEqual(count($ret), 1);
-
-        $query = new Doctrine_Query($this->connection);
-        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = ?', array(true));
-        $this->assertEqual(count($ret), 1);
-    }
-    public function testFetchingWithSmartConversion() {
-        $query = new Doctrine_Query($this->connection);
-        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = false');
-        $this->assertEqual(count($ret), 1);
-
-        $query = new Doctrine_Query($this->connection);
-        $ret = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = true');
+        $ret   = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = 1');
 
         $this->assertEqual(count($ret), 1);
     }
+    public function testPreparedQueries()
+    {
+        $query = new Doctrine_Query($this->connection);
+        $ret   = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = ?', array(false));
+        $this->assertEqual(count($ret), 1);
 
-    public function testSavingNullValue() {
-        $test = new BooleanTest();
+        $query = new Doctrine_Query($this->connection);
+        $ret   = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = ?', array(true));
+        $this->assertEqual(count($ret), 1);
+    }
+    public function testFetchingWithSmartConversion()
+    {
+        $query = new Doctrine_Query($this->connection);
+        $ret   = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = false');
+        $this->assertEqual(count($ret), 1);
+
+        $query = new Doctrine_Query($this->connection);
+        $ret   = $query->query('FROM BooleanTest WHERE BooleanTest.is_working = true');
+
+        $this->assertEqual(count($ret), 1);
+    }
+
+    public function testSavingNullValue()
+    {
+        $test             = new BooleanTest();
         $test->is_working = null;
 
         $this->assertIdentical($test->is_working, null);
@@ -104,7 +114,7 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase {
         $test->refresh();
         $this->assertIdentical($test->is_working, null);
         
-        $test = new BooleanTest();
+        $test                     = new BooleanTest();
         $test->is_working_notnull = null;
 
         $this->assertIdentical($test->is_working_notnull, false);
@@ -114,5 +124,4 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase {
         $test->refresh();
         $this->assertIdentical($test->is_working_notnull, false);
     }
-
 }

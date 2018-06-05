@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC236_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC236_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,28 +40,28 @@ class Doctrine_Ticket_DC236_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $node = new Ticket_DC236_File();
+        $node       = new Ticket_DC236_File();
         $node->name = 'root';
-        $treeMngr = $this->conn->getTable('Ticket_DC236_File')->getTree();
+        $treeMngr   = $this->conn->getTable('Ticket_DC236_File')->getTree();
         $treeMngr->createRoot($node);
 
-        $node2 = new Ticket_DC236_File();
+        $node2       = new Ticket_DC236_File();
         $node2->name = 'node2';
         $node2->getNode()->insertAsLastChildOf($node);
 
-        $node3 = new Ticket_DC236_File();
+        $node3       = new Ticket_DC236_File();
         $node3->name = 'node3';
         $node3->getNode()->insertAsLastChildOf($node2);
 
-        $node4 = new Ticket_DC236_File();
+        $node4       = new Ticket_DC236_File();
         $node4->name = 'node4';
         $node4->getNode()->insertAsLastChildOf($node2);
     }
 
     public function testTest()
     {
-        $treeMngr = $this->conn->getTable('Ticket_DC236_File')->getTree();
-        $root = $treeMngr->fetchRoot();
+        $treeMngr    = $this->conn->getTable('Ticket_DC236_File')->getTree();
+        $root        = $treeMngr->fetchRoot();
         $descendants = $root->getNode()->getDescendants()->toHierarchy();
         $this->assertEqual(2, count($descendants[0]['__children']));
     }
@@ -72,7 +72,7 @@ class Ticket_DC236_File extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 255, array(
-             'type' => 'string',
+             'type'   => 'string',
              'length' => '255',
              ));
     }

@@ -4,7 +4,9 @@ require_once('Entity.php');
 
 // grouptable doesn't extend Doctrine_Table -> Doctrine_Connection
 // won't initialize grouptable when Doctrine_Connection->getTable('Group') is called
-class GroupTable { }
+class GroupTable
+{
+}
 
 class Group extends Entity
 {
@@ -12,10 +14,9 @@ class Group extends Entity
     {
         parent::setUp();
         $this->hasMany('User', array(
-            'local' => 'group_id',
-            'foreign' => 'user_id',
+            'local'    => 'group_id',
+            'foreign'  => 'user_id',
             'refClass' => 'Groupuser',
         ));
     }
 }
-

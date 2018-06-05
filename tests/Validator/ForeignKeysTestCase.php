@@ -1,9 +1,9 @@
 <?php
 
-class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
-    { 
+    {
         $this->tables = array('TestPerson', 'TestAddress');
         
         parent::prepareTables();
@@ -11,12 +11,12 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
 
     public function testForeignKeyIsValidIfLocalRelationIsSet()
     {
-        $person = new TestPerson();
+        $person  = new TestPerson();
         $address = new TestAddress();
         
         $address->Person = $person;
         
-        $table = $address->getTable();
+        $table  = $address->getTable();
         $errors = $table->validateField('person_id', $address->person_id, $address);
         
         $this->assertEqual(0, $errors->count());
@@ -24,12 +24,12 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
     
     public function testForeignKeyIsValidIfForeignRelationIsSet()
     {
-        $person = new TestPerson();
+        $person               = new TestPerson();
         $person->Addresses[0] = new TestAddress();
         
         $address = $person->Addresses[0];
-        $table = $address->getTable();
-        $errors = $table->validateField('person_id', $address->person_id, $address);
+        $table   = $address->getTable();
+        $errors  = $table->validateField('person_id', $address->person_id, $address);
         
         $this->assertEqual(0, $errors->count());
     }
@@ -40,7 +40,7 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
         $person->synchronizeWithArray(array('Addresses' => array(array())));
 
         $address = $person->Addresses[0];
-        $table = $address->getTable();
+        $table   = $address->getTable();
         
         $errors = $table->validateField('person_id', $address->person_id, $address);
         $this->assertEqual(0, $errors->count());
@@ -51,7 +51,7 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
         $address = new TestAddress();
         $address->synchronizeWithArray(array('Person' => array()));
 
-        $table = $address->getTable();
+        $table  = $address->getTable();
         $errors = $table->validateField('person_id', $address->person_id, $address);
         $this->assertEqual(0, $errors->count());
     }
@@ -77,7 +77,7 @@ class TestAddress extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('id', 'integer', null, array('primary' => true, 'notnull'=> true, 'autoincrement' => true));
+        $this->hasColumn('id', 'integer', null, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->hasColumn('person_id', 'integer', null, array('notnull' => true));
         $this->hasColumn('street', 'string');
         $this->hasColumn('city', 'string');

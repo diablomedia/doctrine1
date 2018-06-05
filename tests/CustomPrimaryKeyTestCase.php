@@ -30,21 +30,20 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_CustomPrimaryKey_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_CustomPrimaryKey_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
+    public function prepareData()
     {
-
     }
     
-    public function prepareTables() 
+    public function prepareTables()
     {
         $this->tables = array('CustomPK');
         
         parent::prepareTables();
     }
 
-    public function testOperations() 
+    public function testOperations()
     {
         $c = new CustomPK();
         $this->assertTrue($c instanceof Doctrine_Record);

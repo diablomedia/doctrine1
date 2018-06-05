@@ -48,7 +48,7 @@ class Doctrine_Validator_Date extends Doctrine_Validator_Driver
         if (count($e) !== 3) {
             return false;
         }
-        $e2 = explode(' ', $e[2]);
+        $e2   = explode(' ', $e[2]);
         $e[2] = $e2[0];
         return checkdate((int) $e[1], (int) $e[2], (int) $e[0]);
     }

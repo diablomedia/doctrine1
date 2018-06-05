@@ -34,8 +34,8 @@ class Doctrine_Ticket_1860_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
         // Create 10 users and mark them as deleted.
-        for ($i=0; $i<10; $i++) {
-            $user = new Ticket_1860_User;
+        for ($i = 0; $i < 10; $i++) {
+            $user           = new Ticket_1860_User;
             $user->username = 'user' . $i;
             $user->password = md5('user' . $i);
             $user->save();
@@ -64,7 +64,7 @@ class Doctrine_Ticket_1860_TestCase extends Doctrine_UnitTestCase
             ->from('Ticket_1860_User u');
 
         // Defining initial variables
-        $currentPage = 1;
+        $currentPage    = 1;
         $resultsPerPage = 5;
 
         // Creating pager object
@@ -79,18 +79,18 @@ class Doctrine_Ticket_1860_TestCase extends Doctrine_UnitTestCase
 
 class Ticket_1860_User extends Doctrine_Record
 {
-  public function setTableDefinition()
-  {
-    $this->setTableName('ticket_1860_users');
+    public function setTableDefinition()
+    {
+        $this->setTableName('ticket_1860_users');
 
-    $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'unsigned' => '1', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
-    $this->hasColumn('username', 'string', 45, array('type' => 'string', 'notnull' => true, 'unique' => true, 'length' => '45'));
-    $this->hasColumn('password', 'string', 45, array('type' => 'string', 'notnull' => true, 'length' => '45'));
-  }
+        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'unsigned' => '1', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
+        $this->hasColumn('username', 'string', 45, array('type' => 'string', 'notnull' => true, 'unique' => true, 'length' => '45'));
+        $this->hasColumn('password', 'string', 45, array('type' => 'string', 'notnull' => true, 'length' => '45'));
+    }
 
-  public function setUp()
-  {
-    $softdelete0 = new Doctrine_Template_SoftDelete();
-    $this->actAs($softdelete0);
-  }
+    public function setUp()
+    {
+        $softdelete0 = new Doctrine_Template_SoftDelete();
+        $this->actAs($softdelete0);
+    }
 }

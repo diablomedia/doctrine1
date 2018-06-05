@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC64_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC64_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,20 +40,20 @@ class Doctrine_Ticket_DC64_TestCase extends Doctrine_UnitTestCase
 
     public function testTicket()
     {
-        $article = new Ticket_DC64_Article();
-        $article->title = 'testing provider';
+        $article          = new Ticket_DC64_Article();
+        $article->title   = 'testing provider';
         $article->content = 'testing';
         $article->save();
         $this->assertEqual($article->slug, 'jwage_testing_provider');
 
-        $article = new Ticket_DC64_Article();
-        $article->title = 'testing provider';
+        $article          = new Ticket_DC64_Article();
+        $article->title   = 'testing provider';
         $article->content = 'testing';
         $article->save();
         $this->assertEqual($article->slug, 'jwage_testing_provider_1');
 
-        $article = new Ticket_DC64_Article();
-        $article->title = 'testing provider';
+        $article          = new Ticket_DC64_Article();
+        $article->title   = 'testing provider';
         $article->content = 'testing';
         $article->save();
         $this->assertEqual($article->slug, 'jwage_testing_provider_2');
@@ -72,7 +72,7 @@ class Ticket_DC64_Article extends Doctrine_Record
     {
         $this->actAs('Sluggable', array(
             'provider' => array($this, 'provideSlug'),
-            'builder' => array($this, 'formatSlug')
+            'builder'  => array($this, 'formatSlug')
         ));
     }
 

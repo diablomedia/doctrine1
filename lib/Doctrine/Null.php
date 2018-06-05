@@ -34,13 +34,13 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 final class Doctrine_Null
-{ 
+{
     /**
      * @return false
      */
     public function exists()
     {
-        return false;    
+        return false;
     }
 
     public function __toString()

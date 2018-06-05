@@ -43,7 +43,7 @@ class Doctrine_Expression_Oracle extends Doctrine_Expression_Driver
      */
     public function concat(...$args)
     {
-        return join(' || ' , $args);
+        return join(' || ', $args);
     }
 
     /**
@@ -58,8 +58,9 @@ class Doctrine_Expression_Oracle extends Doctrine_Expression_Driver
      */
     public function substring($value, $position, $length = null)
     {
-        if ($length !== null)
+        if ($length !== null) {
             return "SUBSTR($value, $position, $length)";
+        }
 
         return "SUBSTR($value, $position)";
     }

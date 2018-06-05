@@ -46,19 +46,19 @@ class Doctrine_Lib
     {
         switch ($state) {
             case Doctrine_Record::STATE_PROXY:
-                return "proxy";
+                return 'proxy';
                 break;
             case Doctrine_Record::STATE_CLEAN:
-                return "persistent clean";
+                return 'persistent clean';
                 break;
             case Doctrine_Record::STATE_DIRTY:
-                return "persistent dirty";
+                return 'persistent dirty';
                 break;
             case Doctrine_Record::STATE_TDIRTY:
-                return "transient dirty";
+                return 'transient dirty';
                 break;
             case Doctrine_Record::STATE_TCLEAN:
-                return "transient clean";
+                return 'transient clean';
                 break;
         }
     }
@@ -83,7 +83,7 @@ class Doctrine_Lib
         $r[] = 'data       : ' . Doctrine_Core::dump($record->getData(), false);
         $r[] = '</pre>';
 
-        return implode("\n",$r)."<br />";
+        return implode("\n", $r) . '<br />';
     }
 
     /**
@@ -99,13 +99,13 @@ class Doctrine_Lib
     {
         switch ($state) {
             case Doctrine_Transaction::STATE_SLEEP:
-                return "open";
+                return 'open';
                 break;
             case Doctrine_Transaction::STATE_BUSY:
-                return "busy";
+                return 'busy';
                 break;
             case Doctrine_Transaction::STATE_ACTIVE:
-                return "active";
+                return 'active';
                 break;
         }
     }
@@ -127,9 +127,9 @@ class Doctrine_Lib
         $r[] = 'Open Transactions   : ' . $connection->transaction->getTransactionLevel();
         $r[] = 'Table in memory     : ' . $connection->count();
         $r[] = 'Driver name         : ' . $connection->getAttribute(Doctrine_Core::ATTR_DRIVER_NAME);
-        $r[] = "</pre>";
+        $r[] = '</pre>';
 
-        return implode("\n",$r)."<br>";
+        return implode("\n", $r) . '<br>';
     }
 
     /**
@@ -142,12 +142,12 @@ class Doctrine_Lib
      */
     public static function getTableAsString(Doctrine_Table $table)
     {
-        $r[] = "<pre>";
-        $r[] = "Component   : ".$table->getComponentName();
-        $r[] = "Table       : ".$table->getTableName();
-        $r[] = "</pre>";
+        $r[] = '<pre>';
+        $r[] = 'Component   : ' . $table->getComponentName();
+        $r[] = 'Table       : ' . $table->getTableName();
+        $r[] = '</pre>';
 
-        return implode("\n",$r)."<br>";
+        return implode("\n", $r) . '<br>';
     }
 
     /**
@@ -162,22 +162,22 @@ class Doctrine_Lib
      */
     public static function formatSql($sql)
     {
-        $e = explode("\n",$sql);
-        $color = "367FAC";
-        $l = $sql;
-        $l = str_replace("SELECT ", "<font color='$color'><b>SELECT </b></font><br \>  ",$l);
-        $l = str_replace("FROM ", "<font color='$color'><b>FROM </b></font><br \>",$l);
-        $l = str_replace(" LEFT JOIN ", "<br \><font color='$color'><b> LEFT JOIN </b></font>",$l);
-        $l = str_replace(" INNER JOIN ", "<br \><font color='$color'><b> INNER JOIN </b></font>",$l);
-        $l = str_replace(" WHERE ", "<br \><font color='$color'><b> WHERE </b></font>",$l);
-        $l = str_replace(" GROUP BY ", "<br \><font color='$color'><b> GROUP BY </b></font>",$l);
-        $l = str_replace(" HAVING ", "<br \><font color='$color'><b> HAVING </b></font>",$l);
-        $l = str_replace(" AS ", "<font color='$color'><b> AS </b></font><br \>  ",$l);
-        $l = str_replace(" ON ", "<font color='$color'><b> ON </b></font>",$l);
-        $l = str_replace(" ORDER BY ", "<font color='$color'><b> ORDER BY </b></font><br \>",$l);
-        $l = str_replace(" LIMIT ", "<font color='$color'><b> LIMIT </b></font><br \>",$l);
-        $l = str_replace(" OFFSET ", "<font color='$color'><b> OFFSET </b></font><br \>",$l);
-        $l = str_replace("  ", "<dd>",$l);
+        $e     = explode("\n", $sql);
+        $color = '367FAC';
+        $l     = $sql;
+        $l     = str_replace('SELECT ', "<font color='$color'><b>SELECT </b></font><br \>  ", $l);
+        $l     = str_replace('FROM ', "<font color='$color'><b>FROM </b></font><br \>", $l);
+        $l     = str_replace(' LEFT JOIN ', "<br \><font color='$color'><b> LEFT JOIN </b></font>", $l);
+        $l     = str_replace(' INNER JOIN ', "<br \><font color='$color'><b> INNER JOIN </b></font>", $l);
+        $l     = str_replace(' WHERE ', "<br \><font color='$color'><b> WHERE </b></font>", $l);
+        $l     = str_replace(' GROUP BY ', "<br \><font color='$color'><b> GROUP BY </b></font>", $l);
+        $l     = str_replace(' HAVING ', "<br \><font color='$color'><b> HAVING </b></font>", $l);
+        $l     = str_replace(' AS ', "<font color='$color'><b> AS </b></font><br \>  ", $l);
+        $l     = str_replace(' ON ', "<font color='$color'><b> ON </b></font>", $l);
+        $l     = str_replace(' ORDER BY ', "<font color='$color'><b> ORDER BY </b></font><br \>", $l);
+        $l     = str_replace(' LIMIT ', "<font color='$color'><b> LIMIT </b></font><br \>", $l);
+        $l     = str_replace(' OFFSET ', "<font color='$color'><b> OFFSET </b></font><br \>", $l);
+        $l     = str_replace('  ', '<dd>', $l);
 
         return $l;
     }
@@ -193,13 +193,13 @@ class Doctrine_Lib
      */
     public static function getCollectionAsString(Doctrine_Collection $collection)
     {
-        $r[] = "<pre>";
+        $r[] = '<pre>';
         $r[] = get_class($collection);
         $r[] = 'data : ' . Doctrine_Core::dump($collection->getData(), false);
         //$r[] = 'snapshot : ' . Doctrine_Core::dump($collection->getSnapshot());
-        $r[] = "</pre>";
+        $r[] = '</pre>';
 
-        return implode("\n",$r);
+        return implode("\n", $r);
     }
 
     // Code from symfony sfToolkit class. See LICENSE
@@ -225,32 +225,29 @@ class Doctrine_Lib
      *  If string keys have arrays for values, these arrays will merge recursively.
      * @return array|false
      */
-     public static function arrayDeepMerge()
-     {
-         switch (func_num_args()) {
+    public static function arrayDeepMerge()
+    {
+        switch (func_num_args()) {
              case 0:
                 return false;
              case 1:
                 return func_get_arg(0);
              case 2:
-                $args = func_get_args();
+                $args    = func_get_args();
                 $args[2] = array();
 
-                if (is_array($args[0]) && is_array($args[1]))
-                {
-                    foreach (array_unique(array_merge(array_keys($args[0]),array_keys($args[1]))) as $key)
-                    {
+                if (is_array($args[0]) && is_array($args[1])) {
+                    foreach (array_unique(array_merge(array_keys($args[0]), array_keys($args[1]))) as $key) {
                         $isKey0 = array_key_exists($key, $args[0]);
                         $isKey1 = array_key_exists($key, $args[1]);
 
-                        if ($isKey0 && $isKey1 && is_array($args[0][$key]) && is_array($args[1][$key]))
-                        {
+                        if ($isKey0 && $isKey1 && is_array($args[0][$key]) && is_array($args[1][$key])) {
                             $args[2][$key] = self::arrayDeepMerge($args[0][$key], $args[1][$key]);
-                        } else if ($isKey0 && $isKey1) {
+                        } elseif ($isKey0 && $isKey1) {
                             $args[2][$key] = $args[1][$key];
-                        } else if ( ! $isKey1) {
+                        } elseif (! $isKey1) {
                             $args[2][$key] = $args[0][$key];
-                        } else if ( ! $isKey0) {
+                        } elseif (! $isKey0) {
                             $args[2][$key] = $args[1][$key];
                         }
                     }
@@ -259,8 +256,9 @@ class Doctrine_Lib
                 } else {
                     return $args[1];
                 }
+                // no break
             default:
-                $args = func_get_args();
+                $args    = func_get_args();
                 $args[1] = self::arrayDeepMerge($args[0], $args[1]);
                 array_shift($args);
 
@@ -282,12 +280,12 @@ class Doctrine_Lib
      */
     public static function makeDirectories($path, $mode = 0777)
     {
-        if ( ! $path) {
-          return false;
+        if (! $path) {
+            return false;
         }
 
         if (is_dir($path) || is_file($path)) {
-          return true;
+            return true;
         }
 
         return mkdir(trim($path), $mode, true);
@@ -304,17 +302,14 @@ class Doctrine_Lib
      */
     public static function removeDirectories($folderPath)
     {
-        if (is_dir($folderPath))
-        {
-            foreach (scandir($folderPath) as $value)
-            {
-                if ($value != '.' && $value != '..')
-                {
-                    $value = $folderPath . "/" . $value;
+        if (is_dir($folderPath)) {
+            foreach (scandir($folderPath) as $value) {
+                if ($value != '.' && $value != '..') {
+                    $value = $folderPath . '/' . $value;
 
                     if (is_dir($value)) {
                         self::removeDirectories($value);
-                    } else if (is_file($value)) {
+                    } elseif (is_file($value)) {
                         unlink($value);
                     }
                 }
@@ -344,7 +339,7 @@ class Doctrine_Lib
         }
 
         // Make destination directory
-        if ( ! is_dir($dest)) {
+        if (! is_dir($dest)) {
             mkdir($dest);
         }
 

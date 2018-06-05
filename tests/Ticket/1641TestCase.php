@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1641_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1641_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,15 +40,15 @@ class Doctrine_Ticket_1641_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $user = new T1641_User();
+        $user       = new T1641_User();
         $user->name = 'jwage';
         $user->save();
 
-        $user = new T1641_User();
+        $user       = new T1641_User();
         $user->name = 'guilhermeblanco';
-        $user->save();   
+        $user->save();
 
-        $user->delete();     
+        $user->delete();
     }
 
     public function testTicket()
@@ -58,7 +58,7 @@ class Doctrine_Ticket_1641_TestCase extends Doctrine_UnitTestCase
         $table = Doctrine_Core::getTable('T1641_User');
 
         $this->assertEqual($table->createQuery()->getCountSqlQuery(), 'SELECT COUNT(*) AS num_results FROM t1641__user t WHERE (t.deleted_at IS NULL)');
-	
+    
         $this->assertEqual($table->count(), 1);
         $this->assertEqual($table->createQuery()->execute()->count(), 1);
         $this->assertEqual($table->createQuery()->count(), 1);

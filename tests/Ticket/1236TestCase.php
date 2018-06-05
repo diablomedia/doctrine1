@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1236_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1236_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,10 +40,10 @@ class Doctrine_Ticket_1236_TestCase extends Doctrine_UnitTestCase
 
     public function testTicket()
     {
-        $test = new Ticket_1235_Article();
-        $test->author = 'jwage';
+        $test                           = new Ticket_1235_Article();
+        $test->author                   = 'jwage';
         $test->Translation['en']->title = 'Test';
-        $test->Translation['en']->body = 'testing';
+        $test->Translation['en']->body  = 'testing';
         $test->save();
         $this->assertEqual($test->Translation['en']->id, 1);
         $this->assertEqual($test->Translation['en']->title, 'Test');
@@ -62,7 +62,7 @@ class Ticket_1235_Article extends Doctrine_Record
 
     public function setUp()
     {
-        $this->actAs('I18n', array('fields'          => array('title', 'body'),
-                                   'generateFiles'   => false));
+        $this->actAs('I18n', array('fields'        => array('title', 'body'),
+                                   'generateFiles' => false));
     }
 }

@@ -34,8 +34,9 @@
  */
 class Doctrine_Ticket_424B_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
+    public function prepareData()
+    {
+    }
 
     public function prepareTables()
     {
@@ -46,8 +47,8 @@ class Doctrine_Ticket_424B_TestCase extends Doctrine_UnitTestCase
 
     protected function newGroup($code, $name)
     {
-        $group = new mmrGroup_B();
-        $group->id = $code;
+        $group       = new mmrGroup_B();
+        $group->id   = $code;
         $group->name = $name;
         $group->save();
         return $group;
@@ -55,11 +56,11 @@ class Doctrine_Ticket_424B_TestCase extends Doctrine_UnitTestCase
 
     protected function newUser($code, $name, $groups)
     {
-        $u = new mmrUser_B();
-        $u->id = $code;
+        $u       = new mmrUser_B();
+        $u->id   = $code;
         $u->name = $name;
 
-        foreach ($groups as $idx=>$group) {
+        foreach ($groups as $idx => $group) {
             $u->Group[$idx] = $group;
         }
 
@@ -73,16 +74,16 @@ class Doctrine_Ticket_424B_TestCase extends Doctrine_UnitTestCase
         $groupB = $this->newGroup(2, 'Group B');
         $groupC = $this->newGroup(3, 'Group C');
 
-        $john  = $this->newUser(1, 'John',  array($groupA, $groupB));
+        $john  = $this->newUser(1, 'John', array($groupA, $groupB));
         $peter = $this->newUser(2, 'Peter', array($groupA, $groupC));
-        $alan  = $this->newUser(3, 'Alan',  array($groupB, $groupC));
+        $alan  = $this->newUser(3, 'Alan', array($groupB, $groupC));
 
-        $q = Doctrine_Query::create();
+        $q  = Doctrine_Query::create();
         $gu = $q->from('mmrGroupUser_B')->execute();
         $this->assertEqual(count($gu), 6);
 
         // Direct query
-        $q = Doctrine_Query::create();
+        $q  = Doctrine_Query::create();
         $gu = $q->from('mmrGroupUser_B')->where('group_id = ?', $groupA->id)->execute();
         $this->assertEqual(count($gu), 2);
 
@@ -94,6 +95,5 @@ class Doctrine_Ticket_424B_TestCase extends Doctrine_UnitTestCase
         $userOfGroupAByName = $q->execute();
 
         $this->assertEqual(count($userOfGroupAByName), 2);
-
     }
 }

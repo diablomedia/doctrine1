@@ -33,9 +33,11 @@
 class Doctrine_Search_File_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
-    { }
+    {
+    }
     public function prepareTables()
-    { }
+    {
+    }
 
     public function testSearchFileAutoCreatesFileTable()
     {

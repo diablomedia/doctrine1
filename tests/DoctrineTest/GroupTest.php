@@ -9,8 +9,8 @@ class GroupTest extends UnitTestCase
     public function __construct($title, $name)
     {
         $this->_title = $title;
-        $this->_name =  $name;
-        if ( PHP_SAPI != 'cli' && ! defined('STDOUT')) {
+        $this->_name  = $name;
+        if (PHP_SAPI != 'cli' && ! defined('STDOUT')) {
             define('STDOUT', '');
         }
         $this->_formatter = new Doctrine_Cli_AnsiColorFormatter();
@@ -28,21 +28,21 @@ class GroupTest extends UnitTestCase
 
     public function addTestCase(UnitTestCase $testCase)
     {
-        if ($testCase instanceOf GroupTest) {
+        if ($testCase instanceof GroupTest) {
             $this->_testCases = array_merge($this->_testCases, $testCase->getTestCases());
-         } else {
+        } else {
             $this->_testCases[get_class($testCase)] = $testCase;
-         }
+        }
     }
 
     public function shouldBeRun($testCase, $filter)
     {
-        if ( ! is_array($filter)) {
+        if (! is_array($filter)) {
             return true;
         }
-        foreach($filter as $subFilter) {
+        foreach ($filter as $subFilter) {
             $name = strtolower(get_class($testCase));
-            $pos = strpos($name, strtolower($subFilter));
+            $pos  = strpos($name, strtolower($subFilter));
             //it can be 0 so we have to use === to see if false
             if ($pos === false) {
                 return false;
@@ -68,7 +68,7 @@ class GroupTest extends UnitTestCase
 
             $reporter->setTestCase($testCase);
 
-            if ( ! $this->shouldBeRun($testCase, $filter)) {
+            if (! $this->shouldBeRun($testCase, $filter)) {
                 continue;
             }
             try {

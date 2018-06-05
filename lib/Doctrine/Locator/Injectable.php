@@ -74,9 +74,8 @@ class Doctrine_Locator_Injectable
      */
     public function getLocator()
     {
-        if ( ! isset($this->_locator)) {
+        if (! isset($this->_locator)) {
             $this->_locator = Doctrine_Locator::instance();
-
         }
         return $this->_locator;
     }

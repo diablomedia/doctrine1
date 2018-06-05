@@ -1,6 +1,6 @@
 <?php
 
-class Doctrine_Ticket_2298_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2298_TestCase extends Doctrine_UnitTestCase
 {
     public function testTokenizerIgnoresQuotes()
     {
@@ -17,13 +17,13 @@ class Doctrine_Ticket_2298_TestCase extends Doctrine_UnitTestCase
         $q = Doctrine_Query::create()
             ->from('Address a')
             ->where("a.address = ' or      6spaces'");
-       	$this->assertEqual($q->getSqlQuery(), "SELECT a.id AS a__id, a.address AS a__address FROM address a WHERE (a.address = ' or      6spaces')");
+        $this->assertEqual($q->getSqlQuery(), "SELECT a.id AS a__id, a.address AS a__address FROM address a WHERE (a.address = ' or      6spaces')");
     }
 
 
-	public function testEscapedQuotes()
+    public function testEscapedQuotes()
     {
-        $tokenizer = new Doctrine_Query_Tokenizer();
+        $tokenizer  = new Doctrine_Query_Tokenizer();
         $delimiters = array(' ', '+', '-', '*', '/', '<', '>', '=', '>=', '<=', '&', '|');
 
         $res = $tokenizer->bracketExplode("'a string with AND in the middle'", ' AND ');
@@ -40,18 +40,18 @@ class Doctrine_Ticket_2298_TestCase extends Doctrine_UnitTestCase
     }
 
 
-	public function testAdditionalTokenizerFeatures()
+    public function testAdditionalTokenizerFeatures()
     {
-    	// These tests all pass with the old tokenizer, they were developed wile
-    	// working on the patch
-    	$tokenizer = new Doctrine_Query_Tokenizer();
-    	$delimiters = array(' ', '+', '-', '*', '/', '<', '>', '=', '>=', '<=', '&', '|');
+        // These tests all pass with the old tokenizer, they were developed wile
+        // working on the patch
+        $tokenizer  = new Doctrine_Query_Tokenizer();
+        $delimiters = array(' ', '+', '-', '*', '/', '<', '>', '=', '>=', '<=', '&', '|');
 
-    	$res = $tokenizer->bracketExplode("(age < 20 AND age > 18) AND email LIKE 'John@example.com'", ' AND ', '(', ')');
-        $this->assertEqual($res, array("(age < 20 AND age > 18)","email LIKE 'John@example.com'"));
+        $res = $tokenizer->bracketExplode("(age < 20 AND age > 18) AND email LIKE 'John@example.com'", ' AND ', '(', ')');
+        $this->assertEqual($res, array('(age < 20 AND age > 18)',"email LIKE 'John@example.com'"));
 
-    	$res = $tokenizer->sqlExplode("sentence OR 'term'", ' OR ');
-        $this->assertEqual($res, array("sentence", "'term'"));
+        $res = $tokenizer->sqlExplode("sentence OR 'term'", ' OR ');
+        $this->assertEqual($res, array('sentence', "'term'"));
 
         $res = $tokenizer->clauseExplode("'a + b'+c", $delimiters);
         $this->assertEqual($res, array(array("'a + b'",'+'), array('c', '')));
@@ -60,5 +60,3 @@ class Doctrine_Ticket_2298_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($res, array('"a"."b"'));
     }
 }
-
-?>

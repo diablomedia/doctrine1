@@ -30,29 +30,27 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Access_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Access_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
+    public function prepareData()
     {
-
     }
 
-    public function prepareTables() 
+    public function prepareTables()
     {
-        $this->tables = array('Entity', 'User'); 
+        $this->tables = array('Entity', 'User');
         parent::prepareTables();
     }
 
-    public function testUnset() 
+    public function testUnset()
     {
-
     }
 
-    public function testIsset() 
+    public function testIsset()
     {
         $user = new User();
 
-        $this->assertTrue(isset($user->name));  
+        $this->assertTrue(isset($user->name));
         $this->assertFalse(isset($user->unknown));
         
         $this->assertTrue(isset($user['name']));
@@ -70,7 +68,7 @@ class Doctrine_Access_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(isset($coll[0]));
     }
 
-    public function testOffsetMethods() 
+    public function testOffsetMethods()
     {
         $user = new User();
         $this->assertEqual($user['name'], null);
@@ -89,10 +87,10 @@ class Doctrine_Access_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($user['name'], 'zYne');
     }
 
-    public function testOverload() 
+    public function testOverload()
     {
         $user = new User();
-        $this->assertEqual($user->name,null);
+        $this->assertEqual($user->name, null);
 
         $user->name = 'Jack';
 
@@ -109,9 +107,10 @@ class Doctrine_Access_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($user->name, 'zYne');
     }
     
-    public function testSet() {
+    public function testSet()
+    {
         $user = new User();
-        $this->assertEqual($user->get('name'),null);
+        $this->assertEqual($user->get('name'), null);
 
         $user->set('name', 'Jack');
         $this->assertEqual($user->get('name'), 'Jack');

@@ -40,21 +40,21 @@ class Doctrine_Template_Timestampable extends Doctrine_Template
      *
      * @var array
      */
-    protected $_options = array('created' =>  array('name'          =>  'created_at',
-                                                    'alias'         =>  null,
-                                                    'type'          =>  'timestamp',
-                                                    'format'        =>  'Y-m-d H:i:s',
-                                                    'disabled'      =>  false,
-                                                    'expression'    =>  false,
-                                                    'options'       =>  array('notnull' => true)),
-                                'updated' =>  array('name'          =>  'updated_at',
-                                                    'alias'         =>  null,
-                                                    'type'          =>  'timestamp',
-                                                    'format'        =>  'Y-m-d H:i:s',
-                                                    'disabled'      =>  false,
-                                                    'expression'    =>  false,
-                                                    'onInsert'      =>  true,
-                                                    'options'       =>  array('notnull' => true)));
+    protected $_options = array('created' => array('name'        => 'created_at',
+                                                    'alias'      => null,
+                                                    'type'       => 'timestamp',
+                                                    'format'     => 'Y-m-d H:i:s',
+                                                    'disabled'   => false,
+                                                    'expression' => false,
+                                                    'options'    => array('notnull' => true)),
+                                'updated' => array('name'        => 'updated_at',
+                                                    'alias'      => null,
+                                                    'type'       => 'timestamp',
+                                                    'format'     => 'Y-m-d H:i:s',
+                                                    'disabled'   => false,
+                                                    'expression' => false,
+                                                    'onInsert'   => true,
+                                                    'options'    => array('notnull' => true)));
 
     /**
      * Set table definition for Timestampable behavior
@@ -63,7 +63,7 @@ class Doctrine_Template_Timestampable extends Doctrine_Template
      */
     public function setTableDefinition()
     {
-        if ( ! $this->_options['created']['disabled']) {
+        if (! $this->_options['created']['disabled']) {
             $name = $this->_options['created']['name'];
             if ($this->_options['created']['alias']) {
                 $name .= ' as ' . $this->_options['created']['alias'];
@@ -71,7 +71,7 @@ class Doctrine_Template_Timestampable extends Doctrine_Template
             $this->hasColumn($name, $this->_options['created']['type'], null, $this->_options['created']['options']);
         }
 
-        if ( ! $this->_options['updated']['disabled']) {
+        if (! $this->_options['updated']['disabled']) {
             $name = $this->_options['updated']['name'];
             if ($this->_options['updated']['alias']) {
                 $name .= ' as ' . $this->_options['updated']['alias'];

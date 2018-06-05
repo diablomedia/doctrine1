@@ -56,12 +56,13 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
      */
     public function getNativeDeclaration(array $field)
     {
-        if ( ! isset($field['type'])) {
+        if (! isset($field['type'])) {
             throw new Doctrine_DataDict_Exception('Missing column type.');
         }
         switch ($field['type']) {
             case 'enum':
                 $field['length'] = isset($field['length']) && $field['length'] ? $field['length']:255;
+                // no break
             case 'text':
             case 'object':
             case 'array':
@@ -71,12 +72,12 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
             case 'varchar':
                 $length = (isset($field['length']) && $field['length']) ? $field['length'] : null;
 
-                $fixed  = ((isset($field['fixed']) && $field['fixed']) || $field['type'] == 'char') ? true : false;
+                $fixed = ((isset($field['fixed']) && $field['fixed']) || $field['type'] == 'char') ? true : false;
 
-                return $fixed ? ($length ? 'CHAR('.$length.')' : 'CHAR('.$this->conn->varchar_max_length.')')
-                    : ($length ? 'VARCHAR('.$length.')' : 'TEXT');
+                return $fixed ? ($length ? 'CHAR(' . $length . ')' : 'CHAR(' . $this->conn->varchar_max_length . ')')
+                    : ($length ? 'VARCHAR(' . $length . ')' : 'TEXT');
             case 'clob':
-                if ( ! empty($field['length'])) {
+                if (! empty($field['length'])) {
                     $length = $field['length'];
                     if ($length <= 255) {
                         return 'TINYTEXT';
@@ -88,7 +89,7 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
                 }
                 return 'LONGTEXT';
             case 'blob':
-                if ( ! empty($field['length'])) {
+                if (! empty($field['length'])) {
                     $length = $field['length'];
                     if ($length <= 255) {
                         return 'TINYBLOB';
@@ -115,10 +116,10 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
                     //($this->conn->options['fixed_float']+2).','.$this->conn->options['fixed_float'].')' : '');
             case 'decimal':
                 $length = !empty($field['length']) ? $field['length'] : 18;
-                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
-                return 'DECIMAL('.$length.','.$scale.')';
+                $scale  = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
+                return 'DECIMAL(' . $length . ',' . $scale . ')';
         }
-        return $field['type'] . (isset($field['length']) ? '('.$field['length'].')':null);
+        return $field['type'] . (isset($field['length']) ? '(' . $field['length'] . ')':null);
     }
 
     /**
@@ -129,25 +130,25 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
      */
     public function getPortableDeclaration(array $field)
     {
-        $e = explode('(', $field['type']);
+        $e             = explode('(', $field['type']);
         $field['type'] = $e[0];
         if (isset($e[1])) {
-            $length = trim($e[1], ')');
+            $length          = trim($e[1], ')');
             $field['length'] = $length;
         }
 
         $dbType = strtolower($field['type']);
 
-        if ( ! $dbType) {
+        if (! $dbType) {
             throw new Doctrine_DataDict_Exception('Missing "type" from field definition');
         }
 
-        $length = (isset($field['length'])) ? $field['length'] : null;
+        $length   = (isset($field['length'])) ? $field['length'] : null;
         $unsigned = (isset($field['unsigned'])) ? $field['unsigned'] : null;
-        $fixed = null;
-        $type = array();
+        $fixed    = null;
+        $type     = array();
 
-        if ( ! isset($field['name'])) {
+        if (! isset($field['name'])) {
             $field['name'] = '';
         }
 
@@ -162,30 +163,30 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
                     $type = array_reverse($type);
                 }
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 1;
+                $length   = 1;
                 break;
             case 'smallint':
-                $type[] = 'integer';
+                $type[]   = 'integer';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 2;
+                $length   = 2;
                 break;
             case 'mediumint':
-                $type[] = 'integer';
+                $type[]   = 'integer';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 3;
+                $length   = 3;
                 break;
             case 'int':
             case 'integer':
             case 'serial':
-                $type[] = 'integer';
+                $type[]   = 'integer';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 4;
+                $length   = 4;
                 break;
             case 'bigint':
             case 'bigserial':
-                $type[] = 'integer';
+                $type[]   = 'integer';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 8;
+                $length   = 8;
                 break;
             case 'clob':
             case 'tinytext':
@@ -199,6 +200,7 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
             case 'image':
             case 'nchar':
                 $fixed = false;
+                // no break
             case 'char':
                 $type[] = 'text';
                 if ($length == '1') {
@@ -310,7 +312,7 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
         }
         */
 
-        $notnull  = (isset($field['notnull']) && $field['notnull']) ? ' NOT NULL' : '';
+        $notnull = (isset($field['notnull']) && $field['notnull']) ? ' NOT NULL' : '';
 
         // sqlite does not support unsigned attribute for autoinremented fields
         $unsigned = (isset($field['unsigned']) && $field['unsigned'] && !$autoincrement) ? ' UNSIGNED' : '';

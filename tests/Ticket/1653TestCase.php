@@ -28,13 +28,13 @@
  * @category    Object Relational Mapping
  * @link        www.doctrine-project.org
  * @since       1.1
- * @version     $Revision$ 
+ * @version     $Revision$
  */
-class Doctrine_Ticket_1653_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1653_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'Ticket_1653_User';
         $this->tables[] = 'Ticket_1653_Email';
         parent::prepareTables();
@@ -42,7 +42,6 @@ class Doctrine_Ticket_1653_TestCase extends Doctrine_UnitTestCase
     
     public function prepareData()
     {
-
     }
 
     public function testValidate()
@@ -52,8 +51,8 @@ class Doctrine_Ticket_1653_TestCase extends Doctrine_UnitTestCase
         $user = new Ticket_1653_User();
         $mail = new Ticket_1653_Email();
         
-        $user->id = 1;
-        $user->name = "floriank";
+        $user->id       = 1;
+        $user->name     = 'floriank';
         $user->emails[] = $mail;
         
         //explicit call of isValid() should return false since $mail->address is null
@@ -66,9 +65,9 @@ class Doctrine_Ticket_1653_TestCase extends Doctrine_UnitTestCase
 
     public function testModified()
     {
-        $user = new Ticket_1653_User();
-        $mail = new Ticket_1653_Email();
-        $mail->address = 'test';
+        $user           = new Ticket_1653_User();
+        $mail           = new Ticket_1653_Email();
+        $mail->address  = 'test';
         $user->emails[] = $mail;
 
         // Should return true since one of its relationships is modified
@@ -91,14 +90,14 @@ class Ticket_1653_User extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('Ticket_1653_Email as emails', array('local' => 'id',
-                                                  'foreign' => 'user_id',
-                                                  'cascade' => array('delete')));
+                                                  'foreign'         => 'user_id',
+                                                  'cascade'         => array('delete')));
     }
     
     protected function validate()
     {
-        if ($this->name == "test") {
-            $this->getErrorStack()->add("badName", "No testnames allowed!");
+        if ($this->name == 'test') {
+            $this->getErrorStack()->add('badName', 'No testnames allowed!');
             return false;
         }
     }
@@ -115,7 +114,7 @@ class Ticket_1653_Email extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_1653_User as user', array('local' => 'user_id',
-                                                  'foreign' => 'id',
-                                                  'cascade' => array('delete')));
+                                                  'foreign'     => 'id',
+                                                  'cascade'     => array('delete')));
     }
 }

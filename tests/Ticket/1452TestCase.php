@@ -40,12 +40,12 @@ class Doctrine_Ticket_1452_TestCase extends Doctrine_UnitTestCase
 
     public function testFindByIdAutomaticallyLoadsRelationsForInstanceTranslation()
     {
-        $name = 'New York';
+        $name        = 'New York';
         $description = 'En dansk beskrivelse';
 
         try {
-            $item = new Model_Product;
-            $item->name = $name;
+            $item                                 = new Model_Product;
+            $item->name                           = $name;
             $item->Translation['DK']->description = $description;
             $item->Translation['EN']->description = 'Some english description';
             $item->save();
@@ -63,14 +63,14 @@ class Doctrine_Ticket_1452_TestCase extends Doctrine_UnitTestCase
 
 class Model_Product extends Doctrine_Record
 {
-    public function setTableDefinition ()
+    public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 30);
         $this->hasColumn('description', 'string', 65555);
         $this->hasColumn('price', 'integer', 20);
     }
 
-    public function setUp ()
+    public function setUp()
     {
         $this->actAs('I18n', array('fields' => array('description')));
     }

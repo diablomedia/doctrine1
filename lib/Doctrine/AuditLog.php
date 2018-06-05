@@ -37,22 +37,22 @@ class Doctrine_AuditLog extends Doctrine_Record_Generator
      *
      * @var array
      */
-    protected $_options = array('className'         => '%CLASS%Version',
-                                'version'           => array('name'   => 'version',
-                                                             'alias'  => null,
-                                                             'type'   => 'integer',
-                                                             'length' => 8,
+    protected $_options = array('className' => '%CLASS%Version',
+                                'version'   => array('name'            => 'version',
+                                                             'alias'   => null,
+                                                             'type'    => 'integer',
+                                                             'length'  => 8,
                                                              'options' => array('primary' => true)),
-                                'tableName'         => false,
-                                'generateFiles'     => false,
-                                'table'             => false,
-                                'pluginTable'       => false,
-                                'children'          => array(),
-                                'auditLog'          => true,
-                                'deleteVersions'    => true,
-                                'cascadeDelete'     => true,
-                                'excludeFields'     => array(),
-                                'appLevelDelete'    => false);
+                                'tableName'      => false,
+                                'generateFiles'  => false,
+                                'table'          => false,
+                                'pluginTable'    => false,
+                                'children'       => array(),
+                                'auditLog'       => true,
+                                'deleteVersions' => true,
+                                'cascadeDelete'  => true,
+                                'excludeFields'  => array(),
+                                'appLevelDelete' => false);
 
     /**
      * Accepts array of options to configure the AuditLog
@@ -104,10 +104,11 @@ class Doctrine_AuditLog extends Doctrine_Record_Generator
 
         // the version column should be part of the primary key definition
         $this->hasColumn(
-	        $this->_options['version']['name'],
+            $this->_options['version']['name'],
             $this->_options['version']['type'],
             $this->_options['version']['length'],
-            $this->_options['version']['options']);
+            $this->_options['version']['options']
+        );
     }
 
     /**
@@ -127,11 +128,11 @@ class Doctrine_AuditLog extends Doctrine_Record_Generator
         $q = Doctrine_Core::getTable($className)
             ->createQuery();
 
-        $values = array();
+        $values     = array();
         $conditions = array();
         foreach ((array) $this->_options['table']->getIdentifier() as $id) {
             $conditions[] = $className . '.' . $id . ' = ?';
-            $values[] = $record->get($id);
+            $values[]     = $record->get($id);
         }
 
         $where = implode(' AND ', $conditions) . ' AND ' . $className . '.' . $this->_options['version']['name'] . ' = ?';
@@ -151,20 +152,20 @@ class Doctrine_AuditLog extends Doctrine_Record_Generator
      */
     public function getMaxVersion(Doctrine_Record $record)
     {
-        $className = $this->_options['className'];
-        $select = 'MAX(' . $className . '.' . $this->_options['version']['name'] . ') max_version';
+        $className  = $this->_options['className'];
+        $select     = 'MAX(' . $className . '.' . $this->_options['version']['name'] . ') max_version';
         $conditions = array();
-        $values = array();
+        $values     = array();
 
         foreach ((array) $this->_options['table']->getIdentifier() as $id) {
             $conditions[] = $className . '.' . $id . ' = ?';
-            $values[] = $record->get($id);
+            $values[]     = $record->get($id);
         }
 
         $q = Doctrine_Core::getTable($className)
             ->createQuery()
             ->select($select)
-            ->where(implode(' AND ',$conditions));
+            ->where(implode(' AND ', $conditions));
 
         $result = $q->execute($values, Doctrine_Core::HYDRATE_ARRAY);
 

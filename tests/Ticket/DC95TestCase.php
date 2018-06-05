@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase
 {
     public function testClassDoesNotExistBeforeImport()
     {
@@ -46,11 +46,11 @@ class Doctrine_Ticket_DC95_TestCase extends Doctrine_UnitTestCase
 
         $import = new Doctrine_Import_Schema();
         $import->setOptions(array(
-            'pearStyle' => true,
+            'pearStyle'            => true,
             'baseClassesDirectory' => null,
-            'baseClassPrefix' => 'Base_',
-            'classPrefix' => 'DC95_',
-            'classPrefixFiles' => true
+            'baseClassPrefix'      => 'Base_',
+            'classPrefix'          => 'DC95_',
+            'classPrefixFiles'     => true
         ));
         $modelsPath = dirname(__FILE__) . '/DC95/models';
         $import->importSchema(dirname(__FILE__) . '/DC95/schema.yml', 'yml', $modelsPath);

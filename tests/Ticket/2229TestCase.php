@@ -30,31 +30,31 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2229_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2229_TestCase extends Doctrine_UnitTestCase
 {
-  public function prepareTables()
-  {
-    $this->tables[] = 'Ticket_2229_SlugBug';
-    parent::prepareTables();
-  }
+    public function prepareTables()
+    {
+        $this->tables[] = 'Ticket_2229_SlugBug';
+        parent::prepareTables();
+    }
   
-  public function testTicket()
-  {
-    $d = new Ticket_2229_SlugBug();
-    $d->name = 'String with UpperLowerCase';
-    $d->save();
-    $this->assertEqual($d->slug, 'string-with-upperlowercase');
+    public function testTicket()
+    {
+        $d       = new Ticket_2229_SlugBug();
+        $d->name = 'String with UpperLowerCase';
+        $d->save();
+        $this->assertEqual($d->slug, 'string-with-upperlowercase');
     
-    $d = new Ticket_2229_SlugBug();
-    $d->name = 'Custom name OPACs';
-    $d->save();
-    $this->assertEqual($d->slug, 'custom-name-opacs');
+        $d       = new Ticket_2229_SlugBug();
+        $d->name = 'Custom name OPACs';
+        $d->save();
+        $this->assertEqual($d->slug, 'custom-name-opacs');
     
-    $d = new Ticket_2229_SlugBug();
-    $d->name = 'Présentation unifiée OPACs';
-    $d->save();
-    $this->assertEqual($d->slug, 'presentation-unifiee-opacs');
-  }
+        $d       = new Ticket_2229_SlugBug();
+        $d->name = 'Présentation unifiée OPACs';
+        $d->save();
+        $this->assertEqual($d->slug, 'presentation-unifiee-opacs');
+    }
 }
 
 
@@ -69,8 +69,8 @@ class Ticket_2229_SlugBug extends Doctrine_Record
     
     public function setUp()
     {
-      parent::setUp();
-      $this->actAs('Sluggable', array('unique' => true,
-                                      'fields' => array('name')));
+        parent::setUp();
+        $this->actAs('Sluggable', array('unique' => true,
+                                      'fields'   => array('name')));
     }
 }

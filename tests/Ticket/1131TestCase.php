@@ -46,27 +46,27 @@ class Doctrine_Ticket_1131_TestCase extends Doctrine_UnitTestCase
     {
         parent::prepareData();
         
-        $role = new Ticket_1131_Role();
+        $role       = new Ticket_1131_Role();
         $role->name = 'Role One';
         $role->save();
         $this->role_one = $role->id;
         $role->free();
         
-        $role = new Ticket_1131_Role();
+        $role       = new Ticket_1131_Role();
         $role->name = 'Role Two';
         $role->save();
         $this->role_two = $role->id;
         $role->free();
         
-        $group = new Ticket_1131_Group();
+        $group          = new Ticket_1131_Group();
         $group->role_id = $this->role_one;
-        $group->name = 'Core Dev';
+        $group->name    = 'Core Dev';
         $group->save();
 
-        $user = new Ticket_1131_User();
-        $user->Group = $group;
+        $user          = new Ticket_1131_User();
+        $user->Group   = $group;
         $user->role_id = $this->role_two;
-        $user->name = 'jwage';
+        $user->name    = 'jwage';
         $user->save();
 
         $group->free();
@@ -121,12 +121,12 @@ class Ticket_1131_User extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_1131_Group as Group', array(
-            'local' => 'group_id',
+            'local'   => 'group_id',
             'foreign' => 'id'
         ));
         
         $this->hasOne('Ticket_1131_Role as Role', array(
-            'local' => 'role_id',
+            'local'   => 'role_id',
             'foreign' => 'id'));
     }
 }
@@ -157,11 +157,11 @@ class Ticket_1131_Group extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_1131_Role as Role', array(
-            'local' => 'role_id',
+            'local'   => 'role_id',
             'foreign' => 'id'));
         
         $this->hasMany('Ticket_1131_User as Users', array(
-            'local' => 'id',
+            'local'   => 'id',
             'foreign' => 'group_id'
         ));
     }
@@ -177,11 +177,11 @@ class Ticket_1131_Role extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('Ticket_1131_User as Users', array(
-            'local' => 'id',
+            'local'   => 'id',
             'foreign' => 'role_id'
         ));
         $this->hasMany('Ticket_1131_Group as Groups', array(
-            'local' => 'id',
+            'local'   => 'id',
             'foreign' => 'role_id'
         ));
     }

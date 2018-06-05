@@ -3,7 +3,7 @@ class Doctrine_Ticket_1099_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'T1099_Page';
         $this->tables[] = 'T1099_SubPage';
 
@@ -12,9 +12,9 @@ class Doctrine_Ticket_1099_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $page = new T1099_Page();
+        $page       = new T1099_Page();
         $page->type = 'page';
-        $tree = $page->getTable()->getTree();
+        $tree       = $page->getTable()->getTree();
         $tree->createRoot($page);
 
         $subPage = new T1099_SubPage();

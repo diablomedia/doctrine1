@@ -30,21 +30,19 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_EventListener_Chain_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_EventListener_Chain_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
-    public function prepareTables() 
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
     {
         $this->tables = array('EventListenerChainTest');
         parent::prepareTables();
     }
-    public function testAccessorInvokerChain() 
+    public function testAccessorInvokerChain()
     {
-        $e = new EventListenerChainTest;
-        $e->name = "something";
-
+        $e       = new EventListenerChainTest;
+        $e->name = 'something';
     }
-
 }
-

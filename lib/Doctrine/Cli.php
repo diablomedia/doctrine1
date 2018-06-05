@@ -44,7 +44,7 @@ class Doctrine_Cli
     /**
      * @var string
      */
-    protected $_scriptName   = null;
+    protected $_scriptName = null;
 
     /**
      * @var array
@@ -318,13 +318,13 @@ class Doctrine_Cli
              */
             $matched = (bool) preg_match('/^([A-Z].*?)\.php$/', $baseName, $matches);
 
-            if ( ! ($matched && (strpos($baseName, '.inc') === false))) {
+            if (! ($matched && (strpos($baseName, '.inc') === false))) {
                 continue;
             }
 
             $expectedClassName = self::TASK_BASE_CLASS . '_' . $matches[1];
 
-            if ( ! class_exists($expectedClassName)) {
+            if (! class_exists($expectedClassName)) {
                 require_once($file->getPathName());
             }
 
@@ -354,11 +354,11 @@ class Doctrine_Cli
             return;
         }
 
-        if ( ! class_exists($className/*, false*/)) {
+        if (! class_exists($className/*, false*/)) {
             throw new InvalidArgumentException("The task class \"{$className}\" does not exist");
         }
 
-        if ( ! $this->classIsTask($className)) {
+        if (! $this->classIsTask($className)) {
             throw new DomainException("The class \"{$className}\" is not a Doctrine Task");
         }
 
@@ -499,7 +499,7 @@ class Doctrine_Cli
 
         $requestedTaskName = isset($args[1]) ? $args[1] : null;
 
-        if ( ! $requestedTaskName || $requestedTaskName == 'help') {
+        if (! $requestedTaskName || $requestedTaskName == 'help') {
             $this->printTasks(null, $requestedTaskName == 'help' ? true : false);
             return;
         }
@@ -576,7 +576,7 @@ class Doctrine_Cli
         // Now lets fill in the entered arguments to the prepared array
         $copy = $args;
         foreach ($prepared as $key => $value) {
-            if ( ! $value && !empty($copy)) {
+            if (! $value && !empty($copy)) {
                 $prepared[$key] = $copy[0];
                 unset($copy[0]);
                 $copy = array_values($copy);
@@ -599,7 +599,7 @@ class Doctrine_Cli
     public function printTasks($taskName = null, $full = false)
     {
         $formatter = $this->getFormatter();
-        $config = $this->getConfig();
+        $config    = $this->getConfig();
 
         $taskIndex = $formatter->format('Doctrine Command Line Interface', 'HEADER') . "\n\n";
 
@@ -665,7 +665,7 @@ class Doctrine_Cli
         $taskNames = array();
 
         foreach ($registeredTask as $className => $task) {
-            $taskName = $task->getTaskName();
+            $taskName             = $task->getTaskName();
             $taskNames[$taskName] = $taskName;
         }
 

@@ -34,20 +34,20 @@
  */
 class Doctrine_Export_Mssql extends Doctrine_Export
 {
-  /**
-     * create a new database
-     *
-     * @param string $name name of the database that should be created
-     * @return PDOStatement|Doctrine_Adapter_Statement_Interface
-     */
+    /**
+       * create a new database
+       *
+       * @param string $name name of the database that should be created
+       * @return PDOStatement|Doctrine_Adapter_Statement_Interface
+       */
     public function createDatabase($name)
     {
-        $name = $this->conn->quoteIdentifier($name, true);
-        $query = "CREATE DATABASE $name";
+        $name    = $this->conn->quoteIdentifier($name, true);
+        $query   = "CREATE DATABASE $name";
         $options = $this->conn->getOptions();
         if (isset($options['database_device']) && $options['database_device']) {
-            $query.= ' ON '.$this->conn->getOption('database_device');
-            $query.= $this->conn->getOption('database_size') ? '=' .
+            $query .= ' ON ' . $this->conn->getOption('database_device');
+            $query .= $this->conn->getOption('database_size') ? '=' .
                      $this->conn->getOption('database_size') : '';
         }
         return $this->conn->standaloneQuery($query, array());
@@ -78,7 +78,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
 
     public function dropIndexSql($table, $name)
     {
-        $name = $this->conn->quoteIdentifier($this->conn->formatter->getIndexName($name));
+        $name  = $this->conn->quoteIdentifier($this->conn->formatter->getIndexName($name));
         $table = $this->conn->quoteIdentifier($table);
 
         return 'DROP INDEX ' . $name . ' ON ' . $table;
@@ -174,7 +174,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      */
     public function alterTable($name, array $changes, $check = false)
     {
-        if ( !$name ) {
+        if (!$name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
         }
 
@@ -196,10 +196,10 @@ class Doctrine_Export_Mssql extends Doctrine_Export
         }
 
 
-        $query = '';
+        $query       = '';
         $postQueries = ''; //SQL Server uses a stored procedure to rename objects
 
-        if ( ! empty($changes['name'])) {
+        if (! empty($changes['name'])) {
             $changeName = $this->conn->quoteIdentifier($changes['name'], true);
 
             $postQueries .= sprintf(
@@ -210,7 +210,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
         }
 
         //ADD TABLE
-        if ( ! empty($changes['add']) && is_array($changes['add'])) {
+        if (! empty($changes['add']) && is_array($changes['add'])) {
             foreach ($changes['add'] as $fieldName => $field) {
                 if ($query) {
                     $query .= ', ';
@@ -220,15 +220,14 @@ class Doctrine_Export_Mssql extends Doctrine_Export
         }
 
         //REMOVE TABLE
-        if ( ! empty($changes['remove']) && is_array($changes['remove'])) {
-                if ($query) {
-                    $query .= ', ';
-                }
+        if (! empty($changes['remove']) && is_array($changes['remove'])) {
+            if ($query) {
+                $query .= ', ';
+            }
             $query .= 'DROP COLUMN ';
 
             $dropped = array();
             foreach ($changes['remove'] as $fieldName => $field) {
-
                 $fieldName = $this->conn->quoteIdentifier($fieldName, true);
                 $dropped[] = $fieldName;
             }
@@ -237,19 +236,19 @@ class Doctrine_Export_Mssql extends Doctrine_Export
         }
 
         $rename = array();
-        if ( ! empty($changes['rename']) && is_array($changes['rename'])) {
+        if (! empty($changes['rename']) && is_array($changes['rename'])) {
             foreach ($changes['rename'] as $fieldName => $field) {
                 $rename[$field['name']] = $fieldName;
             }
         }
 
         //CHANGE (COLUMN DEFINITION)
-        if ( ! empty($changes['change']) && is_array($changes['change'])) {
+        if (! empty($changes['change']) && is_array($changes['change'])) {
             if ($query) {
-                $query.= ', ';
+                $query .= ', ';
             }
 
-            $query .= "ALTER COLUMN ";
+            $query .= 'ALTER COLUMN ';
 
             $altered = array();
             foreach ($changes['change'] as $fieldName => $field) {
@@ -269,10 +268,10 @@ class Doctrine_Export_Mssql extends Doctrine_Export
 
                     if (count($matches) === 6) {
                         // No constraint name provided. Try to make sure it's unique
-                        $defaultName = 'DF__' . $name . '__' . $fieldName . '__' . mt_rand();
+                        $defaultName  = 'DF__' . $name . '__' . $fieldName . '__' . mt_rand();
                         $defaultValue = $matches[5];
                     } else {
-                        $defaultName = $matches[2];
+                        $defaultName  = $matches[2];
                         $defaultValue = $matches[3];
                     }
 
@@ -289,16 +288,15 @@ class Doctrine_Export_Mssql extends Doctrine_Export
             }
 
             $query .= implode(sprintf(
-                "; ALTER TABLE %s ALTER COLUMN ",
+                '; ALTER TABLE %s ALTER COLUMN ',
                 $this->conn->quoteIdentifier($name, true)
             ), $altered) . ' ';
         }
 
         //RENAME (COLUMN)
-        if ( ! empty($rename) && is_array($rename)) {
+        if (! empty($rename) && is_array($rename)) {
             foreach ($rename as $renameName => $renamedField) {
-
-                $field = $changes['rename'][$renamedField];
+                $field        = $changes['rename'][$renamedField];
                 $renamedField = $this->conn->quoteIdentifier($renamedField);
 
                 $postQueries .= sprintf(
@@ -310,7 +308,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
             }
         }
 
-        if ( ! $query && ! $postQueries) {
+        if (! $query && ! $postQueries) {
             return false;
         }
 
@@ -344,8 +342,8 @@ class Doctrine_Export_Mssql extends Doctrine_Export
     public function createSequence($seqName, $start = 1, array $options = array())
     {
         $sequenceName = $this->conn->quoteIdentifier($this->conn->getSequenceName($seqName), true);
-        $seqcolName = $this->conn->quoteIdentifier($this->conn->getOption('seqcol_name'), true);
-        $query = 'CREATE TABLE ' . $sequenceName . ' (' . $seqcolName .
+        $seqcolName   = $this->conn->quoteIdentifier($this->conn->getOption('seqcol_name'), true);
+        $query        = 'CREATE TABLE ' . $sequenceName . ' (' . $seqcolName .
                  ' INT PRIMARY KEY CLUSTERED IDENTITY(' . $start . ', 1) NOT NULL)';
 
         $res = $this->conn->exec($query);
@@ -406,7 +404,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      */
     public function createTableSql($name, array $fields, array $options = array())
     {
-        if ( ! $name) {
+        if (! $name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
         }
 
@@ -415,7 +413,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
         }
 
         // Use field declaration of primary if the primary option not set
-        if ( ! isset($options['primary'])) {
+        if (! isset($options['primary'])) {
             foreach ($fields as $fieldName => $fieldData) {
                 if (isset($fieldData['primary']) && $fieldData['primary']) {
                     $options['primary'][$fieldName] = $fieldName;
@@ -442,7 +440,7 @@ class Doctrine_Export_Mssql extends Doctrine_Export
 
         $check = $this->getCheckDeclaration($fields);
 
-        if ( ! empty($check)) {
+        if (! empty($check)) {
             $query .= ', ' . $check;
         }
 
@@ -451,9 +449,9 @@ class Doctrine_Export_Mssql extends Doctrine_Export
         $sql[] = $query;
 
         if (isset($options['indexes']) && ! empty($options['indexes'])) {
-            foreach($options['indexes'] as $index => $definition) {
+            foreach ($options['indexes'] as $index => $definition) {
                 if (is_array($definition)) {
-                    $sql[] = $this->createIndexSql($name,$index, $definition);
+                    $sql[] = $this->createIndexSql($name, $index, $definition);
                 }
             }
         }

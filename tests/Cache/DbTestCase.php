@@ -39,7 +39,7 @@ class Doctrine_Cache_Db_TestCase extends Doctrine_Cache_Abstract_TestCase
 
         $this->cache = new Doctrine_Cache_Db(array(
             'connection' => $this->connection,
-            'tableName' => 'd_cache',
+            'tableName'  => 'd_cache',
         ));
         $this->connection->exec('DROP TABLE IF EXISTS d_cache');
         $this->cache->createTable();
@@ -61,7 +61,7 @@ class Doctrine_Cache_Db_TestCase extends Doctrine_Cache_Abstract_TestCase
 
     public function testAsResultCache()
     {
-        if ( !$this->_isEnabled()) {
+        if (!$this->_isEnabled()) {
             return;
         }
         $this->_clearCache();
@@ -78,7 +78,7 @@ class Doctrine_Cache_Db_TestCase extends Doctrine_Cache_Abstract_TestCase
                 ->useResultCache($cache, 3600, 'hans_query')
                 ->execute();
             $this->assertEqual(1, count($u));
-            $this->assertEqual("Hans", $u[0]->name);
+            $this->assertEqual('Hans', $u[0]->name);
         }
 
         $this->assertTrue($cache->contains('hans_query'));

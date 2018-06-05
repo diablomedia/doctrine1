@@ -31,4 +31,5 @@
  * @version     $Revision: 2552 $
  */
 class Doctrine_Data_Exception extends Doctrine_Exception
-{ }
+{
+}

@@ -29,21 +29,22 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_912_TestCase extends Doctrine_UnitTestCase {
+class Doctrine_Ticket_912_TestCase extends Doctrine_UnitTestCase
+{
 
   /**
    * prepareData
    */
-	
+    
     public function prepareData()
     {
-	    $oResume = new ticket912_Resume;
-	    $oResume->title = 'titre';
-	    $oResume->Person->name = 'David';
-	    $oResume->KnownLanguages[0]->comments = 'foo';
-	    $oResume->KnownLanguages[0]->Language->label = "Enlish";
-	    $oResume->KnownLanguages[0]->Level->label = "Fluent";
-	    $oResume->save();
+        $oResume                                     = new ticket912_Resume;
+        $oResume->title                              = 'titre';
+        $oResume->Person->name                       = 'David';
+        $oResume->KnownLanguages[0]->comments        = 'foo';
+        $oResume->KnownLanguages[0]->Language->label = 'Enlish';
+        $oResume->KnownLanguages[0]->Level->label    = 'Fluent';
+        $oResume->save();
     }
     
     /**
@@ -52,16 +53,16 @@ class Doctrine_Ticket_912_TestCase extends Doctrine_UnitTestCase {
     
     public function prepareTables()
     {
-    	$this->tables = array();
-    	$this->tables[] = 'ticket912_Resume';
-    	$this->tables[] = 'ticket912_Person';
-    	$this->tables[] = 'ticket912_ResumeHasLanguage';
-    	$this->tables[] = 'ticket912_LanguageLevel';
-    	$this->tables[] = 'ticket912_Language';
-    	
-    	parent :: prepareTables();
+        $this->tables   = array();
+        $this->tables[] = 'ticket912_Resume';
+        $this->tables[] = 'ticket912_Person';
+        $this->tables[] = 'ticket912_ResumeHasLanguage';
+        $this->tables[] = 'ticket912_LanguageLevel';
+        $this->tables[] = 'ticket912_Language';
+        
+        parent :: prepareTables();
     }
-	
+    
     
     /**
      * Test the existence expected indexes
@@ -82,12 +83,11 @@ class Doctrine_Ticket_912_TestCase extends Doctrine_UnitTestCase {
         $aResult = $q->fetchArray();
 
         // should be setted..
-    	$issetLevel = isset($aResult[0]['KnownLanguages'][0]['Level']);
+        $issetLevel    = isset($aResult[0]['KnownLanguages'][0]['Level']);
         $issetLanguage = isset($aResult[0]['KnownLanguages'][0]['Language']);
         
         $this->assertTrue($issetLevel);
         $this->assertTrue($issetLanguage);
-    
     }
 }
 
@@ -98,60 +98,60 @@ class Doctrine_Ticket_912_TestCase extends Doctrine_UnitTestCase {
 
 class ticket912_Resume extends Doctrine_Record
 {
-	/**
+    /**
    * setTableDefinition
    */
-	
-  public function setTableDefinition()
-  {
-    $this->setTableName('resume');
-    $this->hasColumn('id', 'integer', 8, array (
-		  'primary' => true,
-		  'autoincrement' => true,
-		  'unsigned' => true,
-		  ));
-
-    $this->hasColumn('person_id', 'integer', 8, array('unsigned' => true));
-    $this->hasColumn('title', 'string', 255);
-  }
-
-  /**
-   * setUp
-   */
-  
-  public function setUp()
-  {
-    $this->hasMany('ticket912_ResumeHasLanguage as KnownLanguages', array('local' => 'id', 'foreign' => 'resume_id'));
     
-    $this->hasOne('ticket912_Person as Person', array(
-      'local' => 'person_id',
-      'foreign' => 'id',    
+    public function setTableDefinition()
+    {
+        $this->setTableName('resume');
+        $this->hasColumn('id', 'integer', 8, array(
+          'primary'       => true,
+          'autoincrement' => true,
+          'unsigned'      => true,
+          ));
+
+        $this->hasColumn('person_id', 'integer', 8, array('unsigned' => true));
+        $this->hasColumn('title', 'string', 255);
+    }
+
+    /**
+     * setUp
+     */
+  
+    public function setUp()
+    {
+        $this->hasMany('ticket912_ResumeHasLanguage as KnownLanguages', array('local' => 'id', 'foreign' => 'resume_id'));
+    
+        $this->hasOne('ticket912_Person as Person', array(
+      'local'    => 'person_id',
+      'foreign'  => 'id',
       'onDelete' => 'SET NULL',
       'onUpdate' => 'CASCADE'
       ));
-  } 
+    }
 }
 
 /**
  *  First level one to one relation class Language
  */
 class ticket912_Person extends Doctrine_Record
-{	
-  /**
-   * setTableDefinition
-   */
+{
+    /**
+     * setTableDefinition
+     */
  
-  public function setTableDefinition()
-  {
-    $this->setTableName('person');
-    $this->hasColumn('id', 'integer', 8, array (
-      'primary' => true,
+    public function setTableDefinition()
+    {
+        $this->setTableName('person');
+        $this->hasColumn('id', 'integer', 8, array(
+      'primary'       => true,
       'autoincrement' => true,
-      'unsigned' => true,
+      'unsigned'      => true,
       ));
 
-    $this->hasColumn('name', 'string', 255, array ());
-  } 
+        $this->hasColumn('name', 'string', 255, array());
+    }
 }
 
 
@@ -161,57 +161,56 @@ class ticket912_Person extends Doctrine_Record
 
 class ticket912_ResumeHasLanguage extends Doctrine_Record
 {
-  /**
-   * setTableDefinition
-   */
-	
-  public function setTableDefinition()
-  {
-    $this->setTableName('resume_has_language');
-    $this->hasColumn('id', 'integer', 8, array (
-		  'primary' => true,
-		  'autoincrement' => true,
-		  'unsigned' => true,
-		  ));
+    /**
+     * setTableDefinition
+     */
+    
+    public function setTableDefinition()
+    {
+        $this->setTableName('resume_has_language');
+        $this->hasColumn('id', 'integer', 8, array(
+          'primary'       => true,
+          'autoincrement' => true,
+          'unsigned'      => true,
+          ));
 
-    $this->hasColumn('resume_id', 'integer', 8, array (
-		  'notnull' => true,
-		  'unsigned' => true,
-		  ));
+        $this->hasColumn('resume_id', 'integer', 8, array(
+          'notnull'  => true,
+          'unsigned' => true,
+          ));
 
-    $this->hasColumn('language_id', 'integer', 2, array (
+        $this->hasColumn('language_id', 'integer', 2, array(
       'unsigned' => true,
       ));
 
-    $this->hasColumn('language_level_id', 'integer', 2, array (
+        $this->hasColumn('language_level_id', 'integer', 2, array(
       'unsigned' => true,
       ));
     
-    $this->hasColumn('comments', 'string', 4000, array ());
+        $this->hasColumn('comments', 'string', 4000, array());
+    }
 
-  }
-
-  /**
-   * setUp
-   */  
+    /**
+     * setUp
+     */
   
-  public function setUp()
-  {
-    $this->hasOne('ticket912_Resume as Resume', array('local' => 'resume_id',
-                                  'foreign' => 'id',
-                                  'onDelete' => 'CASCADE',
-                                  'onUpdate' => 'CASCADE'));
+    public function setUp()
+    {
+        $this->hasOne('ticket912_Resume as Resume', array('local' => 'resume_id',
+                                  'foreign'                       => 'id',
+                                  'onDelete'                      => 'CASCADE',
+                                  'onUpdate'                      => 'CASCADE'));
 
-    $this->hasOne('ticket912_Language as Language', array('local' => 'language_id',
-                                    'foreign' => 'id',
-                                    'onDelete' => 'CASCADE',
-                                    'onUpdate' => 'CASCADE'));
+        $this->hasOne('ticket912_Language as Language', array('local' => 'language_id',
+                                    'foreign'                         => 'id',
+                                    'onDelete'                        => 'CASCADE',
+                                    'onUpdate'                        => 'CASCADE'));
 
-    $this->hasOne('ticket912_LanguageLevel as Level', array('local' => 'language_level_id',
-                                                  'foreign' => 'id',
-                                                  'onDelete' => 'SET NULL',
-                                                  'onUpdate' => 'CASCADE'));
-  } 
+        $this->hasOne('ticket912_LanguageLevel as Level', array('local' => 'language_level_id',
+                                                  'foreign'             => 'id',
+                                                  'onDelete'            => 'SET NULL',
+                                                  'onUpdate'            => 'CASCADE'));
+    }
 }
 
 
@@ -221,31 +220,31 @@ class ticket912_ResumeHasLanguage extends Doctrine_Record
  */
 class ticket912_Language extends Doctrine_Record
 {
-  /**
-   * setTableDefinition
-   */  
-	
-	public function setTableDefinition()
-  {
-  	$this->setTableName('language');
-    $this->hasColumn('id', 'integer', 2, array(
-      'primary' => true,
+    /**
+     * setTableDefinition
+     */
+    
+    public function setTableDefinition()
+    {
+        $this->setTableName('language');
+        $this->hasColumn('id', 'integer', 2, array(
+      'primary'       => true,
       'autoincrement' => true,
-      'unsigned' => true,
+      'unsigned'      => true,
       ));
 
-    $this->hasColumn('label', 'string', 100, array ('notnull' => true));
-  }
+        $this->hasColumn('label', 'string', 100, array('notnull' => true));
+    }
 
-  /**
-   * setup
-   */  
+    /**
+     * setup
+     */
   
-  public function setUp()
-  {
-    $this->hasMany('ticket912_Resume as Resumes', array('local' => 'id', 'foreign' => 'language_id'));
-    $this->hasMany('ticket912_ResumeHasLanguage as ResumeKnownLanguages', array('local' => 'id', 'foreign' => 'language_id'));
-  } 
+    public function setUp()
+    {
+        $this->hasMany('ticket912_Resume as Resumes', array('local' => 'id', 'foreign' => 'language_id'));
+        $this->hasMany('ticket912_ResumeHasLanguage as ResumeKnownLanguages', array('local' => 'id', 'foreign' => 'language_id'));
+    }
 }
 
 /**
@@ -254,30 +253,30 @@ class ticket912_Language extends Doctrine_Record
 
 class ticket912_LanguageLevel extends Doctrine_Record
 {
-  /**
-   * setTableDefinition
-   */  
-	
-	public function setTableDefinition()
-  {
-    $this->setTableName('language_level');
-    $this->hasColumn('id', 'integer', 2, array (
-		  'primary' => true,
-		  'autoincrement' => true,
-		  'unsigned' => true,
-		  ));
+    /**
+     * setTableDefinition
+     */
+    
+    public function setTableDefinition()
+    {
+        $this->setTableName('language_level');
+        $this->hasColumn('id', 'integer', 2, array(
+          'primary'       => true,
+          'autoincrement' => true,
+          'unsigned'      => true,
+          ));
 
-    $this->hasColumn('label', 'string', 100, array ('notnull' => true));
-  }
+        $this->hasColumn('label', 'string', 100, array('notnull' => true));
+    }
 
-  /**
-   * setUp
-   */  
+    /**
+     * setUp
+     */
   
-  public function setUp()
-  {
-    $this->hasMany('ticket912_ResumeHasLanguage as ResumeKnownLanguages', array(
+    public function setUp()
+    {
+        $this->hasMany('ticket912_ResumeHasLanguage as ResumeKnownLanguages', array(
       'local'   => 'id',
       'foreign' => 'language_level_id'));
-  }
+    }
 }

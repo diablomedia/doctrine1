@@ -41,7 +41,7 @@ class Doctrine_Ticket_1251_TestCase extends Doctrine_UnitTestCase
     
     public function testAccessDataNamedField()
     {
-        $t = new Ticket_1251_Record();
+        $t       = new Ticket_1251_Record();
         $t->data = 'Foo';
         $t->save();
         

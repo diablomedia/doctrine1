@@ -34,8 +34,8 @@ class Doctrine_Ticket_DC198_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
     {
-        $u = new Ticket_DC198_User();
-        $u->name = 'test';
+        $u                 = new Ticket_DC198_User();
+        $u->name           = 'test';
         $u->email->address = 'foo@bar.com';
         $u->save();
 
@@ -52,7 +52,7 @@ class Doctrine_Ticket_DC198_TestCase extends Doctrine_UnitTestCase
 
     public function testRemoveEmail()
     {
-        $u = Doctrine_Query::create()->from('Ticket_DC198_User')->fetchOne();
+        $u       = Doctrine_Query::create()->from('Ticket_DC198_User')->fetchOne();
         $u->name = 'test2';
         $u->email->delete();
         $u->refreshRelated('email');
@@ -66,7 +66,6 @@ class Doctrine_Ticket_DC198_TestCase extends Doctrine_UnitTestCase
         $e = Doctrine_Query::create()->from('Ticket_DC198_Email')->fetchOne();
         $this->assertFalse($e);
     }
-
 }
 
 class Ticket_DC198_Email extends Doctrine_Record
@@ -77,7 +76,7 @@ class Ticket_DC198_Email extends Doctrine_Record
              'type' => 'integer',
              ));
         $this->hasColumn('address', 'string', 150, array(
-             'type' => 'string',
+             'type'   => 'string',
              'length' => '150',
              ));
     }
@@ -85,7 +84,7 @@ class Ticket_DC198_Email extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_DC198_User', array(
-             'local' => 'user_id',
+             'local'   => 'user_id',
              'foreign' => 'id'));
     }
 }
@@ -95,7 +94,7 @@ class Ticket_DC198_User extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 150, array(
-             'type' => 'string',
+             'type'   => 'string',
              'length' => '150',
              ));
     }
@@ -103,7 +102,7 @@ class Ticket_DC198_User extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_DC198_Email as email', array(
-             'local' => 'id',
+             'local'   => 'id',
              'foreign' => 'user_id'));
     }
 }

@@ -68,15 +68,15 @@ class Doctrine_Search_Query
     public function __construct($table)
     {
         if (is_string($table)) {
-           $table = Doctrine_Core::getTable($table);
+            $table = Doctrine_Core::getTable($table);
         } else {
-            if ( ! $table instanceof Doctrine_Table) {
+            if (! $table instanceof Doctrine_Table) {
                 throw new Doctrine_Search_Exception('Invalid argument type. Expected instance of Doctrine_Table.');
             }
         }
 
         $this->_tokenizer = new Doctrine_Query_Tokenizer();
-        $this->_table = $table;
+        $this->_table     = $table;
 
         $foreignId = current(array_diff($this->_table->getColumnNames(), array('keyword', 'field', 'position')));
 
@@ -109,7 +109,7 @@ class Doctrine_Search_Query
             }
         }
 
-        $from = 'FROM ' . $this->_table->getTableName();
+        $from  = 'FROM ' . $this->_table->getTableName();
         $where = 'WHERE ';
         $where .= $this->parseClause($text);
 
@@ -151,7 +151,7 @@ class Doctrine_Search_Query
 
             foreach ($terms as $k => $term) {
                 if ($this->isExpression($term)) {
-                    $ret[$k] = $this->parseClause($term, true);
+                    $ret[$k]    = $this->parseClause($term, true);
                     $leavesOnly = false;
                 } else {
                     $ret[$k] = $this->parseTerm($term);
@@ -161,7 +161,7 @@ class Doctrine_Search_Query
             $return = implode(' OR ', $ret);
 
             if ($leavesOnly && $recursive) {
-                $return = sprintf($this->_condition, 'IN') . $return . ')';
+                $return   = sprintf($this->_condition, 'IN') . $return . ')';
                 $brackets = false;
             }
         } else {
@@ -179,7 +179,7 @@ class Doctrine_Search_Query
 
                     if (substr($term, 0, 1) === '-') {
                         $operator = 'NOT IN';
-                        $term = substr($term, 1);
+                        $term     = substr($term, 1);
                     } else {
                         $operator = 'IN';
                     }
@@ -252,7 +252,6 @@ class Doctrine_Search_Query
 
         if (strpos($word, '?') !== false ||
             strpos($word, '*') !== false) {
-
             $word = str_replace('*', '%', $word);
 
             $where = 'keyword LIKE ?';

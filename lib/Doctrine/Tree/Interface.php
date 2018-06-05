@@ -30,7 +30,8 @@
  * @version     $Revision: 7490 $
  * @author      Joe Simms <joe.simms@websites4.com>
  */
-interface Doctrine_Tree_Interface {
+interface Doctrine_Tree_Interface
+{
 
     /**
      * creates root node from given record or from a new record

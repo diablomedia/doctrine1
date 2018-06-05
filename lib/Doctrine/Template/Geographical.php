@@ -39,14 +39,14 @@ class Doctrine_Template_Geographical extends Doctrine_Template
      *
      * @var array
      */
-    protected $_options = array('latitude' =>  array('name'     =>  'latitude',
-                                                     'type'     =>  'double',
-                                                     'size'     =>  null,
-                                                     'options'  =>  array()),
-                                'longitude' => array('name'     =>  'longitude',
-                                                     'type'     =>  'double',
-                                                     'size'     =>  null,
-                                                     'options'  =>  array()));
+    protected $_options = array('latitude' => array('name'     => 'latitude',
+                                                     'type'    => 'double',
+                                                     'size'    => null,
+                                                     'options' => array()),
+                                'longitude' => array('name'    => 'longitude',
+                                                     'type'    => 'double',
+                                                     'size'    => null,
+                                                     'options' => array()));
 
     /**
      * Set table definition for Geographical behavior
@@ -68,15 +68,15 @@ class Doctrine_Template_Geographical extends Doctrine_Template
     public function getDistanceQuery()
     {
         $invoker = $this->getInvoker();
-        $query = $invoker->getTable()->createQuery();
+        $query   = $invoker->getTable()->createQuery();
 
         $rootAlias = $query->getRootAlias();
-        $latName = $this->_options['latitude']['name'];
-        $longName = $this->_options['longitude']['name'];
+        $latName   = $this->_options['latitude']['name'];
+        $longName  = $this->_options['longitude']['name'];
 
         $query->addSelect($rootAlias . '.*');
 
-        $sql = "((ACOS(SIN(%s * PI() / 180) * SIN(" . $rootAlias . "." . $latName . " * PI() / 180) + COS(%s * PI() / 180) * COS(" . $rootAlias . "." . $latName . " * PI() / 180) * COS((%s - " . $rootAlias . "." . $longName . ") * PI() / 180)) * 180 / PI()) * 60 * %s) as %s";
+        $sql = '((ACOS(SIN(%s * PI() / 180) * SIN(' . $rootAlias . '.' . $latName . ' * PI() / 180) + COS(%s * PI() / 180) * COS(' . $rootAlias . '.' . $latName . ' * PI() / 180) * COS((%s - ' . $rootAlias . '.' . $longName . ') * PI() / 180)) * 180 / PI()) * 60 * %s) as %s';
 
         $milesSql = sprintf($sql, $invoker->get($latName), $invoker->get($latName), $invoker->get($longName), '1.1515', 'miles');
         $query->addSelect($milesSql);
@@ -99,10 +99,10 @@ class Doctrine_Template_Geographical extends Doctrine_Template
         $query = $this->getDistanceQuery();
 
         $conditions = array();
-        $values = array();
+        $values     = array();
         foreach ((array) $record->getTable()->getIdentifier() as $id) {
             $conditions[] = $query->getRootAlias() . '.' . $id . ' = ?';
-            $values[] = $record->get($id);
+            $values[]     = $record->get($id);
         }
 
         $where = implode(' AND ', $conditions);

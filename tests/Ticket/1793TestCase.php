@@ -34,21 +34,21 @@ class Doctrine_Ticket_1793_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
     {
-        $order1 = new Ticket_1793_Order;
+        $order1         = new Ticket_1793_Order;
         $order1->status = 'new';
         $order1->save();
 
         /* The enum column can be changed if the value isn't equal to that of one of the column aggregation's keyValue's: */
-        $order2 = new Ticket_1793_Order;
+        $order2         = new Ticket_1793_Order;
         $order2->status = 'shipped'; // 'shipped' isn't one of the column aggregation keyValue's
         $order2->save();
 
         // Same as $order2
-        $order3 = new Ticket_1793_Order;
+        $order3         = new Ticket_1793_Order;
         $order3->status = 'shipped';
         $order3->save();
 
-        $order4 = new Ticket_1793_Order;
+        $order4         = new Ticket_1793_Order;
         $order4->status = 'new';
         $order4->save();
     }
@@ -111,28 +111,24 @@ class Doctrine_Ticket_1793_TestCase extends Doctrine_UnitTestCase
         $order1 = Doctrine_Core::getTable('Ticket_1793_Order')->find(1);
         $this->assertEqual($order1->status, 'completed');
     }
-
 }
 
 class Ticket_1793_Order extends Doctrine_Record
 {
-  public function setTableDefinition()
-  {
-    $this->setTableName('ticket_1793_orders');
-    $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'unsigned' => '1', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
-    $this->hasColumn('status', 'enum', null, array('type' => 'enum', 'values' => array(0 => 'new', 1 => 'completed', 2 => 'shipped')));
+    public function setTableDefinition()
+    {
+        $this->setTableName('ticket_1793_orders');
+        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'unsigned' => '1', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
+        $this->hasColumn('status', 'enum', null, array('type' => 'enum', 'values' => array(0 => 'new', 1 => 'completed', 2 => 'shipped')));
 
-    $this->setSubClasses(array('Ticket_1793_OrdersNew' => array('status' => 'new'), 'Ticket_1793_OrdersCompleted' => array('status' => 'completed')));
-  }
-
+        $this->setSubClasses(array('Ticket_1793_OrdersNew' => array('status' => 'new'), 'Ticket_1793_OrdersCompleted' => array('status' => 'completed')));
+    }
 }
 
 class Ticket_1793_OrdersCompleted extends Ticket_1793_Order
 {
-
 }
 
 class Ticket_1793_OrdersNew extends Ticket_1793_Order
 {
-
 }

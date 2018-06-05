@@ -127,8 +127,8 @@ class Doctrine_Migration_Process
      */
     public function processChangedColumn(array $column)
     {
-        $options = array();
-        $options = $column['options'];
+        $options         = array();
+        $options         = $column['options'];
         $options['type'] = $column['type'];
 
         $this->getConnection()->export->alterTable($column['tableName'], array('change' => array($column['columnName'] => array('definition' => $options))));

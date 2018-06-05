@@ -31,12 +31,13 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
-    public function prepareTables() 
-    { 
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
+    {
         $this->tables = array('User');
         parent::prepareTables();
     }
@@ -49,7 +50,7 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
         try {
             $users = $query->execute();
             $this->pass();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail();
         }
     }
@@ -63,7 +64,7 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
         try {
             $users = $query->execute();
             $this->pass();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail();
         }
     }
@@ -77,9 +78,9 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
         try {
             $users = $query->execute();
             $this->pass();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail();
-        } 
+        }
     }
     
     public function testMultiplicationExpression()
@@ -91,9 +92,9 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
         try {
             $users = $query->execute();
             $this->pass();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail();
-        } 
+        }
     }
     
     public function testOrderByExpression()
@@ -106,7 +107,7 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
         try {
             $users = $query->execute();
             $this->pass();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail();
         }
     }

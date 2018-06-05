@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2123_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2123_TestCase extends Doctrine_UnitTestCase
 {
     public function testCheckingRelatedExistsOnCollectionThrowsException()
     {
@@ -53,7 +53,7 @@ class Doctrine_Ticket_2123_TestCase extends Doctrine_UnitTestCase
 
     public function testClearRelatedReference()
     {
-        $user = new User();
+        $user  = new User();
         $email = $user->Email;
         $user->clearRelated('Email');
         $this->assertEqual($user->hasReference('Email'), false);

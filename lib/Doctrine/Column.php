@@ -37,8 +37,8 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
      * @var array $_definition  @see getDefinition()
      */
     protected $_definition = array(
-                                'type'    => null,
-                                'length'  => 0,
+                                'type'   => null,
+                                'length' => 0,
                                 );
 
     /**
@@ -81,7 +81,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
      */
     public function get($name)
     {
-        if ( ! isset($this->_definition[$name])) {
+        if (! isset($this->_definition[$name])) {
             return null;
         }
 

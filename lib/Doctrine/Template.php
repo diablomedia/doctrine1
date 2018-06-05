@@ -192,7 +192,6 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      */
     public function setUp()
     {
-
     }
 
     /**
@@ -202,6 +201,5 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      */
     public function setTableDefinition()
     {
-
     }
 }

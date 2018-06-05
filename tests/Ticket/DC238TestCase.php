@@ -37,7 +37,7 @@ class Doctrine_Ticket_DC238_TestCase extends Doctrine_UnitTestCase
         $conn = Doctrine_Manager::connection('sqlite::memory:', 'test', false);
         $conn->export->exportClasses(array('Ticket_DC238_User'));
 
-        $user = new Ticket_DC238_User();
+        $user           = new Ticket_DC238_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->save();
@@ -46,7 +46,7 @@ class Doctrine_Ticket_DC238_TestCase extends Doctrine_UnitTestCase
         $conn->addListener($profiler);
 
         $cacheDriver = new Doctrine_Cache_Array();
-        $q = Doctrine::getTable('Ticket_DC238_User')
+        $q           = Doctrine::getTable('Ticket_DC238_User')
             ->createQuery('u')
             ->useResultCache($cacheDriver, 3600, 'user_query');
 

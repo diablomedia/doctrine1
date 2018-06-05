@@ -32,8 +32,9 @@
  */
 class Doctrine_Relation_Nest_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
+    public function prepareData()
+    {
+    }
 
     public function prepareTables()
     {
@@ -42,10 +43,10 @@ class Doctrine_Relation_Nest_TestCase extends Doctrine_UnitTestCase
         parent::prepareTables();
     }
 
-    public function testInitJoinTableSelfReferencingInsertingData() 
+    public function testInitJoinTableSelfReferencingInsertingData()
     {
-        $e = new Entity();
-        $e->name = "Entity test";
+        $e       = new Entity();
+        $e->name = 'Entity test';
 
         $this->assertTrue($e->Entity[0] instanceof Entity);
         $this->assertTrue($e->Entity[1] instanceof Entity);
@@ -82,7 +83,7 @@ class Doctrine_Relation_Nest_TestCase extends Doctrine_UnitTestCase
     }
 
     public function testNestRelationsFetchingData()
-    {    
+    {
         $this->connection->clear();
 
         $e = $this->conn->queryOne('FROM Entity e LEFT JOIN e.Entity e2 LEFT JOIN e2.Entity e3 WHERE (e.id = 1) ORDER BY e.name, e2.name, e3.name');
@@ -131,16 +132,16 @@ class Doctrine_Relation_Nest_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual(count($this->conn), ($count + 1));
 
-        $this->assertEqual($e->Entity[0]->name, "Friend 1");
-        $this->assertEqual($e->Entity[1]->name, "Friend 2");
+        $this->assertEqual($e->Entity[0]->name, 'Friend 1');
+        $this->assertEqual($e->Entity[1]->name, 'Friend 2');
 
-        $this->assertEqual($e->Entity[0]->Entity[0]->name, "Entity test");
-        $this->assertEqual($e->Entity[0]->Entity[1]->name, "Friend 1 1");
+        $this->assertEqual($e->Entity[0]->Entity[0]->name, 'Entity test');
+        $this->assertEqual($e->Entity[0]->Entity[1]->name, 'Friend 1 1');
 
         $this->assertEqual(count($this->conn), ($count + 2));
 
-        $this->assertEqual($e->Entity[1]->Entity[0]->name, "Entity test");
-        $this->assertEqual($e->Entity[1]->Entity[1]->name, "Friend 2 1");
+        $this->assertEqual($e->Entity[1]->Entity[0]->name, 'Entity test');
+        $this->assertEqual($e->Entity[1]->Entity[1]->name, 'Friend 2 1');
 
         $this->assertEqual(count($this->conn), ($count + 3));
 
@@ -151,7 +152,7 @@ class Doctrine_Relation_Nest_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($coll->count(), 1);
         $this->assertEqual($coll[0]->state(), Doctrine_Record::STATE_CLEAN);
         
-        $this->assertEqual($coll[0]->name, "Friend 1");
+        $this->assertEqual($coll[0]->name, 'Friend 1');
         
         $query = new Doctrine_Query($this->connection);
 
@@ -176,16 +177,16 @@ class Doctrine_Relation_Nest_TestCase extends Doctrine_UnitTestCase
 
     public function testNestRelationsSaving()
     {
-        $nest = new NestTest();
-        $nest->name = 'n 1';
-        $nest->Parents[0]->name = 'p 1';
-        $nest->Parents[1]->name = 'p 2';
-        $nest->Parents[2]->name = 'p 3';
-        $nest->Children[0]->name = 'c 1';
+        $nest                                 = new NestTest();
+        $nest->name                           = 'n 1';
+        $nest->Parents[0]->name               = 'p 1';
+        $nest->Parents[1]->name               = 'p 2';
+        $nest->Parents[2]->name               = 'p 3';
+        $nest->Children[0]->name              = 'c 1';
         $nest->Children[0]->Children[0]->name = 'c c 1';
         $nest->Children[0]->Children[1]->name = 'c c 2';
-        $nest->Children[1]->name = 'c 2';
-        $nest->Children[1]->Parents[]->name = 'n 2';
+        $nest->Children[1]->name              = 'c 2';
+        $nest->Children[1]->Parents[]->name   = 'n 2';
         $nest->save();
         
         $this->connection->clear();
@@ -250,5 +251,4 @@ class Doctrine_Relation_Nest_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($n[0]->Relatives->count(), 5);
     }
-
 }

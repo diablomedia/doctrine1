@@ -49,7 +49,7 @@ abstract class Doctrine_Query_Part
     {
         $this->query = $query;
 
-        if ( ! $tokenizer) {
+        if (! $tokenizer) {
             $tokenizer = new Doctrine_Query_Tokenizer();
         }
         $this->_tokenizer = $tokenizer;

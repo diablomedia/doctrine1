@@ -34,22 +34,22 @@ class Doctrine_Ticket_DC39_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
     {
-        $g1 = new Ticket_DC39_Group();
+        $g1         = new Ticket_DC39_Group();
         $g1['name'] = 'group1';
         $g1->save();
 
-        $g2 = new Ticket_DC39_Group();
+        $g2         = new Ticket_DC39_Group();
         $g2['name'] = 'group2';
         $g2->save();
 
-        $u1 = new Ticket_DC39_User();
+        $u1             = new Ticket_DC39_User();
         $u1['group_id'] = 1;
-        $u1['name'] = 'user1';
+        $u1['name']     = 'user1';
         $u1->save();
 
-        $u2 = new Ticket_DC39_User();
+        $u2             = new Ticket_DC39_User();
         $u2['group_id'] = 2;
-        $u2['name'] = 'user2';
+        $u2['name']     = 'user2';
         $u2->save();
     }
 
@@ -62,53 +62,52 @@ class Doctrine_Ticket_DC39_TestCase extends Doctrine_UnitTestCase
 
     public function testOneToManyRelationsWithSynchronizeWithArray()
     {
-    		// link group (id 2) with users (id 1,2)
-    		$group = Doctrine::getTable('Ticket_DC39_Group')->find(2);
-    		$group->synchronizeWithArray(array(
-    			'Users' => array(1, 2)
-    		));
-    		$group->save();
+        // link group (id 2) with users (id 1,2)
+        $group = Doctrine::getTable('Ticket_DC39_Group')->find(2);
+        $group->synchronizeWithArray(array(
+                'Users' => array(1, 2)
+            ));
+        $group->save();
 
-    		// update the user-objects with real data from database
-    		$user1 = Doctrine::getTable('Ticket_DC39_User')->find(1);
-    		$user2 = Doctrine::getTable('Ticket_DC39_User')->find(2);
+        // update the user-objects with real data from database
+        $user1 = Doctrine::getTable('Ticket_DC39_User')->find(1);
+        $user2 = Doctrine::getTable('Ticket_DC39_User')->find(2);
 
-    		// compare the group_id (should be 2) with the group_id set through $group->synchronizeWithArray
-    		$this->assertEqual($group->Users[0]->group_id, 2);
-    		$this->assertEqual($group->Users[1]->group_id, 2);
+        // compare the group_id (should be 2) with the group_id set through $group->synchronizeWithArray
+        $this->assertEqual($group->Users[0]->group_id, 2);
+        $this->assertEqual($group->Users[1]->group_id, 2);
     }
-   
 }
 
 class Ticket_DC39_Group extends Doctrine_Record
 {
-	public function setTableDefinition()
-	{
-		$this->hasColumn('name', 'string', 255);
-	}
-	
-	public function setUp()
-	{
-		$this->hasMany('Ticket_DC39_User as Users', array(
-			'local' => 'id',
-			'foreign' => 'group_id'
-		));
-	}
+    public function setTableDefinition()
+    {
+        $this->hasColumn('name', 'string', 255);
+    }
+    
+    public function setUp()
+    {
+        $this->hasMany('Ticket_DC39_User as Users', array(
+            'local'   => 'id',
+            'foreign' => 'group_id'
+        ));
+    }
 }
 
 class Ticket_DC39_User extends Doctrine_Record
 {
-	public function setTableDefinition()
-	{
-		$this->hasColumn('group_id', 'integer');
-		$this->hasColumn('name', 'string', 255);
-	}
+    public function setTableDefinition()
+    {
+        $this->hasColumn('group_id', 'integer');
+        $this->hasColumn('name', 'string', 255);
+    }
 
-	public function setUp()
-	{
-		$this->hasOne('Ticket_DC39_Group as Group', array(
-			'local' => 'group_id',
-			'foreign' => 'id'
-		));
-	}
+    public function setUp()
+    {
+        $this->hasOne('Ticket_DC39_Group as Group', array(
+            'local'   => 'group_id',
+            'foreign' => 'id'
+        ));
+    }
 }

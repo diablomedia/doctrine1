@@ -41,7 +41,7 @@ class Doctrine_Cache_Xcache extends Doctrine_Cache_Driver
      */
     public function __construct($options = array())
     {
-        if ( ! extension_loaded('xcache') ) {
+        if (! extension_loaded('xcache')) {
             throw new Doctrine_Cache_Exception('In order to use Xcache driver, the xcache extension must be loaded.');
         }
 

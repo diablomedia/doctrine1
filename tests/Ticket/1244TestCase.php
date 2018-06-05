@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1244_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1244_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -44,7 +44,7 @@ class Doctrine_Ticket_1244_TestCase extends Doctrine_UnitTestCase
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
 
         try {
-            $test = new Ticket_1244_Test();
+            $test       = new Ticket_1244_Test();
             $test->test = null;
             $test->save();
             $this->pass();
@@ -60,6 +60,6 @@ class Ticket_1244_Test extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('test', 'integer', 4, array('range' => array(5, 10))); 
+        $this->hasColumn('test', 'integer', 4, array('range' => array(5, 10)));
     }
 }

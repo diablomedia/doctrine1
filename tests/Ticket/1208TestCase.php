@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1208_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1208_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,7 +40,7 @@ class Doctrine_Ticket_1208_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $user = new Ticket_1208_User();
+        $user           = new Ticket_1208_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->save();
@@ -67,15 +67,15 @@ class Ticket_1208_User extends Doctrine_Record
 
     public function preHydrate($event)
     {
-        $data = $event->data;
+        $data                = $event->data;
         $data['pre_hydrate'] = 'pre hydrate value';
-        $event->data = $data;
+        $event->data         = $data;
     }
 
     public function postHydrate($event)
     {
-        $data = $event->data;
+        $data                 = $event->data;
         $data['post_hydrate'] = 'post hydrate value';
-        $event->data = $data;
+        $event->data          = $data;
     }
 }

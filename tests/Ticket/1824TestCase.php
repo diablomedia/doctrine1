@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1824_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1824_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,8 +40,8 @@ class Doctrine_Ticket_1824_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $test = new Ticket_1824_Test();
-        $test->test1 = 'test';
+        $test                          = new Ticket_1824_Test();
+        $test->test1                   = 'test';
         $test->Translation['en']->test = 'test';
         $test->save();
     }

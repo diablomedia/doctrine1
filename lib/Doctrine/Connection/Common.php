@@ -40,16 +40,16 @@ class Doctrine_Connection_Common extends Doctrine_Connection
      * @param mixed $offset
      * @param bool $isManip
      */
-    public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip=false)
+    public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)
     {
-        $limit = (int) $limit;
+        $limit  = (int) $limit;
         $offset = (int) $offset;
 
         if ($limit && $offset) {
             $query .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
         } elseif ($limit && ! $offset) {
             $query .= ' LIMIT ' . $limit;
-        } elseif ( ! $limit && $offset) {
+        } elseif (! $limit && $offset) {
             $query .= ' LIMIT 999999999999 OFFSET ' . $offset;
         }
 

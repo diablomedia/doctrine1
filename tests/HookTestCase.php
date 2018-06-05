@@ -30,10 +30,9 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase
 {
-
-    public function testWordLikeParserSupportsHyphens() 
+    public function testWordLikeParserSupportsHyphens()
     {
         $parser = new Doctrine_Hook_WordLike();
         
@@ -82,14 +81,14 @@ class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase
         $hook->hookOrderBy($a['orderby']);
         $this->assertEqual($hook->getQuery()->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name FROM entity e LEFT JOIN phonenumber p ON e.id = p.entity_id WHERE (e.type = 0) ORDER BY e.name ASC, e.id DESC');
 
-        $users =  $hook->getQuery()->execute();
+        $users = $hook->getQuery()->execute();
     }
 
     public function testHookWhereAcceptsArrays()
     {
         $hook = new Doctrine_Hook('SELECT u.name FROM User u LEFT JOIN u.Phonenumber p');
 
-        $a['where'] = array('u.name' => 'Jack Daniels',
+        $a['where'] = array('u.name'      => 'Jack Daniels',
                             'u.loginname' => 'TheMan');
 
         $hook->hookWhere($a['where']);
@@ -168,5 +167,4 @@ class Doctrine_Hook_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($parser->getCondition(), '((m.year > ? AND m.year < ?) OR m.year = ?)');
         $this->assertEqual($parser->getParams(), array('1998', '2000', '2001'));
     }
-
 }

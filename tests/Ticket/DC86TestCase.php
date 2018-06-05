@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC86_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC86_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,32 +40,32 @@ class Doctrine_Ticket_DC86_TestCase extends Doctrine_UnitTestCase
     
     public function prepareData()
     {
-    	$r = new Ticket_DC86_Test();
-    	$r->id = 1;
-    	$r->date = date('Y-m-d h:i:s', strtotime("- 10 week"));
-    	$r->save();
+        $r       = new Ticket_DC86_Test();
+        $r->id   = 1;
+        $r->date = date('Y-m-d h:i:s', strtotime('- 10 week'));
+        $r->save();
 
-    	$r = new Ticket_DC86_Test();
-    	$r->id = 2;
-    	$r->date = date('Y-m-d h:i:s', strtotime("- 5 week"));
-    	$r->save();
+        $r       = new Ticket_DC86_Test();
+        $r->id   = 2;
+        $r->date = date('Y-m-d h:i:s', strtotime('- 5 week'));
+        $r->save();
 
-    	$r = new Ticket_DC86_Test();
-    	$r->id = 3;
-    	$r->date = date('Y-m-d h:i:s', strtotime("+ 1 week"));
-    	$r->save();
+        $r       = new Ticket_DC86_Test();
+        $r->id   = 3;
+        $r->date = date('Y-m-d h:i:s', strtotime('+ 1 week'));
+        $r->save();
     }
 
     public function testTest()
     {
-    	$past = Doctrine_Query::create()->from('Ticket_DC86_Test')->addWhere('date < now()')->orderBy('date')->execute();
-		$this->assertEqual(2, count($past));
-		$this->assertEqual(1, $past[0]->id);
-		$this->assertEqual(2, $past[1]->id);
+        $past = Doctrine_Query::create()->from('Ticket_DC86_Test')->addWhere('date < now()')->orderBy('date')->execute();
+        $this->assertEqual(2, count($past));
+        $this->assertEqual(1, $past[0]->id);
+        $this->assertEqual(2, $past[1]->id);
 
-    	$future = Doctrine_Query::create()->from('Ticket_DC86_Test')->addWhere('date > now()')->orderBy('date')->execute();
-		$this->assertEqual(1, count($future));
-		$this->assertEqual(3, $future[0]->id);
+        $future = Doctrine_Query::create()->from('Ticket_DC86_Test')->addWhere('date > now()')->orderBy('date')->execute();
+        $this->assertEqual(1, count($future));
+        $this->assertEqual(3, $future[0]->id);
     }
 }
 
@@ -73,7 +73,7 @@ class Ticket_DC86_Test extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-		$this->hasColumn('id', 'integer', 4, array('primary', 'notnull'));
+        $this->hasColumn('id', 'integer', 4, array('primary', 'notnull'));
         $this->hasColumn('date', 'timestamp');
     }
 }

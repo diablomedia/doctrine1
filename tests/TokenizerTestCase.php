@@ -34,81 +34,83 @@
 class Doctrine_Tokenizer_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareData()
-    { }
+    {
+    }
     public function prepareTables()
-    { }
+    {
+    }
 
     public function testSqlExplode()
     {
         $tokenizer = new Doctrine_Query_Tokenizer();
 
-        $str = "word1 word2 word3";
+        $str = 'word1 word2 word3';
         $a   = $tokenizer->sqlExplode($str);
 
-        $this->assertEqual($a, array("word1", "word2", "word3"));
+        $this->assertEqual($a, array('word1', 'word2', 'word3'));
 
-        $str = "word1 (word2 word3)";
+        $str = 'word1 (word2 word3)';
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "(word2 word3)"));
-
-        $str = "word1 'word2 word3'";
-        $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "'word2 word3'"));
+        $this->assertEqual($a, array('word1', '(word2 word3)'));
 
         $str = "word1 'word2 word3'";
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "'word2 word3'"));
+        $this->assertEqual($a, array('word1', "'word2 word3'"));
 
-        $str = "word1 \"word2 word3\"";
+        $str = "word1 'word2 word3'";
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "\"word2 word3\""));
+        $this->assertEqual($a, array('word1', "'word2 word3'"));
 
-        $str = "word1 ((word2) word3)";
+        $str = 'word1 "word2 word3"';
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "((word2) word3)"));
+        $this->assertEqual($a, array('word1', '"word2 word3"'));
+
+        $str = 'word1 ((word2) word3)';
+        $a   = $tokenizer->sqlExplode($str);
+        $this->assertEqual($a, array('word1', '((word2) word3)'));
 
         $str = "word1 ( (word2) 'word3')";
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "( (word2) 'word3')"));
+        $this->assertEqual($a, array('word1', "( (word2) 'word3')"));
 
         $str = "word1 ( \"(word2) 'word3')";
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "( \"(word2) 'word3')"));
+        $this->assertEqual($a, array('word1', "( \"(word2) 'word3')"));
 
         $str = "word1 ( ''(word2) 'word3')";
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "( ''(word2) 'word3')"));
+        $this->assertEqual($a, array('word1', "( ''(word2) 'word3')"));
 
         $str = "word1 ( '()()'(word2) 'word3')";
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "( '()()'(word2) 'word3')"));
+        $this->assertEqual($a, array('word1', "( '()()'(word2) 'word3')"));
 
         $str = "word1 'word2)() word3'";
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "'word2)() word3'"));
+        $this->assertEqual($a, array('word1', "'word2)() word3'"));
 
-        $str = "word1 (word2() word3)";
+        $str = 'word1 (word2() word3)';
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "(word2() word3)"));
+        $this->assertEqual($a, array('word1', '(word2() word3)'));
 
-        $str = "word1 \"word2)() word3\"";
+        $str = 'word1 "word2)() word3"';
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("word1", "\"word2)() word3\""));
+        $this->assertEqual($a, array('word1', '"word2)() word3"'));
 
         $str = "something (subquery '')";
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("something", "(subquery '')"));
+        $this->assertEqual($a, array('something', "(subquery '')"));
 
-        $str = "something (( ))";
+        $str = 'something (( ))';
         $a   = $tokenizer->sqlExplode($str);
-        $this->assertEqual($a, array("something", "(( ))"));
+        $this->assertEqual($a, array('something', '(( ))'));
     }
 
     public function testSqlExplode2()
     {
         $tokenizer = new Doctrine_Query_Tokenizer();
-        $str = 'rdbms (dbal OR database)';
-        $a   = $tokenizer->sqlExplode($str, ' OR ');
+        $str       = 'rdbms (dbal OR database)';
+        $a         = $tokenizer->sqlExplode($str, ' OR ');
 
         $this->assertEqual($a, array('rdbms (dbal OR database)'));
     }
@@ -140,7 +142,7 @@ class Doctrine_Tokenizer_TestCase extends Doctrine_UnitTestCase
     public function testQuoteExplodedShouldQuoteArray()
     {
         $tokenizer = new Doctrine_Query_Tokenizer();
-        $term = $tokenizer->quoteExplode("test", array("'test'", "test2"));
-        $this->assertEqual($term[0], "test");
+        $term      = $tokenizer->quoteExplode('test', array("'test'", 'test2'));
+        $this->assertEqual($term[0], 'test');
     }
 }

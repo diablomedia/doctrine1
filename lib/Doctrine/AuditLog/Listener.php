@@ -59,7 +59,7 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
     public function preInsert(Doctrine_Event $event)
     {
         $version = $this->_auditLog->getOption('version');
-        $name = $version['alias'] === null ? $version['name'] : $version['alias'];
+        $name    = $version['alias'] === null ? $version['name'] : $version['alias'];
 
         $record = $event->getInvoker();
         $record->set($name, $this->_getInitialVersion($record));
@@ -94,25 +94,25 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
     public function preDelete(Doctrine_Event $event)
     {
         if ($this->_auditLog->getOption('auditLog')) {
-	        $className = $this->_auditLog->getOption('className');
-            $version = $this->_auditLog->getOption('version');
-            $name = $version['alias'] === null ? $version['name'] : $version['alias'];
-	        $event->getInvoker()->set($name, null);
+            $className = $this->_auditLog->getOption('className');
+            $version   = $this->_auditLog->getOption('version');
+            $name      = $version['alias'] === null ? $version['name'] : $version['alias'];
+            $event->getInvoker()->set($name, null);
 
             if ($this->_auditLog->getOption('deleteVersions')) {
                 $conditions = array();
-                $values = array();
-    	        $q = Doctrine_Core::getTable($className)
-    	            ->createQuery('obj')
-    	            ->delete();
-    	        foreach ((array) $this->_auditLog->getOption('table')->getIdentifier() as $id) {
-    	            $conditions[] = 'obj.' . $id . ' = ?';
-    	            $values[] = $event->getInvoker()->get($id);
-    	        }
+                $values     = array();
+                $q          = Doctrine_Core::getTable($className)
+                    ->createQuery('obj')
+                    ->delete();
+                foreach ((array) $this->_auditLog->getOption('table')->getIdentifier() as $id) {
+                    $conditions[] = 'obj.' . $id . ' = ?';
+                    $values[]     = $event->getInvoker()->get($id);
+                }
 
-    	        $rows = $q->where(implode(' AND ', $conditions))
-    					  ->execute($values);
-    		}
+                $rows = $q->where(implode(' AND ', $conditions))
+                          ->execute($values);
+            }
         }
     }
 
@@ -130,7 +130,7 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
             $record = $event->getInvoker();
 
             $version = $this->_auditLog->getOption('version');
-            $name = $version['alias'] === null ? $version['name'] : $version['alias'];
+            $name    = $version['alias'] === null ? $version['name'] : $version['alias'];
 
             $record->set($name, $this->_getNextVersion($record));
 
@@ -159,8 +159,8 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
      */
     protected function _getNextVersion(Doctrine_Record $record)
     {
-      if ($this->_auditLog->getOption('auditLog')) {
-          return ($this->_auditLog->getMaxVersion($record) + 1);
-      }
+        if ($this->_auditLog->getOption('auditLog')) {
+            return ($this->_auditLog->getMaxVersion($record) + 1);
+        }
     }
 }

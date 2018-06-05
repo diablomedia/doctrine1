@@ -9,12 +9,12 @@ class I18nRelationTest extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('I18nAuthorTest', array('local' => 'author_id',
-                                    'foreign' => 'id'));
+                                    'foreign'         => 'id'));
         $this->actAs('I18n', array('fields' => array('author_id', 'title')));
     }
 }
 
-class I18nAuthorTest extends Doctrine_Record 
+class I18nAuthorTest extends Doctrine_Record
 {
     public function setTableDefinition()
     {
@@ -23,6 +23,6 @@ class I18nAuthorTest extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('I18nRelationTest', array('local' => 'id',
-                                    'foreign' => 'author_id'));
+                                    'foreign'            => 'author_id'));
     }
 }

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Import_Schema_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Import_Schema_TestCase extends Doctrine_UnitTestCase
 {
     public $buildSchema;
     public $schema;
@@ -42,11 +42,11 @@ class Doctrine_Import_Schema_TestCase extends Doctrine_UnitTestCase
         $import = new Doctrine_Import_Schema();
         $import->importSchema('schema.yml', 'yml', $path);
         
-        if ( ! file_exists($path . '/SchemaTestUser.php')) {
+        if (! file_exists($path . '/SchemaTestUser.php')) {
             $this->fail();
         }
         
-        if ( ! file_exists($path . '/SchemaTestProfile.php')) {
+        if (! file_exists($path . '/SchemaTestProfile.php')) {
             $this->fail();
         }
 
@@ -58,7 +58,7 @@ class Doctrine_Import_Schema_TestCase extends Doctrine_UnitTestCase
     public function testBuildSchema()
     {
         $schema = new Doctrine_Import_Schema();
-        $array = $schema->buildSchema('schema.yml', 'yml');
+        $array  = $schema->buildSchema('schema.yml', 'yml');
         
         $model = $array['SchemaTestUser'];
 
@@ -81,11 +81,11 @@ class Doctrine_Import_Schema_TestCase extends Doctrine_UnitTestCase
     public function testSchemaRelationshipCompletion()
     {
         $this->buildSchema = new Doctrine_Import_Schema();
-        $this->schema = $this->buildSchema->buildSchema('schema.yml', 'yml');
+        $this->schema      = $this->buildSchema->buildSchema('schema.yml', 'yml');
         
         foreach ($this->schema as $name => $properties) {
             foreach ($properties['relations'] as $alias => $relation) {
-                if ( ! $this->_verifyMultiDirectionalRelationship($name, $alias, $relation)) {
+                if (! $this->_verifyMultiDirectionalRelationship($name, $alias, $relation)) {
                     $this->fail();
                     
                     return false;

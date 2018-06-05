@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1134_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1134_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,8 +41,8 @@ class Doctrine_Ticket_1134_TestCase extends Doctrine_UnitTestCase
 
     public function prepareData()
     {
-        $user = new Ticket_1134_User();
-		$user->is_pimp = TRUE;
+        $user          = new Ticket_1134_User();
+        $user->is_pimp = true;
         $user->save();
     }
 
@@ -50,24 +50,22 @@ class Doctrine_Ticket_1134_TestCase extends Doctrine_UnitTestCase
     public function testAfterOriginalSave()
     {
         $user = Doctrine_Query::create()->from('Ticket_1134_User u')->fetchOne();
-        $this->assertEqual($user->is_pimp, TRUE);
-    
+        $this->assertEqual($user->is_pimp, true);
     }
 
     public function testAfterModification()
     {
-        $user = Doctrine_Query::create()->from('Ticket_1134_User u')->fetchOne();
-		$user->is_pimp = "1";
-		$this->assertEqual($user->getModified(), FALSE);    
-    }	
-	
+        $user          = Doctrine_Query::create()->from('Ticket_1134_User u')->fetchOne();
+        $user->is_pimp = '1';
+        $this->assertEqual($user->getModified(), false);
+    }
 }
 
 class Ticket_1134_User extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->hasColumn('is_pimp', 'boolean', TRUE);
+        $this->hasColumn('is_pimp', 'boolean', true);
     }
 
     public function setUp()

@@ -28,47 +28,47 @@
  * @category    Object Relational Mapping
  * @link        www.doctrine-project.org
  * @since       1.1
- * @version     $Revision$ 
+ * @version     $Revision$
  */
-class Doctrine_Ticket_1652_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1652_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'Ticket_1652_User';
         parent::prepareTables();
     }
     
     public function prepareData()
     {
-            $user = new Ticket_1652_User();
-            $user->id = 1;
-            $user->name = "floriank";
-            $user->save();
+        $user       = new Ticket_1652_User();
+        $user->id   = 1;
+        $user->name = 'floriank';
+        $user->save();
     }
 
-    public function testValidate() {
+    public function testValidate()
+    {
         $doctrine = new ReflectionClass('Doctrine');
         if ($doctrine->hasConstant('VALIDATE_USER')) {
             Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_USER);
         } else {
             //I only want my overridden Record->validate()-methods for validation
-            Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, 
-                                                    Doctrine_Core::VALIDATE_ALL & 
-                                                    ~Doctrine_Core::VALIDATE_LENGTHS & 
-                                                    ~Doctrine_Core::VALIDATE_CONSTRAINTS & 
-                                                    ~Doctrine_Core::VALIDATE_TYPES);
+            Doctrine_Manager::getInstance()->setAttribute(
+                Doctrine_Core::ATTR_VALIDATE,
+                                                    Doctrine_Core::VALIDATE_ALL & ~Doctrine_Core::VALIDATE_LENGTHS & ~Doctrine_Core::VALIDATE_CONSTRAINTS & ~Doctrine_Core::VALIDATE_TYPES
+            );
         }
         
-        $user = Doctrine_Core::getTable('Ticket_1652_User')->findOneById(1);
-        $user->name = "test";
+        $user       = Doctrine_Core::getTable('Ticket_1652_User')->findOneById(1);
+        $user->name = 'test';
         if ($user->isValid()) {
             try {
                 $user->save();
             } catch (Doctrine_Validator_Exception $dve) {
                 // ignore
             }
-        } 
+        }
 
         $user = Doctrine_Core::getTable('Ticket_1652_User')->findOneById(1);
         
@@ -86,9 +86,10 @@ class Ticket_1652_User extends Doctrine_Record
         $this->hasColumn('name', 'string', 30);
     }
 
-    protected function validate() {
-        if ($this->name == "test") {
-            $this->getErrorStack()->add("badName", "No testnames allowed!");
+    protected function validate()
+    {
+        if ($this->name == 'test') {
+            $this->getErrorStack()->add('badName', 'No testnames allowed!');
             return false;
         }
     }

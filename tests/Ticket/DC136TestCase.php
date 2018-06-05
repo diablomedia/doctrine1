@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC136_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC136_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,7 +40,7 @@ class Doctrine_Ticket_DC136_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $user = new Ticket_DC136_User();
+        $user           = new Ticket_DC136_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->save();
@@ -48,7 +48,7 @@ class Doctrine_Ticket_DC136_TestCase extends Doctrine_UnitTestCase
 
         $table = Doctrine::getTable('Ticket_DC136_User');
 
-        $user1 = $table->find($id);
+        $user1           = $table->find($id);
         $user1->username = 'jonwage';
 
         $user2 = $table->find($id);

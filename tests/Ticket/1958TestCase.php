@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1958_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1958_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,7 +42,7 @@ class Doctrine_Ticket_1958_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
 
-        $user = new Ticket_1958_User();
+        $user           = new Ticket_1958_User();
         $user->username = 'jwage';
         $user->password = 'test';
         $user->save();

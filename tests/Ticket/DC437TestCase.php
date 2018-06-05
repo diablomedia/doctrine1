@@ -34,7 +34,7 @@ class Doctrine_Ticket_DC437_TestCase extends Doctrine_UnitTestCase
 {
     private function prepareConnections()
     {
-    	// Establish two new individual connections
+        // Establish two new individual connections
         $dsn = 'sqlite::memory:';
         $dbh = new PDO($dsn);
         $this->manager->openConnection($dbh, 'conn1', false);
@@ -49,7 +49,7 @@ class Doctrine_Ticket_DC437_TestCase extends Doctrine_UnitTestCase
         // Don't see any better place to perform connection preparation
         $this->prepareConnections();
 
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'Doctrine_Ticket_DC437_Record';
 
         /* Export classes for each of the existing connections.
@@ -59,16 +59,16 @@ class Doctrine_Ticket_DC437_TestCase extends Doctrine_UnitTestCase
          */
         foreach (array('conn1', 'conn2') as $dbConnName) {
             $dbConn = $this->manager->getConnection($dbConnName);
-        	foreach ($this->tables as $componentName) {
-        	    $this->manager->bindComponent($componentName, $dbConn->getName());
-        	}
-        	$dbConn->export->exportClasses($this->tables);
+            foreach ($this->tables as $componentName) {
+                $this->manager->bindComponent($componentName, $dbConn->getName());
+            }
+            $dbConn->export->exportClasses($this->tables);
         }
     }
 
     public function prepareData()
     {
-    	$conn1 = $this->manager->getConnection('conn1');
+        $conn1 = $this->manager->getConnection('conn1');
         $conn2 = $this->manager->getConnection('conn2');
 
         // Create 1 record using conn1, and 2 records using conn2
@@ -92,7 +92,7 @@ class Doctrine_Ticket_DC437_TestCase extends Doctrine_UnitTestCase
          * connection.
          */
 
-    	$conn1 = $this->manager->getConnection('conn1');
+        $conn1 = $this->manager->getConnection('conn1');
         $conn2 = $this->manager->getConnection('conn2');
 
         $dql = 'FROM Doctrine_Ticket_DC437_Record';
@@ -104,8 +104,8 @@ class Doctrine_Ticket_DC437_TestCase extends Doctrine_UnitTestCase
     }
 }
 
-class Doctrine_Ticket_DC437_Record extends Doctrine_Record {
-
+class Doctrine_Ticket_DC437_Record extends Doctrine_Record
+{
     public function setTableDefinition()
     {
         $this->setTableName('dc437records');

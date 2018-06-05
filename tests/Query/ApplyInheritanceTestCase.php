@@ -30,14 +30,13 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_ApplyInheritance_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_ApplyInheritance_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
+    public function prepareData()
     {
-        
     }
     
-    public function prepareTables() 
+    public function prepareTables()
     {
         $this->tables = array('InheritanceDeal', 'InheritanceEntityUser', 'InheritanceUser');
         

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
 {
     /**
      * @ignore
@@ -40,13 +40,13 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
 
     /**
      * The names of some of the Doctrine Task classes
-     * 
+     *
      * @ignore
      * @var array
      */
     protected $doctrineTaskClassName = array(
-        'Doctrine_Task_CreateDb' => 'create-db',
-        'Doctrine_Task_Migrate' => 'migrate',
+        'Doctrine_Task_CreateDb'         => 'create-db',
+        'Doctrine_Task_Migrate'          => 'migrate',
         'Doctrine_Task_GenerateModelsDb' => 'generate-models-db',
     );
 
@@ -63,9 +63,13 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
         return $this->fixturesPath;
     }
 
-    public function setUp() {}
+    public function setUp()
+    {
+    }
 
-    public function tearDown() {}
+    public function tearDown()
+    {
+    }
 
     public function testTheNameOfTheTaskBaseClassNameIsStoredInAClassConstant()
     {
@@ -75,7 +79,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
     public function testGetconfigReturnsTheArrayUsedToConstructTheInstance()
     {
         $config = array('foo' => 'bar', 'baz' => 'bip');
-        $cli = new Doctrine_Cli_TestCase_PassiveCli($config);
+        $cli    = new Doctrine_Cli_TestCase_PassiveCli($config);
         $this->assertEqual($config, $cli->getConfig());
     }
 
@@ -99,7 +103,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
     public function testGetformatterReturnsTheFormatterUsedToConstructTheInstance()
     {
         $formatter = new Doctrine_Cli_Formatter();
-        $cli = new Doctrine_Cli_TestCase_PassiveCli(array(), $formatter);
+        $cli       = new Doctrine_Cli_TestCase_PassiveCli(array(), $formatter);
         $this->assertIdentical($formatter, $cli->getFormatter());
     }
 
@@ -111,7 +115,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
 
     public function testGetformatterReturnsTheFormatterSetWithSetformatter()
     {
-        $cli = new Doctrine_Cli_TestCase_PassiveCli();
+        $cli       = new Doctrine_Cli_TestCase_PassiveCli();
         $formatter = new Doctrine_Cli_Formatter();
         $cli->setFormatter($formatter);
         $this->assertIdentical($formatter, $cli->getFormatter());
@@ -197,8 +201,8 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
         $cli = new Doctrine_Cli_TestCase_PassiveCli();
 
         $expectedClassName = 'Doctrine_Cli_TestCase_TestTask01';
-        $task = new $expectedClassName();
-        $expectedTaskName = $task->getTaskName();
+        $task              = new $expectedClassName();
+        $expectedTaskName  = $task->getTaskName();
 
         $this->assertFalse($cli->taskNameIsRegistered($expectedTaskName));
 
@@ -314,7 +318,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
     
         $this->assertEqual(array(), $cli->getRegisteredTasks());
     
-        $loadedTaskName = $cli->loadTasks($this->getFixturesPath() . '/' . __FUNCTION__);
+        $loadedTaskName   = $cli->loadTasks($this->getFixturesPath() . '/' . __FUNCTION__);
         $expectedTaskName = array('doctrine-style-task' => 'doctrine-style-task');
         $this->assertEqual($expectedTaskName, $loadedTaskName);
 
@@ -331,8 +335,8 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
      */
     public function testLoadtasksReturnsAnArrayOfTaskNames()
     {
-        $cli = new Doctrine_Cli_TestCase_EmptyCli();
-        $loadedTaskNames = $cli->loadTasks();
+        $cli              = new Doctrine_Cli_TestCase_EmptyCli();
+        $loadedTaskNames  = $cli->loadTasks();
         $expectedTaskName = array_combine($this->doctrineTaskClassName, $this->doctrineTaskClassName);
         $this->assertEqual($expectedTaskName, array_intersect_assoc($expectedTaskName, $loadedTaskNames));
     }
@@ -342,8 +346,8 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
      */
     public function testGetloadedtasksReturnsAnArrayOfTaskNames()
     {
-        $cli = new Doctrine_Cli_TestCase_EmptyCli();
-        $loadedTaskNames = $cli->getLoadedTasks();
+        $cli              = new Doctrine_Cli_TestCase_EmptyCli();
+        $loadedTaskNames  = $cli->getLoadedTasks();
         $expectedTaskName = array_combine($this->doctrineTaskClassName, $this->doctrineTaskClassName);
         $this->assertEqual($expectedTaskName, array_intersect_assoc($expectedTaskName, $loadedTaskNames));
     }
@@ -386,7 +390,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
     
         try {
             $cli->run(array());
-        //The same exception must be re-thrown...
+            //The same exception must be re-thrown...
         } catch (Doctrine_Cli_TestCase_Exception $e) {
             //...And it must be formatted
             if (preg_match('/Foo\W+/', $e->getMessage())) {
@@ -402,7 +406,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
 
     public function testGettaskinstanceReturnsTheTaskSetWithSettaskinstance()
     {
-        $cli = new Doctrine_Cli_TestCase_PassiveCli();
+        $cli  = new Doctrine_Cli_TestCase_PassiveCli();
         $task = new Doctrine_Cli_TestCase_EmptyTask();
         $cli->setTaskInstance($task);
         $this->assertIdentical($task, $cli->getTaskInstance());
@@ -411,7 +415,9 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
 
 class Doctrine_Cli_TestCase_PassiveCli extends Doctrine_Cli
 {
-    protected function includeAndRegisterTaskClasses() {}
+    protected function includeAndRegisterTaskClasses()
+    {
+    }
 }
 
 class Doctrine_Cli_TestCase_EmptyCli extends Doctrine_Cli
@@ -420,7 +426,9 @@ class Doctrine_Cli_TestCase_EmptyCli extends Doctrine_Cli
 
 class Doctrine_Cli_TestCase_EmptyTask extends Doctrine_Task
 {
-    public function execute() {}
+    public function execute()
+    {
+    }
 }
 
 class Doctrine_Cli_TestCase_PassiveCli02 extends Doctrine_Cli_TestCase_PassiveCli
@@ -445,5 +453,7 @@ class Doctrine_Cli_TestCase_NoisyCli extends Doctrine_Cli_TestCase_PassiveCli
 
 class Doctrine_Cli_TestCase_TestTask01 extends Doctrine_Task
 {
-    public function execute() {}
+    public function execute()
+    {
+    }
 }

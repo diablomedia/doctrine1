@@ -30,16 +30,19 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_668_TestCase extends Doctrine_UnitTestCase {
-
-    public function prepareTables() {
-      $this->tables = array();
-      $this->tables[] = 'T668_User';
-      parent::prepareTables();
+class Doctrine_Ticket_668_TestCase extends Doctrine_UnitTestCase
+{
+    public function prepareTables()
+    {
+        $this->tables   = array();
+        $this->tables[] = 'T668_User';
+        parent::prepareTables();
     }
 
 
-    public function prepareData() {}
+    public function prepareData()
+    {
+    }
 
 
     public function testTicket()

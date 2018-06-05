@@ -39,10 +39,10 @@ class Doctrine_Template_SoftDelete extends Doctrine_Template
      * @var array
      */
     protected $_options = array(
-        'name'          =>  'deleted_at',
-        'type'          =>  'timestamp',
-        'length'        =>  null,
-        'options'       =>  array(
+        'name'    => 'deleted_at',
+        'type'    => 'timestamp',
+        'length'  => null,
+        'options' => array(
             'notnull' => false
         ),
         'hardDelete' => false
@@ -60,7 +60,7 @@ class Doctrine_Template_SoftDelete extends Doctrine_Template
     {
         // BC to 1.0.X of SoftDelete behavior
         if ($this->_options['type'] == 'boolean') {
-            $this->_options['length'] = 1;
+            $this->_options['length']  = 1;
             $this->_options['options'] = array('default' => false, 'notnull' => true);
         }
 

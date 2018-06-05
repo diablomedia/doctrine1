@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1520_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1520_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,15 +42,15 @@ class Doctrine_Ticket_1520_TestCase extends Doctrine_UnitTestCase
     {
         $profiler = new Doctrine_Connection_Profiler();
         Doctrine_Manager::connection()->addListener($profiler);
-        $price = 200;
-        $user = new Ticket_1520_Product();
+        $price       = 200;
+        $user        = new Ticket_1520_Product();
         $user->title = 'test';
         $user->price = $price;
         $user->save();
         $id = $user->id;
         $user->free();
 
-        $user = Doctrine_Core::getTable('Ticket_1520_Product')->find($id);
+        $user        = Doctrine_Core::getTable('Ticket_1520_Product')->find($id);
         $user->price = $price;
         $this->assertEqual($user->getModified(), array());
     }

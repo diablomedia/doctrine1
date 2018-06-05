@@ -57,7 +57,7 @@ class Doctrine_Query_Filter_Chain
      */
     public function get($key)
     {
-        if ( ! isset($this->_filters[$key])) {
+        if (! isset($this->_filters[$key])) {
             throw new Doctrine_Query_Exception('Unknown filter ' . $key);
         }
         return $this->_filters[$key];

@@ -41,16 +41,16 @@ class Doctrine_Event
     /**
      * CONNECTION EVENT CODES
      */
-    const CONN_QUERY         = 1;
-    const CONN_EXEC          = 2;
-    const CONN_PREPARE       = 3;
-    const CONN_CONNECT       = 4;
-    const CONN_CLOSE         = 5;
-    const CONN_ERROR         = 6;
+    const CONN_QUERY   = 1;
+    const CONN_EXEC    = 2;
+    const CONN_PREPARE = 3;
+    const CONN_CONNECT = 4;
+    const CONN_CLOSE   = 5;
+    const CONN_ERROR   = 6;
 
-    const STMT_EXECUTE       = 10;
-    const STMT_FETCH         = 11;
-    const STMT_FETCHALL      = 12;
+    const STMT_EXECUTE  = 10;
+    const STMT_FETCH    = 11;
+    const STMT_FETCHALL = 12;
 
     const TX_BEGIN           = 31;
     const TX_COMMIT          = 32;
@@ -59,7 +59,7 @@ class Doctrine_Event
     const SAVEPOINT_ROLLBACK = 35;
     const SAVEPOINT_COMMIT   = 36;
 
-    const HYDRATE            = 40;
+    const HYDRATE = 40;
 
     /*
      * RECORD EVENT CODES
@@ -78,7 +78,7 @@ class Doctrine_Event
     /**
      * @var mixed $_nextSequence        the sequence of the next event that will be created
      */
-    static protected $_nextSequence = 0;
+    protected static $_nextSequence = 0;
 
     /**
      * @var mixed $_sequence            the sequence of this event
@@ -233,7 +233,7 @@ class Doctrine_Event
      */
     public function __get($option)
     {
-        if ( ! isset($this->_options[$option])) {
+        if (! isset($this->_options[$option])) {
             return null;
         }
 
@@ -279,7 +279,7 @@ class Doctrine_Event
      */
     public function set($option, &$value)
     {
-        $this->_options[$option] =& $value;
+        $this->_options[$option] = & $value;
 
         return $this;
     }

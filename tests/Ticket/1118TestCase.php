@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1118_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1118_TestCase extends Doctrine_UnitTestCase
 {
     // Test that when a foreign key is detected that it sets the foreign key to the same type and length
     // of the related table primary key
@@ -57,8 +57,8 @@ END;
             file_put_contents('test.yml', $yml);
 
             $import = new Doctrine_Import_Schema();
-            $array = $import->buildSchema('test.yml', 'yml');
-            // Test that ticket__1118__profile_id is changed to to be integer(4) since the primary key of 
+            $array  = $import->buildSchema('test.yml', 'yml');
+            // Test that ticket__1118__profile_id is changed to to be integer(4) since the primary key of
             // the relationship is set to that
             $this->assertEqual($array['Ticket_1118_User']['columns']['ticket__1118__profile_id']['type'], 'integer');
             $this->assertEqual($array['Ticket_1118_User']['columns']['ticket__1118__profile_id']['length'], '4');

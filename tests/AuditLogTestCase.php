@@ -32,9 +32,9 @@
  */
 class Doctrine_AuditLog_TestCase extends Doctrine_UnitTestCase
 {
-
     public function prepareData()
-    { }
+    {
+    }
 
     public function prepareTables()
     {
@@ -85,7 +85,7 @@ class Doctrine_AuditLog_TestCase extends Doctrine_UnitTestCase
 
     public function testNoAuditLog()
     {
-        $entity = new VersioningTest2();
+        $entity       = new VersioningTest2();
         $entity->name = 'test';
         $entity->save();
         $this->assertTrue($entity->version, 1);
@@ -104,7 +104,7 @@ class Doctrine_AuditLog_TestCase extends Doctrine_UnitTestCase
 
     public function testNoAuditLogThrowsExceptions()
     {
-        $entity = new VersioningTest2();
+        $entity       = new VersioningTest2();
         $entity->name = 'test';
         $entity->save();
         $entity->name = 'test2';

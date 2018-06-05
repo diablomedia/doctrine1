@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Data_Export_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Data_Export_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,10 +41,10 @@ class Doctrine_Data_Export_TestCase extends Doctrine_UnitTestCase
     public function testI18nExport()
     {
         try {
-            $i = new I18nTestExport();
+            $i                           = new I18nTestExport();
             $i->Translation['en']->title = 'english test';
             $i->Translation['fr']->title = 'french test';
-            $i->test_object = new stdClass();
+            $i->test_object              = new stdClass();
             $i->save();
 
             $data = new Doctrine_Data();
@@ -52,7 +52,7 @@ class Doctrine_Data_Export_TestCase extends Doctrine_UnitTestCase
 
             $array = Doctrine_Parser::load('test.yml', 'yml');
 
-            $this->assertTrue( ! empty($array));
+            $this->assertTrue(! empty($array));
             $this->assertTrue(isset($array['I18nTestExport']['I18nTestExport_1']));
             $this->assertTrue(isset($array['I18nTestExportTranslation']['I18nTestExportTranslation_1_en']));
             $this->assertTrue(isset($array['I18nTestExportTranslation']['I18nTestExportTranslation_1_fr']));

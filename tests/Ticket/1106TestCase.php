@@ -39,8 +39,8 @@ class Doctrine_Ticket_1106_TestCase extends Doctrine_UnitTestCase
     
     public function prepareData()
     {
-        $user = new User();
-        $user->name = 'John';
+        $user                 = new User();
+        $user->name           = 'John';
         $user->Group[0]->name = 'Original Group';
         $user->save();
         
@@ -59,7 +59,7 @@ class Doctrine_Ticket_1106_TestCase extends Doctrine_UnitTestCase
         $user = Doctrine_Query::create()->from('User u, u.Group')->fetchOne();
         
         // Modify Record
-        $user->name = 'Stephen';
+        $user->name           = 'Stephen';
         $user->Group[0]->name = 'New Group';
         
         // Test After change and before save
@@ -79,5 +79,4 @@ class Doctrine_Ticket_1106_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($user->name, 'Stephen');
         $this->assertEqual($user->Group[0]->name, 'New Group');
     }
-
 }

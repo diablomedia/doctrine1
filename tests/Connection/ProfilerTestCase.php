@@ -31,16 +31,19 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
-    {}
-    public function prepareData() 
-    {}
-    public function setUp() 
-    {}
+    {
+    }
+    public function prepareData()
+    {
+    }
+    public function setUp()
+    {
+    }
 
-    public function testQuery() 
+    public function testQuery()
     {
         $this->conn = Doctrine_Manager::getInstance()->openConnection(array('sqlite::memory:'));
 
@@ -60,7 +63,6 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
 
     public function testPrepareAndExecute()
     {
-
         $stmt  = $this->conn->prepare('INSERT INTO test (id) VALUES (?)');
         $event = $this->profiler->lastEvent();
 
@@ -81,7 +83,6 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
 
     public function testMultiplePrepareAndExecute()
     {
-
         $stmt = $this->conn->prepare('INSERT INTO test (id) VALUES (?)');
         $this->assertEqual($this->profiler->lastEvent()->getQuery(), 'INSERT INTO test (id) VALUES (?)');
         $this->assertTrue($this->profiler->lastEvent()->hasEnded());
@@ -93,7 +94,7 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($this->profiler->lastEvent()->hasEnded());
         $this->assertEqual($this->profiler->lastEvent()->getCode(), Doctrine_Event::CONN_PREPARE);
         $this->assertTrue(is_numeric($this->profiler->lastEvent()->getElapsedSecs()));
-         /** TODO: strange errors here
+        /** TODO: strange errors here
         $stmt->execute(array(1));
         $stmt2->execute(array(1));
 
@@ -106,15 +107,14 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
         */
     }
     
-    public function testExecuteStatementMultipleTimes() 
+    public function testExecuteStatementMultipleTimes()
     {
         try {
             $stmt = $this->conn->prepare('INSERT INTO test (id) VALUES (?)');
             $stmt->execute(array(1));
             $stmt->execute(array(1));
             $this->pass();
-        } catch(Doctrine_Db_Exception $e) {
-
+        } catch (Doctrine_Db_Exception $e) {
             $this->fail($e->__toString());
         }
         $this->assertEqual($this->profiler->lastEvent()->getQuery(), 'INSERT INTO test (id) VALUES (?)');
@@ -128,12 +128,12 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(is_numeric($this->profiler->lastEvent()->getElapsedSecs()));
     }
 
-    public function testTransactionRollback() 
+    public function testTransactionRollback()
     {
         try {
             $this->conn->beginTransaction();
             $this->pass();
-        } catch(Doctrine_Db_Exception $e) {
+        } catch (Doctrine_Db_Exception $e) {
             $this->fail($e->__toString());
         }
         $this->assertEqual($this->profiler->lastEvent()->getQuery(), null);
@@ -144,7 +144,7 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
         try {
             $this->conn->rollback();
             $this->pass();
-        } catch(Doctrine_Db_Exception $e) {
+        } catch (Doctrine_Db_Exception $e) {
             $this->fail($e->__toString());
         }
 
@@ -154,12 +154,12 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(is_numeric($this->profiler->lastEvent()->getElapsedSecs()));
     }
 
-    public function testTransactionCommit() 
+    public function testTransactionCommit()
     {
         try {
             $this->conn->beginTransaction();
             $this->pass();
-        } catch(Doctrine_Db_Exception $e) {
+        } catch (Doctrine_Db_Exception $e) {
             $this->fail($e->__toString());
         }
         $this->assertEqual($this->profiler->lastEvent()->getQuery(), null);
@@ -170,7 +170,7 @@ class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
         try {
             $this->conn->commit();
             $this->pass();
-        } catch(Doctrine_Db_Exception $e) {
+        } catch (Doctrine_Db_Exception $e) {
             $this->fail($e->__toString());
             $this->conn->rollback();
         }

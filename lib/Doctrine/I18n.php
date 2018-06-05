@@ -36,19 +36,19 @@ class Doctrine_I18n extends Doctrine_Record_Generator
      * @var array
      */
     protected $_options = array(
-                            'className'     => '%CLASS%Translation',
-                            'tableName'     => '%TABLE%_translation',
-                            'fields'        => array(),
-                            'generateFiles' => false,
-                            'table'         => false,
-                            'pluginTable'   => false,
-                            'children'      => array(),
-                            'i18nField'     => 'lang',
-                            'type'          => 'string',
-                            'length'        => 2,
-                            'options'       => array(),
-                            'cascadeDelete' => true,
-                            'appLevelDelete'=> false
+                            'className'      => '%CLASS%Translation',
+                            'tableName'      => '%TABLE%_translation',
+                            'fields'         => array(),
+                            'generateFiles'  => false,
+                            'table'          => false,
+                            'pluginTable'    => false,
+                            'children'       => array(),
+                            'i18nField'      => 'lang',
+                            'type'           => 'string',
+                            'length'         => 2,
+                            'options'        => array(),
+                            'cascadeDelete'  => true,
+                            'appLevelDelete' => false
                             );
 
     /**
@@ -75,9 +75,9 @@ class Doctrine_I18n extends Doctrine_Record_Generator
      */
     public function setTableDefinition()
     {
-      	if (empty($this->_options['fields'])) {
-      	    throw new Doctrine_I18n_Exception('Fields not set.');
-      	}
+        if (empty($this->_options['fields'])) {
+            throw new Doctrine_I18n_Exception('Fields not set.');
+        }
 
         $options = array('className' => $this->_options['className']);
 
@@ -98,7 +98,7 @@ class Doctrine_I18n extends Doctrine_Record_Generator
         $this->hasColumns($columns);
 
         $defaultOptions = array(
-            'fixed' => true,
+            'fixed'   => true,
             'primary' => true
         );
         $options = array_merge($defaultOptions, $this->_options['options']);
@@ -109,9 +109,9 @@ class Doctrine_I18n extends Doctrine_Record_Generator
 
         // Rewrite any relations to our original table
         $originalName = $this->_options['table']->getClassnameToReturn();
-        $relations = $this->_options['table']->getRelationParser()->getPendingRelations();
-        foreach($relations as $table => $relation) {
-            if ($table != $this->_table->getTableName() ) {
+        $relations    = $this->_options['table']->getRelationParser()->getPendingRelations();
+        foreach ($relations as $table => $relation) {
+            if ($table != $this->_table->getTableName()) {
                 // check that the localColumn is part of the moved col
                 if (isset($relation['local']) && in_array($relation['local'], $this->_options['fields'])) {
                     // found one, let's rewrite it
@@ -121,13 +121,13 @@ class Doctrine_I18n extends Doctrine_Record_Generator
                     $this->_table->getRelationParser()->bind($table, $relation);
 
                     // now try to get the reverse relation, to rewrite it
-                    $rp = Doctrine_Core::getTable($table)->getRelationParser();
+                    $rp     = Doctrine_Core::getTable($table)->getRelationParser();
                     $others = $rp->getPendingRelation($originalName);
                     if (isset($others)) {
                         $others['class'] = $this->_table->getClassnameToReturn();
                         $others['alias'] = $this->_table->getClassnameToReturn();
                         $rp->unsetPendingRelations($originalName);
-                        $rp->bind($this->_table->getClassnameToReturn() ,$others);
+                        $rp->bind($this->_table->getClassnameToReturn(), $others);
                     }
                 }
             }

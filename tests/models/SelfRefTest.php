@@ -1,7 +1,7 @@
 <?php
 class SelfRefTest extends Doctrine_Record
 {
-    public function setTableDefinition() 
+    public function setTableDefinition()
     {
         $this->hasColumn('name', 'string', 50);
         $this->hasColumn('created_by', 'integer');
@@ -11,4 +11,3 @@ class SelfRefTest extends Doctrine_Record
         $this->hasOne('SelfRefTest as createdBy', array('local' => 'created_by'));
     }
 }
-

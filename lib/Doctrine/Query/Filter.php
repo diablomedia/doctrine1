@@ -43,7 +43,6 @@ class Doctrine_Query_Filter implements Doctrine_Query_Filter_Interface
      */
     public function preQuery(Doctrine_Query $query)
     {
-    
     }
 
     /**
@@ -58,6 +57,5 @@ class Doctrine_Query_Filter implements Doctrine_Query_Filter_Interface
      */
     public function postQuery(Doctrine_Query $query)
     {
-    
     }
 }

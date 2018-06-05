@@ -30,23 +30,26 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_894_TestCase extends Doctrine_UnitTestCase {
-
-    public function prepareTables() {
-      $this->tables = array();
-      $this->tables[] = 'T894_Day';
-      parent::prepareTables();
+class Doctrine_Ticket_894_TestCase extends Doctrine_UnitTestCase
+{
+    public function prepareTables()
+    {
+        $this->tables   = array();
+        $this->tables[] = 'T894_Day';
+        parent::prepareTables();
     }
 
 
-    public function prepareData() {}
+    public function prepareData()
+    {
+    }
 
 
     public function testTicket()
     {
         $beginNumber = 1;
-        $endNumber = 3;
-        $query = Doctrine_Query::create()
+        $endNumber   = 3;
+        $query       = Doctrine_Query::create()
                 ->from('T894_Day d')
                 ->where('d.number BETWEEN ? AND ?', array($beginNumber, $endNumber));
         $this->assertEqual(' FROM T894_Day d WHERE d.number BETWEEN ? AND ?', $query->getDql());

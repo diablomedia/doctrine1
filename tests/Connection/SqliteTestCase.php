@@ -97,7 +97,7 @@ class Doctrine_Connection_Sqlite_TestCase extends Doctrine_UnitTestCase
 
     public function testNearSyntaxErrorIsSupported()
     {
-        $this->exc->processErrorInfo(array(0,0, "near \"SELECT FROM\": syntax error"));
+        $this->exc->processErrorInfo(array(0,0, 'near "SELECT FROM": syntax error'));
         
         $this->assertEqual($this->exc->getPortableCode(), Doctrine_Core::ERR_SYNTAX);
     }

@@ -39,7 +39,8 @@ class Doctrine_Query_Registry_TestCase extends Doctrine_UnitTestCase
         parent::prepareTables();
     }
     public function prepareData()
-    { }
+    {
+    }
 
     public function testAddingQueries()
     {

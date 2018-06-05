@@ -31,4 +31,5 @@
  * @since       0.9
  */
 class Doctrine_Pager_Exception extends Doctrine_Exception
-{ }
+{
+}

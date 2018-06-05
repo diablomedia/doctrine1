@@ -39,7 +39,6 @@ require_once dirname(__FILE__) . '/DoctrineTest/Reporter.php';
 
 class DoctrineTest
 {
-
     protected $testGroup; // the default test group
     protected $groups;
 
@@ -77,19 +76,19 @@ class DoctrineTest
         if (PHP_SAPI === 'cli') {
             require_once(dirname(__FILE__) . '/DoctrineTest/Reporter/Cli.php');
             $reporter = new DoctrineTest_Reporter_Cli();
-            $argv = $_SERVER['argv'];
+            $argv     = $_SERVER['argv'];
             array_shift($argv);
             $options = $this->parseOptions($argv);
         } else {
             require_once(dirname(__FILE__) . '/DoctrineTest/Reporter/Html.php');
             $options = $_GET;
             if (isset($options['filter'])) {
-                if ( ! is_array($options['filter'])) {
+                if (! is_array($options['filter'])) {
                     $options['filter'] = explode(',', $options['filter']);
                 }
             }
             if (isset($options['group'])) {
-                if ( ! is_array($options['group'])) {
+                if (! is_array($options['group'])) {
                     $options['group'] = explode(',', $options['group']);
                 }
             }
@@ -99,10 +98,10 @@ class DoctrineTest
         //replace global group with custom group if we have group option set
         if (isset($options['group'])) {
             $testGroup = new GroupTest('Doctrine Custom Test', 'custom');
-            foreach($options['group'] as $group) {
+            foreach ($options['group'] as $group) {
                 if (isset($this->groups[$group])) {
                     $testGroup->addTestCase($this->groups[$group]);
-                } else if (class_exists($group)) {
+                } elseif (class_exists($group)) {
                     $testGroup->addTestCase(new $group);
                 } else {
                     die($group . " is not a valid group or doctrine test class\n ");
@@ -113,7 +112,7 @@ class DoctrineTest
         if (isset($options['ticket'])) {
             $testGroup = new GroupTest('Doctrine Custom Test', 'custom');
             foreach ($options['ticket'] as $ticket) {
-                $class = 'Doctrine_Ticket_' . $ticket. '_TestCase';
+                $class = 'Doctrine_Ticket_' . $ticket . '_TestCase';
                 $testGroup->addTestCase(new $class);
             }
         }
@@ -148,7 +147,7 @@ class DoctrineTest
                 $coverage = new \SebastianBergmann\CodeCoverage\CodeCoverage(null, $coverageFilter);
                 $coverage->start($testGroup->getName());
             } catch (\SebastianBergmann\CodeCoverage\RuntimeException $e) {
-                echo "There was an error trying to start CodeCoverage (" . $e->getMessage() . ") Coverage won't be available for this run.\n";
+                echo 'There was an error trying to start CodeCoverage (' . $e->getMessage() . ") Coverage won't be available for this run.\n";
                 unset($options['coverage']);
             }
         }
@@ -165,12 +164,12 @@ class DoctrineTest
         global $startTime;
 
         $endTime = time();
-        $time = $endTime - $startTime;
+        $time    = $endTime - $startTime;
 
         if (PHP_SAPI === 'cli') {
-          echo "\nTests ran in " . $time . " seconds and used " . (memory_get_peak_usage() / 1024) . " KB of memory\n\n";
+            echo "\nTests ran in " . $time . ' seconds and used ' . (memory_get_peak_usage() / 1024) . " KB of memory\n\n";
         } else {
-          echo "<p>Tests ran in " . $time . " seconds and used " . (memory_get_peak_usage() / 1024) . " KB of memory</p>";
+            echo '<p>Tests ran in ' . $time . ' seconds and used ' . (memory_get_peak_usage() / 1024) . ' KB of memory</p>';
         }
 
         if (isset($options['coverage'])) {
@@ -208,7 +207,7 @@ class DoctrineTest
     {
         $models = new DirectoryIterator(dirname(__FILE__) . '/models/');
 
-        foreach($models as $key => $file) {
+        foreach ($models as $key => $file) {
             if ($file->isFile() && ! $file->isDot()) {
                 $e = explode('.', $file->getFileName());
 
@@ -225,13 +224,14 @@ class DoctrineTest
      * @param array $array An argv array from cli
      * @return array An array with options
      */
-    public function parseOptions($array) {
+    public function parseOptions($array)
+    {
         $currentName = '';
-        $options = array();
+        $options     = array();
 
-        foreach($array as $name) {
+        foreach ($array as $name) {
             if (strpos($name, '--') === 0) {
-                $name = ltrim($name, '--');
+                $name  = ltrim($name, '--');
                 $value = null;
 
                 if (strpos($name, '=') !== false) {
@@ -245,7 +245,6 @@ class DoctrineTest
                     } else {
                         $options[$currentName] = array();
                     }
-
                 }
             } else {
                 if (is_array($options[$currentName])) {
@@ -275,20 +274,20 @@ class DoctrineTest
 
         $e = explode('_', $class);
 
-        $count = count($e);
+        $count  = count($e);
         $prefix = array_shift($e);
 
         if ($prefix !== 'Doctrine') {
             return false;
         }
 
-        $dir = DOCTRINE_DIR . '/tests/' . array_shift($e);
+        $dir  = DOCTRINE_DIR . '/tests/' . array_shift($e);
         $file = $dir . '_' . substr(implode('_', $e), 0, -(strlen('_TestCase'))) . 'TestCase.php';
         $file = str_replace('_', (($count > 3) ? DIRECTORY_SEPARATOR : ''), $file);
 
         // create a test case file if it doesn't exist
         if (!file_exists($file)) {
-            $contents = file_get_contents(DOCTRINE_DIR.'/tests/template.tpl');
+            $contents = file_get_contents(DOCTRINE_DIR . '/tests/template.tpl');
             $contents = sprintf($contents, $class, $class);
 
             if (!file_exists($dir)) {

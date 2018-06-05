@@ -30,18 +30,22 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase {
+class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase
+{
     private $logger;
 
 
-    public function prepareData() 
-    { }
-    public function prepareTables() {
+    public function prepareData()
+    {
+    }
+    public function prepareTables()
+    {
         $this->tables = array('EventListenerTest');
         parent::prepareTables();
     }
 
-    public function testSetListener() {
+    public function testSetListener()
+    {
         $this->logger = new Doctrine_EventListener_TestLogger();
     
         $e = new EventListenerTest;
@@ -71,7 +75,7 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase {
 
     public function testOnCreate() {
         $e = new EventListenerTest;
-        
+
 
         $e->setListener($this->logger);
         $this->logger->clear();
@@ -99,7 +103,7 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase {
     public function testTransaction() {
         $e = new EventListenerTest();
         $e->name = "test 1";
-        
+
         $this->logger->clear();
 
         $e->save();
@@ -108,7 +112,7 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual($this->logger->pop(), 'onInsert');
         $this->assertEqual($this->logger->pop(), 'onPreInsert');
         $this->assertEqual($this->logger->pop(), 'onPreSave');
-        
+
         $e->name = "test 2";
 
         $e->save();
@@ -117,7 +121,7 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual($this->logger->pop(), 'onUpdate');
         $this->assertEqual($this->logger->pop(), 'onPreUpdate');
         $this->assertEqual($this->logger->pop(), 'onPreSave');
-        
+
         $this->logger->clear();
 
         $e->delete();
@@ -128,11 +132,11 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase {
     public function testTransactionWithConnectionListener() {
         $e = new EventListenerTest();
         $e->getTable()->getConnection()->setListener($this->logger);
-        
+
         $e->name = "test 2";
-        
+
         $this->logger->clear();
-        
+
         $e->save();
 
         $this->assertEqual($this->logger->pop(), 'onTransactionCommit');
@@ -170,30 +174,34 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual($this->logger->pop(), 'onPreDelete');
         $this->assertEqual($this->logger->pop(), 'onTransactionBegin');
         $this->assertEqual($this->logger->pop(), 'onPreTransactionBegin');
-    
+
         $this->connection->setListener(new Doctrine_EventListener());
     }
     */
 }
 
-class Doctrine_EventListener_TestLogger implements Doctrine_Overloadable, Countable {
+class Doctrine_EventListener_TestLogger implements Doctrine_Overloadable, Countable
+{
     private $messages = array();
 
-    public function __call($m, $a) {
-
+    public function __call($m, $a)
+    {
         $this->messages[] = $m;
     }
-    public function pop() {
+    public function pop()
+    {
         return array_pop($this->messages);
     }
-    public function clear() {
+    public function clear()
+    {
         $this->messages = array();
     }
-    public function getAll() {
+    public function getAll()
+    {
         return $this->messages;
     }
-    public function count() {
+    public function count()
+    {
         return count($this->messages);
     }
 }
-

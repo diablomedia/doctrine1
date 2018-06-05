@@ -108,7 +108,7 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
         /** @var Doctrine_Tree_NestedSet $tree */
         $tree = $record->getTable()->getTree();
         /** @var Doctrine_Node_NestedSet $node */
-        $node = $record->getNode();
+        $node  = $record->getNode();
         $query = $tree->returnQueryWithRootId($query, $node->getRootValue());
 
         $this->maxLevel   = isset($opts['depth']) ? ($opts['depth'] + $node->getLevel()) : 0;
@@ -132,7 +132,7 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
     public function rewind()
     {
         $this->index = -1;
-        $this->key = null;
+        $this->key   = null;
     }
 
     /**
@@ -198,7 +198,7 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
      */
     private function updateLevel()
     {
-        if ( ! (isset($this->options['include_record']) && $this->options['include_record'] && $this->index == 0)) {
+        if (! (isset($this->options['include_record']) && $this->options['include_record'] && $this->index == 0)) {
             /** @var Doctrine_Node_NestedSet $node */
             $node = $this->collection->get($this->key)->getNode();
             $left = $node->getLeftValue();
@@ -215,7 +215,7 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
         $this->index++;
         $i = $this->index;
         if (isset($this->keys[$i])) {
-            $this->key   = $this->keys[$i];
+            $this->key = $this->keys[$i];
             $this->updateLevel();
             return $this->current();
         }

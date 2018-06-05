@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array();
+        $this->tables   = array();
         $this->tables[] = 'mkArticle';
         $this->tables[] = 'mkContent';
         parent::prepareTables();
@@ -48,7 +48,7 @@ class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase
     {
         $article = new mkArticle();
         
-        $this->assertEqual($article->content->toArray(false), array('id'=>null, 'body'=>null));
+        $this->assertEqual($article->content->toArray(false), array('id' => null, 'body' => null));
     }
 }
 
@@ -63,8 +63,8 @@ class mkArticle extends Doctrine_Record
     
     public function setup()
     {
-        $this->hasOne('mkContent as content', array('local'=>'id', 
-                                                    'foreign'=>'id',
+        $this->hasOne('mkContent as content', array('local'      => 'id',
+                                                    'foreign'    => 'id',
                                                     'owningSide' => false));
     }
 }
@@ -80,9 +80,8 @@ class mkContent extends Doctrine_Record
     
     public function setup()
     {
-        $this->hasOne('mkArticle as article', array('local'=>'id', 
-                                                    'foreign'=>'id',
+        $this->hasOne('mkArticle as article', array('local'      => 'id',
+                                                    'foreign'    => 'id',
                                                     'owningSide' => true));
     }
 }
-

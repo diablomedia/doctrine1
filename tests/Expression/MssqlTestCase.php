@@ -30,5 +30,6 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Expression_Mssql_TestCase extends Doctrine_UnitTestCase {
+class Doctrine_Expression_Mssql_TestCase extends Doctrine_UnitTestCase
+{
 }

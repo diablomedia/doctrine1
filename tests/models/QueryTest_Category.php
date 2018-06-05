@@ -1,10 +1,10 @@
 <?php
 class QueryTest_Category extends Doctrine_Record
-{    
+{
     /**
      * The depth of the category inside the tree.
-     * Non-persistent field. 
-     * 
+     * Non-persistent field.
+     *
      * @var integer
      */
     public $depth;
@@ -15,14 +15,30 @@ class QueryTest_Category extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('id', 'integer', 4, array('primary', 'autoincrement', 'notnull'));
-        $this->hasColumn('rootCategoryId as rootCategoryId', 'integer', 4,
-                array('notnull', 'default' => 0));
-        $this->hasColumn('parentCategoryId as parentCategoryId', 'integer', 4,
-                array('notnull', 'default' => 0));
-        $this->hasColumn('name as name', 'string', 50,
-                array('notnull', 'unique'));
-        $this->hasColumn('position as position', 'integer', 4,
-                array('default' => 0, 'notnull'));
+        $this->hasColumn(
+            'rootCategoryId as rootCategoryId',
+            'integer',
+            4,
+                array('notnull', 'default' => 0)
+        );
+        $this->hasColumn(
+            'parentCategoryId as parentCategoryId',
+            'integer',
+            4,
+                array('notnull', 'default' => 0)
+        );
+        $this->hasColumn(
+            'name as name',
+            'string',
+            50,
+                array('notnull', 'unique')
+        );
+        $this->hasColumn(
+            'position as position',
+            'integer',
+            4,
+                array('default' => 0, 'notnull')
+        );
     }
 
     /**

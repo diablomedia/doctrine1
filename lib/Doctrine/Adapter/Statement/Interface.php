@@ -165,9 +165,11 @@ interface Doctrine_Adapter_Statement_Interface
      *
      * @return mixed
      */
-    public function fetch($fetchStyle = Doctrine_Core::FETCH_BOTH,
+    public function fetch(
+        $fetchStyle = Doctrine_Core::FETCH_BOTH,
                           $cursorOrientation = Doctrine_Core::FETCH_ORI_NEXT,
-                          $cursorOffset = null);
+                          $cursorOffset = null
+    );
 
     /**
      * Returns an array containing all of the result set rows

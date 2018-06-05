@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1725_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1725_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -42,7 +42,7 @@ class Doctrine_Ticket_1725_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
 
-        $user = new Ticket_1725_User();
+        $user           = new Ticket_1725_User();
         $user->username = 'jwage';
         $user->password = 'changeme';
         $user->save();
@@ -68,7 +68,7 @@ class Ticket_1725_User extends Doctrine_Record
         $this->actAs('Timestampable');
         $this->actAs('SoftDelete');
         $this->actAs('Versionable', array(
-        		'generateRelations' => false,
-        		'deleteVersions' => false));
+                'generateRelations' => false,
+                'deleteVersions'    => false));
     }
 }

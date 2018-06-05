@@ -34,14 +34,13 @@ class Doctrine_Ticket_DC600_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables[] = "DC600Model";
-        $this->tables[] = "DC600Cache";
+        $this->tables[] = 'DC600Model';
+        $this->tables[] = 'DC600Cache';
         parent::prepareTables();
     }
 
     public function prepareData()
     {
-
     }
 
     public function tearDown()
@@ -102,7 +101,7 @@ class Doctrine_Ticket_DC600_TestCase extends Doctrine_UnitTestCase
                 // Only want to look at queries that have the model table name (ignore the cache queries)
                 if (stristr($event->getQuery(), 'dc600_model')) {
                     $placeholderCount = substr_count($event->getQuery(), '?');
-                    $parameterCount = count($event->getParams());
+                    $parameterCount   = count($event->getParams());
 
                     // If the placeholder count and parameter count don't match, test fails
                     $this->assertEqual($placeholderCount, $parameterCount);
@@ -217,21 +216,21 @@ class DC600Model extends Doctrine_Record
     {
         $this->setTableName('dc600_model');
         $this->hasColumn('id', 'integer', 8, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => true,
-             'primary' => true,
+             'type'          => 'integer',
+             'fixed'         => 0,
+             'unsigned'      => true,
+             'primary'       => true,
              'autoincrement' => true,
-             'length' => '8',
+             'length'        => '8',
              ));
         $this->hasColumn('some_id', 'integer', 8, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => true,
-             'primary' => false,
-             'notnull' => true,
+             'type'          => 'integer',
+             'fixed'         => 0,
+             'unsigned'      => true,
+             'primary'       => false,
+             'notnull'       => true,
              'autoincrement' => false,
-             'length' => '8',
+             'length'        => '8',
              ));
     }
 
@@ -250,29 +249,29 @@ class DC600Cache extends Doctrine_Record
     {
         $this->setTableName('dc600_cache');
         $this->hasColumn('id', 'string', 64, array(
-             'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => true,
+             'type'          => 'string',
+             'fixed'         => 0,
+             'unsigned'      => false,
+             'primary'       => true,
              'autoincrement' => false,
-             'length' => '64',
+             'length'        => '64',
              ));
         $this->hasColumn('data', 'string', 3000, array(
-             'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
+             'type'          => 'string',
+             'fixed'         => 0,
+             'unsigned'      => false,
+             'primary'       => false,
              'autoincrement' => false,
-             'length' => '3000',
+             'length'        => '3000',
              ));
         $this->hasColumn('expire', 'timestamp', 25, array(
-             'type' => 'timestamp',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
+             'type'          => 'timestamp',
+             'fixed'         => 0,
+             'unsigned'      => false,
+             'primary'       => false,
+             'notnull'       => false,
              'autoincrement' => false,
-             'length' => '25',
+             'length'        => '25',
              ));
     }
 

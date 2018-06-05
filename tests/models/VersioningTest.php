@@ -1,5 +1,5 @@
 <?php
-class VersioningTest extends Doctrine_Record 
+class VersioningTest extends Doctrine_Record
 {
     public function setTableDefinition()
     {
@@ -12,7 +12,7 @@ class VersioningTest extends Doctrine_Record
     }
 }
 
-class VersioningTest2 extends Doctrine_Record 
+class VersioningTest2 extends Doctrine_Record
 {
     public function setTableDefinition()
     {
@@ -25,7 +25,7 @@ class VersioningTest2 extends Doctrine_Record
     }
 }
 
-class VersioningTest3 extends Doctrine_Record 
+class VersioningTest3 extends Doctrine_Record
 {
     public function setTableDefinition()
     {
@@ -34,9 +34,7 @@ class VersioningTest3 extends Doctrine_Record
     }
     public function setUp()
     {
-    	  
-        $this->actAs('Versionable', array('tableName' =>  'tbl_prefix_comments_version',
-                                          'className' =>  'VersioningTestClass'));
-
+        $this->actAs('Versionable', array('tableName' => 'tbl_prefix_comments_version',
+                                          'className' => 'VersioningTestClass'));
     }
 }

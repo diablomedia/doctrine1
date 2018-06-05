@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC147_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC147_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -123,9 +123,9 @@ class DC147_Product extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('DC147_Site as Site', array('local' => 'site_id',
-                                    'foreign' => 'id'));
+                                    'foreign'             => 'id'));
         $this->hasMany('DC147_MultipleValue as MultipleValues', array('local' => 'id',
-                                                              'foreign' => 'product_id'));
+                                                              'foreign'       => 'product_id'));
     }
 }
 class DC147_Site extends Doctrine_Record
@@ -138,7 +138,7 @@ class DC147_Site extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('DC147_Product as Products', array('local' => 'id',
-                                        'foreign' => 'site_id'));
+                                        'foreign'                 => 'site_id'));
     }
 }
 class DC147_Multiple extends Doctrine_Record
@@ -151,7 +151,7 @@ class DC147_Multiple extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('DC147_MultipleValue as MultipleValues', array('local' => 'id',
-                                                 'foreign' => 'multiple_id'));
+                                                 'foreign'                    => 'multiple_id'));
     }
 }
 class DC147_MultipleValue extends Doctrine_Record
@@ -166,9 +166,9 @@ class DC147_MultipleValue extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('DC147_Multiple as Multiple', array('local' => 'multiple_id',
-                                                       'foreign' => 'id'));
+                                                       'foreign'  => 'id'));
 
         $this->hasOne('DC147_Product as Product', array('local' => 'product_id',
-                                        'foreign' => 'id'));
+                                        'foreign'               => 'id'));
     }
 }

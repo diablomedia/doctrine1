@@ -11,10 +11,10 @@ class Doctrine_Ticket_1225_TestCase extends Doctrine_UnitTestCase
     {
     }
 
-    public function testMoveAsSameNodeThrowsException() 
+    public function testMoveAsSameNodeThrowsException()
     {
         $root1 = new Ticket_1225_Tree();
-        $tree = $root1->getTable()->getTree();
+        $tree  = $root1->getTable()->getTree();
 
         $root1->name = 'Name 1';
         $tree->createRoot($root1);
@@ -41,7 +41,7 @@ class Doctrine_Ticket_1225_TestCase extends Doctrine_UnitTestCase
         }
 
         try {
-	      $root1->getNode()->moveAsLastChildOf($root1);
+            $root1->getNode()->moveAsLastChildOf($root1);
             $this->fail();
         } catch (Doctrine_Tree_Exception $e) {
             $this->pass();

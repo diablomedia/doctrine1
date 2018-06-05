@@ -93,8 +93,8 @@ class Doctrine_Pager_Range_Jumping extends Doctrine_Pager_Range
             $page = $pager->getPage();
 
             // Define initial assignments for StartPage and EndPage
-            $startPage = $page - ($page - 1) % $this->getChunkLength();
-            $endPage = ($startPage + $this->getChunkLength()) - 1;
+            $startPage = $page                                  - ($page - 1) % $this->getChunkLength();
+            $endPage   = ($startPage + $this->getChunkLength()) - 1;
 
             // Check for EndPage out-range
             if ($endPage > $pager->getLastPage()) {

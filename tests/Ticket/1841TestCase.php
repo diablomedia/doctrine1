@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1841_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1841_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,7 +40,7 @@ class Doctrine_Ticket_1841_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $user = new Ticket_1841_User();
+        $user           = new Ticket_1841_User();
         $user->password = 'changeme';
         $this->assertEqual($user->username, 'jwage');
     }

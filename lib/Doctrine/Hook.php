@@ -45,7 +45,7 @@ class Doctrine_Hook
     /**
      * @var array $hooks                    hooks array
      */
-    protected $hooks        = array(
+    protected $hooks = array(
                              'where',
                              'orderby',
                              'limit',
@@ -63,14 +63,14 @@ class Doctrine_Hook
      * @var array $typeParsers              type parsers array
      *                                      keys as type names and values as parser names / objects
      */
-    protected $typeParsers  = array(
-                              'char'      => 'Doctrine_Hook_WordLike',
-                              'string'    => 'Doctrine_Hook_WordLike',
-                              'varchar'   => 'Doctrine_Hook_WordLike',
-                              'integer'   => 'Doctrine_Hook_Integer',
-                              'enum'      => 'Doctrine_Hook_Integer',
-                              'time'      => 'Doctrine_Hook_Time',
-                              'date'      => 'Doctrine_Hook_Date',
+    protected $typeParsers = array(
+                              'char'    => 'Doctrine_Hook_WordLike',
+                              'string'  => 'Doctrine_Hook_WordLike',
+                              'varchar' => 'Doctrine_Hook_WordLike',
+                              'integer' => 'Doctrine_Hook_Integer',
+                              'enum'    => 'Doctrine_Hook_Integer',
+                              'time'    => 'Doctrine_Hook_Time',
+                              'date'    => 'Doctrine_Hook_Date',
                               );
 
     /**
@@ -136,7 +136,7 @@ class Doctrine_Hook
      */
     public function hookWhere($params)
     {
-        if ( ! is_array($params)) {
+        if (! is_array($params)) {
             return false;
         }
         foreach ($params as $name => $value) {
@@ -151,13 +151,12 @@ class Doctrine_Hook
                 $map   = $this->query->getQueryComponent($alias);
                 $table = $map['table'];
 
-                if ( ! $table) {
+                if (! $table) {
                     throw new Doctrine_Exception('Unknown alias ' . $alias);
                 }
 
                 if ($def = $table->getDefinitionOf($column)) {
-
-                $def[0] = gettype($value);
+                    $def[0] = gettype($value);
                     if (isset($this->typeParsers[$def[0]])) {
                         $name   = $this->typeParsers[$def[0]];
                         $parser = new $name;
@@ -183,7 +182,7 @@ class Doctrine_Hook
      */
     public function hookOrderby($params)
     {
-        if ( ! is_array($params)) {
+        if (! is_array($params)) {
             return false;
         }
         foreach ($params as $name) {

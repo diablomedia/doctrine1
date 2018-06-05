@@ -54,14 +54,14 @@ class Doctrine_Ticket_2334_TestCase extends Doctrine_UnitTestCase
 
 class Ticket_2334_TestMSSQLUnsignedInt extends Doctrine_Record
 {
-        public function setTableDefinition()
-        {
-                $this->setTableName('test_string_length');
-                $this->hasColumn('test_int', 'int', null, array('unsigned' => true));
-        }
+    public function setTableDefinition()
+    {
+        $this->setTableName('test_string_length');
+        $this->hasColumn('test_int', 'int', null, array('unsigned' => true));
+    }
 
-        public function setUp()
-        {
-            parent::setUp();
-        }
+    public function setUp()
+    {
+        parent::setUp();
+    }
 }

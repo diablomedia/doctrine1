@@ -31,4 +31,5 @@
  * @author      Jonathan H. Wage <jwage@mac.com>
  */
 class Doctrine_Parser_Exception extends Doctrine_Exception
-{ }
+{
+}

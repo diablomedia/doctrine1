@@ -136,39 +136,41 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
      */
     public function getNativeDeclaration($field)
     {
-        if ( ! isset($field['type'])) {
+        if (! isset($field['type'])) {
             throw new Doctrine_DataDict_Exception('Missing column type.');
         }
 
         switch ($field['type']) {
             case 'char':
-                $length = ( ! empty($field['length'])) ? $field['length'] : false;
+                $length = (! empty($field['length'])) ? $field['length'] : false;
 
-                return $length ? 'CHAR('.$length.')' : 'CHAR(255)';
+                return $length ? 'CHAR(' . $length . ')' : 'CHAR(255)';
             case 'enum':
                 if ($this->conn->getAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM)) {
                     $values = array();
                     foreach ($field['values'] as $value) {
-                      $values[] = $this->conn->quote($value, 'varchar');
+                        $values[] = $this->conn->quote($value, 'varchar');
                     }
-                    return 'ENUM('.implode(', ', $values).')';
+                    return 'ENUM(' . implode(', ', $values) . ')';
                 } else {
                     $field['length'] = isset($field['length']) && $field['length'] ? $field['length']:255;
                 }
+                // no break
             case 'set':
                 if ($this->conn->getAttribute(Doctrine_Core::ATTR_USE_NATIVE_SET)) {
                     $values = array();
                     foreach ($field['values'] as $value) {
                         $values[] = $this->conn->quote($value, 'varchar');
                     }
-                    return 'SET('.implode(', ', $values).')';
+                    return 'SET(' . implode(', ', $values) . ')';
                 } else {
                     $field['length'] = isset($field['length']) && $field['length'] ? $field['length']:255;
                 }
+                // no break
             case 'varchar':
             case 'string':
             case 'gzip':
-                if ( ! isset($field['length'])) {
+                if (! isset($field['length'])) {
                     if (array_key_exists('default', $field)) {
                         $field['length'] = $this->conn->varchar_max_length;
                     } else {
@@ -184,7 +186,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
             case 'array':
             case 'object':
             case 'clob':
-                if ( ! empty($field['length'])) {
+                if (! empty($field['length'])) {
                     $length = $field['length'];
                     if ($length <= 255) {
                         return 'TINYTEXT';
@@ -196,7 +198,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 }
                 return 'LONGTEXT';
             case 'blob':
-                if ( ! empty($field['length'])) {
+                if (! empty($field['length'])) {
                     $length = $field['length'];
                     if ($length <= 255) {
                         return 'TINYBLOB';
@@ -209,7 +211,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 return 'LONGBLOB';
             case 'integer':
             case 'int':
-                if ( ! empty($field['length'])) {
+                if (! empty($field['length'])) {
                     $length = $field['length'];
                     if ($length <= 1) {
                         return 'TINYINT';
@@ -234,20 +236,20 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 return 'DATETIME';
             case 'float':
                 $length = !empty($field['length']) ? $field['length'] : 18;
-                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
-                return 'FLOAT('.$length.', '.$scale.')';
+                $scale  = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
+                return 'FLOAT(' . $length . ', ' . $scale . ')';
             case 'double':
                 $length = !empty($field['length']) ? $field['length'] : 18;
-                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
-                return 'DOUBLE('.$length.', '.$scale.')';
+                $scale  = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
+                return 'DOUBLE(' . $length . ', ' . $scale . ')';
             case 'decimal':
                 $length = !empty($field['length']) ? $field['length'] : 18;
-                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
-                return 'DECIMAL('.$length.', '.$scale.')';
+                $scale  = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
+                return 'DECIMAL(' . $length . ', ' . $scale . ')';
             case 'bit':
                 return 'BIT';
         }
-        return $field['type'] . (isset($field['length']) ? '('.$field['length'].')':null);
+        return $field['type'] . (isset($field['length']) ? '(' . $field['length'] . ')':null);
     }
 
     /**
@@ -264,24 +266,24 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
             $dbType = strtok('(), ');
         }
         if (isset($field['length'])) {
-            $length = $field['length'];
+            $length  = $field['length'];
             $decimal = '';
         } else {
-            $length = strtok('(), ');
+            $length  = strtok('(), ');
             $decimal = strtok('(), ');
-            if ( ! $decimal ) {
+            if (! $decimal) {
                 $decimal = null;
             }
         }
-        $type = array();
+        $type     = array();
         $unsigned = $fixed = null;
 
-        if ( ! isset($field['name'])) {
+        if (! isset($field['name'])) {
             $field['name'] = '';
         }
 
         $values = null;
-        $scale = null;
+        $scale  = null;
 
         switch ($dbType) {
             case 'tinyint':
@@ -291,28 +293,28 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                     $type = array_reverse($type);
                 }
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 1;
+                $length   = 1;
             break;
             case 'smallint':
-                $type[] = 'integer';
+                $type[]   = 'integer';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 2;
+                $length   = 2;
             break;
             case 'mediumint':
-                $type[] = 'integer';
+                $type[]   = 'integer';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 3;
+                $length   = 3;
             break;
             case 'int':
             case 'integer':
-                $type[] = 'integer';
+                $type[]   = 'integer';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 4;
+                $length   = 4;
             break;
             case 'bigint':
-                $type[] = 'integer';
+                $type[]   = 'integer';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
-                $length = 8;
+                $length   = 8;
             break;
             case 'tinytext':
             case 'mediumtext':
@@ -321,6 +323,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
             case 'text':
             case 'varchar':
                 $fixed = false;
+                // no break
             case 'string':
             case 'char':
                 $type[] = 'string';
@@ -343,10 +346,10 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 $type[] = 'enum';
                 preg_match_all('/\'((?:\'\'|[^\'])*)\'/', $field['type'], $matches);
                 $length = 0;
-                $fixed = false;
+                $fixed  = false;
                 if (is_array($matches)) {
                     foreach ($matches[1] as &$value) {
-                        $value = str_replace('\'\'', '\'', $value);
+                        $value  = str_replace('\'\'', '\'', $value);
                         $length = max($length, strlen($value));
                     }
                     if ($length == '1' && count($matches[1]) == 2) {
@@ -361,7 +364,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 $type[] = 'integer';
                 break;
             case 'set':
-                $fixed = false;
+                $fixed  = false;
                 $type[] = 'text';
                 $type[] = 'integer';
             break;
@@ -381,7 +384,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
             case 'float':
             case 'double':
             case 'real':
-                $type[] = 'float';
+                $type[]   = 'float';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
             break;
             case 'unknown':
@@ -389,8 +392,9 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 if ($decimal !== null) {
                     $scale = $decimal;
                 }
+                // no break
             case 'numeric':
-                $type[] = 'decimal';
+                $type[]   = 'decimal';
                 $unsigned = preg_match('/ unsigned/i', $field['type']);
             break;
             case 'tinyblob':
@@ -427,7 +431,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
         }
 
         $length = ((int) $length == 0) ? null : (int) $length;
-        $def =  array('type' => $type, 'length' => $length, 'unsigned' => $unsigned, 'fixed' => $fixed);
+        $def    = array('type' => $type, 'length' => $length, 'unsigned' => $unsigned, 'fixed' => $fixed);
         if ($values !== null) {
             $def['values'] = $values;
         }
@@ -490,9 +494,9 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
      */
     public function getIntegerDeclaration($name, $field)
     {
-        $unique = (isset($field['unique']) && $field['unique']) ? ' UNIQUE' : '';
+        $unique  = (isset($field['unique']) && $field['unique']) ? ' UNIQUE' : '';
         $default = $autoinc = '';
-        if ( ! empty($field['autoincrement'])) {
+        if (! empty($field['autoincrement'])) {
             $autoinc = ' AUTO_INCREMENT';
         } elseif (array_key_exists('default', $field)) {
             if ($field['default'] === '') {
@@ -507,7 +511,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
         $notnull  = (isset($field['notnull'])  && $field['notnull'])  ? ' NOT NULL' : '';
         $unsigned = (isset($field['unsigned']) && $field['unsigned']) ? ' UNSIGNED' : '';
         $comment  = (isset($field['comment']) && $field['comment'])
-            ? " COMMENT " . $this->conn->quote($field['comment'], 'text') : '';
+            ? ' COMMENT ' . $this->conn->quote($field['comment'], 'text') : '';
 
         $name = $this->conn->quoteIdentifier($name, true);
 

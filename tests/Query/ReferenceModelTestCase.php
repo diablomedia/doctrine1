@@ -30,29 +30,33 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase {
-    public function prepareTables() {
-        $this->tables = array();
-        $this->tables[] = "Forum_Category";
-        $this->tables[] = "Forum_Entry";
-        $this->tables[] = "Forum_Board";
-        $this->tables[] = "Forum_Thread";
+class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase
+{
+    public function prepareTables()
+    {
+        $this->tables   = array();
+        $this->tables[] = 'Forum_Category';
+        $this->tables[] = 'Forum_Entry';
+        $this->tables[] = 'Forum_Board';
+        $this->tables[] = 'Forum_Thread';
 
         parent::prepareTables();
         $this->connection->clear();
     }
-    public function prepareData() 
-    { }
+    public function prepareData()
+    {
+    }
 
-    public function testInitializeData() {
+    public function testInitializeData()
+    {
         $this->connection->clear();
         $query = new Doctrine_Query($this->connection);
 
         $category = new Forum_Category();
 
-        $category->name = 'Root';
-        $category->Subcategory[0]->name = 'Sub 1';
-        $category->Subcategory[1]->name = 'Sub 2';
+        $category->name                                 = 'Root';
+        $category->Subcategory[0]->name                 = 'Sub 1';
+        $category->Subcategory[1]->name                 = 'Sub 2';
         $category->Subcategory[0]->Subcategory[0]->name = 'Sub 1 Sub 1';
         $category->Subcategory[0]->Subcategory[1]->name = 'Sub 1 Sub 2';
         $category->Subcategory[1]->Subcategory[0]->name = 'Sub 2 Sub 1';
@@ -74,7 +78,8 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase {
         $this->connection->clear();
     }
 
-    public function testSelfReferencingWithNestedOrderBy() {
+    public function testSelfReferencingWithNestedOrderBy()
+    {
         $query = new Doctrine_Query();
         
         $query->from('Forum_Category.Subcategory.Subcategory');
@@ -107,7 +112,7 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase {
         $count = count($this->dbh);
 
         $this->assertEqual($category->name, 'Root');
-        
+
         $this->assertEqual($count, count($this->dbh));
         $this->assertEqual($category->Subcategory[0]->name, 'Sub 1');
         $this->assertEqual($category->Subcategory[1]->name, 'Sub 2');
@@ -118,7 +123,7 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual($category->Subcategory[1]->Subcategory[0]->name, 'Sub 2 Sub 1');
         $this->assertEqual($category->Subcategory[1]->Subcategory[1]->name, 'Sub 2 Sub 2');
         $this->assertEqual($count, count($this->dbh));
-        
+
         $this->connection->clear();
     }
     public function testSelfReferencingWithNestingAndConditions() {
@@ -140,7 +145,7 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual($coll[1]->Parent->name, 'Sub 1');
         $this->assertEqual($coll[2]->Parent->name, 'Sub 2');
         $this->assertEqual($coll[3]->Parent->name, 'Sub 2');
-        
+
         $this->assertEqual($count, count($this->dbh));
 
         $this->assertEqual($coll[0]->Parent->Parent->name, 'Root');
@@ -156,13 +161,13 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase {
 
 
         $coll = $query->execute();
-        
+
         $count = count($this->dbh);
-        
+
         $this->assertEqual($coll->count(), 2);
         $this->assertEqual($coll[0]->name, 'Sub 1');
         $this->assertEqual($coll[1]->name, 'Sub 2');
-        
+
         $this->assertEqual($count, count($this->dbh));
 
         $this->assertEqual($coll[0]->Subcategory[0]->name, 'Sub 1 Sub 1');
@@ -176,7 +181,7 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase {
         $this->assertEqual($coll[1]->Parent->name, 'Root');
 
         $this->assertEqual($count, count($this->dbh));
-        
+
         $this->connection->clear();
     }
     public function testSelfReferencingWithIsNull() {
@@ -184,11 +189,11 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase {
         $query->from('Forum_Category.Subcategory.Subcategory')->where('Forum_Category.parent_category_id IS NULL');
         $coll = $query->execute();
         $this->assertEqual($coll->count(), 1);
-        
+
         $count = count($this->dbh);
         $category = $coll[0];
         $this->assertEqual($category->name, 'Root');
-        
+
         $this->assertEqual($count, count($this->dbh));
         $this->assertEqual($category->Subcategory[0]->name, 'Sub 1');
         $this->assertEqual($category->Subcategory[1]->name, 'Sub 2');

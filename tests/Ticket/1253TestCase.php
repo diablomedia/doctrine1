@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1253_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1253_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,16 +41,16 @@ class Doctrine_Ticket_1253_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $test2 = new Ticket_1253_UserType();
+        $test2       = new Ticket_1253_UserType();
         $test2->name = 'one';
         $test2->save();
 
-        $test3 = new Ticket_1253_UserType();
+        $test3       = new Ticket_1253_UserType();
         $test3->name = 'two';
         $test3->save();
 
-        $test = new Ticket_1253_User();
-        $test->name = 'test';
+        $test            = new Ticket_1253_User();
+        $test->name      = 'test';
         $test->type_name = 'one';
         $test->save();
 

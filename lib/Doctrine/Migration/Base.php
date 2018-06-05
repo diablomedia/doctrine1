@@ -90,7 +90,7 @@ abstract class Doctrine_Migration_Base
             $upDown = $change['upDown'];
             unset($change['upDown']);
             if ($upDown == 'down') {
-                $opposite = self::$_opposites[$type];
+                $opposite                = self::$_opposites[$type];
                 return $this->_changes[] = array($opposite, $change);
             }
         }
@@ -257,12 +257,12 @@ abstract class Doctrine_Migration_Base
     public function createPrimaryKey($tableName, $columnNames)
     {
         $autoincrement = false;
-        $fields = array();
+        $fields        = array();
 
         // Add the columns
         foreach ($columnNames as $columnName => $def) {
-            $type = $def['type'];
-            $length = isset($def['length']) ? $def['length'] : null;
+            $type    = $def['type'];
+            $length  = isset($def['length']) ? $def['length'] : null;
             $options = isset($def['options']) ? $def['options'] : array();
 
             $this->addColumn($tableName, $columnName, $type, $length, $options);
@@ -270,11 +270,11 @@ abstract class Doctrine_Migration_Base
             $fields[$columnName] = array();
 
             if (isset($def['autoincrement'])) {
-                $autoincrement = true;
-                $autoincrementColumn = $columnName;
-                $autoincrementType = $type;
-                $autoincrementLength = $length;
-                $autoincrementOptions = $options;
+                $autoincrement                         = true;
+                $autoincrementColumn                   = $columnName;
+                $autoincrementType                     = $type;
+                $autoincrementLength                   = $length;
+                $autoincrementOptions                  = $options;
                 $autoincrementOptions['autoincrement'] = true;
             }
         }
@@ -282,7 +282,7 @@ abstract class Doctrine_Migration_Base
         // Create the primary constraint for the columns
         $this->createConstraint($tableName, null, array(
             'primary' => true,
-            'fields' => $fields
+            'fields'  => $fields
         ));
 
         // If auto increment change the column to be so
@@ -345,7 +345,7 @@ abstract class Doctrine_Migration_Base
     public function foreignKey($upDown, $tableName, $name, array $definition = array())
     {
         $definition['name'] = $name;
-        $options = get_defined_vars();
+        $options            = get_defined_vars();
 
         $this->_addChange('created_foreign_key', $options);
     }
@@ -389,7 +389,7 @@ abstract class Doctrine_Migration_Base
     public function column($upDown, $tableName, $columnName, $type = null, $length = null, array $options = array())
     {
         $options = get_defined_vars();
-        if ( ! isset($options['options']['length'])) {
+        if (! isset($options['options']['length'])) {
             $options['options']['length'] = $length;
         }
         $options = array_merge($options, $options['options']);
@@ -452,7 +452,7 @@ abstract class Doctrine_Migration_Base
      */
     public function changeColumn($tableName, $columnName, $type = null, $length = null, array $options = array())
     {
-        $options = get_defined_vars();
+        $options                      = get_defined_vars();
         $options['options']['length'] = $length;
 
         $this->_addChange('changed_column', $options);

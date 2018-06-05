@@ -44,18 +44,18 @@ class Doctrine_Relation_LocalKey extends Doctrine_Relation
     public function fetchRelatedFor(Doctrine_Record $record)
     {
         $localFieldName = $record->getTable()->getFieldName($this->definition['local']);
-        $id = $record->get($localFieldName);
+        $id             = $record->get($localFieldName);
 
         if (is_null($id) || ! $this->definition['table']->getAttribute(Doctrine_Core::ATTR_LOAD_REFERENCES)) {
             $related = $this->getTable()->create();
 
-            // Ticket #1131 Patch.            
-            if ( ! is_null($id)) {
+            // Ticket #1131 Patch.
+            if (! is_null($id)) {
                 $related->assignIdentifier($id);
                 $related->state(Doctrine_Record::STATE_PROXY);
             }
         } else {
-            $dql  = 'FROM ' . $this->getTable()->getComponentName()
+            $dql = 'FROM ' . $this->getTable()->getComponentName()
                  . ' WHERE ' . $this->getCondition() . $this->getOrderBy(null, false);
 
             $related = $this->getTable()
@@ -63,7 +63,7 @@ class Doctrine_Relation_LocalKey extends Doctrine_Relation
                             ->query($dql, array($id))
                             ->getFirst();
             
-            if ( ! $related || empty($related)) {
+            if (! $related || empty($related)) {
                 $related = $this->getTable()->create();
             }
         }
@@ -82,8 +82,8 @@ class Doctrine_Relation_LocalKey extends Doctrine_Relation
      */
     public function getCondition($alias = null)
     {
-        if ( ! $alias) {
-           $alias = $this->getTable()->getComponentName();
+        if (! $alias) {
+            $alias = $this->getTable()->getComponentName();
         }
         return $alias . '.' . $this->definition['foreign'] . ' = ?';
     }

@@ -1,7 +1,7 @@
 <?php
 /**
  * Script to test the output from Doctrine_Cli
- * 
+ *
  * @author Dan Bettles <danbettles@yahoo.co.uk>
  */
 

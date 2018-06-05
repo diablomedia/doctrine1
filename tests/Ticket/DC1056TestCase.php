@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC1056_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC1056_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,15 +40,15 @@ class Doctrine_Ticket_DC1056_TestCase extends Doctrine_UnitTestCase
     
     public function prepareData()
     {
-    	$r = new Ticket_DC1056_Test();
-    	$r->id = 1;
+        $r           = new Ticket_DC1056_Test();
+        $r->id       = 1;
         $r->arraycol = array(1);
-    	$r->save();
+        $r->save();
     }
 
     public function testTest()
     {
-    	$r = Doctrine_Query::create()->from('Ticket_DC1056_Test')->where('id = 1')->execute()->getFirst();
+        $r = Doctrine_Query::create()->from('Ticket_DC1056_Test')->where('id = 1')->execute()->getFirst();
         preg_match('/"arraycol";a:1:{i:0;i:1;}}/', $r->serialize(), $matches);
         $this->assertEqual(1, count($matches));
 
@@ -63,8 +63,7 @@ class Ticket_DC1056_Test extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-		$this->hasColumn('id', 'integer', 4, array('primary', 'notnull'));
+        $this->hasColumn('id', 'integer', 4, array('primary', 'notnull'));
         $this->hasColumn('arraycol', 'array');
     }
 }
-

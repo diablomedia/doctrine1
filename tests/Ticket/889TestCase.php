@@ -30,28 +30,28 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_889_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_889_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables[] = "Ticket_889";
-        $this->tables[] = "Ticket_889_Relationship";
+        $this->tables[] = 'Ticket_889';
+        $this->tables[] = 'Ticket_889_Relationship';
         parent::prepareTables();
     }
 
-	public function prepareData() 
-    { }
+    public function prepareData()
+    {
+    }
 
-	public function testManyTreeRelationWithSelfRelation_Children() {
-
+    public function testManyTreeRelationWithSelfRelation_Children()
+    {
         $component = new Ticket_889();
 
         try {
             $rel = $component->getTable()->getRelation('Children');
 
             $this->pass();
-        } catch(Doctrine_Exception $e) {
-
+        } catch (Doctrine_Exception $e) {
             $this->fail();
         }
         $this->assertEqual(get_class($rel), 'Doctrine_Relation_Nest');
@@ -60,16 +60,15 @@ class Doctrine_Ticket_889_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($component->Children[0] instanceof Ticket_889);
     }
 
-	public function testManyTreeRelationWithSelfRelation_Parents() {
-
+    public function testManyTreeRelationWithSelfRelation_Parents()
+    {
         $component = new Ticket_889();
 
         try {
             $rel = $component->getTable()->getRelation('Parents');
 
             $this->pass();
-        } catch(Doctrine_Exception $e) {
-
+        } catch (Doctrine_Exception $e) {
             $this->fail();
         }
         $this->assertEqual(get_class($rel), 'Doctrine_Relation_Nest');
@@ -78,21 +77,21 @@ class Doctrine_Ticket_889_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($component->Parents[0] instanceof Ticket_889);
     }
 
-	public function testInitData() 
+    public function testInitData()
     {
-        $test = new Ticket_889();
-		$test->table_name = 'Feature';
-		$test->save();
-		
-		$test3 = new Ticket_889();
-		$test3->table_name = 'Application';
-		$test3->save();
+        $test             = new Ticket_889();
+        $test->table_name = 'Feature';
+        $test->save();
+        
+        $test3             = new Ticket_889();
+        $test3->table_name = 'Application';
+        $test3->save();
 
-		$test2 = new Ticket_889();
-		$test2->table_name = 'Module';
-		$test2->Children[0] = $test;
-		$test2->Parents[0] = $test3;
-		$test2->save();
+        $test2              = new Ticket_889();
+        $test2->table_name  = 'Module';
+        $test2->Children[0] = $test;
+        $test2->Parents[0]  = $test3;
+        $test2->save();
     }
 }
 
@@ -107,53 +106,51 @@ class Ticket_889 extends Doctrine_Record
         $this->option('type', 'INNODB');
 
         // set character set
-    	$this->option('charset', 'utf8');
+        $this->option('charset', 'utf8');
 
         // id
         $this->hasColumn(
-    			'id', 	
-    			'integer', 	
-    			10, 	
-    			array(	'primary' => true,
-    					'unsigned' => true, 	
-    					'autoincrement' => true	
-    			)
-    	);
+                'id',
+                'integer',
+                10,
+                array(	'primary'        => true,
+                        'unsigned'      => true,
+                        'autoincrement' => true
+                )
+        );
 
         // table_name
-        $this->hasColumn(	
-    			'table_name', 
-    			'string', 
-    			100, 
-    			array(	'notnull' => true, 	
-    					'notblank' =>true, 
-    					'unique' => true 
-    			)
-    	);
-
+        $this->hasColumn(
+                'table_name',
+                'string',
+                100,
+                array(	'notnull'   => true,
+                        'notblank' => true,
+                        'unique'   => true
+                )
+        );
     }
 
     public function setUp()
     {
         // Ticket_889_Relationship child_id
-       	$this->hasMany(
-			'Ticket_889 as Parents', 
-			array(	'local' => 'child_id',
-					'foreign' => 'parent_id', 
-					'refClass' => 'Ticket_889_Relationship'	
-			) 
-		);
+        $this->hasMany(
+            'Ticket_889 as Parents',
+            array(	'local'     => 'child_id',
+                    'foreign'  => 'parent_id',
+                    'refClass' => 'Ticket_889_Relationship'
+            )
+        );
 
         // Ticket_889_Relationship parent_id
         $this->hasMany(
-			'Ticket_889 as Children', 
-			array(	'local' => 'parent_id',
-					'foreign' => 'child_id', 
-					'refClass' => 'Ticket_889_Relationship'
-			) 
-		);
-
-       }
+            'Ticket_889 as Children',
+            array(	'local'     => 'parent_id',
+                    'foreign'  => 'child_id',
+                    'refClass' => 'Ticket_889_Relationship'
+            )
+        );
+    }
 }
 
 class Ticket_889_Relationship extends Doctrine_Record
@@ -166,38 +163,38 @@ class Ticket_889_Relationship extends Doctrine_Record
         // set table type
         $this->option('type', 'INNODB');
 
-           // set character set
-    		$this->option('charset', 'utf8');
+        // set character set
+        $this->option('charset', 'utf8');
 
         // parent_id
         $this->hasColumn(
-    		'parent_id', 
-    		'integer', 
-    		10,
-    		array( 	'primary' => true, 
-    				'unsigned' => true 
-    		)
-    	);
+            'parent_id',
+            'integer',
+            10,
+            array( 	'primary'  => true,
+                    'unsigned' => true
+            )
+        );
 
         // child_id
         $this->hasColumn(
-    		'child_id', 
-    		'integer', 
-    		10, 
-    		array( 	'primary' => true, 
-    				'unsigned' => true 
-    		)
-    	);
+            'child_id',
+            'integer',
+            10,
+            array( 	'primary'  => true,
+                    'unsigned' => true
+            )
+        );
     }
 
     public function setUp()
     {
-        $this->hasOne('Ticket_889 as Parent', array('local'     => 'parent_id',
-                                                    'foreign'   => 'id',
-                                                    'onDelete'  => 'CASCADE'));
+        $this->hasOne('Ticket_889 as Parent', array('local'    => 'parent_id',
+                                                    'foreign'  => 'id',
+                                                    'onDelete' => 'CASCADE'));
 
-        $this->hasOne('Ticket_889 as Child', array('local'     => 'child_id',
-                                                   'foreign'   => 'id',
-                                                   'onDelete'  => 'CASCADE'));
+        $this->hasOne('Ticket_889 as Child', array('local'    => 'child_id',
+                                                   'foreign'  => 'id',
+                                                   'onDelete' => 'CASCADE'));
     }
 }

@@ -108,24 +108,24 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
      */
     private function _createLimitSubquery($query, $limit, $offset, $column = null)
     {
-        $limit = (int) $limit;
+        $limit  = (int) $limit;
         $offset = (int) $offset;
         if (preg_match('/^\s*SELECT/i', $query)) {
-            if ( ! preg_match('/\sFROM\s/i', $query)) {
-                $query .= " FROM dual";
+            if (! preg_match('/\sFROM\s/i', $query)) {
+                $query .= ' FROM dual';
             }
             if ($limit > 0) {
-                $max = $offset + $limit;
+                $max    = $offset + $limit;
                 $column = $column === null ? '*' : $this->quoteIdentifier($column);
                 if ($offset > 0) {
-                    $min = $offset + 1;
-                    $query = 'SELECT '.$this->quoteIdentifier('b').'.'.$column.' FROM ( '.
-                                 'SELECT '.$this->quoteIdentifier('a').'.*, ROWNUM AS doctrine_rownum FROM ( '
-                                   . $query . ' ) ' . $this->quoteIdentifier('a') . ' '.
-                              ' ) ' . $this->quoteIdentifier('b') . ' '.
-                              'WHERE doctrine_rownum BETWEEN ' . $min .  ' AND ' . $max;
+                    $min   = $offset + 1;
+                    $query = 'SELECT ' . $this->quoteIdentifier('b') . '.' . $column . ' FROM ( ' .
+                                 'SELECT ' . $this->quoteIdentifier('a') . '.*, ROWNUM AS doctrine_rownum FROM ( '
+                                   . $query . ' ) ' . $this->quoteIdentifier('a') . ' ' .
+                              ' ) ' . $this->quoteIdentifier('b') . ' ' .
+                              'WHERE doctrine_rownum BETWEEN ' . $min . ' AND ' . $max;
                 } else {
-                    $query = 'SELECT a.'.$column.' FROM ( ' . $query .' ) a WHERE ROWNUM <= ' . $max;
+                    $query = 'SELECT a.' . $column . ' FROM ( ' . $query . ' ) a WHERE ROWNUM <= ' . $max;
                 }
             }
         }
@@ -151,8 +151,8 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
         // NOTE: no composite key support
         $columnNames = $rootTable->getIdentifierColumnNames();
         if (count($columnNames) > 1) {
-            throw new Doctrine_Connection_Exception("Composite keys in LIMIT queries are "
-                    . "currently not supported.");
+            throw new Doctrine_Connection_Exception('Composite keys in LIMIT queries are '
+                    . 'currently not supported.');
         }
         $column = $columnNames[0];
         return $this->_createLimitSubquery($query, $limit, $offset, $column);

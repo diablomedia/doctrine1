@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1160_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1160_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mysql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mysql');
         $this->conn = $this->manager->openConnection($this->dbh);
 
         $sql = $this->conn->export->exportClassesSql(array('Ticket_1160_Test'));

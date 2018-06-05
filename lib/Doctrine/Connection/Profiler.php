@@ -35,7 +35,7 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
     /**
      * @param array $listeners      an array containing all availible listeners
      */
-    private $listeners  = array('query',
+    private $listeners = array('query',
                                 'prepare',
                                 'commit',
                                 'rollback',
@@ -47,7 +47,7 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
     /**
      * @param array $events         an array containing all listened events
      */
-    private $events     = array();
+    private $events = array();
 
     /**
      * @param array $eventSequences         an array containing sequences of all listened events as keys
@@ -57,8 +57,8 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
     /**
      * constructor
      */
-    public function __construct() {
-
+    public function __construct()
+    {
     }
 
     /**
@@ -66,8 +66,8 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
      *
      * @return void
      */
-    public function setFilterQueryType() {
-
+    public function setFilterQueryType()
+    {
     }
     /**
      * method overloader
@@ -82,7 +82,7 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
     public function __call($m, $a)
     {
         // first argument should be an instance of Doctrine_Event
-        if ( ! ($a[0] instanceof Doctrine_Event)) {
+        if (! ($a[0] instanceof Doctrine_Event)) {
             throw new Doctrine_Connection_Profiler_Exception("Couldn't listen event. Event should be an instance of Doctrine_Event.");
         }
 
@@ -92,8 +92,8 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
             $a[0]->start();
 
             $eventSequence = $a[0]->getSequence();
-            if ( ! isset($this->eventSequences[$eventSequence])) {
-                $this->events[] = $a[0];
+            if (! isset($this->eventSequences[$eventSequence])) {
+                $this->events[]                       = $a[0];
                 $this->eventSequences[$eventSequence] = true;
             }
         } else {
@@ -156,8 +156,7 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
     public function pop()
     {
         $event = array_pop($this->events);
-        if ($event !== null)
-        {
+        if ($event !== null) {
             unset($this->eventSequences[$event->getSequence()]);
         }
         return $event;

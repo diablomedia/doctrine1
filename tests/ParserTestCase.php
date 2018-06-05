@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Parser_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Parser_TestCase extends Doctrine_UnitTestCase
 {
     public function testGetParserInstance()
     {
@@ -55,7 +55,7 @@ class Doctrine_Parser_TestCase extends Doctrine_UnitTestCase
     public function testParserSupportsEmbeddingPhpSyntax()
     {
         $parser = Doctrine_Parser::getParser('Yml');
-        $yml = "---
+        $yml    = "---
 test: good job
 test2: true
 testing: <?php echo 'false'.\"\n\"; ?>

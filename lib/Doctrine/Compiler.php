@@ -45,14 +45,14 @@ class Doctrine_Compiler
      */
     public static function compile($target = null, $includedDrivers = array())
     {
-        if ( ! is_array($includedDrivers)) {
+        if (! is_array($includedDrivers)) {
             $includedDrivers = array($includedDrivers);
         }
 
         $excludedDrivers = array();
 
         // If we have an array of specified drivers then lets determine which drivers we should exclude
-        if ( ! empty($includedDrivers)) {
+        if (! empty($includedDrivers)) {
             $drivers = array('db2',
                              'mssql',
                              'mysql',
@@ -64,7 +64,7 @@ class Doctrine_Compiler
         }
 
         $path = Doctrine_Core::getPath();
-        $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path . '/Doctrine'), RecursiveIteratorIterator::LEAVES_ONLY);
+        $it   = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path . '/Doctrine'), RecursiveIteratorIterator::LEAVES_ONLY);
 
         foreach ($it as $file) {
             $e = explode('.', $file->getFileName());
@@ -80,7 +80,7 @@ class Doctrine_Compiler
 
         $classes = array_merge(get_declared_classes(), get_declared_interfaces());
 
-        $ret     = array();
+        $ret = array();
 
         foreach ($classes as $class) {
             $e = explode('_', $class);
@@ -90,7 +90,7 @@ class Doctrine_Compiler
             }
 
             // Exclude drivers
-            if ( ! empty($excludedDrivers)) {
+            if (! empty($excludedDrivers)) {
                 foreach ($excludedDrivers as $excludedDriver) {
                     $excludedDriver = ucfirst($excludedDriver);
 
@@ -100,8 +100,8 @@ class Doctrine_Compiler
                 }
             }
 
-            $refl  = new ReflectionClass($class);
-            $file  = $refl->getFileName();
+            $refl = new ReflectionClass($class);
+            $file = $refl->getFileName();
 
             $lines = file($file);
 
@@ -123,11 +123,11 @@ class Doctrine_Compiler
             throw new Doctrine_Compiler_Exception("Couldn't write compiled data. Failed to open $target");
         }
 
-        fwrite($fp, "<?php ". implode('', $ret));
+        fwrite($fp, '<?php ' . implode('', $ret));
         fclose($fp);
 
         $stripped = php_strip_whitespace($target);
-        $fp = @fopen($target, 'w');
+        $fp       = @fopen($target, 'w');
         if ($fp === false) {
             throw new Doctrine_Compiler_Exception("Couldn't write compiled data. Failed to open $target");
         }

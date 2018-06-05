@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC217_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC217_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -40,7 +40,7 @@ class Doctrine_Ticket_DC217_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $o = new Ticket_DC217_Industry();
+        $o       = new Ticket_DC217_Industry();
         $o->name = 'test';
         //$o->parent_id = null;
         $o->save();
@@ -52,33 +52,33 @@ class Ticket_DC217_Industry extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn('id', 'integer', 4, array(
-             'type' => 'integer',
-             'primary' => true,
+             'type'          => 'integer',
+             'primary'       => true,
              'autoincrement' => true,
-             'length' => '4',
+             'length'        => '4',
              ));
 
         $this->hasColumn('parent_id', 'integer', 4, array(
-             'type' => 'integer',
+             'type'    => 'integer',
              'notnull' => false,
-             'length' => '4',
+             'length'  => '4',
              ));
 
         $this->hasColumn('name', 'string', 30, array(
-             'type' => 'string',
+             'type'    => 'string',
              'notnull' => true,
-             'length' => '30',
+             'length'  => '30',
              ));
     }
 
     public function setUp()
     {
         $this->hasOne('Ticket_DC217_Industry as ParentIndustry', array(
-             'local' => 'parent_id',
+             'local'   => 'parent_id',
              'foreign' => 'id'));
 
         $this->hasMany('Ticket_DC217_Industry as ChildIndustries', array(
-             'local' => 'id',
+             'local'   => 'id',
              'foreign' => 'parent_id'));
     }
 }

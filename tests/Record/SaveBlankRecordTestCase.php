@@ -41,7 +41,8 @@ class Doctrine_Record_SaveBlankRecord_TestCase extends Doctrine_UnitTestCase
     }
     
     public function prepareData()
-    { }
+    {
+    }
 
     public function testSaveBlankRecord()
     {

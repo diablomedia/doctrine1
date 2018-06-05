@@ -67,28 +67,28 @@ class Doctrine_Node implements IteratorAggregate
      */
     public function __construct(Doctrine_Record $record, $options)
     {
-        $this->record = $record;
+        $this->record  = $record;
         $this->options = $options;
 
         // Make sure that the tree object of the root class is used in the case
         // of column aggregation inheritance (single table inheritance).
-        $class = $record->getTable()->getComponentName();
+        $class     = $record->getTable()->getComponentName();
         $thisTable = $record->getTable();
-        $table = $thisTable;
+        $table     = $thisTable;
         if ($thisTable->getOption('inheritanceMap')) {
             // Move up the hierarchy until we find the "subclasses" option. This option
             // MUST be set on the root class of the user's hierarchy that uses STI.
-            while ( ! $subclasses = $table->getOption('subclasses')) {
-                $class = get_parent_class($class);
+            while (! $subclasses = $table->getOption('subclasses')) {
+                $class           = get_parent_class($class);
                 $reflectionClass = new ReflectionClass($class);
                 if ($reflectionClass->isAbstract()) {
                     continue;
                 }
                 if ($class == 'Doctrine_Record') {
-                    throw new Doctrine_Node_Exception("No subclasses specified. You are "
-                            . "using Single Table Inheritance with NestedSet but you have "
-                            . "not specified the subclasses correctly. Make sure you use "
-                            . "setSubclasses() in the root class of your hierarchy.");
+                    throw new Doctrine_Node_Exception('No subclasses specified. You are '
+                            . 'using Single Table Inheritance with NestedSet but you have '
+                            . 'not specified the subclasses correctly. Make sure you use '
+                            . 'setSubclasses() in the root class of your hierarchy.');
                 }
                 $table = $table->getConnection()->getTable($class);
             }
@@ -116,7 +116,7 @@ class Doctrine_Node implements IteratorAggregate
     {
         $class = 'Doctrine_Node_' . $implName;
 
-        if ( ! class_exists($class)) {
+        if (! class_exists($class)) {
             throw new Doctrine_Node_Exception("The class $class must exist and extend Doctrine_Node");
         }
 
@@ -174,7 +174,7 @@ class Doctrine_Node implements IteratorAggregate
             $options = (isset($this->iteratorOptions) ? $this->iteratorOptions : array());
         }
 
-        $implName = $this->record->getTable()->getOption('treeImpl');
+        $implName      = $this->record->getTable()->getOption('treeImpl');
         $iteratorClass = 'Doctrine_Node_' . $implName . '_' . ucfirst(strtolower($type)) . 'OrderIterator';
 
         return new $iteratorClass($this->record, $options);

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC23b_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC23b_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -175,9 +175,9 @@ class Ticket_Product extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_Site as Site', array('local' => 'site_id',
-                                    'foreign' => 'id'));
+                                    'foreign'              => 'id'));
         $this->hasMany('Ticket_MultipleValue as MultipleValues', array('local' => 'id',
-                                                              'foreign' => 'product_id'));
+                                                              'foreign'        => 'product_id'));
     }
 }
 class Ticket_Site extends Doctrine_Record
@@ -190,7 +190,7 @@ class Ticket_Site extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('Ticket_Product as Products', array('local' => 'id',
-                                        'foreign' => 'site_id'));
+                                        'foreign'                  => 'site_id'));
     }
 }
 class Ticket_Multiple extends Doctrine_Record
@@ -203,7 +203,7 @@ class Ticket_Multiple extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('Ticket_MultipleValue as MultipleValues', array('local' => 'id',
-                                                 'foreign' => 'multiple_id'));
+                                                 'foreign'                     => 'multiple_id'));
     }
 }
 class Ticket_MultipleValue extends Doctrine_Record
@@ -218,9 +218,9 @@ class Ticket_MultipleValue extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_Multiple as Multiple', array('local' => 'multiple_id',
-                                                       'foreign' => 'id'));
+                                                       'foreign'   => 'id'));
 
         $this->hasOne('Ticket_Product as Product', array('local' => 'product_id',
-                                        'foreign' => 'id'));
+                                        'foreign'                => 'id'));
     }
 }

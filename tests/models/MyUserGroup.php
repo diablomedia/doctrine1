@@ -5,9 +5,9 @@ class MyUserGroup extends Doctrine_Record
     {
         $this->setTableName('my_user_group');
     
-        $this->hasColumn('id', 'integer', 4, array (  'primary' => true,  'autoincrement' => true,));
-        $this->hasColumn('group_id', 'integer', 4, array ());
-        $this->hasColumn('user_id', 'integer', 4, array ());
+        $this->hasColumn('id', 'integer', 4, array(  'primary' => true,  'autoincrement' => true,));
+        $this->hasColumn('group_id', 'integer', 4, array());
+        $this->hasColumn('user_id', 'integer', 4, array());
     }
   
     public function setUp()

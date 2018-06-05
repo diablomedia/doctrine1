@@ -35,21 +35,21 @@ class Doctrine_Task_DropDb extends Doctrine_Task
     /**
      * @var string
      */
-    public $description          =   'Drop database for all existing connections';
+    public $description = 'Drop database for all existing connections';
 
     /**
      * @var array
      */
-    public $requiredArguments    =   array();
+    public $requiredArguments = array();
 
     /**
      * @var array
      */
-    public $optionalArguments    =   array('force'  =>  'Whether or not to force the drop database task');
+    public $optionalArguments = array('force' => 'Whether or not to force the drop database task');
 
     public function execute()
     {
-        if ( ! $this->getArgument('force')) {
+        if (! $this->getArgument('force')) {
             $answer = $this->ask('Are you sure you wish to drop your databases? (y/n)');
 
             if ($answer != 'y') {

@@ -45,13 +45,13 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      */
     public function dropDatabase($databaseFile)
     {
-        if ( ! @file_exists($databaseFile)) {
+        if (! @file_exists($databaseFile)) {
             throw new Doctrine_Export_Exception('database does not exist');
         }
 
         $result = @unlink($databaseFile);
 
-        if ( ! $result) {
+        if (! $result) {
             throw new Doctrine_Export_Exception('could not remove the database file');
         }
     }
@@ -102,9 +102,9 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      */
     public function createIndexSql($table, $name, array $definition)
     {
-        $name  = $this->conn->formatter->getIndexName($name);
-        $name  = $this->conn->quoteIdentifier($name);
-        $type  = '';
+        $name = $this->conn->formatter->getIndexName($name);
+        $name = $this->conn->quoteIdentifier($name);
+        $type = '';
 
         if (isset($definition['type'])) {
             switch (strtolower($definition['type'])) {
@@ -188,17 +188,17 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      */
     public function createTableSql($name, array $fields, array $options = array())
     {
-        if ( ! $name) {
+        if (! $name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
         }
 
         if (empty($fields)) {
-            throw new Doctrine_Export_Exception('no fields specified for table '.$name);
+            throw new Doctrine_Export_Exception('no fields specified for table ' . $name);
         }
         $queryFields = $this->getFieldDeclarationList($fields);
 
         $autoinc = false;
-        foreach($fields as $field) {
+        foreach ($fields as $field) {
             if (isset($field['autoincrement']) && $field['autoincrement'] ||
               (isset($field['autoinc']) && $field['autoinc'])) {
                 $autoinc = true;
@@ -206,14 +206,14 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
             }
         }
 
-        if ( ! $autoinc && isset($options['primary']) && ! empty($options['primary'])) {
+        if (! $autoinc && isset($options['primary']) && ! empty($options['primary'])) {
             $keyColumns = array_values($options['primary']);
             $keyColumns = array_map(array($this->conn, 'quoteIdentifier'), $keyColumns);
-            $queryFields.= ', PRIMARY KEY('.implode(', ', $keyColumns).')';
+            $queryFields .= ', PRIMARY KEY(' . implode(', ', $keyColumns) . ')';
         }
 
-        $name  = $this->conn->quoteIdentifier($name, true);
-        $sql   = 'CREATE TABLE ' . $name . ' (' . $queryFields;
+        $name = $this->conn->quoteIdentifier($name, true);
+        $sql  = 'CREATE TABLE ' . $name . ' (' . $queryFields;
 
         if ($check = $this->getCheckDeclaration($fields)) {
             $sql .= ', ' . $check;
@@ -285,9 +285,9 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      */
     public function createSequence($seqName, $start = 1, array $options = array())
     {
-        $sequenceName   = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($seqName), true);
-        $seqcolName     = $this->conn->quoteIdentifier($this->conn->getAttribute(Doctrine_Core::ATTR_SEQCOL_NAME), true);
-        $query          = 'CREATE TABLE ' . $sequenceName . ' (' . $seqcolName . ' INTEGER PRIMARY KEY DEFAULT 0 NOT NULL)';
+        $sequenceName = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($seqName), true);
+        $seqcolName   = $this->conn->quoteIdentifier($this->conn->getAttribute(Doctrine_Core::ATTR_SEQCOL_NAME), true);
+        $query        = 'CREATE TABLE ' . $sequenceName . ' (' . $seqcolName . ' INTEGER PRIMARY KEY DEFAULT 0 NOT NULL)';
 
         $this->conn->exec($query);
 
@@ -296,14 +296,14 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
         }
 
         try {
-            $this->conn->exec('INSERT INTO ' . $sequenceName . ' (' . $seqcolName . ') VALUES (' . ($start-1) . ')');
+            $this->conn->exec('INSERT INTO ' . $sequenceName . ' (' . $seqcolName . ') VALUES (' . ($start - 1) . ')');
             return true;
-        } catch(Doctrine_Connection_Exception $e) {
+        } catch (Doctrine_Connection_Exception $e) {
             // Handle error
 
             try {
                 $result = $this->conn->exec('DROP TABLE ' . $sequenceName);
-            } catch(Doctrine_Connection_Exception $e) {
+            } catch (Doctrine_Connection_Exception $e) {
                 throw new Doctrine_Export_Exception('could not drop inconsistent sequence table');
             }
         }
@@ -330,7 +330,7 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      */
     public function alterTableSql($name, array $changes, $check = false)
     {
-        if ( ! $name) {
+        if (! $name) {
             throw new Doctrine_Export_Exception('no valid table name specified');
         }
         foreach ($changes as $changeName => $change) {
@@ -350,31 +350,31 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
         }
 
         $query = '';
-        if ( ! empty($changes['name'])) {
+        if (! empty($changes['name'])) {
             $change_name = $this->conn->quoteIdentifier($changes['name']);
             $query .= 'RENAME TO ' . $change_name;
         }
 
-        if ( ! empty($changes['add']) && is_array($changes['add'])) {
+        if (! empty($changes['add']) && is_array($changes['add'])) {
             foreach ($changes['add'] as $fieldName => $field) {
                 if ($query) {
-                    $query.= ', ';
+                    $query .= ', ';
                 }
-                $query.= 'ADD ' . $this->getDeclaration($fieldName, $field);
+                $query .= 'ADD ' . $this->getDeclaration($fieldName, $field);
             }
         }
 
         $rename = array();
-        if ( ! empty($changes['rename']) && is_array($changes['rename'])) {
+        if (! empty($changes['rename']) && is_array($changes['rename'])) {
             foreach ($changes['rename'] as $fieldName => $field) {
                 $rename[$field['name']] = $fieldName;
             }
         }
 
-        if ( ! empty($changes['change']) && is_array($changes['change'])) {
+        if (! empty($changes['change']) && is_array($changes['change'])) {
             foreach ($changes['change'] as $fieldName => $field) {
                 if ($query) {
-                    $query.= ', ';
+                    $query .= ', ';
                 }
                 if (isset($rename[$fieldName])) {
                     $oldFieldName = $rename[$fieldName];
@@ -388,19 +388,19 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
             }
         }
 
-        if ( ! empty($rename) && is_array($rename)) {
+        if (! empty($rename) && is_array($rename)) {
             foreach ($rename as $renameName => $renamedField) {
                 if ($query) {
-                    $query.= ', ';
+                    $query .= ', ';
                 }
-                $field = $changes['rename'][$renamedField];
+                $field        = $changes['rename'][$renamedField];
                 $renamedField = $this->conn->quoteIdentifier($renamedField, true);
                 $query .= 'CHANGE ' . $renamedField . ' '
                         . $this->getDeclaration($field['name'], $field['definition']);
             }
         }
 
-        if ( ! $query) {
+        if (! $query) {
             return false;
         }
 

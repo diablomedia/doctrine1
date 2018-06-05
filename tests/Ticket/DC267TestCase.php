@@ -30,12 +30,12 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC267_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC267_TestCase extends Doctrine_UnitTestCase
 {
     public function testTest()
     {
         $q = Doctrine_Query::create()
-            ->select ('u.*, COUNT(e.id) as num_emails')
+            ->select('u.*, COUNT(e.id) as num_emails')
             ->from('User u')
             ->leftJoin('u.Email e')
             ->groupBy('u.id');
@@ -44,7 +44,7 @@ class Doctrine_Ticket_DC267_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($res[0]['num_emails'], '1');
 
         $q = Doctrine_Query::create()
-            ->select ('u.*, e.*, e.address as my_address')
+            ->select('u.*, e.*, e.address as my_address')
             ->from('User u')
             ->leftJoin('u.Email e');
 

@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_DC169_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_DC169_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -41,9 +41,9 @@ class Doctrine_Ticket_DC169_TestCase extends Doctrine_UnitTestCase
 
     public function testTest()
     {
-        $user = new Ticket_DC169_User();
-        $user->username = 'jwage';
-        $user->password = 'changeme';
+        $user                = new Ticket_DC169_User();
+        $user->username      = 'jwage';
+        $user->password      = 'changeme';
         $user->Profile->name = 'Jonathan H. Wage';
         $user->replace();
 
@@ -76,7 +76,7 @@ class Ticket_DC169_User extends Doctrine_Record
         $this->actAs('Timestampable');
         
         $this->hasOne('Ticket_DC169_Profile as Profile', array(
-            'local' => 'id',
+            'local'   => 'id',
             'foreign' => 'user_id'
         ));
     }
@@ -93,7 +93,7 @@ class Ticket_DC169_Profile extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_DC169_User as User', array(
-            'local' => 'user_id',
+            'local'   => 'user_id',
             'foreign' => 'id'
         ));
     }

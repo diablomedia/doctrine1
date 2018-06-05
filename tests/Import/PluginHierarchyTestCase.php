@@ -33,7 +33,6 @@
  */
 class Doctrine_Import_PluginHierarchy_TestCase extends Doctrine_UnitTestCase
 {
-
     public function testImportOfHieriarchyOfPluginGeneration()
     {
         $yml = <<<END
@@ -76,9 +75,9 @@ END;
             4 => 'CREATE UNIQUE INDEX wiki_test_translation_sluggable_idx ON wiki_test_translation (slug)',
         );
             
-        foreach($sql as $idx => $req) {
+        foreach ($sql as $idx => $req) {
             $this->assertEqual($req, $result[$idx]);
-        }        
+        }
         
         Doctrine_Lib::removeDirectories($path);
         unlink('wiki.yml');

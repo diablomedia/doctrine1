@@ -30,40 +30,41 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
 {
-    public function prepareData() 
-    { }
-    public function prepareTables() 
+    public function prepareData()
     {
-        $this->tables = array("EnumTest", "EnumTest2", "EnumTest3");
+    }
+    public function prepareTables()
+    {
+        $this->tables = array('EnumTest', 'EnumTest2', 'EnumTest3');
         parent::prepareTables();
     }
 
-    public function testParameterConversion() 
+    public function testParameterConversion()
     {
-        $test = new EnumTest();
+        $test         = new EnumTest();
         $test->status = 'open';
         $this->assertEqual($test->status, 'open');
         $test->save();
         
         try {
             $query = new Doctrine_Query($this->connection);
-            $ret = $query->query("FROM EnumTest WHERE EnumTest.status = 'open'");
+            $ret   = $query->query("FROM EnumTest WHERE EnumTest.status = 'open'");
             $this->assertEqual(count($ret), 1);
         } catch (Exception $e) {
-          $this->fail();
+            $this->fail();
         }
     }
     
     public function testUpdate()
     {
-        $test = new EnumTest2();
+        $test         = new EnumTest2();
         $test->status = 'open';
         $this->assertEqual($test->status, 'open');
         $test->save();
 
-        $test_update = Doctrine_Core::getTable('EnumTest2')->find(1);
+        $test_update         = Doctrine_Core::getTable('EnumTest2')->find(1);
         $test_update->status = 'verified';
         $this->assertEqual($test_update->status, 'verified');
         $test_update->save();
@@ -75,24 +76,24 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
         $query->update('EnumTest2 u')
             ->set('u.status', '?', 'verified');
 
-        $this->assertEqual($query->getSqlQuery(), 'UPDATE enum_test2 SET status = ?');   
+        $this->assertEqual($query->getSqlQuery(), 'UPDATE enum_test2 SET status = ?');
 
         $query->execute();
 
         try {
             $query = new Doctrine_Query($this->connection);
-            $ret = $query->query("FROM EnumTest2 WHERE EnumTest2.status = 'verified'");
+            $ret   = $query->query("FROM EnumTest2 WHERE EnumTest2.status = 'verified'");
             $this->assertEqual(count($ret), 1);
         } catch (Exception $e) {
             $this->fail();
         }
     }
     
-    public function testParameterConversionInCount() 
+    public function testParameterConversionInCount()
     {
         try {
             $query = new Doctrine_Query($this->connection);
-            $ret = $query->parseDqlQuery("FROM EnumTest WHERE EnumTest.status = 'open'")
+            $ret   = $query->parseDqlQuery("FROM EnumTest WHERE EnumTest.status = 'open'")
               ->count();
             $this->assertEqual($ret, 1);
         } catch (Exception $e) {
@@ -101,7 +102,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
 
         try {
             $query = new Doctrine_Query($this->connection);
-            $ret = $query->parseDqlQuery("FROM EnumTest WHERE EnumTest.status = ?")
+            $ret   = $query->parseDqlQuery('FROM EnumTest WHERE EnumTest.status = ?')
               ->count(array('open'));
             $this->assertEqual($ret, 1);
         } catch (Exception $e) {
@@ -109,11 +110,11 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
         }
     }
 
-    public function testInAndNotIn() 
+    public function testInAndNotIn()
     {
         try {
             $query = new Doctrine_Query($this->connection);
-            $ret = $query->query("FROM EnumTest WHERE EnumTest.status IN ('open')");
+            $ret   = $query->query("FROM EnumTest WHERE EnumTest.status IN ('open')");
             $this->assertEqual(count($ret), 1);
         } catch (Exception $e) {
             $this->fail();
@@ -121,39 +122,38 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
 
         try {
             $query = new Doctrine_Query($this->connection);
-            $ret = $query->query("FROM EnumTest WHERE EnumTest.status NOT IN ('verified', 'closed')");
-            $this->assertEqual(count($ret), 1);
-        } catch (Exception $e) {
-            $this->fail();
-        }
-    }
-
-    public function testExpressionComposition() 
-    {
-        try {
-            $query = new Doctrine_Query($this->connection);
-            $ret = $query->query("FROM EnumTest e WHERE e.id > 0 AND (e.status != 'closed' OR e.status = 'verified')");
+            $ret   = $query->query("FROM EnumTest WHERE EnumTest.status NOT IN ('verified', 'closed')");
             $this->assertEqual(count($ret), 1);
         } catch (Exception $e) {
             $this->fail();
         }
     }
 
-    public function testNotEqual() 
+    public function testExpressionComposition()
     {
         try {
             $query = new Doctrine_Query($this->connection);
-            $ret = $query->query("FROM EnumTest WHERE EnumTest.status != 'closed'");
+            $ret   = $query->query("FROM EnumTest e WHERE e.id > 0 AND (e.status != 'closed' OR e.status = 'verified')");
             $this->assertEqual(count($ret), 1);
         } catch (Exception $e) {
             $this->fail();
         }
     }
 
-    public function testEnumType() 
+    public function testNotEqual()
     {
+        try {
+            $query = new Doctrine_Query($this->connection);
+            $ret   = $query->query("FROM EnumTest WHERE EnumTest.status != 'closed'");
+            $this->assertEqual(count($ret), 1);
+        } catch (Exception $e) {
+            $this->fail();
+        }
+    }
 
-        $enum = new EnumTest();
+    public function testEnumType()
+    {
+        $enum         = new EnumTest();
         $enum->status = 'open';
         $this->assertEqual($enum->status, 'open');
         $enum->save();
@@ -172,7 +172,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($enum->status, 'closed');
     }
 
-    public function testEnumTypeWithCaseConversion() 
+    public function testEnumTypeWithCaseConversion()
     {
         $this->conn->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
 
@@ -185,7 +185,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($enum->status, 'open');
 
         $enum->refresh();
-        $this->assertEqual($enum->status, 'open');      
+        $this->assertEqual($enum->status, 'open');
         
         $enum->status = 'closed';
 
@@ -200,7 +200,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
         $this->conn->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
     }
 
-    public function testFailingRefresh() 
+    public function testFailingRefresh()
     {
         $enum = $this->connection->getTable('EnumTest')->find(1);
 
@@ -210,7 +210,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
             $enum->refresh();
 
             $this->fail();
-        } catch(Doctrine_Record_Exception $e) {
+        } catch (Doctrine_Record_Exception $e) {
             $this->pass();
         }
     }
@@ -246,7 +246,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
         $orig = Doctrine_Manager::getInstance()->getAttribute(Doctrine_Core::ATTR_VALIDATE);
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
         try {
-            $test = new EnumTest();
+            $test         = new EnumTest();
             $test->status = 'opeerertn';
             $test->save();
             $this->fail();

@@ -31,4 +31,5 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 class Doctrine_Import_Builder_Exception extends Doctrine_Import_Exception
-{ }
+{
+}

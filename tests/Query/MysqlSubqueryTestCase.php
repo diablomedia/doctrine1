@@ -30,11 +30,11 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Query_MysqlSubquery_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Query_MysqlSubquery_TestCase extends Doctrine_UnitTestCase
 {
     public function setUp()
     {
-        $this->dbh = new Doctrine_Adapter_Mock('mysql');
+        $this->dbh  = new Doctrine_Adapter_Mock('mysql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh);
     }
 

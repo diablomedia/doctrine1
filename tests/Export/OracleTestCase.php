@@ -30,20 +30,20 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
 {
-    public function testCreateSequenceExecutesSql() 
+    public function testCreateSequenceExecutesSql()
     {
         $sequenceName = 'sequence';
-        $start = 1;
-        $query = 'CREATE SEQUENCE ' . $sequenceName . '_seq START WITH ' . $start . ' INCREMENT BY 1 NOCACHE';
+        $start        = 1;
+        $query        = 'CREATE SEQUENCE ' . $sequenceName . '_seq START WITH ' . $start . ' INCREMENT BY 1 NOCACHE';
 
         $this->export->createSequence($sequenceName, $start);
         
         $this->assertEqual($this->adapter->pop(), $query);
     }
 
-    public function testDropSequenceExecutesSql() 
+    public function testDropSequenceExecutesSql()
     {
         $sequenceName = 'sequence';
 
@@ -53,7 +53,7 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
         
         $this->assertEqual($this->adapter->pop(), $query . '_seq');
     }
-    public function testCreateTableExecutesSql() 
+    public function testCreateTableExecutesSql()
     {
         $name = 'mytable';
         
@@ -66,10 +66,10 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($this->adapter->pop(), 'CREATE TABLE mytable (id INTEGER)');
         $this->assertEqual($this->adapter->pop(), 'BEGIN TRANSACTION');
     }
-    public function testCreateTableSupportsDefaultAttribute() 
+    public function testCreateTableSupportsDefaultAttribute()
     {
-        $name = 'mytable';
-        $fields  = array('name' => array('type' => 'char', 'length' => 10, 'default' => 'def'),
+        $name   = 'mytable';
+        $fields = array('name'  => array('type' => 'char', 'length' => 10, 'default' => 'def'),
                          'type' => array('type' => 'integer', 'length' => 3, 'default' => 12)
                          );
                          
@@ -88,8 +88,8 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
         $this->conn->setParam('varchar2_max_length', 1000);
         
         $fields = array(
-            'type' => array('type' => 'char', 'length' => 10, 'default' => 'admin'),
-            'name' => array('type' => 'string', 'length' => 1000),
+            'type'  => array('type' => 'char', 'length' => 10, 'default' => 'admin'),
+            'name'  => array('type' => 'string', 'length' => 1000),
             'about' => array('type' => 'string', 'length' => 1001, 'default' => 'def'),
         );
         
@@ -100,10 +100,10 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
         $this->conn->setParam('varchar2_max_length', 4000);
     }
     
-    public function testCreateTableSupportsMultiplePks() 
+    public function testCreateTableSupportsMultiplePks()
     {
-        $name = 'mytable';
-        $fields  = array('name' => array('type' => 'char', 'length' => 10),
+        $name   = 'mytable';
+        $fields = array('name'  => array('type' => 'char', 'length' => 10),
                          'type' => array('type' => 'integer', 'length' => 3));
                          
         $options = array('primary' => array('name', 'type'));
@@ -114,28 +114,28 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($this->adapter->pop(), 'CREATE TABLE mytable (name CHAR(10), type NUMBER(8), PRIMARY KEY(name, type))');
         $this->assertEqual($this->adapter->pop(), 'BEGIN TRANSACTION');
     }
-    public function testCreateTableSupportsAutoincPks() 
+    public function testCreateTableSupportsAutoincPks()
     {
         $name = 'mytable';
         
-        $fields  = array('id' => array('type' => 'integer', 'autoincrement' => true));
+        $fields = array('id' => array('type' => 'integer', 'autoincrement' => true));
 
 
         $this->export->createTable($name, $fields);
 
         $this->assertEqual($this->adapter->pop(), 'COMMIT');
         $this->assertEqual(substr($this->adapter->pop(), 0, 14), 'CREATE TRIGGER');
-        $this->assertEqual($this->adapter->pop(), 'CREATE SEQUENCE MYTABLE_seq START WITH 1 INCREMENT BY 1 NOCACHE');  
-        $this->assertEqual(substr($this->adapter->pop(), 0, 7), "DECLARE");
+        $this->assertEqual($this->adapter->pop(), 'CREATE SEQUENCE MYTABLE_seq START WITH 1 INCREMENT BY 1 NOCACHE');
+        $this->assertEqual(substr($this->adapter->pop(), 0, 7), 'DECLARE');
         $this->assertEqual($this->adapter->pop(), 'CREATE TABLE mytable (id INTEGER)');
         $this->assertEqual($this->adapter->pop(), 'BEGIN TRANSACTION');
     }
 
-    public function testCreateTableSupportsCharType() 
+    public function testCreateTableSupportsCharType()
     {
         $name = 'mytable';
         
-        $fields  = array('id' => array('type' => 'char', 'length' => 3));
+        $fields = array('id' => array('type' => 'char', 'length' => 3));
 
         $this->export->createTable($name, $fields);
 
@@ -144,7 +144,7 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     }
     public function testCreateTableSupportsUniqueConstraint()
     {
-        $fields  = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true),
+        $fields = array('id'    => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true),
                          'name' => array('type' => 'string', 'length' => 4),
                          );
 
@@ -157,7 +157,7 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     }
     public function testCreateTableSupportsIndexes()
     {
-        $fields  = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true),
+        $fields = array('id'    => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true, 'unique' => true),
                          'name' => array('type' => 'string', 'length' => 4),
                          );
 
@@ -170,12 +170,12 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($sql[0], 'CREATE TABLE sometable (id INTEGER UNIQUE, name VARCHAR2(4), PRIMARY KEY(id))');
         $this->assertEqual($sql[4], 'CREATE INDEX myindex ON sometable (id, name)');
         
-        $fields = array('id'=> array('type'=>'integer', 'unisgned' => 1, 'autoincrement' => true),
-                        'name' => array('type' => 'string', 'length' => 4),
-                        'category' => array('type'=>'integer', 'length'=>2),
+        $fields = array('id'       => array('type' => 'integer', 'unisgned' => 1, 'autoincrement' => true),
+                        'name'     => array('type' => 'string', 'length' => 4),
+                        'category' => array('type' => 'integer', 'length' => 2),
                         );
         $options = array('primary' => array('id'),
-                         'indexes' => array('category_index' => array('fields'=> array('category')), 'unique_index' => array('type'=> 'unique', 'fields'=> array('id', 'name'))),
+                         'indexes' => array('category_index' => array('fields' => array('category')), 'unique_index' => array('type' => 'unique', 'fields' => array('id', 'name'))),
                          );
         $sql = $this->export->createTableSql('sometable', $fields, $options);
         $this->assertEqual($sql[0], 'CREATE TABLE sometable (id INTEGER, name VARCHAR2(4), category NUMBER(5), PRIMARY KEY(id), CONSTRAINT unique_index UNIQUE (id, name))');
@@ -184,16 +184,16 @@ class Doctrine_Export_Oracle_TestCase extends Doctrine_UnitTestCase
     
     public function testIdentifierQuoting()
     {
-    	$this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
+        $this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
         
-        $fields = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true),
+        $fields = array('id'   => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true),
                         'name' => array('type' => 'string', 'length' => 4),
                         );
         $options = array('primary' => array('id'),
                          'indexes' => array('myindex' => array('fields' => array('id', 'name')))
                          );
                          
-        $sql  = $this->export->createTableSql('sometable', $fields, $options);
+        $sql = $this->export->createTableSql('sometable', $fields, $options);
         $this->assertEqual($sql[0], 'CREATE TABLE "sometable" ("id" INTEGER, "name" VARCHAR2(4), PRIMARY KEY("id"))');
         $this->assertEqual($sql[1], 'DECLARE
   constraints_Count NUMBER;
@@ -224,12 +224,12 @@ BEGIN
       END LOOP;
    END IF;
 END;');
-		$this->assertEqual($sql[4], 'CREATE INDEX "myindex" ON "sometable" ("id", "name")');
-		
-		// test dropping sequence		
-		$sql = $this->export->dropSequenceSql('sometable');
-		$this->assertEqual($sql, 'DROP SEQUENCE "sometable_seq"');
-		
+        $this->assertEqual($sql[4], 'CREATE INDEX "myindex" ON "sometable" ("id", "name")');
+        
+        // test dropping sequence
+        $sql = $this->export->dropSequenceSql('sometable');
+        $this->assertEqual($sql, 'DROP SEQUENCE "sometable_seq"');
+        
         $this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, false);
     }
 }

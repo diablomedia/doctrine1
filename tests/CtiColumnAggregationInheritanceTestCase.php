@@ -30,12 +30,12 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_CtiColumnAggregationInheritance_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_CtiColumnAggregationInheritance_TestCase extends Doctrine_UnitTestCase
 {
-
 }
 abstract class CTICAAbstractBase extends Doctrine_Record
-{ }
+{
+}
 class CTICATestParent1 extends CTICAAbstractBase
 {
     public function setTableDefinition()
@@ -47,7 +47,7 @@ class CTICATestParent2 extends CTICATestParent1
 {
     public function setTableDefinition()
     {
-    	parent::setTableDefinition();
+        parent::setTableDefinition();
 
         $this->hasColumn('verified', 'boolean', 1);
         $this->hasColumn('type', 'integer', 2);
@@ -56,7 +56,6 @@ class CTICATestParent2 extends CTICATestParent1
             'CTICATest'  => array('type' => 1),
             'CTICATest2' => array('type' => 2)
             ));
-
     }
 }
 class CTICATestParent3 extends CTICATestParent2
@@ -75,7 +74,6 @@ class CTICATestParent4 extends CTICATestParent3
 }
 class CTICATest extends CTICATestParent4
 {
-
 }
 class CTICATest2 extends CTICATestParent2
 {

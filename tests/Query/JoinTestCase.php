@@ -194,7 +194,7 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
           ->from('Record_Country c')->leftJoin('c.City c2')->leftJoin('c2.District d')
           ->where('c.id = ?', array(1));
 
-        $this->assertEqual($q->getSqlQuery(), "SELECT r.id AS r__id, r.name AS r__name, r2.id AS r2__id, r2.name AS r2__name, r2.country_id AS r2__country_id, r2.district_id AS r2__district_id, r3.id AS r3__id, r3.name AS r3__name FROM record__country r LEFT JOIN record__city r2 ON r.id = r2.country_id LEFT JOIN record__district r3 ON r2.district_id = r3.id WHERE (r.id = ?)");
+        $this->assertEqual($q->getSqlQuery(), 'SELECT r.id AS r__id, r.name AS r__name, r2.id AS r2__id, r2.name AS r2__name, r2.country_id AS r2__country_id, r2.district_id AS r2__district_id, r3.id AS r3__id, r3.name AS r3__name FROM record__country r LEFT JOIN record__city r2 ON r.id = r2.country_id LEFT JOIN record__district r3 ON r2.district_id = r3.id WHERE (r.id = ?)');
 
         $countries = $q->execute();
 
@@ -257,7 +257,7 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
 
     public function testMapKeywordForQueryWithOneComponent()
     {
-        $q = new Doctrine_Query();
+        $q    = new Doctrine_Query();
         $coll = $q->from('Record_City c INDEXBY c.name')->fetchArray();
         
         $this->assertTrue(isset($coll['City 1']));
@@ -267,9 +267,9 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
 
     public function testMapKeywordSupportsJoins()
     {
-        $q = new Doctrine_Query();
+        $q       = new Doctrine_Query();
         $country = $q->from('Record_Country c LEFT JOIN c.City c2 INDEXBY c2.name')->fetchOne();
-        $coll = $country->City;
+        $coll    = $country->City;
 
         $this->assertTrue(isset($coll['City 1']));
         $this->assertTrue(isset($coll['City 2']));
@@ -280,7 +280,7 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
     public function testMapKeywordThrowsExceptionOnNonExistentColumn()
     {
         try {
-            $q = new Doctrine_Query();
+            $q       = new Doctrine_Query();
             $country = $q->from('Record_Country c LEFT JOIN c.City c2 INDEXBY c2.unknown')->fetchOne();
         
             $this->fail();

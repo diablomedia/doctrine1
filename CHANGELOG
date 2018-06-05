@@ -1,3 +1,22 @@
+2.0.2
+-----
+     * More docblock and bug fixes based on phpstan and psalm analysis
+     * Fixing coding style using php-cs-fixer so things are more consistent
+     * Proper @property annotations in generated models
+
+2.0.1
+-----
+     * DocBlock fixes based on phpstan analysis
+
+2.0.0
+-----
+     * renamed to diablomedia/doctrine1 in composer
+     * PHP 5.6 - 7.2 support (dropped anything less than 5.6 from supported/tested PHP versions)
+     * Get tests running on Travis with coverage
+     * Add executeCount method to Doctrine_Pager to prevent double execution of count queries
+     * Added charset support to mysql DSN
+     * updated sfYamlParser to last available release
+
 1.2.1
 -----
      * [r6827] [1.2] Releasing 1.2.0 stable

@@ -76,11 +76,11 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      * @param string $query  Query string to be executed
      * @param integer $executeMode  OCI execute mode
      */
-    public function __construct( Doctrine_Adapter_Oracle $connection, $query, $executeMode)
+    public function __construct(Doctrine_Adapter_Oracle $connection, $query, $executeMode)
     {
-        $this->connection  = $connection->getConnection();
-        $this->queryString  = $query;
-        $this->executeMode = $executeMode;
+        $this->connection                              = $connection->getConnection();
+        $this->queryString                             = $query;
+        $this->executeMode                             = $executeMode;
         $this->attributes[Doctrine_Core::ATTR_ERRMODE] = $connection->getAttribute(Doctrine_Core::ATTR_ERRMODE);
 
         $this->parseQuery();
@@ -98,7 +98,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function bindColumn($column, $param, $type = null)
     {
-        throw new Doctrine_Adapter_Exception("Unsupported");
+        throw new Doctrine_Adapter_Exception('Unsupported');
     }
 
     /**
@@ -151,7 +151,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = array())
     {
-        if ($driverOptions || $length ) {
+        if ($driverOptions || $length) {
             throw new Doctrine_Adapter_Exception('Unsupported parameters:$length, $driverOptions');
         }
 
@@ -174,7 +174,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         //print "Binding $variable to $variable_name".PHP_EOL;
         $status = @oci_bind_by_name($this->statement, $variable_name, $variable, $oci_length, $oci_type);
         if ($status === false) {
-           $this->handleError();
+            $this->handleError();
         }
         return $status;
     }
@@ -199,7 +199,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function columnCount()
     {
-        return oci_num_fields  ( $this->statement );
+        return oci_num_fields($this->statement);
     }
 
     /**
@@ -223,7 +223,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     public function errorInfo()
     {
         $oci_error = $this->getOciError();
-        return $oci_error['message'] . " : " . $oci_error['sqltext'];
+        return $oci_error['message'] . ' : ' . $oci_error['sqltext'];
     }
 
     /**
@@ -232,16 +232,16 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     private function getOciError()
     {
         if (is_resource($this->statement)) {
-            $oci_error = oci_error ($this->statement);
+            $oci_error = oci_error($this->statement);
         } else {
-            $oci_error = oci_error ();
+            $oci_error = oci_error();
         }
 
         if ($oci_error) {
             //store the error
             $this->ociErrors[] = $oci_error;
-        } else if (count($this->ociErrors) > 0) {
-            $oci_error = $this->ociErrors[count($this->ociErrors)-1];
+        } elseif (count($this->ociErrors) > 0) {
+            $oci_error = $this->ociErrors[count($this->ociErrors) - 1];
         }
         return $oci_error;
     }
@@ -264,16 +264,16 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     {
         if (is_array($params)) {
             foreach ($params as $var => $value) {
-                $this->bindValue($var+1, $value);
+                $this->bindValue($var + 1, $value);
             }
         }
 
-        $result = @oci_execute($this->statement , $this->executeMode );
+        $result = @oci_execute($this->statement, $this->executeMode);
 
         if ($result === false) {
             $this->handleError();
             return false;
-         }
+        }
         return true;
     }
 
@@ -307,20 +307,20 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     public function fetch($fetchStyle = Doctrine_Core::FETCH_BOTH, $cursorOrientation = Doctrine_Core::FETCH_ORI_NEXT, $cursorOffset = null)
     {
         switch ($fetchStyle) {
-            case Doctrine_Core::FETCH_BOTH :
+            case Doctrine_Core::FETCH_BOTH:
                 return oci_fetch_array($this->statement, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
             break;
-            case Doctrine_Core::FETCH_ASSOC :
+            case Doctrine_Core::FETCH_ASSOC:
                 return oci_fetch_array($this->statement, OCI_ASSOC + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
             break;
-            case Doctrine_Core::FETCH_NUM :
+            case Doctrine_Core::FETCH_NUM:
                 return oci_fetch_array($this->statement, OCI_NUM + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
             break;
             case Doctrine_Core::FETCH_OBJ:
                 return oci_fetch_object($this->statement);
             break;
             default:
-                throw new Doctrine_Adapter_Exception("This type of fetch is not supported: ".$fetchStyle);
+                throw new Doctrine_Adapter_Exception('This type of fetch is not supported: ' . $fetchStyle);
 /*
             case Doctrine_Core::FETCH_BOUND:
             case Doctrine_Core::FETCH_CLASS:
@@ -355,25 +355,25 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      *
      * @return array
      */
-    public function fetchAll($fetchStyle = Doctrine_Core::FETCH_BOTH, $colnum=0)
+    public function fetchAll($fetchStyle = Doctrine_Core::FETCH_BOTH, $colnum = 0)
     {
         $fetchColumn = false;
-        $skip = 0;
-        $maxrows = -1;
-        $data = array();
-        $flags = OCI_FETCHSTATEMENT_BY_ROW + OCI_ASSOC;
+        $skip        = 0;
+        $maxrows     = -1;
+        $data        = array();
+        $flags       = OCI_FETCHSTATEMENT_BY_ROW + OCI_ASSOC;
 
         $int = $fetchStyle & Doctrine_Core::FETCH_COLUMN;
 
         if ($fetchStyle == Doctrine_Core::FETCH_BOTH) {
-            $flags = OCI_BOTH;
+            $flags        = OCI_BOTH;
             $numberOfRows = @oci_fetch_all($this->statement, $data, $skip, $maxrows, OCI_FETCHSTATEMENT_BY_ROW + OCI_ASSOC + OCI_RETURN_LOBS);
-        } else if ($fetchStyle == Doctrine_Core::FETCH_ASSOC) {
+        } elseif ($fetchStyle == Doctrine_Core::FETCH_ASSOC) {
             $numberOfRows = @oci_fetch_all($this->statement, $data, $skip, $maxrows, OCI_FETCHSTATEMENT_BY_ROW + OCI_ASSOC + OCI_RETURN_LOBS);
-        } else if ($fetchStyle == Doctrine_Core::FETCH_NUM) {
+        } elseif ($fetchStyle == Doctrine_Core::FETCH_NUM) {
             $numberOfRows = @oci_fetch_all($this->statement, $data, $skip, $maxrows, OCI_FETCHSTATEMENT_BY_ROW + OCI_NUM + OCI_RETURN_LOBS);
-        } else if ($fetchStyle == Doctrine_Core::FETCH_COLUMN) {
-            while ($row = @oci_fetch_array ($this->statement, OCI_NUM+OCI_RETURN_LOBS)) {
+        } elseif ($fetchStyle == Doctrine_Core::FETCH_COLUMN) {
+            while ($row = @oci_fetch_array($this->statement, OCI_NUM + OCI_RETURN_LOBS)) {
                 $data[] = $row[$colnum];
             }
         } else {
@@ -395,8 +395,8 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function fetchColumn($columnIndex = 0)
     {
-        if ( ! is_integer($columnIndex)) {
-            $this->handleError(array('message'=>"columnIndex parameter should be numeric"));
+        if (! is_integer($columnIndex)) {
+            $this->handleError(array('message' => 'columnIndex parameter should be numeric'));
 
             return false;
         }
@@ -427,27 +427,27 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         $object = new stdClass();
 
         $instantiation_code = "\$object = new $className(";
-        $firstParam=true;
-        foreach ($args as $index=>$value) {
-            if ( ! $firstParam ) {
-                $instantiation_code = $instantiation_code . ",";
+        $firstParam         = true;
+        foreach ($args as $index => $value) {
+            if (! $firstParam) {
+                $instantiation_code = $instantiation_code . ',';
             } else {
-                $firstParam= false;
+                $firstParam = false;
             }
-            if ( is_string($index)) {
+            if (is_string($index)) {
                 $instantiation_code = $instantiation_code . " \$args['$index']";
             } else {
                 $instantiation_code = $instantiation_code . "\$args[$index]";
             }
         }
 
-        $instantiation_code = $instantiation_code . ");";
+        $instantiation_code = $instantiation_code . ');';
 
         eval($instantiation_code);
 
         //initialize instance of $className class
         foreach ($row as $col => $value) {
-             $object->$col = $value;
+            $object->$col = $value;
         }
 
         return $object;
@@ -471,17 +471,17 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     public function getColumnMeta($column)
     {
         if (is_integer($column)) {
-            $internal_column = $column +1;
+            $internal_column = $column + 1;
         } else {
             $internal_column = $column;
         }
 
-        $data = array();
+        $data                = array();
         $data['native_type'] = oci_field_type($this->statement, $internal_column);
-        $data['flags'] = "";
-        $data['len'] = oci_field_size($this->statement, $internal_column);
-        $data['name'] = oci_field_name($this->statement, $internal_column);
-        $data['precision'] = oci_field_precision($this->statement, $internal_column);
+        $data['flags']       = '';
+        $data['len']         = oci_field_size($this->statement, $internal_column);
+        $data['name']        = oci_field_name($this->statement, $internal_column);
+        $data['precision']   = oci_field_precision($this->statement, $internal_column);
 
         return $data;
     }
@@ -498,7 +498,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function nextRowset()
     {
-        throw new Doctrine_Adapter_Exception("Unsupported");
+        throw new Doctrine_Adapter_Exception('Unsupported');
     }
 
     /**
@@ -527,7 +527,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     public function setAttribute($attribute, $value)
     {
         switch ($attribute) {
-            case Doctrine_Core::ATTR_ERRMODE;
+            case Doctrine_Core::ATTR_ERRMODE:
             break;
             default:
                 throw new Doctrine_Adapter_Exception("Unsupported Attribute: $attribute");
@@ -557,16 +557,15 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      */
     public function setFetchMode($mode, $arg1 = null, $arg2 = null)
     {
-        throw new Doctrine_Adapter_Exception("Unsupported");
+        throw new Doctrine_Adapter_Exception('Unsupported');
     }
 
     /**
      * @param array $params
      * @return void
      */
-    private function handleError($params=array())
+    private function handleError($params = array())
     {
-
         switch ($this->attributes[Doctrine_Core::ATTR_ERRMODE]) {
             case Doctrine_Core::ERRMODE_EXCEPTION:
                 if (isset($params['message'])) {
@@ -588,7 +587,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
      *
      * @return resource     OCI statement handler
      */
-    private function parseQuery($query=null)
+    private function parseQuery($query = null)
     {
         if (is_null($query)) {
             $query = $this->queryString;
@@ -601,14 +600,15 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
              * @param array $m
              * @return string
              */
-            function($m) use (&$bind_index) { return ":oci_b_var_" . $bind_index++; },
+            function ($m) use (&$bind_index) {
+                return ':oci_b_var_' . $bind_index++;
+            },
             $query
         );
 
         $statement = @oci_parse($this->connection, $query);
 
-        if ( $statement == false )
-        {
+        if ($statement == false) {
             throw new Doctrine_Adapter_Exception($this->getOciError());
         }
 

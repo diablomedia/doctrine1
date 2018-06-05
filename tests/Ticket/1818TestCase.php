@@ -30,7 +30,7 @@
  * @since       1.0
  * @version     $Revision$
  */
-class Doctrine_Ticket_1818_TestCase extends Doctrine_UnitTestCase 
+class Doctrine_Ticket_1818_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
@@ -45,8 +45,8 @@ class Doctrine_Ticket_1818_TestCase extends Doctrine_UnitTestCase
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
         try {
-            $foo = new Ticket_1818_Foo();
-            $foo->Bar = new Ticket_1818_BarA();
+            $foo            = new Ticket_1818_Foo();
+            $foo->Bar       = new Ticket_1818_BarA();
             $foo->Bar->type = 'A';
             $foo->save();
             $this->pass();
@@ -67,18 +67,16 @@ class Ticket_1818_Foo extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne('Ticket_1818_Bar as Bar', array('local' => 'bar_id',
-                                   'foreign' => 'id'));
+                                   'foreign'                  => 'id'));
     }
 }
 
 class Ticket_1818_BarB extends Ticket_1818_Bar
 {
-
 }
 
 class Ticket_1818_BarA extends Ticket_1818_Bar
 {
-
 }
 
 class Ticket_1818_Bar extends Doctrine_Record
@@ -93,6 +91,6 @@ class Ticket_1818_Bar extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany('Ticket_1818_Foo as Foos', array('local' => 'id',
-                                            'foreign' => 'bar_id'));
+                                            'foreign'           => 'bar_id'));
     }
 }

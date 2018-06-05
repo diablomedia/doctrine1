@@ -3,9 +3,11 @@ class BookmarkUser extends Doctrine_Record
 {
     public function setUp()
     {
-    	$this->hasMany('Bookmark as Bookmarks',
-                        array('local' => 'id',
-                              'foreign' => 'user_id'));
+        $this->hasMany(
+            'Bookmark as Bookmarks',
+                        array('local'   => 'id',
+                              'foreign' => 'user_id')
+        );
     }
     public function setTableDefinition()
     {

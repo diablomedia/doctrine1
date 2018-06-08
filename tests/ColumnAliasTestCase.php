@@ -37,27 +37,27 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
         $book1       = new Book();
         $book1->name = 'Das Boot';
         $book1->save();
-        
+
         $record1               = new ColumnAliasTest();
         $record1->alias1       = 'first';
         $record1->alias2       = 123;
         $record1->anotherField = 'camelCase';
         $record1->bookId       = $book1->id;
         $record1->save();
-        
+
         $record2               = new ColumnAliasTest();
         $record2->alias1       = 'one';
         $record2->alias2       = 456;
         $record2->anotherField = 'KoQ';
         $record2->save();
-        
+
         $record2->anotherField = 'foo';
     }
-    
+
     public function prepareTables()
     {
         $this->tables = array('ColumnAliasTest', 'Book');
-        
+
         parent::prepareTables();
     }
 
@@ -71,7 +71,7 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(isset($result[0]->book));
         $this->assertEqual($result[0]->book->name, 'Das Boot');
     }
-    
+
     public function testAliasesAreSupportedForArrayFetching()
     {
         $q = new Doctrine_Query();
@@ -93,14 +93,14 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
         try {
             $record->alias1 = 'someone';
             $record->alias2 = 187;
-            
+
             $this->assertEqual($record->alias1, 'someone');
             $this->assertEqual($record->alias2, 187);
         } catch (Doctrine_Record_Exception $e) {
             $this->fail();
         }
     }
-    
+
     public function testAliasesAreSupportedForDqlSelectPart()
     {
         $q = new Doctrine_Query();
@@ -111,7 +111,7 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($coll[0]->alias2, 123);
         $this->assertEqual($coll[0]->anotherField, 'camelCase');
     }
-    
+
     public function testAliasesAreSupportedForDqlWherePart()
     {
         $q = new Doctrine_Query();
@@ -126,7 +126,7 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($coll[0]->alias2, 456);
         $this->assertEqual($coll[0]->anotherField, 'KoQ');
     }
-    
+
     public function testAliasesAreSupportedForDqlAggregateFunctions()
     {
         $q = new Doctrine_Query();
@@ -137,7 +137,7 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($coll[0]->MAX, 456);
     }
-    
+
     public function testAliasesAreSupportedForDqlHavingPart()
     {
         $q = new Doctrine_Query();
@@ -148,7 +148,7 @@ class Doctrine_ColumnAlias_TestCase extends Doctrine_UnitTestCase
           ->having('c.alias2 > 123');
 
         $coll = $q->execute();
-        
+
         $this->assertEqual($coll[0]->alias2, 456);
     }
 }

@@ -33,7 +33,7 @@
 class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase
 {
     private $sqlStackCounter = 0;
-  
+
     public function prepareTables()
     {
         $this->tables[] = 'Ticket_DC840_Model';
@@ -59,7 +59,7 @@ class Doctrine_Ticket_DC840_TestCase extends Doctrine_UnitTestCase
             ->andWhere('modified_at >= ?', '2010-01-01')
         ;
         $q->execute();
-         
+
         $expected = "SELECT [t].[id] AS [t__id] FROM [ticket__d_c840__model] [t] WHERE ([t].[password] = 'abc' AND [t].[modified_at] > '2010-01-01' AND [t].[modified_at] < '2010-01-01' AND [t].[modified_at] <> '2010-01-01' AND [t].[modified_at] <= '2010-01-01' AND [t].[modified_at] >= '2010-01-01')";
         $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 

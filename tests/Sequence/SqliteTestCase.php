@@ -43,7 +43,7 @@ class Doctrine_Sequence_Sqlite_TestCase extends Doctrine_UnitTestCase
     public function testNextIdExecutesSql()
     {
         $id = $this->sequence->nextId('user');
-        
+
         $this->assertEqual($id, 1);
 
         $this->assertEqual($this->adapter->pop(), 'DELETE FROM user_seq WHERE id < 1');
@@ -53,7 +53,7 @@ class Doctrine_Sequence_Sqlite_TestCase extends Doctrine_UnitTestCase
     public function testLastInsertIdCallsPdoLevelEquivalent()
     {
         $id = $this->sequence->lastInsertId('user');
-        
+
         $this->assertEqual($id, 1);
 
         $this->assertEqual($this->adapter->pop(), 'LAST_INSERT_ID()');

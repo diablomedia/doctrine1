@@ -52,11 +52,11 @@ class Doctrine_Ticket_1280_TestCase extends Doctrine_UnitTestCase
         $user->save();
 
         $this->assertEqual($user->group_id, $group->id);
-        
+
         try {
             $user->Group = null;
             $user->save();
-            
+
             $this->assertEqual($user->group_id, null);
 
             $this->pass();

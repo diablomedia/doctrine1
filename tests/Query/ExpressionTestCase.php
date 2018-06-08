@@ -92,25 +92,25 @@ class Doctrine_Query_Expression_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->parseDqlQuery('SELECT u.id, CONCAT(u.name, u.loginname) FROM User u');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, CONCAT(e.name, e.loginname) AS e__0 FROM entity e WHERE (e.type = 0)');
     }
 
     public function testConcatInSelectClauseSupportsLiteralStrings()
     {
         $q = new Doctrine_Query();
-        
+
         $q->parseDqlQuery("SELECT u.id, CONCAT(u.name, 'The Man') FROM User u");
-        
+
         $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id, CONCAT(e.name, 'The Man') AS e__0 FROM entity e WHERE (e.type = 0)");
     }
 
     public function testConcatInSelectClauseSupportsMoreThanTwoArgs()
     {
         $q = new Doctrine_Query();
-        
+
         $q->parseDqlQuery("SELECT u.id, CONCAT(u.name, 'The Man', u.loginname) FROM User u");
-        
+
         $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id, CONCAT(e.name, 'The Man', e.loginname) AS e__0 FROM entity e WHERE (e.type = 0)");
     }
 

@@ -81,7 +81,7 @@ class HydrationListener extends Doctrine_Record_Listener
     {
         $data             = $event->data;
         $data['password'] = 'default pass';
-        
+
         $event->data = $data;
     }
     public function postHydrate(Doctrine_Event $event)
@@ -100,7 +100,7 @@ class Doctrine_Hydrate_Mock extends Doctrine_Hydrator_Abstract
     {
         $this->data = $data;
     }
-    
+
     public function hydrateResultSet($stmt)
     {
         return true;

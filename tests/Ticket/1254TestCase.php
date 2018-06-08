@@ -53,7 +53,7 @@ class Doctrine_Ticket_1254_TestCase extends Doctrine_UnitTestCase
             $x->category = $cats[$i % 2];
             $x->set('created_at', strftime('%Y-%m-%d %H:%M:%S', $age));
             $x->save();
-        
+
             for ($j = 0; $j < 10; $j++) {
                 $y           = new RelY();
                 $y->name     = 'y ' . ($i * 10 + $j);
@@ -61,7 +61,7 @@ class Doctrine_Ticket_1254_TestCase extends Doctrine_UnitTestCase
                 $y->save();
             }
         }
-        
+
         Doctrine_Manager::getInstance()->getCurrentConnection()->commit();
     }
 

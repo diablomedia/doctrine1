@@ -43,7 +43,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
     public function init()
     {
     }
-    
+
     public function testInitialize()
     {
         $this->conn = Doctrine_Manager::getInstance()->openConnection(array('sqlite::memory:'));
@@ -51,8 +51,8 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
 
         $this->conn->exec("INSERT INTO entity (id, name) VALUES (1, 'zYne')");
         $this->conn->exec("INSERT INTO entity (id, name) VALUES (2, 'John')");
-        
-        
+
+
         $this->assertEqual($this->conn->getAttribute(Doctrine_Core::ATTR_DRIVER_NAME), 'sqlite');
     }
 
@@ -81,7 +81,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($this->conn->getListener() instanceof Doctrine_EventListener_Chain);
         $this->assertTrue($this->conn->getListener()->get(0) instanceof Doctrine_Connection_TestLogger);
         $this->assertTrue($this->conn->getListener()->get(1) instanceof Doctrine_Connection_TestValidListener);
-        
+
         try {
             $ret = $this->conn->addListener(new Doctrine_EventListener_Chain(), 'chain');
             $this->pass();
@@ -117,17 +117,17 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($listener->pop(), 'postPrepare');
         $this->assertEqual($listener->pop(), 'prePrepare');
-        
+
         $stmt->execute(array(1));
 
         $this->assertEqual($listener->pop(), 'postStmtExecute');
         $this->assertEqual($listener->pop(), 'preStmtExecute');
-        
+
         $this->conn->exec('DELETE FROM entity');
 
         $this->assertEqual($listener->pop(), 'postExec');
         $this->assertEqual($listener->pop(), 'preExec');
-        
+
         $this->conn->beginTransaction();
 
         $this->assertEqual($listener->pop(), 'postTransactionBegin');
@@ -139,7 +139,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($listener->pop(), 'preExec');
 
         $this->conn->commit();
-        
+
         $this->assertEqual($listener->pop(), 'postTransactionCommit');
         $this->assertEqual($listener->pop(), 'preTransactionCommit');
     }
@@ -265,10 +265,10 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($listener->pop(), 'postTransactionCommit');
         $this->assertEqual($listener->pop(), 'preTransactionCommit');
-        
+
         $this->assertEqual($listener->pop(), 'postExec');
         $this->assertEqual($listener->pop(), 'preExec');
-        
+
         $this->conn->exec('DROP TABLE entity');
     }
 
@@ -406,7 +406,7 @@ class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
 class Doctrine_Connection_TestLogger implements Doctrine_Overloadable
 {
     private $messages = array();
-    
+
     public function __call($m, $a)
     {
         $this->messages[] = $m;

@@ -2,11 +2,11 @@
 class AdapterMock implements Doctrine_Adapter_Interface
 {
     private $name;
-    
+
     private $queries = array();
-    
+
     private $exception = array();
-    
+
     private $lastInsertIdFail = false;
 
     public function __construct($name)
@@ -140,7 +140,7 @@ class AdapterMock implements Doctrine_Adapter_Interface
 class AdapterStatementMock
 {
     private $mock;
-    
+
     private $query;
 
     public function __construct(AdapterMock $mock, $query)
@@ -222,12 +222,12 @@ class Doctrine_Driver_UnitTestCase extends UnitTestCase
             if ($this->adapter->getName() == 'oci') {
                 $name = 'Oracle';
             }
-            
+
             $tx       = 'Doctrine_Transaction_' . ucwords($name);
             $dataDict = 'Doctrine_DataDict_' . ucwords($name);
-            
+
             $exc = 'Doctrine_Connection_' . ucwords($name) . '_Exception';
-            
+
             $this->exc = new $exc();
             if (class_exists($tx)) {
                 $this->transaction = new $tx($this->conn);

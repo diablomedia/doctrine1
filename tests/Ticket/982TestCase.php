@@ -18,12 +18,12 @@ class Doctrine_Ticket_982_TestCase extends Doctrine_UnitTestCase
         $myModelZero->parentid = 0;
         $myModelZero->save();
         $this->assertIdentical(0, $myModelZero->id);
-      
+
         $this->myModelOne           = new T982_MyModel();
         $this->myModelOne->id       = 1;
         $this->myModelOne->parentid = 0;
         $this->myModelOne->save();
-      
+
         $this->myModelTwo           = new T982_MyModel();
         $this->myModelTwo->id       = 2;
         $this->myModelTwo->parentid = 1;
@@ -33,9 +33,9 @@ class Doctrine_Ticket_982_TestCase extends Doctrine_UnitTestCase
     public function testTicket()
     {
         $this->conn->getTable('T982_MyModel')->clear();
-        
+
         $myModelZero = $this->conn->getTable('T982_MyModel')->find(0);
-        
+
         $this->assertIdentical($myModelZero->id, '0');
         $this->assertIdentical($myModelZero->parentid, '0');
         $this->assertTrue($myModelZero->parent->exists());
@@ -43,16 +43,16 @@ class Doctrine_Ticket_982_TestCase extends Doctrine_UnitTestCase
         $this->assertIdentical($myModelZero, $myModelZero->parent);
         $this->assertIdentical($myModelZero->parent->id, '0');
         $this->assertIdentical($myModelZero->parent->parentid, '0');
-        
+
         $myModelOne = $this->conn->getTable('T982_MyModel')->find(1);
-        
+
         $this->assertIdentical($myModelOne->id, '1');
         $this->assertIdentical($myModelOne->parentid, '0');
         $this->assertTrue($myModelOne->parent->exists());
         $this->assertTrue(ctype_digit($myModelOne->parent->id));
         $this->assertIdentical($myModelOne->parent->id, '0');
         $this->assertIdentical($myModelOne->parent->parentid, '0');
-        
+
         $myModelTwo = $this->conn->getTable('T982_MyModel')->find(2);
 
         $this->assertIdentical($myModelTwo->id, '2');

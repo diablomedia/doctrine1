@@ -49,7 +49,7 @@ class Doctrine_Ticket_DC399_TestCase extends Doctrine_UnitTestCase
     {
         $user = Doctrine_Core::getTable('User')->findOneByName('sacho');
         $user->refreshRelated('Phonenumber');
-      
+
         //Unlinking(even with now=true) removes the connection between User and Phonenumber, but does not delete the phone number
         //Only updates phonenumber's user_id to null
         //However, if we unlink and then save the $user, the phonenumber is deleted from the database

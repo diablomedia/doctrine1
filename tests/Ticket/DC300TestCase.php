@@ -88,7 +88,7 @@ class Ticket_DC300_Group extends Doctrine_Record
     {
         $this->hasColumn('name', 'string', 255);
     }
-    
+
     public function setUp()
     {
         $this->hasMany('Ticket_DC300_User as Users', array(

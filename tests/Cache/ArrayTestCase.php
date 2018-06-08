@@ -37,12 +37,12 @@ class Doctrine_Cache_Array_TestCase extends Doctrine_Cache_Abstract_TestCase
     {
         // do nothing
     }
-    
+
     protected function _isEnabled()
     {
         return true;
     }
-    
+
     protected function _getCacheDriver()
     {
         return new Doctrine_Cache_Array();

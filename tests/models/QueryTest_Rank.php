@@ -7,14 +7,14 @@ class QueryTest_Rank extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn(
-        
+
             'title as title',
-        
+
             'string',
-        
+
             100,
                 array('notnull')
-        
+
         );
         $this->hasColumn(
             'color as color',

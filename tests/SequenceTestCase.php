@@ -44,7 +44,7 @@ class Doctrine_Sequence_TestCase extends Doctrine_UnitTestCase
         $r       = new CustomSequenceRecord;
         $r->name = 'custom seq';
         $r->save();
-        
+
         /**
         // the last profiled event is transaction commit
         $this->assertEqual($this->adapter->pop(), 'COMMIT');

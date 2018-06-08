@@ -81,12 +81,12 @@ class Doctrine_Query_ReferenceModel_TestCase extends Doctrine_UnitTestCase
     public function testSelfReferencingWithNestedOrderBy()
     {
         $query = new Doctrine_Query();
-        
+
         $query->from('Forum_Category.Subcategory.Subcategory');
         $query->orderby('Forum_Category.id ASC, Forum_Category.Subcategory.name DESC');
 
         $coll = $query->execute();
-        
+
         $category = $coll[0];
 
         $this->assertEqual($category->name, 'Root');

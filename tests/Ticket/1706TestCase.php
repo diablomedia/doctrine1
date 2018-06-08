@@ -61,7 +61,7 @@ class Doctrine_Ticket_1706_TestCase extends Doctrine_UnitTestCase
         $user       = new Ticket_1706_User();
         $user->name = 'Bob';
         $user->save();
-        
+
         $manager->setCurrentConnection('conn_1');
         $u1 = Doctrine_Query::create()
             ->from('Ticket_1706_User u')

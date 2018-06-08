@@ -37,7 +37,7 @@ class Doctrine_Ticket_1296_TestCase extends Doctrine_UnitTestCase
         $org->name = 'Inc.';
         $org->save();
     }
-    
+
     public function prepareTables()
     {
         $this->tables = array(
@@ -46,7 +46,7 @@ class Doctrine_Ticket_1296_TestCase extends Doctrine_UnitTestCase
                 );
         parent::prepareTables();
     }
-    
+
     public function testAddDuplicateOrganisation()
     {
         $this->assertEqual(0, $this->conn->transaction->getTransactionLevel());
@@ -56,10 +56,10 @@ class Doctrine_Ticket_1296_TestCase extends Doctrine_UnitTestCase
         } catch (Exception $e) {
             $this->fail('Transaction failed to start.');
         }
-        
+
         $this->assertEqual(1, $this->conn->transaction->getTransactionLevel());
         $this->assertEqual(0, $this->conn->transaction->getInternalTransactionLevel());
-        
+
         $org       = new NewTicket_Organization();
         $org->name = 'Inc.';
         try {
@@ -70,10 +70,10 @@ class Doctrine_Ticket_1296_TestCase extends Doctrine_UnitTestCase
             $this->assertEqual(0, $this->conn->transaction->getInternalTransactionLevel());
             $this->conn->rollback();
         }
-        
+
         $this->assertEqual(0, $this->conn->transaction->getTransactionLevel());
         $this->assertEqual(0, $this->conn->transaction->getInternalTransactionLevel());
-        
+
         try {
             $this->assertEqual(0, $this->conn->transaction->getTransactionLevel());
             $this->assertEqual(0, $this->conn->transaction->getInternalTransactionLevel());
@@ -91,16 +91,16 @@ class Doctrine_Ticket_1296_TestCase extends Doctrine_UnitTestCase
     {
         $this->assertEqual(0, $this->conn->transaction->getTransactionLevel());
         $this->assertEqual(0, $this->conn->transaction->getInternalTransactionLevel());
-        
+
         try {
             $this->conn->beginTransaction();
         } catch (Exception $e) {
             $this->fail('Transaction failed to start.');
         }
-        
+
         $this->assertEqual(1, $this->conn->transaction->getTransactionLevel());
         $this->assertEqual(0, $this->conn->transaction->getInternalTransactionLevel());
-        
+
         $r       = new NewTicket_Role();
         $r->name = 'foo';
         try {
@@ -124,7 +124,7 @@ class Doctrine_Ticket_1296_TestCase extends Doctrine_UnitTestCase
         }
     }
 }
-        
+
 class NewTicket_Organization extends Doctrine_Record
 {
     public function setTableDefinition()

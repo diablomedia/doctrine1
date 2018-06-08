@@ -16,7 +16,7 @@ class Doctrine_Ticket_Njero_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
     }
-    
+
     public function prepareTables()
     {
         $this->tables[] = 'CoverageCodeN';
@@ -34,12 +34,12 @@ class Doctrine_Ticket_Njero_TestCase extends Doctrine_UnitTestCase
         $policy_code->code        = 1;
         $policy_code->description = 'Special Policy';
         $policy_code->save();
-      
+
         $coverage_code              = new CoverageCodeN();
         $coverage_code->code        = 1;
         $coverage_code->description = 'Full Coverage';
         $coverage_code->save();
-      
+
         $coverage_code              = new CoverageCodeN();
         $coverage_code->code        = 3; # note we skip 2
         $coverage_code->description = 'Partial Coverage';
@@ -56,12 +56,12 @@ class Doctrine_Ticket_Njero_TestCase extends Doctrine_UnitTestCase
         $rate->liability_code = 1;
         $rate->total_rate     = 123.45;
         $rate->save();
-      
+
         $policy                = new PolicyN();
         $policy->rate_id       = 1;
         $policy->policy_number = '123456789';
         $policy->save();
-        
+
         $q = new Doctrine_Query();
 
         # If I use

@@ -13,7 +13,7 @@ class Doctrine_Ticket_1323b2_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
     }
-    
+
     /**
      * setting some polyhierarchical relations
      */
@@ -50,30 +50,30 @@ class Doctrine_Ticket_1323b2_TestCase extends Doctrine_UnitTestCase
         $wd  = Doctrine_Core::getTable('Concept')->findOneByIdentifier('welded');
         $t   = Doctrine_Core::getTable('Concept')->findOneByIdentifier('turned');
         $s   = Doctrine_Core::getTable('Concept')->findOneByIdentifier('Surfaceworking');
-        
+
         $w->narrowerConcepts[] = $sw1;
         $w->narrowerConcepts[] = $sw2;
         $w->save();
-        
+
         $sw1->narrowerConcepts[] = $s;
         $sw1->narrowerConcepts[] = $d;
         $sw1->narrowerConcepts[] = $t;
         $sw1->save();
-        
+
         $sw2->narrowerConcepts[] = $d;
         $sw2->save();
-        
+
         $m->narrowerConcepts[] = $sm1;
         $m->narrowerConcepts[] = $sm2;
         $m->save();
-        
+
         $sm1->narrowerConcepts[] = $wd;
         $sm1->narrowerConcepts[] = $s;
         $sm1->save();
-        
+
         $sm2->narrowerConcepts[] = $t;
         $sm2->save();
-        
+
         $s->narrowerConcepts[] = $t;
         $s->narrowerConcepts[] = $d;
         $s->save();
@@ -89,13 +89,13 @@ class Doctrine_Ticket_1323b2_TestCase extends Doctrine_UnitTestCase
         ConceptRelation::showAllRelations();
         //lets count all relations
         $relCount = ConceptRelation::countAll();
-        
+
         $oRecord             = Doctrine_Core::getTable('Concept')->findOneByIdentifier('Surfaceworking');
         $oRecord->identifier = 'MySurfaceworking';
         $oRecord->save();
-        
+
         ConceptRelation::showAllRelations();
-      
+
         // we did not change any relations, so we assume this test to be passed
         $this->assertEqual(ConceptRelation::countAll(), $relCount);
         // -> where do the additional relations come from ???
@@ -107,22 +107,22 @@ class Doctrine_Ticket_1323b2_TestCase extends Doctrine_UnitTestCase
     public function testOK()
     {
         $this->resetData();
-        
+
         ConceptRelation::showAllRelations();
         //lets count all relations
         $relCount = ConceptRelation::countAll();
-        
+
         $oRecord             = Doctrine_Core::getTable('Concept')->findOneByIdentifier('Surfaceworking');
         $oRecord->identifier = 'MySurfaceworking';
         // $oRecord->save();  --> only this line differs !!!
-        
+
         ConceptRelation::showAllRelations();
-        
+
         // we did not change any relations, so we assume this test to be passed
         $this->assertEqual(ConceptRelation::countAll(), $relCount);
     }
 }
-  
+
 
 
 
@@ -214,7 +214,7 @@ class ConceptRelation extends BaseConceptRelation
         }
         echo "\n\n<br/><br/>";*/
     }
-    
+
     public static function countAll()
     {
         return Doctrine_Core::getTable('ConceptRelation')->count();

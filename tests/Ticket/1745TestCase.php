@@ -34,7 +34,7 @@ class Doctrine_Ticket_1745_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('locality');
-        
+
         parent::prepareTables();
     }
 
@@ -44,18 +44,18 @@ class Doctrine_Ticket_1745_TestCase extends Doctrine_UnitTestCase
         $locality->postal_code = '1920';
         $locality->city        = 'Martigny';
         $locality->save();
-        
+
         $locality              = new Locality();
         $locality->postal_code = '1965';
         $locality->city        = 'Savièse';
         $locality->save();
-        
+
         $locality              = new Locality();
         $locality->postal_code = '2300';
         $locality->city        = 'Neuchâtel';
         $locality->save();
     }
-    
+
     public function testSearchable()
     {
         $query = Doctrine_Query::create()
@@ -63,13 +63,13 @@ class Doctrine_Ticket_1745_TestCase extends Doctrine_UnitTestCase
         $query   = Doctrine_Core::getTable('Locality')->search('martigny', $query);
         $results = $query->fetchArray();
         $this->assertEqual($results[0]['city'], 'Martigny');
-      
+
         $query = Doctrine_Query::create()
           ->from('Locality l');
         $query   = Doctrine_Core::getTable('Locality')->search('saviese', $query);
         $results = $query->fetchArray();
         $this->assertEqual($results[0]['city'], 'Savièse');
-      
+
         $query = Doctrine_Query::create()
           ->from('Locality l');
         $query   = Doctrine_Core::getTable('Locality')->search('neuchatel', $query);

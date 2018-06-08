@@ -70,7 +70,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
                 $length = !empty($field['length']) ? $field['length'] : false;
 
                 $fixed = ((isset($field['fixed']) && $field['fixed']) || $field['type'] == 'char') ? true : false;
-                
+
                 $unit = $this->conn->getParam('char_unit');
                 $unit = ! is_null($unit) ? ' ' . $unit : '';
 
@@ -130,7 +130,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
         if (! isset($field['data_type'])) {
             throw new Doctrine_DataDict_Exception('Native oracle definition must have a data_type key specified');
         }
-        
+
         $dbType = strtolower($field['data_type']);
         $type   = array();
         $length = $unsigned = $fixed = null;

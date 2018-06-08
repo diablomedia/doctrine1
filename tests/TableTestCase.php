@@ -41,7 +41,7 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
     public function testInitializingNewTableWorksWithoutConnection()
     {
         $table = new Doctrine_Table('Test', $this->conn);
-        
+
         $this->assertEqual($table->getComponentName(), 'Test');
     }
 
@@ -50,7 +50,7 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
         $this->dbh->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
 
         $t = new FieldNameTest();
-        
+
         $t->someColumn = 'abc';
         $t->someEnum   = 'php';
         $t->someInt    = 1;
@@ -73,15 +73,15 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($t->someObject, $obj);
 
         $t->refresh();
-        
+
         $this->assertEqual($t->someColumn, 'abc');
         $this->assertEqual($t->someEnum, 'php');
         $this->assertEqual($t->someInt, 1);
         $this->assertEqual($t->someArray, array());
         $this->assertEqual($t->someObject, $obj);
-        
+
         $this->connection->clear();
-        
+
         $t = $this->connection->getTable('FieldNameTest')->find(1);
 
         $this->assertEqual($t->someColumn, 'abc');
@@ -89,7 +89,7 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($t->someInt, 1);
         $this->assertEqual($t->someArray, array());
         $this->assertEqual($t->someObject, $obj);
-        
+
         $this->dbh->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
     }
 
@@ -155,7 +155,7 @@ class Doctrine_Table_TestCase extends Doctrine_UnitTestCase
     {
         $record = $this->objTable->find(4);
         $this->assertTrue($record instanceof Doctrine_Record);
-        
+
         try {
             $record = $this->objTable->find('4');
             $this->assertTrue($record instanceof Doctrine_Record);

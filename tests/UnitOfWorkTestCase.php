@@ -62,7 +62,7 @@ class Doctrine_UnitOfWork_TestCase extends Doctrine_UnitTestCase
 
         $tree = $this->unitOfWork->buildFlushTree(array('Forum_Board'));
         $this->assertEqual($tree, array('Forum_Board'));
-        
+
         $tree = $this->unitOfWork->buildFlushTree(array('Forum_Category','Forum_Board'));
         $this->assertEqual($tree, array('Forum_Category', 'Forum_Board'));
     }
@@ -72,7 +72,7 @@ class Doctrine_UnitOfWork_TestCase extends Doctrine_UnitTestCase
 
         $tree = $this->unitOfWork->buildFlushTree(array('Forum_Entry','Forum_Board'));
         $this->assertEqual($tree, array('Forum_Entry','Forum_Board'));
-        
+
         $tree = $this->unitOfWork->buildFlushTree(array('Forum_Board','Forum_Entry'));
         $this->assertEqual($tree, array('Forum_Board','Forum_Entry'));
     }

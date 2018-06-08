@@ -394,14 +394,14 @@ class Doctrine_Record_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($user->updated, null);
         $this->assertEqual($user->getTable()->getData(), array());
     }
-    
-    
+
+
     public function testUnknownFieldGet()
     {
         $user       = new User();
         $user->name = 'Jack Daniels';
         $user->save();
-        
+
         try {
             $foo = $user->unexistentColumnInThisClass;
 

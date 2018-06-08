@@ -51,7 +51,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneBysomethingElse(self::SOMETHING_ELSE);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {
@@ -63,7 +63,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneBydisjoint_alias(self::SOMETHING_ELSE);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {
@@ -75,7 +75,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneByDisjointAlias(self::SOMETHING_ELSE);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {
@@ -87,7 +87,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneBytableizedAlias(self::TABLEIZED_ALIAS);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {
@@ -99,7 +99,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneBytableized_alias(self::TABLEIZED_ALIAS);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {
@@ -111,7 +111,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneByClassifiedAlias(self::CLASSIFIED_ALIAS);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {
@@ -123,7 +123,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneByTest(self::ANOTHER_ALIAS);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {
@@ -135,7 +135,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneBytest(self::ANOTHER_ALIAS);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {
@@ -147,7 +147,7 @@ class Doctrine_Ticket_1124_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $r = Doctrine_Core::getTable('Ticket_1124_Record')->findOneByanother_Alias(self::ANOTHER_ALIAS);	// test currently fails
-        
+
             $this->assertIsSampleRecord($r);
             $this->pass();
         } catch (Exception $e) {

@@ -37,14 +37,14 @@ class Doctrine_Ticket_1251_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_1251_Record';
         parent::prepareTables();
     }
-    
-    
+
+
     public function testAccessDataNamedField()
     {
         $t       = new Ticket_1251_Record();
         $t->data = 'Foo';
         $t->save();
-        
+
         $this->assertEqual($t->data, 'Foo');
     }
 }

@@ -37,7 +37,7 @@ class Doctrine_Ticket_867_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'T867_Section';
         parent::prepareTables();
     }
-  
+
     public function testTicket()
     {
         try {
@@ -46,7 +46,7 @@ class Doctrine_Ticket_867_TestCase extends Doctrine_UnitTestCase
             $s->Translation['en']->title   = 'Test title';
             $s->Translation['en']->summary = 'Test summary';
             $s->save();
-          
+
             $this->assertTrue($s->id > 0);
             $this->assertEqual($s->name, 'Test name');
             $this->assertEqual($s->Translation['en']->title, 'Test title');
@@ -71,12 +71,12 @@ class T867_Section extends Doctrine_Record
         $this->hasColumn('name', 'string', 60, array('notnull' => true));
         $this->hasColumn('title', 'string', 60, array('notnull' => true));
         $this->hasColumn('summary', 'string', 255);
-    
+
         $this->option('type', 'INNODB');
         $this->option('collate', 'utf8_unicode_ci');
         $this->option('charset', 'utf8');
     }
-  
+
     public function setUp()
     {
         parent::setUp();

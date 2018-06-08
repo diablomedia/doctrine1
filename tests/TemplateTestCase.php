@@ -49,7 +49,7 @@ class Doctrine_Template_TestCase extends Doctrine_UnitTestCase
             $this->pass();
         }
     }
-    
+
     public function testAccessingExistingImplementationSupportsAssociations()
     {
         $this->manager->setImpl('UserTemplate', 'ConcreteUser')
@@ -94,7 +94,7 @@ class UserTemplate extends Doctrine_Template
         $this->hasMany('EmailTemplate as Email', array('local'   => 'id',
                                                        'foreign' => 'user_id'));
     }
-    
+
     public function foo()
     {
         return 'foo';

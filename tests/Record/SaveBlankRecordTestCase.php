@@ -39,7 +39,7 @@ class Doctrine_Record_SaveBlankRecord_TestCase extends Doctrine_UnitTestCase
 
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
     }
@@ -49,16 +49,16 @@ class Doctrine_Record_SaveBlankRecord_TestCase extends Doctrine_UnitTestCase
         $user = new MyUser();
         $user->state('TDIRTY');
         $user->save();
-        
+
         $this->assertTrue(isset($user['id']) && $user['id']);
     }
-    
+
     public function testSaveBlankRecord2()
     {
         $group = new MyUserGroup();
         $group->state('TDIRTY');
         $group->save();
-        
+
         $this->assertTrue(isset($group['id']) && $group['id']);
     }
 }

@@ -39,15 +39,15 @@ class Doctrine_Ticket_2292_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'mkContent';
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
     }
-    
+
     public function testOwningSideRelationToArray()
     {
         $article = new mkArticle();
-        
+
         $this->assertEqual($article->content->toArray(false), array('id' => null, 'body' => null));
     }
 }
@@ -60,7 +60,7 @@ class mkArticle extends Doctrine_Record
         $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'autoincrement' => true, 'primary' => true, 'length' => 4));
         $this->hasColumn('title', 'string', 200);
     }
-    
+
     public function setup()
     {
         $this->hasOne('mkContent as content', array('local'      => 'id',
@@ -77,7 +77,7 @@ class mkContent extends Doctrine_Record
         $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'autoincrement' => false, 'primary' => true, 'length' => 4));
         $this->hasColumn('body', 'string');
     }
-    
+
     public function setup()
     {
         $this->hasOne('mkArticle as article', array('local'      => 'id',

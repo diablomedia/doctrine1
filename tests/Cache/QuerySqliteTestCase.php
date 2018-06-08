@@ -22,7 +22,7 @@ class Doctrine_Cache_Query_SqliteTestCase extends Doctrine_UnitTestCase
         $this->assertEqual($this->cache->count(), 1);
 
         $this->cache->store('SELECT * FROM group', array(array('name' => 'Drinkers club')), 60);
-        
+
         $md5    = md5('SELECT * FROM user');
         $result = $this->cache->fetch($md5);
         $this->assertEqual($result, array(array('name' => 'Jack Daniels')));
@@ -32,10 +32,10 @@ class Doctrine_Cache_Query_SqliteTestCase extends Doctrine_UnitTestCase
         $this->assertEqual($result, array(array('name' => 'Drinkers club')));
 
         $this->assertEqual($this->cache->count(), 2);
-        
+
         $this->cache->delete($md5);
         $this->assertEqual($this->cache->count(), 1);
-        
+
         $this->cache->deleteAll();
         $this->assertEqual($this->cache->count(), 0);
     }

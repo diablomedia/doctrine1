@@ -33,7 +33,7 @@
 class Doctrine_Ticket_1621b_TestCase extends Doctrine_UnitTestCase
 {
     const LANG = 'deu';
-    
+
     public function prepareTables()
     {
         $this->tables   = array();
@@ -46,7 +46,7 @@ class Doctrine_Ticket_1621b_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_1621b_ConceptHierarchicalRelation';
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
         $lang                                 = new Ticket_1621b_Language();
@@ -55,82 +55,82 @@ class Doctrine_Ticket_1621b_TestCase extends Doctrine_UnitTestCase
         $lang->Translation['de']->description = 'Die Sprache Deutsch';
         $lang->Translation['en']->display     = 'german';
         $lang->Translation['en']->description = 'The german language';
-        
+
         $lang->save();
-        
+
         $lang                                 = new Ticket_1621b_Language();
         $lang->id                             = 'eng';
         $lang->Translation['de']->display     = 'Englisch';
         $lang->Translation['de']->description = 'Die Sprache Englisch';
         $lang->Translation['en']->display     = 'german';
         $lang->Translation['en']->description = 'The english language';
-                
+
         $lang->save();
-        
-        
-        
-                
+
+
+
+
         $plant             = new Ticket_1621b_Concept();
         $plant->identifier = '1';
-        
+
         $pref_de               = new Ticket_1621b_PrefTerm();
         $pref_de->lexicalValue = 'Pflanze';
         $pref_de->langId       = 'deu';
-        
+
         $pref_en               = new Ticket_1621b_PrefTerm();
         $pref_en->lexicalValue = 'plant';
         $pref_en->langId       = 'eng';
-        
+
         $plant->preferedTerm    = $pref_de;
         $plant->preferedTerms[] = $pref_en;
-        
+
         $plant->save();
-        
-        
-        
-        
+
+
+
+
         $tree             = new Ticket_1621b_Concept();
         $tree->identifier = '1.1';
-        
+
         $pref_de               = new Ticket_1621b_PrefTerm();
         $pref_de->lexicalValue = 'Baum';
         $pref_de->langId       = 'deu';
-        
+
         $pref_en               = new Ticket_1621b_PrefTerm();
         $pref_en->lexicalValue = 'tree';
         $pref_en->langId       = 'eng';
-        
+
         $alt               = new Ticket_1621b_AltTerm();
         $alt->lexicalValue = 'bush';
         $alt->langId       = 'eng';
-        
+
         $tree->preferedTerm    = $pref_de;
         $tree->preferedTerms[] = $pref_en;
         $tree->altTerms[]      = $alt;
-        
+
         $tree->broaderConcepts[] = $plant;
-        
+
         $tree->save();
-             
-        
-        
-        
+
+
+
+
         $oak             = new Ticket_1621b_Concept();
         $oak->identifier = '1.1';
-        
+
         $pref_de               = new Ticket_1621b_PrefTerm();
         $pref_de->lexicalValue = 'Eiche';
         $pref_de->langId       = 'deu';
-        
+
         $pref_en               = new Ticket_1621b_PrefTerm();
         $pref_en->lexicalValue = 'oak';
         $pref_en->langId       = 'eng';
-        
+
         $oak->preferedTerm    = $pref_de;
         $oak->preferedTerms[] = $pref_en;
-        
+
         $oak->broaderConcepts[] = $tree;
-        
+
         $oak->save();
     }
 
@@ -143,14 +143,14 @@ class Doctrine_Ticket_1621b_TestCase extends Doctrine_UnitTestCase
                     ->leftJoin('c.narrowerConcepts n')
                     ->where('c.id = ?', 2);
             $rs = $q->fetchOne();
-            
+
             $this->assertEqual($rs->preferedTerm->lexicalValue, 'Baum');
         } catch (Exception $e) {
             $this->fail($e);
         }
     }
 }
-    
+
 
 
 class Ticket_1621b_Concept extends Doctrine_Record
@@ -174,7 +174,7 @@ class Ticket_1621b_Concept extends Doctrine_Record
         $this->hasMany('Ticket_1621b_AltTerm as altTerms', array('local' => 'id',
                                                        'foreign'         => 'conceptId',
                                                        'onDelete'        => 'CASCADE'));
-    
+
         $this->hasMany('Ticket_1621b_Concept as broaderConcepts', array('refClass' => 'Ticket_1621b_ConceptHierarchicalRelation',
                                                        'refClassRelationAlias'     => 'narrowerLinks',
                                                        'local'                     => 'conceptIdSource',

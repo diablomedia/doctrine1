@@ -38,7 +38,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('Entity', 'Phonenumber');
-        
+
         parent::prepareTables();
     }
 
@@ -66,7 +66,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q->parseDqlQuery('SELECT u.name FROM User u WHERE u.id = 3');
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT "e"."id" AS "e__id", "e"."name" AS "e__name" FROM "entity" "e" WHERE ("e"."id" = 3 AND ("e"."type" = 0))');
-    
+
         $q->execute();
     }
 
@@ -98,13 +98,13 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT "e"."id" AS "e__id", "e"."name" AS "e__name" FROM "entity" "e" INNER JOIN "phonenumber" "p" ON "e"."id" = "p"."entity_id" WHERE "e"."id" IN (SELECT DISTINCT "e2"."id" FROM "entity" "e2" INNER JOIN "phonenumber" "p2" ON "e2"."id" = "p2"."entity_id" WHERE ("e2"."type" = 0) LIMIT 5) AND ("e"."type" = 0)');
     }
-    
+
     public function testCountQuerySupportsIdentifierQuoting()
     {
         $q = new Doctrine_Query();
 
         $q->parseDqlQuery('SELECT u.name FROM User u INNER JOIN u.Phonenumber p');
-        
+
         $this->assertEqual($q->getCountSqlQuery(), 'SELECT COUNT(*) AS "num_results" FROM (SELECT "e"."id" FROM "entity" "e" INNER JOIN "phonenumber" "p" ON "e"."id" = "p"."entity_id" WHERE ("e"."type" = 0) GROUP BY "e"."id") "dctrn_count_query"');
     }
 
@@ -113,7 +113,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->parseDqlQuery('UPDATE User u SET u.name = ? WHERE u.id = ?');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'UPDATE "entity" SET "name" = ? WHERE ("id" = ? AND ("type" = 0))');
     }
 
@@ -122,7 +122,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->update('User')->set('name', '?', 'guilhermeblanco')->where('id = ?');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'UPDATE "entity" SET "name" = ? WHERE ("id" = ? AND ("type" = 0))');
     }
 
@@ -131,7 +131,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->update('User')->set('name', 'LOWERCASE(name)')->where('id = ?');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'UPDATE "entity" SET "name" = LOWERCASE("name") WHERE ("id" = ? AND ("type" = 0))');
     }
 
@@ -140,7 +140,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->update('User u')->set('u.name', 'LOWERCASE(u.name)')->where('u.id = ?');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'UPDATE "entity" SET "name" = LOWERCASE("name") WHERE ("id" = ? AND ("type" = 0))');
     }
 
@@ -149,7 +149,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->update('User u')->set('u.name', 'UPPERCASE(LOWERCASE(u.name))')->where('u.id = ?');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'UPDATE "entity" SET "name" = UPPERCASE(LOWERCASE("name")) WHERE ("id" = ? AND ("type" = 0))');
     }
 
@@ -158,7 +158,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->update('User u')->set('u.name', 'UPPERCASE(LOWERCASE(u.id))')->where('u.id = ?');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'UPDATE "entity" SET "name" = UPPERCASE(LOWERCASE("id")) WHERE ("id" = ? AND ("type" = 0))');
     }
 
@@ -167,7 +167,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->update('User u')->set('u.name', 'CURRENT_TIMESTAMP')->where('u.id = ?');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'UPDATE "entity" SET "name" = CURRENT_TIMESTAMP WHERE ("id" = ? AND ("type" = 0))');
     }
 
@@ -176,7 +176,7 @@ class Doctrine_Query_IdentifierQuoting_TestCase extends Doctrine_UnitTestCase
         $q = new Doctrine_Query();
 
         $q->update('User u')->set('u.id', 'u.id + 1')->where('u.name = ?');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'UPDATE "entity" SET "id" = "id" + 1 WHERE ("name" = ? AND ("type" = 0))');
 
         $this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, false);

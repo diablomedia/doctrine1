@@ -46,7 +46,7 @@ class Doctrine_Ticket_DC198_TestCase extends Doctrine_UnitTestCase
     {
         $this->tables[] = 'Ticket_DC198_User';
         $this->tables[] = 'Ticket_DC198_Email';
-        
+
         parent::prepareTables();
     }
 

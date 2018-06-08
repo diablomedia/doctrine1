@@ -38,7 +38,7 @@ class Doctrine_Query_Condition_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
     }
-    
+
     /** @todo belongs in TokenizerTestCase? */
     public function testBracktExplode()
     {

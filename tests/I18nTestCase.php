@@ -46,7 +46,7 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
     public function testTranslationTableGetsExported()
     {
         $this->conn->setAttribute(Doctrine_Core::ATTR_EXPORT, Doctrine_Core::EXPORT_ALL);
-        
+
         $this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_TABLES);
         $this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_CONSTRAINTS);
         $this->assertTrue(Doctrine_Core::EXPORT_ALL & Doctrine_Core::EXPORT_PLUGINS);
@@ -61,7 +61,7 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
     public function testTranslatedColumnsAreRemovedFromMainComponent()
     {
         $i = new I18nTest();
-        
+
         $columns = $i->getTable()->getColumns();
 
         $this->assertFalse(isset($columns['title']));
@@ -124,13 +124,13 @@ class Doctrine_I18n_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($i['Translation']['FI']['title'], 'joku otsikko');
         $this->assertEqual($i['Translation']['FI']['lang'], 'FI');
     }
-    
+
     public function testIndexByLangIsAttachedToNewlyCreatedCollections()
     {
         $coll = new Doctrine_Collection('I18nTestTranslation');
 
         $coll['EN']['name'] = 'some name';
-        
+
         $this->assertEqual($coll['EN']->lang, 'EN');
     }
 

@@ -52,7 +52,7 @@ class Doctrine_Export_Schema_TestCase extends Doctrine_UnitTestCase
                       'Assignment',
                       'ResourceType',
                       'ResourceReference');
-    
+
     public function testYmlExport()
     {
         $export = new Doctrine_Export_Schema();

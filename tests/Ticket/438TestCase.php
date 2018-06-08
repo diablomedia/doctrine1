@@ -117,7 +117,7 @@ class T438_Student extends Doctrine_Record
         $this->hasColumn('s_id as id', 'varchar', 30, array(  'primary' => true,));
         $this->hasColumn('s_name as name', 'varchar', 50, array());
     }
-  
+
     public function setUp()
     {
         $this->hasMany('T438_Course as StudyCourses', array('refClass' => 'T438_StudentCourse', 'local' => 'sc_student_id', 'foreign' => 'sc_course_id'));
@@ -134,7 +134,7 @@ class T438_Course extends Doctrine_Record
         $this->hasColumn('c_id as id', 'varchar', 20, array(  'primary' => true,));
         $this->hasColumn('c_name as name', 'varchar', 50, array());
     }
-  
+
     public function setUp()
     {
         $this->hasMany('T438_Student as Students', array('refClass' => 'T438_StudentCourse', 'local' => 'sc_course_id', 'foreign' => 'sc_student_id'));
@@ -151,7 +151,7 @@ class T438_StudentCourse extends Doctrine_Record
         $this->hasColumn('sc_course_id as course_id', 'varchar', 20, array(  'primary' => true,));
         $this->hasColumn('sc_remark  as remark', 'varchar', 500, array());
     }
-  
+
     public function setUp()
     {
         $this->hasOne('T438_Student as Student', array('local' => 'sc_student_id', 'foreign' => 's_id'));

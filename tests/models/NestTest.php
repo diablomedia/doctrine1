@@ -13,7 +13,7 @@ class NestTest extends Doctrine_Record
         $this->hasMany('NestTest as Children', array('local'    => 'parent_id',
                                                      'refClass' => 'NestReference',
                                                      'foreign'  => 'child_id'));
-                                                     
+
         $this->hasMany('NestTest as Relatives', array('local'    => 'child_id',
                                                       'refClass' => 'NestReference',
                                                       'foreign'  => 'parent_id',

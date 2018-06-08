@@ -12,7 +12,7 @@ class ConcreteInheritanceTestChild extends ConcreteInheritanceTestParent
     public function setTableDefinition()
     {
         $this->hasColumn('age', 'integer');
-        
+
         parent::setTableDefinition();
     }
 }

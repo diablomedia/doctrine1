@@ -45,9 +45,9 @@ class Doctrine_Ticket_2377_TestCase extends Doctrine_UnitTestCase
             $author          = new Ticket_2377_Author();
             $article         = new Ticket_2377_Article();
             $article->Author = $author;
-        
+
             $array = $article->toArray(true);
-                
+
             $article2 = new Ticket_2377_Article();
             $article2->synchronizeWithArray($array);
 

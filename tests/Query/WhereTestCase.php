@@ -109,7 +109,7 @@ class Doctrine_Query_Where_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($users[0]->name, 'someone');
         $this->assertEqual($users[1]->name, 'someone.2');
     }
-    
+
     public function testExceptionIsThrownWhenParameterIsNull()
     {
         try {
@@ -143,7 +143,7 @@ class Doctrine_Query_Where_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($users[0]->name, 'someone');
         $this->assertEqual($users[1]->name, 'someone.2');
     }
-    
+
     public function testNotInExpression()
     {
         $q = new Doctrine_Query();
@@ -158,12 +158,12 @@ class Doctrine_Query_Where_TestCase extends Doctrine_UnitTestCase
     public function testExistsExpression()
     {
         $q = new Doctrine_Query();
-        
+
         $user                 = new User();
         $user->name           = 'someone with a group';
         $user->Group[0]->name = 'some group';
         $user->save();
-        
+
         // find all users which have groups
         try {
             $q->from('User u')->where('EXISTS (SELECT g.id FROM Groupuser g WHERE g.user_id = u.id)');
@@ -222,36 +222,36 @@ class Doctrine_Query_Where_TestCase extends Doctrine_UnitTestCase
     public function testOperatorWithNoTrailingSpaces()
     {
         $q = new Doctrine_Query();
-        
+
         $q->select('User.id')->from('User')->where("User.name='someone'");
 
         $users = $q->execute();
         $this->assertEqual($users->count(), 1);
-        
+
         $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id FROM entity e WHERE (e.name = 'someone' AND (e.type = 0))");
     }
 
     public function testOperatorWithNoTrailingSpaces2()
     {
         $q = new Doctrine_Query();
-        
+
         $q->select('User.id')->from('User')->where("User.name='foo.bar'");
 
         $users = $q->execute();
         $this->assertEqual($users->count(), 0);
-        
+
         $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id FROM entity e WHERE (e.name = 'foo.bar' AND (e.type = 0))");
     }
 
     public function testOperatorWithSingleTrailingSpace()
     {
         $q = new Doctrine_Query();
-        
+
         $q->select('User.id')->from('User')->where("User.name= 'foo.bar'");
 
         $users = $q->execute();
         $this->assertEqual($users->count(), 0);
-        
+
         $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id FROM entity e WHERE (e.name = 'foo.bar' AND (e.type = 0))");
     }
 
@@ -263,7 +263,7 @@ class Doctrine_Query_Where_TestCase extends Doctrine_UnitTestCase
 
         $users = $q->execute();
         $this->assertEqual($users->count(), 0);
-        
+
         $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id FROM entity e WHERE (e.name = 'foo.bar' AND (e.type = 0))");
     }
 
@@ -288,16 +288,16 @@ class Doctrine_Query_Where_TestCase extends Doctrine_UnitTestCase
     public function testLiteralValueAsInOperatorOperandIsSupported()
     {
         $q = new Doctrine_Query();
-        
+
         $q->select('u.id')->from('User u')->where('1 IN (1, 2)');
-        
+
         $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id FROM entity e WHERE (1 IN (1, 2) AND (e.type = 0))');
     }
 
     public function testCorrelatedSubqueryWithInOperatorIsSupported()
     {
         $q = new Doctrine_Query();
-        
+
         $q->select('u.id')->from('User u')->where('u.name IN (SELECT u2.name FROM User u2 WHERE u2.id = u.id)');
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id FROM entity e WHERE (e.name IN (SELECT e2.name AS e2__name FROM entity e2 WHERE (e2.id = e.id AND (e2.type = 0))) AND (e.type = 0))');

@@ -38,13 +38,13 @@ class Doctrine_Query_MultiJoin2_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('QueryTest_Category', 'QueryTest_Board', 'QueryTest_User', 'QueryTest_Entry');
-        
+
         parent::prepareTables();
     }
     public function testInitializeData()
     {
         $query = new Doctrine_Query($this->connection);
-        
+
         $cat = new QueryTest_Category();
 
         $cat->rootCategoryId   = 0;
@@ -52,13 +52,13 @@ class Doctrine_Query_MultiJoin2_TestCase extends Doctrine_UnitTestCase
         $cat->name             = 'Cat1';
         $cat->position         = 0;
         $cat->save();
-        
+
         $board             = new QueryTest_Board();
         $board->name       = 'B1';
         $board->categoryId = $cat->id;
         $board->position   = 0;
         $board->save();
-        
+
         $author           = new QueryTest_User();
         $author->username = 'romanb';
         $author->save();
@@ -92,7 +92,7 @@ class Doctrine_Query_MultiJoin2_TestCase extends Doctrine_UnitTestCase
             $this->fail($e->getMessage());
         }
     }
-    
+
     public function testMultipleJoinFetchingWithArrayFetching()
     {
         $query      = new Doctrine_Query($this->connection);

@@ -37,19 +37,19 @@ class Doctrine_Ticket_2229_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_2229_SlugBug';
         parent::prepareTables();
     }
-  
+
     public function testTicket()
     {
         $d       = new Ticket_2229_SlugBug();
         $d->name = 'String with UpperLowerCase';
         $d->save();
         $this->assertEqual($d->slug, 'string-with-upperlowercase');
-    
+
         $d       = new Ticket_2229_SlugBug();
         $d->name = 'Custom name OPACs';
         $d->save();
         $this->assertEqual($d->slug, 'custom-name-opacs');
-    
+
         $d       = new Ticket_2229_SlugBug();
         $d->name = 'Présentation unifiée OPACs';
         $d->save();
@@ -66,7 +66,7 @@ class Ticket_2229_SlugBug extends Doctrine_Record
         $this->hasColumn('id', 'integer', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->hasColumn('name', 'string');
     }
-    
+
     public function setUp()
     {
         parent::setUp();

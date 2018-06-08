@@ -58,7 +58,7 @@ class Doctrine_Ticket_1641_TestCase extends Doctrine_UnitTestCase
         $table = Doctrine_Core::getTable('T1641_User');
 
         $this->assertEqual($table->createQuery()->getCountSqlQuery(), 'SELECT COUNT(*) AS num_results FROM t1641__user t WHERE (t.deleted_at IS NULL)');
-    
+
         $this->assertEqual($table->count(), 1);
         $this->assertEqual($table->createQuery()->execute()->count(), 1);
         $this->assertEqual($table->createQuery()->count(), 1);

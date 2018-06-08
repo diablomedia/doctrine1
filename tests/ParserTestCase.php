@@ -35,23 +35,23 @@ class Doctrine_Parser_TestCase extends Doctrine_UnitTestCase
     public function testGetParserInstance()
     {
         $instance = Doctrine_Parser::getParser('Yml');
-        
+
         if ($instance instanceof Doctrine_Parser_Yml) {
             $this->pass();
         } else {
             $this->fail();
         }
     }
-    
+
     public function testFacadeLoadAndDump()
     {
         Doctrine_Parser::dump(array('test' => 'good job', 'test2' => true, array('testing' => false)), 'yml', 'test.yml');
         $array = Doctrine_Parser::load('test.yml', 'yml');
-        
+
         $this->assertEqual($array, array('test' => 'good job', 'test2' => true, array('testing' => false)));
         unlink('test.yml');
     }
-    
+
     public function testParserSupportsEmbeddingPhpSyntax()
     {
         $parser = Doctrine_Parser::getParser('Yml');
@@ -62,29 +62,29 @@ testing: <?php echo 'false'.\"\n\"; ?>
 w00t: not now
 ";
         $data = $parser->doLoad($yml);
-        
+
         $array = $parser->loadData($data);
-        
+
         $this->assertEqual($array, array('test' => 'good job', 'test2' => true, 'testing' => false, 'w00t' => 'not now'));
     }
-    
+
     public function testParserWritingToDisk()
     {
         $parser = Doctrine_Parser::getParser('Yml');
         $parser->doDump('test', 'test.yml');
-        
+
         $this->assertEqual('test', file_get_contents('test.yml'));
         unlink('test.yml');
     }
-    
+
     public function testParserReturningLoadedData()
     {
         $parser = Doctrine_Parser::getParser('Yml');
         $result = $parser->doDump('test');
-        
+
         $this->assertEqual('test', $result);
     }
-    
+
     public function testLoadFromString()
     {
         $yml = "---
@@ -95,7 +95,7 @@ w00t: not now
 ";
 
         $array = Doctrine_Parser::load($yml, 'yml');
-        
+
         $this->assertEqual($array, array('test' => 'good job', 'test2' => true, 'testing' => false, 'w00t' => 'not now'));
     }
 }

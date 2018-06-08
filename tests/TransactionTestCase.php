@@ -162,7 +162,7 @@ class Doctrine_Transaction_TestCase extends Doctrine_UnitTestCase
     {
         $this->assertEqual($this->transaction->getTransactionLevel(), 0);
     }
-    
+
     public function testSubsequentTransactionsAfterRollback()
     {
         try {
@@ -183,7 +183,7 @@ class Doctrine_Transaction_TestCase extends Doctrine_UnitTestCase
             $this->assertEqual(0, $this->transaction->getTransactionLevel());
             $this->assertEqual(0, $this->transaction->getInternalTransactionLevel());
         }
-        
+
         $i = 0;
         while ($i < 5) {
             $this->assertEqual(0, $this->transaction->getTransactionLevel());
@@ -243,10 +243,10 @@ class Doctrine_Transaction_TestCase extends Doctrine_UnitTestCase
     public function testNestedTransaction()
     {
         $conn = Doctrine_Manager::connection();
-        
+
         try {
             $conn->beginTransaction();
-        
+
             // Create new client
             $user = new User();
             $user->set('name', 'Test User');
@@ -262,7 +262,7 @@ class Doctrine_Transaction_TestCase extends Doctrine_UnitTestCase
         } catch (Exception $e) {
             $conn->rollback();
         }
-        
+
         $this->assertTrue($user->id > 0);
         $this->assertTrue($phonenumber->id > 0);
     }
@@ -348,7 +348,7 @@ class TransactionListener extends Doctrine_EventListener
     {
         $this->_messages[] = __FUNCTION__;
     }
-    
+
     public function pop()
     {
         return array_pop($this->_messages);

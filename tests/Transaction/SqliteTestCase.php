@@ -47,7 +47,7 @@ class Doctrine_Transaction_Sqlite_TestCase extends Doctrine_UnitTestCase
         $this->transaction->setIsolation('READ COMMITTED');
         $this->transaction->setIsolation('REPEATABLE READ');
         $this->transaction->setIsolation('SERIALIZABLE');
-        
+
         $this->assertEqual($this->adapter->pop(), 'PRAGMA read_uncommitted = 1');
         $this->assertEqual($this->adapter->pop(), 'PRAGMA read_uncommitted = 1');
         $this->assertEqual($this->adapter->pop(), 'PRAGMA read_uncommitted = 1');

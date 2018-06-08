@@ -249,7 +249,7 @@ class Doctrine_Query_Cache_TestCase extends Doctrine_UnitTestCase
         $this->assertFalse($cache->contains($q->calculateQueryCacheHash()));
         $this->assertEqual(count($coll), 0);
     }
-    
+
     protected function _getCacheDriver()
     {
         return new Doctrine_Cache_Array();

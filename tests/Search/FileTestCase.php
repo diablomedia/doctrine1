@@ -51,7 +51,7 @@ class Doctrine_Search_File_TestCase extends Doctrine_UnitTestCase
         $this->_search->indexDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
 
         $resultSet = $this->_search->search('dbms');
-        
+
         $this->assertEqual(count($resultSet), 1);
     }
 }

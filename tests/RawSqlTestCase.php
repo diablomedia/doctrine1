@@ -38,7 +38,7 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
         $sql   = 'SELECT {p.*} FROM photos p';
         $query = new Doctrine_RawSql($this->connection);
         $query->parseDqlQuery($sql);
-        
+
         $this->assertEqual($query->getSqlQueryPart('from'), array('photos p'));
 
 
@@ -91,12 +91,12 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
     {
         $query = new Doctrine_RawSql($this->connection);
         // smart component mapping (no need for additional addComponent call
-        
+
         $query->parseDqlQuery('SELECT {entity.name}, {entity.id} FROM entity');
         $fields = $query->getFields();
 
         $this->assertEqual($fields, array('entity.name', 'entity.id'));
-        
+
         $coll = $query->execute();
 
         $this->assertEqual($coll->count(), 11);
@@ -120,14 +120,14 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($coll->count(), 11);
 
         $count = $this->conn->count();
-        
+
         $coll[4]->Phonenumber[0]->phonenumber;
         $this->assertEqual($count, $this->conn->count());
 
         $coll[5]->Phonenumber[0]->phonenumber;
         $this->assertEqual($count, $this->conn->count());
     }
-    
+
     public function testAliasesAreSupportedInAddComponent()
     {
         $query = new Doctrine_RawSql();
@@ -142,7 +142,7 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($coll->count(), 11);
 
         $count = $this->conn->count();
-        
+
         $coll[4]['Phonenumber'][0]['phonenumber'];
         $this->assertEqual($count, $this->conn->count());
 
@@ -152,25 +152,25 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
     public function testPrimaryKeySelectForcing()
     {
         // forcing the select of primary key fields
-        
+
         $query = new Doctrine_RawSql($this->connection);
 
         $query->parseDqlQuery('SELECT {entity.name} FROM entity');
-        
+
         $coll = $query->execute();
-        
+
         $this->assertEqual($coll->count(), 11);
         $this->assertTrue(is_numeric($coll[0]->id));
         $this->assertTrue(is_numeric($coll[3]->id));
         $this->assertTrue(is_numeric($coll[7]->id));
     }
-    
+
     public function testConvenienceMethods()
     {
         $query = new Doctrine_RawSql($this->connection);
         $query->select('{entity.name}')->from('entity');
         $query->addComponent('entity', 'User');
-        
+
         $coll = $query->execute();
 
         $this->assertEqual($coll->count(), 8);
@@ -218,7 +218,7 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
     public function testQueryParser2()
     {
         $query = new Doctrine_RawSql();
-        
+
         $query->parseDqlQuery("SELECT {entity.name} FROM (SELECT entity.name FROM entity WHERE entity.name = 'something') WHERE entity.id = 2 ORDER BY entity.name");
 
         $this->assertEqual(
@@ -239,7 +239,7 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual(count($coll), 3);
     }
-    
+
     public function testSwitchingTheFieldOrder()
     {
         $query = new Doctrine_RawSql();
@@ -252,7 +252,7 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual(count($coll), 3);
     }
-    
+
     public function testParseQueryPartShouldAddPartIfNotSelectAndAppend()
     {
         $query = new Doctrine_Rawsql();
@@ -263,7 +263,7 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(isset($parts['test'][0]));
         $this->assertEqual('test', $parts['test'][0]);
     }
-    
+
     public function testParseQueryShouldExtractGroupBy()
     {
         $query = new Doctrine_RawSql();

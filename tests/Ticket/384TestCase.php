@@ -49,7 +49,7 @@ class Doctrine_Ticket_384_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'ticket384_ResumeHasLanguage';
         $this->tables[] = 'ticket384_LanguageLevel';
         $this->tables[] = 'ticket384_Language';
-        
+
         parent :: prepareTables();
     }
 
@@ -63,7 +63,7 @@ class Doctrine_Ticket_384_TestCase extends Doctrine_UnitTestCase
           ->leftJoin('Resume.KnownLanguages KnownLanguages')
           ->leftJoin('KnownLanguages.Level Level')
           ->leftJoin('KnownLanguages.Language Language');
-        
+
         try {
             // get the wrong resultset
             $aResult = $q->fetchArray();
@@ -72,7 +72,7 @@ class Doctrine_Ticket_384_TestCase extends Doctrine_UnitTestCase
             $this->pass();
         }
         $q->free();
-        
+
         // now correct
         // we have to select at least KnownLanguages.id in order to get the Levels,
         // which are only reachable through the KnownLanguages, hydrated properly.
@@ -82,12 +82,12 @@ class Doctrine_Ticket_384_TestCase extends Doctrine_UnitTestCase
           ->leftJoin('Resume.KnownLanguages KnownLanguages')
           ->leftJoin('KnownLanguages.Level Level')
           ->leftJoin('KnownLanguages.Language Language');
-        
+
         $aResult = $q->fetchArray();
         // should be setted
         $bSuccess = isset($aResult[0]['KnownLanguages'][0]['Level']);
         $this->assertTrue($bSuccess);
-          
+
         if (! $bSuccess) {
             $this->fail('fetchArray doesnt hydrate nested child relations, if parent doesnt have a column selected');
         }
@@ -104,7 +104,7 @@ class ticket384_Resume extends Doctrine_Record
           'autoincrement' => true,
           'unsigned'      => true,
           ));
-          
+
         $this->hasColumn('title', 'string', 255);
     }
 
@@ -137,7 +137,7 @@ class ticket384_ResumeHasLanguage extends Doctrine_Record
         $this->hasColumn('language_level_id', 'integer', 2, array(
       'unsigned' => true,
       ));
-    
+
         $this->hasColumn('comments', 'string', 4000, array());
     }
 
@@ -173,7 +173,7 @@ class ticket384_Language extends Doctrine_Record
 
         $this->hasColumn('label', 'string', 100, array('notnull' => true));
     }
-  
+
     public function setUp()
     {
         $this->hasMany('ticket384_Resume as Resumes', array('local' => 'id', 'foreign' => 'language_id'));

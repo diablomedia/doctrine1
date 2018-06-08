@@ -44,35 +44,35 @@ class Doctrine_Ticket_574_TestCase extends Doctrine_UnitTestCase
             $oAuthor->save();
         }
     }
-    
+
     /**
      * prepareTables
      */
-    
+
     public function prepareTables()
     {
         $this->tables   = array();
         $this->tables[] = 'Author';
         $this->tables[] = 'Book';
-      
+
         parent :: prepareTables();
     }
-    
-    
+
+
     /**
      * Test the existence expected indexes
      */
-    
+
     public function testTicket()
     {
         $q = new Doctrine_Query();
 
         // simple query with 1 column selected
         $cAuthors = $q->select('book_id')->from('Author')->groupBy('book_id')->where('book_id = 2')->execute();
-        
+
         // simple query, with 1 join and all columns selected
         $cAuthors = $q->from('Author, Author.Book')->execute();
-        
+
         foreach ($cAuthors as $oAuthor) {
             if (! $oAuthor->name) {
                 $this->fail('Querying the same table multiple times triggers hydration/caching(?) bug');

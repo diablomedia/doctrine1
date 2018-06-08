@@ -1436,7 +1436,10 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         $subquery .= $this->_conn->quoteIdentifier($primaryKey);
 
         // pgsql & oracle need the order by fields to be preserved in select clause
-        if ($driverName == 'pgsql' || $driverName == 'oracle' || $driverName == 'oci' || $driverName == 'mssql' || $driverName == 'odbc') {
+        // Technically this isn't required for mysql <= 5.6, but mysql 5.7 with an sql_mode option enabled
+        // (only_full_group_by, which is enabled by default in 5.7) will throw SQL errors if this isn't done,
+        // so easier to just enable for all of mysql.
+        if ($driverName == 'mysql' || $driverName == 'pgsql' || $driverName == 'oracle' || $driverName == 'oci' || $driverName == 'mssql' || $driverName == 'odbc') {
             foreach ($this->_sqlParts['orderby'] as $part) {
                 // Remove identifier quoting if it exists
                 $e = $this->_tokenizer->bracketExplode($part, ' ');

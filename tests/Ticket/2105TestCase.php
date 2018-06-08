@@ -48,7 +48,7 @@ class Doctrine_Ticket_2105_TestCase extends Doctrine_UnitTestCase
                 ;
             $q->execute();
             //echo $q->getSqlQuery().PHP_EOL;
-            
+
             $this->assertEqual(
                 $q->getSqlQuery(),
                 'SELECT t.id AS t__id, t2.id AS t2__id, t2.lang AS t2__lang ' .
@@ -56,12 +56,12 @@ class Doctrine_Ticket_2105_TestCase extends Doctrine_UnitTestCase
                 'INNER JOIN ticket_2105__article_translation t2 ' .
                 'ON t.id = t2.id AND (t2.name != ?)'
             );
-            
+
             // we need to modify the query here - it can be anything, I've chosen addSelect
             $q->addSelect('t.name');
             $q->execute();
             //echo $q->getSqlQuery().PHP_EOL;
-            
+
             $this->assertEqual(
                 $q->getSqlQuery(),
                 'SELECT t.id AS t__id, t2.id AS t2__id, t2.lang AS t2__lang, t2.name AS t2__name ' .
@@ -69,7 +69,7 @@ class Doctrine_Ticket_2105_TestCase extends Doctrine_UnitTestCase
                 'INNER JOIN ticket_2105__article_translation t2 ' .
                 'ON t.id = t2.id AND (t2.name != ?)'
             );
-            
+
             //$this->pass();
         } catch (Exception $e) {
             $this->fail($e->getMessage());

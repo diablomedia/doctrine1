@@ -35,13 +35,14 @@ class Doctrine_Query_Orderby_TestCase extends Doctrine_UnitTestCase
     public function testOrderByRandomIsSupported()
     {
         $q = new Doctrine_Query();
-        
+
         $q->select('u.name, RANDOM() rand')
           ->from('User u')
           ->orderby('rand DESC');
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name, ((RANDOM() + 2147483648) / 4294967296) AS e__0 FROM entity e WHERE (e.type = 0) ORDER BY e__0 DESC');
     }
+
     public function testOrderByAggregateValueIsSupported()
     {
         $q = new Doctrine_Query();
@@ -59,27 +60,27 @@ class Doctrine_Query_Orderby_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $q = new Doctrine_Query();
-        
+
             $q->select('u.name')
               ->from('User u')
               ->orderby('COALESCE(u.id, u.name) DESC');
-            // nonesese results expected, but query is syntatically ok.
+            // nonsense results expected, but query is syntatically ok.
             $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name FROM entity e WHERE (e.type = 0) ORDER BY COALESCE(e.id, e.name) DESC');
             $this->pass();
         } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
     }
-    
+
     public function testOrderByWithMultipleCoalesce()
     {
         try {
             $q = new Doctrine_Query();
-        
+
             $q->select('u.name')
               ->from('User u')
               ->orderby('COALESCE(u.id, u.name) DESC, COALESCE(u.name, u.id) ASC');
-            // nonesese results expected, but query is syntatically ok.
+            // nonsense results expected, but query is syntatically ok.
             $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name FROM entity e WHERE (e.type = 0) ORDER BY COALESCE(e.id, e.name) DESC, COALESCE(e.name, e.id) ASC');
             $this->pass();
         } catch (Exception $e) {
@@ -87,15 +88,15 @@ class Doctrine_Query_Orderby_TestCase extends Doctrine_UnitTestCase
         }
     }
 
-    public function testOrderByWithDifferentOrderning()
+    public function testOrderByWithDifferentOrdering()
     {
         try {
             $q = new Doctrine_Query();
-        
+
             $q->select('u.name')
               ->from('User u')
               ->orderby('u.id ASC, u.name DESC');
-            // nonesese results expected, but query is syntatically ok.
+            // nonsense results expected, but query is syntatically ok.
             $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id, e.name AS e__name FROM entity e WHERE (e.type = 0) ORDER BY e.id ASC, e.name DESC');
             $this->pass();
         } catch (Exception $e) {

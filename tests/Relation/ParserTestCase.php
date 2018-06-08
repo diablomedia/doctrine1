@@ -35,7 +35,7 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
     public function testPendingRelations()
     {
         $r = new Doctrine_Relation_Parser($this->conn->getTable('User'));
-        
+
         $p = array('type'  => Doctrine_Relation::ONE,
                    'local' => 'email_id');
 
@@ -151,7 +151,7 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
         $r->bind('Email', $p);
 
         $rel = $r->getRelation('Email');
-        
+
         $this->assertTrue($rel instanceof Doctrine_Relation_LocalKey);
     }
     public function testGetRelationReturnsForeignKeyObjectForOneToManyRelation()
@@ -174,7 +174,7 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
         $r->bind('Group', $p);
 
         $rel = $r->getRelation('Group');
-        
+
         $this->assertTrue($rel instanceof Doctrine_Relation_Association);
         $rel = $r->getRelation('GroupUser');
         $this->assertTrue($rel instanceof Doctrine_Relation_ForeignKey);
@@ -195,6 +195,6 @@ class Doctrine_Relation_Parser_TestCase extends Doctrine_UnitTestCase
         $rel = $r->getRelation('EntityReference');
         $this->assertTrue($rel instanceof Doctrine_Relation_ForeignKey);
     }
-    
+
     // TODO: BETTER ASSOCIATION TABLE GUESSING
 }

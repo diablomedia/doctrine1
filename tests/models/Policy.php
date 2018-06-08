@@ -5,7 +5,7 @@ class Policy extends Doctrine_Record
     {
         $this->hasColumn('policy_number', 'integer', 11, array('unique' => true));
     }
-  
+
     public function setUp()
     {
         $this->hasMany('PolicyAsset as PolicyAssets', array('local'   => 'policy_number',

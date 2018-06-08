@@ -79,7 +79,7 @@ class T1365_Person extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('la__person');
-        
+
         $this->hasColumn('name', 'string', 255);
     }
 
@@ -95,7 +95,7 @@ class T1365_Skill extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('la__skill');
-        
+
         $this->hasColumn('name', 'string', 255);
     }
 
@@ -111,7 +111,7 @@ class T1365_PersonHasSkill extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('la__person_has_skill');
-        
+
         $this->hasColumn('fk_person_id', 'integer', 8, array(
             'type' => 'integer', 'length' => '8'
         ));
@@ -132,7 +132,7 @@ class T1365_PersonHasSkill extends Doctrine_Record
             ), 'default' => 0, 'notnull' => true, 'length' => '3'
         ));
     }
-    
+
     public function setUp()
     {
         $this->hasOne('T1365_Person', array('local' => 'fk_person_id', 'foreign' => 'id'));

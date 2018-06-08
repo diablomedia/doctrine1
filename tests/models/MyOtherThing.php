@@ -11,7 +11,7 @@ class MyOtherThing extends Doctrine_Record
         $this->hasMany('MyUserOtherThing', array(
             'local' => 'id', 'foreign' => 'other_thing_id'
         ));
-        
+
         $this->hasOne('MyUser', array(
             'local' => 'user_id', 'foreign' => 'id'
         ));

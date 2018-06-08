@@ -47,7 +47,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
         $test->status = 'open';
         $this->assertEqual($test->status, 'open');
         $test->save();
-        
+
         try {
             $query = new Doctrine_Query($this->connection);
             $ret   = $query->query("FROM EnumTest WHERE EnumTest.status = 'open'");
@@ -56,7 +56,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
     }
-    
+
     public function testUpdate()
     {
         $test         = new EnumTest2();
@@ -88,7 +88,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
     }
-    
+
     public function testParameterConversionInCount()
     {
         try {
@@ -186,7 +186,7 @@ class Doctrine_DataType_Enum_TestCase extends Doctrine_UnitTestCase
 
         $enum->refresh();
         $this->assertEqual($enum->status, 'open');
-        
+
         $enum->status = 'closed';
 
         $this->assertEqual($enum->status, 'closed');

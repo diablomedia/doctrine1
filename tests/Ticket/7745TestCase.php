@@ -53,7 +53,7 @@ class Doctrine_Ticket_7745_TestCase extends Doctrine_UnitTestCase
         $test1->name        = 'test';
         $test1->RecordTest2 = $test2;
         $test1->save();
-        
+
         $id = $test2->id;
         $test2->free();
 

@@ -35,7 +35,7 @@ class Doctrine_DataDict_Mssql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeBitType()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'bit'));
-        
+
         $this->assertEqual($type, array('type'     => array('boolean'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -59,7 +59,7 @@ class Doctrine_DataDict_Mssql_TestCase extends Doctrine_UnitTestCase
                                         'fixed'    => true));
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'varchar', 'length' => 1));
-        
+
         $this->assertEqual($type, array('type'     => array('string', 'boolean'),
                                         'length'   => 1,
                                         'unsigned' => null,
@@ -69,7 +69,7 @@ class Doctrine_DataDict_Mssql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeBlobTypes()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'image'));
-        
+
         $this->assertEqual($type, array('type'     => array('blob'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -86,14 +86,14 @@ class Doctrine_DataDict_Mssql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeIntegerTypes()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'int'));
-        
+
         $this->assertEqual($type, array('type'     => array('integer'),
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'int', 'length' => 1));
-        
+
         $this->assertEqual($type, array('type'     => array('integer', 'boolean'),
                                         'length'   => 1,
                                         'unsigned' => null,
@@ -103,7 +103,7 @@ class Doctrine_DataDict_Mssql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeTimestampType()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'datetime'));
-        
+
         $this->assertEqual($type, array('type'     => array('timestamp'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -156,7 +156,7 @@ class Doctrine_DataDict_Mssql_TestCase extends Doctrine_UnitTestCase
         $a = array('type' => 'integer', 'length' => 20, 'fixed' => false);
 
         $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'INT');
-        
+
         $a['length'] = 4;
 
         $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'INT');

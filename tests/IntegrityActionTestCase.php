@@ -38,7 +38,7 @@ class Doctrine_IntegrityAction_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('CascadeDeleteTest', 'CascadeDeleteRelatedTest', 'CascadeDeleteRelatedTest2');
-        
+
         parent::prepareTables();
     }
     public function testIntegrityActionsAreAddedIntoGlobalActionsArray()
@@ -48,7 +48,7 @@ class Doctrine_IntegrityAction_TestCase extends Doctrine_UnitTestCase
 
         $expected = array('CascadeDeleteRelatedTest' => 'CASCADE');
         $this->assertEqual($this->manager->getDeleteActions('CascadeDeleteTest'), $expected);
-        
+
         $expected = array('CascadeDeleteRelatedTest' => 'SET NULL');
         $this->assertEqual($this->manager->getUpdateActions('CascadeDeleteTest'), $expected);
     }
@@ -60,13 +60,13 @@ class Doctrine_IntegrityAction_TestCase extends Doctrine_UnitTestCase
         $c->Related[]->name             = 'r 2';
         $c->Related[0]->Related[]->name = 'r r 1';
         $c->Related[1]->Related[]->name = 'r r 2';
-        
+
         $c->save();
-        
+
         $this->connection->clear();
-        
+
         $c = $this->conn->queryOne('FROM CascadeDeleteTest c WHERE c.id = 1');
-        
+
         $c->delete();
     }
 }

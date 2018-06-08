@@ -45,7 +45,7 @@ class Doctrine_Record_Hook_TestCase extends Doctrine_UnitTestCase
     public function testInsertHooksGetInvoked()
     {
         $r = new RecordHookTest();
-        
+
         $r->name = 'record';
         $r->save();
 

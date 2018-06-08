@@ -37,7 +37,7 @@ class Doctrine_Import_Oracle_TestCase extends Doctrine_UnitTestCase
         $this->conn->setAttribute(Doctrine_Core::ATTR_EMULATE_DATABASE, true);
 
         $this->import->listSequences('table');
-        
+
         $this->assertEqual($this->adapter->pop(), 'SELECT sequence_name FROM sys.user_sequences');
     }
     public function testListTableColumnsExecutesSql()
@@ -70,42 +70,42 @@ WHERE tc.table_name = :tableName ORDER BY column_id";
     public function testListTablesExecutesSql()
     {
         $this->import->listTables();
-        
+
         $q = "SELECT * FROM user_objects WHERE object_type = 'TABLE' and object_name in (select table_name from user_tables)";
         $this->assertEqual($this->adapter->pop(), $q);
     }
     public function testListDatabasesExecutesSql()
     {
         $this->import->listDatabases();
-        
+
         $q = 'SELECT username FROM sys.user_users';
         $this->assertEqual($this->adapter->pop(), $q);
     }
     public function testListUsersExecutesSql()
     {
         $this->import->listUsers();
-        
+
         $q = 'SELECT username FROM sys.all_users';
         $this->assertEqual($this->adapter->pop(), $q);
     }
     public function testListViewsExecutesSql()
     {
         $this->import->listViews();
-        
+
         $q = 'SELECT view_name FROM sys.user_views';
         $this->assertEqual($this->adapter->pop(), $q);
     }
     public function testListFunctionsExecutesSql()
     {
         $this->import->listFunctions();
-        
+
         $q = "SELECT name FROM sys.user_source WHERE line = 1 AND type = 'FUNCTION'";
         $this->assertEqual($this->adapter->pop(), $q);
     }
     public function testListTableConstraintsExecutesSql()
     {
         $this->import->listTableConstraints('table');
-        
+
         $q = 'SELECT index_name name FROM user_constraints'
            . " WHERE table_name = 'table' OR table_name = 'TABLE'";
 

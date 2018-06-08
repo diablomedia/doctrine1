@@ -60,7 +60,7 @@ class Doctrine_Ticket_1077_TestCase extends Doctrine_UnitTestCase
 
         $numbers            = new Doctrine_Collection('Phonenumber');
         $user->Phonenumbers = $numbers;
-        
+
         $this->assertIdentical($user->phonenumbersTest, $numbers);
 
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE, $orig);

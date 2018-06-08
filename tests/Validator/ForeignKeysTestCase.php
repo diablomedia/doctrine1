@@ -5,7 +5,7 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('TestPerson', 'TestAddress');
-        
+
         parent::prepareTables();
     }
 
@@ -13,24 +13,24 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
     {
         $person  = new TestPerson();
         $address = new TestAddress();
-        
+
         $address->Person = $person;
-        
+
         $table  = $address->getTable();
         $errors = $table->validateField('person_id', $address->person_id, $address);
-        
+
         $this->assertEqual(0, $errors->count());
     }
-    
+
     public function testForeignKeyIsValidIfForeignRelationIsSet()
     {
         $person               = new TestPerson();
         $person->Addresses[0] = new TestAddress();
-        
+
         $address = $person->Addresses[0];
         $table   = $address->getTable();
         $errors  = $table->validateField('person_id', $address->person_id, $address);
-        
+
         $this->assertEqual(0, $errors->count());
     }
 
@@ -41,7 +41,7 @@ class Doctrine_Validator_ForeignKeys_TestCase extends Doctrine_UnitTestCase
 
         $address = $person->Addresses[0];
         $table   = $address->getTable();
-        
+
         $errors = $table->validateField('person_id', $address->person_id, $address);
         $this->assertEqual(0, $errors->count());
     }
@@ -66,7 +66,7 @@ class TestPerson extends Doctrine_Record
         $this->hasColumn('last_name', 'string');
         $this->hasColumn('favorite_color_id', 'integer');
     }
-    
+
     public function setUp()
     {
         $this->hasMany('TestAddress as Addresses', array('local' => 'id', 'foreign' => 'person_id'));
@@ -84,7 +84,7 @@ class TestAddress extends Doctrine_Record
         $this->hasColumn('state', 'string');
         $this->hasColumn('zip', 'string');
     }
-    
+
     public function setUp()
     {
         $this->hasOne('TestPerson as Person', array('local' => 'person_id', 'foreign' => 'id'));

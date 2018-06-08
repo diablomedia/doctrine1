@@ -55,7 +55,7 @@ class Doctrine_Ticket_DC57_TestCase extends Doctrine_UnitTestCase
         $test            = new Ticket_DC57_Article();
         $test->timestamp = '1776-07-04';
         $test->save();
-        
+
         $test->timestamp = '1492-09-01';
         $this->assertTrue($test->isModified());
     }

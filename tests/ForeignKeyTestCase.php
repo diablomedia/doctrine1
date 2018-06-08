@@ -38,15 +38,15 @@ class Doctrine_ForeignKey_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
     }
-    
+
 
     public function testExportingForeignKeysSupportsAssociationTables()
     {
         $this->dbh  = new Doctrine_Adapter_Mock('mysql');
         $this->conn = $this->manager->openConnection($this->dbh);
-        
+
         $sql = $this->conn->export->exportClassesSql(array('ClientModel', 'ClientToAddressModel', 'AddressModel'));
-        
+
         $this->assertEqual($sql, array(
                                         0 => 'CREATE TABLE clients_to_addresses (client_id BIGINT, address_id BIGINT, INDEX client_id_idx (client_id), INDEX address_id_idx (address_id), PRIMARY KEY(client_id, address_id)) ENGINE = INNODB',
                                         1 => 'CREATE TABLE clients (id INT UNSIGNED NOT NULL AUTO_INCREMENT, short_name VARCHAR(32) NOT NULL UNIQUE, PRIMARY KEY(id)) ENGINE = INNODB',

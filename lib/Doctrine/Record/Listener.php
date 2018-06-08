@@ -54,7 +54,7 @@ class Doctrine_Record_Listener implements Doctrine_Record_Listener_Interface
             $this->_options[$name] = $value;
         }
     }
-    
+
     /**
      * getOptions
      * returns all options of this template and the associated values
@@ -81,7 +81,7 @@ class Doctrine_Record_Listener implements Doctrine_Record_Listener_Interface
 
         return null;
     }
-    
+
     /**
      * @return void
      */
@@ -207,7 +207,7 @@ class Doctrine_Record_Listener implements Doctrine_Record_Listener_Interface
     public function preValidate(Doctrine_Event $event)
     {
     }
-    
+
     /**
      * @return void
      */

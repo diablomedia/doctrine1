@@ -38,7 +38,7 @@ class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
         $this->tables = array('TreeLeaf');
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
     }
@@ -107,7 +107,7 @@ class Doctrine_TreeStructure_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(isset($o2->Parent));
         $this->assertTrue($o2->Parent === $o1);
         $this->assertFalse(isset($o4->Parent));
-      
+
         $this->assertTrue(count($o1->Children) == 2);
         $this->assertTrue(count($o1->get('Children')) == 2);
 

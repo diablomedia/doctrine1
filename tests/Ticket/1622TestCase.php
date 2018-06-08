@@ -39,13 +39,13 @@ class Doctrine_Ticket_1622_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_1622_UserReference';
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
         $user       = new Ticket_1622_User();
         $user->name = 'floriank';
         $user->save();
-            
+
         $user2            = new Ticket_1622_User();
         $user2->name      = 'test';
         $user2->parents[] = $user;
@@ -56,13 +56,13 @@ class Doctrine_Ticket_1622_TestCase extends Doctrine_UnitTestCase
     {
         $user  = Doctrine_Core::getTable('Ticket_1622_User')->findOneByName('floriank');
         $child = Doctrine_Core::getTable('Ticket_1622_User')->findOneByName('test');
-        
+
         $user->unlink('children', $child->id);
-        
+
         $this->assertTrue($user->hasReference('children'));
         $this->assertTrue($user->hasRelation('children'));
         $this->assertEqual(count($user->children), 0);
-        
+
         $user->save();
 
         $user->refresh();
@@ -70,7 +70,7 @@ class Doctrine_Ticket_1622_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual(count($user->children), 0);
     }
 }
-    
+
 class Ticket_1622_User extends Doctrine_Record
 {
     public function setTableDefinition()
@@ -89,16 +89,16 @@ class Ticket_1622_User extends Doctrine_Record
                                                 'refClassRelationAlias' => 'childrenLinks'
                                                 )
         );
-                                                
+
         $this->hasMany(
-                                                
+
             'Ticket_1622_User as children',
                                                  array('local'           => 'child_id',
                                                  'foreign'               => 'parent_id',
                                                  'refClass'              => 'Ticket_1622_UserReference',
                                                  'refClassRelationAlias' => 'parentLinks'
                                                  )
-                                                
+
         );
     }
 }

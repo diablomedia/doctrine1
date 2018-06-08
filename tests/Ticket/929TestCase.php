@@ -42,7 +42,7 @@ class Doctrine_Ticket_929_TestCase extends Doctrine_UnitTestCase
 
         parent::prepareData();
     }
- 
+
     public function prepareTables()
     {
         $this->tables   = array();
@@ -53,7 +53,7 @@ class Doctrine_Ticket_929_TestCase extends Doctrine_UnitTestCase
 
         parent::prepareTables();
     }
-  
+
     public function testTicket()
     {
         try {

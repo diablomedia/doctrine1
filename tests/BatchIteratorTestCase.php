@@ -48,18 +48,18 @@ class Doctrine_BatchIterator_TestCase extends Doctrine_UnitTestCase
             $i++;
         }
         $this->assertTrue($i == $entities->count());
-        
+
         $user = $graph->query('FROM User');
         foreach ($user[1]->Group as $group) {
             $this->assertTrue(is_string($group->name));
         }
-        
+
         $user       = new User();
         $user->name = 'tester';
-        
+
         $user->Address[0]->address = 'street 1';
         $user->Address[1]->address = 'street 2';
-        
+
         $this->assertEqual($user->name, 'tester');
         $this->assertEqual($user->Address[0]->address, 'street 1');
         $this->assertEqual($user->Address[1]->address, 'street 2');
@@ -70,12 +70,12 @@ class Doctrine_BatchIterator_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($a, array('street 1', 'street 2'));
 
         $user->save();
-        
+
         $user = $user->getTable()->find($user->id);
         $this->assertEqual($user->name, 'tester');
         $this->assertEqual($user->Address[0]->address, 'street 1');
         $this->assertEqual($user->Address[1]->address, 'street 2');
-        
+
         $user = $user->getTable()->find($user->id);
         $a    = array();
         foreach ($user->Address as $address) {

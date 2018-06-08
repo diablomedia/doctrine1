@@ -12,7 +12,7 @@ class TreeLeaf extends Doctrine_Record
         $this->hasOne('TreeLeaf as Parent', array(
             'local' => 'parent_id', 'foreign' => 'id'
         ));
-        
+
         $this->hasMany('TreeLeaf as Children', array(
             'local' => 'id', 'foreign' => 'parent_id'
         ));

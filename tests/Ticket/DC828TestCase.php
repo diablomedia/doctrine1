@@ -33,7 +33,7 @@
 class Doctrine_Ticket_DC828_TestCase extends Doctrine_UnitTestCase
 {
     private $sqlStackCounter = 0;
-    
+
     public function prepareTables()
     {
         $this->tables[] = 'Ticket_DC828_Model';
@@ -59,14 +59,14 @@ class Doctrine_Ticket_DC828_TestCase extends Doctrine_UnitTestCase
     public function testLimitOffsetWithoutOrderBy()
     {
         $exception = false;
-        
+
         try {
             Doctrine_Query::create()->select()->from('Ticket_DC828_Model')->limit(10)->offset(5)->execute();
         } catch (Doctrine_Connection_Exception $e) {
             $exception = true;
             $this->assertEqual($e->getMessage(), 'OFFSET cannot be used in MSSQL without ORDER BY due to emulation reasons.');
         }
-        
+
         $this->assertTrue($exception);
     }
 

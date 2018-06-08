@@ -2,9 +2,9 @@
 class UnitTestCase
 {
     protected $_passed = 0;
-    
+
     protected $_failed = 0;
-    
+
     protected $_messages = array();
 
     protected static $_passesAndFails = array('passes' => array(), 'fails' => array());
@@ -156,7 +156,7 @@ class UnitTestCase
                 $this->setUp();
 
                 $this->$method();
-                
+
                 $this->tearDown();
             }
         }

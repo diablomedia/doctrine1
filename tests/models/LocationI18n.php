@@ -7,7 +7,7 @@ class LocationI18n extends Doctrine_Record
         $this->hasColumn('id', 'integer', 10, array('primary' => true));
         $this->hasColumn('culture', 'string', 2);
     }
-    
+
     public function setUp()
     {
         $this->hasOne('Location as Location', array('local' => 'id'));

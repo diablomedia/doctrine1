@@ -38,15 +38,15 @@ class Doctrine_Ticket_786_TestCase extends Doctrine_UnitTestCase
         // So you can access User->Phonenumber instanceof Doctrine_Collection
         $query = new Doctrine_Query();
         $query->from('User u, u.Phonenumber p');
-    
+
         $user1 = $query->execute()->getFirst();
-    
+
         // Now query for the same data, without the Phonenumber
         $query = new Doctrine_Query();
         $query->from('User u');
-    
+
         $user2 = $query->execute()->getFirst();
-    
+
         // Now if we try and see if Phonenumber is present in $user1 after the 2nd query
         if (! isset($user1->Phonenumber)) {
             $this->fail('Phonenumber overwritten by 2nd query hydrating');

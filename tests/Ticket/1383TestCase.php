@@ -85,7 +85,7 @@ class Ticket_1383_Brand extends Doctrine_Record
         $this->hasColumn('id', 'integer', null, array('primary' => true, 'autoincrement' => true));
         $this->hasColumn('name', 'string', 255, array('notnull' => true));
     }
-    
+
     public function setUp()
     {
         $this->hasMany(

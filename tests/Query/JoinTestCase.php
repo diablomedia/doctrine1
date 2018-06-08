@@ -55,7 +55,7 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
 
         $c->City[0]->District->name = 'District 1';
         $c->City[2]->District->name = 'District 2';
-        
+
         $this->assertTrue(gettype($c->City[0]->District), 'object');
         $this->assertTrue(gettype($c->City[0]->District->name), 'string');
 
@@ -115,8 +115,8 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT r.id AS r__id, r.name AS r__name, r2.id AS r2__id, r2.name AS r2__name, r2.country_id AS r2__country_id, r2.district_id AS r2__district_id FROM record__country r INNER JOIN record__city r2 ON r.id = r2.country_id AND (LOWER(UPPER(r2.name)) LIKE LOWER(?)) WHERE (r.id = ?)');
     }
-    
-    
+
+
     public function testQueryMultipleAggFunctionInJoins2()
     {
         $q = new Doctrine_Query();
@@ -128,8 +128,8 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($q->getSqlQuery(), 'SELECT r.id AS r__id, r.name AS r__name, r2.id AS r2__id, r2.name AS r2__name, r2.country_id AS r2__country_id, r2.district_id AS r2__district_id FROM record__country r INNER JOIN record__city r2 ON r.id = r2.country_id AND (LOWER(UPPER(r2.name)) LIKE CONCAT(UPPER(?), UPPER(r2.name))) WHERE (r.id = ?)');
     }
-    
-    
+
+
     public function testQueryMultipleAggFunctionInJoins3()
     {
         $q = new Doctrine_Query();
@@ -259,7 +259,7 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
     {
         $q    = new Doctrine_Query();
         $coll = $q->from('Record_City c INDEXBY c.name')->fetchArray();
-        
+
         $this->assertTrue(isset($coll['City 1']));
         $this->assertTrue(isset($coll['City 2']));
         $this->assertTrue(isset($coll['City 3']));
@@ -282,7 +282,7 @@ class Doctrine_Query_Join_TestCase extends Doctrine_UnitTestCase
         try {
             $q       = new Doctrine_Query();
             $country = $q->from('Record_Country c LEFT JOIN c.City c2 INDEXBY c2.unknown')->fetchOne();
-        
+
             $this->fail();
         } catch (Doctrine_Query_Exception $e) {
             $this->pass();

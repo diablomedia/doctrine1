@@ -36,7 +36,7 @@ class Doctrine_Relation_ManyToMany_TestCase extends Doctrine_UnitTestCase
     public function testJoinComponent()
     {
         $component = new JC3();
-        
+
         try {
             $rel = $component->getTable()->getRelation('M2MTest2');
             $this->pass();
@@ -86,7 +86,7 @@ class Doctrine_Relation_ManyToMany_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
         $this->assertTrue($rel instanceof Doctrine_Relation_Association);
-        
+
         $this->assertTrue($component->RTC3 instanceof Doctrine_Collection);
     }
 
@@ -102,7 +102,7 @@ class Doctrine_Relation_ManyToMany_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
         $this->assertTrue($rel instanceof Doctrine_Relation_Association);
-        
+
         $this->assertTrue($component->RTC1 instanceof Doctrine_Collection);
     }
 
@@ -117,7 +117,7 @@ class Doctrine_Relation_ManyToMany_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
         $this->assertTrue($rel instanceof Doctrine_Relation_Association);
-        
+
         $this->assertTrue($component->RTC1 instanceof Doctrine_Collection);
     }
 
@@ -129,17 +129,17 @@ class Doctrine_Relation_ManyToMany_TestCase extends Doctrine_UnitTestCase
         $component->RTC1[0]->name = '1';
         $component->RTC1[1]->name = '2';
         $component->name          = '2';
-        
+
         $count = $this->connection->count();
 
         $component->save();
 
         $this->assertEqual($this->connection->count(), ($count + 5));
-        
+
         $this->assertEqual($component->RTC1->count(), 2);
-        
+
         $component = $component->getTable()->find($component->id);
-        
+
         $this->assertEqual($component->RTC1->count(), 2);
 
         // check that it doesn't matter saving the other M2M components as well
@@ -167,15 +167,15 @@ class Doctrine_Relation_ManyToMany_TestCase extends Doctrine_UnitTestCase
         $component->RTC2[0]->name = '1';
         $component->RTC2[1]->name = '2';
         $component->name          = '2';
-        
+
         $count = $this->connection->count();
 
         $component->save();
 
         $this->assertEqual($this->connection->count(), ($count + 5));
-        
+
         $this->assertEqual($component->RTC2->count(), 2);
-        
+
         $component = $component->getTable()->find($component->id);
 
         $this->assertEqual($component->RTC2->count(), 2);
@@ -190,24 +190,24 @@ class Doctrine_Relation_ManyToMany_TestCase extends Doctrine_UnitTestCase
         $component->save();
 
         $this->assertEqual($this->connection->count(), ($count + 3));
-        
+
         $this->assertEqual($component->RTC1->count(), 2);
-        
+
         $component = $component->getTable()->find($component->id);
-        
+
         $this->assertEqual($component->RTC1->count(), 2);
     }
-    
+
     public function testManyToManySimpleUpdate()
     {
         $component = $this->connection->getTable('M2MTest')->find(1);
-        
+
         $this->assertEqual($component->name, 2);
-        
+
         $component->name = 'changed name';
-        
+
         $component->save();
-        
+
         $this->assertEqual($component->name, 'changed name');
     }
 }

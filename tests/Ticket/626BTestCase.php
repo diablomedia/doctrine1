@@ -70,7 +70,7 @@ class Doctrine_Ticket_626B_TestCase extends Doctrine_UnitTestCase
 
         $this->newStudentCourse($student1, $course1);
         $this->newStudentCourse($student1, $course2);
-      
+
         try {
             $group = $student1->get('Group');
             $this->pass();
@@ -98,7 +98,7 @@ class T626B_Student extends Doctrine_Record
         $this->hasColumn('s_g_id as group_id', 'varchar', 30, array('notnull' => true));
         $this->hasColumn('s_name as name', 'varchar', 50, array());
     }
-  
+
     public function setUp()
     {
         $this->hasMany('T626_Course as StudyCourses', array('refClass' => 'T626B_StudentCourse', 'local' => 'sc_student_id', 'foreign' => 'sc_course_id'));
@@ -115,7 +115,7 @@ class T626_Group extends Doctrine_Record
         $this->hasColumn('g_id as id', 'varchar', 30, array(  'primary' => true,));
         $this->hasColumn('g_name as name', 'varchar', 50, array());
     }
-  
+
     public function setUp()
     {
         $this->hasMany(
@@ -135,7 +135,7 @@ class T626_Course extends Doctrine_Record
         $this->hasColumn('c_id as id', 'varchar', 20, array(  'primary' => true,));
         $this->hasColumn('c_name as name', 'varchar', 50, array());
     }
-  
+
     public function setUp()
     {
         $this->hasMany('T626B_Student as Students', array('refClass' => 'T626B_StudentCourse', 'local' => 'sc_course_id', 'foreign' => 'sc_student_id'));
@@ -152,7 +152,7 @@ class T626B_StudentCourse extends Doctrine_Record
         $this->hasColumn('sc_course_id as course_id', 'varchar', 20, array(  'primary' => true,));
         $this->hasColumn('sc_remark  as remark', 'varchar', 500, array());
     }
-  
+
     public function setUp()
     {
         $this->hasOne('T626B_Student as Student', array('local' => 'sc_student_id', 'foreign' => 's_id'));

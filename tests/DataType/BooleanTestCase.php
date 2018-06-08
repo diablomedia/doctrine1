@@ -40,7 +40,7 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase
         $this->tables = array('BooleanTest');
         parent::prepareTables();
     }
-   
+
     public function testSetFalse()
     {
         $test             = new BooleanTest();
@@ -60,12 +60,12 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase
         $test->is_working = true;
         $this->assertIdentical($test->is_working, true);
         $test->save();
-        
+
         $test->refresh();
         $this->assertIdentical($test->is_working, true);
-        
+
         $this->connection->clear();
-        
+
         $test = $test->getTable()->find($test->id);
         $this->assertIdentical($test->is_working, true);
     }
@@ -113,7 +113,7 @@ class Doctrine_DataType_Boolean_TestCase extends Doctrine_UnitTestCase
 
         $test->refresh();
         $this->assertIdentical($test->is_working, null);
-        
+
         $test                     = new BooleanTest();
         $test->is_working_notnull = null;
 

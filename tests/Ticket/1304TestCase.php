@@ -36,7 +36,7 @@ class Doctrine_Ticket_1304_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Doctrine_Ticket_1304_Slug';
         parent::prepareTables();
     }
-  
+
     public function testTicket()
     {
         // run 1

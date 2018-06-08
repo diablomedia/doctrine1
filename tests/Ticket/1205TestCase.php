@@ -8,21 +8,21 @@ class Doctrine_Ticket_1205_TestCase extends Doctrine_UnitTestCase
         $user->first_name = 'Slick';
         $user->last_name  = 'Rick';
         $user->save();
-  
+
         $address          = new Ticket1205TestAddress();
         $address->id      = 1;
         $address->user_id = 1;
         $address->city    = 'Anywhere';
         $address->save();
     }
-    
+
     public function prepareTables()
     {
         $this->tables[] = 'Ticket1205TestUser';
         $this->tables[] = 'Ticket1205TestAddress';
         parent::prepareTables();
     }
-    
+
     public function testTicket()
     {
         try {

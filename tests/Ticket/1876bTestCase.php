@@ -21,7 +21,7 @@ class Doctrine_Ticket_1876b_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
     }
-    
+
     public function prepareTables()
     {
         try {
@@ -30,11 +30,11 @@ class Doctrine_Ticket_1876b_TestCase extends Doctrine_UnitTestCase
             $this->conn->exec('DROP TABLE t1876b_company');
         } catch (Doctrine_Connection_Exception $e) {
         }
-        
+
         $this->tables = array(
             'T1876b_Recipe', 'T1876b_Company', 'T1876b_RecipeIngredient'
         );
-        
+
         parent::prepareTables();
     }
 
@@ -47,16 +47,16 @@ class Doctrine_Ticket_1876b_TestCase extends Doctrine_UnitTestCase
             $company->name = 'Test Company ' . ($i + 1);
             $company->save($this->connection);
         }
-        
+
         for ($i = 0; $i < 10; $i++) {
             $recipe = new T1876b_Recipe();
-            
+
             $recipe->name                      = 'test ' . $i;
             $recipe->company_id                = ($i % 3 == 0) ? 1 : 2;
             $recipe->RecipeIngredients[]->name = 'test';
-            
+
             $recipe->save($this->connection);
-            
+
             if ($i % 2 == 0) {
                 $recipe->delete($this->connection);
             }
@@ -68,7 +68,7 @@ class Doctrine_Ticket_1876b_TestCase extends Doctrine_UnitTestCase
                 ->leftJoin('r.Company c')
                 ->leftJoin('r.RecipeIngredients')
                 ->addWhere('c.id = ?', 2);
-            
+
             $this->assertEqual(
                 $q->getCountSqlQuery(),
                 'SELECT COUNT(*) AS num_results FROM ('
@@ -96,12 +96,12 @@ class T1876b_Recipe extends Doctrine_Record
         $this->hasColumn('company_id', 'integer', null);
         $this->hasColumn('name', 'string', 255);
     }
-    
+
     public function setUp()
     {
         $this->hasOne('T1876b_Company as Company', array('local' => 'company_id', 'foreign' => 'id'));
         $this->hasMany('T1876b_RecipeIngredient as RecipeIngredients', array('local' => 'id', 'foreign' => 'recipe_id'));
-        
+
         $this->actAs('SoftDelete');
     }
 }
@@ -113,11 +113,11 @@ class T1876b_Company extends Doctrine_Record
         $this->hasColumn('id', 'integer', null, array('autoincrement' => true, 'primary' => true));
         $this->hasColumn('name', 'string', 255);
     }
-    
+
     public function setUp()
     {
         $this->hasMany('T1876b_Recipe as Recipes', array('local' => 'id', 'foreign' => 'company_id'));
-        
+
         $this->actAs('SoftDelete');
     }
 }
@@ -130,11 +130,11 @@ class T1876b_RecipeIngredient extends Doctrine_Record
         $this->hasColumn('recipe_id', 'integer', null);
         $this->hasColumn('name', 'string', 255);
     }
-    
+
     public function setUp()
     {
         $this->hasOne('T1876b_Recipe as Recipe', array('local' => 'recipe_id', 'foreign' => 'id'));
-        
+
         $this->actAs('SoftDelete');
     }
 }

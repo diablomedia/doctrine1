@@ -43,7 +43,7 @@ class Doctrine_Ticket_1674_TestCase extends Doctrine_UnitTestCase
             ->execute();
 
         $xml = $users->exportTo('xml');
-    
+
         // Enforce NOEMPTYTAG for backwards compatibility
         $doc = new DOMDocument();
         $doc->loadXML($xml);

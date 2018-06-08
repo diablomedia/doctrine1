@@ -39,7 +39,7 @@ class Doctrine_Query_From_TestCase extends Doctrine_UnitTestCase
     public function testCount()
     {
         $count = Doctrine_Query::create()->from('User')->count();
-    
+
         $this->assertEqual($count, 0);
     }
     public function testLeftJoin()

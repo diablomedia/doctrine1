@@ -5,7 +5,7 @@ class MyUser extends Doctrine_Record
     {
         $this->hasColumn('name', 'string');
     }
-    
+
     public function setUp()
     {
         $this->hasMany('MyOneThing', array(

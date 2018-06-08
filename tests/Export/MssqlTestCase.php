@@ -44,7 +44,7 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
         $this->export->alterTable('user', array(
             'name' => 'userlist'
         ));
-        
+
         $this->assertEqual($this->adapter->pop(), "EXECUTE sp_RENAME '[user]', 'userlist';");
     }
     public function testAlterTableRename()
@@ -129,7 +129,7 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
         $name = 'mytable';
 
         $fields = array('id' => array('type' => 'integer', 'unsigned' => 1));
-        
+
 
         $this->export->createTable($name, $fields);
 
@@ -179,7 +179,7 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
     public function testCreateDatabaseExecutesSql()
     {
         $this->export->createDatabase('db');
-        
+
         $this->assertEqual($this->adapter->pop(), 'CREATE DATABASE db');
     }
     public function testDropDatabaseExecutesSql()
@@ -222,7 +222,7 @@ class Doctrine_Export_Mssql_TestCase extends Doctrine_UnitTestCase
                          );
 
         $sql = $this->export->createTableSql($name, $fields, $options);
-        
+
         $this->assertEqual(count($sql), 2);
         $this->assertEqual($sql[0], 'CREATE TABLE mytable (id BIT NOT NULL, lang INT NOT NULL, PRIMARY KEY([id], [lang]))');
         $this->assertEqual($sql[1], 'ALTER TABLE [mytable] ADD FOREIGN KEY ([id], [lang]) REFERENCES [sometable]([id], [lang])');

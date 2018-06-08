@@ -52,7 +52,7 @@ class Doctrine_Search_QueryWeight_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
-    
+
     public function testSearchSupportsMixingOfOperatorsParenthesisAndWeights()
     {
         $q = new Doctrine_Search_Query('SearchTestIndex');
@@ -123,7 +123,7 @@ class Doctrine_Search_QueryWeight_TestCase extends Doctrine_UnitTestCase
                             )
                 GROUP BY foreign_id
                 ORDER BY relevancy_sum";
-                
+
         $this->assertEqual($q->getSqlQuery(), $sql);
     }
 }

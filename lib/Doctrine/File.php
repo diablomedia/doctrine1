@@ -44,7 +44,7 @@ class Doctrine_File extends Doctrine_Record
     {
         $this->actAs('Searchable', array('className' => 'Doctrine_File_Index',
                                          'fields'    => array('url', 'content')));
-        
+
         $this->index('url', array('fields' => array('url')));
     }
 

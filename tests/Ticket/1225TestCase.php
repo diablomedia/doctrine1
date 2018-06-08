@@ -6,7 +6,7 @@ class Doctrine_Ticket_1225_TestCase extends Doctrine_UnitTestCase
         $this->tables = array('Ticket_1225_Tree');
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
     }

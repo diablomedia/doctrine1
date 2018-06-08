@@ -296,7 +296,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
         $cli = new Doctrine_Cli_TestCase_PassiveCli();
 
         $directory = $this->getFixturesPath() . '/foo';
-    
+
         try {
             $cli->loadTasks($directory);
         } catch (InvalidArgumentException $e) {
@@ -305,7 +305,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
                 return;
             }
         }
-    
+
         $this->fail();
     }
 
@@ -315,9 +315,9 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
     public function testLoadtasksLoadsDoctrineStyleTasksFromTheSpecifiedDirectory()
     {
         $cli = new Doctrine_Cli_TestCase_PassiveCli();
-    
+
         $this->assertEqual(array(), $cli->getRegisteredTasks());
-    
+
         $loadedTaskName   = $cli->loadTasks($this->getFixturesPath() . '/' . __FUNCTION__);
         $expectedTaskName = array('doctrine-style-task' => 'doctrine-style-task');
         $this->assertEqual($expectedTaskName, $loadedTaskName);
@@ -351,7 +351,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
         $expectedTaskName = array_combine($this->doctrineTaskClassName, $this->doctrineTaskClassName);
         $this->assertEqual($expectedTaskName, array_intersect_assoc($expectedTaskName, $loadedTaskNames));
     }
-    
+
     /*
      * Exists only to ensure the method behaves the same as it did before refactoring
      */
@@ -369,11 +369,11 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
         $cli = new Doctrine_Cli_TestCase_NoisyCli();
         $cli->run(array());
         $this->pass();
-    
+
         $cli = new Doctrine_Cli_TestCase_NoisyCli(array('rethrow_exceptions' => false));
         $cli->run(array());
         $this->pass();
-    
+
         $cli = new Doctrine_Cli_TestCase_NoisyCli(array('rethrow_exceptions' => 0));
         $cli->run(array());
         $this->pass();
@@ -387,7 +387,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
         ob_start();
 
         $cli = new Doctrine_Cli_TestCase_NoisyCli(array('rethrow_exceptions' => 1));
-    
+
         try {
             $cli->run(array());
             //The same exception must be re-thrown...
@@ -398,7 +398,7 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
                 return;
             }
         }
-    
+
         $this->fail();
 
         ob_end_clean();

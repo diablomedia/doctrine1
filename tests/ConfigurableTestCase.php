@@ -145,7 +145,7 @@ class Doctrine_Configurable_TestCase extends Doctrine_UnitTestCase
     public function testValidatorAttributeAcceptsBooleans()
     {
         $this->manager->setAttribute(Doctrine_Core::ATTR_VALIDATE, true);
-        
+
         $this->assertEqual($this->manager->getAttribute(Doctrine_Core::ATTR_VALIDATE), true);
         $this->manager->setAttribute(Doctrine_Core::ATTR_VALIDATE, false);
     }
@@ -185,7 +185,7 @@ class Doctrine_Configurable_TestCase extends Doctrine_UnitTestCase
         $original = $this->connection->getTable('User')->getAttribute(Doctrine_Core::ATTR_COLL_KEY);
         try {
             $this->connection->getTable('User')->setAttribute(Doctrine_Core::ATTR_COLL_KEY, 'name');
-            
+
             $this->pass();
         } catch (Exception $e) {
             $this->fail();
@@ -197,7 +197,7 @@ class Doctrine_Configurable_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $this->connection->getTable('User')->setAttribute(Doctrine_Core::ATTR_COLL_KEY, 'unknown');
-            
+
             $this->fail();
         } catch (Exception $e) {
             $this->pass();
@@ -208,7 +208,7 @@ class Doctrine_Configurable_TestCase extends Doctrine_UnitTestCase
     {
         try {
             $this->connection->setAttribute(Doctrine_Core::ATTR_COLL_KEY, 'name');
-            
+
             $this->fail();
         } catch (Exception $e) {
             $this->pass();

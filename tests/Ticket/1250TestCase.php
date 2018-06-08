@@ -36,7 +36,7 @@ class Doctrine_Ticket_1250_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Doctrine_Ticket_1250_i18n';
         parent::prepareTables();
     }
-  
+
     public function testTicket()
     {
         try {
@@ -52,7 +52,7 @@ class Doctrine_Ticket_1250_TestCase extends Doctrine_UnitTestCase
         } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
-      
+
         $this->assertEqual(1, $r->id);
     }
 }

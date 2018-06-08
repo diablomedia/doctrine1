@@ -35,7 +35,7 @@ class Doctrine_Transaction_Pgsql_TestCase extends Doctrine_UnitTestCase
     public function testCreateSavePointExecutesSql()
     {
         $this->transaction->beginTransaction('mypoint');
-        
+
         $this->assertEqual($this->adapter->pop(), 'SAVEPOINT mypoint');
     }
     public function testReleaseSavePointExecutesSql()

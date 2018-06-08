@@ -36,11 +36,11 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
     {
         return $this->dataDict->getPortableDeclaration(array('type' => $type, 'name' => 'colname', 'length' => 2, 'fixed' => true));
     }
- 
+
     public function testGetPortableDeclarationSupportsNativeBlobTypes()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'blob'));
-        
+
         $this->assertEqual($type, array('type'     => array('blob'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -59,7 +59,7 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
-        
+
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'longblob'));
 
         $this->assertEqual($type, array('type'     => array('blob'),
@@ -85,14 +85,14 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeTimestampTypes()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'timestamp'));
-        
+
         $this->assertEqual($type, array('type'     => array('timestamp'),
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'datetime'));
-        
+
         $this->assertEqual($type, array('type'     => array('timestamp'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -126,21 +126,21 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeFloatTypes()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'float'));
-        
+
         $this->assertEqual($type, array('type'     => array('float'),
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'double'));
-        
+
         $this->assertEqual($type, array('type'     => array('float'),
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'real'));
-        
+
         $this->assertEqual($type, array('type'     => array('float'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -160,7 +160,7 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeDateType()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'date'));
-        
+
         $this->assertEqual($type, array('type'     => array('date'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -170,7 +170,7 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeTimeType()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'time'));
-        
+
         $this->assertEqual($type, array('type'     => array('time'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -201,13 +201,13 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
                                         'fixed'    => false));
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'unknown', 'length' => 1));
-        
+
         $this->assertEqual($type, array('type'     => array('string', 'boolean'),
                                         'length'   => 1,
                                         'unsigned' => null,
                                         'fixed'    => true));
 
-        
+
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'char', 'length' => 1));
 
         $this->assertEqual($type, array('type'     => array('string', 'boolean'),
@@ -217,7 +217,7 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
 
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'bpchar', 'length' => 1));
-        
+
         $this->assertEqual($type, array('type'     => array('string', 'boolean'),
                                         'length'   => 1,
                                         'unsigned' => null,
@@ -254,7 +254,7 @@ class Doctrine_DataDict_Pgsql_TestCase extends Doctrine_UnitTestCase
         $a = array('type' => 'integer', 'length' => 20, 'fixed' => false);
 
         $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'BIGINT');
-        
+
         $a['length'] = 4;
 
         $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'INT');

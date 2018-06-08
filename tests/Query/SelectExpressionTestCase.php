@@ -54,13 +54,13 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
     }
-    
+
     public function testSubtractionExpression()
     {
         $query = new Doctrine_Query();
         $query->select('u.*, (u.id - u.id) subtraction');
         $query->from('User u');
-        
+
         try {
             $users = $query->execute();
             $this->pass();
@@ -68,13 +68,13 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
     }
-    
+
     public function testDivisionExpression()
     {
         $query = new Doctrine_Query();
         $query->select('u.*, (u.id/u.id) division');
         $query->from('User u');
-        
+
         try {
             $users = $query->execute();
             $this->pass();
@@ -82,13 +82,13 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
     }
-    
+
     public function testMultiplicationExpression()
     {
         $query = new Doctrine_Query();
         $query->select('u.*, (u.id * u.id) multiplication');
         $query->from('User u');
-        
+
         try {
             $users = $query->execute();
             $this->pass();
@@ -96,14 +96,14 @@ class Doctrine_Query_SelectExpression_TestCase extends Doctrine_UnitTestCase
             $this->fail();
         }
     }
-    
+
     public function testOrderByExpression()
     {
         $query = new Doctrine_Query();
         $query->select('u.*, (u.id * u.id) multiplication');
         $query->from('User u');
         $query->orderby('multiplication asc');
-        
+
         try {
             $users = $query->execute();
             $this->pass();

@@ -39,12 +39,12 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_1623_UserReference';
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
         $firstUser = null;
         $oldUser   = null;
-        
+
         for ($i = 1; $i <= 20; $i++) {
             $userI       = $user       = new Ticket_1623_User();
             $userI->name = "test$i";
@@ -69,14 +69,14 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
     public function testPerformance()
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
-        
+
         $newChild       = new Ticket_1623_User();
         $newChild->name = 'myChild';
         $newChild->save();
-        
+
         $user             = Doctrine_Core::getTable('Ticket_1623_User')->findOneByName('floriank');
         $user->children[] = $newChild;
-        
+
         $start = microtime(true);
         $user->save();
         $end  = microtime(true);
@@ -84,7 +84,7 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
         //assuming save() should not take longer than one second
         $this->assertTrue($diff < 1);
     }
-    
+
     public function testImplicitSave()
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_ALL);
@@ -92,12 +92,12 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
 
         $newChild       = new Ticket_1623_User();
         $newChild->name = 'myGrandGrandChild';
-        
+
         $user                                       = Doctrine_Core::getTable('Ticket_1623_User')->findOneByName('floriank');
         $user->children[0]->children[0]->children[] = $newChild;
-        
+
         $user->save();
-        
+
         $user = Doctrine_Core::getTable('Ticket_1623_User')->findByName('myGrandGrandChild');
         //as of Doctrine's default behaviour $newChild should have
         //been implicitly saved with $user->save()
@@ -107,7 +107,7 @@ class Doctrine_Ticket_1623_TestCase extends Doctrine_UnitTestCase
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_CASCADE_SAVES, true);
     }
 }
-    
+
 class Ticket_1623_User extends Doctrine_Record
 {
     public function setTableDefinition()
@@ -126,19 +126,19 @@ class Ticket_1623_User extends Doctrine_Record
                                                 'refClassRelationAlias' => 'childrenLinks'
                                                 )
         );
-                                                
+
         $this->hasMany(
-                                                
+
             'Ticket_1623_User as children',
                                                  array('local'           => 'childId',
                                                  'foreign'               => 'parentId',
                                                  'refClass'              => 'Ticket_1623_UserReference',
                                                  'refClassRelationAlias' => 'parentLinks'
                                                  )
-                                                
+
         );
     }
-    
+
     protected function validate()
     {
         // lets get some silly load in the validation:
@@ -149,13 +149,13 @@ class Ticket_1623_User extends Doctrine_Record
                 $unwantedName = true;
             }
         }
-        
+
         foreach ($this->children as $child) {
             if ($child->name == 'caesar') {
                 $unwantedName = true;
             }
         }
-        
+
         if ($unwantedName) {
             $this->errorStack()->add('children', 'no child should have the name \'caesar\'');
         }

@@ -18,7 +18,8 @@ return PhpCsFixer\Config::create()
         'single_quote' => true,
         'array_syntax' => ['syntax' => 'long'],
         'concat_space' => ['spacing' => 'one'],
-        'psr0' => true
+        'psr0' => true,
+        'no_whitespace_in_blank_line' => true,
     ])
     ->setUsingCache(true)
     ->setFinder($finder);

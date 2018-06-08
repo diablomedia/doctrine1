@@ -14,7 +14,7 @@
 class Doctrine_Ticket_428_TestCase extends Doctrine_UnitTestCase
 {
     private $_albums;
-    
+
     public function prepareData()
     {
     }
@@ -40,7 +40,7 @@ class Doctrine_Ticket_428_TestCase extends Doctrine_UnitTestCase
         foreach ($this->_albums as $album) {
             $album->clearRelated();
         }
-        
+
         $q = new Doctrine_Query();
 
         $q->select('a.name, COUNT(s.id) count')->from('Album a')->leftJoin('a.Song s')->groupby('a.id');

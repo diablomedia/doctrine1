@@ -70,7 +70,7 @@ class Ticket_DC241_Poll extends Doctrine_Record
         $this->hasColumn('id_category', 'integer', null, array('notnull' => true));
         $this->hasColumn('question', 'string', 256);
     }
-    
+
     public function setUp()
     {
         $this->hasMany('Ticket_DC241_PollAnswer as Answers', array('local' => 'id', 'foreign' => 'id_poll', 'orderBy' => 'position'));
@@ -82,13 +82,13 @@ class Ticket_DC241_PollAnswer extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('module_polls_answers');
-        
+
         $this->hasColumn('id_poll', 'integer', null, array('notnull' => true));
         $this->hasColumn('answer', 'string', 256);
         $this->hasColumn('votes', 'integer', null, array('notnull' => true, 'default' => 0));
         $this->hasColumn('position', 'integer');
     }
-    
+
     public function setUp()
     {
         $this->hasOne('Ticket_DC241_Poll as Poll', array('local' => 'id_poll', 'foreign' => 'id', 'onDelete' => 'CASCADE'));

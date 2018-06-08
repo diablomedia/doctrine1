@@ -61,7 +61,7 @@ class Doctrine_Query_Subquery_TestCase extends Doctrine_UnitTestCase
     {
         // ticket #307
         $q = new Doctrine_Query();
-        
+
         $q->parseDqlQuery("SELECT u.name, (SELECT COUNT(p.id) FROM Phonenumber p WHERE p.entity_id = u.id) pcount FROM User u WHERE u.name = 'zYne' LIMIT 1");
 
         $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id, e.name AS e__name, (SELECT COUNT(p.id) AS p__0 FROM phonenumber p WHERE (p.entity_id = e.id)) AS e__0 FROM entity e WHERE (e.name = 'zYne' AND (e.type = 0)) LIMIT 1");
@@ -80,7 +80,7 @@ class Doctrine_Query_Subquery_TestCase extends Doctrine_UnitTestCase
     {
         // ticket DC-706
         $q = new Doctrine_Query();
-        
+
         $q->parseDqlQuery("SELECT u.name, (SQL:SELECT COUNT(p.id) AS p__0 FROM phonenumber p WHERE (p.entity_id = e.id)) as pcount FROM User u WHERE u.name = 'zYne' LIMIT 1");
 
         $this->assertEqual($q->getSqlQuery(), "SELECT e.id AS e__id, e.name AS e__name, (SELECT COUNT(p.id) AS p__0 FROM phonenumber p WHERE (p.entity_id = e.id)) AS e__0 FROM entity e WHERE (e.name = 'zYne' AND (e.type = 0)) LIMIT 1");
@@ -99,9 +99,9 @@ class Doctrine_Query_Subquery_TestCase extends Doctrine_UnitTestCase
     {
         // ticket #307
         $q = new Doctrine_Query();
-        
+
         $q->parseDqlQuery("SELECT u.name, (SELECT COUNT(w.id) FROM User w WHERE w.id = u.id) pcount FROM User u WHERE u.name = 'zYne' LIMIT 1");
-        
+
         $this->assertNotEqual($q->getSqlQuery(), "SELECT e.id AS e__id, e.name AS e__name, (SELECT COUNT(e.id) AS e__0 FROM entity e WHERE e.id = e.id AND (e.type = 0)) AS e__0 FROM entity e WHERE e.name = 'zYne' AND (e.type = 0) LIMIT 1");
     }
 
@@ -138,11 +138,11 @@ class Doctrine_Query_Subquery_TestCase extends Doctrine_UnitTestCase
           ->groupby('u.id')
           ->having('num_albums > 0')
           ->limit(5);
-        
+
         try {
             $this->assertEqual($q->getCountSqlQuery(), 'SELECT COUNT(*) AS num_results FROM (SELECT e.id, COUNT(a.id) AS a__0 FROM entity e LEFT JOIN album a ON e.id = a.user_id WHERE (e.type = 0) GROUP BY e.id HAVING a__0 > 0) dctrn_count_query');
             $q->count();
-            
+
             $this->pass();
         } catch (Doctrine_Exception $e) {
             $this->fail($e->getMessage());

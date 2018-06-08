@@ -52,7 +52,7 @@ END;
 
         $path = dirname(__FILE__) . '/../tmp';
         $import->importSchema($yml, 'yml', $path);
-        
+
         require_once($path . '/generated/BaseTicket_1527_User.php');
         require_once($path . '/Ticket_1527_User.php');
         $username = Doctrine_Core::getTable('Ticket_1527_User')->getDefinitionOf('username');

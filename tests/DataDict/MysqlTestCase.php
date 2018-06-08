@@ -102,7 +102,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => false));
-        
+
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'mediumtext'));
 
         $this->assertEqual($type, array('type'     => array('string', 'clob'),
@@ -135,7 +135,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeFloatTypes()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'float'));
-        
+
         $this->assertEqual($type, array('type'     => array('float'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -149,7 +149,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
                                         'fixed'    => null));
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'double'));
-        
+
         $this->assertEqual($type, array('type'     => array('float'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -159,7 +159,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeDateType()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'date'));
-        
+
         $this->assertEqual($type, array('type'     => array('date'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -169,21 +169,21 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeDecimalTypes()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'decimal'));
-        
+
         $this->assertEqual($type, array('type'     => array('decimal'),
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
 
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'unknown'));
-        
+
         $this->assertEqual($type, array('type'     => array('decimal'),
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
-        
+
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'numeric'));
-        
+
         $this->assertEqual($type, array('type'     => array('decimal'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -193,14 +193,14 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
     public function testGetPortableDeclarationSupportsNativeTimestampTypes()
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'timestamp'));
-        
+
         $this->assertEqual($type, array('type'     => array('timestamp'),
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
-        
+
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'datetime'));
-        
+
         $this->assertEqual($type, array('type'     => array('timestamp'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -211,7 +211,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'year'));
 
-        
+
         $this->assertEqual($type, array('type'     => array('integer', 'date'),
                                         'length'   => null,
                                         'unsigned' => null,
@@ -233,7 +233,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
-        
+
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'tinyblob'));
 
         $this->assertEqual($type, array('type'     => array('blob'),
@@ -254,7 +254,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
         $a = array('type' => 'integer', 'length' => 20, 'fixed' => false);
 
         $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'BIGINT');
-        
+
         $a['length'] = 4;
 
         $this->assertEqual($this->dataDict->GetNativeDeclaration($a), 'INT');

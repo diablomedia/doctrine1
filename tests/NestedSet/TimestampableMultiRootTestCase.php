@@ -41,8 +41,8 @@ class Doctrine_NestedSet_TimestampableMultiRoot_TestCase extends Doctrine_UnitTe
     public function prepareData()
     {
     }
-    
-    
+
+
     public function testSavingNewRecordWithRootIdWorks()
     {
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
@@ -64,7 +64,7 @@ class Doctrine_NestedSet_TimestampableMultiRoot_TestCase extends Doctrine_UnitTe
         $this->assertNotEqual(null, $node['updated_at']);
         $child1->name = 'child1';
         $child1->getNode()->insertAsLastChildOf($node);
-        
+
         $node->refresh(); // ! updates lft/rgt
         // test insertion
         $this->assertEqual(2, $child1->lft);
@@ -74,7 +74,7 @@ class Doctrine_NestedSet_TimestampableMultiRoot_TestCase extends Doctrine_UnitTe
         $this->assertEqual(1, $node->lft);
         $this->assertEqual(4, $node->rgt);
         $this->assertEqual(0, $node->level);
-            
+
         $node->getNode()->delete();
         //} catch (Exception $e) {
         //    $this->fail();

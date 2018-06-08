@@ -35,7 +35,7 @@ class Doctrine_Query_Registry_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('User');
-        
+
         parent::prepareTables();
     }
     public function prepareData()
@@ -58,11 +58,11 @@ class Doctrine_Query_Registry_TestCase extends Doctrine_UnitTestCase
         $registry->add('User/all', 'SELECT u.* FROM User u');
 
         $this->assertEqual($registry->get('all', 'User')->getDql(), 'SELECT u.* FROM User u');
-        
+
         $this->manager->setQueryRegistry($registry);
 
         $user = new User();
-        
+
         $user->getTable()->execute('all');
     }
 }

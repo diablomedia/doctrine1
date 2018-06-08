@@ -4,7 +4,7 @@ class FooRecord extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('foo');
-        
+
         $this->hasColumn('name', 'string', 200, array('notnull' => true));
         $this->hasColumn('parent_id', 'integer');
         $this->hasColumn('local_foo', 'integer');
@@ -33,7 +33,7 @@ class FooRecord extends Doctrine_Record
         $this->hasOne('FooRecord as Parent', array('local' => 'parent_id', 'foreign' => 'id', 'onDelete' => 'CASCADE'));
         $this->hasOne('FooForeignlyOwnedWithPk', array('local' => 'id', 'foreign' => 'id', 'constraint' => true));
         $this->hasOne('FooLocallyOwned', array('local' => 'local_foo', 'onDelete' => 'RESTRICT'));
-        
+
         $this->hasMany('BarRecord as Bar', array('local'    => 'fooId',
                                                  'foreign'  => 'barId',
                                                  'refClass' => 'FooBarRecord',

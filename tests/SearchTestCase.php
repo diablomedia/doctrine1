@@ -35,7 +35,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('SearchTest');
-        
+
         parent::prepareTables();
     }
     public function prepareData()
@@ -45,9 +45,9 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
     public function testBuildingOfSearchRecordDefinition()
     {
         $e = new SearchTest();
-        
+
         $this->assertTrue($e->SearchTestIndex instanceof Doctrine_Collection);
-        
+
         $rel = $e->getTable()->getRelation('SearchTestIndex');
 
         $this->assertIdentical($rel->getLocal(), 'id');
@@ -106,7 +106,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($array[0]['title'], '007');
     }
-    
+
     public function testUsingWordRange()
     {
         $q = new Doctrine_Query();
@@ -159,7 +159,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $e->content = 'Some searchable content';
 
         $e->save();
-        
+
         $coll = Doctrine_Query::create()
                 ->from('SearchTestIndex s')
                 ->orderby('s.id DESC')
@@ -177,7 +177,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
     {
         $e = new SearchTest();
         $e->batchUpdateIndex();
-        
+
         $coll = Doctrine_Query::create()
                 ->from('SearchTestIndex s')
                 ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
@@ -212,7 +212,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($words[2], 'ca');
         $this->assertEqual($words[4], 'enormement');
     }
-    
+
     public function testUtf8AnalyzerWorks()
     {
         $analyzer = new Doctrine_Search_Analyzer_Utf8(array('encoding' => 'utf-8'));
@@ -222,7 +222,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($words[2], 'ça');
         $this->assertEqual($words[4], 'énormément');
     }
- 
+
     public function testUtf8AnalyzerKnowsToHandleOtherEncodingsWorks()
     {
         $analyzer = new Doctrine_Search_Analyzer_Utf8();

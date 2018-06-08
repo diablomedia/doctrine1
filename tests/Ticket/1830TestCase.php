@@ -22,7 +22,7 @@ class Doctrine_Ticket_1830_TestCase extends Doctrine_UnitTestCase
     public function prepareData()
     {
     }
-    
+
     public function prepareTables()
     {
         try {

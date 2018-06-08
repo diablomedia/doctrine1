@@ -38,7 +38,7 @@ class Doctrine_Relation_OneToMany_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('Entity', 'Phonenumber', 'Email', 'Policy', 'PolicyAsset', 'Role', 'Auth');
-        
+
         parent::prepareTables();
     }
     public function testRelationParsing()
@@ -75,13 +75,13 @@ class Doctrine_Relation_OneToMany_TestCase extends Doctrine_UnitTestCase
     {
         $p                = new Policy();
         $p->policy_number = '123';
-        
+
         $a        = new PolicyAsset();
         $a->value = '123.13';
 
         $p->PolicyAssets[] = $a;
         $p->save();
-        
+
         $this->assertEqual($a->policy_number, '123');
     }
     public function testRelationSaving2()
@@ -89,7 +89,7 @@ class Doctrine_Relation_OneToMany_TestCase extends Doctrine_UnitTestCase
         $e       = new Entity();
         $e->name = 'test';
         $e->save();
-         
+
         $nr              = new Phonenumber();
         $nr->phonenumber = '1234556';
         $nr->save();
@@ -102,14 +102,14 @@ class Doctrine_Relation_OneToMany_TestCase extends Doctrine_UnitTestCase
         $role       = new Role();
         $role->name = 'role1';
         $role->save();
-     
+
         $auth       = new Auth();
         $auth->name = 'auth1';
         $auth->Role = $role;
         $auth->save();
-        
+
         $this->conn->commit();
-     
+
         $this->conn->clear();
 
         $auths = $this->conn->query('FROM Auth a LEFT JOIN a.Role r');

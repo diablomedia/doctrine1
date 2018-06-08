@@ -47,7 +47,7 @@ class Doctrine_Ticket_2251_TestCase extends Doctrine_UnitTestCase
             'oracle',
             'mssql'
         );
-        
+
         $expected = array(
             'mysql'  => 'CREATE TABLE test_string_length (id BIGINT AUTO_INCREMENT, test_string TEXT, PRIMARY KEY(id)) ENGINE = INNODB',
             'sqlite' => 'CREATE TABLE test_string_length (id INTEGER PRIMARY KEY AUTOINCREMENT, test_string TEXT)',

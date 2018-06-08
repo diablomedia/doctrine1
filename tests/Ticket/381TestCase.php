@@ -40,7 +40,7 @@ class Doctrine_Ticket_381_TestCase extends Doctrine_UnitTestCase
         $this->tables = array('Book');
         parent::prepareTables();
     }
-    
+
     public function testTicket()
     {
         $obj = new Book();

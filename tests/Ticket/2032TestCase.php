@@ -18,7 +18,7 @@
  * and is licensed under the LGPL. For more information, see
  * <http://www.doctrine-project.org>.
  */
- 
+
 /**
  * Doctrine_Ticket_2032_TestCase
  *
@@ -40,7 +40,7 @@ class Doctrine_Ticket_2032_TestCase extends Doctrine_UnitTestCase
                 ->select('u.*')
                 ->from('User u')
                 ->orderby('u.name,u.id,u.password');
- 
+
         try {
             $u = $q->execute();
             $this->pass();

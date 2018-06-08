@@ -82,7 +82,7 @@ class Doctrine_Ticket_889_TestCase extends Doctrine_UnitTestCase
         $test             = new Ticket_889();
         $test->table_name = 'Feature';
         $test->save();
-        
+
         $test3             = new Ticket_889();
         $test3->table_name = 'Application';
         $test3->save();

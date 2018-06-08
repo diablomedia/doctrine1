@@ -44,9 +44,9 @@ class Doctrine_Record_Generator_TestCase extends Doctrine_UnitTestCase
             $i->Translation['EN']->title = 'en test';
             $i->Translation['FR']->title = 'fr test';
             $i->save();
-            
+
             $this->pass();
-            
+
             $this->assertTrue($i->id > 0);
             $this->assertEqual($i->Translation['EN']->title, 'en test');
             $this->assertEqual($i->Translation['FR']->title, 'fr test');
@@ -64,7 +64,7 @@ class I18nGeneratorComponentBinding extends Doctrine_Record
         $this->hasColumn('name', 'string');
         $this->hasColumn('title', 'string');
     }
-    
+
     public function setUp()
     {
         $this->actAs('I18n', array('fields' => array('title')));

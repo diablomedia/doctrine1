@@ -35,25 +35,25 @@ class Doctrine_Import_Sqlite_TestCase extends Doctrine_UnitTestCase
     public function testListSequencesExecutesSql()
     {
         $this->import->listSequences('table');
-        
+
         $this->assertEqual($this->adapter->pop(), "SELECT name FROM sqlite_master WHERE type='table' AND sql NOT NULL ORDER BY name");
     }
     public function testListTableColumnsExecutesSql()
     {
         $this->import->listTableColumns('table');
-        
+
         $this->assertEqual($this->adapter->pop(), 'PRAGMA table_info(table)');
     }
     public function testListTableIndexesExecutesSql()
     {
         $this->import->listTableIndexes('table');
-        
+
         $this->assertEqual($this->adapter->pop(), 'PRAGMA index_list(table)');
     }
     public function testListTablesExecutesSql()
     {
         $this->import->listTables();
-        
+
         $q = "SELECT name FROM sqlite_master WHERE type = 'table' AND name != 'sqlite_sequence' UNION ALL SELECT name FROM sqlite_temp_master WHERE type = 'table' ORDER BY name";
 
         $this->assertEqual($this->adapter->pop(), $q);

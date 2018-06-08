@@ -70,7 +70,7 @@ class Doctrine_Query_Update_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($q->getSqlQuery(), "UPDATE entity SET name = 'someone', email_id = 5 WHERE (type = 0)");
     }
-    
+
     public function testUpdateSupportsConditions()
     {
         $q = new Doctrine_Query();

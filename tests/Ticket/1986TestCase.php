@@ -99,7 +99,7 @@ class Testing_Ticket_1986Link extends Doctrine_Record
         $this->hasColumn('id_1', 'integer', null, array());
         $this->hasColumn('id_2', 'integer', null, array());
     }
-    
+
     public function setUp()
     {
         // setup relations

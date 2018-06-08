@@ -5,7 +5,7 @@ class MysqlGroup extends Doctrine_Record
     {
         $this->hasColumn('name', 'string', null);
     }
-    
+
     public function setUp()
     {
         $this->hasMany('MysqlUser', array(

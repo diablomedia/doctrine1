@@ -44,7 +44,7 @@ class Doctrine_Ticket_1277_TestCase extends Doctrine_UnitTestCase
         $user1->username = 'User1';
         $user1->email    = null;
         $user1->save();
-         
+
         $user2           = new T1277_User();
         $user2->username = 'User2';
         $user2->email    = 'some@email';
@@ -58,30 +58,30 @@ class Doctrine_Ticket_1277_TestCase extends Doctrine_UnitTestCase
     public function testTicket()
     {
         $this->conn->getTable('T1277_User')->clear(); // clear identity map
-        
+
         $q = new Doctrine_Query();
         $u = $q->select('u.id')->from('T1277_User u')->where('u.id=1')->fetchOne();
 
         $this->assertEqual(1, $u->id);
         $this->assertEqual(Doctrine_Record::STATE_PROXY, $u->state());
-        
+
         // In some other part of code I will query this table again and start making modifications to found records:
         $q     = new Doctrine_Query();
         $users = $q->select('u.*')->from('T1277_User u')->execute();
-        
+
         $this->assertEqual(2, count($users));
 
         foreach ($users as $u) {
             $this->assertEqual(Doctrine_Record::STATE_CLEAN, $u->state());
-            
+
             $u->username = 'new username' . $u->id;
             $u->email    = 'some' . $u->id . '@email';
-            
+
             $this->assertEqual('new username' . $u->id, $u->username);
             $this->assertEqual('some' . $u->id . '@email', $u->email);
         }
     }
-    
+
     /**
      * Tests that:
      * 1) a record in PROXY state is still in PROXY state when he is queries again but not with all props
@@ -92,32 +92,32 @@ class Doctrine_Ticket_1277_TestCase extends Doctrine_UnitTestCase
     public function testTicket2()
     {
         $this->conn->getTable('T1277_User')->clear(); // clear identity map
-        
+
         $q = new Doctrine_Query();
         $u = $q->select('u.id')->from('T1277_User u')->where('u.id=1')->fetchOne();
 
         $this->assertEqual(1, $u->id);
         $this->assertEqual(Doctrine_Record::STATE_PROXY, $u->state());
-        
+
         // In some other part of code I will query this table again and start making modifications to found records:
         $q     = new Doctrine_Query();
         $users = $q->select('u.id, u.username')->from('T1277_User u')->execute();
-        
+
         $this->assertEqual(2, count($users));
 
         foreach ($users as $u) {
             $this->assertEqual(Doctrine_Record::STATE_PROXY, $u->state());
-            
+
             $u->username = 'new username' . $u->id; // modify
             $u->email    = 'some' . $u->id . '@email'; // triggers load() to fill uninitialized props
-            
+
             $this->assertEqual('new username' . $u->id, $u->username);
             $this->assertEqual('some' . $u->id . '@email', $u->email);
-            
+
             $this->assertEqual(Doctrine_Record::STATE_DIRTY, $u->state());
         }
     }
-    
+
     /**
      * Tests that:
      * 1) a record in PROXY state is still in PROXY state when he is queries again but not with all props
@@ -127,13 +127,13 @@ class Doctrine_Ticket_1277_TestCase extends Doctrine_UnitTestCase
     public function testTicket3()
     {
         $this->conn->getTable('T1277_User')->clear(); // clear identity map
-        
+
         $q = new Doctrine_Query();
         $u = $q->select('u.id')->from('T1277_User u')->where('u.id=1')->fetchOne();
 
         $this->assertEqual(1, $u->id);
         $this->assertEqual(Doctrine_Record::STATE_PROXY, $u->state());
-        
+
         // In some other part of code I will query this table again and start making modifications to found records:
         $q     = new Doctrine_Query();
         $users = $q->select('u.id, u.username')->from('T1277_User u')->execute();
@@ -142,7 +142,7 @@ class Doctrine_Ticket_1277_TestCase extends Doctrine_UnitTestCase
 
         foreach ($users as $u) {
             $this->assertEqual(Doctrine_Record::STATE_PROXY, $u->state());
-            
+
             if ($u->id == 1) {
                 $this->assertEqual('User1', $u->username);
                 $u->email; // triggers load()
@@ -150,11 +150,11 @@ class Doctrine_Ticket_1277_TestCase extends Doctrine_UnitTestCase
                 $this->assertEqual('User2', $u->username);
                 $this->assertEqual('some@email', $u->email);
             }
-            
+
             $this->assertEqual(Doctrine_Record::STATE_CLEAN, $u->state());
         }
     }
-    
+
     /**
      * Fails due to the PROXY concept being flawed by design.
      *

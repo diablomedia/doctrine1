@@ -4,7 +4,7 @@ class SerializeTest extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->setTableName('serialize_test');
-    
+
         $this->hasColumn('booltest', 'boolean');
         $this->hasColumn('integertest', 'integer', 4, array('unsigned' => true));
         $this->hasColumn('floattest', 'float');

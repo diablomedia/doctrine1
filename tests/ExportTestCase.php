@@ -61,20 +61,20 @@ class Doctrine_Export_TestCase extends Doctrine_UnitTestCase
     public function testCreateIndexExecutesSql()
     {
         $this->export->createIndex('sometable', 'relevancy', array('fields' => array('title' => array(), 'content' => array())));
-        
+
         $this->assertEqual($this->adapter->pop(), 'CREATE INDEX relevancy_idx ON sometable (title, content)');
     }
 
     public function testDropIndexExecutesSql()
     {
         $this->export->dropIndex('sometable', 'relevancy');
-        
+
         $this->assertEqual($this->adapter->pop(), 'DROP INDEX relevancy_idx');
     }
     public function testDropTableExecutesSql()
     {
         $this->export->dropTable('sometable');
-        
+
         $this->assertEqual($this->adapter->pop(), 'DROP TABLE sometable');
     }
     public function testRecordIsExportedProperly()

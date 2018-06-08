@@ -38,7 +38,7 @@ class Doctrine_Relation_OneToOne_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('gnatUser','gnatEmail','Email','Entity','Record_City', 'Record_Country', 'SelfRefTest');
-        
+
         parent::prepareTables();
     }
 
@@ -49,25 +49,25 @@ class Doctrine_Relation_OneToOne_TestCase extends Doctrine_UnitTestCase
 
         $this->assertTrue($country instanceof Record_Country);
     }
-    
+
     public function testSelfReferentialOneToOneRelationsAreSupported()
     {
         $ref = new SelfRefTest();
-        
+
         $rel = $ref->getTable()->getRelation('createdBy');
 
         $this->assertEqual($rel->getForeign(), 'id');
         $this->assertEqual($rel->getLocal(), 'created_by');
-        
+
         $ref->name            = 'ref 1';
         $ref->createdBy->name = 'ref 2';
-        
+
         $ref->save();
     }
     public function testSelfReferentialOneToOneRelationsAreSupported2()
     {
         $this->connection->clear();
-        
+
         $ref = $this->conn->queryOne("FROM SelfRefTest s WHERE s.name = 'ref 1'");
         $this->assertEqual($ref->name, 'ref 1');
         $this->assertEqual($ref->createdBy->name, 'ref 2');

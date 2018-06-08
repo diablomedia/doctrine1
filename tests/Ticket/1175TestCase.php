@@ -31,7 +31,7 @@ class Doctrine_Ticket_1175_TestCase extends Doctrine_UnitTestCase
         $img           = new gUserImage();
         $img->filename = 'user image 1';
         $u->Images[]   = $img;
-        
+
         $img           = new gUserImage();
         $img->filename = 'user image 2';
         $u->Images[]   = $img;
@@ -55,9 +55,9 @@ class Doctrine_Ticket_1175_TestCase extends Doctrine_UnitTestCase
                     ->leftJoin('u.Images i')
                     ->leftJoin('u.Files f')
                     ->where('u.id = ?', array(1));
-   
+
         $this->assertEqual($q->getSqlQuery(), 'SELECT g.id AS g__id, g.first_name AS g__first_name, g.last_name AS g__last_name, g2.id AS g2__id, g2.owner_id AS g2__owner_id, g2.filename AS g2__filename, g2.otype AS g2__otype, g3.id AS g3__id, g3.owner_id AS g3__owner_id, g3.filename AS g3__filename, g3.otype AS g3__otype FROM g_user g LEFT JOIN g_image g2 ON g.id = g2.owner_id AND g2.otype = 1 LEFT JOIN g_file g3 ON g.id = g3.owner_id AND g3.otype = 1 WHERE (g.id = ?)');
-     
+
         $u = $q->fetchOne();
 
         $this->assertTrue(is_object($u));

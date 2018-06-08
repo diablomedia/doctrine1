@@ -18,11 +18,11 @@ class Doctrine_Ticket_736_TestCase extends Doctrine_UnitTestCase
 
         $module                   = new T736_Module();
         $module->moduledelegateid = $delegate->id;
-        
+
         $delegate->parent = $module;
         $delegate->save();
     }
-    
+
     public function prepareTables()
     {
         $this->tables   = array();
@@ -62,13 +62,13 @@ class T736_ModuleDelegate extends Doctrine_Record
         $this->hasColumn('moduleid', 'integer', 4, array());
         $this->hasColumn('content', 'string', 2000);
     }
-    
+
     public function setUp()
     {
         $this->hasOne('T736_Module as parent', array('local' => 'moduleid', 'foreign' => 'id'));
     }
-    
-    
+
+
     public function preUpdate($event)
     {
         $this->parent->lastchange = date('Y-m-d H:i:s', time());

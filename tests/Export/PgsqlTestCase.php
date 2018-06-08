@@ -46,10 +46,10 @@ class Doctrine_Export_Pgsql_TestCase extends Doctrine_UnitTestCase
     public function testCreateTableSupportsAutoincPks()
     {
         $name = 'mytable';
-        
+
         $fields  = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true));
         $options = array('primary' => array('id'));
-        
+
         $this->export->createTable($name, $fields, $options);
 
         $this->assertEqual($this->adapter->pop(), 'CREATE TABLE mytable (id SERIAL, PRIMARY KEY(id))');
@@ -108,7 +108,7 @@ class Doctrine_Export_Pgsql_TestCase extends Doctrine_UnitTestCase
                          'is_active' => array('type' => 'boolean', 'default' => '0'),
                          'is_admin'  => array('type' => 'boolean', 'default' => 'true'),
                          );
-                         
+
         $options = array('primary' => array('name', 'type'));
         $this->export->createTable($name, $fields, $options);
 
@@ -119,10 +119,10 @@ class Doctrine_Export_Pgsql_TestCase extends Doctrine_UnitTestCase
         $name   = 'mytable';
         $fields = array('name'  => array('type' => 'char', 'length' => 10),
                          'type' => array('type' => 'integer', 'length' => 3));
-                         
+
         $options = array('primary' => array('name', 'type'));
         $this->export->createTable($name, $fields, $options);
-        
+
         $this->assertEqual($this->adapter->pop(), 'CREATE TABLE mytable (name CHAR(10), type INT, PRIMARY KEY(name, type))');
     }
     public function testExportSql()
@@ -162,7 +162,7 @@ class Doctrine_Export_Pgsql_TestCase extends Doctrine_UnitTestCase
     public function testAlterTableSqlIdentifierQuoting()
     {
         $this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
-        
+
         $changes = array(
             'add'    => array('newfield' => array('type' => 'int')),
             'remove' => array('oldfield' => array())

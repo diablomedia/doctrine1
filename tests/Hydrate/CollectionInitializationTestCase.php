@@ -36,31 +36,31 @@ class Doctrine_Hydrate_CollectionInitialization_TestCase extends Doctrine_UnitTe
     {
         $user       = new User();
         $user->name = 'romanb';
-        
+
         $user->Phonenumber[0]->phonenumber = '112';
         $user->Phonenumber[1]->phonenumber = '110';
-        
+
         $user->save();
     }
-    
+
     public function prepareTables()
     {
         $this->tables = array('Entity', 'Phonenumber');
         parent::prepareTables();
     }
-    
+
     public function testCollectionsAreReinitializedOnHydration()
     {
         // query for user with first phonenumber.
         $q = Doctrine_Query::create();
         $q->select('u.*, p.*')->from('User u')->innerJoin('u.Phonenumber p')
                 ->where("p.phonenumber = '112'");
-        
+
         $users = $q->execute();
         $this->assertEqual(1, count($users));
         $this->assertEqual(1, count($users[0]->Phonenumber));
         $this->assertEqual('112', $users[0]->Phonenumber[0]->phonenumber);
-        
+
         // now query again. this time for the other phonenumber. collection should be re-initialized.
         $q = Doctrine_Query::create();
         $q->select('u.*, p.*')->from('User u')->innerJoin('u.Phonenumber p')

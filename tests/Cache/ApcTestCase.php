@@ -37,12 +37,12 @@ class Doctrine_Cache_Apc_TestCase extends Doctrine_Cache_Abstract_TestCase
     {
         apc_clear_cache('user');
     }
-    
+
     protected function _isEnabled()
     {
         return extension_loaded('apc');
     }
-    
+
     protected function _getCacheDriver()
     {
         return new Doctrine_Cache_Apc();

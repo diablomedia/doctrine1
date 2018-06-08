@@ -48,7 +48,7 @@ class Doctrine_Sequence_Oracle_TestCase extends Doctrine_UnitTestCase
     public function testLastInsertIdExecutesSql()
     {
         $this->sequence->lastInsertId('user');
-        
+
         $this->assertEqual($this->adapter->pop(), 'SELECT user_seq.currval FROM DUAL');
     }
 }

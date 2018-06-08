@@ -10,7 +10,7 @@ class RateN extends Doctrine_Record
         $this->hasColumn('liability_code', 'integer', 4, array(  'notnull' => true,  'notblank' => true,));
         $this->hasColumn('total_rate', 'float', null, array(  'notnull' => true,  'notblank' => true,));
     }
-  
+
     public function setUp()
     {
         $this->hasOne('PolicyCodeN', array('local' => 'policy_code', 'foreign' => 'code' ));

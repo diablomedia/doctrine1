@@ -11,7 +11,7 @@ class Doctrine_Composite_PrimaryKey_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'CPK_Test';
         $this->tables[] = 'CPK_Test2';
         $this->tables[] = 'CPK_Association';
-        
+
         parent::prepareTables();
     }
 }

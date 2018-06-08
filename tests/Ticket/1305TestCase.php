@@ -44,17 +44,17 @@ class Doctrine_Ticket_1305_TestCase extends Doctrine_UnitTestCase
     {
         $t = new Ticket_1305_Record();
         $t->save();
-        
+
         $this->assertEqual($t['name'], 'test');
 
         $t->name = 'foo';
         $t->save();
-        
+
         $this->assertEqual($t['name'], 'foo');
 
         $t->name = null;
         $t->save();
-        
+
         $this->assertEqual($t['name'], 'test');
     }
 }

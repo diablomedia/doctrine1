@@ -39,13 +39,13 @@ class Doctrine_File_Index extends Doctrine_Record
     {
         $this->hasColumn('keyword', 'string', 255, array('notnull' => true,
                                                          'primary' => true));
-                                                         
+
         $this->hasColumn('field', 'string', 50, array('notnull' => true,
                                                       'primary' => true));
 
         $this->hasColumn('position', 'string', 255, array('notnull' => true,
                                                           'primary' => true));
-                                                          
+
         $this->hasColumn('file_id', 'integer', 8, array('notnull' => true,
                                                         'primary' => true));
     }

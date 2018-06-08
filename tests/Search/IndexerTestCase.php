@@ -38,7 +38,7 @@ class Doctrine_Search_Indexer_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('Doctrine_File', 'Doctrine_File_Index');
-        
+
         parent::prepareTables();
     }
 
@@ -51,7 +51,7 @@ class Doctrine_Search_Indexer_TestCase extends Doctrine_UnitTestCase
 
         $indexer->indexDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
     }
-    
+
     public function testIndexerAddsFiles()
     {
         $files = Doctrine_Query::create()->from('Doctrine_File')->execute();

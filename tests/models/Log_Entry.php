@@ -6,7 +6,7 @@ class Log_Entry extends Doctrine_Record
         $this->hasColumn('stamp', 'timestamp');
         $this->hasColumn('status_id', 'integer');
     }
-    
+
     public function setUp()
     {
         $this->hasOne('Log_Status', array(

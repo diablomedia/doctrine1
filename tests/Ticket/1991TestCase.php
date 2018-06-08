@@ -44,7 +44,7 @@ class Doctrine_Ticket_1991_TestCase extends Doctrine_UnitTestCase
         $tag       = new NewTag();
         $tag->name = 'name';
         $tag->save();
-        
+
         $tag       = new NewTag();
         $tag->name = 'foobar';
         $tag->save();

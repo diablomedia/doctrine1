@@ -22,7 +22,7 @@ class Doctrine_Cache_SqliteTestCase extends Doctrine_UnitTestCase
     {
         // does not store proxy objects
         $this->assertFalse($this->cache->store($this->objTable->getProxy(4)));
-        
+
         $this->assertTrue($this->cache->store($this->objTable->find(4)));
 
         $record = $this->cache->fetch(4);
@@ -117,7 +117,7 @@ class Doctrine_Cache_SqliteTestCase extends Doctrine_UnitTestCase
         $this->cache->fetchMultiple(array(5,6,7));
         $this->cache->fetchMultiple(array(4,5,6,7,8,9));
         $this->assertTrue($this->cache->saveStats());
-        
+
         $this->manager->setAttribute(Doctrine_Core::ATTR_CACHE_SIZE, 3);
         $this->assertEqual($this->cache->clean(), 3);
     }

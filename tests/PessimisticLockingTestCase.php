@@ -42,14 +42,14 @@ class Doctrine_PessimisticLocking_TestCase extends Doctrine_UnitTestCase
     public function testInitData()
     {
         $this->lockingManager = new Doctrine_Locking_Manager_Pessimistic($this->connection);
-        
+
         // Create sample data to test on
         $entry1         = new Forum_Entry();
         $entry1->author = 'Bart Simpson';
         $entry1->topic  = 'I love donuts!';
         $entry1->save();
     }
-    
+
     public function prepareTables()
     {
         $this->tables = array('Forum_Entry', 'Entity', 'Phonenumber', 'Email', 'Groupuser');
@@ -64,15 +64,15 @@ class Doctrine_PessimisticLocking_TestCase extends Doctrine_UnitTestCase
     public function testLock()
     {
         $entries = $this->connection->query("FROM Forum_Entry WHERE Forum_Entry.author = 'Bart Simpson'");
-        
+
         // Test successful lock
         $gotLock = $this->lockingManager->getLock($entries[0], 'romanb');
         $this->assertTrue($gotLock);
-        
+
         // Test failed lock (another user already got a lock on the entry)
         $gotLock = $this->lockingManager->getLock($entries[0], 'konstav');
         $this->assertFalse($gotLock);
-        
+
         // Test release lock
         $released = $this->lockingManager->releaseLock($entries[0], 'romanb');
         $this->assertTrue($released);
@@ -88,18 +88,18 @@ class Doctrine_PessimisticLocking_TestCase extends Doctrine_UnitTestCase
         $this->lockingManager->getLock($entries[0], 'romanb');
         $released = $this->lockingManager->releaseAgedLocks(-1); // age -1 seconds => release all
         $this->assertEqual(1, $released);
-        
+
         // A second call should return false (no locks left)
         $released = $this->lockingManager->releaseAgedLocks(-1);
         $this->assertEqual(0, $released);
-        
+
         // Test with further parameters
         $this->lockingManager->getLock($entries[0], 'romanb');
         $released = $this->lockingManager->releaseAgedLocks(-1, 'User'); // shouldnt release anything
         $this->assertEqual(0, $released);
         $released = $this->lockingManager->releaseAgedLocks(-1, 'Forum_Entry'); // should release the lock
         $this->assertEqual(1, $released);
-        
+
         $this->lockingManager->getLock($entries[0], 'romanb');
         $released = $this->lockingManager->releaseAgedLocks(-1, 'Forum_Entry', 'zyne'); // shouldnt release anything
         $this->assertEqual(0, $released);

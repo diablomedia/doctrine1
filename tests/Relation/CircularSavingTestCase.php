@@ -39,7 +39,7 @@ class Doctrine_Relation_CircularSaving_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('NestTest', 'NestReference');
-        
+
         parent::prepareTables();
     }
 

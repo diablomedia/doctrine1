@@ -31,7 +31,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item->save();
         $this->assertEqual($item->slug, 'result-of-to-string');
     }
-    
+
     public function testSSluggableWithNoFieldsOptionButGetUniqueSlugMethod()
     {
         $item       = new SluggableItem1();
@@ -56,7 +56,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($index['type'], 'unique');
         $this->assertEqual($index['fields'], array('slug'));
     }
-    
+
     public function testSluggableUniqueSlugOnUpdate()
     {
         parent::prepareTables();
@@ -72,7 +72,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item->save();
         $this->assertEqual($item->slug, 'New slug');
     }
-    
+
     public function testSluggableWithMultipleFieldsOption()
     {
         parent::prepareTables();
@@ -87,7 +87,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item->save();
         $this->assertEqual($item->slug, 'my-item-my-ref-1');
     }
-    
+
     public function testSluggableWithFieldsAndNonUniqueOptions()
     {
         parent::prepareTables();
@@ -100,7 +100,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item->save();
         $this->assertEqual($item->slug, 'my-item');
     }
-    
+
     public function testSluggableWithUniqueByOption()
     {
         parent::prepareTables();
@@ -124,7 +124,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($index['type'], 'unique');
         $this->assertEqual($index['fields'], array('slug', 'user_id'));
     }
-    
+
     public function testSluggableWithUniqueByOptionAndNullValue()
     {
         parent::prepareTables();
@@ -142,7 +142,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item->save();
         $this->assertEqual($item->slug, 'my-item');
     }
-    
+
     public function testSluggableWithMultipleUniqueByOption()
     {
         parent::prepareTables();
@@ -165,14 +165,14 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item->save();
         $this->assertEqual($item->slug, 'my-item-1');
     }
-    
+
     public function testSluggableWithFieldsOptionAndNoIndex()
     {
         parent::prepareTables();
         $itemTable = Doctrine_Core::getTable('SluggableItem7');
         $this->assertFalse($itemTable->getIndex('sluggable'));
     }
-    
+
     public function testSluggableUniqueSlugOnUpdateWithOptioncanUpdateSlug()
     {
         parent::prepareTables();
@@ -209,7 +209,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item0->delete(); // muhaha! I don't actually delete it!
 
         // We must have 0 as total of records
-        
+
         $this->assertEqual(Doctrine_Query::create()->from('SluggableItem9')->count(), 0);
 
         $item1       = new SluggableItem9();
@@ -219,7 +219,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
 
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, true);
     }
-    
+
     public function testSluggableWithColumAggregationInheritance()
     {
         parent::prepareTables();
@@ -475,7 +475,7 @@ abstract class SluggableItem10Abstract extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-    
+
         $this->actAs('Sluggable', array('unique'  => true,
                                     'uniqueIndex' => true,
                                     'fields'      => array('name'),
@@ -535,11 +535,11 @@ class SluggableItem15 extends Doctrine_Record
         $this->hasColumn('type', 'integer', 1);
         $this->setSubclasses(array('SluggableItem16' => array('type' => 0), 'SluggableItem17' => array('type' => 1)));
     }
- 
+
     public function setUp()
     {
         parent::setUp();
-    
+
         $this->actAs('Sluggable', array('unique'  => true,
                                     'uniqueIndex' => true,
                                     'uniqueBy'    => array('type'),

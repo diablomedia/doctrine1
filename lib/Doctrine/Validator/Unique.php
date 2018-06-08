@@ -52,17 +52,17 @@ class Doctrine_Validator_Unique extends Doctrine_Validator_Driver
             for ($i = 0, $l = count($pks); $i < $l; $i++) {
                 $pks[$i] = $conn->quoteIdentifier($pks[$i]);
             }
-            
+
             $pks = implode(', ', $pks);
         }
 
         $sql = 'SELECT ' . $pks . ' FROM ' . $conn->quoteIdentifier($table->getTableName()) . ' WHERE ';
-        
+
         if (is_array($this->field)) {
             foreach ($this->field as $k => $v) {
                 $this->field[$k] = $conn->quoteIdentifier($table->getColumnName($v));
             }
-        
+
             $sql .= implode(' = ? AND ', $this->field) . ' = ?';
             $values = $value;
         } else {
@@ -70,7 +70,7 @@ class Doctrine_Validator_Unique extends Doctrine_Validator_Driver
             $values   = array();
             $values[] = $value;
         }
-        
+
         // If the record is not new we need to add primary key checks because its ok if the
         // unique value already exists in the database IF the record in the database is the same
         // as the one that is validated here.

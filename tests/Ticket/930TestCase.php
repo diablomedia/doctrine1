@@ -45,10 +45,10 @@ class Doctrine_Ticket_930_TestCase extends Doctrine_UnitTestCase
         $oCategory->code                    = '1234';
         $oCategory->Translation['fr']->name = 'Developpement';
         $oCategory->Translation['en']->name = 'Development';
-     
+
         $oPerson->JobPositions[0]->name     = 'Webdeveloper';
         $oPerson->JobPositions[0]->Category = $oCategory;
-     
+
         $oPerson->JobPositions[1]->name     = 'Webmaster';
         $oPerson->JobPositions[1]->Category = $oCategory;
 
@@ -65,7 +65,7 @@ class Doctrine_Ticket_930_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'T930_Person';
         $this->tables[] = 'T930_JobPosition';
         $this->tables[] = 'T930_JobCategory';
-     
+
         parent :: prepareTables();
     }
 

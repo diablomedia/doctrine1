@@ -37,14 +37,14 @@ class Doctrine_Ticket_DC74_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_DC74_Test';
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
         $r        = new Ticket_DC74_Test();
         $r->test1 = 'test1';
         $r->test2 = 'test2';
         $r->save();
-        
+
         // following clear should be done automatically, as noted in DC73 ticket
         $r->getTable()->clear();
     }
@@ -56,16 +56,16 @@ class Doctrine_Ticket_DC74_TestCase extends Doctrine_UnitTestCase
             ->select('id, test1')
             ->from('Ticket_DC74_Test')
             ->fetchOne();
-            
+
         // so we have object in PROXY state
         $this->assertEqual(Doctrine_Record::STATE_PROXY, $r1->state());
 
         // now we are modifing one of loaded properties "test1"
         $r1->test1 = 'testx';
-        
+
         // so record is in DIRTY state
         $this->assertEqual(Doctrine_Record::STATE_DIRTY, $r1->state());
-        
+
         // when accessing to not loaded field "test2" no additional loading
         // currently such loading is performed is executed only in PROXY state
         $this->assertEqual('test2', $r1->test2);

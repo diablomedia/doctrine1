@@ -38,7 +38,7 @@ class Doctrine_Ticket_1652_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_1652_User';
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
         $user       = new Ticket_1652_User();
@@ -59,7 +59,7 @@ class Doctrine_Ticket_1652_TestCase extends Doctrine_UnitTestCase
                                                     Doctrine_Core::VALIDATE_ALL & ~Doctrine_Core::VALIDATE_LENGTHS & ~Doctrine_Core::VALIDATE_CONSTRAINTS & ~Doctrine_Core::VALIDATE_TYPES
             );
         }
-        
+
         $user       = Doctrine_Core::getTable('Ticket_1652_User')->findOneById(1);
         $user->name = 'test';
         if ($user->isValid()) {
@@ -71,13 +71,13 @@ class Doctrine_Ticket_1652_TestCase extends Doctrine_UnitTestCase
         }
 
         $user = Doctrine_Core::getTable('Ticket_1652_User')->findOneById(1);
-        
+
         $this->assertNotEqual($user->name, 'test');
         //reset validation to default for further testcases
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_VALIDATE, Doctrine_Core::VALIDATE_NONE);
     }
 }
-    
+
 class Ticket_1652_User extends Doctrine_Record
 {
     public function setTableDefinition()

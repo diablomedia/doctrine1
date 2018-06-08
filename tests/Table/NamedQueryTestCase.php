@@ -35,7 +35,7 @@ class Doctrine_Table_NamedQuery_TestCase extends Doctrine_UnitTestCase
     public function prepareTables()
     {
         $this->tables = array('MyFoo');
-        
+
         parent::prepareTables();
     }
 
@@ -56,8 +56,8 @@ class Doctrine_Table_NamedQuery_TestCase extends Doctrine_UnitTestCase
         $f3->value0 = 2;
         $f3->save();
     }
-    
-    
+
+
     public function testNamedQuerySupport()
     {
         $table = Doctrine_Core::getTable('MyFoo');
@@ -66,16 +66,16 @@ class Doctrine_Table_NamedQuery_TestCase extends Doctrine_UnitTestCase
             $table->createNamedQuery('get.by.id')->getSqlQuery(),
             'SELECT m.id AS m__id, m.name AS m__name, m.value0 AS m__value0 FROM my_foo m WHERE (m.id = ?)'
         );
-        
+
         $this->assertEqual(
             $table->createNamedQuery('get.by.similar.names')->getSqlQuery(),
             'SELECT m.id AS m__id, m.value0 AS m__value0 FROM my_foo m WHERE (LOWER(m.name) LIKE LOWER(?))'
         );
-        
+
         $this->assertEqual($table->createNamedQuery('get.by.similar.names')->count(array('%jon%wage%')), 2);
-        
+
         $items = $table->find('get.by.similar.names', array('%jon%wage%'));
-        
+
         $this->assertEqual(count($items), 2);
     }
 }

@@ -21,7 +21,7 @@ class Doctrine_Ticket_1713_TestCase extends Doctrine_UnitTestCase
     public function testInheritanceSubclasses()
     {
         $records = Doctrine_Query::create()->query('FROM Parent1713 m');
-    
+
         foreach ($records as $rec) {
             $this->assertEqual(get_class($rec), $rec['title']);
         }

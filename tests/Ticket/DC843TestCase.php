@@ -33,7 +33,7 @@
 class Doctrine_Ticket_DC843_TestCase extends Doctrine_UnitTestCase
 {
     private $sqlStackCounter = 0;
-    
+
     public function prepareTables()
     {
         $this->tables[] = 'Ticket_DC843_Model';
@@ -55,7 +55,7 @@ class Doctrine_Ticket_DC843_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($expected, $sql);
     }
-    
+
     public function testQuery()
     {
         Doctrine::getTable('Ticket_DC843_Model')

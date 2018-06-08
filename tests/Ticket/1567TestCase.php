@@ -50,7 +50,7 @@ class Doctrine_Ticket_1567_TestCase extends Doctrine_UnitTestCase
         $query->from('Ticket_1567_Project p');
         $query->addWhere('p.user_id = ?', 1);
         $query->addWhere('p.deleted = ?', true);
-        
+
         $this->assertEqual($query->count(), 1);
         $this->assertEqual($query->execute()->count(), 1);
     }

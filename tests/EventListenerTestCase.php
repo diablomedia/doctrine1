@@ -47,9 +47,9 @@ class Doctrine_EventListener_TestCase extends Doctrine_UnitTestCase
     public function testSetListener()
     {
         $this->logger = new Doctrine_EventListener_TestLogger();
-    
+
         $e = new EventListenerTest;
-        
+
         $e->getTable()->setListener($this->logger);
 
         $e->name = 'listener';

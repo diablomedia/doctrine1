@@ -58,7 +58,7 @@ class DoctrineTest_Reporter_Html extends DoctrineTest_Reporter
     public function paintFooter()
     {
         print '</div></div>';
-        
+
         $this->paintSummary();
     }
 

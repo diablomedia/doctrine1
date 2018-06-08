@@ -72,7 +72,7 @@ class Doctrine_Ticket_1860_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual(count($pager->execute()->toArray()), 0);
         $this->assertEqual($pager->getQuery()->getSqlQuery(), 'SELECT t.id AS t__id, t.username AS t__username, t.password AS t__password, t.deleted_at AS t__deleted_at FROM ticket_1860_users t WHERE (t.deleted_at IS NULL) LIMIT 5');
-        
+
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, false);
     }
 }

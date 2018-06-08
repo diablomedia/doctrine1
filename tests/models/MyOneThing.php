@@ -12,7 +12,7 @@ class MyOneThing extends Doctrine_Record
         $this->hasMany('MyUserOneThing', array(
             'local' => 'id', 'foreign' => 'one_thing_id'
         ));
-        
+
         $this->hasOne('MyUser', array(
             'local' => 'user_id', 'foreign' => 'id'
         ));

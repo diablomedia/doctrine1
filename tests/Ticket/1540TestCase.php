@@ -37,7 +37,7 @@ class Doctrine_Ticket_1540_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_1540_TableName';
         parent::prepareTables();
     }
-    
+
     public function testShouldNotConvertToAmpersandsInSelect()
     {
         $q = Doctrine_Query::create()
@@ -45,7 +45,7 @@ class Doctrine_Ticket_1540_TestCase extends Doctrine_UnitTestCase
             ->from('Ticket_1540_TableName t');
         $this->assertEqual($q->getSqlQuery(), 'SELECT if(1 AND 2, 1, 2) AS t__0 FROM ticket_1540__table_name t');
     }
-    
+
     public function testShouldNotConvertToAmpersandsInWhere()
     {
         $q = Doctrine_Query::create()

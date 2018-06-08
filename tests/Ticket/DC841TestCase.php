@@ -33,7 +33,7 @@
 class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
 {
     private $sqlStackCounter = 0;
-    
+
     public function prepareTables()
     {
         $this->tables[] = 'Ticket_DC841_Model';
@@ -45,7 +45,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
         $this->dbh  = new Doctrine_Adapter_Mock('mssql');
         $this->conn = Doctrine_Manager::getInstance()->openConnection($this->dbh, 'DC841');
     }
-    
+
     public function testSelect()
     {
         Doctrine::getTable('Ticket_DC841_Model')
@@ -61,7 +61,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($expected, $sql);
     }
-    
+
     public function testSelectJoinWith()
     {
         Doctrine::getTable('Ticket_DC841_Model')
@@ -75,7 +75,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($expected, $sql);
     }
-    
+
     public function testSelectWithStaticParameter()
     {
         return; // doesn't work
@@ -91,7 +91,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($expected, $sql);
     }
-    
+
     public function testSelectWithIn()
     {
         Doctrine::getTable('Ticket_DC841_Model')
@@ -104,7 +104,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual($expected, $sql);
     }
-    
+
     public function testInsert()
     {
         try {
@@ -118,7 +118,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
         }
 
         $this->sqlStackCounter += 1;
-        
+
         $expected = "INSERT INTO [ticket__d_c841__model] ([username], [password], [foo]) VALUES ('abc', 'abc', 'abc')";
         $sql      = current(array_slice($this->dbh->getAll(), $this->sqlStackCounter++, 1));
 
@@ -135,7 +135,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
         $o->state(Doctrine_Record::STATE_CLEAN);
 
         $this->sqlStackCounter += 7;
-            
+
         $o->password = 'foobar';
         $o->save();
 
@@ -155,7 +155,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
         $o->state(Doctrine_Record::STATE_CLEAN);
 
         $this->sqlStackCounter += 5;
-            
+
         $o->delete();
 
         $expected = 'DELETE FROM [ticket__d_c841__model] WHERE [id] = 33';
@@ -179,7 +179,7 @@ class Ticket_DC841_Model extends Doctrine_Record
         $this->hasColumn('password', 'string', 255);
         $this->hasColumn('foo', 'string', 255);
     }
-    
+
     public function setUp()
     {
         $this->hasOne('Ticket_DC841_Model', array(

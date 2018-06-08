@@ -35,57 +35,57 @@ class Doctrine_Ticket_1507_TestCase extends Doctrine_UnitTestCase
     public function testInitiallyEmpty()
     {
         $c = new Doctrine_Ticket_1507_TestCase_TestConfigurable();
-        
+
         $this->assertEqual(null, $c->getParam('foo'));
         $this->assertEqual(null, $c->getParam('foo', 'bar'));
         $this->assertEqual(null, $c->getParams());
         $this->assertEqual(null, $c->getParams('bar'));
         $this->assertEqual(array(), $c->getParamNamespaces());
     }
-    
+
     public function testSetGetParamWithNamespace()
     {
         $c = new Doctrine_Ticket_1507_TestCase_TestConfigurable();
-        
+
         $c->setParam('foo', 'bar', 'namespace');
-        
+
         $this->assertEqual(array('foo' => 'bar'), $c->getParams('namespace'));
         $this->assertEqual('bar', $c->getParam('foo', 'namespace'));
-        
+
         $this->assertEqual(array('namespace'), $c->getParamNamespaces());
     }
-    
+
     public function testSetGetParamWithoutNamespace()
     {
         $c = new Doctrine_Ticket_1507_TestCase_TestConfigurable();
-        
+
         $c->setParam('foo', 'bar');
-        
+
         $this->assertEqual(array('foo' => 'bar'), $c->getParams());
         $this->assertEqual('bar', $c->getParam('foo'));
-        
+
         $this->assertEqual(array($c->getAttribute(Doctrine_Core::ATTR_DEFAULT_PARAM_NAMESPACE)), $c->getParamNamespaces());
     }
-    
+
     public function testSetGetParamWithNamespaceParent()
     {
         $p = new Doctrine_Ticket_1507_TestCase_TestConfigurable();
         $c = new Doctrine_Ticket_1507_TestCase_TestConfigurable();
         $c->setParent($p);
-        
+
         $p->setParam('foo', 'bar', 'namespace');
-        
+
         $this->assertEqual('bar', $c->getParam('foo', 'namespace'));
     }
-    
+
     public function testSetGetParamWithoutNamespaceParent()
     {
         $p = new Doctrine_Ticket_1507_TestCase_TestConfigurable();
         $c = new Doctrine_Ticket_1507_TestCase_TestConfigurable();
         $c->setParent($p);
-        
+
         $p->setParam('foo', 'bar');
-        
+
         $this->assertEqual('bar', $c->getParam('foo'));
     }
 }

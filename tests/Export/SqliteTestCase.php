@@ -35,7 +35,7 @@ class Doctrine_Export_Sqlite_TestCase extends Doctrine_UnitTestCase
     public function testCreateDatabaseDoesNotExecuteSqlAndCreatesSqliteFile()
     {
         $this->export->createDatabase('sqlite.db');
-      
+
         $this->assertTrue(file_exists('sqlite.db'));
     }
     public function testDropDatabaseDoesNotExecuteSqlAndDeletesSqliteFile()
@@ -47,7 +47,7 @@ class Doctrine_Export_Sqlite_TestCase extends Doctrine_UnitTestCase
     public function testCreateTableSupportsAutoincPks()
     {
         $name = 'mytable';
-        
+
         $fields = array('id' => array('type' => 'integer', 'unsigned' => 1, 'autoincrement' => true));
 
         $this->export->createTable($name, $fields);
@@ -71,10 +71,10 @@ class Doctrine_Export_Sqlite_TestCase extends Doctrine_UnitTestCase
         $name   = 'mytable';
         $fields = array('name'  => array('type' => 'char', 'length' => 10),
                          'type' => array('type' => 'integer', 'length' => 3));
-                         
+
         $options = array('primary' => array('name', 'type'));
         $this->export->createTable($name, $fields, $options);
-        
+
         $this->assertEqual($this->adapter->pop(), 'CREATE TABLE mytable (name CHAR(10), type INTEGER, PRIMARY KEY(name, type))');
     }
     public function testCreateTableSupportsIndexes()
@@ -128,10 +128,10 @@ class Doctrine_Export_Sqlite_TestCase extends Doctrine_UnitTestCase
         $name   = 'mytable';
         $fields = array('name'  => array('type' => 'char', 'length' => 10),
                          'type' => array('type' => 'integer', 'length' => 3));
-                         
+
         $options = array('primary' => array('name', 'type'));
         $this->export->createTable($name, $fields, $options);
-        
+
         $this->assertEqual($this->adapter->pop(), 'CREATE TABLE "mytable" ("name" CHAR(10), "type" INTEGER, PRIMARY KEY("name", "type"))');
 
         $this->conn->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, false);
@@ -164,7 +164,7 @@ class Doctrine_Export_Sqlite_TestCase extends Doctrine_UnitTestCase
                          );
 
         $this->export->createTable('sometable', $fields, $options);
-        
+
         //removed this assertion and inserted the two below
 //        $this->assertEqual($this->adapter->pop(), 'CREATE TABLE sometable (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(4), INDEX myindex (id ASC, name DESC))');
 

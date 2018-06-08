@@ -7,7 +7,7 @@ class Record_City extends Doctrine_Record
         $this->hasColumn('country_id', 'integer');
         $this->hasColumn('district_id', 'integer');
     }
-    
+
     public function setUp()
     {
         $this->hasOne('Record_Country as Country', array(

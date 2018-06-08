@@ -35,7 +35,7 @@ class Doctrine_NewCore_TestCase extends Doctrine_UnitTestCase
     public function testFromParser()
     {
         $q = new Doctrine_Query();
-        
+
         $q->load('User u', true);
 
         $this->assertEqual($q->getSqlQueryPart('from'), array('entity e'));

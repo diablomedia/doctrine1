@@ -1,4 +1,4 @@
-<?php 
+<?php
 class BlogTag extends Doctrine_Record
 {
     public function setTableDefinition()

@@ -77,7 +77,7 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
      * @param string $m     the name of the method
      * @param array $a      method arguments
      * @see Doctrine_EventListener
-     * @return boolean
+     * @return void
      */
     public function __call($m, $a)
     {

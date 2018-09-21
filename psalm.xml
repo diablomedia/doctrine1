@@ -86,6 +86,9 @@
             <errorLevel type="info">
                 <!-- different number of parameters passed depending on the mode -->
                 <file name="lib/Doctrine/Connection/Statement.php" />
+                <!-- I think this one is a bug in psalm, it even shows in the code snippet in the console that the
+                method is only being called with one parameter, not sure why it sees it as 2 -->
+                <file name="lib/Doctrine/Record.php" />
             </errorLevel>
         </TooManyArguments>
 
@@ -225,6 +228,9 @@
             <errorLevel type="info">
                 <!-- scalar|null is probably fine here, will be coerced to be an array key, or could change the docblock -->
                 <file name="lib/Doctrine/Validator/ErrorStack.php" />
+                <!-- This one is odd, Psalm is reporting the line number as "-1", probably worth reporting to psalm
+                project -->
+                <file name="lib/Doctrine/Record.php" />
             </errorLevel>
         </InvalidScalarArgument>
 
@@ -236,12 +242,21 @@
             </errorLevel>
         </NoInterfaceProperties>
 
-        <PossiblyUndefinedArrayOffset>
+        <UnevaluatedCode>
             <errorLevel type="info">
-                <!-- Tokenizer does weird things in a loop -->
-                <file name="lib/Doctrine/Query/Tokenizer.php" />
+                <!-- psalm is complaining about the return value from `gettype`, but in this case, `gettype` is only
+                called if the $type parameter is null, so technically the value of $type could be anything -->
+                <file name="lib/Doctrine/Formatter.php" />
             </errorLevel>
-        </PossiblyUndefinedArrayOffset>
+        </UnevaluatedCode>
+
+        <DuplicateArrayKey>
+            <errorLevel type="info">
+                <!-- This is correct, but I don't want to remove the key in case the values ever change in Doctrine_Core
+                I added a comment about it in Doctrine_Manager -->
+                <file name="lib/Doctrine/Manager.php" />
+            </errorLevel>
+        </DuplicateArrayKey>
 
         <!-- newer version of psalm does not like the @property annotations -->
         <UndefinedThisPropertyFetch errorLevel="info" />

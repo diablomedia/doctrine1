@@ -143,6 +143,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
         if (! $this->_initialized) {
             $this->_initialized = true;
             $attributes         = array(
+                        // These first two keys have the same value in Doctrine_Core (150)
                         Doctrine_Core::ATTR_CACHE                      => null,
                         Doctrine_Core::ATTR_RESULT_CACHE               => null,
                         Doctrine_Core::ATTR_QUERY_CACHE                => null,

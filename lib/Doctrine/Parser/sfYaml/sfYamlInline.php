@@ -27,7 +27,7 @@ class sfYamlInline
      *
      * @param string $value A YAML string
      *
-     * @return array|string A PHP array representing the YAML string
+     * @return array|string|bool|null|int|float A PHP array representing the YAML string
      */
     public static function load($value)
     {
@@ -165,7 +165,7 @@ class sfYamlInline
      * @param integer $i
      * @param boolean $evaluate
      *
-     * @return string A YAML string
+     * @return string|bool|null|int|float A YAML string
      */
     public static function parseScalar($scalar, $delimiters = null, $stringDelimiters = array('"', "'"), &$i = 0, $evaluate = true)
     {
@@ -262,7 +262,7 @@ class sfYamlInline
           $isQuoted = in_array($sequence[$i], array('"', "'"));
           $value    = self::parseScalar($sequence, array(',', ']'), array('"', "'"), $i);
 
-          if (!$isQuoted && false !== strpos($value, ': ')) {
+          if (!$isQuoted && false !== strpos((string) $value, ': ')) {
               // embedded mapping?
               try {
                   $value = self::parseMapping('{' . $value . '}');

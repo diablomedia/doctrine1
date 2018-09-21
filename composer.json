@@ -11,8 +11,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Doctrine_": "lib/",
-            "sfYaml": "lib/Doctrine/Parser/sfYaml/"
+            "Doctrine_": "lib/"
         },
         "classmap": [
             "lib/Doctrine.php"
@@ -30,7 +29,8 @@
     ],
     "require": {
         "php": ">=5.6",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "symfony/yaml": "^3.4 || ^4.1"
     },
     "require-dev": {
         "phpunit/php-code-coverage": "^4.0 || ^5.0",

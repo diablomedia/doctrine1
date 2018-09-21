@@ -202,8 +202,6 @@
                 <!-- SimpleXMLElement::asXml returns string|false if filename isn't specified to asXml call, which is the
                 case here, so "true" won't ever be returned in this case. -->
                 <file name="lib/Doctrine/Parser/Xml.php" />
-                <!-- Psalm wants to use numeric type, but other analyzers, like phpstan, don't like that type -->
-                <file name="lib/Doctrine/Parser/sfYaml/sfYamlInline.php" />
             </errorLevel>
         </InvalidReturnStatement>
 

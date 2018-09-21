@@ -63,8 +63,9 @@ jobs:
       install:
         - travis_retry composer install --no-interaction --prefer-source $COMPOSER_ARGS
         - travis_retry composer require --update-with-dependencies --prefer-dist --no-suggest phpstan/phpstan:0.9.2
-      before_script: skip
+      before_script:
+        - phpenv config-rm xdebug.ini || return 0;
       script:
-        - ./vendor/bin/phpstan analyze --level 7 -c phpstan.neon ./lib/
+        - ./vendor/bin/phpstan analyze --level 7 -c phpstan.neon --memory-limit=768M ./lib/
       after_script: skip
       after_success: skip

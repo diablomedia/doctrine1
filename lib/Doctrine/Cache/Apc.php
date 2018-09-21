@@ -82,7 +82,14 @@ class Doctrine_Cache_Apc extends Doctrine_Cache_Driver
      */
     protected function _doSave($id, $data, $lifeTime = false)
     {
-        return apc_store($id, $data, $lifeTime);
+        if ($lifeTime === false) {
+            $lifeTime = 0;
+        }
+
+        /** @var bool $result */
+        $result = apc_store($id, $data, $lifeTime);
+
+        return $result;
     }
 
     /**
@@ -94,7 +101,10 @@ class Doctrine_Cache_Apc extends Doctrine_Cache_Driver
      */
     protected function _doDelete($id)
     {
-        return apc_delete($id);
+        /** @var bool $result */
+        $result = apc_delete($id);
+
+        return $result;
     }
 
     /**

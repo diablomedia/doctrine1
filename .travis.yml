@@ -9,7 +9,15 @@ cache:
 
 env:
   global:
-    - COMPOSER_ARGS="" CC_TEST_REPORTER_ID=f424c3957298b215ddff899f624b534dac452ed703b42f70b74188a2edf0b5d0
+    - COMPOSER_ARGS="" USE_YAML=false CC_TEST_REPORTER_ID=f424c3957298b215ddff899f624b534dac452ed703b42f70b74188a2edf0b5d0
+
+addons:
+  apt:
+    packages:
+      - libyaml-dev
+
+before_install:
+  - if [[ "$USE_YAML" == true ]]; then pecl channel-update pecl.php.net & (CFLAGS="-O1 -g3 -fno-strict-aliasing"; pecl install yaml < /dev/null &); fi
 
 install:
   - travis_retry composer install --no-interaction --prefer-source $COMPOSER_ARGS
@@ -46,6 +54,8 @@ jobs:
     - php: 7
     - php: 7.1
     - php: 7.2
+    - php: 7.2
+      env: COMPOSER_ARGS="" USE_YAML=true CC_TEST_REPORTER_ID=f424c3957298b215ddff899f624b534dac452ed703b42f70b74188a2edf0b5d0
     - php: hhvm
     - php: nightly
       env: COMPOSER_ARGS="--ignore-platform-reqs"

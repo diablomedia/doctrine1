@@ -47,7 +47,11 @@ class Doctrine_Parser_Yml extends Doctrine_Parser
     public function dumpData($array, $path = null, $charset = null)
     {
         try {
-            $data = Yaml::dump($array, 6);
+            if (function_exists('yaml_emit')) {
+                $data = yaml_emit($array);
+            } else {
+                $data = Yaml::dump($array, 6);
+            }
 
             return $this->doDump($data, $path);
         } catch (InvalidArgumentException $e) {
@@ -76,7 +80,11 @@ class Doctrine_Parser_Yml extends Doctrine_Parser
              */
             $contents = $this->doLoad($path);
 
-            $array = Yaml::parse($contents);
+            if (function_exists('yaml_parse')) {
+                $array = yaml_parse($contents);
+            } else {
+                $array = Yaml::parse($contents);
+            }
 
             return $array;
         } catch (InvalidArgumentException $e) {

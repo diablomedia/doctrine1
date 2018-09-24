@@ -9,7 +9,9 @@ cache:
 
 env:
   global:
-    - COMPOSER_ARGS="" USE_YAML=false CC_TEST_REPORTER_ID=f424c3957298b215ddff899f624b534dac452ed703b42f70b74188a2edf0b5d0
+    - COMPOSER_ARGS=""
+    - USE_YAML=false
+    - CC_TEST_REPORTER_ID=f424c3957298b215ddff899f624b534dac452ed703b42f70b74188a2edf0b5d0
 
 addons:
   apt:
@@ -51,14 +53,22 @@ jobs:
     - php: nightly
   include:
     - php: 5.6
+    - php: 5.6
+      env: USE_YAML=true
     - php: 7
+    - php: 7
+      env: USE_YAML=true
     - php: 7.1
+    - php: 7.1
+      env: USE_YAML=true
     - php: 7.2
     - php: 7.2
-      env: COMPOSER_ARGS="" USE_YAML=true CC_TEST_REPORTER_ID=f424c3957298b215ddff899f624b534dac452ed703b42f70b74188a2edf0b5d0
+      env: USE_YAML=true
     - php: hhvm
     - php: nightly
       env: COMPOSER_ARGS="--ignore-platform-reqs"
+    - php: nightly
+      env: COMPOSER_ARGS="--ignore-platform-reqs" USE_YAML=true
 
     - stage: style check
       php: 7.2

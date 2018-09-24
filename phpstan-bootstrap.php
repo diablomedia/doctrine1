@@ -49,10 +49,6 @@ if (!extension_loaded('xcache')) {
     require_once __DIR__ . '/vendor/jetbrains/phpstorm-stubs/xcache/xcache.php';
 }
 
-if (!extension_loaded('yaml')) {
-    require_once __DIR__ . '/vendor/jetbrains/phpstorm-stubs/yaml/yaml.php';
-}
-
 if (!extension_loaded('zlib')) {
     require_once __DIR__ . '/vendor/jetbrains/phpstorm-stubs/zlib/zlib.php';
 }

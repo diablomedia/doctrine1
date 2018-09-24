@@ -36,8 +36,5 @@
         "phpunit/php-code-coverage": "^4.0 || ^5.0",
         "jetbrains/phpstorm-stubs": "dev-phpstan",
         "friendsofphp/php-cs-fixer": "^2.12"
-    },
-    "suggest": {
-        "ext-yaml": "If yaml extension is installed, will be used for YAML parsing/dumping instead of symfony/yaml"
     }
 }

@@ -11,13 +11,13 @@ class QueryTest_Entry extends Doctrine_Record
             'authorId',
             'integer',
             4,
-                array('notnull')
+            array('notnull')
         );
         $this->hasColumn(
             'date',
             'integer',
             4,
-                array('notnull')
+            array('notnull')
         );
     }
 

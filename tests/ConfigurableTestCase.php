@@ -161,7 +161,7 @@ class Doctrine_Configurable_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual(
             $this->manager->getAttribute(Doctrine_Core::ATTR_PORTABILITY),
-                           Doctrine_Core::PORTABILITY_RTRIM | Doctrine_Core::PORTABILITY_FIX_CASE
+            Doctrine_Core::PORTABILITY_RTRIM | Doctrine_Core::PORTABILITY_FIX_CASE
         );
         $this->manager->setAttribute(Doctrine_Core::ATTR_PORTABILITY, Doctrine_Core::PORTABILITY_ALL);
     }

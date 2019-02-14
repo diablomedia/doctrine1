@@ -40,7 +40,7 @@ class Doctrine_Query_Subquery_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual(
             $q->getSqlQuery(),
-        "SELECT e.id AS e__id, e.name AS e__name, e.loginname AS e__loginname, e.password AS e__password, e.type AS e__type, e.created AS e__created, e.updated AS e__updated, e.email_id AS e__email_id FROM entity e WHERE (e.id NOT IN (SELECT e2.id AS e2__id FROM entity e2 WHERE (e2.name = 'zYne' AND (e2.type = 0))) AND (e.type = 0))"
+            "SELECT e.id AS e__id, e.name AS e__name, e.loginname AS e__loginname, e.password AS e__password, e.type AS e__type, e.created AS e__created, e.updated AS e__updated, e.email_id AS e__email_id FROM entity e WHERE (e.id NOT IN (SELECT e2.id AS e2__id FROM entity e2 WHERE (e2.name = 'zYne' AND (e2.type = 0))) AND (e.type = 0))"
         );
 
         $users = $q->execute();

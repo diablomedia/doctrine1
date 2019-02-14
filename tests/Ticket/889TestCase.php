@@ -110,10 +110,10 @@ class Ticket_889 extends Doctrine_Record
 
         // id
         $this->hasColumn(
-                'id',
-                'integer',
-                10,
-                array(	'primary'        => true,
+            'id',
+            'integer',
+            10,
+            array(	'primary'            => true,
                         'unsigned'      => true,
                         'autoincrement' => true
                 )
@@ -121,10 +121,10 @@ class Ticket_889 extends Doctrine_Record
 
         // table_name
         $this->hasColumn(
-                'table_name',
-                'string',
-                100,
-                array(	'notnull'   => true,
+            'table_name',
+            'string',
+            100,
+            array(	'notnull'       => true,
                         'notblank' => true,
                         'unique'   => true
                 )

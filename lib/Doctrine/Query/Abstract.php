@@ -299,7 +299,7 @@ abstract class Doctrine_Query_Abstract
      */
     public function __construct(
         Doctrine_Connection $connection = null,
-            Doctrine_Hydrator_Abstract $hydrator = null
+        Doctrine_Hydrator_Abstract $hydrator = null
     ) {
         if ($connection === null) {
             $connection = Doctrine_Manager::getInstance()->getCurrentConnection();

@@ -1083,7 +1083,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
                 if (substr($part, 0, 9) === 'LEFT JOIN') {
                     $aliases = array_merge(
                         $this->_subqueryAliases,
-                                array_keys($this->_neededTables)
+                        array_keys($this->_neededTables)
                     );
 
                     if (! in_array($e[3], $aliases) && ! in_array($e[2], $aliases) && ! empty($this->_pendingFields)) {

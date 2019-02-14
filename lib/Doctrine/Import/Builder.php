@@ -1023,10 +1023,10 @@ class Doctrine_Import_Builder extends Doctrine_Builder
             self::$_tpl,
             $docs,
             $abstract,
-                                       $className,
-                                       $extends,
-                                       $tableDefinitionCode,
-                                       $setUpCode
+            $className,
+            $extends,
+            $tableDefinitionCode,
+            $setUpCode
         );
 
         return $content;

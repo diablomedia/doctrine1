@@ -5,20 +5,20 @@ class TestMovie extends Doctrine_Record
     {
         $this->hasOne(
             'TestUser as User',
-                        array('local'   => 'user_id',
+            array('local'               => 'user_id',
                               'foreign' => 'id')
         );
 
         $this->hasMany(
             'TestUser as MovieBookmarks',
-                        array('local'    => 'movie_id',
+            array('local'                => 'movie_id',
                               'foreign'  => 'user_id',
                               'refClass' => 'TestMovieUserBookmark')
         );
 
         $this->hasMany(
             'TestUser as MovieVotes',
-                        array('local'    => 'movie_id',
+            array('local'                => 'movie_id',
                               'foreign'  => 'user_id',
                               'refClass' => 'TestMovieUserVote')
         );

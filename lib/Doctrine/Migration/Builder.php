@@ -535,9 +535,9 @@ END;
         $content .= sprintf(
             self::$tpl,
             $className,
-                                       $extends,
-                                       $up,
-                                       $down
+            $extends,
+            $up,
+            $down
         );
 
         return $content;

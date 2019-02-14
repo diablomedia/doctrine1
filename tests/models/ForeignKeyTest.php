@@ -10,7 +10,7 @@ class ForeignKeyTest extends Doctrine_Record
 
         $this->hasOne(
             'ForeignKeyTest as Parent',
-                       array('local'    => 'parent_id',
+            array('local'               => 'parent_id',
                              'foreign'  => 'id',
                              'onDelete' => 'CASCADE',
                              'onUpdate' => 'RESTRICT')

@@ -513,7 +513,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
                     $this->dbh = new PDO(
                         $this->options['dsn'],
                         $this->options['username'],
-                                     (!$this->options['password'] ? '':$this->options['password']),
+                        (!$this->options['password'] ? '':$this->options['password']),
                         $this->options['other']
                     );
 

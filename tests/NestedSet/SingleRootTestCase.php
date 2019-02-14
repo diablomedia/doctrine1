@@ -85,7 +85,7 @@ class Doctrine_NestedSet_SingleRoot_TestCase extends Doctrine_UnitTestCase
     {
         $node = $this->conn->query(
             'SELECT n.* FROM NestedSetTest_SingleRootNode n WHERE n.name = ?',
-                array('node2')
+            array('node2')
         )->getFirst();
         $anc = $node->getNode()->getAncestors();
         $this->assertTrue($anc !== false);

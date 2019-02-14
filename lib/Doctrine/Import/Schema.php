@@ -234,7 +234,7 @@ class Doctrine_Import_Schema
             } elseif (is_dir($s)) {
                 $it = new RecursiveIteratorIterator(
                     new RecursiveDirectoryIterator($s),
-                                                      RecursiveIteratorIterator::LEAVES_ONLY
+                    RecursiveIteratorIterator::LEAVES_ONLY
                 );
 
                 foreach ($it as $file) {

@@ -180,7 +180,7 @@ class Doctrine_Relation_Parser
                     if (! $parser->hasRelation($this->_table->getComponentName())) {
                         $parser->bind(
                             $this->_table->getComponentName(),
-                                      array('type'     => Doctrine_Relation::ONE,
+                            array('type'               => Doctrine_Relation::ONE,
                                             'local'    => $def['local'],
                                             'foreign'  => $idColumnName,
                                             'localKey' => true,
@@ -353,7 +353,7 @@ class Doctrine_Relation_Parser
             }
         } else {
             $columns = $componentNameToLower . '_' . $table->getColumnName(
-                    $table->getIdentifier()
+                $table->getIdentifier()
             );
         }
 

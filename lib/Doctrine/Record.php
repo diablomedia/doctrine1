@@ -2514,8 +2514,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         if (! isset($this->_node)) {
             $this->_node = Doctrine_Node::factory(
                 $this,
-                                              $this->getTable()->getOption('treeImpl'),
-                                              $this->getTable()->getOption('treeOptions')
+                $this->getTable()->getOption('treeImpl'),
+                $this->getTable()->getOption('treeOptions')
                                               );
         }
 

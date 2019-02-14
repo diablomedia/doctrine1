@@ -83,7 +83,7 @@ class Doctrine_Data_Import extends Doctrine_Data
                 } elseif (is_dir($dir)) {
                     $it = new RecursiveIteratorIterator(
                         new RecursiveDirectoryIterator($dir),
-                                                            RecursiveIteratorIterator::LEAVES_ONLY
+                        RecursiveIteratorIterator::LEAVES_ONLY
                     );
                     $filesOrdered = array();
                     foreach ($it as $file) {

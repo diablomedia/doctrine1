@@ -7,26 +7,23 @@ class QueryTest_Rank extends Doctrine_Record
     public function setTableDefinition()
     {
         $this->hasColumn(
-
             'title as title',
-
             'string',
-
             100,
-                array('notnull')
+            array('notnull')
 
         );
         $this->hasColumn(
             'color as color',
             'string',
             20,
-                array('notnull', 'regexp' => '/^[a-zA-Z\-]{3,}|#[0-9a-fA-F]{6}$/D')
+            array('notnull', 'regexp' => '/^[a-zA-Z\-]{3,}|#[0-9a-fA-F]{6}$/D')
         );
         $this->hasColumn(
             'icon as icon',
             'string',
             50,
-                array('notnull', 'default' => ' ', 'regexp' => '/^[a-zA-Z0-9_\-]+\.(jpg|gif|png)$/D')
+            array('notnull', 'default' => ' ', 'regexp' => '/^[a-zA-Z0-9_\-]+\.(jpg|gif|png)$/D')
         );
     }
 

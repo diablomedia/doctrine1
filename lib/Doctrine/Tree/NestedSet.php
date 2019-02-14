@@ -258,8 +258,8 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
         if ($root = $this->getAttribute('rootColumnName')) {
             if (is_array($rootId)) {
                 $query->addWhere(
-                   $root . ' IN (' . implode(',', array_fill(0, count($rootId), '?')) . ')',
-                       $rootId
+                    $root . ' IN (' . implode(',', array_fill(0, count($rootId), '?')) . ')',
+                    $rootId
                );
             } else {
                 $query->addWhere($root . ' = ?', $rootId);

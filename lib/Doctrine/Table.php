@@ -454,7 +454,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                             $fullName,
                             $definition['type'],
                             $definition['length'],
-                                $definition,
+                            $definition,
                             true
                         );
                     }

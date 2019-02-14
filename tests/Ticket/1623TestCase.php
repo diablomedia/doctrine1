@@ -120,7 +120,7 @@ class Ticket_1623_User extends Doctrine_Record
     {
         $this->hasMany(
             'Ticket_1623_User as parents',
-                                                array('local'           => 'parentId',
+            array('local'                                               => 'parentId',
                                                 'refClass'              => 'Ticket_1623_UserReference',
                                                 'foreign'               => 'childId',
                                                 'refClassRelationAlias' => 'childrenLinks'
@@ -128,9 +128,8 @@ class Ticket_1623_User extends Doctrine_Record
         );
 
         $this->hasMany(
-
             'Ticket_1623_User as children',
-                                                 array('local'           => 'childId',
+            array('local'                                                => 'childId',
                                                  'foreign'               => 'parentId',
                                                  'refClass'              => 'Ticket_1623_UserReference',
                                                  'refClassRelationAlias' => 'parentLinks'

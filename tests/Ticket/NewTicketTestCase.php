@@ -110,10 +110,10 @@ class Testing_AttributeDefinition extends Doctrine_Record
     {
         $this->setTableName('testing__attribute_definitions');
         $this->hasColumn(
-                    'id',
-                    'integer',
-                    4,
-                    array('primary' => true,'autoincrement' => true)
+            'id',
+            'integer',
+            4,
+            array('primary' => true,'autoincrement' => true)
                 );
         $this->hasColumn('name', 'string', 64, array('notnull' => true));
     }
@@ -129,24 +129,24 @@ class Testing_Attribute extends Doctrine_Record
         $this->setTableName('testing__attributes');
 
         $this->hasColumn(
-                    'id',
-                    'integer',
-                    4,
-                    array('primary' => true,'autoincrement' => true)
+            'id',
+            'integer',
+            4,
+            array('primary' => true,'autoincrement' => true)
                 );
         $this->hasColumn(
-                    'attribute_definition_id',
-                    'integer',
-                    4,
-                    array('notnull' => true)
+            'attribute_definition_id',
+            'integer',
+            4,
+            array('notnull' => true)
                 );
         $this->hasColumn('value', 'string', 255, array('notnull' => false));
     }
     public function setUp()
     {
         $this->hasOne(
-                'Testing_AttributeDefinition as Definition',
-                array(
+            'Testing_AttributeDefinition as Definition',
+            array(
                                 'local'    => 'attribute_definition_id',
                                 'foreign'  => 'id',
                                 'onDelete' => 'CASCADE'
@@ -161,10 +161,10 @@ class Testing_Product extends Doctrine_Record
     {
         $this->setTableName('testing__products');
         $this->hasColumn(
-                    'id',
-                    'integer',
-                    4,
-                    array('primary' => true,'autoincrement' => true)
+            'id',
+            'integer',
+            4,
+            array('primary' => true,'autoincrement' => true)
                 );
         $this->hasColumn(
             'name',
@@ -176,8 +176,8 @@ class Testing_Product extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany(
-                'Testing_Attribute as Attributes',
-                array(
+            'Testing_Attribute as Attributes',
+            array(
                         'local'            => 'product_id',
                         'foreign'          => 'attribute_id',
                         'refClass'         => 'Testing_ProductAttribute',
@@ -205,16 +205,16 @@ class Testing_ProductAttribute extends Doctrine_Record
     public function setUp()
     {
         $this->hasOne(
-                'Testing_Product as Product',
-                array(
+            'Testing_Product as Product',
+            array(
                         'local'            => 'product_id',
                         'foreign'          => 'id',
                                 'onDelete' => 'CASCADE'
                 )
         );
         $this->hasOne(
-                'Testing_Attribute as Attribute',
-                array(
+            'Testing_Attribute as Attribute',
+            array(
                         'local'            => 'attribute_id',
                         'foreign'          => 'id',
                                 'onDelete' => 'RESTRICT'

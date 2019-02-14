@@ -285,13 +285,13 @@ class Doctrine_Inflector
         $text = strtolower(preg_replace(
             '/[^A-Z^a-z^0-9^\/]+/',
             '-',
-                           preg_replace(
+            preg_replace(
                                '/([a-z\d])([A-Z])/',
                                '\1_\2',
-                           preg_replace(
+                               preg_replace(
                                '/([A-Z]+)([A-Z][a-z])/',
                                '\1_\2',
-                           preg_replace('/::/', '/', $text)
+                               preg_replace('/::/', '/', $text)
                            )
                            )
         ));

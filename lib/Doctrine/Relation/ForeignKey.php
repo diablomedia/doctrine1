@@ -65,7 +65,7 @@ class Doctrine_Relation_ForeignKey extends Doctrine_Relation
 
             $related->set(
                 $related->getTable()->getFieldName($this->definition['foreign']),
-                    $record,
+                $record,
                 false
             );
         } else {

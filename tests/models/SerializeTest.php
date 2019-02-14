@@ -20,7 +20,7 @@ class SerializeTest extends Doctrine_Record
             'enumtest',
             'enum',
             4,
-                         array(
+            array(
                             'values' => array(
                                         'php',
                                         'java',

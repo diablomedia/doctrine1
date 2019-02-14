@@ -119,8 +119,8 @@ class T626_Group extends Doctrine_Record
     public function setUp()
     {
         $this->hasMany(
-        'T626B_Student as Students',
-      array('local' => 'g_id', 'foreign' => 's_id')
+            'T626B_Student as Students',
+            array('local' => 'g_id', 'foreign' => 's_id')
     );
     }
 }

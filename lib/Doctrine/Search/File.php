@@ -72,7 +72,7 @@ class Doctrine_Search_File extends Doctrine_Search
     {
         $it = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($dir),
-                                                RecursiveIteratorIterator::LEAVES_ONLY
+            RecursiveIteratorIterator::LEAVES_ONLY
         );
 
         foreach ($it as $file) {

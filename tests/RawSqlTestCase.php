@@ -223,7 +223,7 @@ class Doctrine_RawSql_TestCase extends Doctrine_UnitTestCase
 
         $this->assertEqual(
             $query->getSqlQuery(),
-        "SELECT entity.name AS entity__name, entity.id AS entity__id FROM (SELECT entity.name FROM entity WHERE entity.name = 'something') WHERE entity.id = 2 ORDER BY entity.name"
+            "SELECT entity.name AS entity__name, entity.id AS entity__id FROM (SELECT entity.name FROM entity WHERE entity.name = 'something') WHERE entity.id = 2 ORDER BY entity.name"
         );
     }
 

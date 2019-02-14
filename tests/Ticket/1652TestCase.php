@@ -56,7 +56,7 @@ class Doctrine_Ticket_1652_TestCase extends Doctrine_UnitTestCase
             //I only want my overridden Record->validate()-methods for validation
             Doctrine_Manager::getInstance()->setAttribute(
                 Doctrine_Core::ATTR_VALIDATE,
-                                                    Doctrine_Core::VALIDATE_ALL & ~Doctrine_Core::VALIDATE_LENGTHS & ~Doctrine_Core::VALIDATE_CONSTRAINTS & ~Doctrine_Core::VALIDATE_TYPES
+                Doctrine_Core::VALIDATE_ALL & ~Doctrine_Core::VALIDATE_LENGTHS & ~Doctrine_Core::VALIDATE_CONSTRAINTS & ~Doctrine_Core::VALIDATE_TYPES
             );
         }
 

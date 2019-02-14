@@ -71,7 +71,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
 
         $this->tables = array_merge(
             $this->tables,
-                        array('entity',
+            array('entity',
                               'entityReference',
                               'email',
                               'phonenumber',

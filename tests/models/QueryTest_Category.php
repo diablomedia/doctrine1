@@ -19,25 +19,25 @@ class QueryTest_Category extends Doctrine_Record
             'rootCategoryId as rootCategoryId',
             'integer',
             4,
-                array('notnull', 'default' => 0)
+            array('notnull', 'default' => 0)
         );
         $this->hasColumn(
             'parentCategoryId as parentCategoryId',
             'integer',
             4,
-                array('notnull', 'default' => 0)
+            array('notnull', 'default' => 0)
         );
         $this->hasColumn(
             'name as name',
             'string',
             50,
-                array('notnull', 'unique')
+            array('notnull', 'unique')
         );
         $this->hasColumn(
             'position as position',
             'integer',
             4,
-                array('default' => 0, 'notnull')
+            array('default' => 0, 'notnull')
         );
     }
 

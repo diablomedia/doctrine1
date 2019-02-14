@@ -69,13 +69,13 @@ class Ticket_2377_Author extends Doctrine_Record
             'id',
             'integer',
             2,
-          array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '2')
+            array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '2')
         );
         $this->hasColumn(
             'name',
             'string',
             2,
-          array('type' => 'string', 'length' => '100')
+            array('type' => 'string', 'length' => '100')
         );
     }
 
@@ -94,19 +94,19 @@ class Ticket_2377_Article extends Doctrine_Record
             'id',
             'integer',
             2,
-          array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '2')
+            array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '2')
         );
         $this->hasColumn(
             'author_id',
             'integer',
             2,
-          array('type' => 'integer', 'unsigned' => true, 'length' => '2')
+            array('type' => 'integer', 'unsigned' => true, 'length' => '2')
         );
         $this->hasColumn(
             'content',
             'string',
             100,
-          array('type' => 'string', 'length' => '100')
+            array('type' => 'string', 'length' => '100')
         );
     }
 

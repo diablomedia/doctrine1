@@ -286,12 +286,12 @@ class Doctrine_Inflector
             '/[^A-Z^a-z^0-9^\/]+/',
             '-',
             preg_replace(
-                               '/([a-z\d])([A-Z])/',
-                               '\1_\2',
-                               preg_replace(
-                               '/([A-Z]+)([A-Z][a-z])/',
-                               '\1_\2',
-                               preg_replace('/::/', '/', $text)
+                '/([a-z\d])([A-Z])/',
+                '\1_\2',
+                preg_replace(
+                    '/([A-Z]+)([A-Z][a-z])/',
+                    '\1_\2',
+                    preg_replace('/::/', '/', $text)
                            )
                            )
         ));

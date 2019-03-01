@@ -94,7 +94,7 @@ class Doctrine_Query_Tokenizer
                 break;
 
                 case 'by':
-                    continue;
+                    break;
 
                 default:
                     if ($p === null) {

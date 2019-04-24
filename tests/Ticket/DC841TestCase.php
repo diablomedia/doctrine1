@@ -78,6 +78,7 @@ class Doctrine_Ticket_DC841_TestCase extends Doctrine_UnitTestCase
 
     public function testSelectWithStaticParameter()
     {
+        $this->skip();
         return; // doesn't work
         Doctrine::getTable('Ticket_DC841_Model')
             ->createQuery('t')

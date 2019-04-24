@@ -79,8 +79,9 @@ class GroupTest extends UnitTestCase
                 $testCase->addMessage($message);
             }
 
-            $this->_passed += $testCase->getPassCount();
-            $this->_failed += $testCase->getFailCount();
+            $this->_passed  += $testCase->getPassCount();
+            $this->_failed  += $testCase->getFailCount();
+            $this->_skipped += $testCase->getSkipCount();
 
             $this->_testCases[$k] = null;
 

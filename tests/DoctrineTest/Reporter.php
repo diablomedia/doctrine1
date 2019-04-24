@@ -19,6 +19,8 @@ class DoctrineTest_Reporter
                 $color = 'green';
             } elseif ($type == 'ERROR') {
                 $color = 'red';
+            } elseif ($type == 'COMMENT') {
+                $color = 'yellow';
             } else {
                 $color = 'black';
             }
@@ -37,10 +39,21 @@ class DoctrineTest_Reporter
         $class    = get_class($this->_test);
         $messages = $this->_test->getMessages();
         $failed   = ($this->_test->getFailCount() || count($messages)) ? true:false;
+        $skipped  = $this->_test->getSkipCount() ? true : false;
 
         if ($class != 'GroupTest') {
             $strRepeatLength = $max - strlen($class);
-            echo $class . str_repeat('.', $strRepeatLength) . $this->format($failed ? 'failed':'passed', $failed ? 'ERROR':'INFO') . "\n";
+            $message         = 'passed';
+            $type            = 'INFO';
+            if ($failed) {
+                $message = 'failed';
+                $type    = 'ERROR';
+            } elseif ($skipped) {
+                $message = 'skipped';
+                $type    = 'COMMENT';
+            }
+
+            echo $class . str_repeat('.', $strRepeatLength) . $this->format($message, $type) . "\n";
         }
 
         if (! empty($messages)) {

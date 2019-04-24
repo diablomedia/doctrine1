@@ -49,6 +49,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
     public function testAsResultCache()
     {
         if (!$this->_isEnabled()) {
+            $this->skip();
             return;
         }
         $this->_clearCache();
@@ -82,6 +83,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
     public function testCacheCore()
     {
         if (!$this->_isEnabled()) {
+            $this->skip();
             return;
         }
         $this->_clearCache();
@@ -100,6 +102,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
     public function testDeleteByPrefix()
     {
         if (!$this->_isEnabled()) {
+            $this->skip();
             return;
         }
         $this->_clearCache();
@@ -119,6 +122,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
     public function testDeleteBySuffix()
     {
         if (!$this->_isEnabled()) {
+            $this->skip();
             return;
         }
         $this->_clearCache();
@@ -138,6 +142,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
     public function testDeleteByRegex()
     {
         if (!$this->_isEnabled()) {
+            $this->skip();
             return;
         }
         $this->_clearCache();

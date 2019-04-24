@@ -5,11 +5,13 @@ class UnitTestCase
 
     protected $_failed = 0;
 
+    protected $_skipped = 0;
+
     protected $_messages = array();
 
-    protected static $_passesAndFails = array('passes' => array(), 'fails' => array());
+    protected static $_passesAndFails = array('passes' => array(), 'fails' => array(), 'skips' => array());
 
-    protected static $_lastRunsPassesAndFails = array('passes' => array(), 'fails' => array());
+    protected static $_lastRunsPassesAndFails = array('passes' => array(), 'fails' => array(), 'skips' => array());
 
     public function init()
     {
@@ -116,6 +118,15 @@ class UnitTestCase
         $this->_passed++;
     }
 
+    public function skip()
+    {
+        $class = get_class($this);
+        if (! isset(self::$_passesAndFails['skips'][$class])) {
+            self::$_passesAndFails['skips'][$class] = $class;
+        }
+        $this->_skipped++;
+    }
+
     public function fail($message = '')
     {
         $this->_fail($message);
@@ -177,6 +188,11 @@ class UnitTestCase
         return $this->_passed;
     }
 
+    public function getSkipCount()
+    {
+        return $this->_skipped;
+    }
+
     public function getPassesAndFailsCachePath()
     {
         $dir = dirname(__FILE__) . '/doctrine_tests';
@@ -225,7 +241,6 @@ class UnitTestCase
             }
         }
         return $newFails;
-        ;
     }
 
     public function getFixedFails()
@@ -239,7 +254,6 @@ class UnitTestCase
             }
         }
         return $fixed;
-        ;
     }
 
     public function getNumNewFails()

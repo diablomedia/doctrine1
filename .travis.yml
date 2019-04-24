@@ -12,8 +12,20 @@ env:
     - COMPOSER_ARGS=""
     - CC_TEST_REPORTER_ID=f424c3957298b215ddff899f624b534dac452ed703b42f70b74188a2edf0b5d0
     - COMPOSER_DISCARD_CHANGES=1
+    - APCU_PECL_VERSION="apcu"
+    - APCU_BC_PECL_VERSION="apcu_bc"
 
 install:
+  - echo "yes\nno\n" | pecl install -f $APCU_PECL_VERSION && sed -i 's/extension="apcu.so"//' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - if [[ $APCU_BC_PECL_VERSION != '' ]]; then
+        pecl install -f $APCU_BC_PECL_VERSION ;
+        sed -i 's/extension="apc.so"//' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini ;
+        phpenv config-add apcu_bc.ini ;
+    else
+        phpenv config-add apcu.ini ;
+    fi ;
+  
+  - phpenv rehash
   - travis_retry composer install --no-interaction --prefer-source $COMPOSER_ARGS
 
 stages:
@@ -45,6 +57,9 @@ jobs:
     - php: nightly
   include:
     - php: 5.6
+      env: 
+        - APCU_PECL_VERSION="apcu-4.0.11"
+        - APCU_BC_PECL_VERSION=""
     - php: 7
     - php: 7.1
     - php: 7.2

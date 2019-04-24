@@ -39,7 +39,7 @@ class Doctrine_Cache_Apcu extends Doctrine_Cache_Driver
      */
     public function __construct($options = array())
     {
-        if (!\function_exists('apcu_fetch')) {
+        if (!function_exists('apcu_fetch')) {
             throw new Doctrine_Cache_Exception('The apcu extension must be loaded for using this backend !');
         }
         parent::__construct($options);
@@ -47,13 +47,13 @@ class Doctrine_Cache_Apcu extends Doctrine_Cache_Driver
 
     protected function _doFetch($id, $testCacheValidity = true)
     {
-        return \apcu_fetch($id);
+        return apcu_fetch($id);
     }
 
     protected function _doContains($id)
     {
         $found = false;
-        \apcu_fetch($id, $found);
+        apcu_fetch($id, $found);
 
         return $found;
     }
@@ -65,7 +65,7 @@ class Doctrine_Cache_Apcu extends Doctrine_Cache_Driver
         }
 
         /** @var bool $result */
-        $result = \apcu_store($id, $data, $lifeTime);
+        $result = apcu_store($id, $data, $lifeTime);
 
         return $result;
     }
@@ -73,14 +73,14 @@ class Doctrine_Cache_Apcu extends Doctrine_Cache_Driver
     protected function _doDelete($id)
     {
         /** @var bool $result */
-        $result = \apcu_delete($id);
+        $result = apcu_delete($id);
 
         return $result;
     }
 
     protected function _getCacheKeys()
     {
-        $ci   = \apcu_cache_info();
+        $ci   = apcu_cache_info();
         $keys = array();
 
         foreach ($ci['cache_list'] as $entry) {

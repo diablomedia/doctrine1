@@ -227,7 +227,6 @@ class Doctrine_Export_Mysql_TestCase extends Doctrine_UnitTestCase
                 'values'  => array('a', 'b', 'c'),
                 'default' => 'a',
                 'notnull' => true,
-                'length'  => '1',
             )
         );
 
@@ -238,7 +237,7 @@ class Doctrine_Export_Mysql_TestCase extends Doctrine_UnitTestCase
         // Native Set not enabled, should be VARCHAR
         $this->assertEqual(
             $this->adapter->pop(),
-            "CREATE TABLE mytable (letter VARCHAR(1) DEFAULT 'a' NOT NULL) ENGINE = MYISAM"
+            "CREATE TABLE mytable (letter VARCHAR(5) DEFAULT 'a' NOT NULL) ENGINE = MYISAM"
         );
 
         $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_SET, true);

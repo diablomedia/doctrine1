@@ -288,7 +288,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
         $type = $this->dataDict->getPortableDeclaration($field);
 
         $this->assertEqual($type, array('type'     => array('set', 'integer'),
-                                        'length'   => 1,
+                                        'length'   => 5,
                                         'unsigned' => null,
                                         'fixed'    => false,
                                         'values'   => array('a', 'b', 'c')));
@@ -318,7 +318,7 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
 
     public function testGetNativeDefinitionSupportsEnumTypes()
     {
-        $a = array('type' => 'enum', 'length' => 1, 'fixed' => false, 'values' => array('a', 'b', 'c'));
+        $a = array('type' => 'enum', 'fixed' => false, 'values' => array('a', 'b', 'c'));
 
         // Native ENUM type disabled, should be VARCHAR
         $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(1)');
@@ -336,14 +336,14 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
 
     public function testGetNativeDefinitionSupportsSetTypes()
     {
-        $a = array('type' => 'set', 'length' => 1, 'fixed' => false, 'values' => array('a', 'b', 'c'));
+        $a = array('type' => 'set', 'fixed' => false, 'values' => array('a', 'b', 'c'));
 
         // Native SET type disabled, should be VARCHAR
-        $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(1)');
+        $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(5)');
 
         // Enabling ENUM native type should have no effect on SET
         $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM, true);
-        $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(1)');
+        $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(5)');
 
         // Native type enabled
         $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_SET, true);

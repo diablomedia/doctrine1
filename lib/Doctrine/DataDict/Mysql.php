@@ -156,7 +156,15 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                     }
                     return strtoupper($field['type']) . '(' . implode(', ', $values) . ')';
                 } else {
-                    $field['length'] = isset($field['length']) && $field['length'] ? $field['length']:255;
+                    if ($field['type'] === 'enum' && !empty($field['values'])) {
+                        $length = max(array_map('strlen', $field['values']));
+                    } elseif ($field['type'] === 'set' && !empty($field['values'])) {
+                        $length = strlen(implode(',', $field['values']));
+                    } else {
+                        isset($field['length']) && $field['length'] ? $field['length']:255;
+                    }
+
+                    $field['length'] = $length;
                 }
                 // no break
             case 'varchar':
@@ -356,6 +364,10 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                         if (preg_match('/^(is|has)/', $field['name'])) {
                             $type = array_reverse($type);
                         }
+                    }
+
+                    if ($dbType === 'set') {
+                        $length = strlen(implode(',', $matches[1]));
                     }
 
                     $values = $matches[1];

@@ -161,7 +161,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                     } elseif ($field['type'] === 'set' && !empty($field['values'])) {
                         $length = strlen(implode(',', $field['values']));
                     } else {
-                        isset($field['length']) && $field['length'] ? $field['length']:255;
+                        $length = isset($field['length']) && $field['length'] ? $field['length']:255;
                     }
 
                     $field['length'] = $length;

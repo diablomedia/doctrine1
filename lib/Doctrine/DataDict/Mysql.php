@@ -365,7 +365,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 break;
             case 'set':
                 $fixed  = false;
-                $type[] = 'text';
+                $type[] = 'set';
                 $type[] = 'integer';
             break;
             case 'date':

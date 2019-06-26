@@ -46,11 +46,19 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
     {
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'tinyint'));
 
-
         $this->assertEqual($type, array('type'     => array('integer', 'boolean'),
                                         'length'   => 1,
                                         'unsigned' => null,
                                         'fixed'    => null));
+
+        // If column name starts with "is" or "has" treat as a boolean
+        $type = $this->dataDict->getPortableDeclaration(array('type' => 'tinyint', 'field' => 'isenabled'));
+
+        $this->assertEqual($type, array('type'     => array('boolean', 'integer'),
+                                        'length'   => 1,
+                                        'unsigned' => null,
+                                        'fixed'    => null));
+
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'smallint unsigned'));
 
         $this->assertEqual($type, array('type'     => array('integer'),
@@ -120,6 +128,13 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
         $type = $this->dataDict->getPortableDeclaration(array('type' => 'char(1)'));
 
         $this->assertEqual($type, array('type'     => array('string', 'boolean'),
+                                        'length'   => 1,
+                                        'unsigned' => null,
+                                        'fixed'    => true));
+
+        $type = $this->dataDict->getPortableDeclaration(array('type' => 'char(1)', 'field' => 'hascontent'));
+
+        $this->assertEqual($type, array('type'     => array('boolean', 'string'),
                                         'length'   => 1,
                                         'unsigned' => null,
                                         'fixed'    => true));
@@ -247,6 +262,92 @@ class Doctrine_DataDict_Mysql_TestCase extends Doctrine_UnitTestCase
                                         'length'   => null,
                                         'unsigned' => null,
                                         'fixed'    => null));
+    }
+
+    public function testGetPortableDeclarationSupportsNativeEnumTypes()
+    {
+        $field = array(
+            'field'   => 'letter',
+            'type'    => "enum('a','b','c')",
+            'null'    => 'NO',
+            'key'     => '',
+            'default' => 'a',
+            'extra'   => ''
+        );
+
+        $type = $this->dataDict->getPortableDeclaration($field);
+
+        $this->assertEqual($type, array('type'     => array('enum', 'integer'),
+                                        'length'   => 1,
+                                        'unsigned' => null,
+                                        'fixed'    => false,
+                                        'values'   => array('a', 'b', 'c')));
+
+        $field['type'] = "set('a','b','c')";
+
+        $type = $this->dataDict->getPortableDeclaration($field);
+
+        $this->assertEqual($type, array('type'     => array('set', 'integer'),
+                                        'length'   => 1,
+                                        'unsigned' => null,
+                                        'fixed'    => false,
+                                        'values'   => array('a', 'b', 'c')));
+
+        // Custom "boolean" type when ENUM only has two values
+        $field['type'] = "enum('y','n')";
+
+        $type = $this->dataDict->getPortableDeclaration($field);
+
+        $this->assertEqual($type, array('type'     => array('enum', 'boolean', 'integer'),
+                                        'length'   => 1,
+                                        'unsigned' => null,
+                                        'fixed'    => false,
+                                        'values'   => array('y', 'n')));
+
+        // Another special case where types are flipped when field name is "is" or "has"
+        $field['field'] = 'isenabled';
+
+        $type = $this->dataDict->getPortableDeclaration($field);
+
+        $this->assertEqual($type, array('type'     => array('boolean', 'enum', 'integer'),
+                                        'length'   => 1,
+                                        'unsigned' => null,
+                                        'fixed'    => false,
+                                        'values'   => array('y', 'n')));
+    }
+
+    public function testGetNativeDefinitionSupportsEnumTypes()
+    {
+        $a = array('type' => 'enum', 'length' => 1, 'fixed' => false, 'values' => array('a', 'b', 'c'));
+
+        // Native ENUM type disabled, should be VARCHAR
+        $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(1)');
+
+        // Native ENUM type still disabled, should still be VARCHAR
+        // this test is here because there was an issue where SET type was used if the ATTR_USE_NATIVE_SET setting
+        // was enabled but the ENUM one was not (due to an intentional case fall-through)
+        $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_SET, true);
+        $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(1)');
+
+        // Native type enabled
+        $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM, true);
+        $this->assertEqual($this->dataDict->getNativeDeclaration($a), "ENUM('a', 'b', 'c')");
+    }
+
+    public function testGetNativeDefinitionSupportsSetTypes()
+    {
+        $a = array('type' => 'set', 'length' => 1, 'fixed' => false, 'values' => array('a', 'b', 'c'));
+
+        // Native SET type disabled, should be VARCHAR
+        $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(1)');
+
+        // Enabling ENUM native type should have no effect on SET
+        $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM, true);
+        $this->assertEqual($this->dataDict->getNativeDeclaration($a), 'VARCHAR(1)');
+
+        // Native type enabled
+        $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_SET, true);
+        $this->assertEqual($this->dataDict->getNativeDeclaration($a), "SET('a', 'b', 'c')");
     }
 
     public function testGetNativeDefinitionSupportsIntegerType()

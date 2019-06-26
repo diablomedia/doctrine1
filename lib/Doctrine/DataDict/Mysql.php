@@ -146,23 +146,15 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
 
                 return $length ? 'CHAR(' . $length . ')' : 'CHAR(255)';
             case 'enum':
-                if ($this->conn->getAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM)) {
-                    $values = array();
-                    foreach ($field['values'] as $value) {
-                        $values[] = $this->conn->quote($value, 'varchar');
-                    }
-                    return 'ENUM(' . implode(', ', $values) . ')';
-                } else {
-                    $field['length'] = isset($field['length']) && $field['length'] ? $field['length']:255;
-                }
-                // no break
             case 'set':
-                if ($this->conn->getAttribute(Doctrine_Core::ATTR_USE_NATIVE_SET)) {
+                if (($this->conn->getAttribute(Doctrine_Core::ATTR_USE_NATIVE_SET) && $field['type'] === 'set') ||
+                    ($this->conn->getAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM) && $field['type'] === 'enum')
+                ) {
                     $values = array();
                     foreach ($field['values'] as $value) {
                         $values[] = $this->conn->quote($value, 'varchar');
                     }
-                    return 'SET(' . implode(', ', $values) . ')';
+                    return strtoupper($field['type']) . '(' . implode(', ', $values) . ')';
                 } else {
                     $field['length'] = isset($field['length']) && $field['length'] ? $field['length']:255;
                 }
@@ -253,7 +245,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
     }
 
     /**
-     * Maps a native array description of a field to a MDB2 datatype and length
+     * Maps a native array description of a field to a Mysql datatype and length
      *
      * @param array  $field native field description
      * @return array containing the various possible types, length, sign, fixed
@@ -279,7 +271,13 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
         $unsigned = $fixed = null;
 
         if (! isset($field['name'])) {
-            $field['name'] = '';
+            // Mysql's DESCRIBE returns a "Field" column, not a "Name" column
+            // this method is called with output from that query in Doctrine_Import_Mysql::listTableColumns
+            if (isset($field['field'])) {
+                $field['name'] = $field['field'];
+            } else {
+                $field['name'] = '';
+            }
         }
 
         $values = null;
@@ -343,7 +341,8 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                 }
             break;
             case 'enum':
-                $type[] = 'enum';
+            case 'set':
+                $type[] = $dbType;
                 preg_match_all('/\'((?:\'\'|[^\'])*)\'/', $field['type'], $matches);
                 $length = 0;
                 $fixed  = false;
@@ -352,7 +351,7 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
                         $value  = str_replace('\'\'', '\'', $value);
                         $length = max($length, strlen($value));
                     }
-                    if ($length == '1' && count($matches[1]) == 2) {
+                    if ($dbType === 'enum' && $length == '1' && count($matches[1]) == 2) {
                         $type[] = 'boolean';
                         if (preg_match('/^(is|has)/', $field['name'])) {
                             $type = array_reverse($type);
@@ -361,11 +360,6 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
 
                     $values = $matches[1];
                 }
-                $type[] = 'integer';
-                break;
-            case 'set':
-                $fixed  = false;
-                $type[] = 'text';
                 $type[] = 'integer';
             break;
             case 'date':

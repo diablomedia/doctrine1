@@ -283,6 +283,9 @@ class Doctrine_UnitTestCase extends UnitTestCase
         }
 
         $this->init = true;
+
+        $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_SET, false);
+        $this->conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM, false);
     }
 
     public function tearDown()

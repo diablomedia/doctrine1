@@ -695,6 +695,9 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                     case 'decimal':
                         $type = 'float';
                         break;
+                    case 'set':
+                        $type = 'string[]';
+                        break;
                     case 'blob':
                     case 'clob':
                     case 'timestamp':

@@ -97,7 +97,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
         if ($maximumLength === null) {
             return true;
         }
-        if ($type == 'timestamp' || $type == 'integer' || $type == 'enum') {
+        if ($type === 'timestamp' || $type === 'integer' || $type === 'enum' || $type === 'set') {
             return true;
         } elseif ($type == 'array' || $type == 'object') {
             $length = strlen(serialize($value));

@@ -2100,7 +2100,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                 $values = $this->_columns[$fieldName]['values'];
                 // Convert string to array
                 if (is_string($value)) {
-                    $value = explode(',', $value);
+                    $value = $value ? explode(',', $value) : array();
                     $value = array_map('trim', $value);
                     $record->set($fieldName, $value);
                 }
@@ -2364,7 +2364,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                     // don't do any casting here PHP INT_MAX is smaller than what the databases support
                 break;
                 case 'set':
-                    return explode(',', $value);
+                    return $value ? explode(',', $value) : array();
                 break;
                 case 'boolean':
                     return (boolean) $value;

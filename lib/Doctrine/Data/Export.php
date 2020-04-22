@@ -137,6 +137,8 @@ class Doctrine_Data_Export extends Doctrine_Data
                 return Doctrine_Parser::dump($data, $format, $directory);
             }
         }
+
+        return null;
     }
 
     /**

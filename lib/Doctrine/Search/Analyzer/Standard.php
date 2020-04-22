@@ -265,6 +265,8 @@ class Doctrine_Search_Analyzer_Standard extends Doctrine_Search_Analyzer impleme
                             );
 
     /**
+     * @param string $text
+     * @param mixed $encoding Apparently this is not used at all
      * @return array
      */
     public function analyze($text, $encoding = null)

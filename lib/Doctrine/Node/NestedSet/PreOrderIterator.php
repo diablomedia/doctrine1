@@ -53,12 +53,12 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
     protected $index;
 
     /**
-     * @var integer $index
+     * @var integer $prevIndex
      */
     protected $prevIndex;
 
     /**
-     * @var integer $index
+     * @var integer $traverseLevel
      */
     protected $traverseLevel;
 

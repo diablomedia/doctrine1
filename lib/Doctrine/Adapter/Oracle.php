@@ -265,7 +265,6 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
                 // no break
             default:
                 throw new Doctrine_Adapter_Exception("Unsupported Attribute: $attribute");
-                return false;
         }
         $this->attributes[$attribute] = $value;
         return true;

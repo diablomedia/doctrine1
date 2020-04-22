@@ -163,7 +163,7 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      *
      * @param mixed $input      parameter to be quoted
      * @param string $type
-     * @return string
+     * @return string|null
      */
     public function quote($input, $type = null)
     {
@@ -197,6 +197,8 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
             case 'boolean':
                 return "'" . str_replace("'", "''", $input) . "'";
         }
+
+        return null;
     }
 
     /**

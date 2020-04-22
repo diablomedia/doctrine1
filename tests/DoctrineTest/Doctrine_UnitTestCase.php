@@ -88,7 +88,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
                               'assignment',
                               'resourceType',
                               'resourceReference')
-                              );
+        );
 
 
         $class = get_class($this);

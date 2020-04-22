@@ -137,7 +137,7 @@ class Weekday extends Doctrine_Record
         $this->hasMany(
             'Course as courses',
             array('refClass' => 'CourseWeekday', 'local' => 'weekday_id', 'foreign' => 'course_id')
-      );
+        );
     }
 }
 
@@ -160,7 +160,7 @@ class Course extends Doctrine_Record
         $this->hasMany(
             'Weekday as Weekdays',
             array('refClass' => 'CourseWeekday', 'local' => 'course_id', 'foreign' => 'weekday_id')
-    );
+        );
     }
 }
 

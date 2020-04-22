@@ -32,37 +32,91 @@
  */
 interface Doctrine_Record_Listener_Interface
 {
+    /**
+     * @param string $name
+     * @param mixed $value
+     * @return void
+     */
     public function setOption($name, $value = null);
 
+    /**
+     * @return array
+     */
     public function getOptions();
 
+    /**
+     * @param string $name
+     * @return mixed
+     */
     public function getOption($name);
 
+    /**
+     * @return void
+     */
     public function preSerialize(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function postSerialize(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function preUnserialize(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function postUnserialize(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function preSave(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function postSave(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function preDelete(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function postDelete(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function preUpdate(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function postUpdate(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function preInsert(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function postInsert(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function preHydrate(Doctrine_Event $event);
 
+    /**
+     * @return void
+     */
     public function postHydrate(Doctrine_Event $event);
 }

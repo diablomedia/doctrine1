@@ -33,7 +33,7 @@
 class Doctrine_Validator_Driver
 {
     /**
-     * @var array $_args     an array of plugin specific args
+     * @var array $args     an array of plugin specific args
      */
     public $args;
 
@@ -52,6 +52,7 @@ class Doctrine_Validator_Driver
      * an alias for getOption
      *
      * @param string $arg
+     * @return mixed
      */
     public function __get($arg)
     {

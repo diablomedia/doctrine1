@@ -362,9 +362,6 @@ class Doctrine_Pager_Layout
                 'Cannot process template of the given page. ' .
                 'Missing at least one of needed parameters: \'page\' or \'page_number\''
             );
-
-            // Should never reach here
-            return '';
         }
 
         // Assign "page" options index if not defined yet

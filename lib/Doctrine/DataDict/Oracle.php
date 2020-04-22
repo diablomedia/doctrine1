@@ -123,7 +123,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
      *
      * @param array  $field native field description
      * @return array containing the various possible types, length, sign, fixed
-     * @throws Doctrine_DataDict_Oracle_Exception
+     * @throws Doctrine_DataDict_Exception
      */
     public function getPortableDeclaration(array $field)
     {

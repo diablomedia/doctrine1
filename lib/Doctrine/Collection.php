@@ -39,7 +39,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     protected $data = array();
 
     /**
-     * @var Doctrine_Table $table           each collection has only records of specified table
+     * @var Doctrine_Table $_table           each collection has only records of specified table
      */
     protected $_table;
 
@@ -173,6 +173,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * This method is automatically called everytime a Doctrine_Collection object is unserialized
      *
+     * @param string $serialized
      * @return void
      */
     public function unserialize($serialized)
@@ -264,7 +265,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the current key
      *
-     * @return Doctrine_Record|null
+     * @return int|string|null
      */
     public function key()
     {
@@ -579,6 +580,8 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         $coll = $query->query($dql, $list);
 
         $this->populateRelated($name, $coll);
+
+        return null;
     }
 
     /**

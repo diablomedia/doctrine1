@@ -107,12 +107,12 @@ class Doctrine_Event
     protected $_code;
 
     /**
-     * @var integer $_startedMicrotime  the time point in which this event was started
+     * @var float $_startedMicrotime  the time point in which this event was started
      */
     protected $_startedMicrotime;
 
     /**
-     * @var integer|null $_endedMicrotime    the time point in which this event was ended
+     * @var float|null $_endedMicrotime    the time point in which this event was ended
      */
     protected $_endedMicrotime;
 
@@ -212,6 +212,8 @@ class Doctrine_Event
             case self::RECORD_VALIDATE:
                 return 'validate record';
         }
+
+        return null;
     }
 
     /**
@@ -368,7 +370,7 @@ class Doctrine_Event
      * Get the elapsed time (in microseconds) that the event ran.  If the event has
      * not yet ended, return false.
      *
-     * @return integer|false
+     * @return float|false
      */
     public function getElapsedSecs()
     {

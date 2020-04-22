@@ -121,7 +121,7 @@ class T626_Group extends Doctrine_Record
         $this->hasMany(
             'T626B_Student as Students',
             array('local' => 'g_id', 'foreign' => 's_id')
-    );
+        );
     }
 }
 

@@ -170,6 +170,7 @@ class Doctrine_Import_Mssql extends Doctrine_Import
     /**
      * lists all triggers
      *
+     * @param string|null $database
      * @return array
      */
     public function listTriggers($database = null)

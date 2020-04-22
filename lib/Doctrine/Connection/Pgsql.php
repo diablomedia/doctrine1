@@ -101,7 +101,7 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
      *
      * This method takes care of that conversion
      *
-     * @param array $item
+     * @param array|bool|string|int|float $item
      * @return array|string
      */
     public function convertBooleans($item)

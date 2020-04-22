@@ -423,6 +423,8 @@ abstract class Doctrine_Relation implements ArrayAccess
         if ($orderBy = $this->getOrderByStatement($alias, $columnNames)) {
             return ' ORDER BY ' . $orderBy;
         }
+
+        return null;
     }
 
     /**

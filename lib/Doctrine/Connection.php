@@ -206,7 +206,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     protected $_count = 0;
 
     /**
-     * @var array $_userFkNames                 array of foreign key names that have been used
+     * @var array $_usedNames                 array of foreign key names that have been used
      */
     protected $_usedNames = array(
             'foreign_keys' => array(),

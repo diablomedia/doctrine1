@@ -167,8 +167,6 @@ class Doctrine_Locator implements Countable, IteratorAggregate
 
             return $this->_resources[$name];
         }
-
-        throw new Doctrine_Locator_Exception("Couldn't locate resource " . $name);
     }
 
     /**

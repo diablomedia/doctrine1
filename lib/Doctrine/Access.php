@@ -87,11 +87,11 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * Remove key from data
      *
      * @param   scalar|null $name
-     * @return  mixed
+     * @return  void
      */
     public function __unset($name)
     {
-        return $this->remove($name);
+        $this->remove($name);
     }
 
     /**
@@ -145,17 +145,18 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      *
      * @see   set, offsetSet, __set
      * @param scalar|null $offset
+     * @return void
      */
     public function offsetUnset($offset)
     {
-        return $this->remove($offset);
+        $this->remove($offset);
     }
 
     /**
      * Remove the element with the specified offset
      *
      * @param scalar|null $offset The offset to remove
-     * @return mixed
+     * @return void
      */
     public function remove($offset)
     {

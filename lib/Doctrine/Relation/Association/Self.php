@@ -110,11 +110,11 @@ class Doctrine_Relation_Association_Self extends Doctrine_Relation_Association
               $tableName . ' INNER JOIN ' . $assocTable . ' ON ' .
                  $tableName . '.' . $identifier . ' = ' . $assocTable . '.' . $this->getLocal() . ' OR ' .
                  $tableName . '.' . $identifier . ' = ' . $assocTable . '.' . $this->getForeign()
-                 )
+          )
           ->where(
               $tableName . '.' . $identifier . ' IN (' . $sub . ') OR ' .
                   $tableName . '.' . $identifier . ' IN (' . $sub2 . ')'
-                );
+          );
         $q->addComponent($tableName, $record->getTable()->getComponentName());
         $q->addComponent($assocTable, $record->getTable()->getComponentName() . '.' . $this->getAssociationFactory()->getComponentName());
         $q->orderBy((string) $this->getOrderByStatement($tableName, true));

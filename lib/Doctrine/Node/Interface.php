@@ -78,6 +78,7 @@ interface Doctrine_Node_Interface
     /**
      * gets siblings for node
      *
+     * @param bool $includeNode
      * @return array                            array of sibling Doctrine_Record objects
      */
     public function getSiblings($includeNode = false);
@@ -192,30 +193,35 @@ interface Doctrine_Node_Interface
     /**
      * moves node as prev sibling of dest record
      *
+     * @return bool
      */
     public function moveAsPrevSiblingOf(Doctrine_Record $dest);
 
     /**
      * moves node as next sibling of dest record
      *
+     * @return bool
      */
     public function moveAsNextSiblingOf(Doctrine_Record $dest);
 
     /**
      * moves node as first child of dest record
      *
+     * @return bool
      */
     public function moveAsFirstChildOf(Doctrine_Record $dest);
 
     /**
      * moves node as last child of dest record
      *
+     * @return bool
      */
     public function moveAsLastChildOf(Doctrine_Record $dest);
 
     /**
      * adds node as last child of record
      *
+     * @return void
      */
     public function addChild(Doctrine_Record $record);
 
@@ -264,6 +270,7 @@ interface Doctrine_Node_Interface
     /**
      * deletes node and it's descendants
      *
+     * @return bool
      */
     public function delete();
 }

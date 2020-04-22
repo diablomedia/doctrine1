@@ -246,6 +246,8 @@ class Doctrine_Migration
             $dir                                                             = dirname($path);
             self::$_migrationClassesForDirectories[$dir][$classMigrationNum] = $name;
         }
+
+        return null;
     }
 
     /**

@@ -33,22 +33,22 @@
 class Doctrine_Node implements IteratorAggregate
 {
     /**
-     * @param object    $record   reference to associated Doctrine_Record instance
+     * @var Doctrine_Record    $record   reference to associated Doctrine_Record instance
      */
     protected $record;
 
     /**
-     * @param array     $options
+     * @var array     $options
      */
     protected $options;
 
     /**
-     * @param string     $iteratorType  (Pre | Post | Level)
+     * @var string     $iteratorType  (Pre | Post | Level)
      */
     protected $iteratorType;
 
     /**
-     * @param array     $iteratorOptions
+     * @var array     $iteratorOptions
      */
     protected $iteratorOptions;
 
@@ -163,6 +163,7 @@ class Doctrine_Node implements IteratorAggregate
      *
      * @param string $type                      type of iterator (Pre | Post | Level)
      * @param array $options                    options
+     * @return Iterator
      */
     public function getIterator($type = null, $options = null)
     {
@@ -183,7 +184,7 @@ class Doctrine_Node implements IteratorAggregate
     /**
      * sets node's iterator type
      *
-     * @param int $type
+     * @param string $type
      *
      * @return void
      */

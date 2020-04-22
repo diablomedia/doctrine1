@@ -35,7 +35,7 @@
 class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine_Record_Listener_Interface
 {
     /**
-     * @var array $listeners        an array containing all listeners
+     * @var array $_listeners        an array containing all listeners
      */
     protected $_listeners = array();
 

@@ -365,8 +365,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot insert node as parent of itself');
-
-            return false;
         }
 
         $newLeft  = $dest->getNode()->getLeftValue();
@@ -423,8 +421,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot insert node as previous sibling of itself');
-
-            return false;
         }
 
         $newLeft  = $dest->getNode()->getLeftValue();
@@ -469,8 +465,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot insert node as next sibling of itself');
-
-            return false;
         }
 
         $newLeft  = $dest->getNode()->getRightValue() + 1;
@@ -514,8 +508,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot insert node as first child of itself');
-
-            return false;
         }
 
         $newLeft  = $dest->getNode()->getLeftValue() + 1;
@@ -560,8 +552,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot insert node as last child of itself');
-
-            return false;
         }
 
         $newLeft  = $dest->getNode()->getRightValue();
@@ -678,8 +668,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             $conn->rollback();
             throw $e;
         }
-
-        return false;
     }
 
     /**
@@ -693,8 +681,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot move node as previous sibling of itself');
-
-            return false;
         }
 
         if ($dest->getNode()->getRootValue() != $this->getRootValue()) {
@@ -721,8 +707,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot move node as next sibling of itself');
-
-            return false;
         }
 
         if ($dest->getNode()->getRootValue() != $this->getRootValue()) {
@@ -749,8 +733,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot move node as first child of itself or into a descendant');
-
-            return false;
         }
 
         if ($dest->getNode()->getRootValue() != $this->getRootValue()) {
@@ -777,8 +759,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             ($dest->exists() && $this->record->exists() && $dest->identifier() === $this->record->identifier())
         ) {
             throw new Doctrine_Tree_Exception('Cannot move node as last child of itself or into a descendant');
-
-            return false;
         }
 
         if ($dest->getNode()->getRootValue() != $this->getRootValue()) {
@@ -854,8 +834,6 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             $conn->rollback();
             throw $e;
         }
-
-        return false;
     }
 
     /**

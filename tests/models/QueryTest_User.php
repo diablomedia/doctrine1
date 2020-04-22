@@ -8,7 +8,6 @@ class QueryTest_User extends Doctrine_Record
             'string',
             50,
             array('notnull')
-
         );
         $this->hasColumn('visibleRankId', 'integer', 4);
         $this->hasColumn('subscriptionId', 'integer', 4);

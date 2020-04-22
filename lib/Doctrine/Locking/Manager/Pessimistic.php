@@ -39,12 +39,14 @@ class Doctrine_Locking_Manager_Pessimistic
     /**
      * The conn that is used by the locking manager
      *
-     * @var Doctrine_Connection object
+     * @var Doctrine_Connection
      */
     private $conn;
 
     /**
      * The database table name for the lock tracking
+     *
+     * @var string
      */
     private $_lockTable = 'doctrine_lock_tracking';
 

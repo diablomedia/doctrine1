@@ -146,7 +146,6 @@ class Ticket_1621_User extends Doctrine_Record
                                                  'refClass'              => 'Ticket_1621_UserReferenceFriends',
                                                  'refClassRelationAlias' => 'friendLinks'
                                                  )
-
         );
 
         $this->hasMany('Ticket_1621_EmailAdresses as emailAddresses', array('local' => 'id', 'foreign' => 'userId'));

@@ -58,7 +58,7 @@ class Doctrine_Pager
     protected $_maxPerPage;
 
     /**
-     * @var integer $page               Current page
+     * @var integer $_page               Current page
      */
     protected $_page;
 

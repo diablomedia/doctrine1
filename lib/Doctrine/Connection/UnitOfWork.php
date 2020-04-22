@@ -951,6 +951,8 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
 
             return $id;
         }
+
+        return null;
     }
 
     /**

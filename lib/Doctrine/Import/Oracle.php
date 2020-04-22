@@ -175,6 +175,9 @@ QEND;
 
     /**
      * list table relations
+     *
+     * @param string $table
+     * @return array
      */
     public function listTableRelations($table)
     {

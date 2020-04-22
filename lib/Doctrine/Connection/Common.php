@@ -39,6 +39,7 @@ class Doctrine_Connection_Common extends Doctrine_Connection
      * @param mixed $limit
      * @param mixed $offset
      * @param bool $isManip
+     * @return string
      */
     public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)
     {

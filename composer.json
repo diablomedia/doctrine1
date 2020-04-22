@@ -34,7 +34,19 @@
     },
     "require-dev": {
         "phpunit/php-code-coverage": "^4.0 || ^5.0 || ^6.0 || ^7.0",
-        "jetbrains/phpstorm-stubs": "dev-phpstan",
-        "friendsofphp/php-cs-fixer": "^2.12"
+        "friendsofphp/php-cs-fixer": "2.16.3",
+        "phpstan/phpstan": "0.12.19",
+        "vimeo/psalm": "3.11"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-with-coverage": "phpunit --coverage-clover=clover.xml",
+        "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi --memory-limit=768M",
+        "psalm": "psalm --show-info=false",
+        "static-analysis": [
+            "@phpstan",
+            "@psalm"
+        ],
+        "style-check": "php-cs-fixer fix --dry-run -vv"
     }
 }

@@ -1,5 +1,12 @@
+includes:
+    - ./phpstan-baseline.neon
 parameters:
-    bootstrap: phpstan-bootstrap.php
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    inferPrivatePropertyTypeFromConstructor: true
+    level: 8
+    paths:
+        - ./lib
     ignoreErrors:
         #########
         # Level 0
@@ -27,7 +34,6 @@ parameters:
         #   >> 9s another test
         - '#Call to sprintf contains 1 placeholder, 2 values given\.#'
         # This is probably intentional since it's a mock and doesn't want to have the same functionality as a true connection
-        - '#Doctrine_Connection_Mock::__construct\(\) does not call parent constructor from Doctrine_Connection\.#'
         - '#Constructor of class Doctrine_Connection_Mock has an unused parameter \$.+\.#'
         # Not really harmful or anything, none of the classes that ultimately extend Doctrine_Connection have either param
         # in their signature. Even other extending classes shouldn't be affected if removed from signature, but just ignoring
@@ -108,12 +114,6 @@ parameters:
         # In Doctrine_Export_Mssql:346|375, similar to above, method exists on Doctrine_Formatter, not Doctrine_Connection (or any subclasses of)
         # not covered by tests, probably broken.
         - '#Call to an undefined method Doctrine_Connection::getSequenceName\(\)\.#'
-        # In Doctrine_Template_Listener_Sluggable:108, this is wrapped by a function_exists call, and looks like it's built so that a Doctrine_Record
-        # object can define that method to implement its own version of slug generation if desired by the implementer.
-        - '#Call to an undefined method Doctrine_Record::getUniqueSlug\(\)\.#'
-        # In Doctrine_Query_Orderby:107|162, these are both wrapped by a method_exists call, and this method is only defined on the
-        # Doctrine_Connection_Mssql class, should be safe.
-        - '#Call to an undefined method Doctrine_Connection::modifyOrderByColumn\(\)\.#'
         # Both of these are in the "Experimental" Doctrine_Expression_Mysql|Pgsql blocks, not covered by tests. The methods exist on
         # Doctrine_Formatter, not Doctrine_Connection
         - '#Call to an undefined method Doctrine_Connection::escapePattern\(\)\.#'
@@ -130,40 +130,18 @@ parameters:
         # This one does not allow specifying the hydration mode, so should default to Doctrine_Collection (record hydration)
         - '#Method Doctrine_IntegrityMapper::buildIntegrityRelationQuery\(\) should return Doctrine_Collection but returns array\|Doctrine_Collection\.#'
         - '#Method Doctrine_Relation_Association_Self::fetchRelatedFor\(\) should return Doctrine_Collection but returns array\|Doctrine_Collection\.#'
-        # Not clear why phpstan complains on this one. If $collection is_scalar, it won't be a Doctrine_Collection
-        - '#Method Doctrine_Query::fetchOne\(\) should return array\|Doctrine_Record\|false but returns array\|Doctrine_Collection\.#'
-        # $mutator can be any string really, and there's no contract that mutator functions should return $this
-        - '#Method Doctrine_Record::set\(\) should return \$this but returns \$this->{\$mutator}\(\$value, \$load, \$fieldName\)\.#'
-        # Filters should return the record object they're given (which is $this)
-        - '#Method Doctrine_Record::_set\(\) should return \$this but returns \$value\.#'
 
         #########
         # Level 4
         #########
-        # Most of these casts would be unnecessary if scalar type hints were used on these function parameters, probably worth looking
-        # into later (can't do non-array type hints until PHP 7.0 anyhow)
-        - '#Casting to array something that.s already array\.#'
-        - '#Casting to int something that.s already int\.#'
-        - '#Casting to string something that.s already string\.#'
-        - '#Casting to bool something that.s already bool\.#'
-        # This one only happens in Doctrine_Hydrator:122 as of this writing, in this case it seems unnecessary because as far as I can
-        # tell, the value will always be a string. However, it's possible that maybe in some extending classes this ends up being an
-        # object, so leaving as-is.
-        - '#Call to function is_object\(\) will always evaluate to false\.#'
         # Most of these checks are validating the argument coming into the function to be sure it isn't "null"/unset. I don't want to add
         # "null" to the allowed types for these, as usually these will just coerce the value or set some default when "null" is passed (sometimes
         # an exception is thrown)
-        - '#Call to function is_null\(\) will always evaluate to false\.#'
         - '#Strict comparison using (!|=)== between (array\|bool\|float\|int\|string|string|array|Doctrine_Record_Generator|array\|Doctrine_Collection|int|bool\|Doctrine_Cache_Interface|int\|string) and null will always evaluate to (true|false)\.#'
-        # These are done for similar reasons, but comparing to false. These are probably rarely needed, since a ture "false" isn't returned by the
-        # methods setting these values
-        - '#Strict comparison using !== between (Doctrine_Cache_Interface\|true|string) and false will always evaluate to true\.#'
 
         #########
         # Level 5
         #########
-        # This should always be an array in this case because the HYDRATE_ARRAY hydration method is used.
-        - '#Parameter \#1 \$data of method Doctrine_Record::hydrate\(\) expects array, array\|Doctrine_Collection\|Doctrine_Record given\.#'
         # In Doctrine_Query:2146, the $params var should be an array here as the convertBooleans path will only return an int if
         # the passed in value is a bool, which it shouldn't be here, since $params starts as an array in the function arguments
         - '#Parameter \#1 \$params of method Doctrine_Query_Abstract::getResultCacheHash\(\) expects array, array\|int given\.#'
@@ -175,8 +153,6 @@ parameters:
         # but that would break public API). These came up now because I changed the doc block for the _invoker property (and related methods)
         # in Doctrine_Template to match the PHP typehint of the setInvoker method.
         - '#Call to an undefined method Doctrine_Record_Abstract::delete\(\)\.#'
-        # In Doctrine_Record:1973, false should be checked for, as it's a valid return from toArray
-        - '#Parameter \#1 \$array of method Doctrine_Record::fromArray\(\) expects array, array\|Doctrine_Record\|false given\.#'
         # Similar to above, just different method
         - '#Parameter \#1 \$array of static method Doctrine_Parser::dump\(\) expects array, array\|false given\.#'
         # Also appears in Doctrine_Collection:847
@@ -187,10 +163,6 @@ parameters:
         - '#Parameter \#1 \$record of method Doctrine_AuditLog::getVersion\(\) expects Doctrine_Record, Doctrine_Record_Abstract given\.#'
         # This is in a conditional that should prevent it from passing non-array data, I think
         - '#Parameter \#1 \$array of method Doctrine_Collection::fromArray\(\) expects array, array\|string given\.#'
-        # var can be false, param not setup to accept that (would be checking for an array key with a value of false)
-        - '#Parameter \#1 \$fieldName of method Doctrine_Table::hasField\(\) expects string, false\|string given\.#'
-        # In Doctrine_Data_Export:120, I couldn't find any cases where $directory might be an array, so didn't change the docblock to allow it
-        - '#Call to function is_array\(\) will always evaluate to false\.#'
         # null could be passed in this case, would need to check for that in Doctrine_Event
         - '#Parameter \#4 \$params of class Doctrine_Event constructor expects array, array\|null given\.#'
         # Both of these could come in as null, would need to check for that
@@ -247,40 +219,9 @@ parameters:
         # This one is kind of silly, since it would require that somebody pass in "false" (bool value) for the $stmt parameter (not null, or string,
         # or anything else, specifically the boolean false). Doctrine_Connection_Statement:58
         - '#Strict comparison using === between Doctrine_Adapter_Statement_Interface\|PDOStatement and false will always evaluate to false\.#'
-        # These all happen in Doctrine_Template_Listener_SoftDelete, they're all called on the result of Doctrine_Event:getQuery which
-        # is marked as being either a string or Doctrine_Query. I have searched the codebase and do find instances where this would be
-        # either a string or Doctrine_Query_Abstract, so these calls are valid but are making an assumption that they're working on an object
-        # (which may be valid in this case, perhaps the Event passed to these listeners will always contain a query object, not a string)
-        # Happens in Doctrine_Template_Listener_Timestampable as well.
-        - '#Cannot call method contains\(\) on Doctrine_Query\|string\.#'
-        - '#Cannot call method from\(\) on Doctrine_Query\|string\.#'
-        - '#Cannot call method set\(\) on Doctrine_Query\|string\.#'
-        - '#Cannot call method addWhere\(\) on Doctrine_Query\|string\.#'
-        - '#Cannot call method getConnection\(\) on Doctrine_Query\|string\.#'
-        - '#Cannot call method isSubquery\(\) on Doctrine_Query\|string\.#'
-        - '#Cannot call method addPendingJoinCondition\(\) on Doctrine_Query\|string\.#'
         # In Doctrine_Connection_Statement:240 the default for the "$params" parameter should probably be changed to an empty array instead
         # of null, there's also a truthy check on the param a bit later that would need to be modified to check if $params is empty
         - '#Argument of an invalid type array\|null supplied for foreach, only iterables are supported\.#'
-        # The Overloadable interface doesn't explicitly define these methods, but it does implement __call, so it most likely would accept them
-        # if it was the type of object passed in
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::postConnect\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::postDelete\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::postError\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::postSerialize\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::postUnserialize\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::postValidate\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::preConnect\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::preDelete\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::preError\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::preSerialize\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::preUnserialize\(\)\.#'
-        - '#Call to an undefined method Doctrine_EventListener_Interface\|Doctrine_Overloadable::preValidate\(\)\.#'
-        # Not sure why phpstan complains about this one, the property in question ($_queryCache) could be false, but perhaps it's because
-        # the same check is done earlier in the flow. There's a comment above this call though that a function call earlier may
-        # have changed the value of the property, which is why it's being tested again.
-        # In Doctrine_Query_Abstract:974
-        - '#Strict comparison using !== between Doctrine_Cache_Interface\|true\|null and false will always evaluate to true\.#'
         # I think overall this would need to be re-structured somehow in Doctrine. Currently Doctrine_Query_Abstract::__construct accepts
         # a Doctrine_Hydrator_Abstract object (enforced via PHP typehint) as an optional parameter. If it's not set (is set to null)
         # then the internal $_hydrator property is set to a new Doctrine_Hydrator object.  Doctrine_Hydrator DOES NOT extend Doctrine_Hydrator_Abstract
@@ -297,12 +238,6 @@ parameters:
         - '#Call to an undefined method Doctrine_Null\|Doctrine_Record::set\(\)\.#'
         # This one could send an int in a particular case where a different class property is set to a certain value, it must not be doing that
         - '#Parameter \#1 \$stmt of method Doctrine_Hydrator::hydrateResultSet\(\) expects Doctrine_Adapter_Statement_Interface\|PDOStatement, Doctrine_Adapter_Statement_Interface\|int\|PDOStatement given\.#'
-        # The Memcache::getExtendedStats() may return false, should probably modify these foreach loops to check for that before looping
-        # Doctrine/Cache/Memcache.php:137|141
-        - '#Argument of an invalid type array|bool supplied for foreach, only iterables are supported.#'
-        # There is a method_exists check before this call, perhaps a migration can be Doctrine_Migration here, which does have this
-        # method, Doctrine_Migration_Base does not (which is what the migration classes are supposed to extend)
-        - '#Call to an undefined method Doctrine_Migration_Base::migrate\(\)\.#'
 
         #########
         # Level 7
@@ -310,50 +245,11 @@ parameters:
         # The default value for this parameter should probably be changed to an empty array rather than null
         # Called from Doctrine_Pager:504
         - '#Parameter \#1 \$params of method Doctrine_Pager::setCountQueryParams\(\) expects array, array\|null given\.#'
-        # I don't think $to can actually be null when it's returned in this method, there's a check earlier if it is null that will
-        # change it to be the "latest version" which is always an int.  That check is in a try/catch, so perhaps that's why phpstan doesn't see it
-        # Doctrine_Migration:347|352
-        - '#Method Doctrine_Migration::migrate\(\) should return false\|int but returns int\|null\.#'
         # Also related, Doctrine_Migration:351
         - '#Parameter \#1 \$number of method Doctrine_Migration::setCurrentVersion\(\) expects int, int\|null given\.#'
         # The $parent var could be null, but emitAddChild shouldn't accept that, as it calls strtolower on it directly. Probably need to cast or check for null
         # in the caller.  Doctrine_Import_Builder:805|815|825
         - '#Parameter \#2 \$parent of method Doctrine_Import_Builder::emitAddChild\(\) expects string, string\|null given\.#'
-        # If "free" is called on Doctrine_Collection then the reference property gets set to null. So, technically, if these code paths
-        # are hit after free is called, these could return null instead of a Doctrine_Record.  Not sure if it's possible to get this far in
-        # that case though.  Doctrine_Collection:363|454
-        - '#Calling method get\(\) on possibly null value of type Doctrine_Record\|null\.#'
-        # The result of getListener in Doctrine_Configurable can be null, so these are valid complaints. Code should be modified to expect that.
-        - '#Calling method postConnect\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method postDelete\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method postError\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method postSerialize\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method postUnserialize\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method postValidate\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method preConnect\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method preDelete\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method preError\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method preSerialize\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method preUnserialize\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        - '#Calling method preValidate\(\) on possibly null value of type Doctrine_EventListener_Interface\|Doctrine_Overloadable\|null\.#'
-        # In the constructor of Doctrine_Connection_Mssql, the optional parameter $originQuery is never checked if it's indeed a Doctrine_Query object
-        # or null before these methods are called.
-        - '#Calling method getDqlPart\(\) on possibly null value of type Doctrine_Query\|null\.#'
-        - '#Calling method getExpressionOwner\(\) on possibly null value of type Doctrine_Query\|null\.#'
-        - '#Calling method getQueryComponent\(\) on possibly null value of type Doctrine_Query\|null\.#'
-        - '#Calling method getSqlQueryPart\(\) on possibly null value of type Doctrine_Query\|null\.#'
-        - '#Calling method getSqlTableAlias\(\) on possibly null value of type Doctrine_Query\|null\.#'
-        # These listeners don't check if the query object returned from getQuery is actually a null value (it could be since it's allowed
-        # on the Doctrine_Event constructor)
-        - '#Calling method addPendingJoinCondition\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
-        - '#Calling method addWhere\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
-        - '#Calling method contains\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
-        - '#Calling method from\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
-        - '#Calling method getConnection\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
-        - '#Calling method isSubquery\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
-        - '#Calling method set\(\) on possibly null value of type Doctrine_Query\|string\|null\.#'
-        # Not sure that the invoker will ever be null when tasks are called
-        - '#Calling method getConfig\(\) on possibly null value of type Doctrine_Cli\|null\.#'
         # These are optional parameters in Doctrine_Connection_Statement::fetch, maybe should be cast to ints, or not set on the event if null?
         - '#Property Doctrine_Event::\$cursorOffset \(int\) does not accept int\|null\.#'
         - '#Property Doctrine_Event::\$columnIndex \(int\) does not accept int\|null\.#'
@@ -380,20 +276,9 @@ parameters:
         - '#Parameter \#1 \$alias of method Doctrine_Table::processOrderBy\(\) expects string, string\|null given\.#'
         # Should change to empty string as default, Doctrine_Import_Schema:271
         - '#Parameter \#1 \$path of method Doctrine_Import_Builder::setTargetPath\(\) expects string, string\|null given\.#'
-        # In Doctrine_Query_Abstract:1616, $from really shouldn't be allowed to be "null" since once it's passed to the _addDqlQueryPart method an
-        # exception will be thrown.
-        - '#Parameter \#2 \$queryPart of method Doctrine_Query_Abstract::_addDqlQueryPart\(\) expects int\|string, string\|null given\.#'
         # Another case where the default should probably be an empty string instead of null, Doctrine_Query_Abstract:1874
         - '#Property Doctrine_Query_Abstract::\$_resultCacheHash \(string\) does not accept string\|null\.#'
         # The Doctrine_Connection_Mssql::replaceBoundParamsWithInlineValuesInQuery method may return null if the preg_replace_callback
         # function encounters an error, which would cause $query to be null. Not sure what do do in this error situation.
         - '#Parameter \#1 \$query of method Doctrine_Connection::execute\(\) expects string, string\|null given\.#'
         - '#Parameter \#1 \$query of method Doctrine_Connection::exec\(\) expects string, string\|null given\.#'
-        # Oracle adapter will throw an exception if $this->connection is false after it tries to connect, so shouldn't be passing false around here
-        - '#Parameter \#1 \$connection of function oci_commit expects resource, false\|resource given\.#'
-        - '#Parameter \#1 \$connection of function oci_rollback expects resource, false\|resource given\.#'
-        # Doctrine_Table::getIdentifier may return a string or an array (an array if the primary key is multi-column), would need
-        # to check that this value isn't an array. Doctrine_Connection_UnitOfWork:947
-        - '#Invalid array key type array\|string\.#'
-        # Shouldn't be null here, but could be
-        - '#Parameter \#1 \$connection of function oci_parse expects resource, false\|resource given\.#'

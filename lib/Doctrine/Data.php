@@ -58,7 +58,7 @@ class Doctrine_Data
      *
      * single directory/yml file
      *
-     * @var string|null
+     * @var string|null|array
      */
     protected $_directory = null;
 
@@ -122,7 +122,7 @@ class Doctrine_Data
      *
      * Set the array/string of directories or yml file paths
      *
-     * @param string $directory
+     * @param array|string $directory
      *
      * @return void
      */
@@ -136,7 +136,7 @@ class Doctrine_Data
      *
      * Get directory for dumping/loading data from and to
      *
-     * @return string|null
+     * @return string|null|array
      */
     public function getDirectory()
     {

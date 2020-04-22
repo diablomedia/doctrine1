@@ -258,7 +258,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     /**
      * Binds One-to-Many / Many-to-Many aggregate relation
      *
-     * @param string ...$args First: the name of the related component
+     * @param string|array ...$args First: the name of the related component
      *                        Second: relation options
      * @see Doctrine_Relation::_$definition
      * @return $this          this object

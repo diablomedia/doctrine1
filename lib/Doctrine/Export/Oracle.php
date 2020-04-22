@@ -580,7 +580,7 @@ END;';
                 $type = strtoupper($definition['type']);
             } else {
                 throw new Doctrine_Export_Exception(
-                    'Unknown type ' . $definition['type'] . ' for index ' . $name
+                    'Unknown type ' . $definition['type'] . ' for index ' . $name
                 );
             }
         } else {

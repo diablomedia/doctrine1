@@ -34,4 +34,4 @@ jobs:
       - name: Test
         run: composer test-with-coverage
       - name: Upload Coverage
-        run: bash <(curl -s https://codecov.io/bash) -f ./clover.xml
+        run: bash <(curl -s https://codecov.io/bash) -f tests/coverage/clover.xml

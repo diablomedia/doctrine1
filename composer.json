@@ -39,8 +39,8 @@
         "vimeo/psalm": "3.11"
     },
     "scripts": {
-        "test": "phpunit",
-        "test-with-coverage": "phpunit --coverage-clover=clover.xml",
+        "test": "cd tests && php run.php",
+        "test-with-coverage": "cd tests && php run.php --coverage=clover",
         "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi --memory-limit=768M",
         "psalm": "psalm --show-info=false",
         "static-analysis": [

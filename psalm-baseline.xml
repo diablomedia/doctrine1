@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.11.2@d470903722cfcbc1cd04744c5491d3e6d13ec3d9">
+<files psalm-version="3.11.0@5bc9b095d1a6f1a2e0890353fc2c6cd7de62371d">
   <file src="lib/Doctrine/Adapter/Statement/Oracle.php">
     <InvalidOperand occurrences="1">
       <code>$var</code>
     </InvalidOperand>
+  </file>
+  <file src="lib/Doctrine/Cache/Memcache.php">
+    <UndefinedDocblockClass occurrences="7">
+      <code>Memcache</code>
+      <code>$this-&gt;_memcache</code>
+      <code>$this-&gt;_memcache</code>
+      <code>$this-&gt;_memcache</code>
+      <code>$this-&gt;_memcache</code>
+      <code>$this-&gt;_memcache</code>
+      <code>$this-&gt;_memcache</code>
+    </UndefinedDocblockClass>
   </file>
   <file src="lib/Doctrine/Cli.php">
     <ReferenceConstraintViolation occurrences="1">

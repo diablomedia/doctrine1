@@ -22,7 +22,7 @@ jobs:
         uses: shivammathur/setup-php@v1
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, apcu
+          extensions: mbstring, apcu, apcu-bc
           coverage: xdebug
       - name: Install Dependencies
         run: |

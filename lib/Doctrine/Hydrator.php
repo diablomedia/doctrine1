@@ -114,7 +114,8 @@ class Doctrine_Hydrator
      * Get the name of the driver class for the passed hydration mode
      *
      * @param int $mode
-     * @return string $className
+     * @return string
+     * @psalm-return class-string
      */
     public function getHydratorDriverClassName($mode = null)
     {

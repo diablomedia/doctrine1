@@ -79,7 +79,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     /**
      * getListener
      *
-     * @return Doctrine_EventListener_Interface|Doctrine_Overloadable
+     * @return Doctrine_EventListener_Interface|Doctrine_Overloadable|null
      */
     public function getListener()
     {

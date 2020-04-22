@@ -569,6 +569,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
                 } else {
                     throw new Doctrine_Adapter_Exception($this->errorInfo());
                 }
+                // no break
             case Doctrine_Core::ERRMODE_WARNING:
             case Doctrine_Core::ERRMODE_SILENT:
             break;

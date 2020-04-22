@@ -72,7 +72,10 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      * This method takes care of that conversion
      *
      * @param array|bool $item
-     * @return array|int
+     *
+     * @return (int|mixed)[]|bool|int
+     *
+     * @psalm-return array<array-key, int|mixed>|bool|int
      */
     public function convertBooleans($item)
     {

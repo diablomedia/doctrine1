@@ -114,6 +114,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param Doctrine_Table|string $table
      * @param string $keyColumn
      * @param string $class
+     * @psalm-param class-string $class
      * @return Doctrine_Collection
      */
     public static function create($table, $keyColumn = null, $class = null)
@@ -122,6 +123,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
             if (! $table instanceof Doctrine_Table) {
                 $table = Doctrine_Core::getTable($table);
             }
+            /** @psalm-var class-string $class */
             $class = $table->getAttribute(Doctrine_Core::ATTR_COLLECTION_CLASS);
         }
 

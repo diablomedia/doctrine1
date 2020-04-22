@@ -216,9 +216,11 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
 
     /**
      * gets descendants for node (direct descendants only)
+     *
      * @param int $depth
      * @param bool $includeNode
-     * @return false|Doctrine_Collection  The descendants of the node or FALSE if the node has no descendants.
+     *
+     * @return Doctrine_Collection|array|false The descendants of the node or FALSE if the node has no descendants.
      */
     public function getDescendants($depth = null, $includeNode = false)
     {
@@ -278,8 +280,8 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * gets ancestors for node
      *
      * @param integer $depth  The depth 'upstairs'.
-     * @return false|Doctrine_Collection  The ancestors of the node or FALSE if the node has no ancestors (this
-     *                basically means it's a root node).
+     *
+     * @return Doctrine_Collection|array|false The ancestors of the node or FALSE if the node has no ancestors (this basically means it's a root node).
      */
     public function getAncestors($depth = null)
     {

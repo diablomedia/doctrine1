@@ -154,7 +154,7 @@ class Doctrine_View
     /**
      * returns a collection of Doctrine_Record objects
      *
-     * @return Doctrine_Collection
+     * @return Doctrine_Collection|array
      */
     public function execute()
     {

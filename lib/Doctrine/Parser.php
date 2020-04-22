@@ -67,6 +67,7 @@ abstract class Doctrine_Parser
      */
     public static function getParser($type)
     {
+        /** @psalm-var class-string $class */
         $class = 'Doctrine_Parser_' . ucfirst($type);
 
         return new $class;

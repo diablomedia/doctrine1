@@ -1999,9 +1999,13 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * returns the record representation as an array
      *
      * @link http://www.doctrine-project.org/documentation/manual/1_1/en/working-with-models
+     *
      * @param boolean $deep         whether to include relations
      * @param boolean $prefixKey    not used
-     * @return array|false
+     *
+     * @return (array|false|int|mixed|null)[]|false
+     *
+     * @psalm-return array<array-key|array, array|false|int|mixed|null>|false
      */
     public function toArray($deep = true, $prefixKey = false)
     {
@@ -2318,7 +2322,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             unset($data[$id]);
         }
 
-        $ret      = $this->_table->create($data);
+        $ret = $this->_table->create($data);
 
         foreach ($data as $key => $val) {
             if (! ($val instanceof Doctrine_Null)) {

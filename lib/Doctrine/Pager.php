@@ -194,6 +194,7 @@ class Doctrine_Pager
      */
     public function getRange($rangeStyle, $options = array())
     {
+        /** @psalm-var class-string $class */
         $class = 'Doctrine_Pager_Range_' . ucfirst($rangeStyle);
 
         return new $class($options, $this);

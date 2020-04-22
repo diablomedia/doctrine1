@@ -280,12 +280,13 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      * Doctrine_Adapter_Statement_Interface->fetch() with Doctrine_Core::FETCH_CLASS or Doctrine_Core::FETCH_OBJ style.
      *
      * @param string $className             Name of the created class, defaults to stdClass.
+     * @psalm-param class-string $className
      * @param array $args                   Elements of this array are passed to the constructor.
      *
      * @return mixed                        an instance of the required class with property names that correspond
      *                                      to the column names or FALSE in case of an error.
      */
-    public function fetchObject($className = 'stdClass', $args = array())
+    public function fetchObject($className = stdClass::class, $args = array())
     {
         return new $className();
     }

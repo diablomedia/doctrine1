@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="3.11.2@d470903722cfcbc1cd04744c5491d3e6d13ec3d9">
+  <file src="lib/Doctrine/Adapter/Statement/Oracle.php">
+    <InvalidOperand occurrences="1">
+      <code>$var</code>
+    </InvalidOperand>
+  </file>
+  <file src="lib/Doctrine/Cli.php">
+    <ReferenceConstraintViolation occurrences="1">
+      <code>return true;</code>
+    </ReferenceConstraintViolation>
+  </file>
+  <file src="lib/Doctrine/Collection.php">
+    <InvalidMethodCall occurrences="1">
+      <code>getRelations</code>
+    </InvalidMethodCall>
+    <LessSpecificImplementedReturnType occurrences="1">
+      <code>mixed</code>
+    </LessSpecificImplementedReturnType>
+  </file>
+  <file src="lib/Doctrine/Connection.php">
+    <FalsableReturnStatement occurrences="2">
+      <code>$this-&gt;execute($statement, $params)-&gt;fetch(Doctrine_Core::FETCH_ASSOC)</code>
+      <code>$this-&gt;execute($statement, $params)-&gt;fetch(Doctrine_Core::FETCH_NUM)</code>
+    </FalsableReturnStatement>
+    <InvalidMethodCall occurrences="2">
+      <code>getTableName</code>
+      <code>getTableName</code>
+    </InvalidMethodCall>
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;formatter-&gt;convertBooleans($item)</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>array|int</code>
+    </InvalidReturnType>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$this-&gt;pendingAttributes[$attribute]</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="lib/Doctrine/Connection/Mssql.php">
+    <EmptyArrayAccess occurrences="4">
+      <code>$columns[$i]</code>
+      <code>$aliases[$i]</code>
+      <code>$columns[$i]</code>
+      <code>$aliases[$i]</code>
+    </EmptyArrayAccess>
+    <InvalidNullableReturnType occurrences="1">
+      <code>string</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>is_null($value) ? 'NULL' : $this-&gt;quote($params[$m[1]])</code>
+    </NullableReturnStatement>
+    <UndefinedVariable occurrences="1">
+      <code>$fields</code>
+    </UndefinedVariable>
+  </file>
+  <file src="lib/Doctrine/Connection/Statement.php">
+    <InvalidScalarArgument occurrences="1">
+      <code>$arg1</code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="lib/Doctrine/Connection/UnitOfWork.php">
+    <InvalidOperand occurrences="3">
+      <code>$index</code>
+      <code>$index</code>
+      <code>$index</code>
+    </InvalidOperand>
+    <ReferenceConstraintViolation occurrences="1">
+      <code>return $id;</code>
+    </ReferenceConstraintViolation>
+  </file>
+  <file src="lib/Doctrine/Core.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>bool|int</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$migration-&gt;migrate($to)</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="lib/Doctrine/Data/Import.php">
+    <UndefinedClass occurrences="1">
+      <code>new $className()</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/Doctrine/Expression/Mysql.php">
+    <InvalidOperand occurrences="1">
+      <code>$key</code>
+    </InvalidOperand>
+  </file>
+  <file src="lib/Doctrine/Expression/Pgsql.php">
+    <InvalidOperand occurrences="1">
+      <code>$key</code>
+    </InvalidOperand>
+  </file>
+  <file src="lib/Doctrine/Formatter.php">
+    <NullArgument occurrences="1">
+      <code>null</code>
+    </NullArgument>
+  </file>
+  <file src="lib/Doctrine/Hydrator/ArrayDriver.php">
+    <ReferenceConstraintViolation occurrences="1">
+      <code>return;</code>
+    </ReferenceConstraintViolation>
+  </file>
+  <file src="lib/Doctrine/Hydrator/Graph.php">
+    <NullableReturnStatement occurrences="1">
+      <code>isset($this-&gt;_queryComponents[$alias]['map']) ? $this-&gt;_queryComponents[$alias]['map'] : null</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="lib/Doctrine/Hydrator/RecordDriver.php">
+    <ReferenceConstraintViolation occurrences="1">
+      <code>return;</code>
+    </ReferenceConstraintViolation>
+  </file>
+  <file src="lib/Doctrine/Hydrator/SingleScalarDriver.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>array|scalar</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$result[0]</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="lib/Doctrine/Import/Builder.php">
+    <NullArgument occurrences="2">
+      <code>null</code>
+      <code>null</code>
+    </NullArgument>
+    <TypeDoesNotContainType occurrences="1">
+      <code>$definition['package_name']</code>
+    </TypeDoesNotContainType>
+  </file>
+  <file src="lib/Doctrine/Migration.php">
+    <InvalidOperand occurrences="2">
+      <code>$num</code>
+      <code>end($nums)</code>
+    </InvalidOperand>
+  </file>
+  <file src="lib/Doctrine/Migration/Diff.php">
+    <NullableReturnStatement occurrences="1">
+      <code>$extension</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="lib/Doctrine/Parser/Yml.php">
+    <InvalidScalarArgument occurrences="2">
+      <code>$e-&gt;getCode()</code>
+      <code>$e-&gt;getCode()</code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="lib/Doctrine/Query/Abstract.php">
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$queryComponents[$e[0]]['table']</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="lib/Doctrine/Query/Having.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$value</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="lib/Doctrine/Query/Tokenizer.php">
+    <InvalidOperand occurrences="2">
+      <code>$index</code>
+      <code>$key</code>
+    </InvalidOperand>
+    <PossiblyUndefinedArrayOffset occurrences="2">
+      <code>$res[$i][1]</code>
+      <code>$res[$i][2]</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="lib/Doctrine/RawSql.php">
+    <InvalidOperand occurrences="1">
+      <code>$key</code>
+    </InvalidOperand>
+  </file>
+  <file src="lib/Doctrine/Record.php">
+    <InvalidArgument occurrences="2">
+      <code>$array</code>
+      <code>$this-&gt;toArray($deep, true)</code>
+    </InvalidArgument>
+    <InvalidMethodCall occurrences="1">
+      <code>setInvoker</code>
+    </InvalidMethodCall>
+    <InvalidPropertyAssignmentValue occurrences="2">
+      <code>$this-&gt;_id</code>
+      <code>$this-&gt;_data</code>
+    </InvalidPropertyAssignmentValue>
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;toArray($deep)</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>false|int|string|array</code>
+    </InvalidReturnType>
+  </file>
+  <file src="lib/Doctrine/Relation.php">
+    <InvalidMethodCall occurrences="1">
+      <code>getConnection</code>
+    </InvalidMethodCall>
+  </file>
+  <file src="lib/Doctrine/Relation/Parser.php">
+    <InvalidMethodCall occurrences="3">
+      <code>isIdentifier</code>
+      <code>getFieldName</code>
+      <code>addIndex</code>
+    </InvalidMethodCall>
+  </file>
+  <file src="lib/Doctrine/Search.php">
+    <TooManyArguments occurrences="2">
+      <code>getColumnName</code>
+      <code>getColumnName</code>
+    </TooManyArguments>
+  </file>
+  <file src="lib/Doctrine/Search/Indexer.php">
+    <InvalidPropertyAssignment occurrences="1">
+      <code>$coll[]</code>
+    </InvalidPropertyAssignment>
+  </file>
+  <file src="lib/Doctrine/Sequence/Db2.php">
+    <NullableReturnStatement occurrences="1">
+      <code>$result</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="lib/Doctrine/Sequence/Mysql.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$value</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>integer|bool</code>
+    </InvalidReturnType>
+  </file>
+  <file src="lib/Doctrine/Sequence/Oracle.php">
+    <LessSpecificImplementedReturnType occurrences="1">
+      <code>mixed</code>
+    </LessSpecificImplementedReturnType>
+  </file>
+  <file src="lib/Doctrine/Table.php">
+    <FalsableReturnStatement occurrences="1">
+      <code>isset($this-&gt;_columns[$columnName]) ? $this-&gt;_columns[$columnName]['type'] : false</code>
+    </FalsableReturnStatement>
+    <InvalidScalarArgument occurrences="2">
+      <code>$definition['type']</code>
+      <code>$definition['length']</code>
+    </InvalidScalarArgument>
+    <NullableReturnStatement occurrences="1">
+      <code>$this-&gt;_options['tableName']</code>
+    </NullableReturnStatement>
+    <TypeDoesNotContainType occurrences="1">
+      <code>$class === false</code>
+    </TypeDoesNotContainType>
+  </file>
+  <file src="lib/Doctrine/Template/Listener/Timestampable.php">
+    <ImplicitToStringCast occurrences="1">
+      <code>$this-&gt;getTimestamp('updated', $event-&gt;getInvoker()-&gt;getTable()-&gt;getConnection())</code>
+    </ImplicitToStringCast>
+  </file>
+  <file src="lib/Doctrine/Tree/NestedSet.php">
+    <InvalidScalarArgument occurrences="1">
+      <code>$rootId</code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="lib/Doctrine/Validator.php">
+    <InvalidScalarArgument occurrences="1">
+      <code>$value</code>
+    </InvalidScalarArgument>
+  </file>
+</files>

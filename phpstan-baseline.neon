@@ -156,6 +156,11 @@ parameters:
 			path: lib/Doctrine/Collection.php
 
 		-
+			message: "#^Result of && is always false\\.$#"
+			count: 1
+			path: lib/Doctrine/Collection.php
+
+		-
 			message: "#^Return type \\(Doctrine_Collection_Iterator_Expandable\\) of method Doctrine_Collection_Offset\\:\\:getIterator\\(\\) should be compatible with return type \\(ArrayIterator\\) of method Doctrine_Collection\\:\\:getIterator\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Collection/Offset.php
@@ -196,7 +201,7 @@ parameters:
 			path: lib/Doctrine/Connection.php
 
 		-
-			message: "#^Method Doctrine_Connection\\:\\:quote\\(\\) should return string but returns string\\|null\\.$#"
+			message: "#^Method Doctrine_Connection\\:\\:convertBooleans\\(\\) should return array\\|int but returns array\\|bool\\|int\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection.php
 
@@ -226,7 +231,17 @@ parameters:
 			path: lib/Doctrine/Connection.php
 
 		-
-			message: "#^Method Doctrine_Connection\\:\\:prepare\\(\\) should return Doctrine_Connection_Statement but return statement is missing\\.$#"
+			message: "#^Method Doctrine_Connection\\:\\:prepare\\(\\) should return Doctrine_Connection_Statement\\|null but return statement is missing\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Cannot call method execute\\(\\) on Doctrine_Connection_Statement\\|null\\.$#"
+			count: 2
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Method Doctrine_Connection\\:\\:execute\\(\\) should return Doctrine_Adapter_Statement_Interface\\|PDOStatement but returns Doctrine_Connection_Statement\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection.php
 
@@ -237,6 +252,11 @@ parameters:
 
 		-
 			message: "#^Method Doctrine_Connection\\:\\:execute\\(\\) should return Doctrine_Adapter_Statement_Interface\\|PDOStatement but return statement is missing\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Cannot call method rowCount\\(\\) on Doctrine_Connection_Statement\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection.php
 
@@ -257,16 +277,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method postError\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:errorCode\\(\\) should return int but returns int\\|string\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:errorInfo\\(\\) should return array but returns array\\|string\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection.php
 
@@ -386,11 +396,6 @@ parameters:
 			path: lib/Doctrine/Connection/Statement.php
 
 		-
-			message: "#^Method Doctrine_Connection_Statement\\:\\:fetchColumn\\(\\) should return string\\|false but returns string\\|false\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Statement.php
-
-		-
 			message: "#^Parameter \\#2 \\$arg1 of method Doctrine_Adapter_Statement_Interface\\:\\:setFetchMode\\(\\) expects int\\|null, string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Statement.php
@@ -432,6 +437,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#2 \\.\\.\\.\\$args of function array_merge expects array, array\\|false given\\.$#"
+			count: 1
+			path: lib/Doctrine/Core.php
+
+		-
+			message: "#^Method Doctrine_Core\\:\\:migrate\\(\\) should return bool\\|int but returns int\\|false\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Core.php
 
@@ -526,6 +536,11 @@ parameters:
 			path: lib/Doctrine/Export/Oracle.php
 
 		-
+			message: "#^Parameter \\#1 \\$str of function strtoupper expects string, string\\|null given\\.$#"
+			count: 1
+			path: lib/Doctrine/Export/Oracle.php
+
+		-
 			message: "#^Return type \\(array\\|true\\) of method Doctrine_Export_Pgsql\\:\\:alterTableSql\\(\\) should be compatible with return type \\(string\\) of method Doctrine_Export\\:\\:alterTableSql\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Export/Pgsql.php
@@ -551,7 +566,7 @@ parameters:
 			path: lib/Doctrine/Expression.php
 
 		-
-			message: "#^Call to function is_object\\(\\) with string will always evaluate to false\\.$#"
+			message: "#^Call to function is_object\\(\\) with class\\-string will always evaluate to false\\.$#"
 			count: 1
 			path: lib/Doctrine/Hydrator.php
 
@@ -616,6 +631,11 @@ parameters:
 			path: lib/Doctrine/Hydrator/ScalarDriver.php
 
 		-
+			message: "#^Method Doctrine_Hydrator_SingleScalarDriver\\:\\:hydrateResultSet\\(\\) should return array\\|bool\\|float\\|int\\|string but returns float\\|int\\|string\\|true\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Hydrator/SingleScalarDriver.php
+
+		-
 			message: "#^Parameter \\#1 \\$key of method Doctrine_Import_Builder\\:\\:setOption\\(\\) expects string, int\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Import/Builder.php
@@ -631,19 +651,29 @@ parameters:
 			path: lib/Doctrine/Import/Builder.php
 
 		-
-			message: "#^Return type \\(string\\|false\\) of method Doctrine_Import_Oracle\\:\\:listDatabases\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Import\\:\\:listDatabases\\(\\)$#"
+			message: "#^Parameter \\#1 \\$str of method Doctrine_Connection\\:\\:quoteIdentifier\\(\\) expects string, string\\|null given\\.$#"
+			count: 3
+			path: lib/Doctrine/Import/Mssql.php
+
+		-
+			message: "#^Return type \\(bool\\|float\\|int\\|string\\|null\\) of method Doctrine_Import_Oracle\\:\\:listDatabases\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Import\\:\\:listDatabases\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Import/Oracle.php
 
 		-
-			message: "#^Method Doctrine_Import_Oracle\\:\\:listDatabases\\(\\) should return string\\|false but returns string\\|false\\|null\\.$#"
-			count: 1
+			message: "#^Parameter \\#1 \\$str of function strtoupper expects string, string\\|null given\\.$#"
+			count: 2
 			path: lib/Doctrine/Import/Oracle.php
 
 		-
 			message: "#^Parameter \\#2 \\$str of function explode expects string, array\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Import/Pgsql.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function strtolower expects string, string\\|null given\\.$#"
+			count: 1
+			path: lib/Doctrine/Import/Sqlite.php
 
 		-
 			message: "#^Parameter \\#1 \\$str of function strtolower expects string, string\\|null given\\.$#"
@@ -671,7 +701,12 @@ parameters:
 			path: lib/Doctrine/Lib.php
 
 		-
-			message: "#^Method Doctrine_Locking_Manager_Pessimistic\\:\\:_getLockingUserIdent\\(\\) should return string but returns string\\|false\\|null\\.$#"
+			message: "#^Method Doctrine_Locking_Manager_Pessimistic\\:\\:_getLockingUserIdent\\(\\) never returns float so it can be removed from the return typehint\\.$#"
+			count: 1
+			path: lib/Doctrine/Locking/Manager/Pessimistic.php
+
+		-
+			message: "#^Method Doctrine_Locking_Manager_Pessimistic\\:\\:_getLockingUserIdent\\(\\) never returns int so it can be removed from the return typehint\\.$#"
 			count: 1
 			path: lib/Doctrine/Locking/Manager/Pessimistic.php
 
@@ -701,8 +736,8 @@ parameters:
 			path: lib/Doctrine/Migration.php
 
 		-
-			message: "#^Method Doctrine_Migration\\:\\:migrate\\(\\) should return int\\|false but returns int\\|null\\.$#"
-			count: 2
+			message: "#^Method Doctrine_Migration\\:\\:migrateDryRun\\(\\) should return bool\\|int but returns int\\|false\\|null\\.$#"
+			count: 1
 			path: lib/Doctrine/Migration.php
 
 		-
@@ -751,12 +786,7 @@ parameters:
 			path: lib/Doctrine/Node/NestedSet.php
 
 		-
-			message: "#^Method Doctrine_Node_NestedSet\\:\\:getDescendants\\(\\) should return Doctrine_Collection\\|false but returns array\\|Doctrine_Collection\\.$#"
-			count: 1
-			path: lib/Doctrine/Node/NestedSet.php
-
-		-
-			message: "#^Method Doctrine_Node_NestedSet\\:\\:getAncestors\\(\\) should return Doctrine_Collection\\|false but returns array\\|Doctrine_Collection\\.$#"
+			message: "#^Method Doctrine_Node_NestedSet\\:\\:getChildren\\(\\) should return Doctrine_Collection\\|false but returns array\\|Doctrine_Collection\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Node/NestedSet.php
 
@@ -1041,6 +1071,11 @@ parameters:
 			path: lib/Doctrine/Record.php
 
 		-
+			message: "#^Parameter \\#1 \\$array of static method Doctrine_Parser\\:\\:dump\\(\\) expects array, array\\<array\\|int\\|string, mixed\\>\\|false given\\.$#"
+			count: 1
+			path: lib/Doctrine/Record.php
+
+		-
 			message: "#^Method Doctrine_Record\\:\\:copy\\(\\) should return static\\(Doctrine_Record\\) but returns Doctrine_Record\\.$#"
 			count: 1
 			path: lib/Doctrine/Record.php
@@ -1067,11 +1102,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$listener of method Doctrine_Configurable\\:\\:addRecordListener\\(\\) expects Doctrine_EventListener_Interface\\|Doctrine_Overloadable, Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|Doctrine_Record_Listener_Interface given\\.$#"
-			count: 1
-			path: lib/Doctrine/Record/Abstract.php
-
-		-
-			message: "#^Method Doctrine_Record_Abstract\\:\\:getListener\\(\\) should return Doctrine_EventListener_Interface\\|Doctrine_Overloadable but returns Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Record/Abstract.php
 
@@ -1196,19 +1226,9 @@ parameters:
 			path: lib/Doctrine/Sequence/Mssql.php
 
 		-
-			message: "#^Method Doctrine_Sequence_Mysql\\:\\:lastInsertId\\(\\) should return bool\\|int but returns int\\|string\\.$#"
+			message: "#^Method Doctrine_Sequence_Mysql\\:\\:nextId\\(\\) should return bool\\|int but returns int\\|string\\.$#"
 			count: 1
 			path: lib/Doctrine/Sequence/Mysql.php
-
-		-
-			message: "#^Method Doctrine_Sequence_Sqlite\\:\\:nextId\\(\\) should return int but returns int\\|string\\.$#"
-			count: 1
-			path: lib/Doctrine/Sequence/Sqlite.php
-
-		-
-			message: "#^Method Doctrine_Sequence_Sqlite\\:\\:lastInsertId\\(\\) should return bool\\|int but returns int\\|string\\.$#"
-			count: 1
-			path: lib/Doctrine/Sequence/Sqlite.php
 
 		-
 			message: "#^Cannot access offset 'autoincrement' on array\\|false\\.$#"
@@ -1386,7 +1406,7 @@ parameters:
 			path: lib/Doctrine/Transaction/Oracle.php
 
 		-
-			message: "#^Property Doctrine_Tree\\:\\:\\$_baseComponent \\(string\\) does not accept string\\|false\\.$#"
+			message: "#^Property Doctrine_Tree\\:\\:\\$_baseComponent \\(string\\) does not accept class\\-string\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Tree.php
 
@@ -1434,9 +1454,4 @@ parameters:
 			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, array\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Validator/Readonly.php
-
-		-
-			message: "#^Method Doctrine_View\\:\\:execute\\(\\) should return Doctrine_Collection but returns array\\|Doctrine_Collection\\.$#"
-			count: 1
-			path: lib/Doctrine/View.php
 

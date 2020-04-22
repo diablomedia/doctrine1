@@ -123,15 +123,6 @@ parameters:
         - '#Call to an undefined method Doctrine_Query_Part::parse\(\)\.#'
 
         #########
-        # Level 3
-        #########
-        # This one calls execute with the HYDRATE_ARRAY constant, which should return an array
-        - '#Method Doctrine_Query::fetchArray\(\) should return array but returns array\|Doctrine_Collection\.#'
-        # This one does not allow specifying the hydration mode, so should default to Doctrine_Collection (record hydration)
-        - '#Method Doctrine_IntegrityMapper::buildIntegrityRelationQuery\(\) should return Doctrine_Collection but returns array\|Doctrine_Collection\.#'
-        - '#Method Doctrine_Relation_Association_Self::fetchRelatedFor\(\) should return Doctrine_Collection but returns array\|Doctrine_Collection\.#'
-
-        #########
         # Level 4
         #########
         # Most of these checks are validating the argument coming into the function to be sure it isn't "null"/unset. I don't want to add
@@ -153,8 +144,6 @@ parameters:
         # but that would break public API). These came up now because I changed the doc block for the _invoker property (and related methods)
         # in Doctrine_Template to match the PHP typehint of the setInvoker method.
         - '#Call to an undefined method Doctrine_Record_Abstract::delete\(\)\.#'
-        # Similar to above, just different method
-        - '#Parameter \#1 \$array of static method Doctrine_Parser::dump\(\) expects array, array\|false given\.#'
         # Also appears in Doctrine_Collection:847
         - '#Parameter \#1 \$path of static method Doctrine_Parser::load\(\) expects string, array\|string given\.#'
         # getIdentifier can return an array for multi-column primary keys, the whereIn stuff in Doctrine_Query will not deal with that well

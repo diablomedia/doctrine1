@@ -325,7 +325,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         // get parent classes
 
         do {
-            if ($class === 'Doctrine_Record') {
+            if ($class === Doctrine_Record::class) {
                 break;
             }
 
@@ -2416,6 +2416,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Gets the subclass of Doctrine_Record that belongs to this table.
      *
      * @return string
+     * @psalm-return class-string
      */
     public function getComponentName()
     {

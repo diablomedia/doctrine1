@@ -82,7 +82,7 @@ class Doctrine_Relation_Association_Self extends Doctrine_Relation_Association
     }
 
     /**
-     * @return Doctrine_Collection
+     * @return Doctrine_Collection|array
      */
     public function fetchRelatedFor(Doctrine_Record $record)
     {

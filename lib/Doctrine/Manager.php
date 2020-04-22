@@ -557,7 +557,8 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      * Get the name of the passed connection instance
      *
      * @param Doctrine_Connection $conn     connection object to be searched for
-     * @return string                       the name of the connection
+     *
+     * @return array-key|false the name of the connection
      */
     public function getConnectionName(Doctrine_Connection $conn)
     {

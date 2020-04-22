@@ -373,7 +373,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      *                                      value is supplied, Doctrine_Adapter_Statement_Interface->fetchColumn()
      *                                      fetches the first column.
      *
-     * @return string|false                       returns a single column in the next row of a result set.
+     * @return null|scalar returns a single column in the next row of a result set.
      */
     public function fetchColumn($columnIndex = 0)
     {

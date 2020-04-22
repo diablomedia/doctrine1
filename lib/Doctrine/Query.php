@@ -181,11 +181,13 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      *
      * @param Doctrine_Connection $conn  optional connection parameter
      * @param string $class              Query class to instantiate
+     * @psalm-param class-string $class
      * @return Doctrine_Query
      */
     public static function create($conn = null, $class = null)
     {
         if (! $class) {
+            /** @psalm-var class-string $class */
             $class = Doctrine_Manager::getInstance()
                 ->getAttribute(Doctrine_Core::ATTR_QUERY_CLASS);
         }
@@ -264,7 +266,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * Convenience method to execute using array fetching as hydration mode.
      *
      * @param array $params
-     * @return array
+     *
+     * @return Doctrine_Collection|array
      */
     public function fetchArray($params = array())
     {

@@ -175,7 +175,8 @@ class Doctrine_Node implements IteratorAggregate
             $options = (isset($this->iteratorOptions) ? $this->iteratorOptions : array());
         }
 
-        $implName      = $this->record->getTable()->getOption('treeImpl');
+        $implName = $this->record->getTable()->getOption('treeImpl');
+        /** @psalm-var class-string $iteratorClass */
         $iteratorClass = 'Doctrine_Node_' . $implName . '_' . ucfirst(strtolower($type)) . 'OrderIterator';
 
         return new $iteratorClass($this->record, $options);

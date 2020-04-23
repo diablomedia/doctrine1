@@ -23,6 +23,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring, apcu
+          ini-values: apc.enable_cli=1
           coverage: xdebug
       - name: Install Dependencies
         run: |

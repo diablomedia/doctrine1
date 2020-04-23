@@ -35,3 +35,12 @@ jobs:
         run: composer test-with-coverage
       - name: Upload Coverage
         run: bash <(curl -s https://codecov.io/bash) -f tests/coverage/clover.xml
+  roave_bc_check:
+    name: Roave BC Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: fetch tags
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - name: Roave BC Check
+        uses: docker://nyholm/roave-bc-check-ga

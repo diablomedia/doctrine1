@@ -34,7 +34,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('SearchTest', 'SearchTestIndex');
+        $this->tables = array('searchTest');
 
         parent::prepareTables();
     }

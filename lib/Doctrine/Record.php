@@ -1436,6 +1436,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 return $this->$accessor($load, $fieldName);
             }
         }
+
         return $this->_get($fieldName, $load);
     }
 

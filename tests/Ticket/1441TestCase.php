@@ -56,8 +56,14 @@ class Doctrine_Ticket_1441_TestCase extends Doctrine_UnitTestCase
 
         $q->execute();
 
+        $params = $q->getFlattenedParams();
+
         $this->assertEqual($q->getDql(), 'UPDATE Ticket_1441_User u SET u.password = ? u.updated_at = ? WHERE u.username = ?');
-        $this->assertEqual($q->getFlattenedParams(), array('test', date('Y-m-d H:i:s', time()), 'jwage'));
+        $this->assertEqual($params[0], 'test');
+        $this->assertEqual($params[2], 'jwage');
+        // Make sure updated_at is no more than 1 second difference from current time (if we check for exact string,
+        // test may intermittently fail)
+        $this->assertTrue(abs(strtotime($params[1]) - time()) <= 1);
         Doctrine_Manager::getInstance()->setAttribute(Doctrine_Core::ATTR_USE_DQL_CALLBACKS, false);
     }
 }

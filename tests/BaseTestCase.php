@@ -94,18 +94,18 @@ class Doctrine_Base_TestCase extends Doctrine_UnitTestCase
 
     public function testGetConnectionByTableName()
     {
-        $connectionBefore = Doctrine_Core::getConnectionByTableName('entity');
+        $connectionBefore = Doctrine_Core::getConnectionByTableName('tag');
 
         Doctrine_Manager::connection('sqlite::memory:', 'test_memory');
-        Doctrine_Manager::getInstance()->bindComponent('Entity', 'test_memory');
+        Doctrine_Manager::getInstance()->bindComponent('Tag', 'test_memory');
 
-        $connectionAfter = Doctrine_Core::getConnectionByTableName('entity');
+        $connectionAfter = Doctrine_Core::getConnectionByTableName('tag');
 
         $this->assertEqual($connectionAfter->getName(), 'test_memory');
 
-        Doctrine_Manager::getInstance()->bindComponent('Entity', $connectionBefore->getName());
+        Doctrine_Manager::getInstance()->bindComponent('Tag', $connectionBefore->getName());
 
-        $connectionAfter = Doctrine_Core::getConnectionByTableName('entity');
+        $connectionAfter = Doctrine_Core::getConnectionByTableName('tag');
 
         $this->assertEqual($connectionBefore->getName(), $connectionAfter->getName());
     }

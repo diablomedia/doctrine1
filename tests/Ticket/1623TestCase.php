@@ -134,7 +134,6 @@ class Ticket_1623_User extends Doctrine_Record
                                                  'refClass'              => 'Ticket_1623_UserReference',
                                                  'refClassRelationAlias' => 'parentLinks'
                                                  )
-
         );
     }
 

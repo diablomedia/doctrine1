@@ -47,20 +47,17 @@ class Doctrine_Lib
         switch ($state) {
             case Doctrine_Record::STATE_PROXY:
                 return 'proxy';
-                break;
             case Doctrine_Record::STATE_CLEAN:
                 return 'persistent clean';
-                break;
             case Doctrine_Record::STATE_DIRTY:
                 return 'persistent dirty';
-                break;
             case Doctrine_Record::STATE_TDIRTY:
                 return 'transient dirty';
-                break;
             case Doctrine_Record::STATE_TCLEAN:
                 return 'transient clean';
-                break;
         }
+
+        return null;
     }
 
     /**
@@ -100,14 +97,13 @@ class Doctrine_Lib
         switch ($state) {
             case Doctrine_Transaction::STATE_SLEEP:
                 return 'open';
-                break;
             case Doctrine_Transaction::STATE_BUSY:
                 return 'busy';
-                break;
             case Doctrine_Transaction::STATE_ACTIVE:
                 return 'active';
-                break;
         }
+
+        return null;
     }
 
     /**
@@ -263,7 +259,6 @@ class Doctrine_Lib
                 array_shift($args);
 
                 return call_user_func_array(array('Doctrine_Lib', 'arrayDeepMerge'), $args);
-            break;
         }
     }
 

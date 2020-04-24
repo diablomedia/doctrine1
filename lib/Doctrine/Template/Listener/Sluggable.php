@@ -89,7 +89,7 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
                 array_key_exists(
                     $name,
                     $record->getModified()
-            )) {
+                )) {
                 $record->$name = $this->buildSlugFromSlugField($record);
             }
         }

@@ -62,7 +62,7 @@ class Doctrine_Cli_Formatter
      * Formats a text according to the given parameters.
      *
      * @param  string $text The text to style
-     * @param  mixed  $parameters An array of parameters
+     * @param  array|string  $parameters An array of parameters
      * @param  resource $stream A stream (default to STDOUT)
      *
      * @return string The formatted text

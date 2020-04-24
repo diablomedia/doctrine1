@@ -32,16 +32,70 @@
  */
 interface Doctrine_Adapter_Interface
 {
+    /**
+     * @param string $prepareString
+     * @return Doctrine_Adapter_Statement_Interface
+     */
     public function prepare($prepareString);
+
+    /**
+     * @param string $queryString
+     * @return Doctrine_Adapter_Statement_Interface
+     */
     public function query($queryString);
+
+    /**
+     * @param string $input
+     * @return string
+     */
     public function quote($input);
+
+    /**
+     * @param string $statement
+     * @return int|false
+     */
     public function exec($statement);
+
+    /**
+     * @return integer
+     */
     public function lastInsertId();
+
+    /**
+     * @return bool
+     */
     public function beginTransaction();
+
+    /**
+     * @return bool
+     */
     public function commit();
+
+    /**
+     * @return bool
+     */
     public function rollBack();
+
+    /**
+     * @return int
+     */
     public function errorCode();
+
+    /**
+     * @return string
+     */
     public function errorInfo();
+
+    /**
+     * @param int $attribute
+     * @param mixed $value
+     * @return bool
+     */
     public function setAttribute($attribute, $value);
+
+    /**
+     * @param int $attribute
+     * @return mixed
+     */
     public function getAttribute($attribute);
 }

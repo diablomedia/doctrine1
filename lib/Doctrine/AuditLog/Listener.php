@@ -162,5 +162,7 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
         if ($this->_auditLog->getOption('auditLog')) {
             return ($this->_auditLog->getMaxVersion($record) + 1);
         }
+
+        return null;
     }
 }

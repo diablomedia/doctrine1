@@ -44,7 +44,7 @@ class Parent1713 extends Doctrine_Record
 
         $this->setSubclasses(
             array('Child1713A' => array('phpType' => 1))
-    );
+        );
     }
 
     public function setUp()

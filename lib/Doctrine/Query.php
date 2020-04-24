@@ -25,6 +25,16 @@
  * data in an object-oriented fashion. A DQL query understands relations and inheritance
  * and is dbms independant.
  *
+ * The lifecycle of a Query object is the following:
+ *      After construction the query object is empty. Through using the fluent
+ *      query interface the user fills the query object with DQL parts and query parameters.
+ *      These get collected in {@link $_dqlParts} and {@link $_params}, respectively.
+ *      When the query is executed the first time, or when {@link getSqlQuery()}
+ *      is called the first time, the collected DQL parts get parsed and the resulting
+ *      connection-driver specific SQL is generated. The generated SQL parts are
+ *      stored in {@link $_sqlParts} and the final resulting SQL query is stored in
+ *      {@link $_sql}.
+ *
  * @package     Doctrine
  * @subpackage  Query
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
@@ -45,16 +55,6 @@
  *              from this tedious task.
  *              This would also largely reduce the currently huge interface of Doctrine_Query(_Abstract)
  *              and better hide all these transformation internals from the public Query API.
- *
- * @internal    The lifecycle of a Query object is the following:
- *              After construction the query object is empty. Through using the fluent
- *              query interface the user fills the query object with DQL parts and query parameters.
- *              These get collected in {@link $_dqlParts} and {@link $_params}, respectively.
- *              When the query is executed the first time, or when {@link getSqlQuery()}
- *              is called the first time, the collected DQL parts get parsed and the resulting
- *              connection-driver specific SQL is generated. The generated SQL parts are
- *              stored in {@link $_sqlParts} and the final resulting SQL query is stored in
- *              {@link $_sql}.
  */
 class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 {
@@ -129,12 +129,12 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     protected $_pendingAggregates = array();
 
     /**
-     * @param boolean $needsSubquery
+     * @var boolean $_needsSubquery
      */
     protected $_needsSubquery = false;
 
     /**
-     * @param boolean $isSubquery           whether or not this query object is a subquery of another
+     * @var boolean $_isSubquery           whether or not this query object is a subquery of another
      *                                      query object
      */
     protected $_isSubquery;
@@ -145,7 +145,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     protected $_neededTables = array();
 
     /**
-     * @var array $pendingSubqueries        SELECT part subqueries, these are called pending subqueries since
+     * @var array $_pendingSubqueries        SELECT part subqueries, these are called pending subqueries since
      *                                      they cannot be parsed directly (some queries might be correlated)
      */
     protected $_pendingSubqueries = array();
@@ -181,11 +181,13 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      *
      * @param Doctrine_Connection $conn  optional connection parameter
      * @param string $class              Query class to instantiate
+     * @psalm-param class-string $class
      * @return Doctrine_Query
      */
     public static function create($conn = null, $class = null)
     {
         if (! $class) {
+            /** @psalm-var class-string $class */
             $class = Doctrine_Manager::getInstance()
                 ->getAttribute(Doctrine_Core::ATTR_QUERY_CLASS);
         }
@@ -264,7 +266,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * Convenience method to execute using array fetching as hydration mode.
      *
      * @param array $params
-     * @return array
+     *
+     * @return Doctrine_Collection|array
      */
     public function fetchArray($params = array())
     {

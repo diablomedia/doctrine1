@@ -114,7 +114,7 @@ class Testing_AttributeDefinition extends Doctrine_Record
             'integer',
             4,
             array('primary' => true,'autoincrement' => true)
-                );
+        );
         $this->hasColumn('name', 'string', 64, array('notnull' => true));
     }
     public function setUp()
@@ -133,13 +133,13 @@ class Testing_Attribute extends Doctrine_Record
             'integer',
             4,
             array('primary' => true,'autoincrement' => true)
-                );
+        );
         $this->hasColumn(
             'attribute_definition_id',
             'integer',
             4,
             array('notnull' => true)
-                );
+        );
         $this->hasColumn('value', 'string', 255, array('notnull' => false));
     }
     public function setUp()
@@ -165,7 +165,7 @@ class Testing_Product extends Doctrine_Record
             'integer',
             4,
             array('primary' => true,'autoincrement' => true)
-                );
+        );
         $this->hasColumn(
             'name',
             'string',
@@ -183,7 +183,7 @@ class Testing_Product extends Doctrine_Record
                         'refClass'         => 'Testing_ProductAttribute',
                                 'onDelete' => 'CASCADE',
                         )
-                );
+        );
     }
 }
 

@@ -33,7 +33,7 @@
 abstract class Doctrine_Record_Abstract extends Doctrine_Access
 {
     /**
-     * @param Doctrine_Table $_table     reference to associated Doctrine_Table instance
+     * @var Doctrine_Table $_table     reference to associated Doctrine_Table instance
      */
     protected $_table;
 
@@ -79,7 +79,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     /**
      * getListener
      *
-     * @return Doctrine_EventListener_Interface|Doctrine_Overloadable
+     * @return Doctrine_EventListener_Interface|Doctrine_Overloadable|null
      */
     public function getListener()
     {
@@ -136,7 +136,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     }
 
     /**
-     * @param string $attr
+     * @param string|int $attr
      * @param mixed $value
      * @return void
      */
@@ -258,7 +258,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
     /**
      * Binds One-to-Many / Many-to-Many aggregate relation
      *
-     * @param string ...$args First: the name of the related component
+     * @param string|array ...$args First: the name of the related component
      *                        Second: relation options
      * @see Doctrine_Relation::_$definition
      * @return $this          this object

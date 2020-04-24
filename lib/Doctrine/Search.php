@@ -40,7 +40,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
      * @var array
      */
     protected $_options = array('generateFiles'    => false,
-                                'analyzer'         => 'Doctrine_Search_Analyzer_Standard',
+                                'analyzer'         => Doctrine_Search_Analyzer_Standard::class,
                                 'analyzer_options' => array(),
                                 'type'             => self::INDEX_TABLES,
                                 'className'        => '%CLASS%Index',
@@ -64,7 +64,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
         $this->_options = Doctrine_Lib::arrayDeepMerge($this->_options, $options);
 
         if (! isset($this->_options['analyzer'])) {
-            $this->_options['analyzer'] = 'Doctrine_Search_Analyzer_Standard';
+            $this->_options['analyzer'] = Doctrine_Search_Analyzer_Standard::class;
         }
 
         if (! isset($this->_options['analyzer_options'])) {

@@ -304,7 +304,6 @@ class Doctrine_Data_Import extends Doctrine_Data
         $nestedSets = array();
 
         $specifiedModels = $this->getModels();
-        $rows            = array();
 
         foreach ($array as $className => $data) {
             if (! empty($specifiedModels) && !in_array($className, $specifiedModels)) {

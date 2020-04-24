@@ -50,17 +50,17 @@ class Doctrine_View
     const SELECT = 'SELECT * FROM %s';
 
     /**
-     * @var string $name                the name of the view
+     * @var string $_name                the name of the view
      */
     protected $_name;
 
     /**
-     * @var Doctrine_Query $query       the DQL query object this view is hooked into
+     * @var Doctrine_Query $_query       the DQL query object this view is hooked into
      */
     protected $_query;
 
     /**
-     * @var Doctrine_Connection $conn   the connection object
+     * @var Doctrine_Connection $_conn   the connection object
      */
     protected $_conn;
 
@@ -154,7 +154,7 @@ class Doctrine_View
     /**
      * returns a collection of Doctrine_Record objects
      *
-     * @return Doctrine_Collection
+     * @return Doctrine_Collection|array
      */
     public function execute()
     {

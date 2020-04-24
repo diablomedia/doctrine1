@@ -32,6 +32,8 @@
  */
 class Doctrine_Extension_TestCase extends Doctrine_UnitTestCase
 {
+    protected $tables = array('ExtensionBehaviorTest');
+
     public function prepareTables()
     {
         Doctrine_Core::setExtensionsPath(dirname(__FILE__) . '/Extension');
@@ -40,7 +42,6 @@ class Doctrine_Extension_TestCase extends Doctrine_UnitTestCase
         Doctrine_Manager::getInstance()
             ->registerExtension('TestExtension');
 
-        $this->tables[] = 'ExtensionBehaviorTest';
         parent::prepareTables();
     }
 
@@ -59,6 +60,7 @@ class Doctrine_Extension_TestCase extends Doctrine_UnitTestCase
     public function tearDown()
     {
         spl_autoload_unregister(array('Doctrine', 'extensionsAutoload'));
+        Doctrine_Manager::getInstance()->deRegisterExtension('TestExtension');
     }
 }
 

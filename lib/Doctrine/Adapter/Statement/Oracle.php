@@ -309,16 +309,12 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         switch ($fetchStyle) {
             case Doctrine_Core::FETCH_BOTH:
                 return oci_fetch_array($this->statement, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
-            break;
             case Doctrine_Core::FETCH_ASSOC:
                 return oci_fetch_array($this->statement, OCI_ASSOC + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
-            break;
             case Doctrine_Core::FETCH_NUM:
                 return oci_fetch_array($this->statement, OCI_NUM + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
-            break;
             case Doctrine_Core::FETCH_OBJ:
                 return oci_fetch_object($this->statement);
-            break;
             default:
                 throw new Doctrine_Adapter_Exception('This type of fetch is not supported: ' . $fetchStyle);
 /*
@@ -573,8 +569,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
                 } else {
                     throw new Doctrine_Adapter_Exception($this->errorInfo());
                 }
-
-            break;
+                // no break
             case Doctrine_Core::ERRMODE_WARNING:
             case Doctrine_Core::ERRMODE_SILENT:
             break;
@@ -609,7 +604,12 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         $statement = @oci_parse($this->connection, $query);
 
         if ($statement == false) {
-            throw new Doctrine_Adapter_Exception($this->getOciError());
+            $error = $this->getOciError();
+            if ($error !== false) {
+                throw new Doctrine_Adapter_Exception($error['message']);
+            } else {
+                throw new Doctrine_Adapter_Exception('Unknown Error');
+            }
         }
 
         $this->statement = $statement;

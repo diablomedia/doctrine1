@@ -246,6 +246,8 @@ class Doctrine_Migration
             $dir                                                             = dirname($path);
             self::$_migrationClassesForDirectories[$dir][$classMigrationNum] = $name;
         }
+
+        return null;
     }
 
     /**
@@ -347,9 +349,11 @@ class Doctrine_Migration
      * migrate to. It will automatically know whether you are migrating up or down
      * based on the current version of the database.
      *
-     * @param  integer $to       Version to migrate to
-     * @param  boolean $dryRun   Whether or not to run the migrate process as a dry run
-     * @return integer|false $to       Version number migrated to
+     * @param integer $to       Version to migrate to
+     * @param boolean $dryRun   Whether or not to run the migrate process as a dry run
+     *
+     * @return false|int|null $to Version number migrated to
+     *
      * @throws Doctrine_Exception
      */
     public function migrate($to = null, $dryRun = false)

@@ -33,6 +33,7 @@
 class Doctrine_Hydrator_ScalarDriver extends Doctrine_Hydrator_Abstract
 {
     /**
+     * @param Doctrine_Connection_Statement $stmt
      * @return array
      */
     public function hydrateResultSet($stmt)

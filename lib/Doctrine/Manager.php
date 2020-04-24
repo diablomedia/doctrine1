@@ -35,22 +35,22 @@
 class Doctrine_Manager extends Doctrine_Configurable implements Countable, IteratorAggregate
 {
     /**
-     * @var array $connections          an array containing all the opened connections
+     * @var array $_connections          an array containing all the opened connections
      */
     protected $_connections = array();
 
     /**
-     * @var array $bound                an array containing all components that have a bound connection
+     * @var array $_bound                an array containing all components that have a bound connection
      */
     protected $_bound = array();
 
     /**
-     * @var integer $index              the incremented index
+     * @var integer $_index              the incremented index
      */
     protected $_index = 0;
 
     /**
-     * @var integer|string $currIndex          the current connection index
+     * @var integer|string $_currIndex          the current connection index
      */
     protected $_currIndex = 0;
 
@@ -557,7 +557,8 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      * Get the name of the passed connection instance
      *
      * @param Doctrine_Connection $conn     connection object to be searched for
-     * @return string                       the name of the connection
+     *
+     * @return array-key|false the name of the connection
      */
     public function getConnectionName(Doctrine_Connection $conn)
     {
@@ -644,7 +645,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      * Sets the current connection to $key
      *
      * @param mixed $key                        the connection key
-     * @throws InvalidKeyException
+     * @throws Doctrine_Manager_Exception
      * @return void
      */
     public function setCurrentConnection($key)
@@ -863,6 +864,15 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
             $path = Doctrine_Core::getExtensionsPath() . '/' . $name . '/lib';
         }
         $this->_extensions[$name] = $path;
+    }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function deRegisterExtension($name)
+    {
+        unset($this->_extensions[$name]);
     }
 
     /**

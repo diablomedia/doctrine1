@@ -52,6 +52,7 @@ class Doctrine_Cache_Xcache extends Doctrine_Cache_Driver
      * Test if a cache record exists for the passed id
      *
      * @param string $id cache id
+     * @param bool $testCacheValidity
      * @return mixed  Returns either the cached data or false
      */
     protected function _doFetch($id, $testCacheValidity = true)

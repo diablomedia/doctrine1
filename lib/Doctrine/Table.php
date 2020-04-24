@@ -54,38 +54,38 @@
 class Doctrine_Table extends Doctrine_Configurable implements Countable
 {
     /**
-     * @var array $data                                 temporary data which is then loaded into Doctrine_Record::$_data
+     * @var array $_data                                 temporary data which is then loaded into Doctrine_Record::$_data
      */
     protected $_data = array();
 
     /**
-     * @var string|array $identifier   The field names of all fields that are part of the identifier/primary key
+     * @var string|array $_identifier   The field names of all fields that are part of the identifier/primary key
      */
     protected $_identifier = array();
 
     /**
      * @see Doctrine_Identifier constants
-     * @var integer $identifierType                     the type of identifier this table uses
+     * @var integer $_identifierType                     the type of identifier this table uses
      */
     protected $_identifierType;
 
     /**
-     * @var Doctrine_Connection $conn                   Doctrine_Connection object that created this table
+     * @var Doctrine_Connection $_conn                   Doctrine_Connection object that created this table
      */
     protected $_conn;
 
     /**
-     * @var array $identityMap                          first level cache
+     * @var array $_identityMap                          first level cache
      */
     protected $_identityMap = array();
 
     /**
-     * @var Doctrine_Table_Repository $repository       record repository
+     * @var Doctrine_Table_Repository $_repository       record repository
      */
     protected $_repository;
 
     /**
-     * @var array $columns                  an array of column definitions,
+     * @var array $_columns                  an array of column definitions,
      *                                      keys are column names and values are column definitions
      *
      *                                      the definition array has atleast the following values:
@@ -137,7 +137,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     protected $hasDefaultValues;
 
     /**
-     * @var array $options                  an array containing all options
+     * @var array $_options                  an array containing all options
      *
      *      -- name                         name of the component, for example component name of the GroupTable is 'Group'
      *
@@ -199,7 +199,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                                      );
 
     /**
-     * @var Doctrine_Tree $tree                 tree object associated with this table
+     * @var Doctrine_Tree $_tree                 tree object associated with this table
      */
     protected $_tree;
 
@@ -230,7 +230,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Generator instance responsible for constructing this table
      *
      * @see Doctrine_Record_Generator
-     * @var Doctrine_Record_Generator $generator
+     * @var Doctrine_Record_Generator $_generator
      */
     protected $_generator;
 
@@ -325,7 +325,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         // get parent classes
 
         do {
-            if ($class === 'Doctrine_Record') {
+            if ($class === Doctrine_Record::class) {
                 break;
             }
 
@@ -755,7 +755,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param  array $def          Foreign key definition to check for
      * @param  array $foreignKeys  Array of existing foreign key definitions to check in
-     * @return boolean $result     Whether or not the foreign key was found
+     * @return string|false $result     Whether or not the foreign key was found
      */
     protected function _checkForeignKeyExists($def, $foreignKeys)
     {
@@ -1127,6 +1127,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         if (isset($this->_options['orderBy'])) {
             return $this->processOrderBy($alias, $this->_options['orderBy']);
         }
+
+        return null;
     }
 
     /**
@@ -1748,7 +1750,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param string $queryKey      the query key
      * @param array $params         prepared statement params (if any)
      * @param int $hydrationMode    Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
-     * @throws Doctrine_Query_Registry if no query for given queryKey is found
      * @return Doctrine_Collection|array
      */
     public function execute($queryKey, $params = array(), $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
@@ -1765,7 +1766,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param string $queryKey      the query key
      * @param array $params         prepared statement params (if any)
      * @param int $hydrationMode    Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
-     * @throws Doctrine_Query_Registry if no query for given queryKey is found
      * @return Doctrine_Record|array|false
      */
     public function executeOne($queryKey, $params = array(), $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
@@ -1933,7 +1933,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
     /**
      * @param string|int  $id                       database row id
-     * @throws Doctrine_Find_Exception
      * @return Doctrine_Record|false
      */
     final public function getProxy($id = null)
@@ -2365,10 +2364,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                 break;
                 case 'set':
                     return explode(',', $value);
-                break;
                 case 'boolean':
                     return (boolean) $value;
-                break;
                 case 'array':
                 case 'object':
                     if (is_string($value)) {
@@ -2387,7 +2384,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                         throw new Doctrine_Table_Exception('Uncompressing of ' . $fieldName . ' failed.');
                     }
                     return $value;
-                break;
             }
         }
         return $value;
@@ -2420,6 +2416,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Gets the subclass of Doctrine_Record that belongs to this table.
      *
      * @return string
+     * @psalm-return class-string
      */
     public function getComponentName()
     {

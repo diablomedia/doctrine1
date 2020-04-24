@@ -34,10 +34,11 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
 {
     public function prepareTables()
     {
-        $this->tables = array('SearchTest');
+        $this->tables = array('searchTest', 'searchTestIndex');
 
         parent::prepareTables();
     }
+
     public function prepareData()
     {
     }
@@ -53,6 +54,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $this->assertIdentical($rel->getLocal(), 'id');
         $this->assertIdentical($rel->getForeign(), 'id');
     }
+
     public function testSavingEntriesUpdatesIndex()
     {
         $e = new SearchTest();

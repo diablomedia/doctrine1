@@ -645,6 +645,7 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      * for all native RDBMS functions the function name itself is returned
      * @param string $m
      * @param array $a
+     * @return string
      */
     public function __call($m, $a)
     {

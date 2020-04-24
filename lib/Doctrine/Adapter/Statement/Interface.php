@@ -177,6 +177,7 @@ interface Doctrine_Adapter_Statement_Interface
      * @param integer $fetchStyle           Controls how the next row will be returned to the caller.
      *                                      This value must be one of the Doctrine_Core::FETCH_* constants,
      *                                      defaulting to Doctrine_Core::FETCH_BOTH
+     * @param int $colnum
      *
      * @return array
      */
@@ -272,6 +273,8 @@ interface Doctrine_Adapter_Statement_Interface
      * Set the default fetch mode for this statement
      *
      * @param integer $mode                 The fetch mode must be one of the Doctrine_Core::FETCH_* constants.
+     * @param int $arg1
+     * @param array $arg2
      * @return boolean                      Returns 1 on success or FALSE on failure.
      */
     public function setFetchMode($mode, $arg1 = null, $arg2 = null);

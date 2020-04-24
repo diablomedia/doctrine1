@@ -53,5 +53,7 @@ class Doctrine_Collection_Iterator_Expandable extends Doctrine_Collection_Iterat
 
             return false;
         }
+
+        return null;
     }
 }

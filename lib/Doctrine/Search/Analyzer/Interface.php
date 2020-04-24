@@ -32,5 +32,9 @@
  */
 interface Doctrine_Search_Analyzer_Interface
 {
+    /**
+     * @param string $text
+     * @return mixed
+     */
     public function analyze($text);
 }

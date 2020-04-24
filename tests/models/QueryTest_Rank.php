@@ -11,7 +11,6 @@ class QueryTest_Rank extends Doctrine_Record
             'string',
             100,
             array('notnull')
-
         );
         $this->hasColumn(
             'color as color',

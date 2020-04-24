@@ -78,7 +78,8 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
 
     /**
      * Sets up the date/time format
-     *
+     * @param string $format
+     * @return void
      */
     public function setDateFormat($format = 'YYYY-MM-DD HH24:MI:SS')
     {
@@ -170,6 +171,8 @@ class Doctrine_Connection_Oracle extends Doctrine_Connection_Common
     /**
      * Override quote behaviour for boolean to fix issues with quoting of
      * boolean values.
+     * @param ?string $input
+     * @param string $type
      * @return null|int|string
      */
     public function quote($input, $type = null)

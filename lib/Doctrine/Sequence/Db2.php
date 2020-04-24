@@ -72,7 +72,6 @@ class Doctrine_Sequence_Db2 extends Doctrine_Sequence
      *
      * @param string $sequenceName
      * @return integer|null
-     * @throws Doctrine_Adapter_Db2_Exception
      */
     public function currId($sequenceName)
     {
@@ -105,7 +104,6 @@ class Doctrine_Sequence_Db2 extends Doctrine_Sequence
      * @param string $tableName OPTIONAL
      * @param string $primaryKey OPTIONAL
      * @return integer|null
-     * @throws Doctrine_Adapter_Db2_Exception
      */
     public function lastInsertId($tableName = null, $primaryKey = null)
     {

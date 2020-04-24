@@ -206,7 +206,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     protected $_count = 0;
 
     /**
-     * @var array $_userFkNames                 array of foreign key names that have been used
+     * @var array $_usedNames                 array of foreign key names that have been used
      */
     protected $_usedNames = array(
             'foreign_keys' => array(),
@@ -458,6 +458,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
                     $this->modules[$name] = new Doctrine_Formatter($this);
                     break;
                 default:
+                    /** @psalm-var class-string $class */
                     $class                = 'Doctrine_' . ucwords($name) . '_' . $this->getDriverName();
                     $this->modules[$name] = new $class($this);
                 }
@@ -827,7 +828,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @param mixed $input      parameter to be quoted
      * @param string $type
-     * @return string
+     *
+     * @return null|string
      */
     public function quote($input, $type = null)
     {
@@ -961,7 +963,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * prepare
      *
      * @param string $statement
-     * @return Doctrine_Connection_Statement
+     *
+     * @return Doctrine_Connection_Statement|null
      */
     public function prepare($statement)
     {
@@ -1137,6 +1140,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
         $this->getListener()->preError($event);
 
+        /** @psalm-var class-string $name */
         $name = 'Doctrine_Connection_' . $this->driverName . '_Exception';
 
         $message = $e->getMessage();
@@ -1355,7 +1359,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * errorCode
      * Fetch the SQLSTATE associated with the last operation on the database handle
      *
-     * @return integer
+     * @return int|null|string
      */
     public function errorCode()
     {
@@ -1368,7 +1372,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * errorInfo
      * Fetch extended error information associated with the last operation on the database handle
      *
-     * @return array
+     * @return array|string
      */
     public function errorInfo()
     {

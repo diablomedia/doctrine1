@@ -69,21 +69,21 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     /**
      * File suffix to use when writing class definitions
      *
-     * @var string $suffix
+     * @var string $_suffix
      */
     protected $_suffix = '.php';
 
     /**
      * Bool true/false for whether or not to generate base classes
      *
-     * @var boolean $generateBaseClasses
+     * @var boolean $_generateBaseClasses
      */
     protected $_generateBaseClasses = true;
 
     /**
      * Bool true/false for whether or not to generate child table classes
      *
-     * @var boolean $generateTableClasses
+     * @var boolean $_generateTableClasses
      */
     protected $_generateTableClasses = false;
 
@@ -97,7 +97,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     /**
      * Directory to put the generate base classes in
      *
-     * @var string $suffix
+     * @var string $_baseClassesDirectory
      */
     protected $_baseClassesDirectory = 'generated';
 
@@ -501,6 +501,8 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         if ($code) {
             return '    public function setUp()' . PHP_EOL . '    {' . PHP_EOL . '        ' . $code . PHP_EOL . '    }';
         }
+
+        return null;
     }
 
     /**
@@ -804,7 +806,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     /**
      * innerBuildActAs: build a complete actAs code that handles hierarchy of plugins
      *
-     * @param array  $actAs array of plugin definitions and options
+     * @param string|array  $actAs array of plugin definitions and options
      * @param int    $level current indentation level
      * @param string $parent name of the parent template/plugin
      * @param array  $emittedActAs contains on output an array of actAs command to be appended to output

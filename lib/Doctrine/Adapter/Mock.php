@@ -42,21 +42,21 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     /**
      * Array of queries executed through this instance of the mock adapter
      *
-     * @var array $queries
+     * @var array $_queries
      */
     private $_queries = array();
 
     /**
      * Array of exceptions thrown
      *
-     * @var array $exceptions
+     * @var array $_exception
      */
     private $_exception = array();
 
     /**
      * Bool true/false variable for whether or not the last insert failed
      *
-     * @var boolean $lastInsertIdFail
+     * @var boolean $_lastInsertIdFail
      */
     private $_lastInsertIdFail = false;
 
@@ -252,31 +252,37 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     /**
      * Begin a transaction
      *
-     * @return void
+     * @return bool
      */
     public function beginTransaction()
     {
         $this->_queries[] = 'BEGIN TRANSACTION';
+
+        return true;
     }
 
     /**
      * Commit a transaction
      *
-     * @return void
+     * @return bool
      */
     public function commit()
     {
         $this->_queries[] = 'COMMIT';
+
+        return true;
     }
 
     /**
      * Rollback a transaction
      *
-     * @return void
+     * @return bool
      */
     public function rollBack()
     {
         $this->_queries[] = 'ROLLBACK';
+
+        return true;
     }
 
     /**
@@ -288,29 +294,34 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
         if ($attribute == Doctrine_Core::ATTR_DRIVER_NAME) {
             return strtolower($this->_name);
         }
+
+        return null;
     }
 
     /**
-     * @return void
+     * @return int
      */
     public function errorCode()
     {
+        return 0;
     }
 
     /**
-     * @return void
+     * @return string
      */
     public function errorInfo()
     {
+        return '';
     }
 
     /**
      * @param string|int $attribute
      * @param mixed $value
-     * @return void
+     * @return bool
      */
     public function setAttribute($attribute, $value)
     {
+        return true;
     }
 
     /**

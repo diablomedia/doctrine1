@@ -73,7 +73,7 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
     protected $invalid = array();
 
     /**
-     * @var array $savepoints               an array containing all savepoints
+     * @var array $savePoints               an array containing all savepoints
      */
     protected $savePoints = array();
 
@@ -112,10 +112,8 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
         switch ($this->_nestingLevel) {
             case 0:
                 return Doctrine_Transaction::STATE_SLEEP;
-                break;
             case 1:
                 return Doctrine_Transaction::STATE_ACTIVE;
-                break;
             default:
                 return Doctrine_Transaction::STATE_BUSY;
         }

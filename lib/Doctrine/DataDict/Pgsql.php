@@ -33,7 +33,7 @@
 class Doctrine_DataDict_Pgsql extends Doctrine_DataDict
 {
     /**
-     * @param array $reservedKeyWords     an array of reserved keywords by pgsql
+     * @var array $reservedKeyWords     an array of reserved keywords by pgsql
      */
     protected static $reservedKeyWords = array(
                                         'abort',

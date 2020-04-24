@@ -14,7 +14,7 @@ class ForeignKeyTest extends Doctrine_Record
                              'foreign'  => 'id',
                              'onDelete' => 'CASCADE',
                              'onUpdate' => 'RESTRICT')
-                       );
+        );
 
         $this->hasMany('ForeignKeyTest as Children', array(
                 'local' => 'id', 'foreign' => 'parent_id', 'cascade' => array('delete')));

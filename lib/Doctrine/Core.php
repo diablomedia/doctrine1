@@ -465,14 +465,14 @@ class Doctrine_Core
     /**
      * Path to Doctrine root
      *
-     * @var string|false $path            doctrine root directory
+     * @var string|false $_path            doctrine root directory
      */
     private static $_path;
 
     /**
      * Path to the Doctrine extensions directory
      *
-     * @var string $extensionsPath
+     * @var string $_extensionsPath
      */
     private static $_extensionsPath;
 
@@ -591,7 +591,7 @@ class Doctrine_Core
      *
      * @param string $className
      * @param string $path
-     * @return null
+     * @return void
      */
     public static function loadModel($className, $path = null)
     {
@@ -1017,7 +1017,7 @@ class Doctrine_Core
      * @param string $migrationsPath Path to migrations directory which contains your migration classes
      * @param int $to Version you wish to migrate to.
      * @return bool|int
-     * @throws new Doctrine_Migration_Exception
+     * @throws Doctrine_Migration_Exception
      */
     public static function migrate($migrationsPath, $to = null)
     {
@@ -1045,7 +1045,7 @@ class Doctrine_Core
      *
      * @param string $migrationsPath
      * @return bool
-     * @throws new Doctrine_Migration_Exception
+     * @throws Doctrine_Migration_Exception
      */
     public static function generateMigrationsFromDb($migrationsPath)
     {

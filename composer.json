@@ -28,13 +28,25 @@
         }
     ],
     "require": {
-        "php": ">=5.6",
+        "php": ">=7.0",
         "ext-pdo": "*",
         "symfony/yaml": "^3.4 || ^4.1"
     },
     "require-dev": {
         "phpunit/php-code-coverage": "^4.0 || ^5.0 || ^6.0 || ^7.0",
-        "jetbrains/phpstorm-stubs": "dev-phpstan",
-        "friendsofphp/php-cs-fixer": "^2.12"
+        "friendsofphp/php-cs-fixer": "2.16.3",
+        "phpstan/phpstan": "0.12.19",
+        "vimeo/psalm": "3.11"
+    },
+    "scripts": {
+        "test": "cd tests && php run.php",
+        "test-with-coverage": "cd tests && php run.php --coverage=clover",
+        "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi --memory-limit=768M",
+        "psalm": "psalm --show-info=false",
+        "static-analysis": [
+            "@phpstan",
+            "@psalm"
+        ],
+        "style-check": "php-cs-fixer fix --dry-run -vv"
     }
 }

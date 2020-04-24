@@ -188,12 +188,12 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     protected $_invokedSaveHooks = array();
 
     /**
-     * @var integer $index                  this index is used for creating object identifiers
+     * @var integer $_index                  this index is used for creating object identifiers
      */
     private static $_index = 1;
 
     /**
-     * @var integer $oid                    object identifier, each Record object has a unique object identifier
+     * @var integer $_oid                    object identifier, each Record object has a unique object identifier
      */
     private $_oid;
 
@@ -750,7 +750,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * sets the default values for records internal data
      *
      * @param boolean $overwrite                whether or not to overwrite the already set values
-     * @return boolean|null
+     * @return false|null
      */
     public function assignDefaultValues($overwrite = false)
     {
@@ -770,6 +770,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 $this->_state         = Doctrine_Record::STATE_TDIRTY;
             }
         }
+
+        return null;
     }
 
     /**
@@ -1295,6 +1297,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         } else {
             return (isset(self::$_customAccessors[$componentName][$fieldName]) && self::$_customAccessors[$componentName][$fieldName]);
         }
+
+        return null;
     }
 
     /**
@@ -1313,7 +1317,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * gets the custom accessor for a field name
      *
      * @param string $fieldName
-     * @return string $accessor
+     * @return string|null $accessor
      */
     public function getAccessor($fieldName)
     {
@@ -1321,6 +1325,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             $componentName = $this->_table->getComponentName();
             return self::$_customAccessors[$componentName][$fieldName];
         }
+
+        return null;
     }
 
     /**
@@ -1350,13 +1356,15 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         } else {
             return (isset(self::$_customMutators[$componentName][$fieldName]) && self::$_customMutators[$componentName][$fieldName]);
         }
+
+        return null;
     }
 
     /**
      * gets the custom mutator for a field name
      *
      * @param string $fieldName
-     * @return string
+     * @return string|null
      */
     public function getMutator($fieldName)
     {
@@ -1364,6 +1372,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             $componentName = $this->_table->getComponentName();
             return self::$_customMutators[$componentName][$fieldName];
         }
+
+        return null;
     }
 
     /**
@@ -1426,6 +1436,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 return $this->$accessor($load, $fieldName);
             }
         }
+
         return $this->_get($fieldName, $load);
     }
 
@@ -1715,6 +1726,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         }
 
         $this->_references[$name] = $value;
+
+        return null;
     }
 
     /**
@@ -1846,7 +1859,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @throws Doctrine_Connection_Exception        if some of the key values was null
      * @throws Doctrine_Connection_Exception        if there were no key fields
      * @throws Doctrine_Connection_Exception        if something fails at database level
-     * @return integer                              number of rows affected
+     * @return bool
      */
     public function replace(Doctrine_Connection $conn = null)
     {
@@ -1987,9 +2000,13 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * returns the record representation as an array
      *
      * @link http://www.doctrine-project.org/documentation/manual/1_1/en/working-with-models
+     *
      * @param boolean $deep         whether to include relations
      * @param boolean $prefixKey    not used
-     * @return array|false
+     *
+     * @return (array|false|int|mixed|null)[]|false
+     *
+     * @psalm-return array<array-key|array, array|false|int|mixed|null>|false
      */
     public function toArray($deep = true, $prefixKey = false)
     {
@@ -2306,8 +2323,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             unset($data[$id]);
         }
 
-        $ret      = $this->_table->create($data);
-        $modified = array();
+        $ret = $this->_table->create($data);
 
         foreach ($data as $key => $val) {
             if (! ($val instanceof Doctrine_Null)) {
@@ -2416,13 +2432,15 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * gets a related component
      *
      * @param string $name
-     * @return Doctrine_Record|Doctrine_Collection
+     * @return Doctrine_Record|Doctrine_Collection|null
      */
     public function reference($name)
     {
         if (isset($this->_references[$name])) {
             return $this->_references[$name];
         }
+
+        return null;
     }
 
     /**
@@ -2516,7 +2534,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 $this,
                 $this->getTable()->getOption('treeImpl'),
                 $this->getTable()->getOption('treeOptions')
-                                              );
+            );
         }
 
         return $this->_node;

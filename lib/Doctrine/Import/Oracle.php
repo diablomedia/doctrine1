@@ -33,7 +33,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
     /**
      * lists all databases
      *
-     * @return string|false
+     * @return null|scalar
      */
     public function listDatabases()
     {
@@ -175,6 +175,9 @@ QEND;
 
     /**
      * list table relations
+     *
+     * @param string $table
+     * @return array
      */
     public function listTableRelations($table)
     {

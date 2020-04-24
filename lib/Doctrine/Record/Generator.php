@@ -60,6 +60,7 @@ abstract class Doctrine_Record_Generator extends Doctrine_Record_Abstract
      * An alias for getOption
      *
      * @param string $option
+     * @return mixed|null
      */
     public function __get($option)
     {
@@ -182,6 +183,8 @@ abstract class Doctrine_Record_Generator extends Doctrine_Record_Abstract
         $this->buildChildDefinitions();
 
         $this->_table->initIdentifier();
+
+        return null;
     }
 
     /**

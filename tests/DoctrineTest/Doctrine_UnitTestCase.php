@@ -46,6 +46,10 @@ class Doctrine_UnitTestCase extends UnitTestCase
     protected $unitOfWork;
     protected $driverName = false;
     protected $generic    = false;
+
+    /**
+     * @var Doctrine_Connection
+     */
     protected $conn;
     protected $adapter;
     protected $export;
@@ -71,24 +75,26 @@ class Doctrine_UnitTestCase extends UnitTestCase
 
         $this->tables = array_merge(
             $this->tables,
-            array('entity',
-                              'entityReference',
-                              'email',
-                              'phonenumber',
-                              'groupuser',
-                              'album',
-                              'song',
-                              'element',
-                              'testerror',
-                              'description',
-                              'address',
-                              'account',
-                              'task',
-                              'resource',
-                              'assignment',
-                              'resourceType',
-                              'resourceReference')
-                              );
+            array(
+                'entity',
+                'entityReference',
+                'email',
+                'phonenumber',
+                'groupuser',
+                'album',
+                'song',
+                'element',
+                'testerror',
+                'description',
+                'address',
+                'account',
+                'task',
+                'resource',
+                'assignment',
+                'resourceType',
+                'resourceReference',
+            )
+        );
 
 
         $class = get_class($this);

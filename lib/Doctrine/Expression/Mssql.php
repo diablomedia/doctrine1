@@ -57,6 +57,9 @@ class Doctrine_Expression_Mssql extends Doctrine_Expression_Driver
     /**
      * return string to call a function to get a substring inside an SQL statement
      *
+     * @param string $value
+     * @param int $position
+     * @param int $length
      * @return string to call a function to get a substring
      */
     public function substring($value, $position, $length = null)

@@ -66,6 +66,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
     /**
      * contains
      *
+     * @param string $name
      * @return boolean
      */
     public function contains($name)
@@ -92,6 +93,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
      * set
      *
      * @param string $name
+     * @param mixed $value
      * @return void
      */
     public function set($name, $value)

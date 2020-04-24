@@ -373,11 +373,13 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
 
     /**
      * @param string $component
+     * @return Doctrine_Collection|array
      */
     abstract public function getElementCollection($component);
 
     /**
      * @param Doctrine_Collection $coll
+     * @return void
      */
     abstract public function registerCollection($coll);
 
@@ -385,18 +387,24 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
      * @param Doctrine_Record $record
      * @param string $name
      * @param string $keyColumn
+     * @return bool
      */
     abstract public function initRelated(&$record, $name, $keyColumn = null);
 
+    /**
+     * @return Doctrine_Null|null
+     */
     abstract public function getNullPointer();
 
     /**
      * @param string $component
+     * @return Doctrine_Record|array
      */
     abstract public function getElement(array $data, $component);
 
     /**
      * @param array|Doctrine_Collection $coll
+     * @return mixed
      */
     abstract public function getLastKey(&$coll);
 
@@ -406,6 +414,7 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
      * @param boolean|int $index
      * @param string $dqlAlias
      * @param bool $oneToOne
+     * @return void
      */
     abstract public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne);
 

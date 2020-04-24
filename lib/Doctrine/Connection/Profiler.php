@@ -33,7 +33,7 @@
 class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAggregate, Countable
 {
     /**
-     * @param array $listeners      an array containing all availible listeners
+     * @var array $listeners      an array containing all availible listeners
      */
     private $listeners = array('query',
                                 'prepare',
@@ -45,12 +45,12 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
                                 'execute');
 
     /**
-     * @param array $events         an array containing all listened events
+     * @var array $events         an array containing all listened events
      */
     private $events = array();
 
     /**
-     * @param array $eventSequences         an array containing sequences of all listened events as keys
+     * @var array $eventSequences         an array containing sequences of all listened events as keys
      */
     private $eventSequences = array();
 

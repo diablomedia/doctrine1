@@ -68,6 +68,7 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
      *
      * @param mixed $invalidFieldName
      * @param string|Doctrine_Validator_Driver $errorCode
+     * @return void
      */
     public function add($invalidFieldName, $errorCode = 'general')
     {

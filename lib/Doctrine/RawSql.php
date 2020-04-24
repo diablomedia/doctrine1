@@ -106,6 +106,10 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
     /**
      * Adds a DQL query part. Overrides Doctrine_Query_Abstract::_addDqlQueryPart().
      * This implementation for RawSql parses the new parts right away, generating the SQL.
+     * @param string $queryPartName
+     * @param string $queryPart
+     * @param bool $append
+     * @return $this
      */
     protected function _addDqlQueryPart($queryPartName, $queryPart, $append = false)
     {
@@ -195,6 +199,8 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      * getSqlQuery
      * builds the sql query.
      *
+     * @param array $params
+     * @param bool $limitSubquery
      * @return string       the built sql query
      */
     public function getSqlQuery($params = array(), $limitSubquery = true)

@@ -1,4 +1,4 @@
-name: CI Action
+name: Build
 on:
   push:
     branches:
@@ -22,7 +22,8 @@ jobs:
         uses: shivammathur/setup-php@v1
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: mbstring
+          extensions: mbstring, apcu
+          ini-values: apc.enable_cli=1
           coverage: xdebug
       - name: Install Dependencies
         run: |
@@ -34,4 +35,4 @@ jobs:
       - name: Test
         run: composer test-with-coverage
       - name: Upload Coverage
-        run: bash <(curl -s https://codecov.io/bash) -f ./clover.xml
+        run: bash <(curl -s https://codecov.io/bash) -f tests/coverage/clover.xml

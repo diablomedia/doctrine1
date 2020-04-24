@@ -977,7 +977,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * returns given referential action in uppercase if valid, otherwise throws
      * an exception
      *
-     * @throws Doctrine_Exception_Exception     if unknown referential action given
+     * @throws Doctrine_Export_Exception     if unknown referential action given
      *
      * @param string $action    foreign key referential action
      *
@@ -993,7 +993,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
             case 'RESTRICT':
             case 'SET DEFAULT':
                 return $upper;
-            break;
             default:
                 throw new Doctrine_Export_Exception('Unknown foreign key referential action \'' . $upper . '\' given.');
         }

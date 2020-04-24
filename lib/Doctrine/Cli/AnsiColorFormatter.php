@@ -85,6 +85,7 @@ class Doctrine_Cli_AnsiColorFormatter extends Doctrine_Cli_Formatter
      *
      * @param  string $text The test to style
      * @param  mixed  $parameters An array of options or a style name
+     * @param resource $stream
      *
      * @return string The styled text
      */

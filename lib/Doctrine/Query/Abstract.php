@@ -224,7 +224,7 @@ abstract class Doctrine_Query_Abstract
     protected $_rootAlias = '';
 
     /**
-     * @var integer $type                   the query type
+     * @var integer $_type                   the query type
      *
      * @see Doctrine_Query::* constants
      */
@@ -1257,7 +1257,7 @@ abstract class Doctrine_Query_Abstract
      * getCachedForm
      * returns the cached form of this query for given resultSet
      *
-     * @param array|Doctrine_Collection $customComponent
+     * @param array|Doctrine_Collection|string $customComponent
      * @return string           serialized string representation of this query
      */
     public function getCachedForm($customComponent = null)
@@ -2189,6 +2189,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param array $params
      * @param bool $limitSubquery
+     * @return string|false
      */
     abstract public function getSqlQuery($params = array(), $limitSubquery = true);
 

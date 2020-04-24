@@ -39,12 +39,14 @@ class Doctrine_Locking_Manager_Pessimistic
     /**
      * The conn that is used by the locking manager
      *
-     * @var Doctrine_Connection object
+     * @var Doctrine_Connection
      */
     private $conn;
 
     /**
      * The database table name for the lock tracking
+     *
+     * @var string
      */
     private $_lockTable = 'doctrine_lock_tracking';
 
@@ -198,9 +200,11 @@ class Doctrine_Locking_Manager_Pessimistic
     /**
      * Gets the unique user identifier of a lock
      *
-     * @param  string $objectType  The type of the object (component name)
-     * @param  mixed  $key         The unique key of the object. Can be string or array
-     * @return string              The unique user identifier for the specified lock
+     * @param string $objectType  The type of the object (component name)
+     * @param mixed  $key         The unique key of the object. Can be string or array
+     *
+     * @return null|scalar The unique user identifier for the specified lock
+     *
      * @throws Doctrine_Locking_Exception If the query failed due to database errors
      */
     private function _getLockingUserIdent($objectType, $key)

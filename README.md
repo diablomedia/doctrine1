@@ -1,6 +1,6 @@
 Doctrine 1 ORM
 =============
-[![Build Status](https://github.com/diablomedia/doctrine1/workflows/Build/badge.svg)
+[![Build Status](https://github.com/diablomedia/doctrine1/workflows/Build/badge.svg)](https://github.com/diablomedia/doctrine1/actions?query=workflow%3ABuild)
 [![codecov](https://codecov.io/gh/diablomedia/doctrine1/branch/master/graph/badge.svg)](https://codecov.io/gh/diablomedia/doctrine1)
 [![Latest Stable Version](https://poser.pugx.org/diablomedia/doctrine1/v/stable)](https://packagist.org/packages/diablomedia/doctrine1)
 [![Total Downloads](https://poser.pugx.org/diablomedia/doctrine1/downloads)](https://packagist.org/packages/diablomedia/doctrine1)

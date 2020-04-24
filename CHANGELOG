@@ -1,3 +1,18 @@
+3.1.0
+-----
+     * Improved docblock annotations throughout library
+     * Minimum PHP version bumped to 7.0
+
+3.0.1
+-----
+     * Better mySQL SET type support
+
+3.0.0
+-----
+     * PHP 7.3 compatibility
+     * Replaced built-in YAML parsing library with Symfony\Yaml
+     * Added APCU cache adapter
+
 2.0.2
 -----
      * More docblock and bug fixes based on phpstan and psalm analysis

@@ -867,6 +867,15 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     }
 
     /**
+     * @param string $name
+     * @return void
+     */
+    public function deRegisterExtension($name)
+    {
+        unset($this->_extensions[$name]);
+    }
+
+    /**
      * Get all registered Doctrine extensions
      *
      * @return array

@@ -149,15 +149,8 @@ $behaviors->addTestCase(new Doctrine_SoftDelete_TestCase());
 $behaviors->addTestCase(new Doctrine_SoftDeleteBC_TestCase());
 $test->addTestCase($behaviors);
 
-// Core tests were moved below Behaviors tests because the Base_TestCase in Core
-// causes the I18n tests case to fail if it runs before it (in PHP 5.4 only).
-// This appears to be due to the last test in the file "testGetConnectionByTableName"
-// loading all models which trips up the I18N test when it tries to load the model
-// as well.  I cannot explain why it only happens in PHP 5.4.
-//
 // Core Tests
 $core = new GroupTest('Core Tests', 'core');
-$core->addTestCase(new Doctrine_Base_TestCase());
 $core->addTestCase(new Doctrine_Access_TestCase());
 $core->addTestCase(new Doctrine_Configurable_TestCase());
 $core->addTestCase(new Doctrine_Manager_TestCase());
@@ -322,6 +315,10 @@ $nestedSet->addTestCase(new Doctrine_NestedSet_MultiRoot_TestCase());
 $nestedSet->addTestCase(new Doctrine_NestedSet_TimestampableMultiRoot_TestCase());
 $nestedSet->addTestCase(new Doctrine_NestedSet_Hydration_TestCase());
 $test->addTestCase($nestedSet);
+
+// This test seems to always cause issues with other tests due to the way it loads models I believe
+// moving to last test in the suite
+$test->addTestCase(new Doctrine_Base_TestCase());
 
 /*
 $performance = new GroupTest('Performance', 'performance');

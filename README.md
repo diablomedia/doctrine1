@@ -1,6 +1,6 @@
 Doctrine 1 ORM
 =============
-[![Build Status](https://travis-ci.org/diablomedia/doctrine1.png)](https://travis-ci.org/diablomedia/doctrine1) 
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fdiablomedia%2Fdoctrine1%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/diablomedia/doctrine1/goto?ref=master)
 [![codecov](https://codecov.io/gh/diablomedia/doctrine1/branch/master/graph/badge.svg)](https://codecov.io/gh/diablomedia/doctrine1)
 [![Latest Stable Version](https://poser.pugx.org/diablomedia/doctrine1/v/stable)](https://packagist.org/packages/diablomedia/doctrine1)
 [![Total Downloads](https://poser.pugx.org/diablomedia/doctrine1/downloads)](https://packagist.org/packages/diablomedia/doctrine1)

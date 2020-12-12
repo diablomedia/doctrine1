@@ -71,11 +71,6 @@ parameters:
 			path: lib/Doctrine/Adapter/Statement/Oracle.php
 
 		-
-			message: "#^Parameter \\#2 \\$statement of function oci_parse expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Adapter/Statement/Oracle.php
-
-		-
 			message: "#^Return type \\(string\\) of method Doctrine_AuditLog_Listener_Microtime\\:\\:_getInitialVersion\\(\\) should be compatible with return type \\(int\\) of method Doctrine_AuditLog_Listener\\:\\:_getInitialVersion\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/AuditLog/Listener/Microtime.php

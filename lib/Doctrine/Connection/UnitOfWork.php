@@ -789,7 +789,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
                         }
 
                         unset($flushList[$index3]);
-                        array_splice($flushList, $index - 1, 0, $assocClassName);
+                        array_splice($flushList, (int) ($index - 1), 0, $assocClassName);
                         $index = $relatedCompIndex;
                     } else {
                         $flushList[] = $assocClassName;

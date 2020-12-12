@@ -1067,6 +1067,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             $record = $query->fetchOne($id);
         } else {
             // Use HYDRATE_ARRAY to avoid clearing object relations
+            /** @var array|false $record */
             $record = $this->getTable()->find($id, Doctrine_Core::HYDRATE_ARRAY);
             if ($record) {
                 $this->hydrate($record);
@@ -1417,27 +1418,27 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * returns a value of a property or a related component
      *
-     * @param mixed $fieldName                  name of the property or related component
+     * @param mixed $offset                     name of the property or related component
      * @param boolean $load                     whether or not to invoke the loading procedure
      * @throws Doctrine_Record_Exception        if trying to get a value of unknown property / related component
      * @return mixed
      */
-    public function get($fieldName, $load = true)
+    public function get($offset, $load = true)
     {
-        if ($this->_table->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE) || $this->hasAccessor($fieldName)) {
+        if ($this->_table->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE) || $this->hasAccessor($offset)) {
             $componentName = $this->_table->getComponentName();
 
-            $accessor = $this->hasAccessor($fieldName)
-                ? $this->getAccessor($fieldName)
-                : 'get' . Doctrine_Inflector::classify($fieldName);
+            $accessor = $this->hasAccessor($offset)
+                ? $this->getAccessor($offset)
+                : 'get' . Doctrine_Inflector::classify($offset);
 
-            if ($this->hasAccessor($fieldName) || method_exists($this, $accessor)) {
-                $this->hasAccessor($fieldName, $accessor);
-                return $this->$accessor($load, $fieldName);
+            if ($this->hasAccessor($offset) || method_exists($this, $accessor)) {
+                $this->hasAccessor($offset, $accessor);
+                return $this->$accessor($load, $offset);
             }
         }
 
-        return $this->_get($fieldName, $load);
+        return $this->_get($offset, $load);
     }
 
     /**
@@ -1527,7 +1528,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * alters mapped values, properties and related components.
      *
-     * @param mixed $fieldName                   name of the property or reference
+     * @param mixed $offset                   name of the property or reference
      * @param mixed $value                  value of the property or reference
      * @param boolean $load                 whether or not to refresh / load the uninitialized record data
      *
@@ -1536,20 +1537,20 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @return $this
      */
-    public function set($fieldName, $value, $load = true)
+    public function set($offset, $value, $load = true)
     {
-        if ($this->_table->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE) || $this->hasMutator($fieldName)) {
+        if ($this->_table->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE) || $this->hasMutator($offset)) {
             $componentName = $this->_table->getComponentName();
-            $mutator       = $this->hasMutator($fieldName)
-                ? $this->getMutator($fieldName):
-                'set' . Doctrine_Inflector::classify($fieldName);
+            $mutator       = $this->hasMutator($offset)
+                ? $this->getMutator($offset):
+                'set' . Doctrine_Inflector::classify($offset);
 
-            if ($this->hasMutator($fieldName) || method_exists($this, $mutator)) {
-                $this->hasMutator($fieldName, $mutator);
-                return $this->$mutator($value, $load, $fieldName);
+            if ($this->hasMutator($offset) || method_exists($this, $mutator)) {
+                $this->hasMutator($offset, $mutator);
+                return $this->$mutator($value, $load, $offset);
             }
         }
-        return $this->_set($fieldName, $value, $load);
+        return $this->_set($offset, $value, $load);
     }
 
     /**

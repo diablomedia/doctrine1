@@ -107,7 +107,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     protected $driverName;
 
     /**
-     * @var boolean $isConnected                whether or not a connection has been established
+     * @var bool $isConnected                   whether or not a connection has been established
      */
     protected $isConnected = false;
 
@@ -265,7 +265,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     /**
      * Check wherther the connection to the database has been made yet
      *
-     * @return boolean
+     * @return bool
      */
     public function isConnected()
     {

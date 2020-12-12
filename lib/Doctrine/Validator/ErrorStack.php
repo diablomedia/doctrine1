@@ -66,22 +66,22 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
     /**
      * Adds an error to the stack.
      *
-     * @param mixed $invalidFieldName
+     * @param mixed $value invalidFieldName
      * @param string|Doctrine_Validator_Driver $errorCode
      * @return void
      */
-    public function add($invalidFieldName, $errorCode = 'general')
+    public function add($value, $errorCode = 'general')
     {
         if (is_object($errorCode)) {
             if (! ($errorCode instanceof Doctrine_Validator_Driver)) {
                 throw new Doctrine_Exception('Validators must be an instance of Doctrine_Validator_Driver');
             }
-            $validator                              = $errorCode;
-            $this->_validators[$invalidFieldName][] = $validator;
-            $errorCode                              = (string) $validator;
+            $validator                   = $errorCode;
+            $this->_validators[$value][] = $validator;
+            $errorCode                   = (string) $validator;
         }
 
-        $this->_errors[$invalidFieldName][] = $errorCode;
+        $this->_errors[$value][] = $errorCode;
     }
 
     /**
@@ -114,13 +114,13 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
     /**
      * Alias for add()
      *
-     * @param scalar|null $fieldName
-     * @param string $errorCode
+     * @param scalar|null $offset fieldName
+     * @param string $value errorCode
      * @return void
      */
-    public function set($fieldName, $errorCode)
+    public function set($offset, $value)
     {
-        $this->add($fieldName, $errorCode);
+        $this->add($offset, $value);
     }
 
     /**

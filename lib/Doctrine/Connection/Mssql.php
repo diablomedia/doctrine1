@@ -76,19 +76,19 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      *
      * Quoting style depends on which database driver is being used.
      *
-     * @param string $identifier    identifier name to be quoted
+     * @param string $str           identifier name to be quoted
      * @param bool   $checkOption   check the 'quote_identifier' option
      *
      * @return string  quoted identifier string
      */
-    public function quoteIdentifier($identifier, $checkOption = false)
+    public function quoteIdentifier($str, $checkOption = false)
     {
         if ($checkOption && ! $this->getAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER)) {
-            return $identifier;
+            return $str;
         }
 
-        if (strpos($identifier, '.') !== false) {
-            $parts       = explode('.', $identifier);
+        if (strpos($str, '.') !== false) {
+            $parts       = explode('.', $str);
             $quotedParts = array();
             foreach ($parts as $p) {
                 $quotedParts[] = $this->quoteIdentifier($p);
@@ -97,7 +97,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
             return implode('.', $quotedParts);
         }
 
-        return '[' . str_replace(']', ']]', $identifier) . ']';
+        return '[' . str_replace(']', ']]', $str) . ']';
     }
 
     /**

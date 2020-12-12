@@ -190,7 +190,7 @@ class Doctrine_Import_Mssql extends Doctrine_Import
      */
     public function listTableTriggers($table)
     {
-        $table = $this->conn->quote($table, 'text');
+        $table = (string) $this->conn->quote($table, 'text');
         $query = "SELECT name FROM sysobjects WHERE xtype = 'TR' AND object_name(parent_obj) = " . $this->conn->quoteIdentifier($table, true);
 
         $result = $this->conn->fetchColumn($query);

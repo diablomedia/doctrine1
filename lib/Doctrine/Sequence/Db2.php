@@ -101,18 +101,18 @@ class Doctrine_Sequence_Db2 extends Doctrine_Sequence
      * The IDENTITY_VAL_LOCAL() function gives the last generated identity value
      * in the current process, even if it was for a GENERATED column.
      *
-     * @param string $tableName OPTIONAL
-     * @param string $primaryKey OPTIONAL
+     * @param string $table OPTIONAL
+     * @param string $field OPTIONAL
      * @return integer|null
      */
-    public function lastInsertId($tableName = null, $primaryKey = null)
+    public function lastInsertId($table = null, $field = null)
     {
         $this->_connect();
 
-        if ($tableName !== null) {
-            $sequenceName = $tableName;
-            if ($primaryKey) {
-                $sequenceName .= "_$primaryKey";
+        if ($table !== null) {
+            $sequenceName = $table;
+            if ($field) {
+                $sequenceName .= "_$field";
             }
             $sequenceName .= '_seq';
             return $this->lastSequenceId($sequenceName);

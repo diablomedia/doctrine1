@@ -953,19 +953,19 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * This method defines a relation on this table, that will be present on
      * every record belonging to this component.
      *
-     * @param array $args       first value is a string, name of related component;
+     * @param array $name       first value is a string, name of related component;
      *                          second value is array, options for the relation.
      *                          @see Doctrine_Relation::_$definition
-     * @param integer $type     Doctrine_Relation::ONE or Doctrine_Relation::MANY
+     * @param integer $resource Doctrine_Relation::ONE or Doctrine_Relation::MANY
      * @return $this
      * @todo Name proposal: addRelation
      */
-    public function bind($args, $type)
+    public function bind($name, $resource)
     {
-        $options         = (! isset($args[1])) ? array() : $args[1];
-        $options['type'] = $type;
+        $options         = (! isset($name[1])) ? array() : $name[1];
+        $options['type'] = $resource;
 
-        $this->_parser->bind($args[0], $options);
+        $this->_parser->bind($name[0], $options);
 
         return $this;
     }

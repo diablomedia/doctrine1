@@ -506,7 +506,7 @@ class Doctrine_Cli
             return;
         }
 
-        if ($requestedTaskName && isset($args[2]) && $args[2] === 'help') {
+        if (isset($args[2]) && $args[2] === 'help') {
             $this->printTasks($requestedTaskName, true);
             return;
         }

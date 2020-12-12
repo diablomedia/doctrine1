@@ -176,11 +176,11 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * set
      *
-     * @param mixed $name
+     * @param mixed $offset name
      * @param mixed $value
      * @return void
      */
-    public function set($name, $value)
+    public function set($offset, $value)
     {
         throw new Doctrine_Exception("Templates doesn't support accessors.");
     }

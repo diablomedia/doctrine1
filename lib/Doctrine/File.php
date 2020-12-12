@@ -29,6 +29,7 @@
  * @version     $Revision$
  * @link        www.doctrine-project.org
  * @since       1.0
+ * @property string $url
  */
 class Doctrine_File extends Doctrine_Record
 {
@@ -48,11 +49,11 @@ class Doctrine_File extends Doctrine_Record
         $this->index('url', array('fields' => array('url')));
     }
 
-    public function get($name, $load = true)
+    public function get($offset, $load = true)
     {
-        if ($name === 'content') {
+        if ($offset === 'content') {
             return file_get_contents(parent::get('url'));
         }
-        return parent::get($name, $load);
+        return parent::get($offset, $load);
     }
 }

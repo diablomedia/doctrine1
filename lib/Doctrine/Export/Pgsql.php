@@ -299,7 +299,7 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      * return RDBMS specific create sequence statement
      *
      * @throws Doctrine_Connection_Exception     if something fails at database level
-     * @param string     $sequenceName        name of the sequence to be created
+     * @param string     $seqName        name of the sequence to be created
      * @param string|int $start          start value of the sequence; default is 1
      * @param array      $options  An associative array of table options:
      *                          array(
@@ -309,9 +309,9 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      *                          );
      * @return string
      */
-    public function createSequenceSql($sequenceName, $start = 1, array $options = array())
+    public function createSequenceSql($seqName, $start = 1, array $options = array())
     {
-        $sequenceName = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($sequenceName), true);
+        $sequenceName = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($seqName), true);
         return 'CREATE SEQUENCE ' . $sequenceName . ' INCREMENT 1' .
                     ($start < 1 ? ' MINVALUE ' . $start : '') . ' START ' . $start;
     }

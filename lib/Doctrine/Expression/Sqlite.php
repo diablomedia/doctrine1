@@ -187,15 +187,15 @@ class Doctrine_Expression_Sqlite extends Doctrine_Expression_Driver
      * SQLite only supports the 2 parameter variant of this function
      *
      * @param string $value         an sql string literal or column name/alias
-     * @param integer $position     where to start the substring portion
-     * @param integer $length       the substring portion length
+     * @param integer $from         where to start the substring portion
+     * @param integer $len          the substring portion length
      * @return string               SQL substring function with given parameters
      */
-    public function substring($value, $position, $length = null)
+    public function substring($value, $from, $len = null)
     {
-        if ($length !== null) {
-            return 'SUBSTR(' . $value . ', ' . $position . ', ' . $length . ')';
+        if ($len !== null) {
+            return 'SUBSTR(' . $value . ', ' . $from . ', ' . $len . ')';
         }
-        return 'SUBSTR(' . $value . ', ' . $position . ', LENGTH(' . $value . '))';
+        return 'SUBSTR(' . $value . ', ' . $from . ', LENGTH(' . $value . '))';
     }
 }

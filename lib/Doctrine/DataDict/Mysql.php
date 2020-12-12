@@ -326,7 +326,6 @@ class Doctrine_DataDict_Mysql extends Doctrine_DataDict
             case 'mediumtext':
             case 'longtext':
             case 'text':
-            case 'text':
             case 'varchar':
                 $fixed = false;
                 // no break

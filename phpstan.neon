@@ -200,11 +200,6 @@ parameters:
         - '#Argument of an invalid type array\|true supplied for foreach, only iterables are supported\.#'
         # This is mainly harmless, but the isset here could probably be removed. In Doctrine_Relation_Parser:225
         - '#Variable \$rel in isset\(\) always exists and is not nullable\.#'
-        # This might be a reflection issue. The php.net manual shows this function as "experimental", but does show that it
-        # exists: http://php.net/manual/en/pdo.sqlitecreatefunction.php
-        # When I use the "--rf" option to see what PHP reports as the signature, I get "Exception: Method PDO::sqliteCreateFunction() does not exist"
-        # It does not show up in the "php --rc PDO" output either.
-        - '#Call to an undefined method PDO::sqliteCreateFunction\(\)\.#'
         # This one is kind of silly, since it would require that somebody pass in "false" (bool value) for the $stmt parameter (not null, or string,
         # or anything else, specifically the boolean false). Doctrine_Connection_Statement:58
         - '#Strict comparison using === between Doctrine_Adapter_Statement_Interface\|PDOStatement and false will always evaluate to false\.#'

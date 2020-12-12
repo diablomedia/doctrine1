@@ -437,28 +437,29 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Set a Doctrine_Record instance to the collection
      *
-     * @param integer $key
-     * @param Doctrine_Record $record
+     * @param integer $offset
+     * @param Doctrine_Record $value
      * @return void
      */
-    public function set($key, $record)
+    public function set($offset, $value)
     {
         if (isset($this->referenceField)) {
-            $record->set($this->referenceField, $this->reference, false);
+            $value->set($this->referenceField, $this->reference, false);
         }
 
-        $this->data[$key] = $record;
+        $this->data[$offset] = $value;
     }
 
     /**
      * Adds a record to collection
      *
-     * @param Doctrine_Record $record              record to be added
+     * @param Doctrine_Record $value              record to be added
      * @param string $key                          optional key for the record
      * @return boolean
      */
-    public function add($record, $key = null)
+    public function add($value, $key = null)
     {
+        $record = $value;
         if (isset($this->referenceField)) {
             $value = $this->reference->get($this->relation->getLocalFieldName());
             if ($value !== null) {

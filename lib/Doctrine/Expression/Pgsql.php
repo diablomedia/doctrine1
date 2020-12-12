@@ -237,13 +237,13 @@ class Doctrine_Expression_Pgsql extends Doctrine_Expression_Driver
     /**
      * transform locate to position
      *
-     * @param string $substr string to find
-     * @param string $str to find where
+     * @param string $str string to find
+     * @param string $substr to find where
      * @return string
      */
-    public function locate($substr, $str)
+    public function locate($str, $substr)
     {
-        return $this->position($substr, $str);
+        return $this->position($str, $substr);
     }
 
     /**

@@ -86,11 +86,6 @@ parameters:
 			path: lib/Doctrine/Cache/Db.php
 
 		-
-			message: "#^Parameter \\#1 \\$variable_representation of function unserialize expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Cache/Db.php
-
-		-
 			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doSave\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doSave\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Cache/Db.php
@@ -121,11 +116,6 @@ parameters:
 			path: lib/Doctrine/Cache/Xcache.php
 
 		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Cli.php
-
-		-
 			message: "#^Cannot call method get\\(\\) on Doctrine_Record\\|null\\.$#"
 			count: 2
 			path: lib/Doctrine/Collection.php
@@ -152,11 +142,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$filename of function file expects string, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Compiler.php
-
-		-
-			message: "#^Parameter \\#1 \\$input of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
 			count: 1
 			path: lib/Doctrine/Compiler.php
 

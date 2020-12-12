@@ -285,6 +285,63 @@ parameters:
             count: 1
             path: lib/Doctrine/Cli.php
         -
+            message: "#^Parameter \\#1 \\$(argument|objectOrClass) of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+            count: 1
+            path: lib/Doctrine/Import/Builder.php
+        -
+            message: "#^Parameter \\#1 \\$(argument|objectOrClass) of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+            count: 1
+            path: lib/Doctrine/Migration.php
+        -
+            message: "#^Parameter \\#1 \\$(argument|objectOrClass) of class ReflectionClass constructor expects class\\-string\\<object\\>\\|object, class\\-string\\|false given\\.$#"
+            count: 1
+            path: lib/Doctrine/Node.php
+        -
             message: "#^Parameter \\#1 \\$(input|array) of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
             count: 1
             path: lib/Doctrine/Compiler.php
+        -
+            message: "#^Parameter \\#1 \\$(str|string) of function trim expects string, string\\|null given\\.$#"
+            count: 1
+            path: lib/Doctrine/Connection/Mssql.php
+        -
+            message: "#^Parameter \\#1 \\$(array_arg|array) of function end expects array\\|object, array\\<int, string\\>\\|false given\\.$#"
+            count: 1
+            path: lib/Doctrine/Connection/Mssql.php
+        -
+            message: "#^Parameter \\#3 \\$length of function substr expects (int|int\\|null), int\\<0, max\\>\\|false given\\.$#"
+            count: 1
+            path: lib/Doctrine/Core.php
+        -
+            message: "#^Parameter \\#1 \\$(str|string) of function strtoupper expects string, string\\|null given\\.$#"
+            count: 1
+            path: lib/Doctrine/Export/Oracle.php
+        -
+            message: "#^Parameter \\#1 \\$(str|string) of function strtoupper expects string, string\\|null given\\.$#"
+            count: 2
+            path: lib/Doctrine/Import/Oracle.php
+        -
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Expression_Driver, string\\) given\\.$#"
+            count: 1
+            path: lib/Doctrine/Expression.php
+        -
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Expression_Driver, string\\) given\\.$#"
+            count: 1
+            path: lib/Doctrine/Query.php
+        -
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(string, string\\) given\\.$#"
+            count: 1
+            path: lib/Doctrine/Record.php
+        -
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(mixed, string\\) given\\.$#"
+            count: 1
+            path: lib/Doctrine/Record.php
+        -
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Record, string\\) given\\.$#"
+            count: 1
+            path: lib/Doctrine/Table.php
+        -
+            message: "#^Parameter \\#1 \\$(array_arg|array) of function key expects array, array\\|Doctrine_Collection given\\.$#"
+            count: 2
+            path: lib/Doctrine/Hydrator/ArrayDriver.php
+

@@ -271,16 +271,6 @@ parameters:
 			path: lib/Doctrine/Connection/Mssql.php
 
 		-
-			message: "#^Parameter \\#1 \\$array_arg of function end expects array\\|object, array\\<int, string\\>\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Mssql.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Mssql.php
-
-		-
 			message: "#^Cannot access offset 'length' on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Mssql.php
@@ -386,11 +376,6 @@ parameters:
 			path: lib/Doctrine/Core.php
 
 		-
-			message: "#^Parameter \\#3 \\$length of function substr expects int, int\\<0, max\\>\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Core.php
-
-		-
 			message: "#^Parameter \\#2 \\.\\.\\.\\$args of function array_merge expects array, array\\|false given\\.$#"
 			count: 1
 			path: lib/Doctrine/Core.php
@@ -476,11 +461,6 @@ parameters:
 			path: lib/Doctrine/Export/Oracle.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function strtoupper expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Export/Oracle.php
-
-		-
 			message: "#^Return type \\(array\\|true\\) of method Doctrine_Export_Pgsql\\:\\:alterTableSql\\(\\) should be compatible with return type \\(string\\) of method Doctrine_Export\\:\\:alterTableSql\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Export/Pgsql.php
@@ -496,11 +476,6 @@ parameters:
 			path: lib/Doctrine/Export/Sqlite.php
 
 		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Expression_Driver, string\\) given\\.$#"
-			count: 1
-			path: lib/Doctrine/Expression.php
-
-		-
 			message: "#^Call to function is_object\\(\\) with class\\-string will always evaluate to false\\.$#"
 			count: 1
 			path: lib/Doctrine/Hydrator.php
@@ -514,11 +489,6 @@ parameters:
 			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: lib/Doctrine/Hydrator.php
-
-		-
-			message: "#^Parameter \\#1 \\$array_arg of function key expects array, array\\|Doctrine_Collection given\\.$#"
-			count: 2
-			path: lib/Doctrine/Hydrator/ArrayDriver.php
 
 		-
 			message: "#^Property Doctrine_Hydrator_Graph\\:\\:\\$_rootAlias \\(string\\|null\\) does not accept int\\|string\\|null\\.$#"
@@ -556,11 +526,6 @@ parameters:
 			path: lib/Doctrine/Hydrator/SingleScalarDriver.php
 
 		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Import/Builder.php
-
-		-
 			message: "#^Parameter \\#3 \\$parent of method Doctrine_Import_Builder\\:\\:innerBuildActAs\\(\\) expects string\\|null, int\\|string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Import/Builder.php
@@ -573,11 +538,6 @@ parameters:
 		-
 			message: "#^Return type \\(bool\\|float\\|int\\|string\\|null\\) of method Doctrine_Import_Oracle\\:\\:listDatabases\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Import\\:\\:listDatabases\\(\\)$#"
 			count: 1
-			path: lib/Doctrine/Import/Oracle.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function strtoupper expects string, string\\|null given\\.$#"
-			count: 2
 			path: lib/Doctrine/Import/Oracle.php
 
 		-
@@ -631,11 +591,6 @@ parameters:
 			path: lib/Doctrine/Manager.php
 
 		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Migration.php
-
-		-
 			message: "#^Method Doctrine_Migration\\:\\:getLatestVersion\\(\\) should return int but returns int\\|string\\.$#"
 			count: 1
 			path: lib/Doctrine/Migration.php
@@ -669,11 +624,6 @@ parameters:
 			message: "#^Offset 'extension' does not exist on array\\('dirname' \\=\\> string, 'basename' \\=\\> string, 'filename' \\=\\> string, \\?'extension' \\=\\> string\\)\\.$#"
 			count: 1
 			path: lib/Doctrine/Migration/Diff.php
-
-		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<object\\>\\|object, class\\-string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Node.php
 
 		-
 			message: "#^Parameter \\#1 \\$name of method Doctrine_Connection\\:\\:getTable\\(\\) expects string, class\\-string\\|false given\\.$#"
@@ -742,11 +692,6 @@ parameters:
 
 		-
 			message: "#^Result of && is always true\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Expression_Driver, string\\) given\\.$#"
 			count: 1
 			path: lib/Doctrine/Query.php
 
@@ -912,16 +857,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method setInvoker\\(\\) on string\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(string, string\\) given\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(mixed, string\\) given\\.$#"
 			count: 1
 			path: lib/Doctrine/Record.php
 
@@ -1137,11 +1072,6 @@ parameters:
 
 		-
 			message: "#^Strict comparison using \\=\\=\\= between array\\|null and 1 will always evaluate to false\\.$#"
-			count: 1
-			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Record, string\\) given\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php
 

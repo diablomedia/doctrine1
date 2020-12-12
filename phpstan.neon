@@ -305,7 +305,7 @@ parameters:
             count: 1
             path: lib/Doctrine/Connection/Mssql.php
         -
-            message: "#^Parameter \\#1 \\$(array_arg|array) of function end expects array\\|object, array\\<int, string\\>\\|false given\\.$#"
+            message: "#^Parameter \\#1 \\$(array_arg|array) of function end expects (array\\|object|array), array\\<int, string\\>\\|false given\\.$#"
             count: 1
             path: lib/Doctrine/Connection/Mssql.php
         -
@@ -344,4 +344,27 @@ parameters:
             message: "#^Parameter \\#1 \\$(array_arg|array) of function key expects array, array\\|Doctrine_Collection given\\.$#"
             count: 2
             path: lib/Doctrine/Hydrator/ArrayDriver.php
-
+        -
+            message: "#^Parameter \\#2 \\$(str|string) of function explode expects string, array\\|string given\\.$#"
+            count: 1
+            path: lib/Doctrine/Import/Pgsql.php
+        -
+            message: "#^Parameter \\#1 \\$(str|string) of function strtolower expects string, string\\|null given\\.$#"
+            count: 1
+            path: lib/Doctrine/Import/Sqlite.php
+        -
+            message: "#^Parameter \\#1 \\$(str|string) of function strtolower expects string, string\\|null given\\.$#"
+            count: 3
+            path: lib/Doctrine/Inflector.php
+        -
+            message: "#^Parameter \\#1 \\$(name|qualifiedName) of method SimpleXMLElement\\:\\:addChild\\(\\) expects string, string\\|null given\\.$#"
+            count: 2
+            path: lib/Doctrine/Parser/Xml.php
+        -
+            message: "#^Parameter \\#1 \\$(stack|array) of function array_shift expects array, array\\<int, string\\>\\|false given\\.$#"
+            count: 1
+            path: lib/Doctrine/Query.php
+        -
+            message: "#^Parameter \\#1 \\$(str|string) of function trim expects string, string\\|false given\\.$#"
+            count: 1
+            path: lib/Doctrine/Task.php

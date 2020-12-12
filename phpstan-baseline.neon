@@ -541,21 +541,6 @@ parameters:
 			path: lib/Doctrine/Import/Oracle.php
 
 		-
-			message: "#^Parameter \\#2 \\$str of function explode expects string, array\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Import/Pgsql.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function strtolower expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Import/Sqlite.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function strtolower expects string, string\\|null given\\.$#"
-			count: 3
-			path: lib/Doctrine/Inflector.php
-
-		-
 			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, string\\|null given\\.$#"
 			count: 4
 			path: lib/Doctrine/Inflector.php
@@ -666,11 +651,6 @@ parameters:
 			path: lib/Doctrine/Parser/Json.php
 
 		-
-			message: "#^Parameter \\#1 \\$name of method SimpleXMLElement\\:\\:addChild\\(\\) expects string, string\\|null given\\.$#"
-			count: 2
-			path: lib/Doctrine/Parser/Xml.php
-
-		-
 			message: "#^Call to function is_int\\(\\) with string\\|null will always evaluate to false\\.$#"
 			count: 1
 			path: lib/Doctrine/Parser/Xml.php
@@ -708,11 +688,6 @@ parameters:
 		-
 			message: "#^Cannot access offset 0 on array\\<int, string\\>\\|false\\.$#"
 			count: 3
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#1 \\$stack of function array_shift expects array, array\\<int, string\\>\\|false given\\.$#"
-			count: 1
 			path: lib/Doctrine/Query.php
 
 		-
@@ -1074,11 +1049,6 @@ parameters:
 			message: "#^Strict comparison using \\=\\=\\= between array\\|null and 1 will always evaluate to false\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Task.php
 
 		-
 			message: "#^Cannot call method getConfig\\(\\) on Doctrine_Cli\\|null\\.$#"

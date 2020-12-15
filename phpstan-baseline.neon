@@ -81,27 +81,12 @@ parameters:
 			path: lib/Doctrine/AuditLog/Listener/Microtime.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Cache/Db.php
-
-		-
 			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doSave\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doSave\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Cache/Db.php
 
 		-
 			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doDelete\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doDelete\\(\\)$#"
-			count: 1
-			path: lib/Doctrine/Cache/Db.php
-
-		-
-			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, array\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Cache/Db.php
-
-		-
-			message: "#^Cannot access offset int on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Cache/Db.php
 

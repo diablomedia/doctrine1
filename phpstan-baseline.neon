@@ -151,26 +151,6 @@ parameters:
 			path: lib/Doctrine/Connection.php
 
 		-
-			message: "#^Method Doctrine_Connection\\:\\:fetchAll\\(\\) should return array but returns array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:fetchColumn\\(\\) should return array but returns array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:fetchAssoc\\(\\) should return array but returns array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:fetchBoth\\(\\) should return array but returns array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
 			message: "#^Parameter \\#2 \\$stmt of class Doctrine_Connection_Statement constructor expects Doctrine_Adapter_Statement_Interface\\|PDOStatement, Doctrine_Adapter_Statement_Interface\\|PDOStatement\\|false given\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection.php

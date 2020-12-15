@@ -1,7 +1,6 @@
 tests/DoctrineTest/doctrine_tests/*
 tests/test.yml
 tests/coverage
-tests/DbTestCase.php
 composer.lock
 vendor
 tools/phpstan

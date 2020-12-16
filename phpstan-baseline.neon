@@ -901,11 +901,6 @@ parameters:
 			path: lib/Doctrine/Sequence/Mssql.php
 
 		-
-			message: "#^Method Doctrine_Sequence_Mysql\\:\\:nextId\\(\\) should return bool\\|int but returns int\\|string\\.$#"
-			count: 1
-			path: lib/Doctrine/Sequence/Mysql.php
-
-		-
 			message: "#^Cannot access offset 'autoincrement' on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php

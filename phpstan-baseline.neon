@@ -296,11 +296,6 @@ parameters:
 			path: lib/Doctrine/Connection/Statement.php
 
 		-
-			message: "#^Method Doctrine_Connection_Statement\\:\\:fetchAll\\(\\) should return array but returns array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Statement.php
-
-		-
 			message: "#^Parameter \\#2 \\$arg1 \\(string\\) of method Doctrine_Connection_Statement\\:\\:setFetchMode\\(\\) should be compatible with parameter \\$arg1 \\(int\\) of method Doctrine_Adapter_Statement_Interface\\:\\:setFetchMode\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Connection/Statement.php

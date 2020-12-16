@@ -200,7 +200,13 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      */
     public function errorCode()
     {
-        return $this->_stmt->errorCode();
+        $code = $this->_stmt->errorCode();
+
+        if (!$code) {
+            return '';
+        }
+
+        return $code;
     }
 
     /**
@@ -357,6 +363,10 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
             }
 
             $event->data = $data;
+        }
+
+        if (!$data) {
+            $data = array();
         }
 
         $this->_conn->getListener()->postFetchAll($event);

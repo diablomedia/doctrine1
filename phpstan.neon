@@ -293,10 +293,6 @@ parameters:
             count: 1
             path: lib/Doctrine/Migration.php
         -
-            message: "#^Parameter \\#1 \\$(argument|objectOrClass) of class ReflectionClass constructor expects class\\-string\\<object\\>\\|object, class\\-string\\|false given\\.$#"
-            count: 1
-            path: lib/Doctrine/Node.php
-        -
             message: "#^Parameter \\#1 \\$(input|array) of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
             count: 1
             path: lib/Doctrine/Compiler.php

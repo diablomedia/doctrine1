@@ -566,11 +566,6 @@ parameters:
 			path: lib/Doctrine/Migration/Diff.php
 
 		-
-			message: "#^Parameter \\#1 \\$name of method Doctrine_Connection\\:\\:getTable\\(\\) expects string, class\\-string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Node.php
-
-		-
 			message: "#^Return type \\(Doctrine_Collection\\|false\\) of method Doctrine_Node_NestedSet\\:\\:getChildren\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Node_Interface\\:\\:getChildren\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Node/NestedSet.php
@@ -1069,11 +1064,6 @@ parameters:
 			message: "#^Return type \\(true\\) of method Doctrine_Transaction_Oracle\\:\\:releaseSavePoint\\(\\) should be compatible with return type \\(Doctrine_Adapter_Statement_Interface\\|PDOStatement\\) of method Doctrine_Transaction\\:\\:releaseSavePoint\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Transaction/Oracle.php
-
-		-
-			message: "#^Property Doctrine_Tree\\:\\:\\$_baseComponent \\(string\\) does not accept class\\-string\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Tree.php
 
 		-
 			message: "#^Cannot access offset 'level' on Doctrine_Record\\|false\\.$#"

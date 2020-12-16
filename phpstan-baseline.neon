@@ -336,11 +336,6 @@ parameters:
 			path: lib/Doctrine/Core.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$args of function array_merge expects array, array\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Core.php
-
-		-
 			message: "#^Method Doctrine_Core\\:\\:migrate\\(\\) should return bool\\|int but returns int\\|false\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Core.php
@@ -637,11 +632,6 @@ parameters:
 
 		-
 			message: "#^Property Doctrine_Query_Abstract\\:\\:\\$_rootAlias \\(string\\) does not accept int\\|string\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#2 \\$input1 of function array_map expects array, array\\|false given\\.$#"
 			count: 1
 			path: lib/Doctrine/Query.php
 
@@ -1089,16 +1079,6 @@ parameters:
 			message: "#^Cannot access offset 'level' on Doctrine_Record\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Tree/NestedSet.php
-
-		-
-			message: "#^Cannot access offset 0 on \\(array\\<int, string\\>\\|false\\)\\.$#"
-			count: 1
-			path: lib/Doctrine/Validator.php
-
-		-
-			message: "#^Cannot access offset 1 on \\(array\\<int, string\\>\\|false\\)\\.$#"
-			count: 1
-			path: lib/Doctrine/Validator.php
 
 		-
 			message: "#^Call to function is_array\\(\\) with mixed will always evaluate to false\\.$#"

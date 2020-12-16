@@ -42,7 +42,7 @@
         "symfony/yaml": "^3.4 || ^4.1"
     },
     "require-dev": {
-        "phpunit/php-code-coverage": "^7.0 || ^8.0",
+        "phpunit/php-code-coverage": "^8.0",
         "friendsofphp/php-cs-fixer": "2.17.1",
         "phpstan/phpstan": "0.12.62",
         "vimeo/psalm": "4.3.1"

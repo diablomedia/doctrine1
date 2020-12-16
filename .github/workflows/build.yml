@@ -35,6 +35,9 @@ jobs:
                   composer psalm
             - name: Code Style Check
               run: composer style-check
+              # php-cs-fixer doesn't fully support PHP 8 yet
+              env:
+                  PHP_CS_FIXER_IGNORE_ENV: true
             - name: Test
               run: composer test-with-coverage
             - name: Upload Coverage

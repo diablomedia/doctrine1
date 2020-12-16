@@ -235,7 +235,10 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     public function __construct(Doctrine_Manager $manager, $adapter, $user = null, $pass = null)
     {
         if (is_object($adapter)) {
-            $implements = class_implements($adapter) ? class_implements($adapter) : array();
+            $implements = class_implements($adapter);
+            if (!$implements) {
+                $implements = array();
+            }
             if (! ($adapter instanceof PDO) && ! in_array('Doctrine_Adapter_Interface', $implements)) {
                 throw new Doctrine_Connection_Exception('First argument should be an instance of PDO or implement Doctrine_Adapter_Interface');
             }
@@ -1213,12 +1216,15 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
 
         $class = sprintf($this->getAttribute(Doctrine_Core::ATTR_TABLE_CLASS_FORMAT), $name);
         if (class_exists($class, $this->getAttribute(Doctrine_Core::ATTR_AUTOLOAD_TABLE_CLASSES))) {
-            $parents = class_parents($class) ? class_parents($class) : array();
+            $parents = class_parents($class);
+            if (!$parents) {
+                $parents = array();
+            }
         } else {
             $parents = array();
         }
 
-        if (in_array('Doctrine_Table', $parents)) {
+        if (class_exists($class, $this->getAttribute(Doctrine_Core::ATTR_AUTOLOAD_TABLE_CLASSES)) && in_array('Doctrine_Table', $parents)) {
             /** @var Doctrine_Table $table */
             $table = new $class($name, $this, true);
         } else {

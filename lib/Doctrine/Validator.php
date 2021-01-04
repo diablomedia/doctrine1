@@ -107,15 +107,18 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
             $localeInfo   = localeconv();
             $decimalPoint = $localeInfo['mon_decimal_point'] ? $localeInfo['mon_decimal_point'] : $localeInfo['decimal_point'];
             $e            = explode($decimalPoint, (string) $value);
+            $length       = 0;
 
             if (!$e) {
                 $e = array();
             }
 
-            $length = strlen($e[0]);
+            if (count($e) > 0) {
+                $length = strlen($e[0]);
 
-            if (isset($e[1])) {
-                $length = $length + strlen($e[1]);
+                if (isset($e[1])) {
+                    $length = $length + strlen($e[1]);
+                }
             }
         } elseif ($type == 'blob') {
             $length = strlen($value);

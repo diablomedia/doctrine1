@@ -706,7 +706,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                         $type = 'string';
                         break;
                     case 'json':
-                        $type = 'object|array|string|null|boolean';
+                        $type = 'stdClass|array|null|string|bool|int|float';
                         break;
                 }
 

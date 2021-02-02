@@ -230,8 +230,11 @@ class Doctrine_Data_Import extends Doctrine_Data
                 $func = 'set' . Doctrine_Inflector::classify($key);
                 $obj->$func($value);
             } elseif ($obj->getTable()->hasField($key)) {
-                if ($obj->getTable()->getTypeOf($key) == 'object') {
+                $type = $obj->getTable()->getTypeOf($key);
+                if ($type == 'object') {
                     $value = unserialize($value);
+                } elseif ($type == 'json') {
+                    $value = json_decode($value);
                 }
                 $obj->set($key, $value);
             } elseif ($obj->getTable()->hasRelation($key)) {

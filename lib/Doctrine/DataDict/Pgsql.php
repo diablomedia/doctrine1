@@ -386,6 +386,8 @@ class Doctrine_DataDict_Pgsql extends Doctrine_DataDict
                 return $fixed ? ($length ? 'CHAR(' . $length . ')' : 'CHAR(' . $this->conn->varchar_max_length . ')')
                     : ($length ? 'VARCHAR(' . $length . ')' : 'TEXT');
 
+            case 'json':
+                return 'JSONB';
             case 'clob':
                 return 'TEXT';
             case 'blob':

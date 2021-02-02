@@ -1378,6 +1378,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                 case 'float':
                 case 'array':
                 case 'object':
+                case 'json':
                 case 'blob':
                 case 'gzip':
                     //$length = 2147483647;
@@ -2378,6 +2379,16 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
                         if ($value === false) {
                             throw new Doctrine_Table_Exception('Unserialization of ' . $fieldName . ' failed.');
+                        }
+                        return $value;
+                    }
+                break;
+                case 'json':
+                    if (is_string($value)) {
+                        $value = empty($value) ? null:json_decode($value);
+
+                        if ($value === false) {
+                            throw new Doctrine_Table_Exception('Json decoding of ' . $fieldName . ' failed.');
                         }
                         return $value;
                     }

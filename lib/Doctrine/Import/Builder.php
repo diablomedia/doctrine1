@@ -705,6 +705,9 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                     case 'gzip':
                         $type = 'string';
                         break;
+                    case 'json':
+                        $type = 'object|array|string|null|boolean';
+                        break;
                 }
 
                 // Add "null" union types for columns that aren't marked as notnull = true

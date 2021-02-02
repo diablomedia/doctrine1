@@ -905,6 +905,9 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                             $vars['_data'][$k] = serialize($vars['_data'][$k]);
                         }
                         break;
+                    case 'json':
+                        $vars['_data'][$k] = json_encode($vars['_data'][$k]);
+                        break;
                     case 'gzip':
                         $vars['_data'][$k] = gzcompress($vars['_data'][$k]);
                         break;
@@ -958,6 +961,9 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                     break;
                 case 'gzip':
                     $this->_data[$k] = gzuncompress($this->_data[$k]);
+                    break;
+                case 'json':
+                    $this->_data[$k] = json_decode($this->_data[$k]);
                     break;
                 case 'enum':
                     $this->_data[$k] = $this->_table->enumValue($k, $this->_data[$k]);
@@ -1943,6 +1949,9 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 case 'array':
                 case 'object':
                     $a[$field] = serialize($this->_data[$field]);
+                    break;
+                case 'json':
+                    $a[$field] = json_encode($this->_data[$field]);
                     break;
                 case 'gzip':
                     $a[$field] = gzcompress($this->_data[$field], 5);

@@ -64,6 +64,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
             case 'string':
             case 'array':
             case 'object':
+            case 'json':
             case 'gzip':
             case 'char':
             case 'varchar':

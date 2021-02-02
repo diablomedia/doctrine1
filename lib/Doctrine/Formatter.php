@@ -181,6 +181,9 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
             case 'decimal':
             case 'int':
                 return $input;
+            case 'json':
+                $input = json_encode($input);
+                break;
             case 'array':
             case 'object':
                 $input = serialize($input);

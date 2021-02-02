@@ -101,7 +101,7 @@ class Doctrine_Connection_Mysql extends Doctrine_Connection_Common
     public function connect()
     {
         $connected = parent::connect();
-        $this->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
+        //$this->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
 
         return $connected;
     }

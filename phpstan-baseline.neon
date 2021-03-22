@@ -496,6 +496,16 @@ parameters:
 			path: lib/Doctrine/Import/Oracle.php
 
 		-
+			message: "#^Cannot access offset 'className' on array\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Import/Schema.php
+
+		-
+			message: "#^Cannot access offset 'connectionClassName' on array\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Import/Schema.php
+
+		-
 			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, string\\|null given\\.$#"
 			count: 4
 			path: lib/Doctrine/Inflector.php

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.3.1@2feba22a005a18bf31d4c7b9bdb9252c73897476">
+<files psalm-version="4.6.4@97fe86c4e158b5a57c5150aa5055c38b5a809aab">
   <file src="lib/Doctrine/Adapter/Statement/Oracle.php">
     <InvalidOperand occurrences="1">
       <code>$var</code>
@@ -48,9 +48,9 @@
     <InvalidReturnType occurrences="1">
       <code>array|int</code>
     </InvalidReturnType>
-    <ParadoxicalCondition occurrences="1">
-      <code>$this-&gt;isConnected</code>
-    </ParadoxicalCondition>
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$parent</code>
+    </NonInvariantDocblockPropertyType>
     <PossiblyUndefinedArrayOffset occurrences="1">
       <code>$this-&gt;pendingAttributes[$attribute]</code>
     </PossiblyUndefinedArrayOffset>
@@ -74,6 +74,11 @@
       <code>(int)$limit</code>
       <code>(int)$limit</code>
     </RedundantCast>
+  </file>
+  <file src="lib/Doctrine/Connection/Sqlite.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$dbh</code>
+    </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Connection/Statement.php">
     <InvalidScalarArgument occurrences="1">
@@ -101,13 +106,6 @@
       <code>new $className()</code>
     </UndefinedClass>
   </file>
-  <file src="lib/Doctrine/DataDict/Mysql.php">
-    <TooFewArguments occurrences="3">
-      <code>strtok('(), ')</code>
-      <code>strtok('(), ')</code>
-      <code>strtok('(), ')</code>
-    </TooFewArguments>
-  </file>
   <file src="lib/Doctrine/DataDict/Oracle.php">
     <RedundantCast occurrences="5">
       <code>(int)$length</code>
@@ -116,6 +114,16 @@
       <code>(int)$length</code>
       <code>(int)$length</code>
     </RedundantCast>
+  </file>
+  <file src="lib/Doctrine/Export/Mysql.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$conn</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Export/Pgsql.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$conn</code>
+    </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Expression/Mysql.php">
     <InvalidOperand occurrences="1">
@@ -164,7 +172,15 @@
       <code>$definition['package_name']</code>
     </TypeDoesNotContainType>
   </file>
+  <file src="lib/Doctrine/Import/Mysql.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$conn</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
   <file src="lib/Doctrine/Migration.php">
+    <ImplicitToStringCast occurrences="1">
+      <code>$this-&gt;_reflectionClass</code>
+    </ImplicitToStringCast>
     <InvalidOperand occurrences="2">
       <code>$num</code>
       <code>end($nums)</code>
@@ -177,6 +193,11 @@
     <PossiblyUndefinedArrayOffset occurrences="1">
       <code>$pathInfo['extension']</code>
     </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="lib/Doctrine/Node/NestedSet.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$_tree</code>
+    </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Parser/Yml.php">
     <InvalidScalarArgument occurrences="2">
@@ -195,6 +216,9 @@
     </InvalidReturnStatement>
   </file>
   <file src="lib/Doctrine/Query/Tokenizer.php">
+    <InvalidArrayOffset occurrences="1">
+      <code>$res[$i]</code>
+    </InvalidArrayOffset>
     <InvalidOperand occurrences="2">
       <code>$index</code>
       <code>$key</code>
@@ -252,13 +276,10 @@
       <code>$result</code>
     </NullableReturnStatement>
   </file>
-  <file src="lib/Doctrine/Sequence/Mysql.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>$value</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>integer|bool</code>
-    </InvalidReturnType>
+  <file src="lib/Doctrine/Sequence/Mssql.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$conn</code>
+    </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Sequence/Oracle.php">
     <LessSpecificImplementedReturnType occurrences="1">
@@ -273,9 +294,6 @@
       <code>$definition['length']</code>
       <code>$definition['type']</code>
     </InvalidScalarArgument>
-    <NullableReturnStatement occurrences="1">
-      <code>$this-&gt;_options['tableName']</code>
-    </NullableReturnStatement>
     <PropertyTypeCoercion occurrences="1">
       <code>new $this-&gt;_options['name']</code>
     </PropertyTypeCoercion>
@@ -284,10 +302,130 @@
       <code>empty($name)</code>
     </TypeDoesNotContainType>
   </file>
+  <file src="lib/Doctrine/Task/BuildAll.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/BuildAllLoad.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/BuildAllReload.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/Compile.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/CreateDb.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/CreateTables.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/Dql.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/DropDb.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/DumpData.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateMigration.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateMigrationsDb.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateMigrationsDiff.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateMigrationsModels.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateModelsDb.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateModelsYaml.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateSql.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateYamlDb.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/GenerateYamlModels.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/LoadData.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/Migrate.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Task/RebuildDb.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$description</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Template/I18n.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$_plugin</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
   <file src="lib/Doctrine/Template/Listener/Timestampable.php">
     <ImplicitToStringCast occurrences="1">
       <code>$this-&gt;getTimestamp('updated', $event-&gt;getInvoker()-&gt;getTable()-&gt;getConnection())</code>
     </ImplicitToStringCast>
+  </file>
+  <file src="lib/Doctrine/Template/Searchable.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$_plugin</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Template/Versionable.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$_plugin</code>
+    </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Tree/NestedSet.php">
     <InvalidScalarArgument occurrences="1">
@@ -298,5 +436,12 @@
     <InvalidScalarArgument occurrences="1">
       <code>$value</code>
     </InvalidScalarArgument>
+  </file>
+  <file src="lib/Doctrine/Validator/ErrorStack.php">
+    <InvalidArrayOffset occurrences="3">
+      <code>$this-&gt;_errors[$fieldName]</code>
+      <code>$this-&gt;_errors[$fieldName]</code>
+      <code>$this-&gt;_validators[$fieldName]</code>
+    </InvalidArrayOffset>
   </file>
 </files>

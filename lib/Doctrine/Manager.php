@@ -294,7 +294,11 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     public function openConnection($adapter, $name = null, $setCurrent = true)
     {
         if (is_object($adapter)) {
-            if (! ($adapter instanceof PDO) && ! in_array('Doctrine_Adapter_Interface', class_implements($adapter))) {
+            $implements = class_implements($adapter);
+            if (!$implements) {
+                $implements = array();
+            }
+            if (! ($adapter instanceof PDO) && ! in_array('Doctrine_Adapter_Interface', $implements)) {
                 throw new Doctrine_Manager_Exception('First argument should be an instance of PDO or implement Doctrine_Adapter_Interface');
             }
 

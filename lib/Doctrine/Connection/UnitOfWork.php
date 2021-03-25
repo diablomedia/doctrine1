@@ -54,6 +54,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
         $conn = $this->getConnection();
         $conn->connect();
 
+        /** @var int $state Won't be void since not called with a parameter */
         $state = $record->state();
         if ($state === Doctrine_Record::STATE_LOCKED || $state === Doctrine_Record::STATE_TLOCKED) {
             return false;
@@ -789,7 +790,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
                         }
 
                         unset($flushList[$index3]);
-                        array_splice($flushList, $index - 1, 0, $assocClassName);
+                        array_splice($flushList, (int) ($index - 1), 0, $assocClassName);
                         $index = $relatedCompIndex;
                     } else {
                         $flushList[] = $assocClassName;

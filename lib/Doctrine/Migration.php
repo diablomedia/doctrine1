@@ -340,7 +340,7 @@ class Doctrine_Migration
         } else {
             $nums = array_keys($this->_migrationClasses);
             $num  = end($nums) + 1;
-            return $num;
+            return (int) $num;
         }
     }
 

@@ -271,7 +271,12 @@ class Doctrine_Relation_Parser
     {
         $conn = $this->_table->getConnection();
 
-        if (class_exists($template) && in_array('Doctrine_Template', class_parents($template))) {
+        $parents = class_parents($template);
+        if (!$parents) {
+            $parents = array();
+        }
+
+        if (class_exists($template) && in_array('Doctrine_Template', $parents)) {
             $impl = $this->_table->getImpl($template);
 
             if ($impl === null) {

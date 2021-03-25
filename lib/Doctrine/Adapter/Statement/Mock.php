@@ -218,14 +218,14 @@ class Doctrine_Adapter_Statement_Mock implements Doctrine_Adapter_Statement_Inte
      *
      * Returns an array containing all of the result set rows
      *
-     * @param integer $fetchMode           Controls how the next row will be returned to the caller.
+     * @param integer $fetchStyle           Controls how the next row will be returned to the caller.
      *                                      This value must be one of the Doctrine_Core::FETCH_* constants,
      *                                      defaulting to Doctrine_Core::FETCH_BOTH
      * @param int $colnum
      *
      * @return array
      */
-    public function fetchAll($fetchMode = Doctrine_Core::FETCH_BOTH, $colnum = 0)
+    public function fetchAll($fetchStyle = Doctrine_Core::FETCH_BOTH, $colnum = 0)
     {
         return array();
     }

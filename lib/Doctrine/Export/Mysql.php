@@ -484,7 +484,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
     /**
      * create sequence
      *
-     * @param string    $sequenceName name of the sequence to be created
+     * @param string    $seqName name of the sequence to be created
      * @param int       $start        start value of the sequence; default is 1
      * @param array     $options  An associative array of table options:
      *                          array(
@@ -495,9 +495,9 @@ class Doctrine_Export_Mysql extends Doctrine_Export
      *                          );
      * @return boolean|null
      */
-    public function createSequence($sequenceName, $start = 1, array $options = array())
+    public function createSequence($seqName, $start = 1, array $options = array())
     {
-        $sequenceName = $this->conn->quoteIdentifier($sequenceName, true);
+        $sequenceName = $this->conn->quoteIdentifier($seqName, true);
         $seqcolName   = $this->conn->quoteIdentifier($this->conn->getAttribute(Doctrine_Core::ATTR_SEQCOL_NAME), true);
 
         $optionsStrings = array();

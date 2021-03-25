@@ -304,10 +304,10 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
      * gets path to node from root, uses record::toString() method to get node names
      *
      * @param string     $seperator     path seperator
-     * @param bool     $includeRecord     whether or not to include node at end of path
+     * @param bool     $includeNode     whether or not to include node at end of path
      * @return string     string representation of path
      */
-    public function getPath($seperator = ' > ', $includeRecord = false)
+    public function getPath($seperator = ' > ', $includeNode = false)
     {
         $path      = array();
         $ancestors = $this->getAncestors();
@@ -316,7 +316,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
                 $path[] = $ancestor->__toString();
             }
         }
-        if ($includeRecord) {
+        if ($includeNode) {
             $path[] = $this->getRecord()->__toString();
         }
 

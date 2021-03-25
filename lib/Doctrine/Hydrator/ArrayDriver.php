@@ -86,7 +86,11 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
      */
     public function getLastKey(&$coll)
     {
-        end($coll);
+        if ($coll instanceof Doctrine_Collection) {
+            $coll->end();
+        } else {
+            end($coll);
+        }
         return key($coll);
     }
 
@@ -116,7 +120,11 @@ class Doctrine_Hydrator_ArrayDriver extends Doctrine_Hydrator_Graph
             if ($oneToOne) {
                 $prev[$dqlAlias] = & $coll;
             } else {
-                end($coll);
+                if ($coll instanceof Doctrine_Collection) {
+                    $coll->end();
+                } else {
+                    end($coll);
+                }
                 $prev[$dqlAlias] = & $coll[key($coll)];
             }
         }

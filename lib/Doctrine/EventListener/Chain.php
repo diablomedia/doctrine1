@@ -43,20 +43,20 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
      * add
      * adds a listener to the chain of listeners
      *
-     * @param object $listener
+     * @param object $value
      * @param string $name
      * @return void
      */
-    public function add($listener, $name = null)
+    public function add($value, $name = null)
     {
-        if (! ($listener instanceof Doctrine_EventListener_Interface) &&
-             ! ($listener instanceof Doctrine_Overloadable)) {
+        if (! ($value instanceof Doctrine_EventListener_Interface) &&
+             ! ($value instanceof Doctrine_Overloadable)) {
             throw new Doctrine_EventListener_Exception("Couldn't add eventlistener. EventListeners should implement either Doctrine_EventListener_Interface or Doctrine_Overloadable");
         }
         if ($name === null) {
-            $this->_listeners[] = $listener;
+            $this->_listeners[] = $value;
         } else {
-            $this->_listeners[$name] = $listener;
+            $this->_listeners[$name] = $value;
         }
     }
 
@@ -78,13 +78,13 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
     /**
      * set
      *
-     * @param mixed $key
-     * @param Doctrine_EventListener $listener
+     * @param mixed $offset
+     * @param Doctrine_EventListener $value
      * @return void
      */
-    public function set($key, $listener)
+    public function set($offset, $value)
     {
-        $this->_listeners[$key] = $listener;
+        $this->_listeners[$offset] = $value;
     }
 
     /**

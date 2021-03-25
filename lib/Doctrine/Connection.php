@@ -107,7 +107,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     protected $driverName;
 
     /**
-     * @var boolean $isConnected                whether or not a connection has been established
+     * @var bool $isConnected                   whether or not a connection has been established
      */
     protected $isConnected = false;
 
@@ -235,7 +235,11 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     public function __construct(Doctrine_Manager $manager, $adapter, $user = null, $pass = null)
     {
         if (is_object($adapter)) {
-            if (! ($adapter instanceof PDO) && ! in_array('Doctrine_Adapter_Interface', class_implements($adapter))) {
+            $implements = class_implements($adapter);
+            if (!$implements) {
+                $implements = array();
+            }
+            if (! ($adapter instanceof PDO) && ! in_array('Doctrine_Adapter_Interface', $implements)) {
                 throw new Doctrine_Connection_Exception('First argument should be an instance of PDO or implement Doctrine_Adapter_Interface');
             }
             $this->dbh = $adapter;
@@ -265,7 +269,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     /**
      * Check wherther the connection to the database has been made yet
      *
-     * @return boolean
+     * @return bool
      */
     public function isConnected()
     {
@@ -856,7 +860,13 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     public function fetchAll($statement, array $params = array())
     {
-        return $this->execute($statement, $params)->fetchAll(Doctrine_Core::FETCH_ASSOC);
+        $result = $this->execute($statement, $params)->fetchAll(Doctrine_Core::FETCH_ASSOC);
+
+        if (!$result) {
+            return array();
+        }
+
+        return $result;
     }
 
     /**
@@ -906,7 +916,13 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     public function fetchColumn($statement, array $params = array(), $colnum = 0)
     {
-        return $this->execute($statement, $params)->fetchAll(Doctrine_Core::FETCH_COLUMN, $colnum);
+        $result = $this->execute($statement, $params)->fetchAll(Doctrine_Core::FETCH_COLUMN, $colnum);
+
+        if (!$result) {
+            return array();
+        }
+
+        return $result;
     }
 
     /**
@@ -918,7 +934,13 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     public function fetchAssoc($statement, array $params = array())
     {
-        return $this->execute($statement, $params)->fetchAll(Doctrine_Core::FETCH_ASSOC);
+        $result = $this->execute($statement, $params)->fetchAll(Doctrine_Core::FETCH_ASSOC);
+
+        if (!$result) {
+            return array();
+        }
+
+        return $result;
     }
 
     /**
@@ -930,7 +952,13 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     public function fetchBoth($statement, array $params = array())
     {
-        return $this->execute($statement, $params)->fetchAll(Doctrine_Core::FETCH_BOTH);
+        $result = $this->execute($statement, $params)->fetchAll(Doctrine_Core::FETCH_BOTH);
+
+        if (!$result) {
+            return array();
+        }
+
+        return $result;
     }
 
     /**
@@ -1187,9 +1215,16 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         }
 
         $class = sprintf($this->getAttribute(Doctrine_Core::ATTR_TABLE_CLASS_FORMAT), $name);
+        if (class_exists($class, $this->getAttribute(Doctrine_Core::ATTR_AUTOLOAD_TABLE_CLASSES))) {
+            $parents = class_parents($class);
+            if (!$parents) {
+                $parents = array();
+            }
+        } else {
+            $parents = array();
+        }
 
-        if (class_exists($class, $this->getAttribute(Doctrine_Core::ATTR_AUTOLOAD_TABLE_CLASSES)) &&
-                in_array('Doctrine_Table', class_parents($class))) {
+        if (class_exists($class, $this->getAttribute(Doctrine_Core::ATTR_AUTOLOAD_TABLE_CLASSES)) && in_array('Doctrine_Table', $parents)) {
             /** @var Doctrine_Table $table */
             $table = new $class($name, $this, true);
         } else {

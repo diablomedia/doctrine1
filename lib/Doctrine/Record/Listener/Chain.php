@@ -92,20 +92,20 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
      * add
      * adds a listener to the chain of listeners
      *
-     * @param object $listener
+     * @param object $value
      * @param string $name
      * @return void
      */
-    public function add($listener, $name = null)
+    public function add($value, $name = null)
     {
-        if (! ($listener instanceof Doctrine_Record_Listener_Interface) &&
-             ! ($listener instanceof Doctrine_Overloadable)) {
+        if (! ($value instanceof Doctrine_Record_Listener_Interface) &&
+             ! ($value instanceof Doctrine_Overloadable)) {
             throw new Doctrine_EventListener_Exception("Couldn't add eventlistener. Record listeners should implement either Doctrine_Record_Listener_Interface or Doctrine_Overloadable");
         }
         if ($name === null) {
-            $this->_listeners[] = $listener;
+            $this->_listeners[] = $value;
         } else {
-            $this->_listeners[$name] = $listener;
+            $this->_listeners[$name] = $value;
         }
     }
 
@@ -127,13 +127,13 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
     /**
      * set
      *
-     * @param mixed $key
-     * @param Doctrine_Record_Listener $listener    listener to be added
+     * @param mixed $offset
+     * @param Doctrine_Record_Listener $value    listener to be added
      * @return void
      */
-    public function set($key, $listener)
+    public function set($offset, $value)
     {
-        $this->_listeners[$key] = $listener;
+        $this->_listeners[$offset] = $value;
     }
 
     /**

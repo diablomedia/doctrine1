@@ -140,11 +140,14 @@ class DoctrineTest
         if (isset($options['coverage'])) {
             try {
                 $coverageFilter = new \SebastianBergmann\CodeCoverage\Filter();
-                $coverageFilter->addDirectoryToWhitelist(DOCTRINE_DIR . DIRECTORY_SEPARATOR . 'lib');
+                $coverageFilter->includeDirectory(DOCTRINE_DIR . DIRECTORY_SEPARATOR . 'lib');
 
-                $coverage = new \SebastianBergmann\CodeCoverage\CodeCoverage(null, $coverageFilter);
+                $coverage = new \SebastianBergmann\CodeCoverage\CodeCoverage(
+                    (new SebastianBergmann\CodeCoverage\Driver\Selector)->forLineCoverage($coverageFilter),
+                    $coverageFilter
+                );
                 $coverage->start($testGroup->getName());
-            } catch (\SebastianBergmann\CodeCoverage\RuntimeException $e) {
+            } catch (\SebastianBergmann\CodeCoverage\Exception $e) {
                 echo 'There was an error trying to start CodeCoverage (' . $e->getMessage() . ") Coverage won't be available for this run.\n";
                 unset($options['coverage']);
             }

@@ -2,12 +2,21 @@
     "name": "diablomedia/doctrine1",
     "type": "library",
     "description": "PHP5+ Database ORM",
-    "keywords": ["orm", "database"],
+    "keywords": [
+        "orm",
+        "database"
+    ],
     "homepage": "http://www.doctrine-project.org",
     "license": "LGPL-2.1-or-later",
     "authors": [
-        {"name": "Konsta Vesterinen", "email": "kvesteri@cc.hut.fi"},
-        {"name": "Jonathan Wage", "email": "jonwage@gmail.com"}
+        {
+            "name": "Konsta Vesterinen",
+            "email": "kvesteri@cc.hut.fi"
+        },
+        {
+            "name": "Jonathan Wage",
+            "email": "jonwage@gmail.com"
+        }
     ],
     "autoload": {
         "psr-0": {
@@ -30,13 +39,13 @@
     "require": {
         "php": ">=7.0",
         "ext-pdo": "*",
-        "symfony/yaml": "^3.4 || ^4.1"
+        "symfony/yaml": "^3.4 || ^4.1 || ^5.0"
     },
     "require-dev": {
-        "phpunit/php-code-coverage": "^4.0 || ^5.0 || ^6.0 || ^7.0",
-        "friendsofphp/php-cs-fixer": "2.16.4",
-        "phpstan/phpstan": "0.12.19",
-        "vimeo/psalm": "3.11.4"
+        "phpunit/php-code-coverage": "^9.1.10",
+        "friendsofphp/php-cs-fixer": "2.18.4",
+        "phpstan/phpstan": "0.12.82",
+        "vimeo/psalm": "4.6.4"
     },
     "scripts": {
         "test": "cd tests && php run.php",

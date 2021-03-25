@@ -34,7 +34,7 @@ interface Doctrine_Adapter_Interface
 {
     /**
      * @param string $prepareString
-     * @return Doctrine_Adapter_Statement_Interface
+     * @return Doctrine_Adapter_Statement_Interface|false
      */
     public function prepare($prepareString);
 

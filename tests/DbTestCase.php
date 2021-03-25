@@ -20,40 +20,16 @@
  */
 
 /**
- * Doctrine_File
+ * Doctrine_Db_TestCase
  *
  * @package     Doctrine
- * @subpackage  File
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
- * @version     $Revision$
+ * @category    Object Relational Mapping
  * @link        www.doctrine-project.org
  * @since       1.0
- * @property string $url
+ * @version     $Revision$
  */
-class Doctrine_File extends Doctrine_Record
+class Doctrine_Db_TestCase extends Doctrine_UnitTestCase
 {
-    /**
-     * @return void
-     */
-    public function setTableDefinition()
-    {
-        $this->hasColumn('url', 'string', 255);
-    }
-
-    public function setUp()
-    {
-        $this->actAs('Searchable', array('className' => 'Doctrine_File_Index',
-                                         'fields'    => array('url', 'content')));
-
-        $this->index('url', array('fields' => array('url')));
-    }
-
-    public function get($offset, $load = true)
-    {
-        if ($offset === 'content') {
-            return file_get_contents(parent::get('url'));
-        }
-        return parent::get($offset, $load);
-    }
 }

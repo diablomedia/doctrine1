@@ -38,7 +38,7 @@ class Doctrine_Sequence_Sqlite extends Doctrine_Sequence
      * @param string $seqName   name of the sequence
      * @param bool $onDemand    when true missing sequences are automatic created
      *
-     * @return int|string next id in the given sequence
+     * @return int|string|false next id in the given sequence
      */
     public function nextId($seqName, $onDemand = true)
     {
@@ -82,7 +82,7 @@ class Doctrine_Sequence_Sqlite extends Doctrine_Sequence
      * @param string  $table  name of the table into which a new row was inserted
      * @param string  $field  name of the field into which a new row was inserted
      *
-     * @return int|string
+     * @return int|string|false
      */
     public function lastInsertId($table = null, $field = null)
     {

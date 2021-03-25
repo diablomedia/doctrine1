@@ -71,11 +71,6 @@ parameters:
 			path: lib/Doctrine/Adapter/Statement/Oracle.php
 
 		-
-			message: "#^Parameter \\#2 \\$statement of function oci_parse expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Adapter/Statement/Oracle.php
-
-		-
 			message: "#^Return type \\(string\\) of method Doctrine_AuditLog_Listener_Microtime\\:\\:_getInitialVersion\\(\\) should be compatible with return type \\(int\\) of method Doctrine_AuditLog_Listener\\:\\:_getInitialVersion\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/AuditLog/Listener/Microtime.php
@@ -86,32 +81,12 @@ parameters:
 			path: lib/Doctrine/AuditLog/Listener/Microtime.php
 
 		-
-			message: "#^Cannot access offset 0 on array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Cache/Db.php
-
-		-
-			message: "#^Parameter \\#1 \\$variable_representation of function unserialize expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Cache/Db.php
-
-		-
 			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doSave\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doSave\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Cache/Db.php
 
 		-
 			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doDelete\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doDelete\\(\\)$#"
-			count: 1
-			path: lib/Doctrine/Cache/Db.php
-
-		-
-			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, array\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Cache/Db.php
-
-		-
-			message: "#^Cannot access offset int on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Cache/Db.php
 
@@ -126,28 +101,13 @@ parameters:
 			path: lib/Doctrine/Cache/Xcache.php
 
 		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Cli.php
-
-		-
-			message: "#^Default value of the parameter \\#3 \\$stream \\(mixed\\) of method Doctrine_Cli_AnsiColorFormatter\\:\\:format\\(\\) is incompatible with type resource\\.$#"
-			count: 1
-			path: lib/Doctrine/Cli/AnsiColorFormatter.php
-
-		-
-			message: "#^Default value of the parameter \\#3 \\$stream \\(mixed\\) of method Doctrine_Cli_Formatter\\:\\:format\\(\\) is incompatible with type resource\\.$#"
-			count: 1
-			path: lib/Doctrine/Cli/Formatter.php
-
-		-
 			message: "#^Cannot call method get\\(\\) on Doctrine_Record\\|null\\.$#"
 			count: 2
 			path: lib/Doctrine/Collection.php
 
 		-
 			message: "#^Possibly invalid array key type array\\|string\\.$#"
-			count: 1
+			count: 2
 			path: lib/Doctrine/Collection.php
 
 		-
@@ -171,16 +131,6 @@ parameters:
 			path: lib/Doctrine/Compiler.php
 
 		-
-			message: "#^Parameter \\#1 \\$input of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Compiler.php
-
-		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$args of function array_merge expects array, array\\<int, string\\>\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Compiler.php
-
-		-
 			message: "#^Result of && is always false\\.$#"
 			count: 1
 			path: lib/Doctrine/Configurable.php
@@ -196,32 +146,7 @@ parameters:
 			path: lib/Doctrine/Connection.php
 
 		-
-			message: "#^Parameter \\#1 \\$fieldName of method Doctrine_Table\\:\\:getColumnName\\(\\) expects array\\|string, int\\|string given\\.$#"
-			count: 2
-			path: lib/Doctrine/Connection.php
-
-		-
 			message: "#^Method Doctrine_Connection\\:\\:convertBooleans\\(\\) should return array\\|int but returns array\\|bool\\|int\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:fetchAll\\(\\) should return array but returns array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:fetchColumn\\(\\) should return array but returns array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:fetchAssoc\\(\\) should return array but returns array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:fetchBoth\\(\\) should return array but returns array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection.php
 
@@ -311,26 +236,6 @@ parameters:
 			path: lib/Doctrine/Connection/Mssql.php
 
 		-
-			message: "#^Parameter \\#2 \\$subject of function preg_split expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Mssql.php
-
-		-
-			message: "#^Parameter \\#1 \\$array_arg of function end expects array\\|object, array\\<int, string\\>\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Mssql.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Mssql.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Mssql.php
-
-		-
 			message: "#^Cannot access offset 'length' on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Mssql.php
@@ -391,7 +296,7 @@ parameters:
 			path: lib/Doctrine/Connection/Statement.php
 
 		-
-			message: "#^Method Doctrine_Connection_Statement\\:\\:fetchAll\\(\\) should return array but returns array\\|false\\.$#"
+			message: "#^Parameter \\#2 \\$arg1 \\(string\\) of method Doctrine_Connection_Statement\\:\\:setFetchMode\\(\\) should be compatible with parameter \\$arg1 \\(int\\) of method Doctrine_Adapter_Statement_Interface\\:\\:setFetchMode\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Connection/Statement.php
 
@@ -411,12 +316,12 @@ parameters:
 			path: lib/Doctrine/Connection/UnitOfWork.php
 
 		-
-			message: "#^Parameter \\#2 \\$offset of function array_splice expects int, int\\|string given\\.$#"
-			count: 1
+			message: "#^Parameter \\#2 \\$offset of function array_splice expects int, int\\|false given\\.$#"
+			count: 2
 			path: lib/Doctrine/Connection/UnitOfWork.php
 
 		-
-			message: "#^Parameter \\#2 \\$offset of function array_splice expects int, float\\|int given\\.$#"
+			message: "#^Possibly invalid array key type array\\|string\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/UnitOfWork.php
 
@@ -426,17 +331,7 @@ parameters:
 			path: lib/Doctrine/Core.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function substr expects string, array\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Core.php
-
-		-
-			message: "#^Parameter \\#3 \\$length of function substr expects int, int\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Core.php
-
-		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$args of function array_merge expects array, array\\|false given\\.$#"
+			message: "#^Parameter \\#1 \\$string of function substr expects string, array\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Core.php
 
@@ -476,11 +371,6 @@ parameters:
 			path: lib/Doctrine/Data/Export.php
 
 		-
-			message: "#^Parameter \\#1 \\$model of method Doctrine_Data_Import\\:\\:_loadNestedSetData\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Data/Import.php
-
-		-
 			message: "#^Parameter \\#1 \\$haystack of function strstr expects string, string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/DataDict/Mssql.php
@@ -506,19 +396,9 @@ parameters:
 			path: lib/Doctrine/Export.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of method Doctrine_Connection\\:\\:quoteIdentifier\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Export/Mssql.php
-
-		-
 			message: "#^Return type \\(true\\) of method Doctrine_Export_Mssql\\:\\:createSequence\\(\\) should be compatible with return type \\(Doctrine_Adapter_Statement_Interface\\|PDOStatement\\) of method Doctrine_Export\\:\\:createSequence\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Export/Mssql.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of method Doctrine_Connection\\:\\:quoteIdentifier\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Export/Mysql.php
 
 		-
 			message: "#^Return type \\(bool\\|null\\) of method Doctrine_Export_Mysql\\:\\:createSequence\\(\\) should be compatible with return type \\(Doctrine_Adapter_Statement_Interface\\|PDOStatement\\) of method Doctrine_Export\\:\\:createSequence\\(\\)$#"
@@ -536,11 +416,6 @@ parameters:
 			path: lib/Doctrine/Export/Oracle.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function strtoupper expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Export/Oracle.php
-
-		-
 			message: "#^Return type \\(array\\|true\\) of method Doctrine_Export_Pgsql\\:\\:alterTableSql\\(\\) should be compatible with return type \\(string\\) of method Doctrine_Export\\:\\:alterTableSql\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Export/Pgsql.php
@@ -551,19 +426,9 @@ parameters:
 			path: lib/Doctrine/Export/Sqlite.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of method Doctrine_Connection\\:\\:quoteIdentifier\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Export/Sqlite.php
-
-		-
 			message: "#^Return type \\(false\\) of method Doctrine_Export_Sqlite\\:\\:createForeignKey\\(\\) should be compatible with return type \\(Doctrine_Adapter_Statement_Interface\\|PDOStatement\\) of method Doctrine_Export\\:\\:createForeignKey\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Export/Sqlite.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Expression_Driver, string\\) given\\.$#"
-			count: 1
-			path: lib/Doctrine/Expression.php
 
 		-
 			message: "#^Call to function is_object\\(\\) with class\\-string will always evaluate to false\\.$#"
@@ -581,16 +446,6 @@ parameters:
 			path: lib/Doctrine/Hydrator.php
 
 		-
-			message: "#^Parameter \\#1 \\$array_arg of function key expects array, array\\|Doctrine_Collection given\\.$#"
-			count: 1
-			path: lib/Doctrine/Hydrator/ArrayDriver.php
-
-		-
-			message: "#^Parameter \\#1 \\$array_arg of function key expects array, \\(array\\)\\|Doctrine_Collection given\\.$#"
-			count: 1
-			path: lib/Doctrine/Hydrator/ArrayDriver.php
-
-		-
 			message: "#^Property Doctrine_Hydrator_Graph\\:\\:\\$_rootAlias \\(string\\|null\\) does not accept int\\|string\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Hydrator/Graph.php
@@ -602,11 +457,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#4 \\$dqlAlias of method Doctrine_Hydrator_Graph\\:\\:setLastElement\\(\\) expects string, int\\|string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Hydrator/Graph.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function strtolower expects string, string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Hydrator/Graph.php
 
@@ -626,24 +476,9 @@ parameters:
 			path: lib/Doctrine/Hydrator/RecordDriver.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function strtolower expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Hydrator/ScalarDriver.php
-
-		-
 			message: "#^Method Doctrine_Hydrator_SingleScalarDriver\\:\\:hydrateResultSet\\(\\) should return array\\|bool\\|float\\|int\\|string but returns float\\|int\\|string\\|true\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Hydrator/SingleScalarDriver.php
-
-		-
-			message: "#^Parameter \\#1 \\$key of method Doctrine_Import_Builder\\:\\:setOption\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Import/Builder.php
-
-		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Import/Builder.php
 
 		-
 			message: "#^Parameter \\#3 \\$parent of method Doctrine_Import_Builder\\:\\:innerBuildActAs\\(\\) expects string\\|null, int\\|string\\|null given\\.$#"
@@ -652,7 +487,7 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$str of method Doctrine_Connection\\:\\:quoteIdentifier\\(\\) expects string, string\\|null given\\.$#"
-			count: 3
+			count: 2
 			path: lib/Doctrine/Import/Mssql.php
 
 		-
@@ -661,24 +496,14 @@ parameters:
 			path: lib/Doctrine/Import/Oracle.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function strtoupper expects string, string\\|null given\\.$#"
-			count: 2
-			path: lib/Doctrine/Import/Oracle.php
-
-		-
-			message: "#^Parameter \\#2 \\$str of function explode expects string, array\\|string given\\.$#"
+			message: "#^Cannot access offset 'className' on array\\|false\\.$#"
 			count: 1
-			path: lib/Doctrine/Import/Pgsql.php
+			path: lib/Doctrine/Import/Schema.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of function strtolower expects string, string\\|null given\\.$#"
+			message: "#^Cannot access offset 'connectionClassName' on array\\|false\\.$#"
 			count: 1
-			path: lib/Doctrine/Import/Sqlite.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function strtolower expects string, string\\|null given\\.$#"
-			count: 3
-			path: lib/Doctrine/Inflector.php
+			path: lib/Doctrine/Import/Schema.php
 
 		-
 			message: "#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, string\\|null given\\.$#"
@@ -706,11 +531,6 @@ parameters:
 			path: lib/Doctrine/Locking/Manager/Pessimistic.php
 
 		-
-			message: "#^Method Doctrine_Locking_Manager_Pessimistic\\:\\:_getLockingUserIdent\\(\\) never returns int so it can be removed from the return typehint\\.$#"
-			count: 1
-			path: lib/Doctrine/Locking/Manager/Pessimistic.php
-
-		-
 			message: "#^Array has 2 duplicate keys with value 150 \\(\\\\Doctrine_Core\\:\\:ATTR_CACHE, \\\\Doctrine_Core\\:\\:ATTR_RESULT_CACHE\\)\\.$#"
 			count: 1
 			path: lib/Doctrine/Manager.php
@@ -719,16 +539,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$url of function parse_url expects string, string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Manager.php
-
-		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Migration.php
-
-		-
-			message: "#^Binary operation \"\\+\" between int\\|string and 1 results in an error\\.$#"
-			count: 2
-			path: lib/Doctrine/Migration.php
 
 		-
 			message: "#^Method Doctrine_Migration\\:\\:getLatestVersion\\(\\) should return int but returns int\\|string\\.$#"
@@ -766,21 +576,6 @@ parameters:
 			path: lib/Doctrine/Migration/Diff.php
 
 		-
-			message: "#^Method Doctrine_Migration_Diff\\:\\:_getItemExtension\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Migration/Diff.php
-
-		-
-			message: "#^Parameter \\#1 \\$argument of class ReflectionClass constructor expects class\\-string\\<object\\>\\|object, class\\-string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Node.php
-
-		-
-			message: "#^Parameter \\#1 \\$name of method Doctrine_Connection\\:\\:getTable\\(\\) expects string, class\\-string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Node.php
-
-		-
 			message: "#^Return type \\(Doctrine_Collection\\|false\\) of method Doctrine_Node_NestedSet\\:\\:getChildren\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Node_Interface\\:\\:getChildren\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Node/NestedSet.php
@@ -816,16 +611,6 @@ parameters:
 			path: lib/Doctrine/Parser/Json.php
 
 		-
-			message: "#^Parameter \\#1 \\$name of method SimpleXMLElement\\:\\:addChild\\(\\) expects string, string\\|null given\\.$#"
-			count: 2
-			path: lib/Doctrine/Parser/Xml.php
-
-		-
-			message: "#^Parameter \\#1 \\$name of method SimpleXMLElement\\:\\:addAttribute\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Parser/Xml.php
-
-		-
 			message: "#^Call to function is_int\\(\\) with string\\|null will always evaluate to false\\.$#"
 			count: 1
 			path: lib/Doctrine/Parser/Xml.php
@@ -841,22 +626,7 @@ parameters:
 			path: lib/Doctrine/Query.php
 
 		-
-			message: "#^Parameter \\#1 \\$componentAlias of method Doctrine_Query_Abstract\\:\\:getSqlTableAlias\\(\\) expects string, int\\|string\\|null given\\.$#"
-			count: 4
-			path: lib/Doctrine/Query.php
-
-		-
 			message: "#^Parameter \\#2 \\$subject of function preg_match_all expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#3 \\$length of function substr expects int, int\\|false given\\.$#"
-			count: 3
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#1 \\$fieldName of method Doctrine_Table\\:\\:getColumnName\\(\\) expects array\\|string, string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Query.php
 
@@ -866,33 +636,13 @@ parameters:
 			path: lib/Doctrine/Query.php
 
 		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Expression_Driver, string\\) given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
 			message: "#^Property Doctrine_Query_Abstract\\:\\:\\$_rootAlias \\(string\\) does not accept int\\|string\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#2 \\$input1 of function array_map expects array, array\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#1 \\$componentAlias of method Doctrine_Query_Abstract\\:\\:getSqlTableAlias\\(\\) expects string, int\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Query.php
 
 		-
 			message: "#^Cannot access offset 0 on array\\<int, string\\>\\|false\\.$#"
 			count: 3
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#1 \\$stack of function array_shift expects array, array\\<int, string\\>\\|false given\\.$#"
-			count: 1
 			path: lib/Doctrine/Query.php
 
 		-
@@ -921,54 +671,24 @@ parameters:
 			path: lib/Doctrine/Query/Abstract.php
 
 		-
+			message: "#^Offset 'table' does not exist on array\\('parent' \\=\\> string, \\?'relation' \\=\\> mixed, \\?'table' \\=\\> mixed, \\?'agg' \\=\\> mixed, \\?'map' \\=\\> mixed\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Query/Abstract.php
+
+		-
+			message: "#^Offset 'relation' does not exist on array\\('parent' \\=\\> string, \\?'relation' \\=\\> mixed, \\?'table' \\=\\> mixed, \\?'agg' \\=\\> mixed, \\?'map' \\=\\> mixed\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Query/Abstract.php
+
+		-
 			message: "#^Result of && is always false\\.$#"
 			count: 2
 			path: lib/Doctrine/Query/Abstract.php
 
 		-
-			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Groupby.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function substr expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Groupby.php
-
-		-
-			message: "#^Parameter \\#1 \\$fieldName of method Doctrine_Table\\:\\:getColumnName\\(\\) expects array\\|string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Groupby.php
-
-		-
 			message: "#^Result of && is always true\\.$#"
 			count: 1
 			path: lib/Doctrine/Query/Groupby.php
-
-		-
-			message: "#^Parameter \\#1 \\$dqlAlias of method Doctrine_Query\\:\\:hasSqlAggregateAlias\\(\\) expects string, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Having.php
-
-		-
-			message: "#^Parameter \\#1 \\$dqlAlias of method Doctrine_Query\\:\\:getSqlAggregateAlias\\(\\) expects string, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Having.php
-
-		-
-			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Orderby.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function substr expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Orderby.php
-
-		-
-			message: "#^Parameter \\#1 \\$fieldName of method Doctrine_Table\\:\\:getColumnName\\(\\) expects array\\|string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Orderby.php
 
 		-
 			message: "#^Result of && is always true\\.$#"
@@ -987,16 +707,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$componentAlias of method Doctrine_Query_Abstract\\:\\:getSqlTableAlias\\(\\) expects string, int\\|string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/RawSql.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function strlen expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/RawSql.php
-
-		-
-			message: "#^Parameter \\#2 \\$componentAlias of method Doctrine_Query_Abstract\\:\\:addSqlTableAlias\\(\\) expects string, string\\|false given\\.$#"
 			count: 1
 			path: lib/Doctrine/RawSql.php
 
@@ -1046,17 +756,7 @@ parameters:
 			path: lib/Doctrine/Record.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of method Doctrine_Record\\:\\:hydrate\\(\\) expects array, \\(array\\)\\|Doctrine_Collection\\|Doctrine_Record given\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
 			message: "#^Parameter \\#2 \\$method of function method_exists expects string, string\\|null given\\.$#"
-			count: 2
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Binary operation \"\\*\" between bool\\|float\\|int\\|string and 100 results in an error\\.$#"
 			count: 2
 			path: lib/Doctrine/Record.php
 
@@ -1087,16 +787,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method setInvoker\\(\\) on string\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(string, string\\) given\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(mixed, string\\) given\\.$#"
 			count: 1
 			path: lib/Doctrine/Record.php
 
@@ -1216,19 +906,9 @@ parameters:
 			path: lib/Doctrine/Search/Analyzer/Utf8.php
 
 		-
-			message: "#^Cannot use \\[\\] for reading\\.$#"
-			count: 1
-			path: lib/Doctrine/Search/Indexer.php
-
-		-
 			message: "#^Return type \\(string\\) of method Doctrine_Sequence_Mssql\\:\\:lastInsertId\\(\\) should be compatible with return type \\(bool\\|int\\) of method Doctrine_Sequence\\:\\:lastInsertId\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Sequence/Mssql.php
-
-		-
-			message: "#^Method Doctrine_Sequence_Mysql\\:\\:nextId\\(\\) should return bool\\|int but returns int\\|string\\.$#"
-			count: 1
-			path: lib/Doctrine/Sequence/Mysql.php
 
 		-
 			message: "#^Cannot access offset 'autoincrement' on array\\|false\\.$#"
@@ -1261,7 +941,7 @@ parameters:
 			path: lib/Doctrine/Table.php
 
 		-
-			message: "#^Parameter \\#1 \\$args \\(array\\) of method Doctrine_Table\\:\\:bind\\(\\) should be compatible with parameter \\$name \\(string\\) of method Doctrine_Locator_Injectable\\:\\:bind\\(\\)$#"
+			message: "#^Parameter \\#1 \\$name \\(array\\) of method Doctrine_Table\\:\\:bind\\(\\) should be compatible with parameter \\$name \\(string\\) of method Doctrine_Locator_Injectable\\:\\:bind\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Table.php
 
@@ -1277,11 +957,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#2 \\$haystack of function array_search expects array, array\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Cannot assign offset int\\|string\\|false to array\\|string\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php
 
@@ -1324,16 +999,6 @@ parameters:
 			message: "#^Strict comparison using \\=\\=\\= between array\\|null and 1 will always evaluate to false\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Parameter \\#1 \\$function of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Record, string\\) given\\.$#"
-			count: 1
-			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Parameter \\#1 \\$str of function trim expects string, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Task.php
 
 		-
 			message: "#^Cannot call method getConfig\\(\\) on Doctrine_Cli\\|null\\.$#"
@@ -1406,24 +1071,9 @@ parameters:
 			path: lib/Doctrine/Transaction/Oracle.php
 
 		-
-			message: "#^Property Doctrine_Tree\\:\\:\\$_baseComponent \\(string\\) does not accept class\\-string\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Tree.php
-
-		-
 			message: "#^Cannot access offset 'level' on Doctrine_Record\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Tree/NestedSet.php
-
-		-
-			message: "#^Cannot access offset 0 on \\(array\\<int, string\\>\\|false\\)\\.$#"
-			count: 1
-			path: lib/Doctrine/Validator.php
-
-		-
-			message: "#^Cannot access offset 1 on \\(array\\<int, string\\>\\|false\\)\\.$#"
-			count: 1
-			path: lib/Doctrine/Validator.php
 
 		-
 			message: "#^Call to function is_array\\(\\) with mixed will always evaluate to false\\.$#"
@@ -1431,17 +1081,12 @@ parameters:
 			path: lib/Doctrine/Validator.php
 
 		-
-			message: "#^Parameter \\#2 \\$subject of function preg_match expects string, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Validator/Email.php
-
-		-
 			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, bool\\|float\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Validator/ErrorStack.php
 
 		-
-			message: "#^Comparison operation \"\\<\" between int and array results in an error\\.$#"
+			message: "#^Comparison operation \"\\<\" between int\\<0, max\\> and array results in an error\\.$#"
 			count: 1
 			path: lib/Doctrine/Validator/Minlength.php
 
@@ -1454,4 +1099,14 @@ parameters:
 			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, array\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Validator/Readonly.php
+
+		-
+			message: "#^Else branch is unreachable because previous condition is always true\\.$#"
+			count: 1
+			path: lib/Doctrine/Validator/Regexp.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: lib/Doctrine/Validator/Regexp.php
 

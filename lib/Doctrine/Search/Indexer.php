@@ -67,7 +67,9 @@ class Doctrine_Search_Indexer
         $coll = Doctrine_Collection::create('Doctrine_File');
 
         foreach ($files as $file) {
-            $coll[]->url = $file;
+            $record      = new Doctrine_File();
+            $record->url = $file;
+            $coll->add($record);
         }
 
         $coll->save();

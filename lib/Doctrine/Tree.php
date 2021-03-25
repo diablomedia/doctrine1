@@ -63,6 +63,9 @@ class Doctrine_Tree
             $subclasses = $table->getOption('subclasses');
             while (in_array($class, $subclasses)) {
                 $class = get_parent_class($class);
+                if (!$class) {
+                    $class = '';
+                }
             }
             $this->_baseComponent = $class;
         }

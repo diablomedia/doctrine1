@@ -365,7 +365,7 @@ class Doctrine_Migration_Diff
      * Used to determine if a directory contains YAML or PHP files.
      *
      * @param string $item
-     * @return string $extension
+     * @return string|null $extension
      */
     protected function _getItemExtension($item)
     {

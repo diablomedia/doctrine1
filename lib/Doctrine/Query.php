@@ -544,8 +544,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
             $field          = $terms[1];
         } else {
             reset($this->_queryComponents);
-            $componentAlias = key($this->_queryComponents);
-            $fields         = $terms[0];
+            $componentAlias = (string) key($this->_queryComponents);
+            $field          = $terms[0];
         }
 
         $tableAlias = $this->getSqlTableAlias($componentAlias);
@@ -615,7 +615,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         $refs = $this->_tokenizer->sqlExplode($dql, ',');
 
         $pos   = strpos(trim($refs[0]), ' ');
-        $first = substr($refs[0], 0, $pos);
+        $first = substr($refs[0], 0, (int) $pos);
 
         // check for DISTINCT keyword
         if ($first === 'DISTINCT') {
@@ -641,14 +641,14 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
                 $alias      = array_pop($terms);
 
                 if (! $alias) {
-                    $alias = substr($expression, 0, $pos);
+                    $alias = substr($expression, 0, (int) $pos);
                 }
 
                 // Fix for http://www.doctrine-project.org/jira/browse/DC-706
                 if ($pos !== false && substr($expression, 0, 1) !== "'" && substr($expression, 0, $pos) == '') {
                     $_queryComponents = $this->_queryComponents;
                     reset($_queryComponents);
-                    $componentAlias = key($_queryComponents);
+                    $componentAlias = (string) key($_queryComponents);
                 } else {
                     $componentAlias = $this->getExpressionOwner($expression);
                 }
@@ -845,7 +845,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     public function parseFunctionExpression($expr, $parseCallback = null)
     {
         $pos  = strpos($expr, '(');
-        $name = substr($expr, 0, $pos);
+        $name = substr($expr, 0, (int) $pos);
 
         if ($name === '') {
             return $this->parseSubquery($expr);
@@ -924,7 +924,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
             $subquery->free();
 
             reset($this->_queryComponents);
-            $componentAlias = key($this->_queryComponents);
+            $componentAlias = (string) key($this->_queryComponents);
             $tableAlias     = $this->getSqlTableAlias($componentAlias);
 
             $sqlAlias = $tableAlias . '__' . count($this->_aggregateAliasMap);
@@ -1308,7 +1308,10 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
                     $this->useQueryCache(false);
 
                     // mysql doesn't support LIMIT in subqueries
-                    $list     = $this->_conn->execute($subquery, $this->_execParams)->fetchAll(Doctrine_Core::FETCH_COLUMN);
+                    $list = $this->_conn->execute($subquery, $this->_execParams)->fetchAll(Doctrine_Core::FETCH_COLUMN);
+                    if (!$list) {
+                        $list = array();
+                    }
                     $subquery = implode(', ', array_map(array($this->_conn, 'quote'), $list));
 
                     break;
@@ -1421,7 +1424,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     {
         $map            = reset($this->_queryComponents);
         $table          = $map['table'];
-        $componentAlias = key($this->_queryComponents);
+        $componentAlias = (string) key($this->_queryComponents);
 
         // get short alias
         $alias = $this->getSqlTableAlias($componentAlias);
@@ -1447,7 +1450,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
                 // Remove identifier quoting if it exists
                 $e = $this->_tokenizer->bracketExplode($part, ' ');
                 foreach ($e as $f) {
-                    if ($f == 0 || $f % 2 == 0) {
+                    if ($f == 0 || (int) $f % 2 == 0) {
                         $partOriginal = str_replace(',', '', trim($f));
                         $callback     = /**
                          * @param string $e

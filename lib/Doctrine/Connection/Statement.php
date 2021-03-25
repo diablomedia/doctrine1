@@ -200,7 +200,13 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      */
     public function errorCode()
     {
-        return $this->_stmt->errorCode();
+        $code = $this->_stmt->errorCode();
+
+        if (!$code) {
+            return '';
+        }
+
+        return $code;
     }
 
     /**
@@ -280,7 +286,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      * fetch
      *
      * @see Doctrine_Core::FETCH_* constants
-     * @param integer $fetchMode           Controls how the next row will be returned to the caller.
+     * @param integer $fetchStyle           Controls how the next row will be returned to the caller.
      *                                      This value must be one of the Doctrine_Core::FETCH_* constants,
      *                                      defaulting to Doctrine_Core::FETCH_BOTH
      *
@@ -304,20 +310,20 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      * @return mixed
      */
     public function fetch(
-        $fetchMode = Doctrine_Core::FETCH_BOTH,
+        $fetchStyle = Doctrine_Core::FETCH_BOTH,
         $cursorOrientation = Doctrine_Core::FETCH_ORI_NEXT,
         $cursorOffset = null
     ) {
         $event = new Doctrine_Event($this, Doctrine_Event::STMT_FETCH, $this->getQuery());
 
-        $event->fetchMode         = $fetchMode;
+        $event->fetchMode         = $fetchStyle;
         $event->cursorOrientation = $cursorOrientation;
         $event->cursorOffset      = $cursorOffset;
 
         $data = $this->_conn->getListener()->preFetch($event);
 
         if (! $event->skipOperation) {
-            $data = $this->_stmt->fetch($fetchMode, $cursorOrientation, $cursorOffset);
+            $data = $this->_stmt->fetch($fetchStyle, $cursorOrientation, $cursorOffset);
         }
 
         $this->_conn->getListener()->postFetch($event);
@@ -329,34 +335,38 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      * fetchAll
      * Returns an array containing all of the result set rows
      *
-     * @param integer $fetchMode            Controls how the next row will be returned to the caller.
+     * @param integer $fetchStyle           Controls how the next row will be returned to the caller.
      *                                      This value must be one of the Doctrine_Core::FETCH_* constants,
      *                                      defaulting to Doctrine_Core::FETCH_BOTH
      *
-     * @param integer $columnIndex          Returns the indicated 0-indexed column when the value of $fetchStyle is
+     * @param integer $colnum               Returns the indicated 0-indexed column when the value of $fetchStyle is
      *                                      Doctrine_Core::FETCH_COLUMN. Defaults to 0.
      *
      * @return array
      */
     public function fetchAll(
-        $fetchMode = Doctrine_Core::FETCH_BOTH,
-        $columnIndex = null
+        $fetchStyle = Doctrine_Core::FETCH_BOTH,
+        $colnum = null
     ) {
         $event              = new Doctrine_Event($this, Doctrine_Event::STMT_FETCHALL, $this->getQuery());
-        $event->fetchMode   = $fetchMode;
-        $event->columnIndex = $columnIndex;
+        $event->fetchMode   = $fetchStyle;
+        $event->columnIndex = $colnum;
         $data               = array();
 
         $this->_conn->getListener()->preFetchAll($event);
 
         if (! $event->skipOperation) {
-            if ($columnIndex !== null) {
-                $data = $this->_stmt->fetchAll($fetchMode, $columnIndex);
+            if ($colnum !== null) {
+                $data = $this->_stmt->fetchAll($fetchStyle, $colnum);
             } else {
-                $data = $this->_stmt->fetchAll($fetchMode);
+                $data = $this->_stmt->fetchAll($fetchStyle);
             }
 
             $event->data = $data;
+        }
+
+        if (!$data) {
+            $data = array();
         }
 
         $this->_conn->getListener()->postFetchAll($event);
@@ -417,7 +427,7 @@ class Doctrine_Connection_Statement implements Doctrine_Adapter_Statement_Interf
      *
      * @param integer $column               The 0-indexed column in the result set.
      *
-     * @return array                        Associative meta data array with the following structure:
+     * @return array|false                  Associative meta data array with the following structure:
      *
      *          native_type                 The PHP native type used to represent the column value.
      *          driver:decl_                type The SQL type used to represent the column value in the database. If the column in the result set is the result of a function, this value is not returned by PDOStatement->getColumnMeta().

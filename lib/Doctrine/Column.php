@@ -92,13 +92,13 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
     /**
      * set
      *
-     * @param string $name
+     * @param string $offset
      * @param mixed $value
      * @return void
      */
-    public function set($name, $value)
+    public function set($offset, $value)
     {
-        $this->_definition[$name] = $value;
+        $this->_definition[$offset] = $value;
     }
 
     /**

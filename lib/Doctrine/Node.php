@@ -78,13 +78,16 @@ class Doctrine_Node implements IteratorAggregate
         if ($thisTable->getOption('inheritanceMap')) {
             // Move up the hierarchy until we find the "subclasses" option. This option
             // MUST be set on the root class of the user's hierarchy that uses STI.
-            while (! $subclasses = $table->getOption('subclasses')) {
-                $class           = get_parent_class($class);
+            while (!$table->getOption('subclasses')) {
+                $class = get_parent_class($class);
+                if (!$class) {
+                    break;
+                }
                 $reflectionClass = new ReflectionClass($class);
                 if ($reflectionClass->isAbstract()) {
                     continue;
                 }
-                if ($class == 'Doctrine_Record') {
+                if ($class == Doctrine_Record::class) {
                     throw new Doctrine_Node_Exception('No subclasses specified. You are '
                             . 'using Single Table Inheritance with NestedSet but you have '
                             . 'not specified the subclasses correctly. Make sure you use '

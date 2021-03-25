@@ -88,6 +88,11 @@ class Doctrine_Validator_Unique extends Doctrine_Validator_Driver
         }
 
         $stmt = $table->getConnection()->getDbh()->prepare($sql);
+
+        if (!$stmt) {
+            throw new Doctrine_Connection_Exception('Could not prepare statement to check duplicate value');
+        }
+
         $stmt->execute($values);
 
         return (! is_array($stmt->fetch()));

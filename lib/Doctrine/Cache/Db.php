@@ -82,7 +82,8 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver
 
         $result = $this->getConnection()->execute($sql, array($id))->fetchAll(Doctrine_Core::FETCH_NUM);
 
-        if (! isset($result[0])) {
+        // In PHP <= 7.4, PDOStatement::fetchAll may return `false`
+        if (!$result || ! isset($result[0])) {
             return false;
         }
 
@@ -222,8 +223,11 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver
         $sql     = 'SELECT id FROM ' . $this->_options['tableName'];
         $keys    = array();
         $results = $this->getConnection()->execute($sql)->fetchAll(Doctrine_Core::FETCH_NUM);
-        for ($i = 0, $count = count($results); $i < $count; $i++) {
-            $keys[] = $results[$i][0];
+        // In PHP <= 7.4, PDOStatement::fetchAll may return `false`
+        if ($results) {
+            for ($i = 0, $count = count($results); $i < $count; $i++) {
+                $keys[] = $results[$i][0];
+            }
         }
         return $keys;
     }

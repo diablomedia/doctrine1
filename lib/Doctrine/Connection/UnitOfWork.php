@@ -691,17 +691,23 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
         }
 
         // build the correct order
+        /**
+         * @var array<int, string> $flushList
+         */
         $flushList = array();
         foreach ($classesToOrder as $class) {
             $table        = $this->conn->getTable($class);
             $currentClass = $table->getComponentName();
 
+            /**
+             * @var int|false $index
+             */
             $index = array_search($currentClass, $flushList);
 
             if ($index === false) {
                 //echo "adding $currentClass to flushlist";
                 $flushList[] = $currentClass;
-                $index       = max(array_keys($flushList));
+                $index       = (int) max(array_keys($flushList));
             }
 
             $rels = $table->getRelations();
@@ -721,6 +727,9 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
                     continue;
                 }
 
+                /**
+                 * @var int|false $relatedCompIndex
+                 */
                 $relatedCompIndex = array_search($relatedClassName, $flushList);
                 $type             = $rel->getType();
 

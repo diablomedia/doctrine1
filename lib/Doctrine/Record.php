@@ -1568,7 +1568,13 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             if ($type === 'json') {
                 // Doing this so that the stored value on the model, and the value retrieved from the database
                 // will match types (mainly so associative arrays are converted to stdClass objects)
-                $value = json_decode(json_encode($value));
+                $value = json_encode($value);
+                if ($value === false) {
+                    throw new Doctrine_Record_Exception(
+                        'Error encountered when encoding $value: ' . json_last_error_msg()
+                    );
+                }
+                $value = json_decode($value);
             }
 
             if ($value instanceof Doctrine_Record) {

@@ -32,7 +32,7 @@ jobs:
             - name: Static Analysis
               run: |
                   composer phpstan
-                  composer psalm
+                  composer psalm -- --shepherd
             - name: Code Style Check
               run: composer style-check
               # php-cs-fixer doesn't fully support PHP 8 yet

@@ -182,7 +182,11 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
             case 'int':
                 return $input;
             case 'json':
-                return json_encode($input);
+                $input = json_encode($input);
+                if ($input === false) {
+                    throw new Doctrine_Exception('Error encountered encoding $input: ' . json_last_error_msg());
+                }
+                return $input;
             case 'array':
             case 'object':
                 $input = serialize($input);

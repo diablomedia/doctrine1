@@ -235,6 +235,11 @@ class Doctrine_Data_Import extends Doctrine_Data
                     $value = unserialize($value);
                 } elseif ($type == 'json') {
                     $value = json_decode($value);
+                    if ($value === null && json_last_error() !== JSON_ERROR_NONE) {
+                        throw new Doctrine_Record_Exception(
+                            'Error encountered decoding Json: ' . json_last_error_msg()
+                        );
+                    }
                 }
                 $obj->set($key, $value);
             } elseif ($obj->getTable()->hasRelation($key)) {

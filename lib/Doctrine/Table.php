@@ -2387,8 +2387,10 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                     if (is_string($value)) {
                         $value = empty($value) ? null:json_decode($value);
 
-                        if ($value === false) {
-                            throw new Doctrine_Table_Exception('Json decoding of ' . $fieldName . ' failed.');
+                        if ($value === null && json_last_error() !== JSON_ERROR_NONE) {
+                            throw new Doctrine_Table_Exception(
+                                'Json decoding of ' . $fieldName . ' failed: ' . json_last_error_msg()
+                            );
                         }
                         return $value;
                     }

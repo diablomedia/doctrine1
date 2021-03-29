@@ -906,7 +906,13 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                         }
                         break;
                     case 'json':
-                        $vars['_data'][$k] = json_encode($vars['_data'][$k]);
+                        $value = json_encode($vars['_data'][$k]);
+                        if ($value === false) {
+                            throw new Doctrine_Record_Exception(
+                                'Error encountered encoding value: ' . json_last_error_msg()
+                            );
+                        }
+                        $vars['_data'][$k] = $value;
                         break;
                     case 'gzip':
                         $vars['_data'][$k] = gzcompress($vars['_data'][$k]);
@@ -963,7 +969,13 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                     $this->_data[$k] = gzuncompress($this->_data[$k]);
                     break;
                 case 'json':
-                    $this->_data[$k] = json_decode($this->_data[$k]);
+                    $value = json_decode($this->_data[$k]);
+                    if ($value === null && json_last_error() !== JSON_ERROR_NONE) {
+                        throw new Doctrine_Record_Exception(
+                            'Error encountered decoding Json: ' . json_last_error_msg()
+                        );
+                    }
+                    $this->_data[$k] = $value;
                     break;
                 case 'enum':
                     $this->_data[$k] = $this->_table->enumValue($k, $this->_data[$k]);
@@ -1581,6 +1593,11 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                     );
                 }
                 $value = json_decode($value);
+                if ($value === null && json_last_error() !== JSON_ERROR_NONE) {
+                    throw new Doctrine_Record_Exception(
+                        'Error encountered decoding Json: ' . json_last_error_msg()
+                    );
+                }
             }
 
             if ($value instanceof Doctrine_Record) {
@@ -1963,7 +1980,13 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                     $a[$field] = serialize($this->_data[$field]);
                     break;
                 case 'json':
-                    $a[$field] = json_encode($this->_data[$field]);
+                    $value = json_encode($this->_data[$field]);
+                    if ($value === false) {
+                        throw new Doctrine_Record_Exception(
+                            'Error encountered when encoding $value: ' . json_last_error_msg()
+                        );
+                    }
+                    $a[$field] = $value;
                     break;
                 case 'gzip':
                     $a[$field] = gzcompress($this->_data[$field], 5);

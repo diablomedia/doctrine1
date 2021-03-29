@@ -67,6 +67,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 // no break
             case 'array':
             case 'object':
+            case 'json':
             case 'text':
             case 'char':
             case 'varchar':

@@ -41,7 +41,7 @@ class Doctrine_Expression
     protected $_expression;
 
     /**
-     * @var Doctrine_Connection
+     * @var Doctrine_Connection|null
      */
     protected $_conn;
 

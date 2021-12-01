@@ -99,12 +99,12 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
      *
      * Load xml file and return array of data
      *
-     * @param  string $path  Path to load xml data from
+     * @param  string $array  Path to load xml data from
      * @return array  $array Array of data converted from xml
      */
-    public function loadData($path)
+    public function loadData($array)
     {
-        $contents = $this->doLoad($path);
+        $contents = $this->doLoad($array);
 
         $simpleXml = simplexml_load_string($contents);
 

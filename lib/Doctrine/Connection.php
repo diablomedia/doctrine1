@@ -531,6 +531,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         }
 
         if (! $found) {
+            /** @phpstan-var class-string<Doctrine_Adapter_Interface> $class */
             $class = 'Doctrine_Adapter_' . ucwords($e[0]);
 
             if (class_exists($class)) {

@@ -42,7 +42,8 @@ class Doctrine_Search_File extends Doctrine_Search
         parent::__construct($options);
 
         if (! isset($this->_options['resource'])) {
-            $conn       = Doctrine_Manager::connection();
+            $conn = Doctrine_Manager::connection();
+            /** @phpstan-var class-string<Doctrine_Table> $tableClass */
             $tableClass = $conn->getAttribute(Doctrine_Core::ATTR_TABLE_CLASS);
             $table      = new $tableClass('File', $conn);
 

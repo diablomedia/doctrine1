@@ -476,6 +476,7 @@ class Doctrine_Migration
     public function getMigrationClass($num)
     {
         if (isset($this->_migrationClasses[$num])) {
+            /** @phpstan-var class-string<Doctrine_Migration_Base> $className */
             $className = $this->_migrationClasses[$num];
             return new $className();
         }

@@ -36,8 +36,8 @@ class Doctrine_Connection_Common extends Doctrine_Connection
      * Adds an driver-specific LIMIT clause to the query
      *
      * @param string $query
-     * @param mixed $limit
-     * @param mixed $offset
+     * @param bool|string|int $limit
+     * @param bool|string|int $offset
      * @param bool $isManip
      * @return string
      */
@@ -48,9 +48,9 @@ class Doctrine_Connection_Common extends Doctrine_Connection
 
         if ($limit && $offset) {
             $query .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-        } elseif ($limit && ! $offset) {
+        } elseif ($limit && $offset === 0) {
             $query .= ' LIMIT ' . $limit;
-        } elseif (! $limit && $offset) {
+        } elseif (!$limit && $offset) {
             $query .= ' LIMIT 999999999999 OFFSET ' . $offset;
         }
 

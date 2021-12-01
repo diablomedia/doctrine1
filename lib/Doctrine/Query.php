@@ -182,12 +182,16 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * @param Doctrine_Connection $conn  optional connection parameter
      * @param string $class              Query class to instantiate
      * @psalm-param class-string $class
+     * @phpstan-param class-string<Doctrine_Query> $class
      * @return Doctrine_Query
      */
     public static function create($conn = null, $class = null)
     {
         if (! $class) {
-            /** @psalm-var class-string $class */
+            /**
+             * @psalm-var class-string $class
+             * @phpstan-var class-string<Doctrine_Query> $class
+             */
             $class = Doctrine_Manager::getInstance()
                 ->getAttribute(Doctrine_Core::ATTR_QUERY_CLASS);
         }

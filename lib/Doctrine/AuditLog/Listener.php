@@ -75,6 +75,7 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
     public function postInsert(Doctrine_Event $event)
     {
         if ($this->_auditLog->getOption('auditLog')) {
+            /** @phpstan-var class-string<Doctrine_Record> $class */
             $class = $this->_auditLog->getOption('className');
 
             $record  = $event->getInvoker();
@@ -126,6 +127,7 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
     public function preUpdate(Doctrine_Event $event)
     {
         if ($this->_auditLog->getOption('auditLog')) {
+            /** @phpstan-var class-string<Doctrine_Record> $class */
             $class  = $this->_auditLog->getOption('className');
             $record = $event->getInvoker();
 

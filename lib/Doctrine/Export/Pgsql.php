@@ -47,12 +47,12 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
     /**
      * createDatabaseSql
      *
-     * @param string $name
+     * @param string $database
      * @return string
      */
-    public function createDatabaseSql($name)
+    public function createDatabaseSql($database)
     {
-        $query = 'CREATE DATABASE ' . $this->conn->quoteIdentifier($name);
+        $query = 'CREATE DATABASE ' . $this->conn->quoteIdentifier($database);
 
         return $query;
     }
@@ -60,14 +60,14 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
     /**
      * drop an existing database
      *
-     * @param string $name name of the database that should be dropped
+     * @param string $database name of the database that should be dropped
      * @throws PDOException
      * @access public
      * @return string
      */
-    public function dropDatabaseSql($name)
+    public function dropDatabaseSql($database)
     {
-        $query = 'DROP DATABASE ' . $this->conn->quoteIdentifier($name);
+        $query = 'DROP DATABASE ' . $this->conn->quoteIdentifier($database);
 
         return $query;
     }

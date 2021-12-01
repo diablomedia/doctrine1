@@ -107,6 +107,7 @@ class Doctrine_Tree
      */
     public static function factory(Doctrine_Table $table, $implName, $options = array())
     {
+        /** @phpstan-var class-string<Doctrine_Tree> $class */
         $class = 'Doctrine_Tree_' . $implName;
         if (! class_exists($class)) {
             throw new Doctrine_Exception('The chosen class must extend Doctrine_Tree');

@@ -23,7 +23,7 @@ return $config
         'array_syntax'                => array('syntax' => 'long'),
         'concat_space'                => array('spacing' => 'one'),
         'no_whitespace_in_blank_line' => true,
-        'psr0'                        => true,
+        'psr_autoloading'             => false,
     ))
     ->setUsingCache(true)
     ->setFinder($finder);

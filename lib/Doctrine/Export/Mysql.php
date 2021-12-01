@@ -63,25 +63,25 @@ class Doctrine_Export_Mysql extends Doctrine_Export
     /**
      * createDatabaseSql
      *
-     * @param string $name
+     * @param string $database
      * @return string
      */
-    public function createDatabaseSql($name)
+    public function createDatabaseSql($database)
     {
-        return 'CREATE DATABASE ' . $this->conn->quoteIdentifier($name, true);
+        return 'CREATE DATABASE ' . $this->conn->quoteIdentifier($database, true);
     }
 
     /**
      * drop an existing database
      *
-     * @param string $name name of the database that should be dropped
+     * @param string $database name of the database that should be dropped
      * @return array
      */
-    public function dropDatabaseSql($name)
+    public function dropDatabaseSql($database)
     {
         return array(
             'SET FOREIGN_KEY_CHECKS = 0',
-            'DROP DATABASE ' . $this->conn->quoteIdentifier($name),
+            'DROP DATABASE ' . $this->conn->quoteIdentifier($database),
             'SET FOREIGN_KEY_CHECKS = 1'
         );
     }

@@ -78,9 +78,6 @@ parameters:
         - '#Variable \$stmt might not be defined\.#'
         # Similar to the one above in Doctrine_Connection:1075
         - '#Variable \$count might not be defined\.#'
-        # Doctrine_Relation_Parser:512, $table must always be set since nobody that has cared has complained about this, but seems like it should
-        # either be set to an initial value, or have an isset() check around it. There's a comment questioning if it should be $table or $this->table
-        - '#Variable \$table might not be defined\.#'
         # Doctrine_Query_Check:155, this one doesn't really matter much, as it'll just return null/undefined if it doesn't get set, could initialize as null
         # perhaps to make phpstan happy
         - '#Variable \$func might not be defined\.#'
@@ -229,8 +226,6 @@ parameters:
         # The default value for this parameter should probably be changed to an empty array rather than null
         # Called from Doctrine_Pager:504
         - '#Parameter \#1 \$params of method Doctrine_Pager::setCountQueryParams\(\) expects array, array\|null given\.#'
-        # Also related, Doctrine_Migration:351
-        - '#Parameter \#1 \$number of method Doctrine_Migration::setCurrentVersion\(\) expects int, int\|null given\.#'
         # The $parent var could be null, but emitAddChild shouldn't accept that, as it calls strtolower on it directly. Probably need to cast or check for null
         # in the caller.  Doctrine_Import_Builder:805|815|825
         - '#Parameter \#2 \$parent of method Doctrine_Import_Builder::emitAddChild\(\) expects string, string\|null given\.#'
@@ -317,29 +312,25 @@ parameters:
             count: 2
             path: lib/Doctrine/Import/Oracle.php
         -
-            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Expression_Driver, string\\) given\\.$#"
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array{Doctrine_Expression_Driver, string} given\\.$#"
             count: 1
             path: lib/Doctrine/Expression.php
         -
-            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Expression_Driver, string\\) given\\.$#"
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array{Doctrine_Expression_Driver, non-empty-string} given\\.$#"
             count: 1
             path: lib/Doctrine/Query.php
         -
-            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(string, string\\) given\\.$#"
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array{string, string} given\\.$#"
             count: 1
             path: lib/Doctrine/Record.php
         -
-            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(mixed, string\\) given\\.$#"
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array{mixed, string} given\\.$#"
             count: 1
             path: lib/Doctrine/Record.php
         -
-            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array\\(Doctrine_Record, string\\) given\\.$#"
+            message: "#^Parameter \\#1 \\$(function|callback) of function call_user_func_array expects callable\\(\\)\\: mixed, array{Doctrine_Record, non-empty-string} given\\.$#"
             count: 1
             path: lib/Doctrine/Table.php
-        -
-            message: "#^Parameter \\#1 \\$(array_arg|array) of function key expects array, array\\|Doctrine_Collection given\\.$#"
-            count: 2
-            path: lib/Doctrine/Hydrator/ArrayDriver.php
         -
             message: "#^Parameter \\#2 \\$(str|string) of function explode expects string, array\\|string given\\.$#"
             count: 1
@@ -364,3 +355,8 @@ parameters:
             message: "#^Parameter \\#1 \\$(str|string) of function trim expects string, string\\|false given\\.$#"
             count: 1
             path: lib/Doctrine/Task.php
+        # Due to the way that Doctrine uses __set, PHPStan can't see that this assignment might throw an exception
+        -
+            message: '#Dead catch - Exception is never thrown in the try block\.#'
+            count: 1
+            path: lib/Doctrine/Data/Import.php

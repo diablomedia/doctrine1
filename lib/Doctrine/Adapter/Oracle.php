@@ -151,12 +151,12 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
     /**
      * Prepare a query statement
      *
-     * @param string $query Query to prepare
+     * @param string $prepareString Query to prepare
      * @return Doctrine_Adapter_Statement_Oracle $stmt prepared statement
      */
-    public function prepare($query)
+    public function prepare($prepareString)
     {
-        $stmt = new Doctrine_Adapter_Statement_Oracle($this, $query, $this->executeMode);
+        $stmt = new Doctrine_Adapter_Statement_Oracle($this, $prepareString, $this->executeMode);
 
         return $stmt;
     }
@@ -164,12 +164,12 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
     /**
      * Execute query and return results as statement object
      *
-     * @param string $query
+     * @param string $queryString
      * @return Doctrine_Adapter_Statement_Oracle $stmt
      */
-    public function query($query)
+    public function query($queryString)
     {
-        $stmt = new Doctrine_Adapter_Statement_Oracle($this, $query, $this->executeMode);
+        $stmt = new Doctrine_Adapter_Statement_Oracle($this, $queryString, $this->executeMode);
         $stmt->execute();
 
         return $stmt;

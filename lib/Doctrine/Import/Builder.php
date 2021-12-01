@@ -183,7 +183,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      *
      * Class template used for writing classes
      *
-     * @var string $_tpl
+     * @var string|null $_tpl
      */
     protected static $_tpl;
 
@@ -399,7 +399,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * buildSetUp
      *
      * @param  array $definition
-     * @return string|null
+     * @return string
      */
     public function buildSetUp(array $definition)
     {
@@ -497,12 +497,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
         $code = 'parent::setUp();' . PHP_EOL . '        ' . $code;
 
-        // If we have some code for the function then lets define it and return it
-        if ($code) {
-            return '    public function setUp()' . PHP_EOL . '    {' . PHP_EOL . '        ' . $code . PHP_EOL . '    }';
-        }
-
-        return null;
+        return '    public function setUp()' . PHP_EOL . '    {' . PHP_EOL . '        ' . $code . PHP_EOL . '    }';
     }
 
     /**
@@ -1025,7 +1020,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         $docs = PHP_EOL . $this->buildPhpDocs($definition);
 
         $content = sprintf(
-            self::$_tpl,
+            self::$_tpl ?? '',
             $docs,
             $abstract,
             $className,
@@ -1152,7 +1147,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
         $content = '<?php' . PHP_EOL . PHP_EOL;
         $content .= sprintf(
-            self::$_tpl,
+            self::$_tpl ?? '',
             $docBlock,
             false,
             $className,

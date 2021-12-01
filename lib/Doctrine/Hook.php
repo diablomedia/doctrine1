@@ -158,6 +158,7 @@ class Doctrine_Hook
                 if ($def = $table->getDefinitionOf($column)) {
                     $def[0] = gettype($value);
                     if (isset($this->typeParsers[$def[0]])) {
+                        /** @phpstan-var class-string<Doctrine_Hook_Parser> $name */
                         $name   = $this->typeParsers[$def[0]];
                         $parser = new $name;
 

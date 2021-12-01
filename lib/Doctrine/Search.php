@@ -141,7 +141,8 @@ class Doctrine_Search extends Doctrine_Record_Generator
     {
         $this->initialize($this->_options['table']);
 
-        $fields     = $this->getOption('fields');
+        $fields = $this->getOption('fields');
+        /** @phpstan-var class-string<Doctrine_Record> $class */
         $class      = $this->getOption('className');
         $name       = $this->getOption('table')->getComponentName();
         $conn       = $this->getOption('table')->getConnection();
@@ -229,7 +230,8 @@ class Doctrine_Search extends Doctrine_Record_Generator
 
         $this->initialize($table);
 
-        $id     = $table->getIdentifierColumnNames();
+        $id = $table->getIdentifierColumnNames();
+        /** @phpstan-var class-string<Doctrine_Record> $class */
         $class  = $this->_options['className'];
         $fields = $this->_options['fields'];
         $conn   = $this->_options['table']->getConnection();

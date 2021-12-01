@@ -89,7 +89,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
 
 
     /**
-     * @var Doctrine_Node        node object
+     * @var Doctrine_Node|null        node object
      */
     protected $_node;
 
@@ -1734,24 +1734,24 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * test whether a field (column, mapped value, related component, accessor) is accessible by @see get()
      *
-     * @param string $fieldName
+     * @param string $offset
      * @return boolean
      */
-    public function contains($fieldName)
+    public function contains($offset)
     {
-        if (array_key_exists($fieldName, $this->_data)) {
+        if (array_key_exists($offset, $this->_data)) {
             // this also returns true if the field is a Doctrine_Null.
             // imho this is not correct behavior.
             return true;
         }
-        if (isset($this->_id[$fieldName])) {
+        if (isset($this->_id[$offset])) {
             return true;
         }
-        if (isset($this->_values[$fieldName])) {
+        if (isset($this->_values[$offset])) {
             return true;
         }
-        if (isset($this->_references[$fieldName]) &&
-            $this->_references[$fieldName] !== self::$_null) {
+        if (isset($this->_references[$offset]) &&
+            $this->_references[$offset] !== self::$_null) {
             return true;
         }
         return false;

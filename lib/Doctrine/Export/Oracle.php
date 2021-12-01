@@ -36,14 +36,14 @@ class Doctrine_Export_Oracle extends Doctrine_Export
     /**
      * create a new database
      *
-     * @param string $name name of the database that should be created
+     * @param string $database name of the database that should be created
      * @return boolean      success of operation
      */
-    public function createDatabase($name)
+    public function createDatabase($database)
     {
         if ($this->conn->getAttribute(Doctrine_Core::ATTR_EMULATE_DATABASE)) {
-            $username = $name;
-            $password = $this->conn->dsn['password'] ? $this->conn->dsn['password'] : $name;
+            $username = $database;
+            $password = $this->conn->dsn['password'] ? $this->conn->dsn['password'] : $database;
 
             $tablespace = $this->conn->getOption('default_tablespace')
                         ? ' DEFAULT TABLESPACE ' . $this->conn->getOption('default_tablespace') : '';
@@ -64,11 +64,11 @@ class Doctrine_Export_Oracle extends Doctrine_Export
     /**
      * drop an existing database
      *
-     * @param string $name name of the database that should be dropped
+     * @param string $database name of the database that should be dropped
      * @return void
      * @access public
      */
-    public function dropDatabase($name)
+    public function dropDatabase($database)
     {
         $sql = <<<SQL
 BEGIN
@@ -89,7 +89,7 @@ SQL;
         $this->conn->exec($sql);
 
         if ($this->conn->getAttribute(Doctrine_Core::ATTR_EMULATE_DATABASE)) {
-            $username = $name;
+            $username = $database;
             $this->conn->exec('DROP USER ' . $username . ' CASCADE');
         }
     }
@@ -370,14 +370,14 @@ END;';
     /**
      * drop an existing table
      *
-     * @param string $name name of the table that should be dropped
+     * @param string $table name of the table that should be dropped
      * @return void
      */
-    public function dropTable($name)
+    public function dropTable($table)
     {
         //$this->conn->beginNestedTransaction();
-        $this->dropAutoincrement($name);
-        parent::dropTable($name);
+        $this->dropAutoincrement($table);
+        parent::dropTable($table);
         //$this->conn->completeNestedTransaction();
     }
 
@@ -553,13 +553,13 @@ END;';
     /**
      * drop existing sequence
      *
-     * @param string $seqName name of the sequence to be dropped
+     * @param string $sequenceName name of the sequence to be dropped
      * @return string
      */
-    public function dropSequenceSql($seqName)
+    public function dropSequenceSql($sequenceName)
     {
-        $sequenceName = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($seqName), true);
-        return 'DROP SEQUENCE ' . $sequenceName;
+        $seqName = $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($sequenceName), true);
+        return 'DROP SEQUENCE ' . $seqName;
     }
 
     /**

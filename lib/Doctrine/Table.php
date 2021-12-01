@@ -65,7 +65,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
     /**
      * @see Doctrine_Identifier constants
-     * @var integer $_identifierType                     the type of identifier this table uses
+     * @var integer|null $_identifierType                     the type of identifier this table uses
      */
     protected $_identifierType;
 
@@ -230,7 +230,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Generator instance responsible for constructing this table
      *
      * @see Doctrine_Record_Generator
-     * @var Doctrine_Record_Generator $_generator
+     * @var Doctrine_Record_Generator|null $_generator
      */
     protected $_generator;
 
@@ -240,7 +240,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     protected $_invokedMethods = array();
 
     /**
-     * @var Doctrine_Record $record             empty instance of the given model
+     * @var Doctrine_Record|null $record             empty instance of the given model
      */
     protected $record;
 
@@ -270,11 +270,11 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         }
 
         if ($initDefinition) {
-            $this->record = $this->initDefinition();
+            $record = $this->record = $this->initDefinition();
 
             $this->initIdentifier();
 
-            $this->record->setUp();
+            $record->setUp();
 
             // if tree, set up tree
             if ($this->isTree()) {
@@ -312,6 +312,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      */
     public function initDefinition()
     {
+        /** @phpstan-var class-string<Doctrine_Record> $name */
         $name = $this->_options['name'];
         if (! class_exists($name) || empty($name)) {
             throw new Doctrine_Exception("Couldn't find class " . $name);
@@ -563,7 +564,9 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     public function getRecordInstance()
     {
         if (! $this->record) {
-            $this->record = new $this->_options['name'];
+            /** @phpstan-var class-string<Doctrine_Record> $class */
+            $class        = $this->_options['name'];
+            $this->record = new $class;
         }
         return $this->record;
     }
@@ -1264,9 +1267,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     public function setColumnOption($columnName, $option, $value)
     {
         if ($option == 'primary') {
-            if (isset($this->_identifier)) {
-                $this->_identifier = (array) $this->_identifier;
-            }
+            $this->_identifier = (array) $this->_identifier;
 
             if ($value &&  ! in_array($columnName, $this->_identifier)) {
                 $this->_identifier[] = $columnName;
@@ -1418,9 +1419,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         }
 
         if (isset($options['primary']) && $options['primary']) {
-            if (isset($this->_identifier)) {
-                $this->_identifier = (array) $this->_identifier;
-            }
+            $this->_identifier = (array) $this->_identifier;
+
             if (! in_array($fieldName, $this->_identifier)) {
                 $this->_identifier[] = $fieldName;
             }
@@ -1473,7 +1473,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * This method finds out if the primary key is multifield.
      * @see Doctrine_Identifier constants
-     * @return integer
+     * @return integer|null
      */
     public function getIdentifierType()
     {
@@ -2588,7 +2588,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     /**
      * Get the parent generator responsible for this table instance
      *
-     * @return Doctrine_Record_Generator
+     * @return Doctrine_Record_Generator|null
      */
     public function getParentGenerator()
     {

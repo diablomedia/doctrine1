@@ -33,11 +33,6 @@
 class Doctrine_Record_Iterator extends ArrayIterator
 {
     /**
-     * @var Doctrine_Record $record
-     */
-    private $record;
-
-    /**
      * @var Doctrine_Null $null
      */
     private static $null;
@@ -49,7 +44,6 @@ class Doctrine_Record_Iterator extends ArrayIterator
      */
     public function __construct(Doctrine_Record $record)
     {
-        $this->record = $record;
         parent::__construct($record->getData());
     }
 

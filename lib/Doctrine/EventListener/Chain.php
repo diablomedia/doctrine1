@@ -64,15 +64,15 @@ class Doctrine_EventListener_Chain extends Doctrine_Access implements Doctrine_E
      * returns a Doctrine_EventListener on success
      * and null on failure
      *
-     * @param mixed $key
+     * @param mixed $offset
      * @return mixed
      */
-    public function get($key)
+    public function get($offset)
     {
-        if (! isset($this->_listeners[$key])) {
+        if (! isset($this->_listeners[$offset])) {
             return null;
         }
-        return $this->_listeners[$key];
+        return $this->_listeners[$offset];
     }
 
     /**

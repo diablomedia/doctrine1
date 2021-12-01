@@ -54,7 +54,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     protected $reference;
 
     /**
-     * @var string $referenceField         the reference field of the collection
+     * @var string|null $referenceField         the reference field of the collection
      */
     protected $referenceField;
 
@@ -64,7 +64,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     protected $relation;
 
     /**
-     * @var string $keyColumn               the name of the column that is used for collection key mapping
+     * @var string|null $keyColumn               the name of the column that is used for collection key mapping
      */
     protected $keyColumn;
 
@@ -115,6 +115,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param string $keyColumn
      * @param string $class
      * @psalm-param class-string $class
+     * @phpstan-param class-string<Doctrine_Collection> $class
      * @return Doctrine_Collection
      */
     public static function create($table, $keyColumn = null, $class = null)
@@ -123,7 +124,10 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
             if (! $table instanceof Doctrine_Table) {
                 $table = Doctrine_Core::getTable($table);
             }
-            /** @psalm-var class-string $class */
+            /**
+             * @psalm-var class-string $class
+             * @phpstan-var class-string<Doctrine_Collection> $class
+             */
             $class = $table->getAttribute(Doctrine_Core::ATTR_COLLECTION_CLASS);
         }
 
@@ -217,7 +221,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Get the name of the key column
      *
-     * @return string
+     * @return string|null
      */
     public function getKeyColumn()
     {
@@ -314,26 +318,26 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Removes a specified collection element
      *
-     * @param mixed $key
+     * @param mixed $offset
      * @return mixed the data that was removed
      */
-    public function remove($key)
+    public function remove($offset)
     {
-        $removed = $this->data[$key];
+        $removed = $this->data[$offset];
 
-        unset($this->data[$key]);
+        unset($this->data[$offset]);
         return $removed;
     }
 
     /**
      * Whether or not this collection contains a specified element
      *
-     * @param mixed $key                    the key of the element
+     * @param mixed $offset                    the key of the element
      * @return boolean
      */
-    public function contains($key)
+    public function contains($offset)
     {
-        return isset($this->data[$key]);
+        return isset($this->data[$offset]);
     }
 
     /**
@@ -360,12 +364,12 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * Collection also maps referential information to newly created records
      *
-     * @param mixed $key                    the key of the element
+     * @param mixed $offset                    the key of the element
      * @return Doctrine_Record              return a specified record
      */
-    public function get($key)
+    public function get($offset)
     {
-        if (! isset($this->data[$key])) {
+        if (! isset($this->data[$offset])) {
             $record = $this->_table->create();
 
             if (isset($this->referenceField)) {
@@ -377,20 +381,20 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
                     $record->set($this->referenceField, $this->reference, false);
                 }
             }
-            if ($key === null) {
+            if ($offset === null) {
                 $this->data[] = $record;
             } else {
-                $this->data[$key] = $record;
+                $this->data[$offset] = $record;
             }
 
             if (isset($this->keyColumn)) {
-                $record->set($this->keyColumn, $key);
+                $record->set($this->keyColumn, $offset);
             }
 
             return $record;
         }
 
-        return $this->data[$key];
+        return $this->data[$offset];
     }
 
     /**

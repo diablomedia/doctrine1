@@ -205,6 +205,7 @@ abstract class Doctrine_Record_Generator extends Doctrine_Record_Abstract
         }
 
         // Create table
+        /** @phpstan-var class-string<Doctrine_Table> $tableClass */
         $tableClass   = $conn->getAttribute(Doctrine_Core::ATTR_TABLE_CLASS);
         $this->_table = new $tableClass($this->_options['className'], $conn);
         $this->_table->setGenerator($this);

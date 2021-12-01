@@ -58,6 +58,7 @@ class Doctrine_Collection_Offset extends Doctrine_Collection
     /**
      * @return Doctrine_Collection_Iterator_Expandable
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new Doctrine_Collection_Iterator_Expandable($this);

@@ -244,6 +244,7 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
      *
      * @return integer $count
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->_queries);

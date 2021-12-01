@@ -44,6 +44,7 @@ class Doctrine_Node_MaterializedPath_LevelOrderIterator implements Iterator
     /**
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         throw new Doctrine_Exception('Not yet implemented');
@@ -52,6 +53,7 @@ class Doctrine_Node_MaterializedPath_LevelOrderIterator implements Iterator
     /**
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         throw new Doctrine_Exception('Not yet implemented');
@@ -60,6 +62,7 @@ class Doctrine_Node_MaterializedPath_LevelOrderIterator implements Iterator
     /**
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         throw new Doctrine_Exception('Not yet implemented');
@@ -68,6 +71,7 @@ class Doctrine_Node_MaterializedPath_LevelOrderIterator implements Iterator
     /**
      * @return scalar
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         throw new Doctrine_Exception('Not yet implemented');
@@ -76,6 +80,7 @@ class Doctrine_Node_MaterializedPath_LevelOrderIterator implements Iterator
     /**
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         throw new Doctrine_Exception('Not yet implemented');

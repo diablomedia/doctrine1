@@ -1,5 +1,6 @@
 includes:
     - ./phpstan-baseline.neon
+    - ./phpstan-php8.php
 parameters:
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false

@@ -94,6 +94,7 @@ class Doctrine_Collection_OnDemand implements Iterator
     /**
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->index = 0;
@@ -106,6 +107,7 @@ class Doctrine_Collection_OnDemand implements Iterator
     /**
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->index;
@@ -114,6 +116,7 @@ class Doctrine_Collection_OnDemand implements Iterator
     /**
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->_current;
@@ -122,6 +125,7 @@ class Doctrine_Collection_OnDemand implements Iterator
     /**
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->_current = null;
@@ -132,6 +136,7 @@ class Doctrine_Collection_OnDemand implements Iterator
     /**
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         if (! is_null($this->_current) && $this->_current !== false) {

@@ -894,16 +894,20 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     public function addIndex($index, array $definition)
     {
         if (isset($definition['fields'])) {
-            foreach ((array) $definition['fields'] as $key => $field) {
-                if (is_numeric($key)) {
-                    $definition['fields'][$key] = $this->getColumnName($field);
-                } else {
-                    $columnName = $this->getColumnName($key);
+            if (is_array($definition['fields'])) {
+                foreach ($definition['fields'] as $key => $field) {
+                    if (is_numeric($key)) {
+                        $definition['fields'][$key] = $this->getColumnName($field);
+                    } else {
+                        $columnName = $this->getColumnName($key);
 
-                    unset($definition['fields'][$key]);
+                        unset($definition['fields'][$key]);
 
-                    $definition['fields'][$columnName] = $field;
+                        $definition['fields'][$columnName] = $field;
+                    }
                 }
+            } else {
+                $definition['fields'] = array($this->getColumnName($definition['fields']));
             }
         }
 

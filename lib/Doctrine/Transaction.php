@@ -196,6 +196,13 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
             $listener->preSavepointCreate($event);
 
             if (! $event->skipOperation) {
+                if ($this->_nestingLevel === 0) {
+                    try {
+                        $this->_doBeginTransaction();
+                    } catch (Exception $e) {
+                        throw new Doctrine_Transaction_Exception($e->getMessage());
+                    }
+                }
                 $this->createSavePoint($savepoint);
             }
 
@@ -253,6 +260,9 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
 
             if (! $event->skipOperation) {
                 $this->releaseSavePoint($savepoint);
+                if ($this->_nestingLevel === 0) {
+                    $this->_doCommit();
+                }
             }
 
             $listener->postSavepointCommit($event);

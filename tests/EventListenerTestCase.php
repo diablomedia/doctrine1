@@ -200,6 +200,7 @@ class Doctrine_EventListener_TestLogger implements Doctrine_Overloadable, Counta
     {
         return $this->messages;
     }
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->messages);

@@ -155,12 +155,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         $this->data = $data;
     }
 
-    /**
-     * This method is automatically called when this Doctrine_Collection is serialized
-     *
-     * @return string
-     */
-    public function serialize()
+    public function __serialize(): array
     {
         $vars = get_object_vars($this);
 
@@ -173,21 +168,24 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
 
         $vars['_table'] = $vars['_table']->getComponentName();
 
-        return serialize($vars);
+        return $vars;
     }
 
     /**
-     * This method is automatically called everytime a Doctrine_Collection object is unserialized
+     * This method is automatically called when this Doctrine_Collection is serialized
      *
-     * @param string $serialized
-     * @return void
+     * @return string
      */
-    public function unserialize($serialized)
+    public function serialize()
+    {
+        return serialize($this->__serialize());
+    }
+
+
+    public function __unserialize(array $array): void
     {
         $manager    = Doctrine_Manager::getInstance();
         $connection = $manager->getCurrentConnection();
-
-        $array = unserialize($serialized);
 
         foreach ($array as $name => $values) {
             $this->$name = $values;
@@ -203,6 +201,17 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         if ($keyColumn !== null) {
             $this->keyColumn = $keyColumn;
         }
+    }
+
+    /**
+     * This method is automatically called everytime a Doctrine_Collection object is unserialized
+     *
+     * @param string $serialized
+     * @return void
+     */
+    public function unserialize($serialized)
+    {
+        $this->__unserialize(unserialize($serialized));
     }
 
     /**

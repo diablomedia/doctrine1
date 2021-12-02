@@ -36,11 +36,11 @@ class Doctrine_Validator_Notblank extends Doctrine_Validator_Driver
      * checks that value isn't blank
      * a value is blank when its either null or contains only space characters
      *
-     * @param mixed $value
+     * @param string|null $value
      * @return boolean
      */
     public function validate($value)
     {
-        return (trim($value) !== '' && $value !== null);
+        return (trim($value ?? '') !== '' && $value !== null);
     }
 }

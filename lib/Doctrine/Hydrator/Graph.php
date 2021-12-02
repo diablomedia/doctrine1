@@ -130,7 +130,9 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
             $table = $this->_queryComponents[$rootAlias]['table'];
 
             if ($table->getConnection()->getAttribute(Doctrine_Core::ATTR_PORTABILITY) & Doctrine_Core::PORTABILITY_RTRIM) {
-                array_map('rtrim', $data);
+                array_map(function ($item) {
+                    return rtrim($item ?? '');
+                }, $data);
             }
 
             $id                 = $idTemplate; // initialize the id-memory

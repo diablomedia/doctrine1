@@ -87,7 +87,7 @@ class HydrationListener extends Doctrine_Record_Listener
     public function postHydrate(Doctrine_Event $event)
     {
         foreach ($event->data as $key => $value) {
-            $event->data[$key] = strtoupper($value);
+            $event->data[$key] = strtoupper($value ?? '');
         }
     }
 }

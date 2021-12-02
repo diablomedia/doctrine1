@@ -60,7 +60,9 @@ class UnitTestCase
         if ($value === $value2) {
             $this->pass();
         } else {
-            $this->_fail();
+            $this->_fail(
+                sprintf('(%s) %s is not identical to (%s) %s', gettype($value), $value, gettype($value2), $value2)
+            );
         }
     }
 

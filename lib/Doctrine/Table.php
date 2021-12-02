@@ -1139,7 +1139,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * field names converted to column names if the 3rd argument is true.
      *
      * @param string $alias        The alias to prefix columns with
-     * @param string|array $orderBy      The order by to process
+     * @param string|array|null $orderBy      The order by to process
      * @param bool $columnNames  Whether or not to convert field names to column names
      * @return string $orderBy
      */
@@ -1150,7 +1150,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         }
 
         if (! is_array($orderBy)) {
-            $e1 = explode(',', $orderBy);
+            $e1 = explode(',', $orderBy ?? '');
         } else {
             $e1 = $orderBy;
         }

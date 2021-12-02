@@ -1683,6 +1683,15 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         return Doctrine_Lib::getConnectionAsString($this);
     }
 
+    public function __serialize(): array
+    {
+        $vars                = get_object_vars($this);
+        $vars['dbh']         = null;
+        $vars['isConnected'] = false;
+
+        return $vars;
+    }
+
     /**
      * Serialize. Remove database connection(pdo) since it cannot be serialized
      *
@@ -1690,10 +1699,15 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     public function serialize()
     {
-        $vars                = get_object_vars($this);
-        $vars['dbh']         = null;
-        $vars['isConnected'] = false;
-        return serialize($vars);
+        return serialize($this->__serialize());
+    }
+
+
+    public function __unserialize(array $array): void
+    {
+        foreach ($array as $name => $values) {
+            $this->$name = $values;
+        }
     }
 
     /**
@@ -1704,11 +1718,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     public function unserialize($serialized)
     {
-        $array = unserialize($serialized);
-
-        foreach ($array as $name => $values) {
-            $this->$name = $values;
-        }
+        $this->__unserialize(unserialize($serialized));
     }
 
     /**

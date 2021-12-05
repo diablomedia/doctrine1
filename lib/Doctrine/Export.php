@@ -1249,6 +1249,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
         $sql = array();
 
         foreach ($models as $name) {
+            /** @phpstan-var class-string<Doctrine_Record> $name */
             $record  = new $name();
             $table   = $record->getTable();
             $parents = $table->getOption('joinedParents');

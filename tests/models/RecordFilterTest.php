@@ -14,6 +14,6 @@ class RecordFilterTest extends Doctrine_Record
 
     public function getName($load, $fieldName)
     {
-        return strtoupper($this->_get($fieldName, $load));
+        return strtoupper($this->_get($fieldName, $load) ?? '');
     }
 }

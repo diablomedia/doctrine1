@@ -70,13 +70,13 @@ class Doctrine_Sequence_Db2 extends Doctrine_Sequence
      * This is supported only on RDBMS brands that support sequences
      * (e.g. Oracle, PostgreSQL, DB2).  Other RDBMS brands return null.
      *
-     * @param string $sequenceName
+     * @param string $seqName
      * @return integer|null
      */
-    public function currId($sequenceName)
+    public function currId($seqName)
     {
         $sql = 'SELECT PREVVAL FOR '
-             . $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($sequenceName))
+             . $this->conn->quoteIdentifier($this->conn->formatter->getSequenceName($seqName))
              . ' AS VAL FROM SYSIBM.SYSDUMMY1';
 
         $stmt   = $this->conn->standaloneQuery($sql);

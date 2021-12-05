@@ -113,15 +113,15 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
      * returns a Doctrine_Record_Listener on success
      * and null on failure
      *
-     * @param mixed $key
+     * @param mixed $offset
      * @return mixed
      */
-    public function get($key)
+    public function get($offset)
     {
-        if (! isset($this->_listeners[$key])) {
+        if (! isset($this->_listeners[$offset])) {
             return null;
         }
-        return $this->_listeners[$key];
+        return $this->_listeners[$offset];
     }
 
     /**

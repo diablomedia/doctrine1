@@ -87,15 +87,16 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
     /**
      * Removes all existing errors for the specified field from the stack.
      *
-     * @param scalar|null $fieldName
+     * @param scalar $offset
+     * @psalm-param array-key $offset
      * @return void
      */
-    public function remove($fieldName)
+    public function remove($offset)
     {
-        if (isset($this->_errors[$fieldName])) {
-            unset($this->_errors[$fieldName]);
-            if (isset($this->_validators[$fieldName])) {
-                unset($this->_validators[$fieldName]);
+        if (isset($this->_errors[$offset])) {
+            unset($this->_errors[$offset]);
+            if (isset($this->_validators[$offset])) {
+                unset($this->_validators[$offset]);
             }
         }
     }
@@ -103,12 +104,13 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
     /**
      * Get errors for field
      *
-     * @param scalar|null $fieldName
-     * @return mixed
+     * @param scalar $offset
+     * @psalm-param array-key $offset
+     * @return mixed|null
      */
-    public function get($fieldName)
+    public function get($offset)
     {
-        return isset($this->_errors[$fieldName]) ? $this->_errors[$fieldName] : null;
+        return isset($this->_errors[$offset]) ? $this->_errors[$offset] : null;
     }
 
     /**
@@ -126,12 +128,12 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
     /**
      * Check if a field has an error
      *
-     * @param scalar|null $fieldName
+     * @param scalar|null $offset
      * @return boolean
      */
-    public function contains($fieldName)
+    public function contains($offset)
     {
-        return array_key_exists($fieldName, $this->_errors);
+        return array_key_exists($offset, $this->_errors);
     }
 
     /**
@@ -150,6 +152,7 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
      *
      * @return ArrayIterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->_errors);
@@ -168,6 +171,7 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
      *
      * @return integer
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->_errors);

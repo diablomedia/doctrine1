@@ -43,12 +43,12 @@ class Doctrine_Node implements IteratorAggregate
     protected $options;
 
     /**
-     * @var string     $iteratorType  (Pre | Post | Level)
+     * @var string|null     $iteratorType  (Pre | Post | Level)
      */
     protected $iteratorType;
 
     /**
-     * @var array     $iteratorOptions
+     * @var array|null     $iteratorOptions
      */
     protected $iteratorOptions;
 
@@ -117,6 +117,7 @@ class Doctrine_Node implements IteratorAggregate
      */
     public static function factory(Doctrine_Record $record, $implName, $options = array())
     {
+        /** @phpstan-var class-string<Doctrine_Node> $class */
         $class = 'Doctrine_Node_' . $implName;
 
         if (! class_exists($class)) {
@@ -168,6 +169,7 @@ class Doctrine_Node implements IteratorAggregate
      * @param array $options                    options
      * @return Iterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator($type = null, $options = null)
     {
         if ($type === null) {
@@ -179,7 +181,10 @@ class Doctrine_Node implements IteratorAggregate
         }
 
         $implName = $this->record->getTable()->getOption('treeImpl');
-        /** @psalm-var class-string $iteratorClass */
+        /**
+         * @psalm-var class-string $iteratorClass
+         * @phpstan-var class-string<Iterator> $iteratorClass
+         */
         $iteratorClass = 'Doctrine_Node_' . $implName . '_' . ucfirst(strtolower($type)) . 'OrderIterator';
 
         return new $iteratorClass($this->record, $options);

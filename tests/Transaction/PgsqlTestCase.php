@@ -42,6 +42,7 @@ class Doctrine_Transaction_Pgsql_TestCase extends Doctrine_UnitTestCase
     {
         $this->transaction->commit('mypoint');
 
+        $this->assertEqual($this->adapter->pop(), 'COMMIT');
         $this->assertEqual($this->adapter->pop(), 'RELEASE SAVEPOINT mypoint');
     }
     public function testRollbackSavePointExecutesSql()

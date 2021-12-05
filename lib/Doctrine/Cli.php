@@ -342,6 +342,7 @@ class Doctrine_Cli
      * Registers the specified _included_ task-class
      *
      * @param string $className
+     * @phpstan-param class-string<Doctrine_Task> $className
      *
      * @throws InvalidArgumentException If the class does not exist or the task-name is blank
      * @throws DomainException If the class is not a Doctrine Task
@@ -385,6 +386,7 @@ class Doctrine_Cli
      *
      * @param string $className
      * @psalm-param class-string $className
+     * @phpstan-param class-string<Doctrine_Task> $className
      * @param Doctrine_Cli $cli Doctrine_Cli
      * @return Doctrine_Task
      */
@@ -403,6 +405,7 @@ class Doctrine_Cli
     public function registerIncludedTaskClasses()
     {
         foreach (get_declared_classes() as $className) {
+            /** @phpstan-var class-string<Doctrine_Task> $className */
             if ($this->classIsTask($className)) {
                 $this->registerTaskClass($className);
             }

@@ -54,12 +54,12 @@ class Doctrine_Parser_Serialize extends Doctrine_Parser
      *
      * Load and unserialize data from a file or from passed data
      *
-     * @param string $path
+     * @param string $array
      * @return mixed
      */
-    public function loadData($path)
+    public function loadData($array)
     {
-        $contents = $this->doLoad($path);
+        $contents = $this->doLoad($array);
 
         return unserialize($contents);
     }

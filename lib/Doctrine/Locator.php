@@ -177,6 +177,7 @@ class Doctrine_Locator implements Countable, IteratorAggregate
      * @see Countable interface
      * @return integer              the number of resources
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->_resources);
@@ -190,6 +191,7 @@ class Doctrine_Locator implements Countable, IteratorAggregate
      * @return ArrayIterator    an iterator for iterating through
      *                          all bound resources
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->_resources);

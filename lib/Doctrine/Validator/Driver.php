@@ -33,7 +33,7 @@
 class Doctrine_Validator_Driver
 {
     /**
-     * @var array $args     an array of plugin specific args
+     * @var array|null $args     an array of plugin specific args
      */
     public $args;
 
@@ -118,7 +118,7 @@ class Doctrine_Validator_Driver
     /**
      * returns all args and their associated values
      *
-     * @return array    all args as an associative array
+     * @return array|null    all args as an associative array
      */
     public function getArgs()
     {

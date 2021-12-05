@@ -150,11 +150,11 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
     /**
      * Returns soundex from dbms
      *
-     * @param string $column
+     * @param string $value
      * @return string to get soundex from dbms
      */
-    public function soundex($column)
+    public function soundex($value)
     {
-        return 'SOUNDEX(' . $column . ')';
+        return 'SOUNDEX(' . $value . ')';
     }
 }

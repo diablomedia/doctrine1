@@ -491,13 +491,6 @@ class Doctrine_Core
     private static $_loadedModelFiles = array();
 
     /**
-     * Array of all the loaded validators
-     *
-     * @var array
-     */
-    private static $_validators = array();
-
-    /**
      * Path to the models directory
      *
      * @var string

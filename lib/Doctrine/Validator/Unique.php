@@ -83,7 +83,7 @@ class Doctrine_Validator_Unique extends Doctrine_Validator_Driver
             }
         }
 
-        if (isset($this->args) && is_array($this->args) && isset($this->args['where'])) {
+        if (isset($this->args['where'])) {
             $sql .= ' AND ' . $this->args['where'];
         }
 

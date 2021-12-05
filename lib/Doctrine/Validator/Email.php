@@ -93,27 +93,6 @@ class Doctrine_Validator_Email extends Doctrine_Validator_Driver
      */
     private function _checkMX($host)
     {
-        // We have different behavior here depending of OS and PHP version
-        if (strtolower(substr(PHP_OS, 0, 3)) == 'win' && version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $output = array();
-
-            @exec('nslookup -type=MX ' . escapeshellcmd($host) . ' 2>&1', $output);
-
-            if (empty($output)) {
-                throw new Doctrine_Exception('Unable to execute DNS lookup. Are you sure PHP can call exec()?');
-            }
-
-            foreach ($output as $line) {
-                if (preg_match('/^' . $host . '/', $line)) {
-                    return true;
-                }
-            }
-
-            return false;
-        } elseif (function_exists('checkdnsrr')) {
-            return checkdnsrr($host, 'MX');
-        }
-
-        throw new Doctrine_Exception('Could not retrieve DNS record information. Remove check_mx = true to prevent this warning');
+        return checkdnsrr($host, 'MX');
     }
 }

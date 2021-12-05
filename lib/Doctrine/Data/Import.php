@@ -324,8 +324,9 @@ class Doctrine_Data_Import extends Doctrine_Data
         foreach ($this->_rows as $className => $classRows) {
             $rowKeyPrefix = $this->_getRowKeyPrefix(Doctrine_Core::getTable($className));
             foreach ($classRows as $rowKey => $row) {
-                $rowKey                          = $rowKeyPrefix . $rowKey;
-                $buildRows[$rowKey]              = $row;
+                $rowKey             = $rowKeyPrefix . $rowKey;
+                $buildRows[$rowKey] = $row;
+                /** @phpstan-var class-string<Doctrine_Record> $className */
                 $this->_importedObjects[$rowKey] = new $className();
                 $this->_importedObjects[$rowKey]->state('TDIRTY');
             }

@@ -111,13 +111,13 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     /**
      * Prepare a query statement
      *
-     * @param string $query   Query to prepare
+     * @param string $prepareString   Query to prepare
      * @return Doctrine_Adapter_Statement_Mock $mock Mock prepared statement
      */
-    public function prepare($query)
+    public function prepare($prepareString)
     {
         $mock              = new Doctrine_Adapter_Statement_Mock($this);
-        $mock->queryString = $query;
+        $mock->queryString = $prepareString;
 
         return $mock;
     }
@@ -136,12 +136,12 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     /**
      * Fake the execution of query and add it to the stack of executed queries
      *
-     * @param string $query
+     * @param string $queryString
      * @return Doctrine_Adapter_Statement_Mock $stmt
      */
-    public function query($query)
+    public function query($queryString)
     {
-        $this->_queries[] = $query;
+        $this->_queries[] = $queryString;
 
         $e = $this->_exception;
 
@@ -157,7 +157,7 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
         }
 
         $stmt              = new Doctrine_Adapter_Statement_Mock($this);
-        $stmt->queryString = $query;
+        $stmt->queryString = $queryString;
 
         return $stmt;
     }
@@ -244,6 +244,7 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
      *
      * @return integer $count
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->_queries);

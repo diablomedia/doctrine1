@@ -122,13 +122,13 @@ class Doctrine_Import_Mysql extends Doctrine_Import
      *     )
      * )
      *
-     * @param string $tableName     database table name
+     * @param string $table     database table name
      * @return array
      */
-    public function listTableRelations($tableName)
+    public function listTableRelations($table)
     {
         $relations = array();
-        $sql       = "SELECT column_name, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME FROM information_schema.key_column_usage WHERE table_name = '" . $tableName . "' AND table_schema = '" . $this->conn->getDatabaseName() . "' and REFERENCED_COLUMN_NAME is not NULL";
+        $sql       = "SELECT column_name, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME FROM information_schema.key_column_usage WHERE table_name = '" . $table . "' AND table_schema = '" . $this->conn->getDatabaseName() . "' and REFERENCED_COLUMN_NAME is not NULL";
         $results   = $this->conn->fetchAssoc($sql);
         foreach ($results as $result) {
             $result      = array_change_key_case($result, CASE_LOWER);

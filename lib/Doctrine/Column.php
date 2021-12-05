@@ -42,7 +42,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
                                 );
 
     /**
-     * @var array $definition  @see getDefinition()
+     * @param array $definition  @see getDefinition()
      */
     public function __construct(array $definition = array())
     {
@@ -66,27 +66,27 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
     /**
      * contains
      *
-     * @param string $name
+     * @param string $offset
      * @return boolean
      */
-    public function contains($name)
+    public function contains($offset)
     {
-        return isset($this->_definition[$name]);
+        return isset($this->_definition[$offset]);
     }
 
     /**
      * get
      *
-     * @param string $name
+     * @param string $offset
      * @return mixed
      */
-    public function get($name)
+    public function get($offset)
     {
-        if (! isset($this->_definition[$name])) {
+        if (! isset($this->_definition[$offset])) {
             return null;
         }
 
-        return $this->_definition[$name];
+        return $this->_definition[$offset];
     }
 
     /**
@@ -147,6 +147,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
      *
      * @return integer
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->_definition);
@@ -157,6 +158,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
      *
      * @return ArrayIterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->_definition);

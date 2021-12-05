@@ -89,7 +89,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
 
 
     /**
-     * @var Doctrine_Node        node object
+     * @var Doctrine_Node|null        node object
      */
     protected $_node;
 
@@ -864,13 +864,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         }
     }
 
-    /**
-     * serialize
-     * this method is automatically called when an instance of Doctrine_Record is serialized
-     *
-     * @return string
-     */
-    public function serialize()
+    public function __serialize(): array
     {
         $event = new Doctrine_Event($this, Doctrine_Event::RECORD_SERIALIZE);
 
@@ -899,12 +893,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 unset($vars['_data'][$k]);
             } else {
                 switch ($this->_table->getTypeOf($k)) {
-                    case 'array':
-                    case 'object':
-                        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-                            $vars['_data'][$k] = serialize($vars['_data'][$k]);
-                        }
-                        break;
                     case 'gzip':
                         $vars['_data'][$k] = gzcompress($vars['_data'][$k]);
                         break;
@@ -915,22 +903,24 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             }
         }
 
-        $str = serialize($vars);
-
         $this->postSerialize($event);
         $this->getTable()->getRecordListener()->postSerialize($event);
 
-        return $str;
+        return $vars;
     }
 
     /**
-     * this method is automatically called everytime an instance is unserialized
+     * serialize
+     * this method is automatically called when an instance of Doctrine_Record is serialized
      *
-     * @param string $serialized                Doctrine_Record as serialized string
-     * @throws Doctrine_Record_Exception        if the cleanData operation fails somehow
-     * @return void
+     * @return string
      */
-    public function unserialize($serialized)
+    public function serialize()
+    {
+        return serialize($this->__serialize());
+    }
+
+    public function __unserialize(array $array): void
     {
         $event = new Doctrine_Event($this, Doctrine_Event::RECORD_UNSERIALIZE);
 
@@ -942,20 +932,12 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         $this->preUnserialize($event);
         $this->getTable()->getRecordListener()->preUnserialize($event);
 
-        $array = unserialize($serialized);
-
         foreach ($array as $k => $v) {
             $this->$k = $v;
         }
 
         foreach ($this->_data as $k => $v) {
             switch ($this->_table->getTypeOf($k)) {
-                case 'array':
-                case 'object':
-                    if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-                        $this->_data[$k] = unserialize($this->_data[$k]);
-                    }
-                    break;
                 case 'gzip':
                     $this->_data[$k] = gzuncompress($this->_data[$k]);
                     break;
@@ -986,6 +968,18 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
 
         $this->postUnserialize($event);
         $this->getTable()->getRecordListener()->postUnserialize($event);
+    }
+
+    /**
+     * this method is automatically called everytime an instance is unserialized
+     *
+     * @param string $serialized                Doctrine_Record as serialized string
+     * @throws Doctrine_Record_Exception        if the cleanData operation fails somehow
+     * @return void
+     */
+    public function unserialize($serialized)
+    {
+        $this->__unserialize(unserialize($serialized));
     }
 
     /**
@@ -1734,24 +1728,24 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * test whether a field (column, mapped value, related component, accessor) is accessible by @see get()
      *
-     * @param string $fieldName
+     * @param string $offset
      * @return boolean
      */
-    public function contains($fieldName)
+    public function contains($offset)
     {
-        if (array_key_exists($fieldName, $this->_data)) {
+        if (array_key_exists($offset, $this->_data)) {
             // this also returns true if the field is a Doctrine_Null.
             // imho this is not correct behavior.
             return true;
         }
-        if (isset($this->_id[$fieldName])) {
+        if (isset($this->_id[$offset])) {
             return true;
         }
-        if (isset($this->_values[$fieldName])) {
+        if (isset($this->_values[$offset])) {
             return true;
         }
-        if (isset($this->_references[$fieldName]) &&
-            $this->_references[$fieldName] !== self::$_null) {
+        if (isset($this->_references[$offset]) &&
+            $this->_references[$offset] !== self::$_null) {
             return true;
         }
         return false;
@@ -1982,6 +1976,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @return integer          the number of columns in this record
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->_data);
@@ -2287,6 +2282,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * implements IteratorAggregate interface
      * @return Doctrine_Record_Iterator     iterator through data
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new Doctrine_Record_Iterator($this);

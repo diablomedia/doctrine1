@@ -36,7 +36,7 @@
 class Doctrine_Locator_Injectable
 {
     /**
-     * @var Doctrine_Locator      the locator object
+     * @var Doctrine_Locator|null      the locator object
      */
     protected $_locator;
 

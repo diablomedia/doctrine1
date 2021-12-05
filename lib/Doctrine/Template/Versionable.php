@@ -83,6 +83,7 @@ class Doctrine_Template_Versionable extends Doctrine_Template
         $name    = $version['name'] . (isset($version['alias']) ? ' as ' . $version['alias'] : '');
         $this->hasColumn($name, $version['type'], $version['length'], $version['options']);
 
+        /** @phpstan-var class-string<Doctrine_EventListener_Interface|Doctrine_Overloadable|Doctrine_Record_Listener_Interface> $listener */
         $listener = $this->_options['listener'];
         $this->addListener(new $listener($this->_plugin));
     }

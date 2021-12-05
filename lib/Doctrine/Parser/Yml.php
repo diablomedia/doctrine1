@@ -65,17 +65,17 @@ class Doctrine_Parser_Yml extends Doctrine_Parser
      * Load and parse data from a yml file
      *
      * @throws Doctrine_Parser_Exception parsing error
-     * @param  string  $path  Path to load yaml data from
+     * @param  string  $array  Path to load yaml data from
      * @return array   $array Array of parsed yaml data
      */
-    public function loadData($path)
+    public function loadData($array)
     {
         try {
             /*
              * I still use the doLoad method even if Yaml can load yml from a file
              * since this way Doctrine can handle file on it own.
              */
-            $contents = $this->doLoad($path);
+            $contents = $this->doLoad($array);
 
             $array = Yaml::parse($contents);
 

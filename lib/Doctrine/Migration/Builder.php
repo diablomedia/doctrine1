@@ -57,7 +57,7 @@ class Doctrine_Migration_Builder extends Doctrine_Builder
     /**
      * Class template used for writing classes
      *
-     * @var string $tpl
+     * @var string|null $tpl
      */
     private static $tpl;
 
@@ -493,7 +493,7 @@ END;
         if ($return || ! $this->getMigrationsPath()) {
             return $this->buildMigrationClass($className, null, $options, $up, $down);
         } else {
-            if (! $this->getMigrationsPath()) {
+            if ($this->getMigrationsPath() == '') {
                 throw new Doctrine_Migration_Exception('You must specify the path to your migrations.');
             }
 
@@ -533,7 +533,7 @@ END;
         $content = '<?php' . PHP_EOL;
 
         $content .= sprintf(
-            self::$tpl,
+            self::$tpl ?? '',
             $className,
             $extends,
             $up,

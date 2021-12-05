@@ -39,7 +39,7 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     protected $_invoker;
 
     /**
-     * @var Doctrine_Record_Generator $_plugin
+     * @var Doctrine_Record_Generator|null $_plugin
      */
     protected $_plugin;
 
@@ -62,7 +62,7 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * Set the table object that this Template belongs to
      *
-     * @var Doctrine_Table $table        the table object this Template belongs to
+     * @param Doctrine_Table $table        the table object this Template belongs to
      *
      * @return void
      */
@@ -110,7 +110,9 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      */
     public function addChild(Doctrine_Template $template)
     {
-        $this->_plugin->addChild($template);
+        if (isset($this->_plugin)) {
+            $this->_plugin->addChild($template);
+        }
 
         return $this;
     }
@@ -118,7 +120,7 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * Get plugin instance
      *
-     * @return Doctrine_Record_Generator
+     * @return Doctrine_Record_Generator|null
      */
     public function getPlugin()
     {
@@ -165,10 +167,10 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * get
      *
-     * @param mixed $name
+     * @param mixed $offset
      * @return void
      */
-    public function get($name)
+    public function get($offset)
     {
         throw new Doctrine_Exception("Templates doesn't support accessors.");
     }

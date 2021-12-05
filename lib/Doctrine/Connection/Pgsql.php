@@ -149,9 +149,8 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
                 $query = $manip . ' ' . $from . ' WHERE ctid=(SELECT ctid FROM '
                        . $from . ' ' . $where . ' LIMIT ' . (int)$limit . ')';
             } else {
-                if (! empty($limit)) {
-                    $query .= ' LIMIT ' . (int)$limit;
-                }
+                $query .= ' LIMIT ' . (int)$limit;
+
                 if (! empty($offset)) {
                     $query .= ' OFFSET ' . (int)$offset;
                 }

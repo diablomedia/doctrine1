@@ -34,7 +34,7 @@
 class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Interface
 {
     /**
-     * @var Doctrine_Query
+     * @var Doctrine_Query|null
      */
     private $_baseQuery;
 
@@ -127,18 +127,18 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
     /**
      * Fetches a/the root node.
      *
-     * @param integer $rootId
+     * @param integer $root_id
      * @return false|Doctrine_Record
-     * @todo Better $rootid = null and exception if $rootId == null && hasManyRoots?
+     * @todo Better $root_id = null and exception if $root_id == null && hasManyRoots?
      *       Fetching with id = 1 is too magical and cant work reliably anyway.
      */
-    public function fetchRoot($rootId = 1)
+    public function fetchRoot($root_id = 1)
     {
         $q = $this->getBaseQuery();
         $q = $q->addWhere($this->_baseAlias . '.lft = ?', 1);
 
         // if tree has many roots, then specify root id
-        $q    = $this->returnQueryWithRootId($q, $rootId);
+        $q    = $this->returnQueryWithRootId($q, $root_id);
         $data = $q->execute();
 
         if (count($data) <= 0) {

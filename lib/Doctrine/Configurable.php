@@ -39,7 +39,7 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
     protected $attributes = array();
 
     /**
-     * @var Doctrine_Configurable $parent   the parent of this component
+     * @var Doctrine_Configurable|null $parent   the parent of this component
      */
     protected $parent;
 

@@ -1,22 +1,22 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#1 \\$connection of function oci_commit expects resource, resource\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Adapter/Oracle.php
-
-		-
-			message: "#^Parameter \\#1 \\$connection of function oci_rollback expects resource, resource\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Adapter/Oracle.php
-
-		-
 			message: "#^Cannot access offset 'code' on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Adapter/Oracle.php
 
 		-
 			message: "#^Cannot access offset 'message' on array\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Adapter/Oracle.php
+
+		-
+			message: "#^Parameter \\#1 \\$connection of function oci_commit expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: lib/Doctrine/Adapter/Oracle.php
+
+		-
+			message: "#^Parameter \\#1 \\$connection of function oci_rollback expects resource, resource\\|false given\\.$#"
 			count: 1
 			path: lib/Doctrine/Adapter/Oracle.php
 
@@ -31,17 +31,7 @@ parameters:
 			path: lib/Doctrine/Adapter/Statement/Mock.php
 
 		-
-			message: "#^Return type \\(void\\) of method Doctrine_Adapter_Statement_Oracle\\:\\:bindValue\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Adapter_Statement_Interface\\:\\:bindValue\\(\\)$#"
-			count: 1
-			path: lib/Doctrine/Adapter/Statement/Oracle.php
-
-		-
 			message: "#^Cannot access offset 'code' on array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Adapter/Statement/Oracle.php
-
-		-
-			message: "#^Return type \\(string\\) of method Doctrine_Adapter_Statement_Oracle\\:\\:errorInfo\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Adapter_Statement_Interface\\:\\:errorInfo\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Adapter/Statement/Oracle.php
 
@@ -61,12 +51,22 @@ parameters:
 			path: lib/Doctrine/Adapter/Statement/Oracle.php
 
 		-
-			message: "#^Return type \\(void\\) of method Doctrine_Adapter_Statement_Oracle\\:\\:setAttribute\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Adapter_Statement_Interface\\:\\:setAttribute\\(\\)$#"
+			message: "#^Parameter \\#1 \\$connection of function oci_parse expects resource, resource\\|false given\\.$#"
 			count: 1
 			path: lib/Doctrine/Adapter/Statement/Oracle.php
 
 		-
-			message: "#^Parameter \\#1 \\$connection of function oci_parse expects resource, resource\\|false given\\.$#"
+			message: "#^Return type \\(string\\) of method Doctrine_Adapter_Statement_Oracle\\:\\:errorInfo\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Adapter_Statement_Interface\\:\\:errorInfo\\(\\)$#"
+			count: 1
+			path: lib/Doctrine/Adapter/Statement/Oracle.php
+
+		-
+			message: "#^Return type \\(void\\) of method Doctrine_Adapter_Statement_Oracle\\:\\:bindValue\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Adapter_Statement_Interface\\:\\:bindValue\\(\\)$#"
+			count: 1
+			path: lib/Doctrine/Adapter/Statement/Oracle.php
+
+		-
+			message: "#^Return type \\(void\\) of method Doctrine_Adapter_Statement_Oracle\\:\\:setAttribute\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Adapter_Statement_Interface\\:\\:setAttribute\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Adapter/Statement/Oracle.php
 
@@ -81,12 +81,12 @@ parameters:
 			path: lib/Doctrine/AuditLog/Listener/Microtime.php
 
 		-
-			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doSave\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doSave\\(\\)$#"
+			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doDelete\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doDelete\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Cache/Db.php
 
 		-
-			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doDelete\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doDelete\\(\\)$#"
+			message: "#^Return type \\(int\\) of method Doctrine_Cache_Db\\:\\:_doSave\\(\\) should be compatible with return type \\(bool\\) of method Doctrine_Cache_Driver\\:\\:_doSave\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Cache/Db.php
 
@@ -106,13 +106,13 @@ parameters:
 			path: lib/Doctrine/Collection.php
 
 		-
-			message: "#^Possibly invalid array key type array\\|string\\.$#"
-			count: 2
+			message: "#^Cannot call method getRelations\\(\\) on array\\|null\\.$#"
+			count: 1
 			path: lib/Doctrine/Collection.php
 
 		-
-			message: "#^Cannot call method getRelations\\(\\) on array\\|null\\.$#"
-			count: 1
+			message: "#^Possibly invalid array key type array\\|string\\.$#"
+			count: 2
 			path: lib/Doctrine/Collection.php
 
 		-
@@ -136,67 +136,17 @@ parameters:
 			path: lib/Doctrine/Configurable.php
 
 		-
-			message: "#^Cannot call method preConnect\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Cannot call method postConnect\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:convertBooleans\\(\\) should return array\\|int but returns array\\|bool\\|int\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Parameter \\#2 \\$stmt of class Doctrine_Connection_Statement constructor expects Doctrine_Adapter_Statement_Interface\\|PDOStatement, Doctrine_Adapter_Statement_Interface\\|PDOStatement\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:prepare\\(\\) should return Doctrine_Connection_Statement\\|null but return statement is missing\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
 			message: "#^Cannot call method execute\\(\\) on Doctrine_Connection_Statement\\|null\\.$#"
 			count: 2
 			path: lib/Doctrine/Connection.php
 
 		-
-			message: "#^Method Doctrine_Connection\\:\\:execute\\(\\) should return Doctrine_Adapter_Statement_Interface\\|PDOStatement but returns Doctrine_Connection_Statement\\|null\\.$#"
-			count: 1
+			message: "#^Cannot call method getTableName\\(\\) on array\\|null\\.$#"
+			count: 2
 			path: lib/Doctrine/Connection.php
 
 		-
-			message: "#^Method Doctrine_Connection\\:\\:execute\\(\\) should return Doctrine_Adapter_Statement_Interface\\|PDOStatement but returns Doctrine_Adapter_Statement_Interface\\|PDOStatement\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:execute\\(\\) should return Doctrine_Adapter_Statement_Interface\\|PDOStatement but return statement is missing\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Cannot call method rowCount\\(\\) on Doctrine_Connection_Statement\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:exec\\(\\) should return int but returns int\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Method Doctrine_Connection\\:\\:exec\\(\\) should return int but return statement is missing\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection.php
-
-		-
-			message: "#^Cannot call method preError\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			message: "#^Cannot call method postConnect\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection.php
 
@@ -206,12 +156,67 @@ parameters:
 			path: lib/Doctrine/Connection.php
 
 		-
-			message: "#^Cannot call method getTableName\\(\\) on array\\|null\\.$#"
-			count: 2
+			message: "#^Cannot call method preConnect\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			count: 1
 			path: lib/Doctrine/Connection.php
 
 		-
-			message: "#^Cannot call method getSqlQueryPart\\(\\) on Doctrine_Query\\|null\\.$#"
+			message: "#^Cannot call method preError\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Cannot call method rowCount\\(\\) on Doctrine_Connection_Statement\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Method Doctrine_Connection\\:\\:convertBooleans\\(\\) should return array\\|int but returns array\\|bool\\|int\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Method Doctrine_Connection\\:\\:exec\\(\\) should return int but return statement is missing\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Method Doctrine_Connection\\:\\:exec\\(\\) should return int but returns int\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Method Doctrine_Connection\\:\\:execute\\(\\) should return Doctrine_Adapter_Statement_Interface\\|PDOStatement but return statement is missing\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Method Doctrine_Connection\\:\\:execute\\(\\) should return Doctrine_Adapter_Statement_Interface\\|PDOStatement but returns Doctrine_Adapter_Statement_Interface\\|PDOStatement\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Method Doctrine_Connection\\:\\:execute\\(\\) should return Doctrine_Adapter_Statement_Interface\\|PDOStatement but returns Doctrine_Connection_Statement\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Method Doctrine_Connection\\:\\:prepare\\(\\) should return Doctrine_Connection_Statement\\|null but return statement is missing\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Parameter \\#2 \\$stmt of class Doctrine_Connection_Statement constructor expects Doctrine_Adapter_Statement_Interface\\|PDOStatement, Doctrine_Adapter_Statement_Interface\\|PDOStatement\\|false given\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection.php
+
+		-
+			message: "#^Cannot access offset 'length' on array\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection/Mssql.php
+
+		-
+			message: "#^Cannot access offset 'type' on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Mssql.php
 
@@ -226,22 +231,17 @@ parameters:
 			path: lib/Doctrine/Connection/Mssql.php
 
 		-
-			message: "#^Cannot call method getSqlTableAlias\\(\\) on Doctrine_Query\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Mssql.php
-
-		-
 			message: "#^Cannot call method getQueryComponent\\(\\) on Doctrine_Query\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Mssql.php
 
 		-
-			message: "#^Cannot access offset 'length' on array\\|false\\.$#"
+			message: "#^Cannot call method getSqlQueryPart\\(\\) on Doctrine_Query\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Mssql.php
 
 		-
-			message: "#^Cannot access offset 'type' on array\\|false\\.$#"
+			message: "#^Cannot call method getSqlTableAlias\\(\\) on Doctrine_Query\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Mssql.php
 
@@ -256,17 +256,22 @@ parameters:
 			path: lib/Doctrine/Connection/Mssql.php
 
 		-
-			message: "#^Offset 2 does not exist on array\\(\\)\\.$#"
+			message: "#^Offset 2 does not exist on array\\{\\}\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Pgsql.php
 
 		-
-			message: "#^Offset 3 does not exist on array\\(\\)\\.$#"
+			message: "#^Offset 3 does not exist on array\\{\\}\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Pgsql.php
 
 		-
-			message: "#^Cannot call method preStmtExecute\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			message: "#^Cannot call method postFetch\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Connection/Statement.php
+
+		-
+			message: "#^Cannot call method postFetchAll\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Statement.php
 
@@ -281,17 +286,12 @@ parameters:
 			path: lib/Doctrine/Connection/Statement.php
 
 		-
-			message: "#^Cannot call method postFetch\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Connection/Statement.php
-
-		-
 			message: "#^Cannot call method preFetchAll\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Statement.php
 
 		-
-			message: "#^Cannot call method postFetchAll\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			message: "#^Cannot call method preStmtExecute\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/Statement.php
 
@@ -306,12 +306,12 @@ parameters:
 			path: lib/Doctrine/Connection/Statement.php
 
 		-
-			message: "#^Cannot call method preDelete\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			message: "#^Cannot call method postDelete\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/UnitOfWork.php
 
 		-
-			message: "#^Cannot call method postDelete\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			message: "#^Cannot call method preDelete\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Connection/UnitOfWork.php
 
@@ -326,6 +326,11 @@ parameters:
 			path: lib/Doctrine/Connection/UnitOfWork.php
 
 		-
+			message: "#^Method Doctrine_Core\\:\\:migrate\\(\\) should return bool\\|int but returns int\\|false\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Core.php
+
+		-
 			message: "#^Parameter \\#1 \\$haystack of function strpos expects string, array\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Core.php
@@ -336,12 +341,17 @@ parameters:
 			path: lib/Doctrine/Core.php
 
 		-
-			message: "#^Method Doctrine_Core\\:\\:migrate\\(\\) should return bool\\|int but returns int\\|false\\|null\\.$#"
+			message: "#^Binary operation \"\\.\\=\" between array\\|string\\|null and non\\-empty\\-string results in an error\\.$#"
 			count: 1
-			path: lib/Doctrine/Core.php
+			path: lib/Doctrine/Data/Export.php
 
 		-
 			message: "#^Parameter \\#1 \\$componentName of static method Doctrine_Core\\:\\:getTable\\(\\) expects string, int\\|string given\\.$#"
+			count: 1
+			path: lib/Doctrine/Data/Export.php
+
+		-
+			message: "#^Parameter \\#1 \\$filename of function is_dir expects string, array\\|string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Data/Export.php
 
@@ -361,16 +371,6 @@ parameters:
 			path: lib/Doctrine/Data/Export.php
 
 		-
-			message: "#^Parameter \\#1 \\$filename of function is_dir expects string, array\\|string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Data/Export.php
-
-		-
-			message: "#^Binary operation \"\\.\\=\" between array\\|string\\|null and string results in an error\\.$#"
-			count: 1
-			path: lib/Doctrine/Data/Export.php
-
-		-
 			message: "#^Parameter \\#1 \\$haystack of function strstr expects string, string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/DataDict/Mssql.php
@@ -386,12 +386,12 @@ parameters:
 			path: lib/Doctrine/Export.php
 
 		-
-			message: "#^Parameter \\#1 \\$str of method Doctrine_Connection\\:\\:quoteIdentifier\\(\\) expects string, int\\|string given\\.$#"
+			message: "#^Else branch is unreachable because previous condition is always true\\.$#"
 			count: 1
 			path: lib/Doctrine/Export.php
 
 		-
-			message: "#^Else branch is unreachable because previous condition is always true\\.$#"
+			message: "#^Parameter \\#1 \\$str of method Doctrine_Connection\\:\\:quoteIdentifier\\(\\) expects string, int\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Export.php
 
@@ -406,13 +406,13 @@ parameters:
 			path: lib/Doctrine/Export/Mysql.php
 
 		-
-			message: "#^Offset 'password' does not exist on array\\|string\\.$#"
-			count: 2
+			message: "#^Call to function is_null\\(\\) with int will always evaluate to false\\.$#"
+			count: 1
 			path: lib/Doctrine/Export/Oracle.php
 
 		-
-			message: "#^Call to function is_null\\(\\) with int will always evaluate to false\\.$#"
-			count: 1
+			message: "#^Offset 'password' does not exist on array\\|string\\.$#"
+			count: 2
 			path: lib/Doctrine/Export/Oracle.php
 
 		-
@@ -446,17 +446,17 @@ parameters:
 			path: lib/Doctrine/Hydrator.php
 
 		-
-			message: "#^Property Doctrine_Hydrator_Graph\\:\\:\\$_rootAlias \\(string\\|null\\) does not accept int\\|string\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Hydrator/Graph.php
-
-		-
 			message: "#^Parameter \\#1 \\$alias of method Doctrine_Hydrator_Graph\\:\\:_getCustomIndexField\\(\\) expects string, int\\|string\\|null given\\.$#"
 			count: 2
 			path: lib/Doctrine/Hydrator/Graph.php
 
 		-
 			message: "#^Parameter \\#4 \\$dqlAlias of method Doctrine_Hydrator_Graph\\:\\:setLastElement\\(\\) expects string, int\\|string\\|null given\\.$#"
+			count: 1
+			path: lib/Doctrine/Hydrator/Graph.php
+
+		-
+			message: "#^Property Doctrine_Hydrator_Graph\\:\\:\\$_rootAlias \\(string\\|null\\) does not accept int\\|string\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Hydrator/Graph.php
 
@@ -482,6 +482,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#3 \\$parent of method Doctrine_Import_Builder\\:\\:innerBuildActAs\\(\\) expects string\\|null, int\\|string\\|null given\\.$#"
+			count: 1
+			path: lib/Doctrine/Import/Builder.php
+
+		-
+			message: "#^Variable \\$e in empty\\(\\) always exists and is not falsy\\.$#"
 			count: 1
 			path: lib/Doctrine/Import/Builder.php
 
@@ -516,17 +521,22 @@ parameters:
 			path: lib/Doctrine/Lib.php
 
 		-
-			message: "#^Cannot call method read\\(\\) on Directory\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Lib.php
-
-		-
 			message: "#^Cannot call method close\\(\\) on Directory\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Lib.php
 
 		-
-			message: "#^Method Doctrine_Locking_Manager_Pessimistic\\:\\:_getLockingUserIdent\\(\\) never returns float so it can be removed from the return typehint\\.$#"
+			message: "#^Cannot call method read\\(\\) on Directory\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Lib.php
+
+		-
+			message: "#^Negated boolean expression is always true\\.$#"
+			count: 1
+			path: lib/Doctrine/Lib.php
+
+		-
+			message: "#^Method Doctrine_Locking_Manager_Pessimistic\\:\\:_getLockingUserIdent\\(\\) never returns float so it can be removed from the return type\\.$#"
 			count: 1
 			path: lib/Doctrine/Locking/Manager/Pessimistic.php
 
@@ -539,6 +549,11 @@ parameters:
 			message: "#^Parameter \\#1 \\$url of function parse_url expects string, string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Manager.php
+
+		-
+			message: "#^If condition is always false\\.$#"
+			count: 1
+			path: lib/Doctrine/Migration.php
 
 		-
 			message: "#^Method Doctrine_Migration\\:\\:getLatestVersion\\(\\) should return int but returns int\\|string\\.$#"
@@ -571,12 +586,12 @@ parameters:
 			path: lib/Doctrine/Migration/Diff.php
 
 		-
-			message: "#^Offset 'extension' does not exist on array\\('dirname' \\=\\> string, 'basename' \\=\\> string, 'filename' \\=\\> string, \\?'extension' \\=\\> string\\)\\.$#"
+			message: "#^Offset 'extension' does not exist on array\\{dirname\\: string, basename\\: string, filename\\: string, extension\\?\\: string\\}\\.$#"
 			count: 1
 			path: lib/Doctrine/Migration/Diff.php
 
 		-
-			message: "#^Return type \\(Doctrine_Collection\\|false\\) of method Doctrine_Node_NestedSet\\:\\:getChildren\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Node_Interface\\:\\:getChildren\\(\\)$#"
+			message: "#^Cannot call method delete\\(\\) on array\\|Doctrine_Collection\\.$#"
 			count: 1
 			path: lib/Doctrine/Node/NestedSet.php
 
@@ -586,7 +601,7 @@ parameters:
 			path: lib/Doctrine/Node/NestedSet.php
 
 		-
-			message: "#^Cannot call method delete\\(\\) on array\\|Doctrine_Collection\\.$#"
+			message: "#^Return type \\(Doctrine_Collection\\|false\\) of method Doctrine_Node_NestedSet\\:\\:getChildren\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Node_Interface\\:\\:getChildren\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Node/NestedSet.php
 
@@ -621,22 +636,12 @@ parameters:
 			path: lib/Doctrine/Parser/Xml.php
 
 		-
+			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: lib/Doctrine/Query.php
+
+		-
 			message: "#^Call to function is_scalar\\(\\) with array\\|Doctrine_Collection will always evaluate to false\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Parameter \\#2 \\$subject of function preg_match_all expects string, string\\|null given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Result of && is always true\\.$#"
-			count: 1
-			path: lib/Doctrine/Query.php
-
-		-
-			message: "#^Property Doctrine_Query_Abstract\\:\\:\\$_rootAlias \\(string\\) does not accept int\\|string\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Query.php
 
@@ -646,12 +651,22 @@ parameters:
 			path: lib/Doctrine/Query.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Left side of && is always true\\.$#"
 			count: 1
 			path: lib/Doctrine/Query.php
 
 		-
-			message: "#^Left side of && is always true\\.$#"
+			message: "#^Parameter \\#2 \\$subject of function preg_match_all expects string, string\\|null given\\.$#"
+			count: 1
+			path: lib/Doctrine/Query.php
+
+		-
+			message: "#^Property Doctrine_Query_Abstract\\:\\:\\$_rootAlias \\(string\\) does not accept int\\|string\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Query.php
+
+		-
+			message: "#^Result of && is always true\\.$#"
 			count: 1
 			path: lib/Doctrine/Query.php
 
@@ -667,16 +682,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$customComponent of method Doctrine_Query_Abstract\\:\\:getCachedForm\\(\\) expects array\\|Doctrine_Collection\\|string\\|null, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Abstract.php
-
-		-
-			message: "#^Offset 'table' does not exist on array\\('parent' \\=\\> string, \\?'relation' \\=\\> mixed, \\?'table' \\=\\> mixed, \\?'agg' \\=\\> mixed, \\?'map' \\=\\> mixed\\)\\.$#"
-			count: 1
-			path: lib/Doctrine/Query/Abstract.php
-
-		-
-			message: "#^Offset 'relation' does not exist on array\\('parent' \\=\\> string, \\?'relation' \\=\\> mixed, \\?'table' \\=\\> mixed, \\?'agg' \\=\\> mixed, \\?'map' \\=\\> mixed\\)\\.$#"
 			count: 1
 			path: lib/Doctrine/Query/Abstract.php
 
@@ -701,22 +706,37 @@ parameters:
 			path: lib/Doctrine/Query/Tokenizer.php
 
 		-
-			message: "#^Property Doctrine_Query_Abstract\\:\\:\\$_rootAlias \\(string\\) does not accept int\\|string\\|null\\.$#"
-			count: 2
-			path: lib/Doctrine/RawSql.php
-
-		-
 			message: "#^Parameter \\#1 \\$componentAlias of method Doctrine_Query_Abstract\\:\\:getSqlTableAlias\\(\\) expects string, int\\|string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/RawSql.php
 
 		-
-			message: "#^If condition is always true\\.$#"
+			message: "#^Property Doctrine_Query_Abstract\\:\\:\\$_rootAlias \\(string\\) does not accept int\\|string\\|null\\.$#"
+			count: 2
+			path: lib/Doctrine/RawSql.php
+
+		-
+			message: "#^Variable \\$fields in empty\\(\\) always exists and is not falsy\\.$#"
+			count: 1
+			path: lib/Doctrine/RawSql.php
+
+		-
+			message: "#^Argument of an invalid type array\\|string supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: lib/Doctrine/Record.php
 
 		-
-			message: "#^Cannot call method preValidate\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			message: "#^Cannot access offset 'type' on array\\|false\\.$#"
+			count: 2
+			path: lib/Doctrine/Record.php
+
+		-
+			message: "#^Cannot call method postSerialize\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Record.php
+
+		-
+			message: "#^Cannot call method postUnserialize\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Record.php
 
@@ -726,22 +746,7 @@ parameters:
 			path: lib/Doctrine/Record.php
 
 		-
-			message: "#^Negated boolean expression is always false\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Argument of an invalid type array\\|string supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
 			message: "#^Cannot call method preSerialize\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Cannot call method postSerialize\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Record.php
 
@@ -751,7 +756,37 @@ parameters:
 			path: lib/Doctrine/Record.php
 
 		-
-			message: "#^Cannot call method postUnserialize\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			message: "#^Cannot call method preValidate\\(\\) on Doctrine_EventListener_Interface\\|Doctrine_Overloadable\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Record.php
+
+		-
+			message: "#^Cannot call method setInvoker\\(\\) on string\\.$#"
+			count: 1
+			path: lib/Doctrine/Record.php
+
+		-
+			message: "#^If condition is always true\\.$#"
+			count: 1
+			path: lib/Doctrine/Record.php
+
+		-
+			message: "#^Method Doctrine_Record\\:\\:copy\\(\\) should return static\\(Doctrine_Record\\) but returns Doctrine_Record\\.$#"
+			count: 1
+			path: lib/Doctrine/Record.php
+
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: lib/Doctrine/Record.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of method Doctrine_Record\\:\\:fromArray\\(\\) expects array, array\\|false given\\.$#"
+			count: 1
+			path: lib/Doctrine/Record.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of static method Doctrine_Parser\\:\\:dump\\(\\) expects array, array\\<int\\|string, mixed\\>\\|false given\\.$#"
 			count: 1
 			path: lib/Doctrine/Record.php
 
@@ -763,31 +798,6 @@ parameters:
 		-
 			message: "#^Possibly invalid array key type array\\|string\\.$#"
 			count: 4
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Parameter \\#1 \\$array of method Doctrine_Record\\:\\:fromArray\\(\\) expects array, array\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Parameter \\#1 \\$array of static method Doctrine_Parser\\:\\:dump\\(\\) expects array, array\\<array\\|int\\|string, mixed\\>\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Method Doctrine_Record\\:\\:copy\\(\\) should return static\\(Doctrine_Record\\) but returns Doctrine_Record\\.$#"
-			count: 1
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Cannot access offset 'type' on array\\|false\\.$#"
-			count: 2
-			path: lib/Doctrine/Record.php
-
-		-
-			message: "#^Cannot call method setInvoker\\(\\) on string\\.$#"
-			count: 1
 			path: lib/Doctrine/Record.php
 
 		-
@@ -816,19 +826,54 @@ parameters:
 			path: lib/Doctrine/Record/Generator.php
 
 		-
+			message: "#^Cannot access offset 'primary' on array\\|false\\.$#"
+			count: 2
+			path: lib/Doctrine/Record/Generator.php
+
+		-
 			message: "#^Cannot access offset 'sequence' on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Record/Generator.php
 
 		-
-			message: "#^Cannot access offset 'primary' on array\\|false\\.$#"
-			count: 2
+			message: "#^Parameter \\#2 \\$name of method Doctrine_Table\\:\\:addGenerator\\(\\) expects string\\|null, class\\-string\\|false given\\.$#"
+			count: 1
 			path: lib/Doctrine/Record/Generator.php
 
 		-
 			message: "#^Cannot call method getConnection\\(\\) on array\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Relation.php
+
+		-
+			message: "#^Cannot access offset 'autoincrement' on array\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Relation/Parser.php
+
+		-
+			message: "#^Cannot access offset 'length' on array\\|false\\.$#"
+			count: 2
+			path: lib/Doctrine/Relation/Parser.php
+
+		-
+			message: "#^Cannot access offset 'primary' on array\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Relation/Parser.php
+
+		-
+			message: "#^Cannot access offset 'sequence' on array\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Relation/Parser.php
+
+		-
+			message: "#^Cannot access offset 'type' on array\\|false\\.$#"
+			count: 2
+			path: lib/Doctrine/Relation/Parser.php
+
+		-
+			message: "#^Cannot call method addIndex\\(\\) on array\\|null\\.$#"
+			count: 1
+			path: lib/Doctrine/Relation/Parser.php
 
 		-
 			message: "#^Cannot call method getFieldName\\(\\) on array\\|null\\.$#"
@@ -841,37 +886,17 @@ parameters:
 			path: lib/Doctrine/Relation/Parser.php
 
 		-
-			message: "#^Cannot call method addIndex\\(\\) on array\\|null\\.$#"
-			count: 1
-			path: lib/Doctrine/Relation/Parser.php
-
-		-
-			message: "#^Cannot access offset 'type' on array\\|false\\.$#"
+			message: "#^Access to an undefined property Doctrine_Record\\:\\:\\$field\\.$#"
 			count: 2
-			path: lib/Doctrine/Relation/Parser.php
+			path: lib/Doctrine/Search.php
 
 		-
-			message: "#^Cannot access offset 'length' on array\\|false\\.$#"
+			message: "#^Access to an undefined property Doctrine_Record\\:\\:\\$keyword\\.$#"
 			count: 2
-			path: lib/Doctrine/Relation/Parser.php
+			path: lib/Doctrine/Search.php
 
 		-
-			message: "#^Cannot access offset 'autoincrement' on array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Relation/Parser.php
-
-		-
-			message: "#^Cannot access offset 'sequence' on array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Relation/Parser.php
-
-		-
-			message: "#^Cannot access offset 'primary' on array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Relation/Parser.php
-
-		-
-			message: "#^Cannot access offset 'analyzer' on array\\|false\\.$#"
+			message: "#^Access to an undefined property Doctrine_Record\\:\\:\\$position\\.$#"
 			count: 2
 			path: lib/Doctrine/Search.php
 
@@ -881,9 +906,9 @@ parameters:
 			path: lib/Doctrine/Search.php
 
 		-
-			message: "#^Return type \\(array\\) of method Doctrine_Search_Analyzer_Standard\\:\\:analyze\\(\\) should be compatible with return type \\(string\\) of method Doctrine_Search_Analyzer\\:\\:analyze\\(\\)$#"
-			count: 1
-			path: lib/Doctrine/Search/Analyzer/Standard.php
+			message: "#^Cannot access offset 'analyzer' on array\\|false\\.$#"
+			count: 2
+			path: lib/Doctrine/Search.php
 
 		-
 			message: "#^Parameter \\#1 \\$string of static method Doctrine_Inflector\\:\\:unaccent\\(\\) expects string, string\\|null given\\.$#"
@@ -892,6 +917,16 @@ parameters:
 
 		-
 			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, string\\|null given\\.$#"
+			count: 1
+			path: lib/Doctrine/Search/Analyzer/Standard.php
+
+		-
+			message: "#^Return type \\(array\\) of method Doctrine_Search_Analyzer_Standard\\:\\:analyze\\(\\) should be compatible with return type \\(string\\) of method Doctrine_Search_Analyzer\\:\\:analyze\\(\\)$#"
+			count: 1
+			path: lib/Doctrine/Search/Analyzer/Standard.php
+
+		-
+			message: "#^Variable \\$terms in empty\\(\\) always exists and is not falsy\\.$#"
 			count: 1
 			path: lib/Doctrine/Search/Analyzer/Standard.php
 
@@ -906,12 +941,32 @@ parameters:
 			path: lib/Doctrine/Search/Analyzer/Utf8.php
 
 		-
+			message: "#^Variable \\$terms in empty\\(\\) always exists and is not falsy\\.$#"
+			count: 1
+			path: lib/Doctrine/Search/Analyzer/Utf8.php
+
+		-
 			message: "#^Return type \\(string\\) of method Doctrine_Sequence_Mssql\\:\\:lastInsertId\\(\\) should be compatible with return type \\(bool\\|int\\) of method Doctrine_Sequence\\:\\:lastInsertId\\(\\)$#"
 			count: 1
 			path: lib/Doctrine/Sequence/Mssql.php
 
 		-
+			message: "#^Argument of an invalid type array\\<int, string\\>\\|Doctrine_Record\\|int\\|null supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: lib/Doctrine/Table.php
+
+		-
+			message: "#^Argument of an invalid type array\\|string supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: lib/Doctrine/Table.php
+
+		-
 			message: "#^Cannot access offset 'autoincrement' on array\\|false\\.$#"
+			count: 1
+			path: lib/Doctrine/Table.php
+
+		-
+			message: "#^Cannot access offset 'length' on array\\|false\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php
 
@@ -926,18 +981,13 @@ parameters:
 			path: lib/Doctrine/Table.php
 
 		-
-			message: "#^Cannot access offset 'length' on array\\|false\\.$#"
-			count: 1
-			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Argument of an invalid type array\\|string supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: lib/Doctrine/Table.php
-
-		-
 			message: "#^Negated boolean expression is always false\\.$#"
-			count: 2
+			count: 1
+			path: lib/Doctrine/Table.php
+
+		-
+			message: "#^Parameter \\#1 \\$fieldName of method Doctrine_Table\\:\\:hasField\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
 			path: lib/Doctrine/Table.php
 
 		-
@@ -946,22 +996,7 @@ parameters:
 			path: lib/Doctrine/Table.php
 
 		-
-			message: "#^Parameter \\#2 \\$haystack of function in_array expects array, array\\|string given\\.$#"
-			count: 3
-			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Cannot assign new offset to array\\|string\\.$#"
-			count: 2
-			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Parameter \\#2 \\$haystack of function array_search expects array, array\\|string given\\.$#"
-			count: 1
-			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Strict comparison using \\=\\=\\= between Doctrine_Record\\|string and Doctrine_Null will always evaluate to false\\.$#"
+			message: "#^Parameter \\#1 \\$value of static method Doctrine_Validator\\:\\:validateLength\\(\\) expects string, array\\<int, string\\>\\|Doctrine_Record\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php
 
@@ -971,12 +1006,12 @@ parameters:
 			path: lib/Doctrine/Table.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int, string\\>\\|Doctrine_Record\\|int\\|null supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Strict comparison using \\=\\=\\= between Doctrine_Record\\|string and Doctrine_Null will always evaluate to false\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php
 
 		-
-			message: "#^Parameter \\#1 \\$value of static method Doctrine_Validator\\:\\:validateLength\\(\\) expects string, array\\<int, string\\>\\|Doctrine_Record\\|int\\|string\\|null given\\.$#"
+			message: "#^Strict comparison using \\=\\=\\= between array\\|null and 1 will always evaluate to false\\.$#"
 			count: 1
 			path: lib/Doctrine/Table.php
 
@@ -991,24 +1026,29 @@ parameters:
 			path: lib/Doctrine/Table.php
 
 		-
-			message: "#^Parameter \\#1 \\$fieldName of method Doctrine_Table\\:\\:hasField\\(\\) expects string, string\\|false given\\.$#"
-			count: 1
-			path: lib/Doctrine/Table.php
-
-		-
-			message: "#^Strict comparison using \\=\\=\\= between array\\|null and 1 will always evaluate to false\\.$#"
-			count: 1
-			path: lib/Doctrine/Table.php
-
-		-
 			message: "#^Cannot call method getConfig\\(\\) on Doctrine_Cli\\|null\\.$#"
 			count: 1
 			path: lib/Doctrine/Task/GenerateModelsDb.php
 
 		-
-			message: "#^Binary operation \"\\.\" between string and array\\|int results in an error\\.$#"
+			message: "#^Binary operation \"\\.\" between non\\-empty\\-string and array\\|int results in an error\\.$#"
 			count: 2
 			path: lib/Doctrine/Template/Listener/Sluggable.php
+
+		-
+			message: "#^Binary operation \"\\.\" between non\\-empty\\-string and array\\|int results in an error\\.$#"
+			count: 2
+			path: lib/Doctrine/Template/Listener/SoftDelete.php
+
+		-
+			message: "#^Cannot call method addPendingJoinCondition\\(\\) on Doctrine_Query\\|string\\|null\\.$#"
+			count: 2
+			path: lib/Doctrine/Template/Listener/SoftDelete.php
+
+		-
+			message: "#^Cannot call method addWhere\\(\\) on Doctrine_Query\\|string\\|null\\.$#"
+			count: 2
+			path: lib/Doctrine/Template/Listener/SoftDelete.php
 
 		-
 			message: "#^Cannot call method contains\\(\\) on Doctrine_Query\\|string\\|null\\.$#"
@@ -1021,23 +1061,8 @@ parameters:
 			path: lib/Doctrine/Template/Listener/SoftDelete.php
 
 		-
-			message: "#^Cannot call method set\\(\\) on Doctrine_Query\\|string\\|null\\.$#"
-			count: 2
-			path: lib/Doctrine/Template/Listener/SoftDelete.php
-
-		-
-			message: "#^Cannot call method addWhere\\(\\) on Doctrine_Query\\|string\\|null\\.$#"
-			count: 2
-			path: lib/Doctrine/Template/Listener/SoftDelete.php
-
-		-
 			message: "#^Cannot call method getConnection\\(\\) on Doctrine_Query\\|string\\|null\\.$#"
 			count: 3
-			path: lib/Doctrine/Template/Listener/SoftDelete.php
-
-		-
-			message: "#^Binary operation \"\\.\" between string and array\\|int results in an error\\.$#"
-			count: 2
 			path: lib/Doctrine/Template/Listener/SoftDelete.php
 
 		-
@@ -1046,8 +1071,13 @@ parameters:
 			path: lib/Doctrine/Template/Listener/SoftDelete.php
 
 		-
-			message: "#^Cannot call method addPendingJoinCondition\\(\\) on Doctrine_Query\\|string\\|null\\.$#"
+			message: "#^Cannot call method set\\(\\) on Doctrine_Query\\|string\\|null\\.$#"
 			count: 2
+			path: lib/Doctrine/Template/Listener/SoftDelete.php
+
+		-
+			message: "#^Left side of && is always true\\.$#"
+			count: 1
 			path: lib/Doctrine/Template/Listener/SoftDelete.php
 
 		-
@@ -1099,14 +1129,4 @@ parameters:
 			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, array\\|string given\\.$#"
 			count: 1
 			path: lib/Doctrine/Validator/Readonly.php
-
-		-
-			message: "#^Else branch is unreachable because previous condition is always true\\.$#"
-			count: 1
-			path: lib/Doctrine/Validator/Regexp.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: lib/Doctrine/Validator/Regexp.php
 

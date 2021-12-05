@@ -37,12 +37,12 @@ class Doctrine_Export_Mssql extends Doctrine_Export
     /**
        * create a new database
        *
-       * @param string $name name of the database that should be created
+       * @param string $database name of the database that should be created
        * @return PDOStatement|Doctrine_Adapter_Statement_Interface
        */
-    public function createDatabase($name)
+    public function createDatabase($database)
     {
-        $name    = $this->conn->quoteIdentifier($name, true);
+        $name    = $this->conn->quoteIdentifier($database, true);
         $query   = "CREATE DATABASE $name";
         $options = $this->conn->getOptions();
         if (isset($options['database_device']) && $options['database_device']) {
@@ -56,12 +56,12 @@ class Doctrine_Export_Mssql extends Doctrine_Export
     /**
      * drop an existing database
      *
-     * @param string $name name of the database that should be dropped
+     * @param string $database name of the database that should be dropped
      * @return PDOStatement|Doctrine_Adapter_Statement_Interface
      */
-    public function dropDatabase($name)
+    public function dropDatabase($database)
     {
-        $name = $this->conn->quoteIdentifier($name, true);
+        $name = $this->conn->quoteIdentifier($database, true);
         return $this->conn->standaloneQuery('DROP DATABASE ' . $name, array());
     }
 
@@ -365,13 +365,13 @@ class Doctrine_Export_Mssql extends Doctrine_Export
     /**
      * This function drops an existing sequence
      *
-     * @param string $seqName      name of the sequence to be dropped
+     * @param string $sequenceName      name of the sequence to be dropped
      * @return string
      */
-    public function dropSequenceSql($seqName)
+    public function dropSequenceSql($sequenceName)
     {
-        $sequenceName = $this->conn->quoteIdentifier($this->conn->getSequenceName($seqName), true);
-        return 'DROP TABLE ' . $sequenceName;
+        $seqName = $this->conn->quoteIdentifier($this->conn->getSequenceName($sequenceName), true);
+        return 'DROP TABLE ' . $seqName;
     }
 
     /**

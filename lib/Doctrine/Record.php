@@ -893,6 +893,15 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 unset($vars['_data'][$k]);
             } else {
                 switch ($this->_table->getTypeOf($k)) {
+                    case 'json':
+                        $value = json_encode($vars['_data'][$k]);
+                        if ($value === false) {
+                            throw new Doctrine_Record_Exception(
+                                'Error encountered encoding value: ' . json_last_error_msg()
+                            );
+                        }
+                        $vars['_data'][$k] = $value;
+                        break;
                     case 'gzip':
                         $vars['_data'][$k] = gzcompress($vars['_data'][$k]);
                         break;
@@ -940,6 +949,15 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             switch ($this->_table->getTypeOf($k)) {
                 case 'gzip':
                     $this->_data[$k] = gzuncompress($this->_data[$k]);
+                    break;
+                case 'json':
+                    $value = json_decode($this->_data[$k]);
+                    if ($value === null && json_last_error() !== JSON_ERROR_NONE) {
+                        throw new Doctrine_Record_Exception(
+                            'Error encountered decoding Json: ' . json_last_error_msg()
+                        );
+                    }
+                    $this->_data[$k] = $value;
                     break;
                 case 'enum':
                     $this->_data[$k] = $this->_table->enumValue($k, $this->_data[$k]);
@@ -1559,6 +1577,23 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             $this->_values[$fieldName] = $value;
         } elseif (array_key_exists($fieldName, $this->_data)) {
             $type = $this->_table->getTypeOf($fieldName);
+            if ($type === 'json') {
+                // Doing this so that the stored value on the model, and the value retrieved from the database
+                // will match types (mainly so associative arrays are converted to stdClass objects)
+                $value = json_encode($value);
+                if ($value === false) {
+                    throw new Doctrine_Record_Exception(
+                        'Error encountered when encoding $value: ' . json_last_error_msg()
+                    );
+                }
+                $value = json_decode($value);
+                if ($value === null && json_last_error() !== JSON_ERROR_NONE) {
+                    throw new Doctrine_Record_Exception(
+                        'Error encountered decoding Json: ' . json_last_error_msg()
+                    );
+                }
+            }
+
             if ($value instanceof Doctrine_Record) {
                 $id = $value->getIncremented();
 
@@ -1937,6 +1972,15 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 case 'array':
                 case 'object':
                     $a[$field] = serialize($this->_data[$field]);
+                    break;
+                case 'json':
+                    $value = json_encode($this->_data[$field]);
+                    if ($value === false) {
+                        throw new Doctrine_Record_Exception(
+                            'Error encountered when encoding $value: ' . json_last_error_msg()
+                        );
+                    }
+                    $a[$field] = $value;
                     break;
                 case 'gzip':
                     $a[$field] = gzcompress($this->_data[$field], 5);

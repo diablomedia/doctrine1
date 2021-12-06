@@ -101,6 +101,8 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
             return true;
         } elseif ($type == 'array' || $type == 'object') {
             $length = strlen(serialize($value));
+        } elseif ($type == 'json') {
+            $length = strlen((string) json_encode($value));
         } elseif ($type == 'decimal' || $type == 'float') {
             $value = abs($value);
 
@@ -176,43 +178,45 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
         }
 
         switch ($type) {
-             case 'float':
-             case 'double':
-             case 'decimal':
-                 return (string) $var == strval(floatval($var));
-             case 'integer':
-                 return (string) $var == strval(round(floatval($var)));
-             case 'string':
-                 return is_string($var) || is_numeric($var);
-             case 'blob':
-                 return is_string($var) || is_resource($var);
-             case 'clob':
-             case 'gzip':
-                 return is_string($var);
-             case 'array':
-                 return is_array($var);
-             case 'object':
-                 return is_object($var);
-             case 'boolean':
-                 return is_bool($var) || (is_numeric($var) && ($var == 0 || $var == 1));
-             case 'timestamp':
-                 /** @var Doctrine_Validator_Timestamp $validator */
-                 $validator = self::getValidator('timestamp');
-                 return $validator->validate($var);
-             case 'time':
-                 /** @var Doctrine_Validator_Time $validator */
-                 $validator = self::getValidator('time');
-                 return $validator->validate($var);
-             case 'date':
-                 /** @var Doctrine_Validator_Date $validator */
-                 $validator = self::getValidator('date');
-                 return $validator->validate($var);
-             case 'enum':
-                 return is_string($var) || is_int($var);
-             case 'set':
-                 return is_array($var) || is_string($var);
-             default:
-                 return true;
+            case 'float':
+            case 'double':
+            case 'decimal':
+                return (string) $var == strval(floatval($var));
+            case 'integer':
+                return (string) $var == strval(round(floatval($var)));
+            case 'string':
+                return is_string($var) || is_numeric($var);
+            case 'blob':
+                return is_string($var) || is_resource($var);
+            case 'clob':
+            case 'gzip':
+                return is_string($var);
+            case 'array':
+                return is_array($var);
+            case 'object':
+                return is_object($var);
+            case 'json':
+                return is_object($var) || is_array($var);
+            case 'boolean':
+                return is_bool($var) || (is_numeric($var) && ($var == 0 || $var == 1));
+            case 'timestamp':
+                /** @var Doctrine_Validator_Timestamp $validator */
+                $validator = self::getValidator('timestamp');
+                return $validator->validate($var);
+            case 'time':
+                /** @var Doctrine_Validator_Time $validator */
+                $validator = self::getValidator('time');
+                return $validator->validate($var);
+            case 'date':
+                /** @var Doctrine_Validator_Date $validator */
+                $validator = self::getValidator('date');
+                return $validator->validate($var);
+            case 'enum':
+                return is_string($var) || is_int($var);
+            case 'set':
+                return is_array($var) || is_string($var);
+            default:
+                return true;
          }
     }
 }

@@ -65,6 +65,7 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
                 // no break
             case 'text':
             case 'object':
+            case 'json':
             case 'array':
             case 'string':
             case 'char':

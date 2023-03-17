@@ -97,36 +97,46 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
         if ($maximumLength === null) {
             return true;
         }
-        if ($type === 'timestamp' || $type === 'integer' || $type === 'enum' || $type === 'set') {
-            return true;
-        } elseif ($type == 'array' || $type == 'object') {
-            $length = strlen(serialize($value));
-        } elseif ($type == 'json') {
-            $length = strlen((string) json_encode($value));
-        } elseif ($type == 'decimal' || $type == 'float') {
-            $value = abs($value ?? 0);
+        switch ($type) {
+            case 'timestamp':
+            case 'integer':
+            case 'enum':
+            case 'set':
+                return true;
+            case 'array':
+            case 'object':
+                $length = strlen(serialize($value));
+                break;
+            case 'json':
+                $length = strlen((string) json_encode($value));
+                break;
+            case 'decimal':
+            case 'float':
+                $value = abs($value ?? 0);
+                $localeInfo   = localeconv();
+                $decimalPoint = $localeInfo['mon_decimal_point'] ? $localeInfo['mon_decimal_point'] : $localeInfo['decimal_point'];
+                $e            = explode($decimalPoint, (string) $value);
+                $length       = 0;
 
-            $localeInfo   = localeconv();
-            $decimalPoint = $localeInfo['mon_decimal_point'] ? $localeInfo['mon_decimal_point'] : $localeInfo['decimal_point'];
-            $e            = explode($decimalPoint, (string) $value);
-            $length       = 0;
-
-            if (!$e) {
-                $e = array();
-            }
-
-            if (count($e) > 0) {
-                $length = strlen($e[0]);
-
-                if (isset($e[1])) {
-                    $length = $length + strlen($e[1]);
+                if (!$e) {
+                    $e = array();
                 }
-            }
-        } elseif ($type == 'blob') {
-            $length = strlen($value);
-        } else {
-            $length = self::getStringLength($value);
+
+                if (count($e) > 0) {
+                    $length = strlen($e[0]);
+
+                    if (isset($e[1])) {
+                        $length = $length + strlen($e[1]);
+                    }
+                }
+                break;
+            case 'blob':
+                $length = strlen($value);
+                break;
+            default:
+                $length = self::getStringLength($value);
         }
+
         if ($length > $maximumLength) {
             return false;
         }

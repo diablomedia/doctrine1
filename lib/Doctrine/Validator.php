@@ -36,21 +36,22 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
     /**
      * @var array $validators           an array of validator objects
      */
-    private static $validators = array();
+    private static array $validators = [];
 
     /**
      * This was undefined, added for static analysis and set to public so api isn't changed
      * @var array
      */
-    public $stack;
+    public array $stack = [];
 
     /**
      * Get a validator instance for the passed $name
      *
-     * @param  string   $name  Name of the validator or the validator class name
+     * @param string $name Name of the validator or the validator class name
      * @return Doctrine_Validator_Driver $validator
+     * @throws Doctrine_Exception
      */
-    public static function getValidator($name)
+    public static function getValidator(string $name): Doctrine_Validator_Driver
     {
         if (! isset(self::$validators[$name])) {
             $class = 'Doctrine_Validator_' . ucwords(strtolower($name));
@@ -87,12 +88,12 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
     /**
      * Validates the length of a field.
      *
-     * @param  string  $value         Value to validate
+     * @param  string|null  $value    Value to validate
      * @param  string  $type          Type of field being validated
      * @param  string|null|int  $maximumLength Maximum length allowed for the column
      * @return boolean $success       True/false for whether the value passed validation
      */
-    public static function validateLength($value, $type, $maximumLength)
+    public static function validateLength(?string $value, string $type, $maximumLength): bool
     {
         if ($maximumLength === null) {
             return true;
@@ -114,7 +115,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
             case 'float':
                 $value = abs($value ?? 0);
                 $localeInfo   = localeconv();
-                $decimalPoint = $localeInfo['mon_decimal_point'] ? $localeInfo['mon_decimal_point'] : $localeInfo['decimal_point'];
+                $decimalPoint = $localeInfo['mon_decimal_point'] ?: $localeInfo['decimal_point'];
                 $e            = explode($decimalPoint, (string) $value);
                 $length       = 0;
 
@@ -149,7 +150,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
      * @param string|null $string
      * @return integer $length
      */
-    public static function getStringLength($string)
+    public static function getStringLength(?string $string): int
     {
         if (function_exists('mb_strlen')) {
             return mb_strlen($string ?? '', 'utf8');
@@ -163,7 +164,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
      *
      * @return boolean True/false for whether or not this validate instance has error
      */
-    public function hasErrors()
+    public function hasErrors(): bool
     {
         return (count($this->stack) > 0);
     }
@@ -171,11 +172,12 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
     /**
      * Validate the type of the passed variable
      *
-     * @param  mixed  $var   Variable to validate
-     * @param  string $type  Type of the variable expected
+     * @param mixed $var Variable to validate
+     * @param string $type Type of the variable expected
      * @return boolean
+     * @throws Doctrine_Exception
      */
-    public static function isValidType($var, $type)
+    public static function isValidType($var, string $type): bool
     {
         if ($var instanceof Doctrine_Expression) {
             return true;

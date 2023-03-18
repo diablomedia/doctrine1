@@ -132,7 +132,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
                 }
                 break;
             case 'blob':
-                $length = strlen($value);
+                $length = strlen((string) $value);
                 break;
             default:
                 $length = self::getStringLength($value);

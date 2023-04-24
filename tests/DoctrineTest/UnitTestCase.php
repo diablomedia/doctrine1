@@ -1,6 +1,8 @@
 <?php
 class UnitTestCase
 {
+    protected $query;
+
     protected $_passed = 0;
 
     protected $_failed = 0;

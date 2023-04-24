@@ -447,7 +447,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
              * @return string
              */
             function ($m) use ($value, $params) {
-                return is_null($value) ? 'NULL' : $this->quote($params[$m[1]]);
+                return is_null($value) ? 'NULL' : (string) $this->quote($params[$m[1]]);
             },
             $query
         );

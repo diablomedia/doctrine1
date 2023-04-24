@@ -87,7 +87,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                         return 'VARCHAR(' . $length . ')';
                     }
                 }
-                 return 'TEXT';
+                return 'TEXT';
             case 'blob':
                 if (! empty($field['length'])) {
                     $length = $field['length'];
@@ -139,7 +139,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
         switch ($db_type) {
             case 'bit':
                 $type[0] = 'boolean';
-            break;
+                break;
             case 'tinyint':
             case 'smallint':
             case 'bigint':
@@ -148,25 +148,25 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 if ($length == 1) {
                     $type[] = 'boolean';
                 }
-            break;
+                break;
             case 'date':
                 $type[0] = 'date';
-            break;
+                break;
             case 'datetime':
             case 'timestamp':
             case 'smalldatetime':
                 $type[0] = 'timestamp';
-            break;
+                break;
             case 'float':
             case 'real':
             case 'numeric':
                 $type[0] = 'float';
-            break;
+                break;
             case 'decimal':
             case 'money':
             case 'smallmoney':
                 $type[0] = 'decimal';
-            break;
+                break;
             case 'text':
             case 'varchar':
             case 'ntext':
@@ -187,22 +187,22 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 if ($fixed !== false) {
                     $fixed = true;
                 }
-            break;
+                break;
             case 'image':
             case 'varbinary':
                 $type[] = 'blob';
                 $length = null;
-            break;
+                break;
             case 'uniqueidentifier':
                 $type[] = 'string';
                 $length = 36;
-            break;
+                break;
             case 'sql_variant':
             case 'sysname':
             case 'binary':
                 $type[] = 'string';
                 $length = null;
-            break;
+                break;
             default:
                 $type[] = $field['type'];
                 $length = isset($field['length']) ? $field['length']:null;

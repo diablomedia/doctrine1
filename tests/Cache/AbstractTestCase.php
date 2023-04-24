@@ -33,6 +33,8 @@
  */
 abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
 {
+    protected $cache;
+
     public function prepareTables()
     {
         $this->tables = array('User');

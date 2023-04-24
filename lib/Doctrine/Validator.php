@@ -217,6 +217,6 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
                 return is_array($var) || is_string($var);
             default:
                 return true;
-         }
+        }
     }
 }

@@ -4,6 +4,9 @@
  */
 class Doctrine_Ticket_982_TestCase extends Doctrine_UnitTestCase
 {
+    protected $myModelOne;
+    protected $myModelTwo;
+
     public function prepareTables()
     {
         $this->tables   = array();

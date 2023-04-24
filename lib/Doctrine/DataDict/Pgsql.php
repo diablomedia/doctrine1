@@ -473,22 +473,20 @@ class Doctrine_DataDict_Pgsql extends Doctrine_DataDict
 
         switch ($dbType) {
             case 'inet':
-                    $type[] = 'inet';
-            break;
+                $type[] = 'inet';
+                break;
             case 'bit':
             case 'varbit':
-                    $type[] = 'bit';
-            break;
+                $type[] = 'bit';
+                break;
             case 'smallint':
             case 'int2':
                 $type[]   = 'integer';
                 $unsigned = false;
                 $length   = 2;
-                if ($length == '2') {
-                    $type[] = 'boolean';
-                    if (preg_match('/^(is|has)/', $field['name'])) {
-                        $type = array_reverse($type);
-                    }
+                $type[]   = 'boolean';
+                if (preg_match('/^(is|has)/', $field['name'])) {
+                    $type = array_reverse($type);
                 }
                 break;
             case 'int':

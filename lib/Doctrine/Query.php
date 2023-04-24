@@ -499,7 +499,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         foreach ($fields as $fieldAlias => $fieldName) {
             $columnName = $table->getColumnName($fieldName);
             if (($owner = $table->getColumnOwner($columnName)) !== null &&
-                    $owner !== $table->getComponentName()) {
+                    $owner                                     !== $table->getComponentName()) {
                 $parent      = $this->_conn->getTable($owner);
                 $columnName  = $parent->getColumnName($fieldName);
                 $parentAlias = $this->getSqlTableAlias($componentAlias . '.' . $parent->getComponentName());
@@ -1027,17 +1027,17 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         switch ($this->_type) {
             case self::DELETE:
                 $q = 'DELETE FROM ';
-            break;
+                break;
             case self::UPDATE:
                 $q = 'UPDATE ';
-            break;
+                break;
             case self::SELECT:
                 $distinct = ($this->_sqlParts['distinct']) ? 'DISTINCT ' : '';
                 $q        = 'SELECT ' . $distinct . implode(', ', $this->_sqlParts['select']) . ' FROM ';
-            break;
+                break;
             default:
                 $q = '';
-            break;
+                break;
         }
         return $q;
     }
@@ -1681,27 +1681,27 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
             switch ($partName) {
                 case 'create':
                     $this->_type = self::CREATE;
-                break;
+                    break;
                 case 'insert':
                     $this->_type = self::INSERT;
-                break;
+                    break;
                 case 'delete':
                     $this->_type = self::DELETE;
-                break;
+                    break;
                 case 'select':
                     $this->_type = self::SELECT;
                     $this->_addDqlQueryPart($partName, $subParts);
-                break;
+                    break;
                 case 'update':
                     $this->_type = self::UPDATE;
                     $partName    = 'from';
                     // no break
                 case 'from':
                     $this->_addDqlQueryPart($partName, $subParts);
-                break;
+                    break;
                 case 'set':
                     $this->_addDqlQueryPart($partName, $subParts, true);
-                break;
+                    break;
                 case 'group':
                 case 'order':
                     $partName .= 'by';
@@ -1711,7 +1711,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
                 case 'limit':
                 case 'offset':
                     $this->_addDqlQueryPart($partName, $subParts);
-                break;
+                    break;
             }
         }
 

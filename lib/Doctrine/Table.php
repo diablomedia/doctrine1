@@ -51,6 +51,7 @@
  * @property array $subclasses
  * @property mixed $orderBy
  */
+#[\AllowDynamicProperties]
 class Doctrine_Table extends Doctrine_Configurable implements Countable
 {
     /**
@@ -1369,10 +1370,10 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
             switch ($type) {
                 case 'integer':
                     $length = 8;
-                break;
+                    break;
                 case 'decimal':
                     $length = 18;
-                break;
+                    break;
                 case 'string':
                 case 'clob':
                 case 'float':
@@ -1386,7 +1387,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                     //All the DataDict driver classes have work-arounds to deal
                     //with unset lengths.
                     $length = null;
-                break;
+                    break;
                 case 'boolean':
                     $length = 1;
                     // no break
@@ -2367,7 +2368,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                 case 'integer':
                 case 'string':
                     // don't do any casting here PHP INT_MAX is smaller than what the databases support
-                break;
+                    break;
                 case 'set':
                     return explode(',', $value);
                 case 'boolean':
@@ -2382,7 +2383,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                         }
                         return $value;
                     }
-                break;
+                    break;
                 case 'json':
                     if (is_string($value)) {
                         $value = empty($value) ? null:json_decode($value);
@@ -2394,7 +2395,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                         }
                         return $value;
                     }
-                break;
+                    break;
                 case 'gzip':
                     $value = gzuncompress($value);
 
@@ -2802,7 +2803,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         }
 
         // Build result
-        $where       = $lastOperator       = '';
+        $where       = $lastOperator = '';
         $bracketOpen = false;
         foreach ($fieldsFound as $index => $field) {
             $field = $this->_resolveFindByFieldName($field);

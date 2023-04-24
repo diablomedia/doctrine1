@@ -32,7 +32,6 @@
  */
 interface Doctrine_Query_Filter_Interface
 {
-
     /**
      * preQuery
      *

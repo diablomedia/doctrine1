@@ -255,5 +255,12 @@
         <!-- newer version of psalm does not like the @property annotations -->
         <UndefinedThisPropertyFetch errorLevel="info" />
         <UndefinedPropertyFetch errorLevel="info" />
+
+        <!-- Psalm complains about this attribute in PHP 8.0 and 8.1, which makes sense, was added in 8.2-->
+        <UndefinedAttributeClass>
+            <errorLevel type="info">
+                <file name="lib/Doctrine/Table.php" />
+            </errorLevel>
+        </UndefinedAttributeClass>
     </issueHandlers>
 </psalm>

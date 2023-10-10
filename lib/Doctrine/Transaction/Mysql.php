@@ -33,6 +33,22 @@
 class Doctrine_Transaction_Mysql extends Doctrine_Transaction
 {
     /**
+     * @var string
+     */
+    protected $mysqlVersion;
+
+    /**
+     * @param Doctrine_Connection $conn     Doctrine_Connection object, every connection
+     *                                      module holds an instance of Doctrine_Connection
+     */
+    public function __construct($conn = null)
+    {
+        parent::__construct($conn);
+
+        $this->mysqlVersion = $this->conn->getDbh()->getAttribute(PDO::ATTR_SERVER_VERSION);
+    }
+
+    /**
      * createSavepoint
      * creates a new savepoint
      *
@@ -111,6 +127,12 @@ class Doctrine_Transaction_Mysql extends Doctrine_Transaction
      */
     public function getIsolation()
     {
+        // Mysql 5.7.20 added `@@transaction_isolation` as an alias for `@@tx_isolation`
+        // Mysql 8.0.0 removes `@@tx_isolation`
+        if (version_compare($this->mysqlVersion, '5.7.20', '>=')) {
+            return $this->conn->fetchOne('SELECT @@transaction_isolation');
+        }
+
         return $this->conn->fetchOne('SELECT @@tx_isolation');
     }
 }

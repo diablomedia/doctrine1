@@ -128,11 +128,11 @@ class Doctrine_Transaction_Mysql extends Doctrine_Transaction
     public function getIsolation()
     {
         // Mysql 5.7.20 added `@@transaction_isolation` as an alias for `@@tx_isolation`
-        // Mysql 8.0.0 removes `@@tx_isolation`        
+        // Mysql 8.0.0 removes `@@tx_isolation`
         if (version_compare($this->mysqlVersion, '5.7.20', '>=')) {
             return $this->conn->fetchOne('SELECT @@transaction_isolation');
         }
-        
+
         return $this->conn->fetchOne('SELECT @@tx_isolation');
     }
 }

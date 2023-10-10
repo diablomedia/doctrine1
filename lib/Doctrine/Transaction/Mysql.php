@@ -32,6 +32,9 @@
  */
 class Doctrine_Transaction_Mysql extends Doctrine_Transaction
 {
+    /**
+     * @var string
+     */
     protected $mysqlVersion;
 
     /**

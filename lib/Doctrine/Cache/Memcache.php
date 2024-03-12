@@ -145,7 +145,7 @@ class Doctrine_Cache_Memcache extends Doctrine_Cache_Driver
             foreach (array_keys($slabs) as $slabId) {
                 $dump = $this->_memcache->getExtendedStats('cachedump', (int) $slabId);
                 foreach ($dump as $entries) {
-                    if ($entries) {
+                    if ($entries !== false && !empty($entries)) {
                         $keys = array_merge($keys, array_keys($entries));
                     }
                 }

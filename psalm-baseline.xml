@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.9.0@8b9ad1eb9e8b7d3101f949291da2b9f7767cd163">
+<files psalm-version="5.23.1@8471a896ccea3526b26d082f4461eeea467f10a4">
   <file src="lib/Doctrine/Access.php">
     <MissingTemplateParam>
-      <code>ArrayAccess</code>
+      <code><![CDATA[ArrayAccess]]></code>
     </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Adapter/Oracle.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$password]]></code>
+      <code><![CDATA[$username]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Adapter/Statement/Oracle.php">
     <InvalidOperand>
-      <code>$var</code>
+      <code><![CDATA[$var]]></code>
     </InvalidOperand>
+    <NoValue>
+      <code><![CDATA[$internal_column]]></code>
+    </NoValue>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$length]]></code>
+      <code><![CDATA[$oci_error]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/AuditLog/Listener.php">
-    <InvalidArgument>
-      <code><![CDATA[$record->toArray()]]></code>
-    </InvalidArgument>
     <UnsafeInstantiation>
-      <code>new $class()</code>
-      <code>new $class()</code>
+      <code><![CDATA[new $class()]]></code>
+      <code><![CDATA[new $class()]]></code>
     </UnsafeInstantiation>
+  </file>
+  <file src="lib/Doctrine/Cache/Db.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$lifeTime]]></code>
+      <code><![CDATA[$lifeTime]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Cache/Driver.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $prefix]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Cache/Memcache.php">
     <InvalidCast>
-      <code>$slabId</code>
+      <code><![CDATA[$slabId]]></code>
     </InvalidCast>
     <UndefinedDocblockClass>
       <code><![CDATA[$this->_memcache]]></code>
@@ -30,42 +51,65 @@
       <code><![CDATA[$this->_memcache]]></code>
       <code><![CDATA[$this->_memcache]]></code>
       <code><![CDATA[$this->_memcache]]></code>
-      <code>Memcache</code>
-      <code>protected $_memcache = null;</code>
+      <code><![CDATA[Memcache]]></code>
+      <code><![CDATA[protected $_memcache = null;]]></code>
     </UndefinedDocblockClass>
+  </file>
+  <file src="lib/Doctrine/Cache/Xcache.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[ini_get('xcache.admin.enable_auth')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Cli.php">
     <RedundantCast>
       <code><![CDATA[(bool) $reflectionClass->isSubclassOf(self::TASK_BASE_CLASS)]]></code>
     </RedundantCast>
     <ReferenceConstraintViolation>
-      <code>return true;</code>
+      <code><![CDATA[return true;]]></code>
     </ReferenceConstraintViolation>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $requestedTaskName]]></code>
+      <code><![CDATA[! $value]]></code>
+      <code><![CDATA[$taskName]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Cli/AnsiColorFormatter.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $size]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Cli/Formatter.php">
+    <InvalidArgument>
+      <code><![CDATA[sprintf]]></code>
+    </InvalidArgument>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $size]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Collection.php">
     <InvalidMethodCall>
-      <code>getRelations</code>
+      <code><![CDATA[getRelations]]></code>
     </InvalidMethodCall>
     <LessSpecificImplementedReturnType>
-      <code>mixed</code>
+      <code><![CDATA[mixed]]></code>
     </LessSpecificImplementedReturnType>
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Collection/Iterator.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Collection/OnDemand.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Column.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Connection.php">
@@ -77,131 +121,222 @@
       <code><![CDATA[array_merge($parts, array($relation['onDelete']), array($relation['onUpdate']))]]></code>
     </InvalidArgument>
     <InvalidMethodCall>
-      <code>getTableName</code>
-      <code>getTableName</code>
+      <code><![CDATA[getTableName]]></code>
+      <code><![CDATA[getTableName]]></code>
     </InvalidMethodCall>
     <InvalidReturnStatement>
       <code><![CDATA[$this->formatter->convertBooleans($item)]]></code>
     </InvalidReturnStatement>
     <InvalidReturnType>
-      <code>array|int</code>
+      <code><![CDATA[array|int]]></code>
     </InvalidReturnType>
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
     <NonInvariantDocblockPropertyType>
-      <code>$parent</code>
-      <code>$parent</code>
-      <code>$parent</code>
-      <code>$parent</code>
-      <code>$parent</code>
-      <code>$parent</code>
-      <code>$parent</code>
-      <code>$parent</code>
-      <code>$parent</code>
+      <code><![CDATA[$parent]]></code>
+      <code><![CDATA[$parent]]></code>
+      <code><![CDATA[$parent]]></code>
+      <code><![CDATA[$parent]]></code>
+      <code><![CDATA[$parent]]></code>
+      <code><![CDATA[$parent]]></code>
+      <code><![CDATA[$parent]]></code>
+      <code><![CDATA[$parent]]></code>
+      <code><![CDATA[$parent]]></code>
     </NonInvariantDocblockPropertyType>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$this->pendingAttributes[$attribute]]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$implements]]></code>
+      <code><![CDATA[!$parents]]></code>
+      <code><![CDATA[$query]]></code>
+      <code><![CDATA[$this->isConnected]]></code>
+      <code><![CDATA[$this->isConnected]]></code>
+      <code><![CDATA[strpos($str, '.')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Connection/Mssql.php">
     <PossiblyUndefinedArrayOffset>
-      <code>$fields[$i]</code>
+      <code><![CDATA[$fields[$i]]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[strstr($orders[$i], '.')]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Connection/Pgsql.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$item]]></code>
+      <code><![CDATA[empty($offset)]]></code>
+      <code><![CDATA[empty($tmp[2])]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Connection/Profiler.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Connection/Sqlite.php">
     <NonInvariantDocblockPropertyType>
-      <code>$dbh</code>
+      <code><![CDATA[$dbh]]></code>
     </NonInvariantDocblockPropertyType>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$this->isConnected]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Connection/Statement.php">
     <InvalidArgument>
-      <code>$arg1</code>
+      <code><![CDATA[$arg1]]></code>
     </InvalidArgument>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$data]]></code>
+      <code><![CDATA[$params]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Connection/UnitOfWork.php">
     <ReferenceConstraintViolation>
-      <code>return $id;</code>
+      <code><![CDATA[return $id;]]></code>
     </ReferenceConstraintViolation>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $id]]></code>
+      <code><![CDATA[$fields]]></code>
+      <code><![CDATA[$table->getOption('joinedParents')]]></code>
+      <code><![CDATA[$table->getOption('joinedParents')]]></code>
+      <code><![CDATA[$table->getOption('joinedParents')]]></code>
+    </RiskyTruthyFalsyComparison>
     <UnsafeInstantiation>
-      <code>new $parent()</code>
+      <code><![CDATA[new $parent()]]></code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Core.php">
     <InvalidNullableReturnType>
-      <code>bool|int</code>
+      <code><![CDATA[bool|int]]></code>
     </InvalidNullableReturnType>
     <NullableReturnStatement>
       <code><![CDATA[$migration->migrate($to)]]></code>
     </NullableReturnStatement>
     <RedundantFunctionCallGivenDocblockType>
-      <code>array_values</code>
-      <code>array_values</code>
+      <code><![CDATA[array_values]]></code>
+      <code><![CDATA[array_values]]></code>
     </RedundantFunctionCallGivenDocblockType>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! self::$_path]]></code>
+      <code><![CDATA[$classPrefix]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Data.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$models]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Data/Export.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $relationRecord]]></code>
+      <code><![CDATA[$relation = $this->isRelation($record, $key)]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Data/Import.php">
     <UnsafeInstantiation>
-      <code>new $className()</code>
+      <code><![CDATA[new $className()]]></code>
     </UnsafeInstantiation>
+  </file>
+  <file src="lib/Doctrine/DataDict/Mssql.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($field['length'])]]></code>
+      <code><![CDATA[strstr($db_type, 'text')]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/DataDict/Mysql.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $decimal]]></code>
+      <code><![CDATA[$fixed]]></code>
+      <code><![CDATA[$length]]></code>
+      <code><![CDATA[$length]]></code>
+      <code><![CDATA[strstr($dbType, 'text')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/DataDict/Oracle.php">
     <RedundantCast>
-      <code>(int)$length</code>
-      <code>(int)$length</code>
-      <code>(int)$length</code>
-      <code>(int)$length</code>
-      <code>(int)$length</code>
+      <code><![CDATA[(int)$length]]></code>
+      <code><![CDATA[(int)$length]]></code>
+      <code><![CDATA[(int)$length]]></code>
+      <code><![CDATA[(int)$length]]></code>
+      <code><![CDATA[(int)$length]]></code>
     </RedundantCast>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($field['length'])]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/DataDict/Pgsql.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$default]]></code>
+      <code><![CDATA[$field['length']]]></code>
+      <code><![CDATA[$length]]></code>
+      <code><![CDATA[strstr($dbType, 'text')]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/DataDict/Sqlite.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$field['length']]]></code>
+      <code><![CDATA[strstr($dbType, 'text')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Export.php">
     <UnsafeInstantiation>
-      <code>new $name()</code>
+      <code><![CDATA[new $name()]]></code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Export/Mysql.php">
     <NonInvariantDocblockPropertyType>
-      <code>$conn</code>
+      <code><![CDATA[$conn]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Export/Pgsql.php">
     <NonInvariantDocblockPropertyType>
-      <code>$conn</code>
+      <code><![CDATA[$conn]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Export/Reporter.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Expression/Mysql.php">
     <InvalidOperand>
-      <code>$key</code>
+      <code><![CDATA[$key]]></code>
     </InvalidOperand>
   </file>
   <file src="lib/Doctrine/Expression/Pgsql.php">
     <InvalidOperand>
-      <code>$key</code>
+      <code><![CDATA[$key]]></code>
     </InvalidOperand>
   </file>
   <file src="lib/Doctrine/Formatter.php">
     <NullArgument>
-      <code>null</code>
+      <code><![CDATA[null]]></code>
     </NullArgument>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$indexName]]></code>
+      <code><![CDATA[$seqName]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Hook.php">
     <UnsafeInstantiation>
-      <code>new $name</code>
+      <code><![CDATA[new $name]]></code>
     </UnsafeInstantiation>
+  </file>
+  <file src="lib/Doctrine/Hydrator.php">
+    <NoValue>
+      <code><![CDATA[$driverClass]]></code>
+    </NoValue>
   </file>
   <file src="lib/Doctrine/Hydrator/ArrayDriver.php">
     <ReferenceConstraintViolation>
-      <code>return;</code>
+      <code><![CDATA[return;]]></code>
     </ReferenceConstraintViolation>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$coll]]></code>
+    </RiskyTruthyFalsyComparison>
     <UnsupportedReferenceUsage>
       <code><![CDATA[$prev[$dqlAlias] = & $coll[key($coll)]]]></code>
     </UnsupportedReferenceUsage>
@@ -216,75 +351,138 @@
     <NullableReturnStatement>
       <code><![CDATA[isset($this->_queryComponents[$alias]['map']) ? $this->_queryComponents[$alias]['map'] : null]]></code>
     </NullableReturnStatement>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! ($subclasses = $this->_tables[$component]->getOption('subclasses'))]]></code>
+      <code><![CDATA[$cache[$key]['isIdentifier']]]></code>
+      <code><![CDATA[$cache[$key]['isSimpleType']]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Hydrator/RecordDriver.php">
     <ReferenceConstraintViolation>
-      <code>return;</code>
+      <code><![CDATA[return;]]></code>
     </ReferenceConstraintViolation>
+  </file>
+  <file src="lib/Doctrine/Hydrator/ScalarDriver.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$cache[$key]['isAgg']]]></code>
+      <code><![CDATA[$cache[$key]['isSimpleType']]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Hydrator/SingleScalarDriver.php">
     <InvalidNullableReturnType>
-      <code>array|scalar</code>
+      <code><![CDATA[array|scalar]]></code>
     </InvalidNullableReturnType>
     <NullableReturnStatement>
-      <code>$result[0]</code>
+      <code><![CDATA[$result[0]]]></code>
     </NullableReturnStatement>
   </file>
   <file src="lib/Doctrine/Import/Builder.php">
     <InvalidArgument>
-      <code>false</code>
+      <code><![CDATA[false]]></code>
     </InvalidArgument>
     <NullArgument>
-      <code>null</code>
-      <code>null</code>
+      <code><![CDATA[null]]></code>
+      <code><![CDATA[null]]></code>
     </NullArgument>
     <PossiblyInvalidCast>
-      <code>$name</code>
-      <code>$name</code>
-      <code>$name</code>
-      <code>$name</code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$name]]></code>
     </PossiblyInvalidCast>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$definition['package']]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$classPrefix = $manager->getAttribute(Doctrine_Core::ATTR_MODEL_CLASS_PREFIX)]]></code>
+      <code><![CDATA[$manager->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE)]]></code>
+      <code><![CDATA[$setUpCode]]></code>
+      <code><![CDATA[$tableClass = $manager->getAttribute(Doctrine_Core::ATTR_TABLE_CLASS)]]></code>
+      <code><![CDATA[$tableClassFormat = $manager->getAttribute(Doctrine_Core::ATTR_TABLE_CLASS_FORMAT)]]></code>
+      <code><![CDATA[$tableDefinitionCode]]></code>
+      <code><![CDATA[empty($options)]]></code>
+      <code><![CDATA[empty($options)]]></code>
+      <code><![CDATA[stripos($column['name'], ' as ')]]></code>
+      <code><![CDATA[stripos($name, ' as ')]]></code>
+      <code><![CDATA[strpos($name, ' as')]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Import/Mssql.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[strstr($val['type_name'], ' ')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Import/Mysql.php">
     <NonInvariantDocblockPropertyType>
-      <code>$conn</code>
+      <code><![CDATA[$conn]]></code>
     </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Import/Schema.php">
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$definition[$move]]]></code>
+    </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($columns)]]></code>
+      <code><![CDATA[strpos($column['name'], '_id')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Lib.php">
     <PossiblyUndefinedArrayOffset>
-      <code>$args[0]</code>
+      <code><![CDATA[$args[0]]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Locator.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Locking/Manager/Pessimistic.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$objectType]]></code>
+      <code><![CDATA[$objectType]]></code>
+      <code><![CDATA[$userIdent]]></code>
+      <code><![CDATA[$userIdent]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Manager.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
-    <TypeDoesNotContainType>
-      <code>count($parts) == 0</code>
-    </TypeDoesNotContainType>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$parts['database']]]></code>
+      <code><![CDATA[$parts['database']]]></code>
+      <code><![CDATA[$parts['database']]]></code>
+    </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$implements]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Migration.php">
     <InvalidOperand>
-      <code>$num</code>
-      <code>end($nums)</code>
+      <code><![CDATA[$num]]></code>
+      <code><![CDATA[end($nums)]]></code>
     </InvalidOperand>
     <InvalidPropertyAssignmentValue>
       <code><![CDATA[$this->_migrationClasses]]></code>
     </InvalidPropertyAssignmentValue>
     <InvalidReturnType>
-      <code>void</code>
+      <code><![CDATA[void]]></code>
     </InvalidReturnType>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$directory]]></code>
+      <code><![CDATA[$path]]></code>
+    </RiskyTruthyFalsyComparison>
     <UnsafeInstantiation>
-      <code>new $className()</code>
+      <code><![CDATA[new $className()]]></code>
     </UnsafeInstantiation>
+  </file>
+  <file src="lib/Doctrine/Migration/Builder.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($changes['dropped_tables'])]]></code>
+      <code><![CDATA[empty($changes['dropped_tables'])]]></code>
+      <code><![CDATA[empty($changes['dropped_tables'])]]></code>
+      <code><![CDATA[empty($changes['dropped_tables'])]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Migration/Diff.php">
     <PossiblyUndefinedArrayOffset>
@@ -293,113 +491,180 @@
   </file>
   <file src="lib/Doctrine/Node.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$table->getOption('subclasses')]]></code>
+      <code><![CDATA[$thisTable->getOption('inheritanceMap')]]></code>
+    </RiskyTruthyFalsyComparison>
     <UnsafeInstantiation>
-      <code>new $class($record, $options)</code>
+      <code><![CDATA[new $class($record, $options)]]></code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Node/AdjacencyList/LevelOrderIterator.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/AdjacencyList/PostOrderIterator.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/AdjacencyList/PreOrderIterator.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/MaterializedPath/LevelOrderIterator.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/MaterializedPath/PostOrderIterator.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/MaterializedPath/PreOrderIterator.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/NestedSet.php">
     <NonInvariantDocblockPropertyType>
-      <code>$_tree</code>
+      <code><![CDATA[$_tree]]></code>
     </NonInvariantDocblockPropertyType>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $this->_tree->getAttribute('hasManyRoots')]]></code>
+      <code><![CDATA[$ancestors]]></code>
+      <code><![CDATA[$this->_tree->getAttribute('hasManyRoots')]]></code>
+      <code><![CDATA[$this->_tree->getAttribute('hasManyRoots')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Node/NestedSet/PreOrderIterator.php">
     <MissingTemplateParam>
-      <code>Iterator</code>
+      <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Parser/Xml.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$charset]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Parser/Yml.php">
+    <ReservedWord>
+      <code><![CDATA[Yaml::parse($contents)]]></code>
+    </ReservedWord>
+  </file>
   <file src="lib/Doctrine/Query.php">
+    <InvalidArgument>
+      <code><![CDATA[$parts]]></code>
+    </InvalidArgument>
+    <NoValue>
+      <code><![CDATA[return $collection;]]></code>
+    </NoValue>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$this->_sqlParts['limit']]]></code>
       <code><![CDATA[$this->_sqlParts['limit']]]></code>
       <code><![CDATA[$this->_sqlParts['where']]]></code>
       <code><![CDATA[$this->_sqlParts['where']]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $alias]]></code>
+      <code><![CDATA[$joinCondition]]></code>
+      <code><![CDATA[$joinCondition]]></code>
+      <code><![CDATA[$orderBy]]></code>
+      <code><![CDATA[$parseCallback]]></code>
+      <code><![CDATA[$string]]></code>
+      <code><![CDATA[empty($fieldSql)]]></code>
+      <code><![CDATA[empty($having)]]></code>
+      <code><![CDATA[empty($joinCondition)]]></code>
+      <code><![CDATA[empty($orderby)]]></code>
+      <code><![CDATA[empty($string)]]></code>
+      <code><![CDATA[empty($this->_sqlParts['limit'])]]></code>
+      <code><![CDATA[empty($this->_sqlParts['orderby'])]]></code>
+      <code><![CDATA[empty($this->_sqlParts['where'])]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Query/Abstract.php">
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$queryComponents[$e[0]]['table']]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $callback]]></code>
+      <code><![CDATA[$select]]></code>
+    </RiskyTruthyFalsyComparison>
+    <UnsupportedPropertyReferenceUsage>
+      <code><![CDATA[$this->_params          = & $query->_params]]></code>
+      <code><![CDATA[$this->_queryComponents = & $query->_queryComponents]]></code>
+      <code><![CDATA[$this->_tableAliasMap   = & $query->_tableAliasMap]]></code>
+    </UnsupportedPropertyReferenceUsage>
   </file>
   <file src="lib/Doctrine/Query/Condition.php">
     <PossiblyUndefinedArrayOffset>
-      <code>$parts[0]</code>
-      <code>$parts[0]</code>
+      <code><![CDATA[$parts[0]]]></code>
+      <code><![CDATA[$parts[0]]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Query/Having.php">
     <InvalidReturnStatement>
-      <code>$value</code>
+      <code><![CDATA[$value]]></code>
     </InvalidReturnStatement>
   </file>
   <file src="lib/Doctrine/Query/JoinCondition.php">
     <PossiblyUndefinedArrayOffset>
-      <code>$e[2]</code>
+      <code><![CDATA[$e[2]]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $hasRightAggExpression]]></code>
+      <code><![CDATA[$hasRightAggExpression]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Query/Set.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$hasAggExpression]]></code>
+      <code><![CDATA[$hasAggExpression]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Query/Tokenizer.php">
     <InvalidOperand>
-      <code>$index</code>
-      <code>$key</code>
+      <code><![CDATA[$index]]></code>
+      <code><![CDATA[$key]]></code>
     </InvalidOperand>
   </file>
   <file src="lib/Doctrine/RawSql.php">
     <InvalidOperand>
-      <code>$key</code>
+      <code><![CDATA[$key]]></code>
     </InvalidOperand>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($string)]]></code>
+      <code><![CDATA[empty($string)]]></code>
+      <code><![CDATA[empty($string)]]></code>
+      <code><![CDATA[empty($string)]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Record.php">
-    <InvalidArgument>
-      <code>$array</code>
-      <code><![CDATA[$this->toArray($deep, true)]]></code>
-    </InvalidArgument>
     <InvalidMethodCall>
-      <code>setInvoker</code>
+      <code><![CDATA[setInvoker]]></code>
     </InvalidMethodCall>
     <InvalidPropertyAssignmentValue>
       <code><![CDATA[$this->_data]]></code>
       <code><![CDATA[$this->_id]]></code>
     </InvalidPropertyAssignmentValue>
-    <InvalidReturnStatement>
-      <code><![CDATA[$this->toArray($deep)]]></code>
-    </InvalidReturnStatement>
-    <InvalidReturnType>
-      <code>false|int|string|array</code>
-    </InvalidReturnType>
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $this->_table->getAttribute(Doctrine_Core::ATTR_VALIDATE)]]></code>
+      <code><![CDATA[$accessor]]></code>
+      <code><![CDATA[$mutator]]></code>
+      <code><![CDATA[$newStrToTime]]></code>
+      <code><![CDATA[$oldStrToTime]]></code>
+      <code><![CDATA[$record]]></code>
+      <code><![CDATA[$this->_table->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE)]]></code>
+      <code><![CDATA[$this->_table->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE)]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Record/Generator.php">
     <UnsafeInstantiation>
@@ -408,36 +673,65 @@
   </file>
   <file src="lib/Doctrine/Record/Iterator.php">
     <MissingTemplateParam>
-      <code>Doctrine_Record_Iterator</code>
+      <code><![CDATA[Doctrine_Record_Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Relation.php">
     <InvalidMethodCall>
-      <code>getConnection</code>
+      <code><![CDATA[getConnection]]></code>
     </InvalidMethodCall>
     <MissingTemplateParam>
-      <code>ArrayAccess</code>
+      <code><![CDATA[ArrayAccess]]></code>
     </MissingTemplateParam>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $alias]]></code>
+      <code><![CDATA[! $alias]]></code>
+      <code><![CDATA[$orderBy = $this->getOrderByStatement($alias, $columnNames)]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Relation/Association.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($id)]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Relation/ForeignKey.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $alias]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Relation/LocalKey.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $alias]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Relation/Nest.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$orderBy = $this->getOrderByStatement($tableName, true)]]></code>
+      <code><![CDATA[empty($id)]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Relation/Parser.php">
     <InvalidMethodCall>
-      <code>addIndex</code>
-      <code>getFieldName</code>
-      <code>isIdentifier</code>
+      <code><![CDATA[addIndex]]></code>
+      <code><![CDATA[getFieldName]]></code>
+      <code><![CDATA[isIdentifier]]></code>
     </InvalidMethodCall>
     <PossiblyUndefinedArrayOffset>
-      <code>$columns[0]</code>
+      <code><![CDATA[$columns[0]]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$parents]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Search.php">
     <TooManyArguments>
-      <code>getColumnName</code>
-      <code>getColumnName</code>
+      <code><![CDATA[getColumnName]]></code>
+      <code><![CDATA[getColumnName]]></code>
     </TooManyArguments>
     <UnsafeInstantiation>
-      <code>new $class()</code>
-      <code>new $class()</code>
-      <code>new $class()</code>
+      <code><![CDATA[new $class()]]></code>
+      <code><![CDATA[new $class()]]></code>
+      <code><![CDATA[new $class()]]></code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Search/File.php">
@@ -447,149 +741,173 @@
   </file>
   <file src="lib/Doctrine/Sequence/Db2.php">
     <NullableReturnStatement>
-      <code>$result</code>
+      <code><![CDATA[$result]]></code>
     </NullableReturnStatement>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$field]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Sequence/Mssql.php">
     <NonInvariantDocblockPropertyType>
-      <code>$conn</code>
+      <code><![CDATA[$conn]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Sequence/Oracle.php">
     <LessSpecificImplementedReturnType>
-      <code>mixed</code>
+      <code><![CDATA[mixed]]></code>
     </LessSpecificImplementedReturnType>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($field)]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Sequence/Pgsql.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($field)]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Table.php">
     <FalsableReturnStatement>
       <code><![CDATA[isset($this->_columns[$columnName]) ? $this->_columns[$columnName]['type'] : false]]></code>
     </FalsableReturnStatement>
     <InvalidAttribute>
-      <code>\AllowDynamicProperties</code>
+      <code><![CDATA[\AllowDynamicProperties]]></code>
     </InvalidAttribute>
     <PossiblyUndefinedArrayOffset>
-      <code>$arguments[0]</code>
-      <code>$arguments[0]</code>
+      <code><![CDATA[$arguments[0]]]></code>
+      <code><![CDATA[$arguments[0]]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $definition[$key]]]></code>
+      <code><![CDATA[!$field]]></code>
+      <code><![CDATA[$charset = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_TABLE_CHARSET)]]></code>
+      <code><![CDATA[$collate = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_TABLE_COLLATE)]]></code>
+      <code><![CDATA[stripos($name, ' as ')]]></code>
+      <code><![CDATA[strpos($name, ' as ')]]></code>
+    </RiskyTruthyFalsyComparison>
     <UnsafeInstantiation>
-      <code>new $class</code>
-      <code>new $name($this)</code>
+      <code><![CDATA[new $class]]></code>
+      <code><![CDATA[new $name($this)]]></code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Table/Repository.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Task/BuildAll.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/BuildAllLoad.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/BuildAllReload.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Compile.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/CreateDb.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/CreateTables.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Dql.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/DropDb.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/DumpData.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigration.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsDb.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsDiff.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsModels.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateModelsDb.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateModelsYaml.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateSql.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateYamlDb.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateYamlModels.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/LoadData.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Migrate.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/RebuildDb.php">
     <NonInvariantDocblockPropertyType>
-      <code>$description</code>
+      <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Template/I18n.php">
     <NonInvariantDocblockPropertyType>
-      <code>$_plugin</code>
+      <code><![CDATA[$_plugin]]></code>
     </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Template/Listener/Sluggable.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$record->getTable()->getOption('inheritanceMap')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Template/Listener/Timestampable.php">
     <ImplicitToStringCast>
@@ -598,32 +916,45 @@
   </file>
   <file src="lib/Doctrine/Template/Searchable.php">
     <NonInvariantDocblockPropertyType>
-      <code>$_plugin</code>
+      <code><![CDATA[$_plugin]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Template/Versionable.php">
     <NonInvariantDocblockPropertyType>
-      <code>$_plugin</code>
+      <code><![CDATA[$_plugin]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Tree.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$table->getOption('inheritanceMap')]]></code>
+    </RiskyTruthyFalsyComparison>
     <UnsafeInstantiation>
-      <code>new $class($table, $options)</code>
+      <code><![CDATA[new $class($table, $options)]]></code>
     </UnsafeInstantiation>
   </file>
-  <file src="lib/Doctrine/Validator.php">
-    <InvalidArgument>
-      <code>$value</code>
-    </InvalidArgument>
+  <file src="lib/Doctrine/Tree/NestedSet.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$level = $this->getAttribute('levelColumnName')]]></code>
+      <code><![CDATA[$options['hasManyRoots']]]></code>
+      <code><![CDATA[$root = $this->getAttribute('rootColumnName')]]></code>
+      <code><![CDATA[$root = $this->getAttribute('rootColumnName')]]></code>
+      <code><![CDATA[$this->getAttribute('hasManyRoots')]]></code>
+      <code><![CDATA[$this->getAttribute('rootColumnName')]]></code>
+    </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Validator/ErrorStack.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Validator/Exception.php">
     <MissingTemplateParam>
-      <code>IteratorAggregate</code>
+      <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Validator/Regexp.php">
+    <NoValue>
+      <code><![CDATA[$this->args]]></code>
+    </NoValue>
   </file>
 </files>

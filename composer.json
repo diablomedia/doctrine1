@@ -43,7 +43,7 @@
     },
     "require-dev": {
         "phpunit/php-code-coverage": "^9.1.10",
-        "friendsofphp/php-cs-fixer": "^3.16.0",
+        "friendsofphp/php-cs-fixer": "^3.51.0",
         "phpstan/phpstan": "1.10.14",
         "vimeo/psalm": "5.9.0"
     },

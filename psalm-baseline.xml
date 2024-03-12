@@ -339,6 +339,11 @@
       <code>Iterator</code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Parser/Yml.php">
+    <ReservedWord>
+      <code>Yaml::parse($contents)</code>
+    </ReservedWord>
+  </file>
   <file src="lib/Doctrine/Query.php">
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$this->_sqlParts['limit']]]></code>
@@ -464,9 +469,6 @@
     <FalsableReturnStatement>
       <code><![CDATA[isset($this->_columns[$columnName]) ? $this->_columns[$columnName]['type'] : false]]></code>
     </FalsableReturnStatement>
-    <InvalidAttribute>
-      <code>\AllowDynamicProperties</code>
-    </InvalidAttribute>
     <PossiblyUndefinedArrayOffset>
       <code>$arguments[0]</code>
       <code>$arguments[0]</code>
@@ -610,11 +612,6 @@
     <UnsafeInstantiation>
       <code>new $class($table, $options)</code>
     </UnsafeInstantiation>
-  </file>
-  <file src="lib/Doctrine/Validator.php">
-    <InvalidArgument>
-      <code>$value</code>
-    </InvalidArgument>
   </file>
   <file src="lib/Doctrine/Validator/ErrorStack.php">
     <MissingTemplateParam>

@@ -32,6 +32,8 @@
  */
 class Doctrine_Relation_OrderBy_TestCase extends Doctrine_UnitTestCase
 {
+    protected $profiler;
+
     public function prepareTables()
     {
         $this->profiler = new Doctrine_Connection_Profiler();

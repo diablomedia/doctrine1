@@ -32,7 +32,6 @@
  */
 interface Doctrine_Tree_Interface
 {
-
     /**
      * creates root node from given record or from a new record
      *

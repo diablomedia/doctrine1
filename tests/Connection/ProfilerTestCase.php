@@ -33,6 +33,8 @@
  */
 class Doctrine_Connection_Profiler_TestCase extends Doctrine_UnitTestCase
 {
+    protected $profiler;
+
     public function prepareTables()
     {
     }

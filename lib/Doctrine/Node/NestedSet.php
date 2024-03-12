@@ -620,16 +620,16 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
             switch ($moveType) {
                 case 'moveAsPrevSiblingOf':
                     $this->insertAsPrevSiblingOf($dest);
-                break;
+                    break;
                 case 'moveAsFirstChildOf':
                     $this->insertAsFirstChildOf($dest);
-                break;
+                    break;
                 case 'moveAsNextSiblingOf':
                     $this->insertAsNextSiblingOf($dest);
-                break;
+                    break;
                 case 'moveAsLastChildOf':
                     $this->insertAsLastChildOf($dest);
-                break;
+                    break;
                 default:
                     throw new Doctrine_Node_Exception("Unknown move operation: $moveType.");
             }
@@ -878,7 +878,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
         return (($this->getLeftValue() == $subj->getNode()->getLeftValue()) &&
                 ($this->getRightValue() == $subj->getNode()->getRightValue()) &&
                 ($this->getRootValue() == $subj->getNode()->getRootValue())
-                );
+        );
     }
 
     /**

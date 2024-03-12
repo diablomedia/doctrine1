@@ -104,7 +104,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
         } elseif ($type == 'json') {
             $length = strlen((string) json_encode($value));
         } elseif ($type == 'decimal' || $type == 'float') {
-            $value = abs($value);
+            $value = abs($value ?? 0);
 
             $localeInfo   = localeconv();
             $decimalPoint = $localeInfo['mon_decimal_point'] ? $localeInfo['mon_decimal_point'] : $localeInfo['decimal_point'];
@@ -123,7 +123,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
                 }
             }
         } elseif ($type == 'blob') {
-            $length = strlen($value);
+            $length = strlen((string) $value);
         } else {
             $length = self::getStringLength($value);
         }
@@ -217,6 +217,6 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
                 return is_array($var) || is_string($var);
             default:
                 return true;
-         }
+        }
     }
 }

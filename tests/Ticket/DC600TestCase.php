@@ -32,6 +32,10 @@
  */
 class Doctrine_Ticket_DC600_TestCase extends Doctrine_UnitTestCase
 {
+    protected $_cacheDriver;
+    protected $_profiler;
+    protected $_conn;
+
     public function prepareTables()
     {
         $this->tables[] = 'DC600Model';

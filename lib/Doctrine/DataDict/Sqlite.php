@@ -114,7 +114,7 @@ class Doctrine_DataDict_Sqlite extends Doctrine_DataDict
             case 'float':
             case 'double':
                 return 'DOUBLE';//($this->conn->options['fixed_float'] ? '('.
-                    //($this->conn->options['fixed_float']+2).','.$this->conn->options['fixed_float'].')' : '');
+                //($this->conn->options['fixed_float']+2).','.$this->conn->options['fixed_float'].')' : '');
             case 'decimal':
                 $length = !empty($field['length']) ? $field['length'] : 18;
                 $scale  = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);

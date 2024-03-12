@@ -88,6 +88,11 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     protected $_generateTableClasses = false;
 
     /**
+     * @var bool
+     */
+    protected $_generateAccessors;
+
+    /**
      * Prefix to use for generated base classes
      *
      * @var string
@@ -1264,7 +1269,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
             // If is package then we need to put it in a package subfolder
             if (isset($definition['is_package']) && $definition['is_package']) {
                 $writePath = $this->_path . DIRECTORY_SEPARATOR . $definition['package_name'];
-            // Otherwise lets just put it in the root of the path
+                // Otherwise lets just put it in the root of the path
             } else {
                 $writePath = $this->_path;
             }
@@ -1291,7 +1296,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
             if (isset($definition['is_package']) && $definition['is_package']) {
                 $basePath  = $this->_path . DIRECTORY_SEPARATOR . $definition['package_name'];
                 $writePath = $basePath . DIRECTORY_SEPARATOR . $this->_baseClassesDirectory;
-            // Otherwise lets just put it in the root generated folder
+                // Otherwise lets just put it in the root generated folder
             } else {
                 $writePath = $this->_path . DIRECTORY_SEPARATOR . $this->_baseClassesDirectory;
             }
@@ -1302,7 +1307,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
             Doctrine_Lib::makeDirectories($writePath);
 
             $writePath .= DIRECTORY_SEPARATOR . $fileName;
-        // Otherwise none of the conditions were met and we aren't generating base classes
+            // Otherwise none of the conditions were met and we aren't generating base classes
         } else {
             Doctrine_Lib::makeDirectories($this->_path);
 

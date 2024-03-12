@@ -55,7 +55,7 @@ class Doctrine_Query_From extends Doctrine_Query_Part
                 // no break
             case 'LEFT':
                 array_shift($parts);
-            break;
+                break;
         }
 
         $last = '';

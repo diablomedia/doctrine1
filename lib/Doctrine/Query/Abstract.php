@@ -1120,19 +1120,19 @@ abstract class Doctrine_Query_Abstract
                         'callback' => 'preDqlDelete',
                         'const'    => Doctrine_Event::RECORD_DQL_DELETE
                     );
-                break;
+                    break;
                 case self::UPDATE:
                     $callback = array(
                         'callback' => 'preDqlUpdate',
                         'const'    => Doctrine_Event::RECORD_DQL_UPDATE
                     );
-                break;
+                    break;
                 case self::SELECT:
                     $callback = array(
                         'callback' => 'preDqlSelect',
                         'const'    => Doctrine_Event::RECORD_DQL_SELECT
                     );
-                break;
+                    break;
             }
         }
 

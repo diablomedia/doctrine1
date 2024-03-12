@@ -32,6 +32,8 @@
  */
 class Doctrine_AuditLog_TestCase extends Doctrine_UnitTestCase
 {
+    protected $profiler;
+
     public function prepareData()
     {
     }

@@ -465,7 +465,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
                     /** @psalm-var class-string $class */
                     $class                = 'Doctrine_' . ucwords($name) . '_' . $this->getDriverName();
                     $this->modules[$name] = new $class($this);
-                }
+            }
         }
 
         return $this->modules[$name];

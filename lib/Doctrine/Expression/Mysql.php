@@ -80,7 +80,7 @@ class Doctrine_Expression_Mysql extends Doctrine_Expression_Driver
                 case 'ILIKE':
                     $match = $field . 'LIKE ';
                     break;
-                // case sensitive
+                    // case sensitive
                 case 'LIKE':
                     $match = $field . 'LIKE BINARY ';
                     break;

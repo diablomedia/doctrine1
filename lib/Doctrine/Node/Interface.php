@@ -32,7 +32,6 @@
  */
 interface Doctrine_Node_Interface
 {
-
     /**
      * test if node has previous sibling
      *

@@ -962,7 +962,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 case 'enum':
                     $this->_data[$k] = $this->_table->enumValue($k, $this->_data[$k]);
                     break;
-
             }
         }
 
@@ -1033,7 +1032,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             }
         }
 
-        if ($this->_state === Doctrine_Record::STATE_TCLEAN ||
+        if ($this->_state     === Doctrine_Record::STATE_TCLEAN ||
                 $this->_state === Doctrine_Record::STATE_CLEAN) {
             $this->_resetModified();
         }
@@ -1987,14 +1986,14 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                     break;
                 case 'boolean':
                     $a[$field] = $this->getTable()->getConnection()->convertBooleans($this->_data[$field]);
-                break;
+                    break;
                 case 'set':
                     if (is_array($this->_data[$field])) {
                         $a[$field] = implode(',', $this->_data[$field]);
                     } else {
                         $a[$field] = $this->_data[$field];
                     }
-                break;
+                    break;
                 default:
                     if ($this->_data[$field] instanceof Doctrine_Record) {
                         $a[$field] = $this->_data[$field]->getIncremented();
@@ -2282,7 +2281,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     public function isModified($deep = false)
     {
         $modified = ($this->_state === Doctrine_Record::STATE_DIRTY ||
-                $this->_state === Doctrine_Record::STATE_TDIRTY);
+                $this->_state      === Doctrine_Record::STATE_TDIRTY);
         if (! $modified && $deep) {
             if ($this->_state == self::STATE_LOCKED || $this->_state == self::STATE_TLOCKED) {
                 return false;

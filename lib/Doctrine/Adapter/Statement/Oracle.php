@@ -163,7 +163,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
         switch ($type) {
             case Doctrine_Core::PARAM_STR:
                 $oci_type = SQLT_CHR;
-            break;
+                break;
         }
 
         if (is_integer($column)) {
@@ -317,25 +317,25 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
                 return oci_fetch_object($this->statement);
             default:
                 throw new Doctrine_Adapter_Exception('This type of fetch is not supported: ' . $fetchStyle);
-/*
-            case Doctrine_Core::FETCH_BOUND:
-            case Doctrine_Core::FETCH_CLASS:
-            case FETCH_CLASSTYPE:
-            case FETCH_COLUMN:
-            case FETCH_FUNC:
-            case FETCH_GROUP:
-            case FETCH_INTO:
-            case FETCH_LAZY:
-            case FETCH_NAMED:
-            case FETCH_SERIALIZE:
-            case FETCH_UNIQUE:
-               case FETCH_ORI_ABS:
-            case FETCH_ORI_FIRST:
-            case FETCH_ORI_LAST:
-            case FETCH_ORI_NEXT:
-            case FETCH_ORI_PRIOR:
-            case FETCH_ORI_REL:
-*/
+                /*
+                            case Doctrine_Core::FETCH_BOUND:
+                            case Doctrine_Core::FETCH_CLASS:
+                            case FETCH_CLASSTYPE:
+                            case FETCH_COLUMN:
+                            case FETCH_FUNC:
+                            case FETCH_GROUP:
+                            case FETCH_INTO:
+                            case FETCH_LAZY:
+                            case FETCH_NAMED:
+                            case FETCH_SERIALIZE:
+                            case FETCH_UNIQUE:
+                               case FETCH_ORI_ABS:
+                            case FETCH_ORI_FIRST:
+                            case FETCH_ORI_LAST:
+                            case FETCH_ORI_NEXT:
+                            case FETCH_ORI_PRIOR:
+                            case FETCH_ORI_REL:
+                */
         }
     }
 
@@ -524,7 +524,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
     {
         switch ($attribute) {
             case Doctrine_Core::ATTR_ERRMODE:
-            break;
+                break;
             default:
                 throw new Doctrine_Adapter_Exception("Unsupported Attribute: $attribute");
         }
@@ -572,7 +572,7 @@ class Doctrine_Adapter_Statement_Oracle implements Doctrine_Adapter_Statement_In
                 // no break
             case Doctrine_Core::ERRMODE_WARNING:
             case Doctrine_Core::ERRMODE_SILENT:
-            break;
+                break;
         }
     }
 

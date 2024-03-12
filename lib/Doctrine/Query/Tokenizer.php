@@ -34,7 +34,6 @@
  */
 class Doctrine_Query_Tokenizer
 {
-
     /**
      * Splits the given dql query into an array where keys represent different
      * query part names and values are arrays splitted using sqlExplode method
@@ -78,7 +77,7 @@ class Doctrine_Query_Tokenizer
                     $p = $token;
                     //$parts[$token] = array();
                     $parts[$token] = '';
-                break;
+                    break;
 
                 case 'order':
                 case 'group':
@@ -86,12 +85,12 @@ class Doctrine_Query_Tokenizer
                     if (isset($tokens[$i]) && strtolower($tokens[$i]) === 'by') {
                         $p             = $token;
                         $parts[$token] = '';
-                    //$parts[$token] = array();
+                        //$parts[$token] = array();
                     } else {
                         $parts[$p] .= "$token ";
                         //$parts[$p][] = $token;
                     }
-                break;
+                    break;
 
                 case 'by':
                     break;

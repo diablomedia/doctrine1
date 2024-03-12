@@ -109,11 +109,11 @@ class Doctrine_Inflector
             else {
                 return false;
             } # Does not match any model
-        for ($j = 0; $j < $n; $j++) { # n bytes matching 10bbbbbb follow ?
-          if ((++$i == strlen($string)) || ((ord($string[$i]) & 0xC0) != 0x80)) {
-              return false;
-          }
-        }
+            for ($j = 0; $j < $n; $j++) { # n bytes matching 10bbbbbb follow ?
+                if ((++$i == strlen($string)) || ((ord($string[$i]) & 0xC0) != 0x80)) {
+                    return false;
+                }
+            }
         }
         return true;
     }

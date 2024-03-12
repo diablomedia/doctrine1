@@ -542,7 +542,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
                 if ($table->getOption('joinedParents')) {
                     // currrently just for bc!
                     $this->_updateCTIRecord($table, $record);
-                //--
+                    //--
                 } else {
                     $array = $record->getPrepared();
                     $this->conn->update($table, $array, $identifier);
@@ -580,7 +580,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
                 if ($table->getOption('joinedParents')) {
                     // just for bc!
                     $this->_insertCTIRecord($table, $record);
-                //--
+                    //--
                 } else {
                     $this->processSingleInsert($record);
                 }

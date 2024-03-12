@@ -32,6 +32,9 @@
  */
 class Doctrine_Ticket_1131_TestCase extends Doctrine_UnitTestCase
 {
+    protected $role_one;
+    protected $role_two;
+
     public function prepareTables()
     {
         //$this->tables = array();
@@ -40,7 +43,6 @@ class Doctrine_Ticket_1131_TestCase extends Doctrine_UnitTestCase
         $this->tables[] = 'Ticket_1131_Role';
         parent::prepareTables();
     }
-
 
     public function prepareData()
     {

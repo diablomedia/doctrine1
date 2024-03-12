@@ -39,6 +39,9 @@ class Doctrine_UnitTestCase extends UnitTestCase
     protected $old;
     protected $dbh;
     protected $listener;
+    protected $import;
+    protected $sequence;
+    protected $exc;
 
     protected $users;
     protected $valueHolder;
@@ -111,7 +114,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
                 case 'DataDict':
                 case 'Sequence':
                     $this->driverName = 'Sqlite';
-                break;
+                    break;
             }
 
             $module = $e[1];
@@ -125,7 +128,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
                     case 'Pgsql':
                     case 'Sqlite':
                         $this->driverName = $e[2];
-                    break;
+                        break;
                 }
             }
         }
@@ -135,7 +138,7 @@ class Doctrine_UnitTestCase extends UnitTestCase
             $this->manager->setCurrentConnection($this->driverName);
 
             $this->connection->evictTables();
-            $this->dbh      = $this->adapter      = $this->connection->getDbh();
+            $this->dbh      = $this->adapter = $this->connection->getDbh();
             $this->listener = $this->manager->getAttribute(Doctrine_Core::ATTR_LISTENER);
 
             $this->manager->setAttribute(Doctrine_Core::ATTR_LISTENER, $this->listener);
@@ -170,10 +173,10 @@ class Doctrine_UnitTestCase extends UnitTestCase
                         $lower = strtolower($module);
 
                         $this->$lower = $this->connection->$lower;
-                    break;
+                        break;
                     case 'DataDict':
                         $this->dataDict = $this->connection->dataDict;
-                    break;
+                        break;
                 }
             }
         }

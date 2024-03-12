@@ -224,11 +224,11 @@ class Doctrine_Lib
     public static function arrayDeepMerge()
     {
         switch (func_num_args()) {
-             case 0:
+            case 0:
                 return false;
-             case 1:
+            case 1:
                 return func_get_arg(0);
-             case 2:
+            case 2:
                 $args    = func_get_args();
                 $args[2] = array();
 

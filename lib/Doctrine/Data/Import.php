@@ -79,7 +79,7 @@ class Doctrine_Data_Import extends Doctrine_Data
                 // If they specified a specific yml file
                 if (end($e) == 'yml') {
                     $array = $mergeFunction($array, Doctrine_Parser::load($dir, $this->getFormat()));
-                // If they specified a directory
+                    // If they specified a directory
                 } elseif (is_dir($dir)) {
                     $it = new RecursiveIteratorIterator(
                         new RecursiveDirectoryIterator($dir),

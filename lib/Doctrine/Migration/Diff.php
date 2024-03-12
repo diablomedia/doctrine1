@@ -252,7 +252,7 @@ class Doctrine_Migration_Diff
                     $this->_changes['created_foreign_keys'][$info['tableName']][$name] = $foreignKey;
                     $indexName                                                         = Doctrine_Manager::connection()->generateUniqueIndexName($info['tableName'], $foreignKey['local']);
                     $this->_changes['created_indexes'][$info['tableName']][$indexName] = array('fields' => array($foreignKey['local']));
-                // If foreign key does exist then lets see if anything has changed with it
+                    // If foreign key does exist then lets see if anything has changed with it
                 } elseif (isset($from[$className]['options']['foreignKeys'][$name])) {
                     $oldForeignKey         = $from[$className]['options']['foreignKeys'][$name];
                     $oldForeignKey['name'] = $name;

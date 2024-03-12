@@ -32,6 +32,8 @@
  */
 class Doctrine_Record_FromArray_TestCase extends Doctrine_UnitTestCase
 {
+    protected $previous_group;
+
     public function prepareTables()
     {
         parent::prepareTables();

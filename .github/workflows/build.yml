@@ -13,7 +13,7 @@ jobs:
             fail-fast: false
             matrix:
                 operating-system: [ubuntu-latest]
-                php-versions: ['7.4', '8.0', '8.1']
+                php-versions: ['7.4', '8.0', '8.1', '8.2']
                 composer-args: ['', '--prefer-lowest']
         runs-on: ${{ matrix.operating-system }}
         steps:
@@ -43,5 +43,4 @@ jobs:
               uses: codecov/codecov-action@v3
               with:
                 files: ./tests/coverage/clover.xml
-                fail_ci_if_error: true
                 verbose: true

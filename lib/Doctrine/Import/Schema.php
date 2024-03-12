@@ -362,7 +362,6 @@ class Doctrine_Import_Schema
 
             if (! empty($columns)) {
                 foreach ($columns as $columnName => $field) {
-
                     // Support short syntax: my_column: integer(4)
                     if (! is_array($field)) {
                         $original      = $field;

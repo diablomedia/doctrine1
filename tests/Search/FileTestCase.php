@@ -32,6 +32,8 @@
  */
 class Doctrine_Search_File_TestCase extends Doctrine_UnitTestCase
 {
+    protected $_search;
+
     public function prepareData()
     {
     }

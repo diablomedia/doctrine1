@@ -255,7 +255,7 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
             case Doctrine_Core::ATTR_DRIVER_NAME:
                 //TODO throw an error since driver name can not be changed
             case Doctrine_Core::ATTR_ERRMODE:
-            break;
+                break;
             case Doctrine_Core::ATTR_CASE:
                 if ($value == Doctrine_Core::CASE_NATURAL) {
                     break;

@@ -110,7 +110,7 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
             switch (strtolower($definition['type'])) {
                 case 'unique':
                     $type = strtoupper($definition['type']) . ' ';
-                break;
+                    break;
                 default:
                     throw new Doctrine_Export_Exception(
                         'Unknown type ' . $definition['type'] . ' for index ' . $name . ' in table ' . $table

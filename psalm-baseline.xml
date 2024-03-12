@@ -1,127 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.13.1@5cf660f63b548ccd4a56f62d916ee4d6028e01a3">
+<files psalm-version="5.9.0@8b9ad1eb9e8b7d3101f949291da2b9f7767cd163">
+  <file src="lib/Doctrine/Access.php">
+    <MissingTemplateParam>
+      <code>ArrayAccess</code>
+    </MissingTemplateParam>
+  </file>
   <file src="lib/Doctrine/Adapter/Statement/Oracle.php">
-    <InvalidOperand occurrences="1">
+    <InvalidOperand>
       <code>$var</code>
     </InvalidOperand>
   </file>
   <file src="lib/Doctrine/AuditLog/Listener.php">
-    <InvalidArgument occurrences="1">
-      <code>$record-&gt;toArray()</code>
+    <InvalidArgument>
+      <code><![CDATA[$record->toArray()]]></code>
     </InvalidArgument>
-    <UnsafeInstantiation occurrences="2">
+    <UnsafeInstantiation>
       <code>new $class()</code>
       <code>new $class()</code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Cache/Memcache.php">
-    <UndefinedDocblockClass occurrences="8">
-      <code>$this-&gt;_memcache</code>
-      <code>$this-&gt;_memcache</code>
-      <code>$this-&gt;_memcache</code>
-      <code>$this-&gt;_memcache</code>
-      <code>$this-&gt;_memcache</code>
-      <code>$this-&gt;_memcache</code>
+    <InvalidCast>
+      <code>$slabId</code>
+    </InvalidCast>
+    <UndefinedDocblockClass>
+      <code><![CDATA[$this->_memcache]]></code>
+      <code><![CDATA[$this->_memcache]]></code>
+      <code><![CDATA[$this->_memcache]]></code>
+      <code><![CDATA[$this->_memcache]]></code>
+      <code><![CDATA[$this->_memcache]]></code>
+      <code><![CDATA[$this->_memcache]]></code>
       <code>Memcache</code>
       <code>protected $_memcache = null;</code>
     </UndefinedDocblockClass>
   </file>
   <file src="lib/Doctrine/Cli.php">
-    <RedundantCast occurrences="1">
-      <code>(bool) $reflectionClass-&gt;isSubclassOf(self::TASK_BASE_CLASS)</code>
+    <RedundantCast>
+      <code><![CDATA[(bool) $reflectionClass->isSubclassOf(self::TASK_BASE_CLASS)]]></code>
     </RedundantCast>
-    <ReferenceConstraintViolation occurrences="1">
+    <ReferenceConstraintViolation>
       <code>return true;</code>
     </ReferenceConstraintViolation>
   </file>
   <file src="lib/Doctrine/Collection.php">
-    <InvalidArrayOffset occurrences="3">
-      <code>$vars['expandable']</code>
-      <code>$vars['expanded']</code>
-      <code>$vars['generator']</code>
-    </InvalidArrayOffset>
-    <InvalidMethodCall occurrences="1">
+    <InvalidMethodCall>
       <code>getRelations</code>
     </InvalidMethodCall>
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>mixed</code>
     </LessSpecificImplementedReturnType>
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Collection/Iterator.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Collection/OnDemand.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Column.php">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Connection.php">
-    <FalsableReturnStatement occurrences="2">
-      <code>$this-&gt;execute($statement, $params)-&gt;fetch(Doctrine_Core::FETCH_ASSOC)</code>
-      <code>$this-&gt;execute($statement, $params)-&gt;fetch(Doctrine_Core::FETCH_NUM)</code>
+    <FalsableReturnStatement>
+      <code><![CDATA[$this->execute($statement, $params)->fetch(Doctrine_Core::FETCH_ASSOC)]]></code>
+      <code><![CDATA[$this->execute($statement, $params)->fetch(Doctrine_Core::FETCH_NUM)]]></code>
     </FalsableReturnStatement>
-    <InvalidArgument occurrences="1">
-      <code>array_merge($parts, array($relation['onDelete']), array($relation['onUpdate']))</code>
+    <InvalidArgument>
+      <code><![CDATA[array_merge($parts, array($relation['onDelete']), array($relation['onUpdate']))]]></code>
     </InvalidArgument>
-    <InvalidMethodCall occurrences="2">
+    <InvalidMethodCall>
       <code>getTableName</code>
       <code>getTableName</code>
     </InvalidMethodCall>
-    <InvalidReturnStatement occurrences="1">
-      <code>$this-&gt;formatter-&gt;convertBooleans($item)</code>
+    <InvalidReturnStatement>
+      <code><![CDATA[$this->formatter->convertBooleans($item)]]></code>
     </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
+    <InvalidReturnType>
       <code>array|int</code>
     </InvalidReturnType>
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
+    <NonInvariantDocblockPropertyType>
+      <code>$parent</code>
+      <code>$parent</code>
+      <code>$parent</code>
+      <code>$parent</code>
+      <code>$parent</code>
+      <code>$parent</code>
+      <code>$parent</code>
+      <code>$parent</code>
       <code>$parent</code>
     </NonInvariantDocblockPropertyType>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$this-&gt;pendingAttributes[$attribute]</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$this->pendingAttributes[$attribute]]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Connection/Mssql.php">
-    <InvalidNullableReturnType occurrences="1">
-      <code>string</code>
-    </InvalidNullableReturnType>
-    <NullableReturnStatement occurrences="1">
-      <code>is_null($value) ? 'NULL' : $this-&gt;quote($params[$m[1]])</code>
-    </NullableReturnStatement>
-    <UndefinedVariable occurrences="1">
-      <code>$fields</code>
-    </UndefinedVariable>
+    <PossiblyUndefinedArrayOffset>
+      <code>$fields[$i]</code>
+    </PossiblyUndefinedArrayOffset>
   </file>
-  <file src="lib/Doctrine/Connection/Pgsql.php">
-    <RedundantCast occurrences="2">
-      <code>(int)$limit</code>
-      <code>(int)$limit</code>
-    </RedundantCast>
+  <file src="lib/Doctrine/Connection/Profiler.php">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Connection/Sqlite.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$dbh</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Connection/Statement.php">
-    <InvalidScalarArgument occurrences="1">
+    <InvalidArgument>
       <code>$arg1</code>
-    </InvalidScalarArgument>
+    </InvalidArgument>
   </file>
   <file src="lib/Doctrine/Connection/UnitOfWork.php">
-    <ReferenceConstraintViolation occurrences="1">
+    <ReferenceConstraintViolation>
       <code>return $id;</code>
     </ReferenceConstraintViolation>
-    <UnsafeInstantiation occurrences="1">
+    <UnsafeInstantiation>
       <code>new $parent()</code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Core.php">
-    <InvalidNullableReturnType occurrences="1">
+    <InvalidNullableReturnType>
       <code>bool|int</code>
     </InvalidNullableReturnType>
-    <NullableReturnStatement occurrences="1">
-      <code>$migration-&gt;migrate($to)</code>
+    <NullableReturnStatement>
+      <code><![CDATA[$migration->migrate($to)]]></code>
     </NullableReturnStatement>
+    <RedundantFunctionCallGivenDocblockType>
+      <code>array_values</code>
+      <code>array_values</code>
+    </RedundantFunctionCallGivenDocblockType>
   </file>
   <file src="lib/Doctrine/Data/Import.php">
-    <UnsafeInstantiation occurrences="1">
+    <UnsafeInstantiation>
       <code>new $className()</code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/DataDict/Oracle.php">
-    <RedundantCast occurrences="5">
+    <RedundantCast>
       <code>(int)$length</code>
       <code>(int)$length</code>
       <code>(int)$length</code>
@@ -130,364 +159,471 @@
     </RedundantCast>
   </file>
   <file src="lib/Doctrine/Export.php">
-    <UnsafeInstantiation occurrences="1">
+    <UnsafeInstantiation>
       <code>new $name()</code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Export/Mysql.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$conn</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Export/Pgsql.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$conn</code>
     </NonInvariantDocblockPropertyType>
   </file>
+  <file src="lib/Doctrine/Export/Reporter.php">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
+  </file>
   <file src="lib/Doctrine/Expression/Mysql.php">
-    <InvalidOperand occurrences="1">
+    <InvalidOperand>
       <code>$key</code>
     </InvalidOperand>
   </file>
   <file src="lib/Doctrine/Expression/Pgsql.php">
-    <InvalidOperand occurrences="1">
+    <InvalidOperand>
       <code>$key</code>
     </InvalidOperand>
   </file>
   <file src="lib/Doctrine/Formatter.php">
-    <NullArgument occurrences="1">
+    <NullArgument>
       <code>null</code>
     </NullArgument>
   </file>
   <file src="lib/Doctrine/Hook.php">
-    <UnsafeInstantiation occurrences="1">
+    <UnsafeInstantiation>
       <code>new $name</code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Hydrator/ArrayDriver.php">
-    <ReferenceConstraintViolation occurrences="1">
+    <ReferenceConstraintViolation>
       <code>return;</code>
     </ReferenceConstraintViolation>
+    <UnsupportedReferenceUsage>
+      <code><![CDATA[$prev[$dqlAlias] = & $coll[key($coll)]]]></code>
+    </UnsupportedReferenceUsage>
+  </file>
+  <file src="lib/Doctrine/Hydrator/ArrayHierarchyDriver.php">
+    <UnsupportedReferenceUsage>
+      <code><![CDATA[$stack[]                         = & $stack[$l - 1]['__children'][$i]]]></code>
+      <code><![CDATA[$stack[]   = & $trees[$i]]]></code>
+    </UnsupportedReferenceUsage>
   </file>
   <file src="lib/Doctrine/Hydrator/Graph.php">
-    <NullableReturnStatement occurrences="1">
-      <code>isset($this-&gt;_queryComponents[$alias]['map']) ? $this-&gt;_queryComponents[$alias]['map'] : null</code>
+    <NullableReturnStatement>
+      <code><![CDATA[isset($this->_queryComponents[$alias]['map']) ? $this->_queryComponents[$alias]['map'] : null]]></code>
     </NullableReturnStatement>
   </file>
   <file src="lib/Doctrine/Hydrator/RecordDriver.php">
-    <ReferenceConstraintViolation occurrences="1">
+    <ReferenceConstraintViolation>
       <code>return;</code>
     </ReferenceConstraintViolation>
   </file>
   <file src="lib/Doctrine/Hydrator/SingleScalarDriver.php">
-    <InvalidNullableReturnType occurrences="1">
+    <InvalidNullableReturnType>
       <code>array|scalar</code>
     </InvalidNullableReturnType>
-    <NullableReturnStatement occurrences="1">
+    <NullableReturnStatement>
       <code>$result[0]</code>
     </NullableReturnStatement>
   </file>
   <file src="lib/Doctrine/Import/Builder.php">
-    <InvalidArgument occurrences="1">
+    <InvalidArgument>
       <code>false</code>
     </InvalidArgument>
-    <NullArgument occurrences="2">
+    <NullArgument>
       <code>null</code>
       <code>null</code>
     </NullArgument>
-    <TypeDoesNotContainType occurrences="1">
-      <code>$definition['package_name']</code>
-    </TypeDoesNotContainType>
+    <PossiblyInvalidCast>
+      <code>$name</code>
+      <code>$name</code>
+      <code>$name</code>
+      <code>$name</code>
+    </PossiblyInvalidCast>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$definition['package']]]></code>
+    </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Import/Mysql.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$conn</code>
     </NonInvariantDocblockPropertyType>
   </file>
+  <file src="lib/Doctrine/Lib.php">
+    <PossiblyUndefinedArrayOffset>
+      <code>$args[0]</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="lib/Doctrine/Locator.php">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Manager.php">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
+    <TypeDoesNotContainType>
+      <code>count($parts) == 0</code>
+    </TypeDoesNotContainType>
+  </file>
   <file src="lib/Doctrine/Migration.php">
-    <ImplicitToStringCast occurrences="1">
-      <code>$this-&gt;_reflectionClass</code>
-    </ImplicitToStringCast>
-    <InvalidOperand occurrences="2">
+    <InvalidOperand>
       <code>$num</code>
       <code>end($nums)</code>
     </InvalidOperand>
-    <InvalidPropertyAssignmentValue occurrences="1">
-      <code>$this-&gt;_migrationClasses</code>
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->_migrationClasses]]></code>
     </InvalidPropertyAssignmentValue>
-    <UnsafeInstantiation occurrences="1">
+    <InvalidReturnType>
+      <code>void</code>
+    </InvalidReturnType>
+    <UnsafeInstantiation>
       <code>new $className()</code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Migration/Diff.php">
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$pathInfo['extension']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$pathInfo['extension']]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Node.php">
-    <UnsafeInstantiation occurrences="1">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
+    <UnsafeInstantiation>
       <code>new $class($record, $options)</code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Node/AdjacencyList/LevelOrderIterator.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Node/AdjacencyList/PostOrderIterator.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Node/AdjacencyList/PreOrderIterator.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Node/MaterializedPath/LevelOrderIterator.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Node/MaterializedPath/PostOrderIterator.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Node/MaterializedPath/PreOrderIterator.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
   <file src="lib/Doctrine/Node/NestedSet.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$_tree</code>
     </NonInvariantDocblockPropertyType>
   </file>
-  <file src="lib/Doctrine/Parser/Yml.php">
-    <InvalidScalarArgument occurrences="2">
-      <code>$e-&gt;getCode()</code>
-      <code>$e-&gt;getCode()</code>
-    </InvalidScalarArgument>
+  <file src="lib/Doctrine/Node/NestedSet/PreOrderIterator.php">
+    <MissingTemplateParam>
+      <code>Iterator</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Query.php">
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$this->_sqlParts['limit']]]></code>
+      <code><![CDATA[$this->_sqlParts['limit']]]></code>
+      <code><![CDATA[$this->_sqlParts['where']]]></code>
+      <code><![CDATA[$this->_sqlParts['where']]]></code>
+    </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Query/Abstract.php">
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$queryComponents[$e[0]]['table']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$queryComponents[$e[0]]['table']]]></code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="lib/Doctrine/Query/Condition.php">
+    <PossiblyUndefinedArrayOffset>
+      <code>$parts[0]</code>
+      <code>$parts[0]</code>
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Query/Having.php">
-    <InvalidReturnStatement occurrences="1">
+    <InvalidReturnStatement>
       <code>$value</code>
     </InvalidReturnStatement>
   </file>
+  <file src="lib/Doctrine/Query/JoinCondition.php">
+    <PossiblyUndefinedArrayOffset>
+      <code>$e[2]</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
   <file src="lib/Doctrine/Query/Tokenizer.php">
-    <InvalidArrayOffset occurrences="1">
-      <code>$res[$i]</code>
-    </InvalidArrayOffset>
-    <InvalidOperand occurrences="2">
+    <InvalidOperand>
       <code>$index</code>
       <code>$key</code>
     </InvalidOperand>
   </file>
   <file src="lib/Doctrine/RawSql.php">
-    <InvalidOperand occurrences="1">
+    <InvalidOperand>
       <code>$key</code>
     </InvalidOperand>
   </file>
   <file src="lib/Doctrine/Record.php">
-    <InvalidArgument occurrences="2">
+    <InvalidArgument>
       <code>$array</code>
-      <code>$this-&gt;toArray($deep, true)</code>
+      <code><![CDATA[$this->toArray($deep, true)]]></code>
     </InvalidArgument>
-    <InvalidArrayOffset occurrences="1">
-      <code>$vars['_filter']</code>
-    </InvalidArrayOffset>
-    <InvalidMethodCall occurrences="1">
+    <InvalidMethodCall>
       <code>setInvoker</code>
     </InvalidMethodCall>
-    <InvalidPropertyAssignmentValue occurrences="2">
-      <code>$this-&gt;_data</code>
-      <code>$this-&gt;_id</code>
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->_data]]></code>
+      <code><![CDATA[$this->_id]]></code>
     </InvalidPropertyAssignmentValue>
-    <InvalidReturnStatement occurrences="1">
-      <code>$this-&gt;toArray($deep)</code>
+    <InvalidReturnStatement>
+      <code><![CDATA[$this->toArray($deep)]]></code>
     </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
+    <InvalidReturnType>
       <code>false|int|string|array</code>
     </InvalidReturnType>
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Record/Generator.php">
-    <UnsafeInstantiation occurrences="1">
-      <code>new $tableClass($this-&gt;_options['className'], $conn)</code>
+    <UnsafeInstantiation>
+      <code><![CDATA[new $tableClass($this->_options['className'], $conn)]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Record/Iterator.php">
+    <MissingTemplateParam>
+      <code>Doctrine_Record_Iterator</code>
+    </MissingTemplateParam>
+  </file>
   <file src="lib/Doctrine/Relation.php">
-    <InvalidMethodCall occurrences="1">
+    <InvalidMethodCall>
       <code>getConnection</code>
     </InvalidMethodCall>
+    <MissingTemplateParam>
+      <code>ArrayAccess</code>
+    </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Relation/Parser.php">
-    <InvalidMethodCall occurrences="3">
+    <InvalidMethodCall>
       <code>addIndex</code>
       <code>getFieldName</code>
       <code>isIdentifier</code>
     </InvalidMethodCall>
+    <PossiblyUndefinedArrayOffset>
+      <code>$columns[0]</code>
+    </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Search.php">
-    <TooManyArguments occurrences="2">
+    <TooManyArguments>
       <code>getColumnName</code>
       <code>getColumnName</code>
     </TooManyArguments>
-    <UnsafeInstantiation occurrences="3">
+    <UnsafeInstantiation>
       <code>new $class()</code>
       <code>new $class()</code>
       <code>new $class()</code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Search/File.php">
-    <UnsafeInstantiation occurrences="1">
-      <code>new $tableClass('File', $conn)</code>
+    <UnsafeInstantiation>
+      <code><![CDATA[new $tableClass('File', $conn)]]></code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Sequence/Db2.php">
-    <NullableReturnStatement occurrences="1">
+    <NullableReturnStatement>
       <code>$result</code>
     </NullableReturnStatement>
   </file>
   <file src="lib/Doctrine/Sequence/Mssql.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$conn</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Sequence/Oracle.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>mixed</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="lib/Doctrine/Table.php">
-    <FalsableReturnStatement occurrences="1">
-      <code>isset($this-&gt;_columns[$columnName]) ? $this-&gt;_columns[$columnName]['type'] : false</code>
+    <FalsableReturnStatement>
+      <code><![CDATA[isset($this->_columns[$columnName]) ? $this->_columns[$columnName]['type'] : false]]></code>
     </FalsableReturnStatement>
-    <InvalidScalarArgument occurrences="2">
-      <code>$definition['length']</code>
-      <code>$definition['type']</code>
-    </InvalidScalarArgument>
-    <TypeDoesNotContainType occurrences="1">
-      <code>$class === false</code>
-    </TypeDoesNotContainType>
-    <UnsafeInstantiation occurrences="2">
+    <InvalidAttribute>
+      <code>\AllowDynamicProperties</code>
+    </InvalidAttribute>
+    <PossiblyUndefinedArrayOffset>
+      <code>$arguments[0]</code>
+      <code>$arguments[0]</code>
+    </PossiblyUndefinedArrayOffset>
+    <UnsafeInstantiation>
       <code>new $class</code>
       <code>new $name($this)</code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Table/Repository.php">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
+  </file>
   <file src="lib/Doctrine/Task/BuildAll.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/BuildAllLoad.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/BuildAllReload.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Compile.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/CreateDb.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/CreateTables.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Dql.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/DropDb.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/DumpData.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigration.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsDb.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsDiff.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsModels.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateModelsDb.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateModelsYaml.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateSql.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateYamlDb.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateYamlModels.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/LoadData.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Migrate.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/RebuildDb.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$description</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Template/I18n.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$_plugin</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Template/Listener/Timestampable.php">
-    <ImplicitToStringCast occurrences="1">
-      <code>$this-&gt;getTimestamp('updated', $event-&gt;getInvoker()-&gt;getTable()-&gt;getConnection())</code>
+    <ImplicitToStringCast>
+      <code><![CDATA[$this->getTimestamp('updated', $event->getInvoker()->getTable()->getConnection())]]></code>
     </ImplicitToStringCast>
   </file>
   <file src="lib/Doctrine/Template/Searchable.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$_plugin</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Template/Versionable.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$_plugin</code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Tree.php">
-    <UnsafeInstantiation occurrences="1">
+    <UnsafeInstantiation>
       <code>new $class($table, $options)</code>
     </UnsafeInstantiation>
   </file>
-  <file src="lib/Doctrine/Tree/NestedSet.php">
-    <InvalidScalarArgument occurrences="1">
-      <code>$rootId</code>
-    </InvalidScalarArgument>
-  </file>
   <file src="lib/Doctrine/Validator.php">
-    <InvalidScalarArgument occurrences="1">
+    <InvalidArgument>
       <code>$value</code>
-    </InvalidScalarArgument>
+    </InvalidArgument>
+  </file>
+  <file src="lib/Doctrine/Validator/ErrorStack.php">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Validator/Exception.php">
+    <MissingTemplateParam>
+      <code>IteratorAggregate</code>
+    </MissingTemplateParam>
   </file>
 </files>

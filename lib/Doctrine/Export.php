@@ -479,7 +479,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
             switch (strtolower($definition['type'])) {
                 case 'unique':
                     $type = strtoupper($definition['type']) . ' ';
-                break;
+                    break;
                 default:
                     throw new Doctrine_Export_Exception(
                         'Unknown type ' . $definition['type'] . ' for index ' . $name . ' in table ' . $table
@@ -1155,7 +1155,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
                 }
 
                 // If alter table statement or oracle anonymous block enclosing alter
-                if (substr($query, 0, strlen('ALTER TABLE')) == 'ALTER TABLE'
+                if (substr($query, 0, strlen('ALTER TABLE'))   == 'ALTER TABLE'
                        || substr($query, 0, strlen('DECLARE')) == 'DECLARE') {
                     $connections[$connectionName]['alters'][] = $query;
 

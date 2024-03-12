@@ -277,7 +277,7 @@ class Doctrine_Import_Schema
 
         if (count($array) == 0) {
             throw new Doctrine_Import_Exception(
-                sprintf('No ' . $format . ' schema found in ' . implode(', ', $schema))
+                'No ' . $format . ' schema found in ' . implode(', ', $schema)
             );
         }
 
@@ -766,7 +766,7 @@ class Doctrine_Import_Schema
         foreach ($element as $key => $value) {
             if (! isset($validation[$value])) {
                 throw new Doctrine_Import_Exception(
-                    sprintf('Invalid schema element named "' . $value . '" at path "' . $path . '"')
+                    'Invalid schema element named "' . $value . '" at path "' . $path . '"'
                 );
             }
         }

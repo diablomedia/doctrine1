@@ -1,46 +1,46 @@
 name: Build
 on:
-    push:
-        branches:
-            - master
-    pull_request:
-        branches:
-            - master
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
-    build:
-        name: PHP ${{ matrix.php-versions }} ${{ matrix.composer-args }}
-        strategy:
-            fail-fast: false
-            matrix:
-                operating-system: [ubuntu-latest]
-                php-versions: ['7.4', '8.0', '8.1', '8.2']
-                composer-args: ['', '--prefer-lowest']
-        runs-on: ${{ matrix.operating-system }}
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4.1.2
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php-versions }}
-                  extensions: mbstring, apcu
-                  ini-values: apc.enable_cli=1
-                  coverage: xdebug
-            - name: Install Dependencies
-              run: |
-                  composer update --no-progress --no-suggest --prefer-stable --optimize-autoloader ${{ matrix.composer-args }}
-            - name: Static Analysis
-              run: |
-                  composer phpstan
-                  composer psalm -- --shepherd
-            - name: Code Style Check
-              env:
-                  PHP_CS_FIXER_IGNORE_ENV: true
-              run: composer style-check
-            - name: Test
-              run: composer test-with-coverage
-            - name: Upload Coverage
-              uses: codecov/codecov-action@v3
-              with:
-                files: ./tests/coverage/clover.xml
-                verbose: true
+  build:
+    name: PHP ${{ matrix.php-versions }} ${{ matrix.composer-args }}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: ["7.4", "8.0", "8.1", "8.2"]
+        composer-args: ["", "--prefer-lowest"]
+    runs-on: ${{ matrix.operating-system }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, apcu
+          ini-values: apc.enable_cli=1
+          coverage: xdebug
+      - name: Install Dependencies
+        run: |
+          composer update --no-progress --no-suggest --prefer-stable --optimize-autoloader ${{ matrix.composer-args }}
+      - name: Static Analysis
+        run: |
+          composer phpstan
+          composer psalm -- --shepherd
+      - name: Code Style Check
+        env:
+          PHP_CS_FIXER_IGNORE_ENV: true
+        run: composer style-check
+      - name: Test
+        run: composer test-with-coverage
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./tests/coverage/clover.xml
+          verbose: true

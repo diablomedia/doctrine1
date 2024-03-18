@@ -60,7 +60,7 @@ class Doctrine_Cache_Apcu extends Doctrine_Cache_Driver
 
     protected function _doSave($id, $data, $lifeTime = false)
     {
-        if ($lifeTime === false) {
+        if ($lifeTime === false || $lifeTime === null) {
             $lifeTime = 0;
         }
 

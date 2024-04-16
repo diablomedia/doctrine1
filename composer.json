@@ -44,7 +44,7 @@
     "require-dev": {
         "phpunit/php-code-coverage": "^9.1.10",
         "friendsofphp/php-cs-fixer": "^3.51.0",
-        "phpstan/phpstan": "1.10.14",
+        "phpstan/phpstan": "1.10.67",
         "vimeo/psalm": "5.23.1"
     },
     "scripts": {

@@ -227,11 +227,6 @@ $ignoreErrors[] = array(
     'path'    => __DIR__ . '/lib/Doctrine/Connection/Mssql.php',
 );
 $ignoreErrors[] = array(
-    'message' => '#^Offset string does not exist on array\\<int\\<0, max\\>, mixed\\>\\.$#',
-    'count'   => 1,
-    'path'    => __DIR__ . '/lib/Doctrine/Connection/Mssql.php',
-);
-$ignoreErrors[] = array(
     'message' => '#^Parameter \\#3 \\$subject of function preg_replace expects array\\|string, string\\|null given\\.$#',
     'count'   => 1,
     'path'    => __DIR__ . '/lib/Doctrine/Connection/Mssql.php',
@@ -487,11 +482,6 @@ $ignoreErrors[] = array(
     'path'    => __DIR__ . '/lib/Doctrine/Manager.php',
 );
 $ignoreErrors[] = array(
-    'message' => '#^Cannot access offset \'dsn\'\\|\'fragment\'\\|\'host\'\\|\'pass\'\\|\'path\'\\|\'port\'\\|\'query\'\\|\'scheme\'\\|\'user\' on array\\<\'dsn\'\\|\'fragment\'\\|\'host\'\\|\'pass\'\\|\'path\'\\|\'port\'\\|\'query\'\\|\'scheme\'\\|\'user\', int\\<0, 65535\\>\\|string\\|null\\>\\|false\\.$#',
-    'count'   => 1,
-    'path'    => __DIR__ . '/lib/Doctrine/Manager.php',
-);
-$ignoreErrors[] = array(
     'message' => '#^Parameter \\#1 \\$url of function parse_url expects string, string\\|null given\\.$#',
     'count'   => 1,
     'path'    => __DIR__ . '/lib/Doctrine/Manager.php',
@@ -505,16 +495,6 @@ $ignoreErrors[] = array(
     'message' => '#^Method Doctrine_Migration\\:\\:migrateDryRun\\(\\) should return bool\\|int but returns int\\|false\\|null\\.$#',
     'count'   => 1,
     'path'    => __DIR__ . '/lib/Doctrine/Migration.php',
-);
-$ignoreErrors[] = array(
-    'message' => '#^Parameter \\#1 \\$tableName of method Doctrine_Migration_Builder\\:\\:buildCreateForeignKey\\(\\) expects string, int\\|string given\\.$#',
-    'count'   => 1,
-    'path'    => __DIR__ . '/lib/Doctrine/Migration/Builder.php',
-);
-$ignoreErrors[] = array(
-    'message' => '#^Parameter \\#1 \\$tableName of method Doctrine_Migration_Builder\\:\\:buildDropForeignKey\\(\\) expects string, int\\|string given\\.$#',
-    'count'   => 1,
-    'path'    => __DIR__ . '/lib/Doctrine/Migration/Builder.php',
 );
 $ignoreErrors[] = array(
     'message' => '#^Binary operation "\\." between array\\|string and string results in an error\\.$#',
@@ -540,11 +520,6 @@ $ignoreErrors[] = array(
     'message' => '#^Return type \\(Doctrine_Collection\\|false\\) of method Doctrine_Node_NestedSet\\:\\:getChildren\\(\\) should be compatible with return type \\(array\\) of method Doctrine_Node_Interface\\:\\:getChildren\\(\\)$#',
     'count'   => 1,
     'path'    => __DIR__ . '/lib/Doctrine/Node/NestedSet.php',
-);
-$ignoreErrors[] = array(
-    'message' => '#^Cannot cast string\\|void to string\\.$#',
-    'count'   => 1,
-    'path'    => __DIR__ . '/lib/Doctrine/Pager/Layout.php',
 );
 $ignoreErrors[] = array(
     'message' => '#^Method Doctrine_Parser\\:\\:doLoad\\(\\) should return string but returns string\\|false\\.$#',

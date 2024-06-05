@@ -769,6 +769,9 @@
     <FalsableReturnStatement>
       <code><![CDATA[isset($this->_columns[$columnName]) ? $this->_columns[$columnName]['type'] : false]]></code>
     </FalsableReturnStatement>
+    <InvalidAttribute>
+      <code><![CDATA[\AllowDynamicProperties]]></code>
+    </InvalidAttribute>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$arguments[0]]]></code>
       <code><![CDATA[$arguments[0]]]></code>

@@ -206,12 +206,12 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * This method is automatically called everytime a Doctrine_Collection object is unserialized
      *
-     * @param string $serialized
+     * @param string $data
      * @return void
      */
-    public function unserialize($serialized)
+    public function unserialize($data)
     {
-        $this->__unserialize(unserialize($serialized));
+        $this->__unserialize(unserialize($data));
     }
 
     /**

@@ -1713,12 +1713,12 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     /**
      * Unserialize. Recreate connection from serialized content
      *
-     * @param string $serialized
+     * @param string $data
      * @return void
      */
-    public function unserialize($serialized)
+    public function unserialize($data)
     {
-        $this->__unserialize(unserialize($serialized));
+        $this->__unserialize(unserialize($data));
     }
 
     /**

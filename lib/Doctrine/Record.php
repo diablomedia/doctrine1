@@ -990,13 +990,13 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * this method is automatically called everytime an instance is unserialized
      *
-     * @param string $serialized                Doctrine_Record as serialized string
+     * @param string $data                      Doctrine_Record as serialized string
      * @throws Doctrine_Record_Exception        if the cleanData operation fails somehow
      * @return void
      */
-    public function unserialize($serialized)
+    public function unserialize($data)
     {
-        $this->__unserialize(unserialize($serialized));
+        $this->__unserialize(unserialize($data));
     }
 
     /**

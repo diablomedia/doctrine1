@@ -2251,7 +2251,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      *
      * @return Doctrine_Query  Copy of the Doctrine_Query instance.
      */
-    public function copy(Doctrine_Query $query = null)
+    public function copy(?Doctrine_Query $query = null)
     {
         if (! $query) {
             $query = $this;

@@ -1,20 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.24.0@462c80e31c34e58cc4f750c656be3927e80e550e">
+<files psalm-version="6.11.0@4ed53b7ccebc09ef60ec4c9e464bf8a01bfd35b0">
+  <file src="lib/Doctrine.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Access.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[ArrayAccess]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Adapter/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Adapter_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Adapter/Mock.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Adapter_Mock]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function beginTransaction()]]></code>
+      <code><![CDATA[public function commit()]]></code>
+      <code><![CDATA[public function errorCode()]]></code>
+      <code><![CDATA[public function errorInfo()]]></code>
+      <code><![CDATA[public function exec($statement)]]></code>
+      <code><![CDATA[public function getAttribute($attribute)]]></code>
+      <code><![CDATA[public function lastInsertId()]]></code>
+      <code><![CDATA[public function prepare($prepareString)]]></code>
+      <code><![CDATA[public function query($queryString)]]></code>
+      <code><![CDATA[public function quote($input)]]></code>
+      <code><![CDATA[public function rollBack()]]></code>
+      <code><![CDATA[public function setAttribute($attribute, $value)]]></code>
+    </MissingOverrideAttribute>
+    <NullableReturnStatement>
+      <code><![CDATA[array_pop($this->_queries)]]></code>
+    </NullableReturnStatement>
+  </file>
   <file src="lib/Doctrine/Adapter/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Adapter_Oracle]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function beginTransaction()]]></code>
+      <code><![CDATA[public function commit()]]></code>
+      <code><![CDATA[public function errorCode()]]></code>
+      <code><![CDATA[public function errorInfo()]]></code>
+      <code><![CDATA[public function exec($statement)]]></code>
+      <code><![CDATA[public function getAttribute($attribute)]]></code>
+      <code><![CDATA[public function lastInsertId()]]></code>
+      <code><![CDATA[public function prepare($prepareString)]]></code>
+      <code><![CDATA[public function query($queryString)]]></code>
+      <code><![CDATA[public function quote($input)]]></code>
+      <code><![CDATA[public function rollBack()]]></code>
+      <code><![CDATA[public function setAttribute($attribute, $value)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$password]]></code>
       <code><![CDATA[$username]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Adapter/Statement/Mock.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Adapter_Statement_Mock]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function bindColumn($column, $param, $type = null)]]></code>
+      <code><![CDATA[public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = array())]]></code>
+      <code><![CDATA[public function bindValue($param, $value, $type = null)]]></code>
+      <code><![CDATA[public function closeCursor()]]></code>
+      <code><![CDATA[public function columnCount()]]></code>
+      <code><![CDATA[public function errorCode()]]></code>
+      <code><![CDATA[public function errorInfo()]]></code>
+      <code><![CDATA[public function execute($params = null)]]></code>
+      <code><![CDATA[public function fetch(]]></code>
+      <code><![CDATA[public function fetchAll($fetchStyle = Doctrine_Core::FETCH_BOTH, $colnum = 0)]]></code>
+      <code><![CDATA[public function fetchColumn($columnIndex = 0)]]></code>
+      <code><![CDATA[public function fetchObject($className = stdClass::class, $args = array())]]></code>
+      <code><![CDATA[public function getAttribute($attribute)]]></code>
+      <code><![CDATA[public function getColumnMeta($column)]]></code>
+      <code><![CDATA[public function nextRowset()]]></code>
+      <code><![CDATA[public function rowCount()]]></code>
+      <code><![CDATA[public function setAttribute($attribute, $value)]]></code>
+      <code><![CDATA[public function setFetchMode($mode, $arg1 = null, $arg2 = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Adapter/Statement/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Adapter_Statement_Oracle]]></code>
+    </ClassMustBeFinal>
     <InvalidOperand>
       <code><![CDATA[$var]]></code>
     </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function bindColumn($column, $param, $type = null)]]></code>
+      <code><![CDATA[public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = array())]]></code>
+      <code><![CDATA[public function bindValue($param, $value, $type = null)]]></code>
+      <code><![CDATA[public function closeCursor()]]></code>
+      <code><![CDATA[public function columnCount()]]></code>
+      <code><![CDATA[public function errorCode()]]></code>
+      <code><![CDATA[public function errorInfo()]]></code>
+      <code><![CDATA[public function execute($params = null)]]></code>
+      <code><![CDATA[public function fetch($fetchStyle = Doctrine_Core::FETCH_BOTH, $cursorOrientation = Doctrine_Core::FETCH_ORI_NEXT, $cursorOffset = null)]]></code>
+      <code><![CDATA[public function fetchAll($fetchStyle = Doctrine_Core::FETCH_BOTH, $colnum = 0)]]></code>
+      <code><![CDATA[public function fetchColumn($columnIndex = 0)]]></code>
+      <code><![CDATA[public function fetchObject($className = 'stdClass', $args = array())]]></code>
+      <code><![CDATA[public function getAttribute($attribute)]]></code>
+      <code><![CDATA[public function getColumnMeta($column)]]></code>
+      <code><![CDATA[public function nextRowset()]]></code>
+      <code><![CDATA[public function rowCount()]]></code>
+      <code><![CDATA[public function setAttribute($attribute, $value)]]></code>
+      <code><![CDATA[public function setFetchMode($mode, $arg1 = null, $arg2 = null)]]></code>
+    </MissingOverrideAttribute>
     <NoValue>
       <code><![CDATA[$internal_column]]></code>
     </NoValue>
@@ -23,27 +127,121 @@
       <code><![CDATA[$oci_error]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/AuditLog.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_AuditLog]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function buildRelation()]]></code>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/AuditLog/Listener.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function postInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preDelete(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preUpdate(Doctrine_Event $event)]]></code>
+    </MissingOverrideAttribute>
     <UnsafeInstantiation>
       <code><![CDATA[new $class()]]></code>
       <code><![CDATA[new $class()]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/AuditLog/Listener/Microtime.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_AuditLog_Listener_Microtime]]></code>
+    </ClassMustBeFinal>
+    <InvalidOperand>
+      <code><![CDATA[microtime(true) - 1073741824]]></code>
+    </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _getInitialVersion(Doctrine_Record $record)]]></code>
+      <code><![CDATA[protected function _getNextVersion(Doctrine_Record $record)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Cache/Apc.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cache_Apc]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _doContains($id)]]></code>
+      <code><![CDATA[protected function _doDelete($id)]]></code>
+      <code><![CDATA[protected function _doFetch($id, $testCacheValidity = true)]]></code>
+      <code><![CDATA[protected function _doSave($id, $data, $lifeTime = false)]]></code>
+      <code><![CDATA[protected function _getCacheKeys()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Cache/Apcu.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cache_Apcu]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _doContains($id)]]></code>
+      <code><![CDATA[protected function _doDelete($id)]]></code>
+      <code><![CDATA[protected function _doFetch($id, $testCacheValidity = true)]]></code>
+      <code><![CDATA[protected function _doSave($id, $data, $lifeTime = false)]]></code>
+      <code><![CDATA[protected function _getCacheKeys()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Cache/Array.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cache_Array]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _doContains($id)]]></code>
+      <code><![CDATA[protected function _doDelete($id)]]></code>
+      <code><![CDATA[protected function _doFetch($id, $testCacheValidity = true)]]></code>
+      <code><![CDATA[protected function _doSave($id, $data, $lifeTime = false)]]></code>
+      <code><![CDATA[protected function _getCacheKeys()]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Cache/Db.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cache_Db]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _doContains($id)]]></code>
+      <code><![CDATA[protected function _doDelete($id)]]></code>
+      <code><![CDATA[protected function _doFetch($id, $testCacheValidity = true)]]></code>
+      <code><![CDATA[protected function _doSave($id, $data, $lifeTime = false, $saveKey = true)]]></code>
+      <code><![CDATA[protected function _getCacheKeys()]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$lifeTime]]></code>
       <code><![CDATA[$lifeTime]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Cache/Driver.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function contains($id)]]></code>
+      <code><![CDATA[public function delete($id)]]></code>
+      <code><![CDATA[public function fetch($id, $testCacheValidity = true)]]></code>
+      <code><![CDATA[public function save($id, $data, $lifeTime = false)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $prefix]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Cache/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cache_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Cache/Memcache.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cache_Memcache]]></code>
+    </ClassMustBeFinal>
     <InvalidCast>
       <code><![CDATA[$slabId]]></code>
     </InvalidCast>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _doContains($id)]]></code>
+      <code><![CDATA[protected function _doDelete($id)]]></code>
+      <code><![CDATA[protected function _doFetch($id, $testCacheValidity = true)]]></code>
+      <code><![CDATA[protected function _doSave($id, $data, $lifeTime = false)]]></code>
+      <code><![CDATA[protected function _getCacheKeys()]]></code>
+    </MissingOverrideAttribute>
     <UndefinedDocblockClass>
       <code><![CDATA[$this->_memcache]]></code>
       <code><![CDATA[$this->_memcache]]></code>
@@ -56,11 +254,24 @@
     </UndefinedDocblockClass>
   </file>
   <file src="lib/Doctrine/Cache/Xcache.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cache_Xcache]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _doContains($id)]]></code>
+      <code><![CDATA[protected function _doDelete($id)]]></code>
+      <code><![CDATA[protected function _doFetch($id, $testCacheValidity = true)]]></code>
+      <code><![CDATA[protected function _doSave($id, $data, $lifeTime = false)]]></code>
+      <code><![CDATA[protected function _getCacheKeys()]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[ini_get('xcache.admin.enable_auth')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Cli.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cli]]></code>
+    </ClassMustBeFinal>
     <RedundantCast>
       <code><![CDATA[(bool) $reflectionClass->isSubclassOf(self::TASK_BASE_CLASS)]]></code>
     </RedundantCast>
@@ -74,9 +285,22 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Cli/AnsiColorFormatter.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cli_AnsiColorFormatter]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function excerpt($text, $size = null)]]></code>
+      <code><![CDATA[public function format($text = '', $parameters = array(), $stream = STDOUT)]]></code>
+      <code><![CDATA[public function formatSection($section, $text, $size = null)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $size]]></code>
     </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Cli/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Cli_Exception]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="lib/Doctrine/Cli/Formatter.php">
     <InvalidArgument>
@@ -93,24 +317,113 @@
     <LessSpecificImplementedReturnType>
       <code><![CDATA[mixed]]></code>
     </LessSpecificImplementedReturnType>
+    <MethodSignatureMustProvideReturnType>
+      <code><![CDATA[serialize]]></code>
+      <code><![CDATA[unserialize]]></code>
+    </MethodSignatureMustProvideReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function add($value, $key = null)]]></code>
+      <code><![CDATA[public function contains($offset)]]></code>
+      <code><![CDATA[public function get($offset)]]></code>
+      <code><![CDATA[public function remove($offset)]]></code>
+      <code><![CDATA[public function serialize()]]></code>
+      <code><![CDATA[public function set($offset, $value)]]></code>
+      <code><![CDATA[public function unserialize($data)]]></code>
+      <code><![CDATA[public static function initNullObject(Doctrine_Null $null)]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Collection/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Collection_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Collection/Iterator.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Collection/Iterator/Expandable.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Collection_Iterator_Expandable]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Collection/Iterator/Normal.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Collection_Iterator_Normal]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Collection/Iterator/Offset.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Collection_Iterator_Offset]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Collection/Offset.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Collection_Offset]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Collection/OnDemand.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Collection_OnDemand]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Column.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Column]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function contains($offset)]]></code>
+      <code><![CDATA[public function get($offset)]]></code>
+      <code><![CDATA[public function set($offset, $value)]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Compiler.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Compiler]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Compiler/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Compiler_Exception]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="lib/Doctrine/Connection.php">
     <FalsableReturnStatement>
@@ -124,12 +437,27 @@
       <code><![CDATA[getTableName]]></code>
       <code><![CDATA[getTableName]]></code>
     </InvalidMethodCall>
+    <InvalidOperand>
+      <code><![CDATA[++$end]]></code>
+    </InvalidOperand>
     <InvalidReturnStatement>
       <code><![CDATA[$this->formatter->convertBooleans($item)]]></code>
     </InvalidReturnStatement>
     <InvalidReturnType>
       <code><![CDATA[array|int]]></code>
     </InvalidReturnType>
+    <MethodSignatureMustProvideReturnType>
+      <code><![CDATA[serialize]]></code>
+      <code><![CDATA[unserialize]]></code>
+    </MethodSignatureMustProvideReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function getAttribute($attribute)]]></code>
+      <code><![CDATA[public function serialize()]]></code>
+      <code><![CDATA[public function setAttribute($attribute, $value)]]></code>
+      <code><![CDATA[public function unserialize($data)]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
@@ -155,8 +483,48 @@
       <code><![CDATA[$this->isConnected]]></code>
       <code><![CDATA[strpos($str, '.')]]></code>
     </RiskyTruthyFalsyComparison>
+    <UndefinedMagicMethod>
+      <code><![CDATA[postConnect]]></code>
+      <code><![CDATA[postError]]></code>
+      <code><![CDATA[preConnect]]></code>
+      <code><![CDATA[preError]]></code>
+    </UndefinedMagicMethod>
+  </file>
+  <file src="lib/Doctrine/Connection/Common.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Connection/Db2.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Db2]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Connection/Exception.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function errorMessage($value = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Connection/Mock.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Mock]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="lib/Doctrine/Connection/Mssql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Mssql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function exec($query, array $params = array())]]></code>
+      <code><![CDATA[public function execute($query, array $params = array())]]></code>
+      <code><![CDATA[public function insert(Doctrine_Table $table, array $fields)]]></code>
+      <code><![CDATA[public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false, $isSubQuery = false, ?Doctrine_Query $queryOrigin = null)]]></code>
+      <code><![CDATA[public function modifyLimitSubquery(Doctrine_Table $rootTable, $query, $limit = false, $offset = false, $isManip = false)]]></code>
+      <code><![CDATA[public function quoteIdentifier($str, $checkOption = false)]]></code>
+    </MissingOverrideAttribute>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$fields[$i]]]></code>
     </PossiblyUndefinedArrayOffset>
@@ -164,19 +532,106 @@
       <code><![CDATA[strstr($orders[$i], '.')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Connection/Mssql/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Mssql_Exception]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function processErrorInfo(array $errorInfo)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Connection/Mysql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Mysql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function connect()]]></code>
+      <code><![CDATA[public function replace(Doctrine_Table $table, array $fields, array $keys)]]></code>
+      <code><![CDATA[public function setCharset($charset)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Connection/Mysql/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Mysql_Exception]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function processErrorInfo(array $errorInfo)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Connection/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Oracle]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getTmpConnection($info)]]></code>
+      <code><![CDATA[public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)]]></code>
+      <code><![CDATA[public function modifyLimitSubquery(]]></code>
+      <code><![CDATA[public function quote($input, $type = null)]]></code>
+      <code><![CDATA[public function setDateFormat($format = 'YYYY-MM-DD HH24:MI:SS')]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Connection/Oracle/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Oracle_Exception]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function processErrorInfo(array $errorInfo)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Connection/Pgsql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Pgsql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertBooleans($item)]]></code>
+      <code><![CDATA[public function insert(Doctrine_Table $table, array $fields)]]></code>
+      <code><![CDATA[public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false)]]></code>
+      <code><![CDATA[public function setCharset($charset)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$item]]></code>
       <code><![CDATA[empty($offset)]]></code>
       <code><![CDATA[empty($tmp[2])]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Connection/Pgsql/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Pgsql_Exception]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function processErrorInfo(array $errorInfo)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Connection/Profiler.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Profiler]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function __call($m, $a)]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
+    <NullableReturnStatement>
+      <code><![CDATA[$event]]></code>
+    </NullableReturnStatement>
+  </file>
+  <file src="lib/Doctrine/Connection/Profiler/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Profiler_Exception]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="lib/Doctrine/Connection/Sqlite.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Sqlite]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function connect()]]></code>
+      <code><![CDATA[public function createDatabase()]]></code>
+      <code><![CDATA[public function dropDatabase()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$dbh]]></code>
     </NonInvariantDocblockPropertyType>
@@ -184,16 +639,61 @@
       <code><![CDATA[$this->isConnected]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Connection/Sqlite/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Sqlite_Exception]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function processErrorInfo(array $errorInfo)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Connection/Statement.php">
+    <AssignmentToVoid>
+      <code><![CDATA[$data]]></code>
+    </AssignmentToVoid>
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_Statement]]></code>
+    </ClassMustBeFinal>
     <InvalidArgument>
       <code><![CDATA[$arg1]]></code>
     </InvalidArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function bindColumn($column, $param, $type = null)]]></code>
+      <code><![CDATA[public function bindParam($column, &$variable, $type = null, $length = null, $driverOptions = array())]]></code>
+      <code><![CDATA[public function bindValue($param, $value, $type = null)]]></code>
+      <code><![CDATA[public function closeCursor()]]></code>
+      <code><![CDATA[public function columnCount()]]></code>
+      <code><![CDATA[public function errorCode()]]></code>
+      <code><![CDATA[public function errorInfo()]]></code>
+      <code><![CDATA[public function execute($params = null)]]></code>
+      <code><![CDATA[public function fetch(]]></code>
+      <code><![CDATA[public function fetchAll(]]></code>
+      <code><![CDATA[public function fetchColumn($columnIndex = 0)]]></code>
+      <code><![CDATA[public function fetchObject($className = 'stdClass', $args = array())]]></code>
+      <code><![CDATA[public function getAttribute($attribute)]]></code>
+      <code><![CDATA[public function getColumnMeta($column)]]></code>
+      <code><![CDATA[public function nextRowset()]]></code>
+      <code><![CDATA[public function rowCount()]]></code>
+      <code><![CDATA[public function setAttribute($attribute, $value)]]></code>
+      <code><![CDATA[public function setFetchMode($mode, $arg1 = null, $arg2 = null)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
-      <code><![CDATA[!$data]]></code>
+      <code><![CDATA[!$code]]></code>
       <code><![CDATA[$params]]></code>
     </RiskyTruthyFalsyComparison>
+    <UndefinedMagicMethod>
+      <code><![CDATA[postFetch]]></code>
+      <code><![CDATA[postFetchAll]]></code>
+      <code><![CDATA[postStmtExecute]]></code>
+      <code><![CDATA[preFetch]]></code>
+      <code><![CDATA[preFetchAll]]></code>
+      <code><![CDATA[preStmtExecute]]></code>
+    </UndefinedMagicMethod>
   </file>
   <file src="lib/Doctrine/Connection/UnitOfWork.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Connection_UnitOfWork]]></code>
+    </ClassMustBeFinal>
     <ReferenceConstraintViolation>
       <code><![CDATA[return $id;]]></code>
     </ReferenceConstraintViolation>
@@ -204,6 +704,14 @@
       <code><![CDATA[$table->getOption('joinedParents')]]></code>
       <code><![CDATA[$table->getOption('joinedParents')]]></code>
     </RiskyTruthyFalsyComparison>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[postDelete]]></code>
+      <code><![CDATA[preDelete]]></code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMagicMethod>
+      <code><![CDATA[postDelete]]></code>
+      <code><![CDATA[preDelete]]></code>
+    </UndefinedMagicMethod>
     <UnsafeInstantiation>
       <code><![CDATA[new $parent()]]></code>
     </UnsafeInstantiation>
@@ -229,24 +737,46 @@
       <code><![CDATA[$models]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Data/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Data_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Data/Export.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Data_Export]]></code>
+    </ClassMustBeFinal>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $relationRecord]]></code>
       <code><![CDATA[$relation = $this->isRelation($record, $key)]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Data/Import.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Data_Import]]></code>
+    </ClassMustBeFinal>
     <UnsafeInstantiation>
       <code><![CDATA[new $className()]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/DataDict/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_DataDict_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/DataDict/Mssql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_DataDict_Mssql]]></code>
+    </ClassMustBeFinal>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[empty($field['length'])]]></code>
       <code><![CDATA[strstr($db_type, 'text')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/DataDict/Mysql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_DataDict_Mysql]]></code>
+    </ClassMustBeFinal>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $decimal]]></code>
       <code><![CDATA[$fixed]]></code>
@@ -256,6 +786,9 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/DataDict/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_DataDict_Oracle]]></code>
+    </ClassMustBeFinal>
     <RedundantCast>
       <code><![CDATA[(int)$length]]></code>
       <code><![CDATA[(int)$length]]></code>
@@ -268,6 +801,12 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/DataDict/Pgsql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_DataDict_Pgsql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function parseBoolean($value)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$default]]></code>
       <code><![CDATA[$field['length']]]></code>
@@ -276,42 +815,313 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/DataDict/Sqlite.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_DataDict_Sqlite]]></code>
+    </ClassMustBeFinal>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$field['length']]]></code>
       <code><![CDATA[strstr($dbType, 'text')]]></code>
     </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Event.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Event]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/EventListener.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_EventListener]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function postConnect(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postError(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postExec(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postFetch(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postFetchAll(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postPrepare(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postQuery(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postStmtExecute(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postTransactionBegin(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postTransactionCommit(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postTransactionRollback(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preConnect(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preError(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preExec(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preFetch(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preFetchAll(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function prePrepare(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preQuery(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preStmtExecute(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preTransactionBegin(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preTransactionCommit(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preTransactionRollback(Doctrine_Event $event)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/EventListener/Chain.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_EventListener_Chain]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function add($value, $name = null)]]></code>
+      <code><![CDATA[public function get($offset)]]></code>
+      <code><![CDATA[public function postConnect(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postError(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postExec(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postFetch(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postFetchAll(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postPrepare(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postQuery(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postStmtExecute(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postTransactionBegin(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postTransactionCommit(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postTransactionRollback(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preConnect(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preError(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preExec(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preFetch(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preFetchAll(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function prePrepare(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preQuery(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preStmtExecute(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preTransactionBegin(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preTransactionCommit(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preTransactionRollback(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function set($offset, $value)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/EventListener/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_EventListener_Exception]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="lib/Doctrine/Export.php">
     <UnsafeInstantiation>
       <code><![CDATA[new $name()]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Export/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Export_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Export/Mssql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Export_Mssql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function alterTable($name, array $changes, $check = false)]]></code>
+      <code><![CDATA[public function createDatabase($database)]]></code>
+      <code><![CDATA[public function createSequence($seqName, $start = 1, array $options = array())]]></code>
+      <code><![CDATA[public function createTableSql($name, array $fields, array $options = array())]]></code>
+      <code><![CDATA[public function dropDatabase($database)]]></code>
+      <code><![CDATA[public function dropIndexSql($table, $name)]]></code>
+      <code><![CDATA[public function dropSequenceSql($sequenceName)]]></code>
+      <code><![CDATA[public function getDefaultFieldDeclaration($field)]]></code>
+      <code><![CDATA[public function getNotNullFieldDeclaration(array $definition)]]></code>
+      <code><![CDATA[public function getTemporaryTableQuery()]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Export/Mysql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Export_Mysql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function alterTableSql($name, array $changes, $check = false)]]></code>
+      <code><![CDATA[public function createDatabaseSql($database)]]></code>
+      <code><![CDATA[public function createIndexSql($table, $name, array $definition)]]></code>
+      <code><![CDATA[public function createSequence($seqName, $start = 1, array $options = array())]]></code>
+      <code><![CDATA[public function createTableSql($name, array $fields, array $options = array())]]></code>
+      <code><![CDATA[public function dropConstraint($table, $name, $primary = false)]]></code>
+      <code><![CDATA[public function dropDatabaseSql($database)]]></code>
+      <code><![CDATA[public function dropForeignKey($table, $name)]]></code>
+      <code><![CDATA[public function dropIndexSql($table, $name)]]></code>
+      <code><![CDATA[public function dropTableSql($table)]]></code>
+      <code><![CDATA[public function getAdvancedForeignKeyOptions(array $definition)]]></code>
+      <code><![CDATA[public function getCharsetFieldDeclaration($charset)]]></code>
+      <code><![CDATA[public function getCollationFieldDeclaration($collation)]]></code>
+      <code><![CDATA[public function getDeclaration($name, array $field)]]></code>
+      <code><![CDATA[public function getDefaultFieldDeclaration($field)]]></code>
+      <code><![CDATA[public function getIndexDeclaration($name, array $definition)]]></code>
+      <code><![CDATA[public function getIndexFieldDeclarationList(array $fields)]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$conn]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
+  <file src="lib/Doctrine/Export/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Export_Oracle]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function alterTable($name, array $changes, $check = false)]]></code>
+      <code><![CDATA[public function createDatabase($database)]]></code>
+      <code><![CDATA[public function createSequenceSql($seqName, $start = 1, array $options = array())]]></code>
+      <code><![CDATA[public function createTable($name, array $fields, array $options = array())]]></code>
+      <code><![CDATA[public function createTableSql($name, array $fields, array $options = array())]]></code>
+      <code><![CDATA[public function dropDatabase($database)]]></code>
+      <code><![CDATA[public function dropSequenceSql($sequenceName)]]></code>
+      <code><![CDATA[public function dropTable($table)]]></code>
+      <code><![CDATA[public function getAdvancedForeignKeyOptions(array $definition)]]></code>
+      <code><![CDATA[public function getIndexDeclaration($name, array $definition)]]></code>
+      <code><![CDATA[public function getTemporaryTableQuery()]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Export/Pgsql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Export_Pgsql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function alterTable($name, array $changes, $check = false)]]></code>
+      <code><![CDATA[public function alterTableSql($name, array $changes, $check = false)]]></code>
+      <code><![CDATA[public function createDatabaseSql($database)]]></code>
+      <code><![CDATA[public function createIndexSql($table, $name, array $definition)]]></code>
+      <code><![CDATA[public function createSequenceSql($seqName, $start = 1, array $options = array())]]></code>
+      <code><![CDATA[public function createTableSql($name, array $fields, array $options = array())]]></code>
+      <code><![CDATA[public function dropDatabaseSql($database)]]></code>
+      <code><![CDATA[public function dropSequenceSql($sequenceName)]]></code>
+      <code><![CDATA[public function getAdvancedForeignKeyOptions(array $definition)]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$conn]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Export/Reporter.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Export_Reporter]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
+    <NullableReturnStatement>
+      <code><![CDATA[array_pop($this->messages)]]></code>
+    </NullableReturnStatement>
+  </file>
+  <file src="lib/Doctrine/Export/Schema.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Export_Schema]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Export/Sqlite.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Export_Sqlite]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function alterTableSql($name, array $changes, $check = false)]]></code>
+      <code><![CDATA[public function createDatabase($database)]]></code>
+      <code><![CDATA[public function createForeignKey($table, array $definition)]]></code>
+      <code><![CDATA[public function createIndexSql($table, $name, array $definition)]]></code>
+      <code><![CDATA[public function createSequence($seqName, $start = 1, array $options = array())]]></code>
+      <code><![CDATA[public function createTableSql($name, array $fields, array $options = array())]]></code>
+      <code><![CDATA[public function dropDatabase($database)]]></code>
+      <code><![CDATA[public function dropSequenceSql($sequenceName)]]></code>
+      <code><![CDATA[public function getAdvancedForeignKeyOptions(array $definition)]]></code>
+      <code><![CDATA[public function getIndexFieldDeclarationList(array $fields)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Expression.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Expression]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Expression/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Expression_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Expression/Mock.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Expression_Mock]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Expression/Mssql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Expression_Mssql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function concat(...$args)]]></code>
+      <code><![CDATA[public function guid()]]></code>
+      <code><![CDATA[public function length($column)]]></code>
+      <code><![CDATA[public function now($type = 'timestamp')]]></code>
+      <code><![CDATA[public function substring($value, $from, $len = null)]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="lib/Doctrine/Expression/Mysql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Expression_Mysql]]></code>
+    </ClassMustBeFinal>
     <InvalidOperand>
       <code><![CDATA[$key]]></code>
     </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function guid()]]></code>
+      <code><![CDATA[public function regexp()]]></code>
+      <code><![CDATA[public function soundex($value)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Expression/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Expression_Oracle]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function concat(...$args)]]></code>
+      <code><![CDATA[public function guid()]]></code>
+      <code><![CDATA[public function now($type = 'timestamp')]]></code>
+      <code><![CDATA[public function substring($value, $from, $len = null)]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="lib/Doctrine/Expression/Pgsql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Expression_Pgsql]]></code>
+    </ClassMustBeFinal>
     <InvalidOperand>
       <code><![CDATA[$key]]></code>
     </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function concat(...$args)]]></code>
+      <code><![CDATA[public function locate($str, $substr)]]></code>
+      <code><![CDATA[public function md5($column)]]></code>
+      <code><![CDATA[public function now()]]></code>
+      <code><![CDATA[public function regexp()]]></code>
+      <code><![CDATA[public function substring($value, $from, $len = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Expression/Sqlite.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Expression_Sqlite]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function now($type = 'timestamp')]]></code>
+      <code><![CDATA[public function regexp()]]></code>
+      <code><![CDATA[public function soundex($value)]]></code>
+      <code><![CDATA[public function substring($value, $from, $len = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/File.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_File]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get($offset, $load = true)]]></code>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+      <code><![CDATA[public function setUp()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/File/Index.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_File_Index]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+      <code><![CDATA[public function setUp()]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="lib/Doctrine/Formatter.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Formatter]]></code>
+    </ClassMustBeFinal>
     <NullArgument>
       <code><![CDATA[null]]></code>
     </NullArgument>
@@ -321,16 +1131,60 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Hook.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hook]]></code>
+    </ClassMustBeFinal>
     <UnsafeInstantiation>
       <code><![CDATA[new $name]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Hook/Equal.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hook_Equal]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function parse($alias, $field, $value)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Hook/Integer.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hook_Integer]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function parseSingle($alias, $field, $value)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Hook/Parser/Complex.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function parse($alias, $field, $value)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Hook/WordLike.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hook_WordLike]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function parseSingle($alias, $field, $value)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Hydrator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hydrator]]></code>
+    </ClassMustBeFinal>
     <NoValue>
       <code><![CDATA[$driverClass]]></code>
     </NoValue>
   </file>
   <file src="lib/Doctrine/Hydrator/ArrayDriver.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getElement(array $data, $component)]]></code>
+      <code><![CDATA[public function getElementCollection($component)]]></code>
+      <code><![CDATA[public function getLastKey(&$coll)]]></code>
+      <code><![CDATA[public function getNullPointer()]]></code>
+      <code><![CDATA[public function initRelated(&$record, $name, $keyColumn = null)]]></code>
+      <code><![CDATA[public function registerCollection($coll)]]></code>
+      <code><![CDATA[public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne)]]></code>
+    </MissingOverrideAttribute>
     <ReferenceConstraintViolation>
       <code><![CDATA[return;]]></code>
     </ReferenceConstraintViolation>
@@ -342,12 +1196,34 @@
     </UnsupportedReferenceUsage>
   </file>
   <file src="lib/Doctrine/Hydrator/ArrayHierarchyDriver.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hydrator_ArrayHierarchyDriver]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function hydrateResultSet($stmt)]]></code>
+    </MissingOverrideAttribute>
     <UnsupportedReferenceUsage>
       <code><![CDATA[$stack[]                         = & $stack[$l - 1]['__children'][$i]]]></code>
       <code><![CDATA[$stack[]   = & $trees[$i]]]></code>
     </UnsupportedReferenceUsage>
   </file>
+  <file src="lib/Doctrine/Hydrator/ArrayShallowDriver.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hydrator_ArrayShallowDriver]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function hydrateResultSet($stmt)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Hydrator/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hydrator_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Hydrator/Graph.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function hydrateResultSet($stmt)]]></code>
+    </MissingOverrideAttribute>
     <NullableReturnStatement>
       <code><![CDATA[isset($this->_queryComponents[$alias]['map']) ? $this->_queryComponents[$alias]['map'] : null]]></code>
     </NullableReturnStatement>
@@ -357,26 +1233,78 @@
       <code><![CDATA[$cache[$key]['isSimpleType']]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Hydrator/NoneDriver.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hydrator_NoneDriver]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function hydrateResultSet($stmt)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Hydrator/RecordDriver.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function flush()]]></code>
+      <code><![CDATA[public function getElement(array $data, $component)]]></code>
+      <code><![CDATA[public function getElementCollection($component)]]></code>
+      <code><![CDATA[public function getLastKey(&$coll)]]></code>
+      <code><![CDATA[public function getNullPointer()]]></code>
+      <code><![CDATA[public function initRelated(&$record, $name, $keyColumn = null)]]></code>
+      <code><![CDATA[public function registerCollection($coll)]]></code>
+      <code><![CDATA[public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne)]]></code>
+    </MissingOverrideAttribute>
     <ReferenceConstraintViolation>
       <code><![CDATA[return;]]></code>
     </ReferenceConstraintViolation>
   </file>
+  <file src="lib/Doctrine/Hydrator/RecordHierarchyDriver.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hydrator_RecordHierarchyDriver]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function hydrateResultSet($stmt)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Hydrator/ScalarDriver.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function hydrateResultSet($stmt)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$cache[$key]['isAgg']]]></code>
       <code><![CDATA[$cache[$key]['isSimpleType']]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Hydrator/SingleScalarDriver.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Hydrator_SingleScalarDriver]]></code>
+    </ClassMustBeFinal>
     <InvalidNullableReturnType>
       <code><![CDATA[array|scalar]]></code>
     </InvalidNullableReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function hydrateResultSet($stmt)]]></code>
+    </MissingOverrideAttribute>
     <NullableReturnStatement>
       <code><![CDATA[$result[0]]]></code>
     </NullableReturnStatement>
   </file>
+  <file src="lib/Doctrine/I18n.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_I18n]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function buildRelation()]]></code>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/I18n/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_I18n_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Import/Builder.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Import_Builder]]></code>
+    </ClassMustBeFinal>
     <InvalidArgument>
       <code><![CDATA[false]]></code>
     </InvalidArgument>
@@ -407,17 +1335,86 @@
       <code><![CDATA[strpos($name, ' as')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Import/Builder/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Import_Builder_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Import/Mssql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Import_Mssql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function listSequences($database = null)]]></code>
+      <code><![CDATA[public function listTableColumns($table)]]></code>
+      <code><![CDATA[public function listTableIndexes($table)]]></code>
+      <code><![CDATA[public function listTableRelations($table)]]></code>
+      <code><![CDATA[public function listTableTriggers($table)]]></code>
+      <code><![CDATA[public function listTableViews($table)]]></code>
+      <code><![CDATA[public function listTables($database = null)]]></code>
+      <code><![CDATA[public function listTriggers($database = null)]]></code>
+      <code><![CDATA[public function listViews($database = null)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[strstr($val['type_name'], ' ')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Import/Mysql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Import_Mysql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function listSequences($database = null)]]></code>
+      <code><![CDATA[public function listTableColumns($table)]]></code>
+      <code><![CDATA[public function listTableConstraints($table)]]></code>
+      <code><![CDATA[public function listTableIndexes($table)]]></code>
+      <code><![CDATA[public function listTableRelations($table)]]></code>
+      <code><![CDATA[public function listTables($database = null)]]></code>
+      <code><![CDATA[public function listViews($database = null)]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$conn]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
+  <file src="lib/Doctrine/Import/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Import_Oracle]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function listDatabases()]]></code>
+      <code><![CDATA[public function listFunctions()]]></code>
+      <code><![CDATA[public function listSequences($database = null)]]></code>
+      <code><![CDATA[public function listTableColumns($table)]]></code>
+      <code><![CDATA[public function listTableConstraints($table)]]></code>
+      <code><![CDATA[public function listTableIndexes($table)]]></code>
+      <code><![CDATA[public function listTableRelations($table)]]></code>
+      <code><![CDATA[public function listTableTriggers($table)]]></code>
+      <code><![CDATA[public function listTableViews($table)]]></code>
+      <code><![CDATA[public function listTables($database = null)]]></code>
+      <code><![CDATA[public function listTriggers($database = null)]]></code>
+      <code><![CDATA[public function listUsers()]]></code>
+      <code><![CDATA[public function listViews($database = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Import/Pgsql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Import_Pgsql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function listTableColumns($table)]]></code>
+      <code><![CDATA[public function listTableConstraints($table)]]></code>
+      <code><![CDATA[public function listTableIndexes($table)]]></code>
+      <code><![CDATA[public function listTableRelations($table)]]></code>
+      <code><![CDATA[public function listTableTriggers($table)]]></code>
+      <code><![CDATA[public function listTableViews($table)]]></code>
+      <code><![CDATA[public function listTables($database = null)]]></code>
+      <code><![CDATA[public function listTriggers($database = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Import/Schema.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Import_Schema]]></code>
+    </ClassMustBeFinal>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$definition[$move]]]></code>
     </PossiblyUndefinedArrayOffset>
@@ -426,17 +1423,75 @@
       <code><![CDATA[strpos($column['name'], '_id')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Import/Sqlite.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Import_Sqlite]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function listDatabases()]]></code>
+      <code><![CDATA[public function listFunctions()]]></code>
+      <code><![CDATA[public function listSequences($database = null)]]></code>
+      <code><![CDATA[public function listTableColumns($table)]]></code>
+      <code><![CDATA[public function listTableConstraints($table)]]></code>
+      <code><![CDATA[public function listTableIndexes($table)]]></code>
+      <code><![CDATA[public function listTableTriggers($table)]]></code>
+      <code><![CDATA[public function listTableViews($table)]]></code>
+      <code><![CDATA[public function listTables($database = null)]]></code>
+      <code><![CDATA[public function listTriggers($database = null)]]></code>
+      <code><![CDATA[public function listUsers()]]></code>
+      <code><![CDATA[public function listViews($database = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Inflector.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Inflector]]></code>
+    </ClassMustBeFinal>
+    <NullableReturnStatement>
+      <code><![CDATA[$cache[$word]]]></code>
+    </NullableReturnStatement>
+  </file>
+  <file src="lib/Doctrine/IntegrityMapper.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_IntegrityMapper]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Lib.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Lib]]></code>
+    </ClassMustBeFinal>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$args[0]]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="lib/Doctrine/Locator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Locator]]></code>
+    </ClassMustBeFinal>
+    <FalsableReturnStatement>
+      <code><![CDATA[current(self::$_instances)]]></code>
+    </FalsableReturnStatement>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Locator/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Locator_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Locking/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Locking_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Locking/Manager/Pessimistic.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Locking_Manager_Pessimistic]]></code>
+    </ClassMustBeFinal>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$objectType]]></code>
       <code><![CDATA[$objectType]]></code>
@@ -445,6 +1500,13 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Manager.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Manager]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
@@ -457,7 +1519,15 @@
       <code><![CDATA[!$implements]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Manager/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Manager_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Migration.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Migration]]></code>
+    </ClassMustBeFinal>
     <InvalidOperand>
       <code><![CDATA[$num]]></code>
       <code><![CDATA[end($nums)]]></code>
@@ -477,6 +1547,9 @@
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Migration/Builder.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Migration_Builder]]></code>
+    </ClassMustBeFinal>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[empty($changes['dropped_tables'])]]></code>
       <code><![CDATA[empty($changes['dropped_tables'])]]></code>
@@ -485,11 +1558,30 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Migration/Diff.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Migration_Diff]]></code>
+    </ClassMustBeFinal>
+    <InvalidOperand>
+      <code><![CDATA[getmypid()]]></code>
+    </InvalidOperand>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$pathInfo['extension']]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
+  <file src="lib/Doctrine/Migration/IrreversibleMigrationException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Migration_IrreversibleMigrationException]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Migration/Process.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Migration_Process]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Node.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
@@ -516,22 +1608,96 @@
       <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Node/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Node_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Node/MaterializedPath/LevelOrderIterator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Node_MaterializedPath_LevelOrderIterator]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/MaterializedPath/PostOrderIterator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Node_MaterializedPath_PostOrderIterator]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/MaterializedPath/PreOrderIterator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Node_MaterializedPath_PreOrderIterator]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Node/NestedSet.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Node_NestedSet]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function addChild(Doctrine_Record $record)]]></code>
+      <code><![CDATA[public function delete()]]></code>
+      <code><![CDATA[public function getAncestors($depth = null)]]></code>
+      <code><![CDATA[public function getChildren()]]></code>
+      <code><![CDATA[public function getDescendants($depth = null, $includeNode = false)]]></code>
+      <code><![CDATA[public function getFirstChild()]]></code>
+      <code><![CDATA[public function getLastChild()]]></code>
+      <code><![CDATA[public function getLevel()]]></code>
+      <code><![CDATA[public function getNextSibling()]]></code>
+      <code><![CDATA[public function getNumberChildren()]]></code>
+      <code><![CDATA[public function getNumberDescendants()]]></code>
+      <code><![CDATA[public function getParent()]]></code>
+      <code><![CDATA[public function getPath($seperator = ' > ', $includeNode = false)]]></code>
+      <code><![CDATA[public function getPrevSibling()]]></code>
+      <code><![CDATA[public function getSiblings($includeNode = false)]]></code>
+      <code><![CDATA[public function hasChildren()]]></code>
+      <code><![CDATA[public function hasNextSibling()]]></code>
+      <code><![CDATA[public function hasParent()]]></code>
+      <code><![CDATA[public function hasPrevSibling()]]></code>
+      <code><![CDATA[public function insertAsFirstChildOf(Doctrine_Record $dest)]]></code>
+      <code><![CDATA[public function insertAsLastChildOf(Doctrine_Record $dest)]]></code>
+      <code><![CDATA[public function insertAsNextSiblingOf(Doctrine_Record $dest)]]></code>
+      <code><![CDATA[public function insertAsParentOf(Doctrine_Record $dest)]]></code>
+      <code><![CDATA[public function insertAsPrevSiblingOf(Doctrine_Record $dest)]]></code>
+      <code><![CDATA[public function isDescendantOf(Doctrine_Record $subj)]]></code>
+      <code><![CDATA[public function isDescendantOfOrEqualTo(Doctrine_Record $subj)]]></code>
+      <code><![CDATA[public function isEqualTo(Doctrine_Record $subj)]]></code>
+      <code><![CDATA[public function isLeaf()]]></code>
+      <code><![CDATA[public function isRoot()]]></code>
+      <code><![CDATA[public function isValidNode($record = null)]]></code>
+      <code><![CDATA[public function moveAsFirstChildOf(Doctrine_Record $dest)]]></code>
+      <code><![CDATA[public function moveAsLastChildOf(Doctrine_Record $dest)]]></code>
+      <code><![CDATA[public function moveAsNextSiblingOf(Doctrine_Record $dest)]]></code>
+      <code><![CDATA[public function moveAsPrevSiblingOf(Doctrine_Record $dest)]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$_tree]]></code>
     </NonInvariantDocblockPropertyType>
@@ -542,25 +1708,138 @@
       <code><![CDATA[$this->_tree->getAttribute('hasManyRoots')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Node/NestedSet/LevelOrderIterator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Node_NestedSet_LevelOrderIterator]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Node/NestedSet/PostOrderIterator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Node_NestedSet_PostOrderIterator]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Node/NestedSet/PreOrderIterator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Node_NestedSet_PreOrderIterator]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[Iterator]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Pager.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Pager]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Pager/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Pager_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Pager/Layout.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Pager_Layout]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Pager/Range/Jumping.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Pager_Range_Jumping]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _initialize()]]></code>
+      <code><![CDATA[public function rangeAroundPage()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Pager/Range/Sliding.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Pager_Range_Sliding]]></code>
+    </ClassMustBeFinal>
+    <InvalidOperand>
+      <code><![CDATA[$chunkEnd   - $pages]]></code>
+      <code><![CDATA[$chunkStart - $adjust]]></code>
+      <code><![CDATA[$page + (ceil($chunk / 2) - 1)]]></code>
+      <code><![CDATA[$page - (floor($chunk / 2))]]></code>
+      <code><![CDATA[1 - $chunkStart]]></code>
+      <code><![CDATA[ceil($chunk / 2) - 1]]></code>
+    </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _initialize()]]></code>
+      <code><![CDATA[public function rangeAroundPage()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Parser.php">
+    <FalsableReturnStatement>
+      <code><![CDATA[$contents]]></code>
+    </FalsableReturnStatement>
+    <InvalidFalsableReturnType>
+      <code><![CDATA[string]]></code>
+    </InvalidFalsableReturnType>
+  </file>
+  <file src="lib/Doctrine/Parser/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Parser_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Parser/Json.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Parser_Json]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function dumpData($array, $path = null, $charset = null)]]></code>
+      <code><![CDATA[public function loadData($array)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Parser/Serialize.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Parser_Serialize]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function dumpData($array, $path = null, $charset = null)]]></code>
+      <code><![CDATA[public function loadData($array)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Parser/Xml.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Parser_Xml]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function dumpData($array, $path = null, $charset = null)]]></code>
+      <code><![CDATA[public function loadData($array)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$charset]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Parser/Yml.php">
-    <ReservedWord>
-      <code><![CDATA[Yaml::parse($contents)]]></code>
-    </ReservedWord>
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Parser_Yml]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function dumpData($array, $path = null, $charset = null)]]></code>
+      <code><![CDATA[public function loadData($array)]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="lib/Doctrine/Query.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query]]></code>
+    </ClassMustBeFinal>
     <InvalidArgument>
       <code><![CDATA[$parts]]></code>
     </InvalidArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[protected function clear()]]></code>
+      <code><![CDATA[public function free()]]></code>
+      <code><![CDATA[public function getSqlQuery($params = array(), $limitSubquery = true)]]></code>
+      <code><![CDATA[public function parseDqlQuery($query, $clear = true)]]></code>
+    </MissingOverrideAttribute>
     <NoValue>
       <code><![CDATA[return $collection;]]></code>
     </NoValue>
@@ -572,14 +1851,11 @@
     </PossiblyUndefinedArrayOffset>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $alias]]></code>
-      <code><![CDATA[$joinCondition]]></code>
-      <code><![CDATA[$joinCondition]]></code>
       <code><![CDATA[$orderBy]]></code>
       <code><![CDATA[$parseCallback]]></code>
       <code><![CDATA[$string]]></code>
       <code><![CDATA[empty($fieldSql)]]></code>
       <code><![CDATA[empty($having)]]></code>
-      <code><![CDATA[empty($joinCondition)]]></code>
       <code><![CDATA[empty($orderby)]]></code>
       <code><![CDATA[empty($string)]]></code>
       <code><![CDATA[empty($this->_sqlParts['limit'])]]></code>
@@ -601,18 +1877,58 @@
       <code><![CDATA[$this->_tableAliasMap   = & $query->_tableAliasMap]]></code>
     </UnsupportedPropertyReferenceUsage>
   </file>
+  <file src="lib/Doctrine/Query/Check.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Check]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Query/Condition.php">
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$parts[0]]]></code>
       <code><![CDATA[$parts[0]]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
+  <file src="lib/Doctrine/Query/Filter.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Filter]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function postQuery(Doctrine_Query $query)]]></code>
+      <code><![CDATA[public function preQuery(Doctrine_Query $query)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Query/Filter/Chain.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Filter_Chain]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Forupdate.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Forupdate]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/From.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_From]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Groupby.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Groupby]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Query/Having.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Having]]></code>
+    </ClassMustBeFinal>
     <InvalidReturnStatement>
       <code><![CDATA[$value]]></code>
     </InvalidReturnStatement>
   </file>
   <file src="lib/Doctrine/Query/JoinCondition.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_JoinCondition]]></code>
+    </ClassMustBeFinal>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$e[2]]]></code>
     </PossiblyUndefinedArrayOffset>
@@ -621,22 +1937,86 @@
       <code><![CDATA[$hasRightAggExpression]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Query/Limit.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Limit]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Offset.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Offset]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Orderby.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Orderby]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Parser.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Parser]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Registry.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Registry]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Registry/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Registry_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Select.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Select]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Query/Set.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Set]]></code>
+    </ClassMustBeFinal>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$hasAggExpression]]></code>
       <code><![CDATA[$hasAggExpression]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Query/Tokenizer.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Tokenizer]]></code>
+    </ClassMustBeFinal>
     <InvalidOperand>
       <code><![CDATA[$index]]></code>
       <code><![CDATA[$key]]></code>
     </InvalidOperand>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[! $mode]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="lib/Doctrine/Query/Tokenizer/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Tokenizer_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Query/Where.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Query_Where]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="lib/Doctrine/RawSql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_RawSql]]></code>
+    </ClassMustBeFinal>
     <InvalidOperand>
       <code><![CDATA[$key]]></code>
     </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _addDqlQueryPart($queryPartName, $queryPart, $append = false)]]></code>
+      <code><![CDATA[protected function clear()]]></code>
+      <code><![CDATA[public function calculateResultCacheHash($params = array())]]></code>
+      <code><![CDATA[public function getSqlQuery($params = array(), $limitSubquery = true)]]></code>
+      <code><![CDATA[public function parseDqlQuery($query)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[empty($string)]]></code>
       <code><![CDATA[empty($string)]]></code>
@@ -644,14 +2024,39 @@
       <code><![CDATA[empty($string)]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/RawSql/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_RawSql_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Record.php">
     <InvalidMethodCall>
       <code><![CDATA[setInvoker]]></code>
     </InvalidMethodCall>
+    <InvalidOperand>
+      <code><![CDATA[$new * 100]]></code>
+      <code><![CDATA[$old * 100]]></code>
+    </InvalidOperand>
     <InvalidPropertyAssignmentValue>
       <code><![CDATA[$this->_data]]></code>
       <code><![CDATA[$this->_id]]></code>
     </InvalidPropertyAssignmentValue>
+    <MethodSignatureMustProvideReturnType>
+      <code><![CDATA[serialize]]></code>
+      <code><![CDATA[unserialize]]></code>
+    </MethodSignatureMustProvideReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function __unset($name)]]></code>
+      <code><![CDATA[public function contains($offset)]]></code>
+      <code><![CDATA[public function get($offset, $load = true)]]></code>
+      <code><![CDATA[public function getTable()]]></code>
+      <code><![CDATA[public function serialize()]]></code>
+      <code><![CDATA[public function set($offset, $value, $load = true)]]></code>
+      <code><![CDATA[public function setUp()]]></code>
+      <code><![CDATA[public function unserialize($data)]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
@@ -665,21 +2070,135 @@
       <code><![CDATA[$this->_table->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE)]]></code>
       <code><![CDATA[$this->_table->getAttribute(Doctrine_Core::ATTR_AUTO_ACCESSOR_OVERRIDE)]]></code>
     </RiskyTruthyFalsyComparison>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[postSerialize]]></code>
+      <code><![CDATA[postUnserialize]]></code>
+      <code><![CDATA[postValidate]]></code>
+      <code><![CDATA[preSerialize]]></code>
+      <code><![CDATA[preUnserialize]]></code>
+      <code><![CDATA[preValidate]]></code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMagicMethod>
+      <code><![CDATA[postSerialize]]></code>
+      <code><![CDATA[postUnserialize]]></code>
+      <code><![CDATA[postValidate]]></code>
+      <code><![CDATA[preSerialize]]></code>
+      <code><![CDATA[preUnserialize]]></code>
+      <code><![CDATA[preValidate]]></code>
+    </UndefinedMagicMethod>
+  </file>
+  <file src="lib/Doctrine/Record/Abstract.php">
+    <InvalidOperand>
+      <code><![CDATA[$mapFieldName[0]]]></code>
+    </InvalidOperand>
+  </file>
+  <file src="lib/Doctrine/Record/Filter/Compound.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Record_Filter_Compound]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function filterGet(Doctrine_Record $record, $name)]]></code>
+      <code><![CDATA[public function filterSet(Doctrine_Record $record, $name, $value)]]></code>
+      <code><![CDATA[public function init()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Record/Filter/Standard.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Record_Filter_Standard]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function filterGet(Doctrine_Record $record, $name)]]></code>
+      <code><![CDATA[public function filterSet(Doctrine_Record $record, $name, $value)]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="lib/Doctrine/Record/Generator.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __get($option)]]></code>
+      <code><![CDATA[public function __isset($option)]]></code>
+    </MissingOverrideAttribute>
     <UnsafeInstantiation>
       <code><![CDATA[new $tableClass($this->_options['className'], $conn)]]></code>
     </UnsafeInstantiation>
   </file>
   <file src="lib/Doctrine/Record/Iterator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Record_Iterator]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[Doctrine_Record_Iterator]]></code>
     </MissingTemplateParam>
+  </file>
+  <file src="lib/Doctrine/Record/Listener.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getOption($name)]]></code>
+      <code><![CDATA[public function getOptions()]]></code>
+      <code><![CDATA[public function postDelete(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postHydrate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postSave(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postSerialize(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postUnserialize(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postUpdate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preDelete(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preHydrate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preSave(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preSerialize(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preUnserialize(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preUpdate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function setOption($name, $value = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Record/Listener/Chain.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Record_Listener_Chain]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function add($value, $name = null)]]></code>
+      <code><![CDATA[public function get($offset)]]></code>
+      <code><![CDATA[public function getOption($name)]]></code>
+      <code><![CDATA[public function getOptions()]]></code>
+      <code><![CDATA[public function postDelete(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postHydrate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postSave(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postSerialize(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postUnserialize(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postUpdate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preDelete(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preHydrate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preSave(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preSerialize(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preUnserialize(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preUpdate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function set($offset, $value)]]></code>
+      <code><![CDATA[public function setOption($name, $value = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Record/State/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Record_State_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Record/UnknownPropertyException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Record_UnknownPropertyException]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="lib/Doctrine/Relation.php">
     <InvalidMethodCall>
       <code><![CDATA[getConnection]]></code>
     </InvalidMethodCall>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[ArrayAccess]]></code>
     </MissingTemplateParam>
@@ -690,27 +2209,61 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Relation/Association.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function fetchRelatedFor(Doctrine_Record $record)]]></code>
+      <code><![CDATA[public function getRelationDql($count, $context = 'record')]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[empty($id)]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Relation/Association/Self.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Relation_Association_Self]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function fetchRelatedFor(Doctrine_Record $record)]]></code>
+      <code><![CDATA[public function getRelationDql($count, $context = 'record')]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Relation/ForeignKey.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Relation_ForeignKey]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function fetchRelatedFor(Doctrine_Record $record)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $alias]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Relation/LocalKey.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Relation_LocalKey]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function fetchRelatedFor(Doctrine_Record $record)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $alias]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Relation/Nest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Relation_Nest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function fetchRelatedFor(Doctrine_Record $record)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$orderBy = $this->getOrderByStatement($tableName, true)]]></code>
       <code><![CDATA[empty($id)]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Relation/Parser.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Relation_Parser]]></code>
+    </ClassMustBeFinal>
     <InvalidMethodCall>
       <code><![CDATA[addIndex]]></code>
       <code><![CDATA[getFieldName]]></code>
@@ -723,23 +2276,121 @@
       <code><![CDATA[!$parents]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Relation/Parser/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Relation_Parser_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Search.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function buildTable()]]></code>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+    </MissingOverrideAttribute>
     <TooManyArguments>
       <code><![CDATA[getColumnName]]></code>
       <code><![CDATA[getColumnName]]></code>
     </TooManyArguments>
+    <UndefinedMagicPropertyAssignment>
+      <code><![CDATA[$index->field]]></code>
+      <code><![CDATA[$index->field]]></code>
+      <code><![CDATA[$index->keyword]]></code>
+      <code><![CDATA[$index->keyword]]></code>
+      <code><![CDATA[$index->position]]></code>
+      <code><![CDATA[$index->position]]></code>
+    </UndefinedMagicPropertyAssignment>
     <UnsafeInstantiation>
       <code><![CDATA[new $class()]]></code>
       <code><![CDATA[new $class()]]></code>
       <code><![CDATA[new $class()]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Search/Analyzer.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyze($text, $encoding = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Search/Analyzer/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Analyzer_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Search/Analyzer/Standard.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyze($text, $encoding = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Search/Analyzer/Utf8.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Analyzer_Utf8]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function analyze($text, $encoding = null)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Search/File.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_File]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function buildRelation()]]></code>
+    </MissingOverrideAttribute>
     <UnsafeInstantiation>
       <code><![CDATA[new $tableClass('File', $conn)]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Search/Indexer.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Indexer]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Search/Indexer/Dir.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Indexer_Dir]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Search/Indexer/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Indexer_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Search/Listener.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Listener]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function postInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function postUpdate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preUpdate(Doctrine_Event $event)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Search/Parser.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Parser]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Search/Query.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Query]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Search/Record.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Search_Record]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+      <code><![CDATA[public function setUp()]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Sequence/Db2.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Sequence_Db2]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function currId($seqName)]]></code>
+      <code><![CDATA[public function lastInsertId($table = null, $field = null)]]></code>
+      <code><![CDATA[public function nextId($seqName, $onDemand = true)]]></code>
+    </MissingOverrideAttribute>
     <NullableReturnStatement>
       <code><![CDATA[$result]]></code>
     </NullableReturnStatement>
@@ -747,31 +2398,84 @@
       <code><![CDATA[$field]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Sequence/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Sequence_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Sequence/Mssql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Sequence_Mssql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function currId($seqName)]]></code>
+      <code><![CDATA[public function lastInsertId($table = null, $field = null)]]></code>
+      <code><![CDATA[public function nextId($seqName, $onDemand = true)]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$conn]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
+  <file src="lib/Doctrine/Sequence/Mysql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Sequence_Mysql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function currId($seqName)]]></code>
+      <code><![CDATA[public function lastInsertId($table = null, $field = null)]]></code>
+      <code><![CDATA[public function nextId($seqName, $onDemand = true)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Sequence/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Sequence_Oracle]]></code>
+    </ClassMustBeFinal>
     <LessSpecificImplementedReturnType>
       <code><![CDATA[mixed]]></code>
     </LessSpecificImplementedReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function currId($seqName)]]></code>
+      <code><![CDATA[public function lastInsertID($table = null, $field = null)]]></code>
+      <code><![CDATA[public function nextID($seqName, $onDemand = true)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[empty($field)]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="lib/Doctrine/Sequence/Pgsql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Sequence_Pgsql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function currId($seqName)]]></code>
+      <code><![CDATA[public function lastInsertId($table = null, $field = null)]]></code>
+      <code><![CDATA[public function nextId($seqName, $onDemand = true)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[empty($field)]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Sequence/Sqlite.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Sequence_Sqlite]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function currId($seqName)]]></code>
+      <code><![CDATA[public function lastInsertId($table = null, $field = null)]]></code>
+      <code><![CDATA[public function nextId($seqName, $onDemand = true)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Table.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Table]]></code>
+    </ClassMustBeFinal>
     <FalsableReturnStatement>
       <code><![CDATA[isset($this->_columns[$columnName]) ? $this->_columns[$columnName]['type'] : false]]></code>
     </FalsableReturnStatement>
-    <InvalidAttribute>
-      <code><![CDATA[\AllowDynamicProperties]]></code>
-    </InvalidAttribute>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function bind($name, $resource)]]></code>
+    </MissingOverrideAttribute>
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$arguments[0]]]></code>
       <code><![CDATA[$arguments[0]]]></code>
@@ -789,140 +2493,456 @@
       <code><![CDATA[new $name($this)]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Table/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Table_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Table/Repository.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Table_Repository]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Table/Repository/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Table_Repository_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Task/BuildAll.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_BuildAll]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/BuildAllLoad.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_BuildAllLoad]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/BuildAllReload.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_BuildAllReload]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Compile.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_Compile]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/CreateDb.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_CreateDb]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/CreateTables.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_CreateTables]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Dql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_Dql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/DropDb.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_DropDb]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/DumpData.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_DumpData]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
+  <file src="lib/Doctrine/Task/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Task/GenerateMigration.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateMigration]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsDb.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateMigrationsDb]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsDiff.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateMigrationsDiff]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateMigrationsModels.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateMigrationsModels]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateModelsDb.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateModelsDb]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateModelsYaml.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateModelsYaml]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateSql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateSql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateYamlDb.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateYamlDb]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/GenerateYamlModels.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_GenerateYamlModels]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/LoadData.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_LoadData]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/Migrate.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_Migrate]]></code>
+    </ClassMustBeFinal>
+    <InvalidOperand>
+      <code><![CDATA[$version]]></code>
+    </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Task/RebuildDb.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Task_RebuildDb]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function execute()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$description]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
+  <file src="lib/Doctrine/Template.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get($offset)]]></code>
+      <code><![CDATA[public function getTable()]]></code>
+      <code><![CDATA[public function set($offset, $value)]]></code>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+      <code><![CDATA[public function setUp()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Template/Geographical.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_Geographical]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Template/I18n.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_I18n]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$_plugin]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="lib/Doctrine/Template/Listener/Sluggable.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_Listener_Sluggable]]></code>
+    </ClassMustBeFinal>
+    <InvalidOperand>
+      <code><![CDATA[$conn->convertBooleans(false)]]></code>
+      <code><![CDATA[$conn->convertBooleans(true)]]></code>
+    </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function preInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preUpdate(Doctrine_Event $event)]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$record->getTable()->getOption('inheritanceMap')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Template/Listener/SoftDelete.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_Listener_SoftDelete]]></code>
+    </ClassMustBeFinal>
+    <InvalidOperand>
+      <code><![CDATA[$query->getConnection()->convertBooleans(false)]]></code>
+      <code><![CDATA[$query->getConnection()->convertBooleans(false)]]></code>
+    </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function postDelete(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preDelete(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preDqlDelete(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preDqlSelect(Doctrine_Event $event)]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Template/Listener/Timestampable.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_Listener_Timestampable]]></code>
+    </ClassMustBeFinal>
     <ImplicitToStringCast>
       <code><![CDATA[$this->getTimestamp('updated', $event->getInvoker()->getTable()->getConnection())]]></code>
     </ImplicitToStringCast>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function preDqlUpdate(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preInsert(Doctrine_Event $event)]]></code>
+      <code><![CDATA[public function preUpdate(Doctrine_Event $event)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Template/NestedSet.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_NestedSet]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+      <code><![CDATA[public function setUp()]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="lib/Doctrine/Template/Searchable.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_Searchable]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$_plugin]]></code>
     </NonInvariantDocblockPropertyType>
   </file>
+  <file src="lib/Doctrine/Template/Sluggable.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_Sluggable]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Template/SoftDelete.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_SoftDelete]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Template/Timestampable.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_Timestampable]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="lib/Doctrine/Template/Versionable.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Template_Versionable]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp()]]></code>
+    </MissingOverrideAttribute>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$_plugin]]></code>
     </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="lib/Doctrine/Transaction/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Transaction_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Transaction/Mock.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Transaction_Mock]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Transaction/Mssql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Transaction_Mssql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function _doBeginTransaction()]]></code>
+      <code><![CDATA[protected function _doCommit()]]></code>
+      <code><![CDATA[protected function _doRollback()]]></code>
+      <code><![CDATA[public function setIsolation($isolation, $options = array())]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Transaction/Mysql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Transaction_Mysql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function createSavePoint($savepoint)]]></code>
+      <code><![CDATA[protected function releaseSavePoint($savepoint)]]></code>
+      <code><![CDATA[protected function rollbackSavePoint($savepoint)]]></code>
+      <code><![CDATA[public function getIsolation()]]></code>
+      <code><![CDATA[public function setIsolation($isolation)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Transaction/Oracle.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Transaction_Oracle]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function createSavePoint($savepoint)]]></code>
+      <code><![CDATA[protected function releaseSavePoint($savepoint)]]></code>
+      <code><![CDATA[protected function rollbackSavePoint($savepoint)]]></code>
+      <code><![CDATA[public function setIsolation($isolation)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Transaction/Pgsql.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Transaction_Pgsql]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function createSavePoint($savepoint)]]></code>
+      <code><![CDATA[protected function releaseSavePoint($savepoint)]]></code>
+      <code><![CDATA[protected function rollbackSavePoint($savepoint)]]></code>
+      <code><![CDATA[public function setIsolation($isolation)]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="lib/Doctrine/Transaction/Sqlite.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Transaction_Sqlite]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setIsolation($isolation)]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="lib/Doctrine/Tree.php">
     <RiskyTruthyFalsyComparison>
@@ -932,7 +2952,22 @@
       <code><![CDATA[new $class($table, $options)]]></code>
     </UnsafeInstantiation>
   </file>
+  <file src="lib/Doctrine/Tree/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Tree_Exception]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Tree/NestedSet.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Tree_NestedSet]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function createRoot(?Doctrine_Record $record = null)]]></code>
+      <code><![CDATA[public function fetchBranch($pk, $options = array(), $hydrationMode = null)]]></code>
+      <code><![CDATA[public function fetchRoot($root_id = 1)]]></code>
+      <code><![CDATA[public function fetchTree($options = array(), $hydrationMode = null)]]></code>
+      <code><![CDATA[public function setTableDefinition()]]></code>
+    </MissingOverrideAttribute>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$level = $this->getAttribute('levelColumnName')]]></code>
       <code><![CDATA[$options['hasManyRoots']]]></code>
@@ -942,19 +2977,156 @@
       <code><![CDATA[$this->getAttribute('rootColumnName')]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
+  <file src="lib/Doctrine/Util.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Util]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Country.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Country]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Creditcard.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Creditcard]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Date.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Date]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Email.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Email]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Validator/ErrorStack.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_ErrorStack]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function add($value, $errorCode = 'general')]]></code>
+      <code><![CDATA[public function contains($offset)]]></code>
+      <code><![CDATA[public function get($offset)]]></code>
+      <code><![CDATA[public function remove($offset)]]></code>
+      <code><![CDATA[public function set($offset, $value)]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
   <file src="lib/Doctrine/Validator/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Exception]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+    </MissingOverrideAttribute>
     <MissingTemplateParam>
       <code><![CDATA[IteratorAggregate]]></code>
     </MissingTemplateParam>
   </file>
+  <file src="lib/Doctrine/Validator/Future.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Future]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/HtmlColor.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_HtmlColor]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Ip.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Ip]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Minlength.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Minlength]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Nospace.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Nospace]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Notblank.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Notblank]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Notnull.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Notnull]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Past.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Past]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Range.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Range]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Readonly.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Readonly]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="lib/Doctrine/Validator/Regexp.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Regexp]]></code>
+    </ClassMustBeFinal>
     <NoValue>
       <code><![CDATA[$this->args]]></code>
     </NoValue>
+  </file>
+  <file src="lib/Doctrine/Validator/Time.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Time]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Timestamp.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Timestamp]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Unique.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Unique]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Unsigned.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Unsigned]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/Validator/Usstate.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_Validator_Usstate]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/View.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_View]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="lib/Doctrine/View/Exception.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Doctrine_View_Exception]]></code>
+    </ClassMustBeFinal>
   </file>
 </files>

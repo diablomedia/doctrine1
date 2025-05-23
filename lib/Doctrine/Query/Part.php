@@ -45,7 +45,7 @@ abstract class Doctrine_Query_Part
     /**
      * @param Doctrine_Query $query         the query object associated with this parser
      */
-    public function __construct($query, Doctrine_Query_Tokenizer $tokenizer = null)
+    public function __construct($query, ?Doctrine_Query_Tokenizer $tokenizer = null)
     {
         $this->query = $query;
 

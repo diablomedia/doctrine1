@@ -6,7 +6,7 @@ $startTime = time();
 // More info about that: http://bugs.php.net/bugs-generating-backtrace-win32.php
 //sleep(10);
 
-error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL);
 ini_set('max_execution_time', 900);
 ini_set('date.timezone', 'GMT+0');
 

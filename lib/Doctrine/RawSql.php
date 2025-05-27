@@ -55,7 +55,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      * @param Doctrine_Connection $connection The connection object the query will use.
      * @param Doctrine_Hydrator_Abstract $hydrator The hydrator that will be used for generating result sets.
      */
-    public function __construct(Doctrine_Connection $connection = null, Doctrine_Hydrator_Abstract $hydrator = null)
+    public function __construct(?Doctrine_Connection $connection = null, ?Doctrine_Hydrator_Abstract $hydrator = null)
     {
         parent::__construct($connection, $hydrator);
 

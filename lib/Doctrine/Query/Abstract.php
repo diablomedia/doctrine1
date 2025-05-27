@@ -298,8 +298,8 @@ abstract class Doctrine_Query_Abstract
      * @param Doctrine_Hydrator_Abstract|null $hydrator The hydrator that will be used for generating result sets.
      */
     public function __construct(
-        Doctrine_Connection $connection = null,
-        Doctrine_Hydrator_Abstract $hydrator = null
+        ?Doctrine_Connection $connection = null,
+        ?Doctrine_Hydrator_Abstract $hydrator = null
     ) {
         if ($connection === null) {
             $connection = Doctrine_Manager::getInstance()->getCurrentConnection();

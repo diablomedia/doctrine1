@@ -490,7 +490,6 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      *                  SERIALIZABLE (prevents phantom reads)
      *
      * @throws Doctrine_Transaction_Exception           if the feature is not supported by the driver
-     * @throws PDOException                             if something fails at the PDO level
      * @return PDOStatement|Doctrine_Adapter_Statement_Interface
      */
     public function setIsolation($isolation)
@@ -507,7 +506,6 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      * but not fetching it
      *
      * @throws Doctrine_Transaction_Exception           if the feature is not supported by the driver
-     * @throws PDOException                             if something fails at the PDO level
      * @return string                                   returns the current session transaction isolation level
      */
     public function getIsolation()

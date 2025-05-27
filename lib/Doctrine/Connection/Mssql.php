@@ -142,7 +142,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
      * @link http://lists.bestpractical.com/pipermail/rt-devel/2005-June/007339.html
      * @return string
      */
-    public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false, $isSubQuery = false, Doctrine_Query $queryOrigin = null)
+    public function modifyLimitQuery($query, $limit = false, $offset = false, $isManip = false, $isSubQuery = false, ?Doctrine_Query $queryOrigin = null)
     {
         if ($limit === false || !($limit > 0)) {
             return $query;

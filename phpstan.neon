@@ -1,8 +1,7 @@
 includes:
     - ./phpstan-baseline.php
-    - ./phpstan-php7.php
-    - ./phpstan-php8.php
     - ./phpstan-php82.php
+    - ./phpstan-php84.php
 parameters:
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
@@ -293,15 +292,7 @@ parameters:
             count: 1
             path: lib/Doctrine/Migration.php
         -
-            message: "#^Parameter \\#1 \\$(input|array) of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
-            count: 1
-            path: lib/Doctrine/Compiler.php
-        -
             message: "#^Parameter \\#1 \\$(str|string) of function trim expects string, string\\|null given\\.$#"
-            count: 1
-            path: lib/Doctrine/Connection/Mssql.php
-        -
-            message: "#^Parameter \\#1 \\$(array_arg|array) of function end expects (array\\|object|array), array\\<int, string\\>\\|false given\\.$#"
             count: 1
             path: lib/Doctrine/Connection/Mssql.php
         -
@@ -336,10 +327,6 @@ parameters:
             message: "#^Parameter \\#1 \\$(name|qualifiedName) of method SimpleXMLElement\\:\\:addChild\\(\\) expects string, string\\|null given\\.$#"
             count: 2
             path: lib/Doctrine/Parser/Xml.php
-        -
-            message: "#^Parameter \\#1 \\$(stack|array) of function array_shift expects array, array\\<int, string\\>\\|false given\\.$#"
-            count: 1
-            path: lib/Doctrine/Query.php
         -
             message: "#^Parameter \\#1 \\$(str|string) of function trim expects string, string\\|false given\\.$#"
             count: 1

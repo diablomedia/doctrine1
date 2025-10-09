@@ -171,6 +171,9 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
             return true;
         } elseif ($var === null) {
             return true;
+        } elseif ($type === 'json') {
+            // JSON type can be object, array, string, number, boolean, or null (null handled above)
+            return is_object($var) || is_array($var) || is_string($var) || is_numeric($var) || is_bool($var);
         } elseif (is_object($var)) {
             return $type == 'object';
         } elseif (is_array($var)) {
@@ -195,8 +198,6 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
                 return is_array($var);
             case 'object':
                 return is_object($var);
-            case 'json':
-                return is_object($var) || is_array($var);
             case 'boolean':
                 return is_bool($var) || (is_numeric($var) && ($var == 0 || $var == 1));
             case 'timestamp':

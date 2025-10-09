@@ -1222,7 +1222,7 @@ $ignoreErrors[] = array(
 $ignoreErrors[] = array(
     'message'    => '#^Call to function is_array\\(\\) with mixed will always evaluate to false\\.$#',
     'identifier' => 'function.impossibleType',
-    'count'      => 3,
+    'count'      => 2,
     'path'       => __DIR__ . '/lib/Doctrine/Validator.php',
 );
 $ignoreErrors[] = array(

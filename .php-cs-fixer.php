@@ -10,10 +10,11 @@ $finder = PhpCsFixer\Finder::create()
 
 $config = new PhpCsFixer\Config();
 return $config
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRiskyAllowed(true)
     ->setRules(array(
         '@PSR2'                  => true,
-        '@PHP70Migration:risky'  => true,
+        '@PHP7x0Migration:risky' => true,
         'binary_operator_spaces' => array(
             'default'   => 'align_single_space_minimal',
             'operators' => array('||' => null, '&&' => null)
@@ -26,5 +27,5 @@ return $config
         'psr_autoloading'             => false,
     ))
     ->setUsingCache(true)
-    ->setFinder($finder);
+    ->setFinder($finder)    
 ;

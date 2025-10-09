@@ -116,7 +116,7 @@ class Doctrine_Migration_Diff
     public function setTmpPath($tmpPath)
     {
         if (! is_dir($tmpPath)) {
-            mkdir($tmpPath, 0777, true);
+            mkdir($tmpPath, 0o777, true);
         }
         $this->_tmpPath = $tmpPath;
     }
@@ -356,7 +356,7 @@ class Doctrine_Migration_Diff
                 Doctrine_Inflector::tableize(self::$_toPrefix) . '_',
                 Doctrine_Inflector::tableize(self::$_fromPrefix) . '_',
                 Doctrine_Inflector::tableize(self::$_toPrefix),
-                Doctrine_Inflector::tableize(self::$_fromPrefix)
+                Doctrine_Inflector::tableize(self::$_fromPrefix),
             );
             return str_replace($find, '', (string) $info);
         }
@@ -402,7 +402,7 @@ class Doctrine_Migration_Diff
         $path    = $this->_tmpPath . DIRECTORY_SEPARATOR . strtolower($prefix) . '_doctrine_tmp_dirs';
         $options = array(
             'classPrefix'         => $prefix,
-            'generateBaseClasses' => false
+            'generateBaseClasses' => false,
         );
 
         if (is_string($item) && file_exists($item)) {

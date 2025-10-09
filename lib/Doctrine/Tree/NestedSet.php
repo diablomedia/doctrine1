@@ -52,9 +52,9 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
     public function __construct(Doctrine_Table $table, $options)
     {
         // set default many root attributes
-        $options['hasManyRoots'] = isset($options['hasManyRoots']) ? $options['hasManyRoots'] : false;
+        $options['hasManyRoots'] ??= false;
         if ($options['hasManyRoots']) {
-            $options['rootColumnName'] = isset($options['rootColumnName']) ? $options['rootColumnName'] : 'root_id';
+            $options['rootColumnName'] ??= 'root_id';
         }
 
         parent::__construct($table, $options);
@@ -170,12 +170,12 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
         // fetch tree
         $q = $this->getBaseQuery();
 
-        $depth = isset($options['depth']) ? $options['depth'] : null;
+        $depth = $options['depth'] ?? null;
 
         $q->addWhere($this->_baseAlias . '.lft >= ?', 1);
 
         // if tree has many roots, then specify root id
-        $rootId = isset($options['root_id']) ? $options['root_id'] : '1';
+        $rootId = $options['root_id'] ?? '1';
         if (is_array($rootId)) {
             $q->addOrderBy($this->_baseAlias . '.' . $this->getAttribute('rootColumnName') .
                     ', ' . $this->_baseAlias . '.lft ASC');
@@ -215,7 +215,7 @@ class Doctrine_Tree_NestedSet extends Doctrine_Tree implements Doctrine_Tree_Int
             return false;
         }
 
-        $depth = isset($options['depth']) ? $options['depth'] : null;
+        $depth = $options['depth'] ?? null;
 
         $q      = $this->getBaseQuery();
         $params = array($record->get('lft'), $record->get('rgt'));

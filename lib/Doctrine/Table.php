@@ -196,7 +196,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                                      'queryParts'     => array(),
                                      'versioning'     => null,
                                      'subclasses'     => array(),
-                                     'orderBy'        => null
+                                     'orderBy'        => null,
                                      );
 
     /**
@@ -467,8 +467,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
                     $definition = array('type'          => (isset($identifierOptions['type']) && $identifierOptions['type']) ? $identifierOptions['type']:'integer',
                                         'length'        => (isset($identifierOptions['length']) && $identifierOptions['length']) ? $identifierOptions['length']:8,
-                                        'autoincrement' => isset($identifierOptions['autoincrement']) ? $identifierOptions['autoincrement']:true,
-                                        'primary'       => isset($identifierOptions['primary']) ? $identifierOptions['primary']:true);
+                                        'autoincrement' => $identifierOptions['autoincrement'] ?? true,
+                                        'primary'       => $identifierOptions['primary']       ?? true);
 
                     unset($identifierOptions['name'], $identifierOptions['type'], $identifierOptions['length']);
                     foreach ($identifierOptions as $key => $value) {
@@ -697,8 +697,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
             }
         }
 
-        $options['foreignKeys'] = isset($this->_options['foreignKeys']) ?
-                $this->_options['foreignKeys'] : array();
+        $options['foreignKeys'] = $this->_options['foreignKeys'] ?? array();
 
         if ($parseForeignKeys && $this->getAttribute(Doctrine_Core::ATTR_EXPORT) & Doctrine_Core::EXPORT_CONSTRAINTS) {
             $constraints = array();
@@ -1631,7 +1630,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
         // Check for possible cross-access
         if (! is_array($name) && strpos($name, '/') !== false) {
-            list($ns, $m) = explode('/', $name);
+            [$ns, $m] = explode('/', $name);
         }
 
         // Define query to be used
@@ -2038,7 +2037,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
 
         $columnName = $this->getColumnName($fieldName);
 
-        return isset($this->_columns[$columnName]['values'][$index]) ? $this->_columns[$columnName]['values'][$index] : false;
+        return $this->_columns[$columnName]['values'][$index] ?? false;
     }
 
     /**
@@ -2163,10 +2162,10 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         $validator->invoker = $record;
 
         foreach ($this->_uniques as $unique) {
-            list($fields, $options) = $unique;
-            $validator->args        = $options;
-            $validator->field       = $fields;
-            $values                 = array();
+            [$fields, $options] = $unique;
+            $validator->args    = $options;
+            $validator->field   = $fields;
+            $values             = array();
             foreach ($fields as $field) {
                 $values[] = $record->$field;
             }
@@ -2372,7 +2371,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                 case 'set':
                     return explode(',', $value);
                 case 'boolean':
-                    return (boolean) $value;
+                    return (bool) $value;
                 case 'array':
                 case 'object':
                     if (is_string($value)) {
@@ -2419,7 +2418,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     {
         if (isset($this->_options['treeImpl'])) {
             if (! $this->_tree) {
-                $options     = isset($this->_options['treeOptions']) ? $this->_options['treeOptions'] : array();
+                $options     = $this->_options['treeOptions'] ?? array();
                 $this->_tree = Doctrine_Tree::factory(
                     $this,
                     $this->_options['treeImpl'],

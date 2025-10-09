@@ -261,7 +261,7 @@ class Doctrine_Search_Analyzer_Standard extends Doctrine_Search_Analyzer impleme
                             'yet',
                             'you',
                             'your',
-                            'yours'
+                            'yours',
                             );
 
     /**

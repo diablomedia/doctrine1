@@ -29,13 +29,6 @@
     "replace": {
         "doctrine/doctrine1": "*"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "no-api": true,
-            "url": "https://github.com/diablomedia/phpstorm-stubs"
-        }
-    ],
     "require": {
         "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
         "ext-pdo": "*",
@@ -43,7 +36,7 @@
     },
     "require-dev": {
         "phpunit/php-code-coverage": "^9.1.10",
-        "friendsofphp/php-cs-fixer": "^3.75.0",
+        "friendsofphp/php-cs-fixer": "^3.88.0",
         "phpstan/phpstan": "2.1.17",
         "vimeo/psalm": "6.11.0"
     },

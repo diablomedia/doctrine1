@@ -273,7 +273,7 @@ class Doctrine_Lib
      *                          created directories
      * @return boolean  true if succeeded
      */
-    public static function makeDirectories($path, $mode = 0777)
+    public static function makeDirectories($path, $mode = 0o777)
     {
         if (! $path) {
             return false;

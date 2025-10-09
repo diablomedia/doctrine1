@@ -85,7 +85,6 @@ class Doctrine_Exception extends Exception
             return self::$_errorMessages;
         }
 
-        return isset(self::$_errorMessages[$value]) ?
-           self::$_errorMessages[$value] : self::$_errorMessages[Doctrine_Core::ERR];
+        return self::$_errorMessages[$value] ?? self::$_errorMessages[Doctrine_Core::ERR];
     }
 }

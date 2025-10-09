@@ -52,7 +52,7 @@ class Doctrine_Template_Sluggable extends Doctrine_Template
         'canUpdate'   => false,
         'builder'     => array('Doctrine_Inflector', 'urlize'),
         'provider'    => null,
-        'indexName'   => null
+        'indexName'   => null,
     );
 
     /**

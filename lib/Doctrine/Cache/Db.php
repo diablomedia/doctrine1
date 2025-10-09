@@ -176,18 +176,18 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver
         $fields = array(
             'id' => array(
                 'type'   => 'string',
-                'length' => 255
+                'length' => 255,
             ),
             'data' => array(
-                'type' => 'blob'
+                'type' => 'blob',
             ),
             'expire' => array(
-                'type' => 'timestamp'
-            )
+                'type' => 'timestamp',
+            ),
         );
 
         $options = array(
-            'primary' => array('id')
+            'primary' => array('id'),
         );
 
         $this->getConnection()->export->createTable($name, $fields, $options);

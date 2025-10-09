@@ -48,8 +48,8 @@ class Doctrine_Validator_Timestamp extends Doctrine_Validator_Driver
         $splitChar = false !== strpos($value, 'T') ? 'T' : ' ';
 
         $e    = explode($splitChar, trim($value));
-        $date = isset($e[0]) ? $e[0] : null;
-        $time = isset($e[1]) ? $e[1] : null;
+        $date = $e[0] ?? null;
+        $time = $e[1] ?? null;
 
         /** @var Doctrine_Validator_Date $dateValidator */
         $dateValidator = Doctrine_Validator::getValidator('date');

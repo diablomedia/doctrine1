@@ -82,7 +82,7 @@ class Doctrine_Export_Mysql extends Doctrine_Export
         return array(
             'SET FOREIGN_KEY_CHECKS = 0',
             'DROP DATABASE ' . $this->conn->quoteIdentifier($database),
-            'SET FOREIGN_KEY_CHECKS = 1'
+            'SET FOREIGN_KEY_CHECKS = 1',
         );
     }
 

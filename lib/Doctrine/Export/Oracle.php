@@ -71,20 +71,20 @@ class Doctrine_Export_Oracle extends Doctrine_Export
     public function dropDatabase($database)
     {
         $sql = <<<SQL
-BEGIN
-  -- user_tables contains also materialized views
-  FOR I IN (SELECT table_name FROM user_tables WHERE table_name NOT IN (SELECT mview_name FROM user_mviews))
-  LOOP
-    EXECUTE IMMEDIATE 'DROP TABLE "'||I.table_name||'" CASCADE CONSTRAINTS';
-  END LOOP;
+            BEGIN
+              -- user_tables contains also materialized views
+              FOR I IN (SELECT table_name FROM user_tables WHERE table_name NOT IN (SELECT mview_name FROM user_mviews))
+              LOOP
+                EXECUTE IMMEDIATE 'DROP TABLE "'||I.table_name||'" CASCADE CONSTRAINTS';
+              END LOOP;
 
-  FOR I IN (SELECT SEQUENCE_NAME FROM USER_SEQUENCES)
-  LOOP
-    EXECUTE IMMEDIATE 'DROP SEQUENCE "'||I.SEQUENCE_NAME||'"';
-  END LOOP;
-END;
+              FOR I IN (SELECT SEQUENCE_NAME FROM USER_SEQUENCES)
+              LOOP
+                EXECUTE IMMEDIATE 'DROP SEQUENCE "'||I.SEQUENCE_NAME||'"';
+              END LOOP;
+            END;
 
-SQL;
+            SQL;
 
         $this->conn->exec($sql);
 

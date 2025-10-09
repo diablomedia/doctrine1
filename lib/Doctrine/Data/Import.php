@@ -169,7 +169,7 @@ class Doctrine_Data_Import extends Doctrine_Data
     protected function _buildNestedSetRows($className, $data)
     {
         foreach ($data as $rowKey => $row) {
-            $children = isset($row['children']) ? $row['children']:array();
+            $children = $row['children'] ?? array();
             unset($row['children']);
             $this->_rows[$className][$rowKey] = $row;
 

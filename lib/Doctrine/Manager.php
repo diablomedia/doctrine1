@@ -94,7 +94,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
         'mssql'  => 'Doctrine_Connection_Mssql',
         'dblib'  => 'Doctrine_Connection_Mssql',
         'odbc'   => 'Doctrine_Connection_Mssql',
-        'mock'   => 'Doctrine_Connection_Mock'
+        'mock'   => 'Doctrine_Connection_Mock',
     );
 
     /**
@@ -174,7 +174,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
                         Doctrine_Core::ATTR_COLLECTION_CLASS           => 'Doctrine_Collection',
                         Doctrine_Core::ATTR_TABLE_CLASS                => 'Doctrine_Table',
                         Doctrine_Core::ATTR_CASCADE_SAVES              => true,
-                        Doctrine_Core::ATTR_TABLE_CLASS_FORMAT         => '%sTable'
+                        Doctrine_Core::ATTR_TABLE_CLASS_FORMAT         => '%sTable',
                         );
             foreach ($attributes as $attribute => $value) {
                 $old = $this->getAttribute($attribute);
@@ -399,7 +399,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
                         unset($e2[0]);
                         $value = implode('=', $e2);
                     } else {
-                        list($key, $value) = $e2;
+                        [$key, $value] = $e2;
                     }
                     $parts[$key] = $value;
                 }

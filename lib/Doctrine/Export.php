@@ -47,7 +47,7 @@ class Doctrine_Export extends Doctrine_Connection_Module
         'date'      => '1970-01-01',
         'clob'      => '',
         'blob'      => '',
-        'string'    => ''
+        'string'    => '',
     );
 
     /**

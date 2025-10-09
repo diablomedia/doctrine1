@@ -224,7 +224,7 @@ class Doctrine_DataDict_Oracle extends Doctrine_DataDict
             case 'urowid':
             default:
                 $type[] = $field['type'];
-                $length = isset($field['length']) ? $field['length']:null;
+                $length = $field['length'] ?? null;
         }
 
         return array('type'     => $type,

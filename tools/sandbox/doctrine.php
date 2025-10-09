@@ -14,7 +14,7 @@ $config = array(
         'generateTableClasses' => true,
         'baseClassPrefix'      => 'Base',
         'baseClassesDirectory' => null,
-    )
+    ),
 );
 
 $cli = new Doctrine_Cli($config);

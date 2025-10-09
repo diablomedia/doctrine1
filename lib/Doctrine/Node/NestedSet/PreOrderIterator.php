@@ -113,7 +113,7 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
 
         $this->maxLevel   = isset($opts['depth']) ? ($opts['depth'] + $node->getLevel()) : 0;
         $this->options    = $opts;
-        $this->collection = isset($opts['collection']) ? $opts['collection'] : $query->execute();
+        $this->collection = $opts['collection'] ?? $query->execute();
         $this->keys       = $this->collection->getKeys();
         $this->count      = $this->collection->count();
         $this->index      = -1;

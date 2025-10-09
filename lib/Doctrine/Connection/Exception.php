@@ -110,8 +110,7 @@ class Doctrine_Connection_Exception extends Doctrine_Exception
      */
     public function errorMessage($value = null)
     {
-        return isset(self::$errorMessages[$value]) ?
-           self::$errorMessages[$value] : self::$errorMessages[Doctrine_Core::ERR];
+        return self::$errorMessages[$value] ?? self::$errorMessages[Doctrine_Core::ERR];
     }
 
     /**

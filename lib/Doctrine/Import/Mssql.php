@@ -103,7 +103,7 @@ class Doctrine_Import_Mssql extends Doctrine_Import
             $val = array_change_key_case($val, CASE_LOWER);
 
             if (strstr($val['type_name'], ' ')) {
-                list($type, $identity) = explode(' ', $val['type_name']);
+                [$type, $identity] = explode(' ', $val['type_name']);
             } else {
                 $type     = $val['type_name'];
                 $identity = '';

@@ -70,7 +70,7 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
         'username'   => null,
         'password'   => null,
         'charset'    => null,
-        'persistent' => false
+        'persistent' => false,
     );
 
     /**

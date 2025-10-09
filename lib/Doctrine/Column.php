@@ -125,7 +125,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
             return false;
         }
 
-        return isset($this->_definition['values'][$index]) ? $this->_definition['values'][$index] : false;
+        return $this->_definition['values'][$index] ?? false;
     }
 
     /**

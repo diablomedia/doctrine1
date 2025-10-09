@@ -40,12 +40,12 @@ abstract class Doctrine_Relation implements ArrayAccess
     /**
      * constant for ONE_TO_ONE and MANY_TO_ONE relationships
      */
-    const ONE = 0;
+    public const ONE = 0;
 
     /**
      * constant for MANY_TO_MANY and ONE_TO_MANY relationships
      */
-    const MANY = 1;
+    public const MANY = 1;
 
     // TRUE => mandatory, everything else is just a default value. this should be refactored
     // since TRUE can bot be used as a default value this way. All values should be default values.

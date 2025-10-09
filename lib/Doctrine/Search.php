@@ -32,9 +32,9 @@
  */
 class Doctrine_Search extends Doctrine_Record_Generator
 {
-    const INDEX_FILES = 0;
+    public const INDEX_FILES = 0;
 
-    const INDEX_TABLES = 1;
+    public const INDEX_TABLES = 1;
 
     /**
      * @var array
@@ -166,7 +166,7 @@ class Doctrine_Search extends Doctrine_Record_Generator
             $index->save();
         } else {
             foreach ($fields as $field) {
-                $value = isset($data[$field]) ? $data[$field] : null;
+                $value = $data[$field] ?? null;
 
                 $terms = $this->analyze($value, $encoding);
 

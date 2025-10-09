@@ -123,7 +123,7 @@ class Doctrine_Import_Pgsql extends Doctrine_Import
                                                               LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
                                                               WHERE c.relname ~ ? AND pg_catalog.pg_table_is_visible(c.oid)
                                                           )
-                                                          AND r.contype = 'f'"
+                                                          AND r.contype = 'f'",
                         );
 
     /**
@@ -196,7 +196,7 @@ class Doctrine_Import_Pgsql extends Doctrine_Import
 
             // If postgres enum type
             if ($val['type'] == 'e') {
-                $description['default'] = isset($decl['default']) ? $decl['default'] : null;
+                $description['default'] = $decl['default'] ?? null;
                 $t_result               = $this->conn->fetchAssoc(sprintf('select enum_range(null::%s) as range ', $decl['enum_name']));
                 if (isset($t_result[0])) {
                     $range                 = $t_result[0]['range'];

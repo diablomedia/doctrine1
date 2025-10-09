@@ -210,7 +210,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      */
     protected $_usedNames = array(
             'foreign_keys' => array(),
-            'indexes'      => array()
+            'indexes'      => array(),
         );
 
     /**

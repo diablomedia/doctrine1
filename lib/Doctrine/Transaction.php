@@ -37,17 +37,17 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
     /**
      * Doctrine_Transaction is in sleep state when it has no active transactions
      */
-    const STATE_SLEEP = 0;
+    public const STATE_SLEEP = 0;
 
     /**
      * Doctrine_Transaction is in active state when it has one active transaction
      */
-    const STATE_ACTIVE = 1;
+    public const STATE_ACTIVE = 1;
 
     /**
      * Doctrine_Transaction is in busy state when it has multiple active transactions
      */
-    const STATE_BUSY = 2;
+    public const STATE_BUSY = 2;
 
     /**
      * @var integer $_nestingLevel      The current nesting level of this transaction.

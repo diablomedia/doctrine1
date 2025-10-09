@@ -35,90 +35,90 @@ class Doctrine_Core
     /**
      * VERSION
      */
-    const VERSION = '1.2.4';
+    public const VERSION = '1.2.4';
 
     /**
      * ERROR CONSTANTS
      */
-    const ERR                     = -1;
-    const ERR_SYNTAX              = -2;
-    const ERR_CONSTRAINT          = -3;
-    const ERR_NOT_FOUND           = -4;
-    const ERR_ALREADY_EXISTS      = -5;
-    const ERR_UNSUPPORTED         = -6;
-    const ERR_MISMATCH            = -7;
-    const ERR_INVALID             = -8;
-    const ERR_NOT_CAPABLE         = -9;
-    const ERR_TRUNCATED           = -10;
-    const ERR_INVALID_NUMBER      = -11;
-    const ERR_INVALID_DATE        = -12;
-    const ERR_DIVZERO             = -13;
-    const ERR_NODBSELECTED        = -14;
-    const ERR_CANNOT_CREATE       = -15;
-    const ERR_CANNOT_DELETE       = -16;
-    const ERR_CANNOT_DROP         = -17;
-    const ERR_NOSUCHTABLE         = -18;
-    const ERR_NOSUCHFIELD         = -19;
-    const ERR_NEED_MORE_DATA      = -20;
-    const ERR_NOT_LOCKED          = -21;
-    const ERR_VALUE_COUNT_ON_ROW  = -22;
-    const ERR_INVALID_DSN         = -23;
-    const ERR_CONNECT_FAILED      = -24;
-    const ERR_EXTENSION_NOT_FOUND = -25;
-    const ERR_NOSUCHDB            = -26;
-    const ERR_ACCESS_VIOLATION    = -27;
-    const ERR_CANNOT_REPLACE      = -28;
-    const ERR_CONSTRAINT_NOT_NULL = -29;
-    const ERR_DEADLOCK            = -30;
-    const ERR_CANNOT_ALTER        = -31;
-    const ERR_MANAGER             = -32;
-    const ERR_MANAGER_PARSE       = -33;
-    const ERR_LOADMODULE          = -34;
-    const ERR_INSUFFICIENT_DATA   = -35;
-    const ERR_CLASS_NAME          = -36;
+    public const ERR                     = -1;
+    public const ERR_SYNTAX              = -2;
+    public const ERR_CONSTRAINT          = -3;
+    public const ERR_NOT_FOUND           = -4;
+    public const ERR_ALREADY_EXISTS      = -5;
+    public const ERR_UNSUPPORTED         = -6;
+    public const ERR_MISMATCH            = -7;
+    public const ERR_INVALID             = -8;
+    public const ERR_NOT_CAPABLE         = -9;
+    public const ERR_TRUNCATED           = -10;
+    public const ERR_INVALID_NUMBER      = -11;
+    public const ERR_INVALID_DATE        = -12;
+    public const ERR_DIVZERO             = -13;
+    public const ERR_NODBSELECTED        = -14;
+    public const ERR_CANNOT_CREATE       = -15;
+    public const ERR_CANNOT_DELETE       = -16;
+    public const ERR_CANNOT_DROP         = -17;
+    public const ERR_NOSUCHTABLE         = -18;
+    public const ERR_NOSUCHFIELD         = -19;
+    public const ERR_NEED_MORE_DATA      = -20;
+    public const ERR_NOT_LOCKED          = -21;
+    public const ERR_VALUE_COUNT_ON_ROW  = -22;
+    public const ERR_INVALID_DSN         = -23;
+    public const ERR_CONNECT_FAILED      = -24;
+    public const ERR_EXTENSION_NOT_FOUND = -25;
+    public const ERR_NOSUCHDB            = -26;
+    public const ERR_ACCESS_VIOLATION    = -27;
+    public const ERR_CANNOT_REPLACE      = -28;
+    public const ERR_CONSTRAINT_NOT_NULL = -29;
+    public const ERR_DEADLOCK            = -30;
+    public const ERR_CANNOT_ALTER        = -31;
+    public const ERR_MANAGER             = -32;
+    public const ERR_MANAGER_PARSE       = -33;
+    public const ERR_LOADMODULE          = -34;
+    public const ERR_INSUFFICIENT_DATA   = -35;
+    public const ERR_CLASS_NAME          = -36;
 
     /**
      * PDO derived constants
      */
-    const CASE_LOWER         = 2;
-    const CASE_NATURAL       = 0;
-    const CASE_UPPER         = 1;
-    const CURSOR_FWDONLY     = 0;
-    const CURSOR_SCROLL      = 1;
-    const ERRMODE_EXCEPTION  = 2;
-    const ERRMODE_SILENT     = 0;
-    const ERRMODE_WARNING    = 1;
-    const FETCH_ASSOC        = 2;
-    const FETCH_BOTH         = 4;
-    const FETCH_BOUND        = 6;
-    const FETCH_CLASS        = 8;
-    const FETCH_CLASSTYPE    = 262144;
-    const FETCH_COLUMN       = 7;
-    const FETCH_FUNC         = 10;
-    const FETCH_GROUP        = 65536;
-    const FETCH_INTO         = 9;
-    const FETCH_LAZY         = 1;
-    const FETCH_NAMED        = 11;
-    const FETCH_NUM          = 3;
-    const FETCH_OBJ          = 5;
-    const FETCH_ORI_ABS      = 4;
-    const FETCH_ORI_FIRST    = 2;
-    const FETCH_ORI_LAST     = 3;
-    const FETCH_ORI_NEXT     = 0;
-    const FETCH_ORI_PRIOR    = 1;
-    const FETCH_ORI_REL      = 5;
-    const FETCH_SERIALIZE    = 524288;
-    const FETCH_UNIQUE       = 196608;
-    const NULL_EMPTY_STRING  = 1;
-    const NULL_NATURAL       = 0;
-    const NULL_TO_STRING     = null;
-    const PARAM_BOOL         = 5;
-    const PARAM_INPUT_OUTPUT = -2147483648;
-    const PARAM_INT          = 1;
-    const PARAM_LOB          = 3;
-    const PARAM_NULL         = 0;
-    const PARAM_STMT         = 4;
-    const PARAM_STR          = 2;
+    public const CASE_LOWER         = 2;
+    public const CASE_NATURAL       = 0;
+    public const CASE_UPPER         = 1;
+    public const CURSOR_FWDONLY     = 0;
+    public const CURSOR_SCROLL      = 1;
+    public const ERRMODE_EXCEPTION  = 2;
+    public const ERRMODE_SILENT     = 0;
+    public const ERRMODE_WARNING    = 1;
+    public const FETCH_ASSOC        = 2;
+    public const FETCH_BOTH         = 4;
+    public const FETCH_BOUND        = 6;
+    public const FETCH_CLASS        = 8;
+    public const FETCH_CLASSTYPE    = 262144;
+    public const FETCH_COLUMN       = 7;
+    public const FETCH_FUNC         = 10;
+    public const FETCH_GROUP        = 65536;
+    public const FETCH_INTO         = 9;
+    public const FETCH_LAZY         = 1;
+    public const FETCH_NAMED        = 11;
+    public const FETCH_NUM          = 3;
+    public const FETCH_OBJ          = 5;
+    public const FETCH_ORI_ABS      = 4;
+    public const FETCH_ORI_FIRST    = 2;
+    public const FETCH_ORI_LAST     = 3;
+    public const FETCH_ORI_NEXT     = 0;
+    public const FETCH_ORI_PRIOR    = 1;
+    public const FETCH_ORI_REL      = 5;
+    public const FETCH_SERIALIZE    = 524288;
+    public const FETCH_UNIQUE       = 196608;
+    public const NULL_EMPTY_STRING  = 1;
+    public const NULL_NATURAL       = 0;
+    public const NULL_TO_STRING     = null;
+    public const PARAM_BOOL         = 5;
+    public const PARAM_INPUT_OUTPUT = -2147483648;
+    public const PARAM_INT          = 1;
+    public const PARAM_LOB          = 3;
+    public const PARAM_NULL         = 0;
+    public const PARAM_STMT         = 4;
+    public const PARAM_STR          = 2;
 
     /**
      * ATTRIBUTE CONSTANTS
@@ -127,89 +127,89 @@ class Doctrine_Core
     /**
      * PDO derived attributes
      */
-    const ATTR_AUTOCOMMIT          = 0;
-    const ATTR_PREFETCH            = 1;
-    const ATTR_TIMEOUT             = 2;
-    const ATTR_ERRMODE             = 3;
-    const ATTR_SERVER_VERSION      = 4;
-    const ATTR_CLIENT_VERSION      = 5;
-    const ATTR_SERVER_INFO         = 6;
-    const ATTR_CONNECTION_STATUS   = 7;
-    const ATTR_CASE                = 8;
-    const ATTR_CURSOR_NAME         = 9;
-    const ATTR_CURSOR              = 10;
-    const ATTR_ORACLE_NULLS        = 11;
-    const ATTR_PERSISTENT          = 12;
-    const ATTR_STATEMENT_CLASS     = 13;
-    const ATTR_FETCH_TABLE_NAMES   = 14;
-    const ATTR_FETCH_CATALOG_NAMES = 15;
-    const ATTR_DRIVER_NAME         = 16;
-    const ATTR_STRINGIFY_FETCHES   = 17;
-    const ATTR_MAX_COLUMN_LEN      = 18;
+    public const ATTR_AUTOCOMMIT          = 0;
+    public const ATTR_PREFETCH            = 1;
+    public const ATTR_TIMEOUT             = 2;
+    public const ATTR_ERRMODE             = 3;
+    public const ATTR_SERVER_VERSION      = 4;
+    public const ATTR_CLIENT_VERSION      = 5;
+    public const ATTR_SERVER_INFO         = 6;
+    public const ATTR_CONNECTION_STATUS   = 7;
+    public const ATTR_CASE                = 8;
+    public const ATTR_CURSOR_NAME         = 9;
+    public const ATTR_CURSOR              = 10;
+    public const ATTR_ORACLE_NULLS        = 11;
+    public const ATTR_PERSISTENT          = 12;
+    public const ATTR_STATEMENT_CLASS     = 13;
+    public const ATTR_FETCH_TABLE_NAMES   = 14;
+    public const ATTR_FETCH_CATALOG_NAMES = 15;
+    public const ATTR_DRIVER_NAME         = 16;
+    public const ATTR_STRINGIFY_FETCHES   = 17;
+    public const ATTR_MAX_COLUMN_LEN      = 18;
 
     /**
      * Doctrine constants
      */
-    const ATTR_LISTENER         = 100;
-    const ATTR_QUOTE_IDENTIFIER = 101;
-    const ATTR_FIELD_CASE       = 102;
-    const ATTR_IDXNAME_FORMAT   = 103;
-    const ATTR_SEQNAME_FORMAT   = 104;
-    const ATTR_SEQCOL_NAME      = 105;
-    const ATTR_CMPNAME_FORMAT   = 118;
-    const ATTR_DBNAME_FORMAT    = 117;
-    const ATTR_TBLCLASS_FORMAT  = 119;
-    const ATTR_TBLNAME_FORMAT   = 120;
-    const ATTR_FKNAME_FORMAT    = 171;
-    const ATTR_EXPORT           = 140;
-    const ATTR_DECIMAL_PLACES   = 141;
+    public const ATTR_LISTENER         = 100;
+    public const ATTR_QUOTE_IDENTIFIER = 101;
+    public const ATTR_FIELD_CASE       = 102;
+    public const ATTR_IDXNAME_FORMAT   = 103;
+    public const ATTR_SEQNAME_FORMAT   = 104;
+    public const ATTR_SEQCOL_NAME      = 105;
+    public const ATTR_CMPNAME_FORMAT   = 118;
+    public const ATTR_DBNAME_FORMAT    = 117;
+    public const ATTR_TBLCLASS_FORMAT  = 119;
+    public const ATTR_TBLNAME_FORMAT   = 120;
+    public const ATTR_FKNAME_FORMAT    = 171;
+    public const ATTR_EXPORT           = 140;
+    public const ATTR_DECIMAL_PLACES   = 141;
 
-    const ATTR_PORTABILITY        = 106;
-    const ATTR_VALIDATE           = 107;
-    const ATTR_COLL_KEY           = 108;
-    const ATTR_QUERY_LIMIT        = 109;
-    const ATTR_DEFAULT_TABLE_TYPE = 112;
-    const ATTR_DEF_TEXT_LENGTH    = 113;
-    const ATTR_DEF_VARCHAR_LENGTH = 114;
-    const ATTR_DEF_TABLESPACE     = 115;
-    const ATTR_EMULATE_DATABASE   = 116;
-    const ATTR_USE_NATIVE_ENUM    = 117;
-    const ATTR_DEFAULT_SEQUENCE   = 133;
+    public const ATTR_PORTABILITY        = 106;
+    public const ATTR_VALIDATE           = 107;
+    public const ATTR_COLL_KEY           = 108;
+    public const ATTR_QUERY_LIMIT        = 109;
+    public const ATTR_DEFAULT_TABLE_TYPE = 112;
+    public const ATTR_DEF_TEXT_LENGTH    = 113;
+    public const ATTR_DEF_VARCHAR_LENGTH = 114;
+    public const ATTR_DEF_TABLESPACE     = 115;
+    public const ATTR_EMULATE_DATABASE   = 116;
+    public const ATTR_USE_NATIVE_ENUM    = 117;
+    public const ATTR_DEFAULT_SEQUENCE   = 133;
 
-    const ATTR_FETCHMODE     = 118;
-    const ATTR_NAME_PREFIX   = 121;
-    const ATTR_CREATE_TABLES = 122;
-    const ATTR_COLL_LIMIT    = 123;
+    public const ATTR_FETCHMODE     = 118;
+    public const ATTR_NAME_PREFIX   = 121;
+    public const ATTR_CREATE_TABLES = 122;
+    public const ATTR_COLL_LIMIT    = 123;
 
-    const ATTR_CACHE                      = 150;
-    const ATTR_RESULT_CACHE               = 150;
-    const ATTR_CACHE_LIFESPAN             = 151;
-    const ATTR_RESULT_CACHE_LIFESPAN      = 151;
-    const ATTR_LOAD_REFERENCES            = 153;
-    const ATTR_RECORD_LISTENER            = 154;
-    const ATTR_THROW_EXCEPTIONS           = 155;
-    const ATTR_DEFAULT_PARAM_NAMESPACE    = 156;
-    const ATTR_QUERY_CACHE                = 157;
-    const ATTR_QUERY_CACHE_LIFESPAN       = 158;
-    const ATTR_AUTOLOAD_TABLE_CLASSES     = 160;
-    const ATTR_MODEL_LOADING              = 161;
-    const ATTR_RECURSIVE_MERGE_FIXTURES   = 162;
-    const ATTR_USE_DQL_CALLBACKS          = 164;
-    const ATTR_AUTO_ACCESSOR_OVERRIDE     = 165;
-    const ATTR_AUTO_FREE_QUERY_OBJECTS    = 166;
-    const ATTR_DEFAULT_TABLE_CHARSET      = 167;
-    const ATTR_DEFAULT_TABLE_COLLATE      = 168;
-    const ATTR_DEFAULT_IDENTIFIER_OPTIONS = 169;
-    const ATTR_DEFAULT_COLUMN_OPTIONS     = 170;
-    const ATTR_HYDRATE_OVERWRITE          = 172;
-    const ATTR_QUERY_CLASS                = 173;
-    const ATTR_CASCADE_SAVES              = 174;
-    const ATTR_COLLECTION_CLASS           = 175;
-    const ATTR_TABLE_CLASS                = 176;
-    const ATTR_USE_NATIVE_SET             = 177;
-    const ATTR_MODEL_CLASS_PREFIX         = 178;
-    const ATTR_TABLE_CLASS_FORMAT         = 179;
-    const ATTR_MAX_IDENTIFIER_LENGTH      = 180;
+    public const ATTR_CACHE                      = 150;
+    public const ATTR_RESULT_CACHE               = 150;
+    public const ATTR_CACHE_LIFESPAN             = 151;
+    public const ATTR_RESULT_CACHE_LIFESPAN      = 151;
+    public const ATTR_LOAD_REFERENCES            = 153;
+    public const ATTR_RECORD_LISTENER            = 154;
+    public const ATTR_THROW_EXCEPTIONS           = 155;
+    public const ATTR_DEFAULT_PARAM_NAMESPACE    = 156;
+    public const ATTR_QUERY_CACHE                = 157;
+    public const ATTR_QUERY_CACHE_LIFESPAN       = 158;
+    public const ATTR_AUTOLOAD_TABLE_CLASSES     = 160;
+    public const ATTR_MODEL_LOADING              = 161;
+    public const ATTR_RECURSIVE_MERGE_FIXTURES   = 162;
+    public const ATTR_USE_DQL_CALLBACKS          = 164;
+    public const ATTR_AUTO_ACCESSOR_OVERRIDE     = 165;
+    public const ATTR_AUTO_FREE_QUERY_OBJECTS    = 166;
+    public const ATTR_DEFAULT_TABLE_CHARSET      = 167;
+    public const ATTR_DEFAULT_TABLE_COLLATE      = 168;
+    public const ATTR_DEFAULT_IDENTIFIER_OPTIONS = 169;
+    public const ATTR_DEFAULT_COLUMN_OPTIONS     = 170;
+    public const ATTR_HYDRATE_OVERWRITE          = 172;
+    public const ATTR_QUERY_CLASS                = 173;
+    public const ATTR_CASCADE_SAVES              = 174;
+    public const ATTR_COLLECTION_CLASS           = 175;
+    public const ATTR_TABLE_CLASS                = 176;
+    public const ATTR_USE_NATIVE_SET             = 177;
+    public const ATTR_MODEL_CLASS_PREFIX         = 178;
+    public const ATTR_TABLE_CLASS_FORMAT         = 179;
+    public const ATTR_MAX_IDENTIFIER_LENGTH      = 180;
 
     /**
      * LIMIT CONSTANTS
@@ -218,14 +218,14 @@ class Doctrine_Core
     /**
      * constant for row limiting
      */
-    const LIMIT_ROWS       = 1;
-    const QUERY_LIMIT_ROWS = 1;
+    public const LIMIT_ROWS       = 1;
+    public const QUERY_LIMIT_ROWS = 1;
 
     /**
      * constant for record limiting
      */
-    const LIMIT_RECORDS       = 2;
-    const QUERY_LIMIT_RECORDS = 2;
+    public const LIMIT_RECORDS       = 2;
+    public const QUERY_LIMIT_RECORDS = 2;
 
     /**
      * FETCHMODE CONSTANTS
@@ -240,51 +240,51 @@ class Doctrine_Core
      * Portability: turn off all portability features.
      * @see self::ATTR_PORTABILITY
      */
-    const PORTABILITY_NONE = 0;
+    public const PORTABILITY_NONE = 0;
 
     /**
      * Portability: convert names of tables and fields to case defined in the
      * "field_case" option when using the query*(), fetch*() methods.
      * @see self::ATTR_PORTABILITY
      */
-    const PORTABILITY_FIX_CASE = 1;
+    public const PORTABILITY_FIX_CASE = 1;
 
     /**
      * Portability: right trim the data output by query*() and fetch*().
      * @see self::ATTR_PORTABILITY
      */
-    const PORTABILITY_RTRIM = 2;
+    public const PORTABILITY_RTRIM = 2;
 
     /**
      * Portability: force reporting the number of rows deleted.
      * @see self::ATTR_PORTABILITY
      */
-    const PORTABILITY_DELETE_COUNT = 4;
+    public const PORTABILITY_DELETE_COUNT = 4;
 
     /**
      * Portability: convert empty values to null strings in data output by
      * query*() and fetch*().
      * @see self::ATTR_PORTABILITY
      */
-    const PORTABILITY_EMPTY_TO_NULL = 8;
+    public const PORTABILITY_EMPTY_TO_NULL = 8;
 
     /**
      * Portability: removes database/table qualifiers from associative indexes
      * @see self::ATTR_PORTABILITY
      */
-    const PORTABILITY_FIX_ASSOC_FIELD_NAMES = 16;
+    public const PORTABILITY_FIX_ASSOC_FIELD_NAMES = 16;
 
     /**
      * Portability: makes Doctrine_Expression throw exception for unportable RDBMS expressions
      * @see self::ATTR_PORTABILITY
      */
-    const PORTABILITY_EXPR = 32;
+    public const PORTABILITY_EXPR = 32;
 
     /**
      * Portability: turn on all portability features.
      * @see self::ATTR_PORTABILITY
      */
-    const PORTABILITY_ALL = 63;
+    public const PORTABILITY_ALL = 63;
 
     /**
      * LOCKMODE CONSTANTS
@@ -293,12 +293,12 @@ class Doctrine_Core
     /**
      * mode for optimistic locking
      */
-    const LOCK_OPTIMISTIC = 0;
+    public const LOCK_OPTIMISTIC = 0;
 
     /**
      * mode for pessimistic locking
      */
-    const LOCK_PESSIMISTIC = 1;
+    public const LOCK_PESSIMISTIC = 1;
 
     /**
      * EXPORT CONSTANTS
@@ -307,27 +307,27 @@ class Doctrine_Core
     /**
      * EXPORT_NONE
      */
-    const EXPORT_NONE = 0;
+    public const EXPORT_NONE = 0;
 
     /**
      * EXPORT_TABLES
      */
-    const EXPORT_TABLES = 1;
+    public const EXPORT_TABLES = 1;
 
     /**
      * EXPORT_CONSTRAINTS
      */
-    const EXPORT_CONSTRAINTS = 2;
+    public const EXPORT_CONSTRAINTS = 2;
 
     /**
      * EXPORT_PLUGINS
      */
-    const EXPORT_PLUGINS = 4;
+    public const EXPORT_PLUGINS = 4;
 
     /**
      * EXPORT_ALL
      */
-    const EXPORT_ALL = 7;
+    public const EXPORT_ALL = 7;
 
     /**
      * HYDRATION CONSTANTS
@@ -336,105 +336,105 @@ class Doctrine_Core
     /**
      * HYDRATE_RECORD
      */
-    const HYDRATE_RECORD = 2;
+    public const HYDRATE_RECORD = 2;
 
     /**
      * HYDRATE_ARRAY
      */
-    const HYDRATE_ARRAY = 3;
+    public const HYDRATE_ARRAY = 3;
 
     /**
      * HYDRATE_NONE
      */
-    const HYDRATE_NONE = 4;
+    public const HYDRATE_NONE = 4;
 
     /**
      * HYDRATE_SCALAR
      */
-    const HYDRATE_SCALAR = 5;
+    public const HYDRATE_SCALAR = 5;
 
     /**
      * HYDRATE_SINGLE_SCALAR
      */
-    const HYDRATE_SINGLE_SCALAR = 6;
+    public const HYDRATE_SINGLE_SCALAR = 6;
 
     /**
      * HYDRATE_ON_DEMAND
      */
-    const HYDRATE_ON_DEMAND = 7;
+    public const HYDRATE_ON_DEMAND = 7;
 
     /**
      * HYDRATE_ARRAY_HIERARCHY
      */
-    const HYDRATE_ARRAY_HIERARCHY = 8;
+    public const HYDRATE_ARRAY_HIERARCHY = 8;
 
     /**
      * HYDRATE_RECORD_HIERARCHY
      */
-    const HYDRATE_RECORD_HIERARCHY = 9;
+    public const HYDRATE_RECORD_HIERARCHY = 9;
 
     /**
      * HYDRATE_ARRAY_SHALLOW
      */
-    const HYDRATE_ARRAY_SHALLOW = 10;
+    public const HYDRATE_ARRAY_SHALLOW = 10;
 
     /**
      * VALIDATION CONSTANTS
      */
-    const VALIDATE_NONE = 0;
+    public const VALIDATE_NONE = 0;
 
     /**
      * VALIDATE_LENGTHS
      */
-    const VALIDATE_LENGTHS = 1;
+    public const VALIDATE_LENGTHS = 1;
 
     /**
      * VALIDATE_TYPES
      */
-    const VALIDATE_TYPES = 2;
+    public const VALIDATE_TYPES = 2;
 
     /**
      * VALIDATE_CONSTRAINTS
      */
-    const VALIDATE_CONSTRAINTS = 4;
+    public const VALIDATE_CONSTRAINTS = 4;
 
     /**
      * VALIDATE_ALL
      */
-    const VALIDATE_ALL = 7;
+    public const VALIDATE_ALL = 7;
 
     /**
      * VALIDATE_USER
      */
-    const VALIDATE_USER = 8;
+    public const VALIDATE_USER = 8;
 
     /**
      * IDENTIFIER_AUTOINC
      *
      * constant for auto_increment identifier
      */
-    const IDENTIFIER_AUTOINC = 1;
+    public const IDENTIFIER_AUTOINC = 1;
 
     /**
      * IDENTIFIER_SEQUENCE
      *
      * constant for sequence identifier
      */
-    const IDENTIFIER_SEQUENCE = 2;
+    public const IDENTIFIER_SEQUENCE = 2;
 
     /**
      * IDENTIFIER_NATURAL
      *
      * constant for normal identifier
      */
-    const IDENTIFIER_NATURAL = 3;
+    public const IDENTIFIER_NATURAL = 3;
 
     /**
      * IDENTIFIER_COMPOSITE
      *
      * constant for composite identifier
      */
-    const IDENTIFIER_COMPOSITE = 4;
+    public const IDENTIFIER_COMPOSITE = 4;
 
     /**
      * MODEL_LOADING_AGGRESSIVE
@@ -442,7 +442,7 @@ class Doctrine_Core
      * Constant for agressive model loading
      * Will require_once() all found model files
      */
-    const MODEL_LOADING_AGGRESSIVE = 1;
+    public const MODEL_LOADING_AGGRESSIVE = 1;
 
     /**
      * MODEL_LOADING_CONSERVATIVE
@@ -451,7 +451,7 @@ class Doctrine_Core
      * Will not require_once() found model files inititally instead it will build an array
      * and reference it in autoload() when a class is needed it will require_once() it
      */
-    const MODEL_LOADING_CONSERVATIVE = 2;
+    public const MODEL_LOADING_CONSERVATIVE = 2;
 
     /**
      * MODEL_LOADING_PEAR
@@ -460,7 +460,7 @@ class Doctrine_Core
      * Will simply store the path passed to Doctrine_Core::loadModels()
      * and Doctrine_Core::autoload() will check there
      */
-    const MODEL_LOADING_PEAR = 3;
+    public const MODEL_LOADING_PEAR = 3;
 
     /**
      * Path to Doctrine root
@@ -856,8 +856,8 @@ class Doctrine_Core
     {
         $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'tmp_doctrine_models';
 
-        $options['generateBaseClasses'] = isset($options['generateBaseClasses']) ? $options['generateBaseClasses']:false;
-        $result                         = Doctrine_Core::generateModelsFromDb($directory, $connections, $options);
+        $options['generateBaseClasses'] ??= false;
+        $result = Doctrine_Core::generateModelsFromDb($directory, $connections, $options);
 
         if (empty($result) && ! is_dir($directory)) {
             throw new Doctrine_Exception('No models generated from your databases');

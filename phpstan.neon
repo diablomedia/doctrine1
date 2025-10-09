@@ -56,10 +56,6 @@ parameters:
         # Not really sure what a satisfactory default value for $oci_length should be, seems that it should maybe be set to the $length parameter
         # but not certain (Doctrine_Adapter_Statement_Oracle:175)
         - '#Variable \$oci_length might not be defined\.#'
-        # This one would require some testing to see if it can be predefined, as it's predefined as "null" in a specific case, but undefined otherwise
-        # (though is_null will return true for undefined variables (but throws a notice), so perhaps it doesn't matter if it's set to null.)
-        # Doctrine_Hydrator_Graph:131
-        - '#Variable \$activeRootIdentifier might not be defined\.#'
         # These four are only used if the $autoincrement var is set to "true", and if it's set to "true", they get defined.
         # In Doctrine_Migration_Base:278
         - '#Variable \$autoincrementColumn might not be defined\.#'

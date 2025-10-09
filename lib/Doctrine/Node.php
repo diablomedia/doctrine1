@@ -173,11 +173,11 @@ class Doctrine_Node implements IteratorAggregate
     public function getIterator($type = null, $options = null)
     {
         if ($type === null) {
-            $type = (isset($this->iteratorType) ? $this->iteratorType : 'Pre');
+            $type = ($this->iteratorType ?? 'Pre');
         }
 
         if ($options === null) {
-            $options = (isset($this->iteratorOptions) ? $this->iteratorOptions : array());
+            $options = ($this->iteratorOptions ?? array());
         }
 
         $implName = $this->record->getTable()->getOption('treeImpl');

@@ -40,49 +40,49 @@ abstract class Doctrine_Query_Abstract
     /**
      * constant for SELECT queries
      */
-    const SELECT = 0;
+    public const SELECT = 0;
 
     /**
      * constant for DELETE queries
      */
-    const DELETE = 1;
+    public const DELETE = 1;
 
     /**
      * constant for UPDATE queries
      */
-    const UPDATE = 2;
+    public const UPDATE = 2;
 
     /**
      * constant for INSERT queries
      */
-    const INSERT = 3;
+    public const INSERT = 3;
 
     /**
      * constant for CREATE queries
      */
-    const CREATE = 4;
+    public const CREATE = 4;
 
     /** @todo document the query states (and the transitions between them). */
     /**
      * A query object is in CLEAN state when it has NO unparsed/unprocessed DQL parts.
      */
-    const STATE_CLEAN = 1;
+    public const STATE_CLEAN = 1;
 
     /**
      * A query object is in state DIRTY when it has DQL parts that have not yet been
      * parsed/processed.
      */
-    const STATE_DIRTY = 2;
+    public const STATE_DIRTY = 2;
 
     /**
      * A query is in DIRECT state when ... ?
      */
-    const STATE_DIRECT = 3;
+    public const STATE_DIRECT = 3;
 
     /**
      * A query object is on LOCKED state when ... ?
      */
-    const STATE_LOCKED = 4;
+    public const STATE_LOCKED = 4;
 
     /**
      * @var array  Table alias map. Keys are SQL aliases and values DQL aliases.
@@ -256,7 +256,7 @@ abstract class Doctrine_Query_Abstract
      * @var array $_options                 an array of options
      */
     protected $_options = array(
-        'hydrationMode' => Doctrine_Core::HYDRATE_RECORD
+        'hydrationMode' => Doctrine_Core::HYDRATE_RECORD,
     );
 
     /**
@@ -1118,19 +1118,19 @@ abstract class Doctrine_Query_Abstract
                 case self::DELETE:
                     $callback = array(
                         'callback' => 'preDqlDelete',
-                        'const'    => Doctrine_Event::RECORD_DQL_DELETE
+                        'const'    => Doctrine_Event::RECORD_DQL_DELETE,
                     );
                     break;
                 case self::UPDATE:
                     $callback = array(
                         'callback' => 'preDqlUpdate',
-                        'const'    => Doctrine_Event::RECORD_DQL_UPDATE
+                        'const'    => Doctrine_Event::RECORD_DQL_UPDATE,
                     );
                     break;
                 case self::SELECT:
                     $callback = array(
                         'callback' => 'preDqlSelect',
-                        'const'    => Doctrine_Event::RECORD_DQL_SELECT
+                        'const'    => Doctrine_Event::RECORD_DQL_SELECT,
                     );
                     break;
             }

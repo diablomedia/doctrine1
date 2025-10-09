@@ -71,7 +71,7 @@ class Doctrine_Query_Set extends Doctrine_Query_Part
                         $part = $columnName;
                     }
 
-                    $processed[] = $part . (isset($piece[2]) ? $piece[2] : '');
+                    $processed[] = $part . ($piece[2] ?? '');
                 }
 
                 $termsTranslation[$termOriginal] = $lftExpr . implode(' ', $processed) . $rgtExpr;

@@ -50,12 +50,12 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
      * Gets the custom field used for indexing for the specified component alias.
      *
      * @param string $alias
-     * @return string  The field name of the field used for indexing or NULL
-     *                 if the component does not use any custom field indices.
+     * @return string|null  The field name of the field used for indexing or NULL
+     *                      if the component does not use any custom field indices.
      */
     protected function _getCustomIndexField($alias)
     {
-        return isset($this->_queryComponents[$alias]['map']) ? $this->_queryComponents[$alias]['map'] : null;
+        return $this->_queryComponents[$alias]['map'] ?? null;
     }
 
     public function hydrateResultSet($stmt)
@@ -95,8 +95,9 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
         }
         $cache = array();
 
-        $result = $this->getElementCollection($rootComponentName);
-        if ($result instanceof Doctrine_Collection && $indexField = $this->_getCustomIndexField($rootAlias)) {
+        $result     = $this->getElementCollection($rootComponentName);
+        $indexField = $this->_getCustomIndexField($rootAlias);
+        if ($result instanceof Doctrine_Collection && $indexField !== null) {
             $result->setKeyColumn($indexField);
         }
         if ($stmt === false || $stmt === 0) {
@@ -125,6 +126,8 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
                 return $result;
             }
         }
+
+        $activeRootIdentifier = null;
 
         do {
             $table = $this->_queryComponents[$rootAlias]['table'];
@@ -170,7 +173,8 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
                 $instances[$componentName]->postHydrate($event);
 
                 // do we need to index by a custom field?
-                if ($field = $this->_getCustomIndexField($rootAlias)) {
+                $field = $this->_getCustomIndexField($rootAlias);
+                if ($field !== null) {
                     if (! isset($element[$field])) {
                         throw new Doctrine_Hydrator_Exception("Couldn't hydrate. Found a non-existent key named '$field'.");
                     } elseif (isset($result[$element[$field]])) {
@@ -239,7 +243,8 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
                             $listeners[$componentName]->postHydrate($event);
                             $instances[$componentName]->postHydrate($event);
 
-                            if ($field = $this->_getCustomIndexField($dqlAlias)) {
+                            $field = $this->_getCustomIndexField($dqlAlias);
+                            if ($field !== null) {
                                 if (! isset($element[$field])) {
                                     throw new Doctrine_Hydrator_Exception("Couldn't hydrate. Found a non-existent key named '$field'.");
                                 } elseif (isset($prev[$parent][$relationAlias][$element[$field]])) {
@@ -252,7 +257,7 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
                             $identifierMap[$path][$id[$parent]][$id[$dqlAlias]] = $this->getLastKey($prev[$parent][$relationAlias]);
                         }
                         $collection = $prev[$parent][$relationAlias];
-                        if ($collection instanceof Doctrine_Collection && $indexField) {
+                        if ($collection instanceof Doctrine_Collection && $indexField !== null) {
                             $collection->setKeyColumn($indexField);
                         }
 

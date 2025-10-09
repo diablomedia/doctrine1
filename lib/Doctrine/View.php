@@ -37,17 +37,17 @@ class Doctrine_View
     /**
      * SQL DROP constant
      */
-    const DROP = 'DROP VIEW %s';
+    public const DROP = 'DROP VIEW %s';
 
     /**
      * SQL CREATE constant
      */
-    const CREATE = 'CREATE VIEW %s AS %s';
+    public const CREATE = 'CREATE VIEW %s AS %s';
 
     /**
      * SQL SELECT constant
      */
-    const SELECT = 'SELECT * FROM %s';
+    public const SELECT = 'SELECT * FROM %s';
 
     /**
      * @var string $_name                the name of the view

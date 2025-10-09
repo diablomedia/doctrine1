@@ -287,7 +287,7 @@ class Doctrine_Migration
 
         $result = $this->_connection->fetchColumn('SELECT version FROM ' . $this->_migrationTableName);
 
-        return isset($result[0]) ? $result[0]:0;
+        return $result[0] ?? 0;
     }
 
     /**
@@ -314,7 +314,7 @@ class Doctrine_Migration
         $versions = array_keys($this->_migrationClasses);
         rsort($versions);
 
-        return isset($versions[0]) ? $versions[0]:0;
+        return $versions[0] ?? 0;
     }
 
     /**
@@ -565,8 +565,8 @@ class Doctrine_Migration
                     $changes = array_reverse($changes);
                 }
                 foreach ($changes as $value) {
-                    list($type, $change) = $value;
-                    $funcName            = 'process' . Doctrine_Inflector::classify($type);
+                    [$type, $change] = $value;
+                    $funcName        = 'process' . Doctrine_Inflector::classify($type);
                     if (method_exists($this->_process, $funcName)) {
                         try {
                             $this->_process->$funcName($change);

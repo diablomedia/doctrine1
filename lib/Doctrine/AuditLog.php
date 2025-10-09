@@ -169,6 +169,6 @@ class Doctrine_AuditLog extends Doctrine_Record_Generator
 
         $result = $q->execute($values, Doctrine_Core::HYDRATE_ARRAY);
 
-        return isset($result[0]['max_version']) ? $result[0]['max_version']:0;
+        return $result[0]['max_version'] ?? 0;
     }
 }

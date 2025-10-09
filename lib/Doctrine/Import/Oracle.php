@@ -116,17 +116,17 @@ class Doctrine_Import_Oracle extends Doctrine_Import
     public function listTableColumns($table)
     {
         $sql = <<<QEND
-SELECT tc.column_name, data_type,
-CASE WHEN data_type = 'NUMBER' THEN data_precision ELSE data_length END AS data_length,
-nullable, data_default, data_scale, data_precision, pk.primary
-FROM all_tab_columns tc
-LEFT JOIN (
- select 'primary' primary, cc.table_name, cc.column_name from all_constraints cons
- join all_cons_columns cc on cons.constraint_name = cc.constraint_name
- where cons.constraint_type = 'P'
-) pk ON pk.column_name = tc.column_name and pk.table_name = tc.table_name
-WHERE tc.table_name = :tableName ORDER BY column_id
-QEND;
+            SELECT tc.column_name, data_type,
+            CASE WHEN data_type = 'NUMBER' THEN data_precision ELSE data_length END AS data_length,
+            nullable, data_default, data_scale, data_precision, pk.primary
+            FROM all_tab_columns tc
+            LEFT JOIN (
+             select 'primary' primary, cc.table_name, cc.column_name from all_constraints cons
+             join all_cons_columns cc on cons.constraint_name = cc.constraint_name
+             where cons.constraint_type = 'P'
+            ) pk ON pk.column_name = tc.column_name and pk.table_name = tc.table_name
+            WHERE tc.table_name = :tableName ORDER BY column_id
+            QEND;
         $result = $this->conn->fetchAssoc($sql, array(':tableName' => $table));
 
         $descr = array();
@@ -148,7 +148,7 @@ QEND;
                'default'  => $val['data_default'],
                'length'   => $val['data_length'],
                'primary'  => (bool) $val['primary'],
-               'scale'    => isset($val['scale']) ? $val['scale']:null,
+               'scale'    => $val['scale'] ?? null,
             );
         }
 

@@ -110,7 +110,7 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
      */
     public function get($offset)
     {
-        return isset($this->_errors[$offset]) ? $this->_errors[$offset] : null;
+        return $this->_errors[$offset] ?? null;
     }
 
     /**

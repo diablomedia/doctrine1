@@ -176,8 +176,8 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
                 $sorts[$i]  = (stripos($orders[$i], ' desc') !== false) ? 'DESC' : 'ASC';
                 $orders[$i] = trim(preg_replace('/\s+(ASC|DESC)$/i', '', $orders[$i]));
 
-                list($fieldAliases[$i], $fields[$i]) = strstr($orders[$i], '.') ? explode('.', $orders[$i]) : array('', $orders[$i]);
-                $columnAlias[$i]                     = $queryOrigin->getSqlTableAlias($queryOrigin->getExpressionOwner($orders[$i]));
+                [$fieldAliases[$i], $fields[$i]] = strstr($orders[$i], '.') ? explode('.', $orders[$i]) : array('', $orders[$i]);
+                $columnAlias[$i]                 = $queryOrigin->getSqlTableAlias($queryOrigin->getExpressionOwner($orders[$i]));
 
                 $cmp         = $queryOrigin->getQueryComponent($queryOrigin->getExpressionOwner($orders[$i]));
                 $tables[$i]  = $cmp['table'];

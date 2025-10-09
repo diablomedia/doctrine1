@@ -186,9 +186,9 @@ class Doctrine_Connection_Pgsql extends Doctrine_Connection_Common
                 );
             } else {
                 $serverInfo = array(
-                    'major'  => isset($tmp[0]) ? $tmp[0] : null,
-                    'minor'  => isset($tmp[1]) ? $tmp[1] : null,
-                    'patch'  => isset($tmp[2]) ? $tmp[2] : null,
+                    'major'  => $tmp[0] ?? null,
+                    'minor'  => $tmp[1] ?? null,
+                    'patch'  => $tmp[2] ?? null,
                     'extra'  => null,
                     'native' => $serverInfo,
                 );

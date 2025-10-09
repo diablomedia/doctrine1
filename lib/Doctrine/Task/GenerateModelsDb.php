@@ -50,7 +50,7 @@ class Doctrine_Task_GenerateModelsDb extends Doctrine_Task
     public function execute()
     {
         $configs = $this->dispatcher->getConfig();
-        $options = isset($configs['generate_models_options']) ? $configs['generate_models_options'] : array();
+        $options = $configs['generate_models_options'] ?? array();
         Doctrine_Core::generateModelsFromDb($this->getArgument('models_path'), (array) $this->getArgument('connection'), $options);
 
         $this->notify('Generated models successfully from databases');

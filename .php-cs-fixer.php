@@ -10,10 +10,13 @@ $finder = PhpCsFixer\Finder::create()
 
 $config = new PhpCsFixer\Config();
 return $config
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRiskyAllowed(true)
     ->setRules(array(
         '@PSR2'                  => true,
-        '@PHP70Migration:risky'  => true,
+        '@PHP7x0Migration:risky' => true,
+        '@PHP8x0Migration'       => true,
+        '@PHP8x1Migration'       => true,
         'binary_operator_spaces' => array(
             'default'   => 'align_single_space_minimal',
             'operators' => array('||' => null, '&&' => null)

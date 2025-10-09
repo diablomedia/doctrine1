@@ -262,8 +262,8 @@ abstract class Doctrine_Migration_Base
         // Add the columns
         foreach ($columnNames as $columnName => $def) {
             $type    = $def['type'];
-            $length  = isset($def['length']) ? $def['length'] : null;
-            $options = isset($def['options']) ? $def['options'] : array();
+            $length  = $def['length']  ?? null;
+            $options = $def['options'] ?? array();
 
             $this->addColumn($tableName, $columnName, $type, $length, $options);
 
@@ -282,7 +282,7 @@ abstract class Doctrine_Migration_Base
         // Create the primary constraint for the columns
         $this->createConstraint($tableName, null, array(
             'primary' => true,
-            'fields'  => $fields
+            'fields'  => $fields,
         ));
 
         // If auto increment change the column to be so

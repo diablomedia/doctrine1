@@ -113,6 +113,30 @@ class Doctrine_Validator_TestCase extends Doctrine_UnitTestCase
         $this->assertFalse(Doctrine_Validator::isValidType($var, 'float'));
         $this->assertFalse(Doctrine_Validator::isValidType($var, 'array'));
         $this->assertTrue(Doctrine_Validator::isValidType($var, 'object'));
+
+        // Test JSON type validation
+        $var = array('key' => 'value');
+        $this->assertTrue(Doctrine_Validator::isValidType($var, 'json'));
+        $this->assertTrue(Doctrine_Validator::isValidType($var, 'array'));
+        $this->assertFalse(Doctrine_Validator::isValidType($var, 'object'));
+
+        $var = new stdClass();
+        $var->property = 'value';
+        $this->assertTrue(Doctrine_Validator::isValidType($var, 'json'));
+        $this->assertFalse(Doctrine_Validator::isValidType($var, 'array'));
+        $this->assertTrue(Doctrine_Validator::isValidType($var, 'object'));
+
+        $var = 'string';
+        $this->assertTrue(Doctrine_Validator::isValidType($var, 'json'));
+
+        $var = 123;
+        $this->assertTrue(Doctrine_Validator::isValidType($var, 'json'));
+
+        $var = null;
+        $this->assertTrue(Doctrine_Validator::isValidType($var, 'json'));
+
+        $var = true;
+        $this->assertTrue(Doctrine_Validator::isValidType($var, 'json'));
     }
 
     public function testValidate2()

@@ -115,6 +115,12 @@ class Doctrine_Validator_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue(Doctrine_Validator::isValidType($var, 'object'));
     }
 
+    public function testValidateLengthForDecimalValues()
+    {
+        $this->assertTrue(Doctrine_Validator::validateLength('123.45', 'decimal', 5));
+        $this->assertFalse(Doctrine_Validator::validateLength('123.45', 'decimal', 4));
+    }
+
     public function testValidate2()
     {
         $test           = new ValidatorTest();

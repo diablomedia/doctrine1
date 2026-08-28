@@ -73,11 +73,21 @@ class Doctrine_Connection_Sqlite extends Doctrine_Connection_Common
         parent::__construct($manager, $adapter);
 
         if ($this->isConnected) {
-            $this->dbh->sqliteCreateFunction('mod', array('Doctrine_Expression_Sqlite', 'modImpl'), 2);
-            $this->dbh->sqliteCreateFunction('concat', array('Doctrine_Expression_Sqlite', 'concatImpl'));
-            $this->dbh->sqliteCreateFunction('md5', 'md5', 1);
-            $this->dbh->sqliteCreateFunction('now', array('Doctrine_Expression_Sqlite', 'nowImpl'), 0);
+            $this->registerFunction('mod', array('Doctrine_Expression_Sqlite', 'modImpl'), 2);
+            $this->registerFunction('concat', array('Doctrine_Expression_Sqlite', 'concatImpl'));
+            $this->registerFunction('md5', 'md5', 1);
+            $this->registerFunction('now', array('Doctrine_Expression_Sqlite', 'nowImpl'), 0);
         }
+    }
+
+    private function registerFunction(string $name, callable $callback, int $arity = -1): void
+    {
+        if (method_exists($this->dbh, 'createFunction')) {
+            $this->dbh->createFunction($name, $callback, $arity);
+            return;
+        }
+
+        $this->dbh->sqliteCreateFunction($name, $callback, $arity);
     }
 
     /**
@@ -94,10 +104,10 @@ class Doctrine_Connection_Sqlite extends Doctrine_Connection_Common
 
         parent::connect();
 
-        $this->dbh->sqliteCreateFunction('mod', array('Doctrine_Expression_Sqlite', 'modImpl'), 2);
-        $this->dbh->sqliteCreateFunction('concat', array('Doctrine_Expression_Sqlite', 'concatImpl'));
-        $this->dbh->sqliteCreateFunction('md5', 'md5', 1);
-        $this->dbh->sqliteCreateFunction('now', array('Doctrine_Expression_Sqlite', 'nowImpl'), 0);
+        $this->registerFunction('mod', array('Doctrine_Expression_Sqlite', 'modImpl'), 2);
+        $this->registerFunction('concat', array('Doctrine_Expression_Sqlite', 'concatImpl'));
+        $this->registerFunction('md5', 'md5', 1);
+        $this->registerFunction('now', array('Doctrine_Expression_Sqlite', 'nowImpl'), 0);
     }
 
     /**

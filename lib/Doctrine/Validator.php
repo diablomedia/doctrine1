@@ -108,7 +108,7 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
 
             $localeInfo   = localeconv();
             $decimalPoint = $localeInfo['mon_decimal_point'] ? $localeInfo['mon_decimal_point'] : $localeInfo['decimal_point'];
-            $e            = explode($decimalPoint, (string) $value);
+            $e            = explode($decimalPoint ?: '.', (string) $value);
             $length       = 0;
 
             if (!$e) {
@@ -194,9 +194,9 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
             case 'array':
                 return is_array($var);
             case 'object':
-                return is_object($var);
+                return false;
             case 'json':
-                return is_object($var) || is_array($var);
+                return false;
             case 'boolean':
                 return is_bool($var) || (is_numeric($var) && ($var == 0 || $var == 1));
             case 'timestamp':

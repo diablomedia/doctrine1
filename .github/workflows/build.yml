@@ -13,12 +13,12 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ["8.1", "8.2", "8.3", "8.4"]
+        php-versions: ["8.2", "8.3", "8.4", "8.5"]
         composer-args: ["", "--prefer-lowest"]
     runs-on: ${{ matrix.operating-system }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v6
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -34,13 +34,11 @@ jobs:
           composer phpstan
           composer psalm -- --shepherd
       - name: Code Style Check
-        env:
-          PHP_CS_FIXER_IGNORE_ENV: true
         run: composer style-check
       - name: Test
         run: composer test-with-coverage
       - name: Upload Coverage
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:

@@ -625,7 +625,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         if ($first === 'DISTINCT') {
             $this->_sqlParts['distinct'] = true;
 
-            $refs[0] = substr($refs[0], ++$pos);
+            $pos     = (int) $pos + 1;
+            $refs[0] = substr($refs[0], $pos);
         }
 
         $parsedComponents = array();

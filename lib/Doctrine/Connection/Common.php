@@ -50,7 +50,7 @@ class Doctrine_Connection_Common extends Doctrine_Connection
             $query .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
         } elseif ($limit && $offset === 0) {
             $query .= ' LIMIT ' . $limit;
-        } elseif (!$limit && $offset) {
+        } elseif ($offset) {
             $query .= ' LIMIT 999999999999 OFFSET ' . $offset;
         }
 

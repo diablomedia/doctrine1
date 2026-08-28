@@ -296,12 +296,6 @@ $ignoreErrors[] = array(
     'path'       => __DIR__ . '/lib/Doctrine/Connection/Mssql.php',
 );
 $ignoreErrors[] = array(
-    'message'    => '#^Offset numeric\\-string does not exist on list\\<\'ASC\'\\|\'DESC\'\\>\\.$#',
-    'identifier' => 'offsetAccess.notFound',
-    'count'      => 1,
-    'path'       => __DIR__ . '/lib/Doctrine/Connection/Mssql.php',
-);
-$ignoreErrors[] = array(
     'message'    => '#^Parameter \\#1 \\$array of function end expects array\\|object, list\\<string\\>\\|false given\\.$#',
     'identifier' => 'argument.type',
     'count'      => 1,
@@ -422,13 +416,13 @@ $ignoreErrors[] = array(
     'path'       => __DIR__ . '/lib/Doctrine/Core.php',
 );
 $ignoreErrors[] = array(
-    'message'    => '#^Parameter \\#1 \\$haystack of function strpos expects string, list\\<string\\>\\|string given\\.$#',
+    'message'    => '#^Parameter \\#1 \\$haystack of function strpos expects string, array\\<string\\>\\|string given\\.$#',
     'identifier' => 'argument.type',
     'count'      => 1,
     'path'       => __DIR__ . '/lib/Doctrine/Core.php',
 );
 $ignoreErrors[] = array(
-    'message'    => '#^Parameter \\#1 \\$string of function substr expects string, list\\<string\\>\\|string given\\.$#',
+    'message'    => '#^Parameter \\#1 \\$string of function substr expects string, array\\<string\\>\\|string given\\.$#',
     'identifier' => 'argument.type',
     'count'      => 1,
     'path'       => __DIR__ . '/lib/Doctrine/Core.php',
@@ -492,18 +486,6 @@ $ignoreErrors[] = array(
     'identifier' => 'argument.type',
     'count'      => 1,
     'path'       => __DIR__ . '/lib/Doctrine/DataDict/Mysql.php',
-);
-$ignoreErrors[] = array(
-    'message'    => '#^Method Doctrine_Export\\:\\:createSequenceSql\\(\\) has Doctrine_Connection_Exception in PHPDoc @throws tag but it\'s not thrown\\.$#',
-    'identifier' => 'throws.unusedType',
-    'count'      => 1,
-    'path'       => __DIR__ . '/lib/Doctrine/Export.php',
-);
-$ignoreErrors[] = array(
-    'message'    => '#^Method Doctrine_Export\\:\\:dropSequenceSql\\(\\) has Doctrine_Connection_Exception in PHPDoc @throws tag but it\'s not thrown\\.$#',
-    'identifier' => 'throws.unusedType',
-    'count'      => 1,
-    'path'       => __DIR__ . '/lib/Doctrine/Export.php',
 );
 $ignoreErrors[] = array(
     'message'    => '#^Parameter \\#1 \\$str of method Doctrine_Connection\\:\\:quoteIdentifier\\(\\) expects string, int\\|string given\\.$#',
@@ -620,7 +602,25 @@ $ignoreErrors[] = array(
     'path'       => __DIR__ . '/lib/Doctrine/Import/Oracle.php',
 );
 $ignoreErrors[] = array(
-    'message'    => '#^Parameter \\#2 \\$string of function explode expects string, list\\<string\\>\\|string given\\.$#',
+    'message'    => '#^Offset 1 might not exist on array\\{\\}\\|array\\{non\\-falsy\\-string, non\\-empty\\-string, non\\-empty\\-string, non\\-empty\\-string\\}\\.$#',
+    'identifier' => 'offsetAccess.notFound',
+    'count'      => 2,
+    'path'       => __DIR__ . '/lib/Doctrine/Import/Pgsql.php',
+);
+$ignoreErrors[] = array(
+    'message'    => '#^Offset 2 might not exist on array\\{\\}\\|array\\{non\\-falsy\\-string, non\\-empty\\-string, non\\-empty\\-string, non\\-empty\\-string\\}\\.$#',
+    'identifier' => 'offsetAccess.notFound',
+    'count'      => 1,
+    'path'       => __DIR__ . '/lib/Doctrine/Import/Pgsql.php',
+);
+$ignoreErrors[] = array(
+    'message'    => '#^Offset 3 might not exist on array\\{\\}\\|array\\{non\\-falsy\\-string, non\\-empty\\-string, non\\-empty\\-string, non\\-empty\\-string\\}\\.$#',
+    'identifier' => 'offsetAccess.notFound',
+    'count'      => 2,
+    'path'       => __DIR__ . '/lib/Doctrine/Import/Pgsql.php',
+);
+$ignoreErrors[] = array(
+    'message'    => '#^Parameter \\#2 \\$string of function explode expects string, array\\<string\\>\\|string given\\.$#',
     'identifier' => 'argument.type',
     'count'      => 1,
     'path'       => __DIR__ . '/lib/Doctrine/Import/Pgsql.php',
@@ -675,12 +675,6 @@ $ignoreErrors[] = array(
 );
 $ignoreErrors[] = array(
     'message'    => '#^Parameter \\#1 \\$url of function parse_url expects string, string\\|null given\\.$#',
-    'identifier' => 'argument.type',
-    'count'      => 1,
-    'path'       => __DIR__ . '/lib/Doctrine/Manager.php',
-);
-$ignoreErrors[] = array(
-    'message'    => '#^Parameter \\#1 \\$value of function count expects array\\|Countable, array\\<string, int\\<0, 65535\\>\\|string\\|null\\>\\|false given\\.$#',
     'identifier' => 'argument.type',
     'count'      => 1,
     'path'       => __DIR__ . '/lib/Doctrine/Manager.php',
@@ -782,6 +776,24 @@ $ignoreErrors[] = array(
     'path'       => __DIR__ . '/lib/Doctrine/Query.php',
 );
 $ignoreErrors[] = array(
+    'message'    => '#^Offset 1 might not exist on array\\{\\}\\|array\\{string, \'\'\\|\'\\(\', string, \'\'\\|\'\\)\'\\}\\.$#',
+    'identifier' => 'offsetAccess.notFound',
+    'count'      => 1,
+    'path'       => __DIR__ . '/lib/Doctrine/Query.php',
+);
+$ignoreErrors[] = array(
+    'message'    => '#^Offset 2 might not exist on array\\{\\}\\|array\\{string, \'\'\\|\'\\(\', string, \'\'\\|\'\\)\'\\}\\.$#',
+    'identifier' => 'offsetAccess.notFound',
+    'count'      => 2,
+    'path'       => __DIR__ . '/lib/Doctrine/Query.php',
+);
+$ignoreErrors[] = array(
+    'message'    => '#^Offset 3 might not exist on array\\{\\}\\|array\\{string, \'\'\\|\'\\(\', string, \'\'\\|\'\\)\'\\}\\.$#',
+    'identifier' => 'offsetAccess.notFound',
+    'count'      => 1,
+    'path'       => __DIR__ . '/lib/Doctrine/Query.php',
+);
+$ignoreErrors[] = array(
     'message'    => '#^Parameter \\#1 \\$callback of function call_user_func_array expects callable\\(\\)\\: mixed, array\\{Doctrine_Expression_Driver, non\\-empty\\-string\\} given\\.$#',
     'identifier' => 'argument.type',
     'count'      => 1,
@@ -814,6 +826,18 @@ $ignoreErrors[] = array(
 $ignoreErrors[] = array(
     'message'    => '#^Method Doctrine_Query_Abstract\\:\\:getSqlTableAlias\\(\\) should return string but returns int\\|string\\.$#',
     'identifier' => 'return.type',
+    'count'      => 1,
+    'path'       => __DIR__ . '/lib/Doctrine/Query/Abstract.php',
+);
+$ignoreErrors[] = array(
+    'message'    => '#^Offset \'table\' might not exist on non\\-empty\\-array\\{parent\\?\\: string, relation\\?\\: mixed, table\\?\\: mixed, agg\\?\\: mixed, map\\?\\: mixed\\}\\.$#',
+    'identifier' => 'offsetAccess.notFound',
+    'count'      => 1,
+    'path'       => __DIR__ . '/lib/Doctrine/Query/Abstract.php',
+);
+$ignoreErrors[] = array(
+    'message'    => '#^Offset 0 might not exist on array\\{\\}\\|array\\{non\\-empty\\-string, non\\-empty\\-string\\}\\.$#',
+    'identifier' => 'offsetAccess.notFound',
     'count'      => 1,
     'path'       => __DIR__ . '/lib/Doctrine/Query/Abstract.php',
 );
@@ -1222,7 +1246,7 @@ $ignoreErrors[] = array(
 $ignoreErrors[] = array(
     'message'    => '#^Call to function is_array\\(\\) with mixed will always evaluate to false\\.$#',
     'identifier' => 'function.impossibleType',
-    'count'      => 3,
+    'count'      => 2,
     'path'       => __DIR__ . '/lib/Doctrine/Validator.php',
 );
 $ignoreErrors[] = array(

@@ -107,6 +107,13 @@ class Doctrine_Cli_TestCase extends Doctrine_UnitTestCase
         $this->assertIdentical($formatter, $cli->getFormatter());
     }
 
+    public function testFormatterFormatsSectionsWithALeftAlignedSectionName()
+    {
+        $formatter = new Doctrine_Cli_Formatter();
+
+        $this->assertEqual('>> abc       message', $formatter->formatSection('abc', 'message'));
+    }
+
     public function testIsConstructedWithAnAnsiColourFormatterByDefault()
     {
         $cli = new Doctrine_Cli_TestCase_PassiveCli();

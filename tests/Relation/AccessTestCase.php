@@ -117,6 +117,83 @@ class Doctrine_Relation_Access_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($owner1->get('id'), $check->get('id'));
     }
 
+    public function testIssetAndEmptyLazyLoadChainedOneToOneRelation()
+    {
+        $this->connection->clear();
+
+        $owner = Doctrine_Query::create()
+            ->from('File_Owner o')
+            ->where('o.name = ?', 'owner1')
+            ->fetchOne();
+
+        $this->assertFalse($owner->hasReference('Data_File'));
+        $queryCount = $this->connection->count();
+        $this->assertTrue(isset($owner->Data_File->filename));
+        $this->assertTrue($owner->hasReference('Data_File'));
+        $this->assertEqual($queryCount + 1, $this->connection->count());
+
+        $this->assertTrue(isset($owner->Data_File->filename));
+        $this->assertEqual($queryCount + 1, $this->connection->count());
+
+        $owner->clearRelated('Data_File');
+
+        $this->assertFalse($owner->hasReference('Data_File'));
+        $queryCount = $this->connection->count();
+        $this->assertFalse(empty($owner->Data_File->filename));
+        $this->assertTrue($owner->hasReference('Data_File'));
+        $this->assertEqual($queryCount + 1, $this->connection->count());
+
+        $this->assertFalse(empty($owner->Data_File->filename));
+        $this->assertEqual($queryCount + 1, $this->connection->count());
+
+        $this->connection->clear();
+
+        $owner = Doctrine_Query::create()
+            ->from('File_Owner o')
+            ->where('o.name = ?', 'owner2')
+            ->fetchOne();
+
+        $queryCount = $this->connection->count();
+        $this->assertFalse(isset($owner->Data_File->filename));
+        $this->assertEqual($queryCount + 1, $this->connection->count());
+    }
+
+    public function testIssetAndEmptyLazyLoadChainedLocalKeyRelation()
+    {
+        $this->connection->clear();
+
+        $file = Doctrine_Query::create()
+            ->from('Data_File f')
+            ->where('f.filename = ?', 'file4')
+            ->fetchOne();
+
+        $this->assertFalse($file->hasReference('File_Owner'));
+        $queryCount = $this->connection->count();
+        $this->assertTrue(isset($file->File_Owner->name));
+        $this->assertTrue($file->hasReference('File_Owner'));
+        $this->assertEqual($queryCount + 1, $this->connection->count());
+
+        $this->assertTrue(isset($file->File_Owner->name));
+        $this->assertEqual($queryCount + 1, $this->connection->count());
+
+        $file->clearRelated('File_Owner');
+
+        $queryCount = $this->connection->count();
+        $this->assertFalse(empty($file->File_Owner->name));
+        $this->assertEqual($queryCount + 1, $this->connection->count());
+
+        $this->connection->clear();
+
+        $file = Doctrine_Query::create()
+            ->from('Data_File f')
+            ->where('f.filename = ?', 'file1')
+            ->fetchOne();
+
+        $queryCount = $this->connection->count();
+        $this->assertFalse(isset($file->File_Owner->name));
+        $this->assertEqual($queryCount, $this->connection->count());
+    }
+
     public function testAccessOneToOneFromLocalSide()
     {
         $check = $this->connection->query("FROM Data_File WHERE Data_File.filename = 'file4'");

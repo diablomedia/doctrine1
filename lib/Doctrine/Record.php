@@ -1760,6 +1760,34 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     }
 
     /**
+     * Check whether a property exists, lazily loading related components when needed.
+     *
+     * @param string $name
+     * @return boolean
+     */
+    public function __isset($name)
+    {
+        if ($this->contains($name)) {
+            return true;
+        }
+
+        if (array_key_exists($name, $this->_references) || ! $this->_table->hasRelation($name)) {
+            return false;
+        }
+
+        $this->loadReference($name);
+        $reference = $this->reference($name);
+
+        if ($reference instanceof Doctrine_Record && ! $reference->exists()) {
+            $this->clearRelated($name);
+
+            return false;
+        }
+
+        return $this->contains($name);
+    }
+
+    /**
      * test whether a field (column, mapped value, related component, accessor) is accessible by @see get()
      *
      * @param string $offset

@@ -2048,6 +2048,7 @@
     <MissingOverrideAttribute>
       <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
       <code><![CDATA[#[\ReturnTypeWillChange]]]></code>
+      <code><![CDATA[public function __isset($name)]]></code>
       <code><![CDATA[public function __unset($name)]]></code>
       <code><![CDATA[public function contains($offset)]]></code>
       <code><![CDATA[public function get($offset, $load = true)]]></code>

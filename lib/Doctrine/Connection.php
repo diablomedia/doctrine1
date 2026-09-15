@@ -515,12 +515,21 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
         if (extension_loaded('pdo')) {
             if (in_array($e[0], self::getAvailableDrivers())) {
                 try {
-                    $this->dbh = new PDO(
-                        $this->options['dsn'],
-                        $this->options['username'],
-                        (!$this->options['password'] ? '':$this->options['password']),
-                        $this->options['other']
-                    );
+                    if ($e[0] === 'sqlite' && class_exists('Pdo\\Sqlite')) {
+                        $this->dbh = new Pdo\Sqlite(
+                            $this->options['dsn'],
+                            $this->options['username'],
+                            (!$this->options['password'] ? '':$this->options['password']),
+                            $this->options['other']
+                        );
+                    } else {
+                        $this->dbh = new PDO(
+                            $this->options['dsn'],
+                            $this->options['username'],
+                            (!$this->options['password'] ? '':$this->options['password']),
+                            $this->options['other']
+                        );
+                    }
 
                     $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 } catch (PDOException $e) {

@@ -238,6 +238,8 @@ class Doctrine_Connection_TestCase extends Doctrine_UnitTestCase
         try {
             $conn->connect();
 
+            $expectedPdoClass = class_exists('Pdo\\Sqlite') ? 'Pdo\\Sqlite' : 'PDO';
+            $this->assertTrue($conn->getDbh() instanceof $expectedPdoClass);
             $conn->close();
             $this->pass();
         } catch (Doctrine_Exception $e) {

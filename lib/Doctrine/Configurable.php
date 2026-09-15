@@ -126,6 +126,7 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
         if ($namespace == null) {
             $namespace = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_PARAM_NAMESPACE);
         }
+        $namespace ??= '';
 
         if (! isset($this->_params[$namespace])) {
             return null;
@@ -153,6 +154,7 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
         if ($namespace == null) {
             $namespace = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_PARAM_NAMESPACE);
         }
+        $namespace ??= '';
 
         $this->_params[$namespace][$name] = $value;
 
@@ -169,6 +171,7 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
         if ($namespace == null) {
             $namespace = $this->getAttribute(Doctrine_Core::ATTR_DEFAULT_PARAM_NAMESPACE);
         }
+        $namespace ??= '';
 
         if (! isset($this->_params[$namespace][$name])) {
             if (isset($this->parent)) {

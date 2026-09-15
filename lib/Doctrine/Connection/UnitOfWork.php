@@ -774,7 +774,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
                         array_splice($flushList, $index, 0, $relatedClassName);
                     } else {
                         array_unshift($flushList, $relatedClassName);
-                        $index++;
+                        $index = (int) $index + 1;
                     }
                 } elseif ($rel instanceof Doctrine_Relation_Association) {
                     // the association class needs to come after both classes
@@ -789,7 +789,7 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
                     }
 
                     array_splice($flushList, $index, 0, $relatedClassName);
-                    $index++;
+                    $index = (int) $index + 1;
 
                     $index3 = array_search($assocClassName, $flushList);
 

@@ -144,8 +144,13 @@ class Doctrine_UnitTestCase extends UnitTestCase
             $this->manager->setAttribute(Doctrine_Core::ATTR_LISTENER, $this->listener);
         } catch (Doctrine_Manager_Exception $e) {
             if ($this->driverName == 'main') {
-                $this->dbh = new PDO('sqlite::memory:');
-                $this->dbh->sqliteCreateFunction('trim', 'trim', 1);
+                $pdoClass = class_exists('Pdo\\Sqlite') ? 'Pdo\\Sqlite' : 'PDO';
+                $this->dbh = new $pdoClass('sqlite::memory:');
+                if (method_exists($this->dbh, 'createFunction')) {
+                    $this->dbh->createFunction('trim', 'trim', 1);
+                } else {
+                    $this->dbh->sqliteCreateFunction('trim', 'trim', 1);
+                }
             } else {
                 $this->dbh = $this->adapter = new Doctrine_Adapter_Mock($this->driverName);
             }

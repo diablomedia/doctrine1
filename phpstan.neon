@@ -2,6 +2,7 @@ includes:
     - ./phpstan-baseline.php
     - ./phpstan-php82.php
     - ./phpstan-php84.php
+    - ./phpstan-php85.php
 parameters:
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
@@ -13,6 +14,9 @@ parameters:
             identifier: missingType.generics
         -
             identifier: missingType.iterableValue
+        -
+            identifier: function.resultUnused
+            path: lib/Doctrine/Hydrator/Graph.php
         #########
         # Level 0
         #########
@@ -34,10 +38,6 @@ parameters:
         # These methods do not exist anywhere in Doctrine
         - '#Call to an undefined method Doctrine_Search_Indexer_Dir::indexFile\(\)\.#'
         - '#Call to an undefined method Doctrine_Transaction::addDelete\(\)\.#'
-        # In Doctrine_Cli_Formatter:81, this seems like a bug, the format probably has a type-o, but not sure what the intent was
-        # php > echo sprintf(">> %-$9s %s", 'testing', 'another test');
-        #   >> 9s another test
-        - '#Call to sprintf contains 1 placeholder, 2 values given\.#'
         # This is probably intentional since it's a mock and doesn't want to have the same functionality as a true connection
         - '#Constructor of class Doctrine_Connection_Mock has an unused parameter \$.+\.#'
         # Not really harmful or anything, none of the classes that ultimately extend Doctrine_Connection have either param

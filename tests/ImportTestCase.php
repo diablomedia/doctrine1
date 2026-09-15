@@ -41,7 +41,8 @@ class Doctrine_Import_TestCase extends Doctrine_UnitTestCase
 
     public function testImport()
     {
-        $this->dbh = new PDO('sqlite::memory:');
+        $pdoClass = class_exists('Pdo\\Sqlite') ? 'Pdo\\Sqlite' : 'PDO';
+        $this->dbh = new $pdoClass('sqlite::memory:');
 
         $this->dbh->exec('CREATE TABLE import_test_user (id INTEGER PRIMARY KEY, name TEXT)');
 

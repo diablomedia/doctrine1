@@ -45,6 +45,7 @@ class DoctrineTest
     public function __construct()
     {
         $this->requireModels();
+        $this->groups = array();
         $this->testGroup = new GroupTest('Doctrine Unit Tests', 'main');
     }
 
@@ -58,7 +59,7 @@ class DoctrineTest
      */
     public function addTestCase($testCase)
     {
-        $this->groups[$testCase->getName()] = $testCase;
+        $this->groups[$testCase->getName() ?? ''] = $testCase;
         $this->testGroup->addTestCase($testCase);
     }
 

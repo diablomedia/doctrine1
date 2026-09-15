@@ -83,7 +83,7 @@ class Doctrine_Cli_Formatter
      */
     public function formatSection($section, $text, $size = null)
     {
-        return sprintf('>> %-$9s %s', $section, $this->excerpt($text, $size));
+        return sprintf('>> %-9s %s', $section, $this->excerpt($text, $size));
     }
 
     /**

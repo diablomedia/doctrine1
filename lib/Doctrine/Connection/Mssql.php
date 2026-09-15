@@ -282,7 +282,7 @@ class Doctrine_Connection_Mssql extends Doctrine_Connection_Common
                      * @return string
                      */
                     function ($m) use ($chunks) {
-                        return $chunks[$m[1]];
+                        return $chunks[(int) $m[1]];
                     },
                     $tokens[$i]
                 )

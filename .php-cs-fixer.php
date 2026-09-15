@@ -12,6 +12,7 @@ $config = new PhpCsFixer\Config();
 return $config
     ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRiskyAllowed(true)
+    ->setUnsupportedPhpVersionAllowed(true)
     ->setRules(array(
         '@PSR2'                  => true,
         '@PHP7x0Migration:risky' => true,

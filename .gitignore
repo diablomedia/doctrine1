@@ -5,5 +5,6 @@ composer.lock
 vendor
 tools/phpstan
 tools/psalm
+tools/test-php-matrix.sh
 .php_cs.cache
 .php-cs-fixer.cache

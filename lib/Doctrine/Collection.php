@@ -378,7 +378,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      */
     public function get($offset)
     {
-        if (! isset($this->data[$offset])) {
+        if ($offset === null || ! isset($this->data[$offset])) {
             $record = $this->_table->create();
 
             if (isset($this->referenceField)) {

@@ -43,7 +43,7 @@
         "amphp/process": "^2.1.0",
         "amphp/socket": "^2.4.1",
         "daverandom/libdns": "^2.1.0",
-        "phpunit/php-code-coverage": "^9.2.32",
+        "phpunit/php-code-coverage": "^11.0.12",
         "revolt/event-loop": "^1.0.9",
         "spatie/array-to-xml": "^3.4.4",
         "friendsofphp/php-cs-fixer": "^3.95.23",

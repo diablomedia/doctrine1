@@ -141,7 +141,12 @@ class DoctrineTest
         if (isset($options['coverage'])) {
             try {
                 $coverageFilter = new \SebastianBergmann\CodeCoverage\Filter();
-                $coverageFilter->includeDirectory(DOCTRINE_DIR . DIRECTORY_SEPARATOR . 'lib');
+                $coverageFilter->includeFiles(
+                    (new \SebastianBergmann\FileIterator\Facade())->getFilesAsArray(
+                        DOCTRINE_DIR . DIRECTORY_SEPARATOR . 'lib',
+                        '.php'
+                    )
+                );
 
                 $coverage = new \SebastianBergmann\CodeCoverage\CodeCoverage(
                     (new SebastianBergmann\CodeCoverage\Driver\Selector)->forLineCoverage($coverageFilter),

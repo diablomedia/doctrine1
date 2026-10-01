@@ -3,8 +3,24 @@ updates:
     - package-ecosystem: composer
       directory: '/'
       schedule:
-          interval: daily
+          interval: weekly
+      groups:
+          non-major-updates:
+              applies-to: version-updates
+              patterns:
+                  - '*'
+              update-types:
+                  - minor
+                  - patch
     - package-ecosystem: github-actions
       directory: '/'
       schedule:
-          interval: daily
+          interval: weekly
+      groups:
+          non-major-updates:
+              applies-to: version-updates
+              patterns:
+                  - '*'
+              update-types:
+                  - minor
+                  - patch

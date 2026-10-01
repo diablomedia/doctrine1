@@ -470,12 +470,6 @@ $ignoreErrors[] = array(
     'path'       => __DIR__ . '/lib/Doctrine/DataDict/Mssql.php',
 );
 $ignoreErrors[] = array(
-    'message'    => '#^Call to function is_array\\(\\) with array\\{list\\<string\\>, list\\<string\\>\\} will always evaluate to true\\.$#',
-    'identifier' => 'function.alreadyNarrowedType',
-    'count'      => 1,
-    'path'       => __DIR__ . '/lib/Doctrine/DataDict/Mysql.php',
-);
-$ignoreErrors[] = array(
     'message'    => '#^Parameter \\#1 \\$haystack of function strstr expects string, string\\|false given\\.$#',
     'identifier' => 'argument.type',
     'count'      => 1,

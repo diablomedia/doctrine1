@@ -63,6 +63,13 @@ class Doctrine_Migration_TestCase extends Doctrine_UnitTestCase
         $migration->migrate(4);
         $this->assertFalse($this->conn->import->tableExists('migration_profile'));
 
+        $this->assertEqual($migration->migrateDryRun(), 11);
+        $this->assertEqual($migration->getCurrentVersion(), 4);
+        $this->assertEqual($migration->migrate(), 11);
+        $this->assertEqual($migration->getCurrentVersion(), 11);
+        $this->assertFalse($migration->migrateDryRun());
+        $this->assertEqual($migration->getCurrentVersion(), 11);
+
         $migration->migrate(0);
         $this->assertEqual($migration->getCurrentVersion(), 0);
         $this->assertTrue($migration->getMigrationClass(1) instanceof AddPhonenumber);

@@ -360,17 +360,17 @@ class Doctrine_Migration
     {
         $this->clearErrors();
 
+        // If nothing specified then lets assume we are migrating from
+        // the current version to the latest version
+        if ($to === null) {
+            $to = $this->getLatestVersion();
+        }
+
         $this->_createMigrationTable();
 
         $this->_connection->beginTransaction();
 
         try {
-            // If nothing specified then lets assume we are migrating from
-            // the current version to the latest version
-            if ($to === null) {
-                $to = $this->getLatestVersion();
-            }
-
             $this->_doMigrate($to);
         } catch (Exception $e) {
             $this->addError($e);

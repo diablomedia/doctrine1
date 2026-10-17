@@ -169,6 +169,20 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
         }
     }
 
+    public function testInvalidDsnParser()
+    {
+        $manager = Doctrine_Manager::getInstance();
+
+        foreach (array('mysql://localhost:70000/dbname', 'localhost/dbname', '') as $dsn) {
+            try {
+                $manager->parseDsn($dsn);
+                $this->fail('Expected an exception for an invalid DSN');
+            } catch (Doctrine_Manager_Exception $e) {
+                $this->assertEqual('Could not parse dsn', $e->getMessage());
+            }
+        }
+    }
+
     public function testCreateDatabases()
     {
         // We need to know if we're under Windows or *NIX

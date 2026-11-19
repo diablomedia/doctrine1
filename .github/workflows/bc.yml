@@ -6,16 +6,19 @@ on:
   pull_request:
     branches:
       - master
+permissions:
+  contents: read
 jobs:
   roave_bc_check:
     name: Roave BC Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Roave BC Check
-        uses: docker://nyholm/roave-bc-check-ga
+        uses: docker://nyholm/roave-bc-check-ga@sha256:a9d3d932a4d3ba6a5a0563ef3788918a538198ee9c061a153f9b55caa8d3625f
         env:
           # Configure Git inside the container, where the checkout has a different owner.
           GIT_CONFIG_COUNT: "1"

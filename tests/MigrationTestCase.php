@@ -87,6 +87,23 @@ class Doctrine_Migration_TestCase extends Doctrine_UnitTestCase
         ), $migration->getMigrationClasses());
     }
 
+    public function testMigrationDefaultsToLatestVersion()
+    {
+        $migration = new Doctrine_Migration('migration_classes');
+        $migration->setCurrentVersion(0);
+        $latest = $migration->getLatestVersion();
+
+        $this->assertEqual($latest, $migration->migrateDryRun());
+        $this->assertEqual(0, $migration->getCurrentVersion());
+        $this->assertFalse($this->conn->import->tableExists('migration_phonenumber'));
+
+        $this->assertEqual($latest, $migration->migrate());
+        $this->assertEqual($latest, $migration->getCurrentVersion());
+        $this->assertTrue($this->conn->import->tableExists('migration_phonenumber'));
+
+        $migration->migrate(0);
+    }
+
     public function testMigrateClearsErrors()
     {
         $migration = new Doctrine_Migration('migration_classes');

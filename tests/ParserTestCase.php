@@ -85,6 +85,19 @@ w00t: not now
         $this->assertEqual('test', $result);
     }
 
+    public function testXmlParserHandlesNestedAndRepeatedElements()
+    {
+        $xml = '<data><user><name>Alice</name><role>admin</role><role>editor</role><role>author</role></user><empty/></data>';
+
+        $this->assertEqual(array(
+            'user' => array(
+                'name' => 'Alice',
+                'role' => array('admin', 'editor', 'author'),
+            ),
+            'empty' => '',
+        ), Doctrine_Parser::load($xml, 'xml'));
+    }
+
     public function testLoadFromString()
     {
         $yml = "---

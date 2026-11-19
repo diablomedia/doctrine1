@@ -426,16 +426,16 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
         // silence any warnings
         $parts = @parse_url($dsn);
 
+        if ($parts === false || ! isset($parts['scheme'])) {
+            throw new Doctrine_Manager_Exception('Could not parse dsn');
+        }
+
         $names = array('dsn', 'scheme', 'host', 'port', 'user', 'pass', 'path', 'query', 'fragment');
 
         foreach ($names as $name) {
             if (! isset($parts[$name])) {
                 $parts[$name] = null;
             }
-        }
-
-        if (count($parts) == 0 || ! isset($parts['scheme'])) {
-            throw new Doctrine_Manager_Exception('Could not parse dsn');
         }
 
         return $parts;

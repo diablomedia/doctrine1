@@ -185,7 +185,7 @@ class Doctrine_Connection_TestCase extends Doctrine_UnitTestCase
 
     public function testCount()
     {
-        $this->assertTrue(is_integer(count($this->connection)));
+        $this->assertTrue(is_int(count($this->connection)));
     }
 
     public function testGetIterator()

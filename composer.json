@@ -30,7 +30,7 @@
         "doctrine/doctrine1": "*"
     },
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0 || ~8.6.0",
         "ext-pdo": "*",
         "symfony/yaml": "^6.0 || ^7.0 || ^8.0"
     },
@@ -49,7 +49,7 @@
         "friendsofphp/php-cs-fixer": "^3.95.23",
         "nikic/php-parser": "^5.8.0",
         "phpstan/phpstan": "2.2.16",
-        "vimeo/psalm": "^6.16.1"
+        "vimeo/psalm": "^6.16.1 || ~7.0.5"
     },
     "scripts": {
         "test": "cd tests && php run.php",

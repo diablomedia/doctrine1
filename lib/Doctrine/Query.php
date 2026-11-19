@@ -1818,6 +1818,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
                     $this->_needsSubquery = true;
                 }
 
+                /** @var string $parent Initialized with the preceding component when its table is loaded. */
                 $localAlias   = $this->getSqlTableAlias($parent, $localTable->getTableName());
                 $foreignAlias = $this->getSqlTableAlias($componentAlias, $relation->getTable()->getTableName());
 

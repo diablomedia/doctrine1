@@ -1015,7 +1015,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         }
 
         $err = false;
-        if (is_integer($state)) {
+        if (is_int($state)) {
             if ($state >= 1 && $state <= 7) {
                 $this->_state = $state;
             } else {
@@ -1546,7 +1546,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @throws Doctrine_Record_Exception    if trying to set a value for unknown property / related component
      * @throws Doctrine_Record_Exception    if trying to set a value of wrong type for related component
      *
-     * @return $this
+     * @return mixed The record, or a value returned by a custom mutator or filter.
      */
     public function set($offset, $value, $load = true)
     {
@@ -1568,7 +1568,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @param string $fieldName
      * @param mixed $value
      * @param bool $load
-     * @return $this
+     * @return mixed The record, or a value returned by a custom filter.
      */
     protected function _set($fieldName, $value, $load = true)
     {

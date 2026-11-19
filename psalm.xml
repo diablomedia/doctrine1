@@ -13,6 +13,17 @@
     </projectFiles>
 
     <issueHandlers>
+        <!-- CLI output is terminal text, so HTML escaping is not applicable. -->
+        <TaintedHtml>
+            <errorLevel type="info">
+                <file name="lib/Doctrine/Cli.php" />
+            </errorLevel>
+        </TaintedHtml>
+        <TaintedTextWithQuotes>
+            <errorLevel type="info">
+                <file name="lib/Doctrine/Cli.php" />
+            </errorLevel>
+        </TaintedTextWithQuotes>
         <LessSpecificReturnType errorLevel="info" />
 
         <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->

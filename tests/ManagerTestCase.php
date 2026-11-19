@@ -51,7 +51,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
     }
     public function testCount()
     {
-        $this->assertTrue(is_integer(count($this->manager)));
+        $this->assertTrue(is_int(count($this->manager)));
     }
     public function testGetCurrentConnection()
     {
@@ -59,7 +59,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase
     }
     public function testGetConnections()
     {
-        $this->assertTrue(is_integer(count($this->manager->getConnections())));
+        $this->assertTrue(is_int(count($this->manager->getConnections())));
     }
     public function testClassifyTableize()
     {

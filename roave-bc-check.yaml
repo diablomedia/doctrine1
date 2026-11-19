@@ -1,0 +1,12 @@
+# The Docker action counts reflection failures as BC breaks. These exceptions
+# cover known inspection limitations only; actual API changes must still fail.
+parameters:
+    ignoreErrors:
+        # The two CLI formatters default $stream to the STDOUT resource, which
+        # BetterReflection cannot return from ReflectionParameter::getDefaultValue().
+        - '#^\[BC\] SKIPPED: Roave\\BetterReflection\\Reflection\\ReflectionParameter::getDefaultValue\(\): Return value must be of type [^,\r\n]+, resource returned$#'
+
+        # OCI8 is absent in the image. Limit these skips to the two Oracle
+        # adapters and this constant; other inspection failures remain errors.
+        - '#^\[BC\] SKIPPED: Could not locate constant "OCI_COMMIT_ON_SUCCESS" while evaluating expression in class Doctrine_Adapter_Statement_Oracle in file [^\r\n]+/Doctrine/Adapter/Statement/Oracle\.php \(line \d+\)$#'
+        - '#^\[BC\] SKIPPED: Could not locate constant "OCI_COMMIT_ON_SUCCESS" while evaluating expression in class Doctrine_Adapter_Oracle in file [^\r\n]+/Doctrine/Adapter/Oracle\.php \(line \d+\)$#'

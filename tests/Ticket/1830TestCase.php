@@ -13,7 +13,7 @@ class Doctrine_Ticket_1830_TestCase extends Doctrine_UnitTestCase
         $this->prepareData();
     }
 
-    public function run(DoctrineTest_Reporter $reporter = null, $filter = null)
+    public function run(?DoctrineTest_Reporter $reporter = null, $filter = null)
     {
         parent::run($reporter, $filter);
         $this->manager->closeConnection($this->connection);

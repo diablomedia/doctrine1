@@ -863,7 +863,7 @@ class Doctrine_Record_TestCase extends Doctrine_UnitTestCase
     {
         $user = $this->connection->getTable('User')->find(4);
 
-        $this->assertTrue(is_integer($user->count()));
+        $this->assertTrue(is_int($user->count()));
     }
 
     public function testGetReference()

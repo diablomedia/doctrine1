@@ -13,3 +13,5 @@ A fork of the old school Doctrine1 repo that is maintained to the point that maj
 This fork is based on the final release of the original project (version 1.2.5), and releases will follow [semantic versioning](https://semver.org/). The first release of this fork is version 2.0.0.
 
 Development checks use Psalm 6 or Psalm 7.0.5. PHP 8.6 requires Psalm 7; the 7.0 maintenance line is used because Psalm 7.11 crashes on PHP 8.6 when its analyzer reads the deprecated `SORT_LOCALE_STRING` constant.
+
+GitHub Actions security checks use Zizmor 1.32.0. Run them locally with `uvx zizmor==1.32.0 .` (or add `--offline` to skip audits that require a GitHub API token).
